@@ -1,0 +1,81 @@
+﻿@model IEnumerable<SirCoPOS.DataAccess.SirCoPOS.Fondo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ResponsableId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaApertura)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuditorAperturaId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCierre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuditorCierreId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disponible)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CajaSucursal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CajaNumero)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Id)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ResponsableId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaApertura)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AuditorAperturaId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FechaCierre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.AuditorCierreId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Disponible)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CajaSucursal)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CajaNumero)
+    </td>
+    <td>
+        @Html.ActionLink("Movimientos", "Index", "FondoMovimientos", new { id = item.Id }, htmlAttributes: null) |
+        @Html.ActionLink("FormasPago", "FondoFormasPago", "Fondos", new { id = item.Id }, htmlAttributes: null) |
+        @Html.ActionLink("Arqueos", "Index", "FondoArqueos", new { id = item.Id }, htmlAttributes: null)
+    </td>
+</tr>
+}
+
+</table>

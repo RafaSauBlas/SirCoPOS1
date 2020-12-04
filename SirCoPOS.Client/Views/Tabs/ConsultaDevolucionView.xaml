@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="SirCoPOS.Client.Views.Tabs.ConsultaDevolucionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
+             mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:ConsultaDevolucionViewModel></vm:ConsultaDevolucionViewModel>
+    </UserControl.DataContext>
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Devolucion" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="104.157,13.517,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
+            </TextBox.InputBindings>
+        </TextBox>
+        <TextBlock HorizontalAlignment="Left" Margin="229.157,14.517,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0}-{1}">
+                    <Binding Path="Devolucion.Sucursal" />
+                    <Binding Path="Devolucion.Folio" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        <DataGrid IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Devolucion.Productos}" Margin="10,42,277,221">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Serie" Binding="{Binding Serie}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Precio" Binding="{Binding Precio, StringFormat=\{0:C\}}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Command="{Binding UltimaVentaCommand}" Content="ultima devolucion" Margin="0,9,277,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="156"/>
+        <Button Content="Print" Command="{Binding PrintCommand}" HorizontalAlignment="Left" Margin="10,0,0,188" VerticalAlignment="Bottom" Width="75"/>
+
+    </Grid>
+</UserControl>

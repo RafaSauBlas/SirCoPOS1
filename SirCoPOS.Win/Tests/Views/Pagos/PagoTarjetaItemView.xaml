@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="SirCoPOS.Win.Tests.Views.Pagos.PagoTarjetaItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SirCoPOS.Win.Tests.Views.Pagos"
+             mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:SirCoPOS.Win.Tests.Models"
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance vm:PagoTarjeta, IsDesignTimeCreatable=True}">
+    <Grid>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Importe" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="57,13,0,0" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="10,31,0,0" TextWrapping="Wrap" Text="{Binding Terminacion}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock2_Copy" HorizontalAlignment="Left" Margin="10,52,0,0" TextWrapping="Wrap" Text="{Binding Referencia}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="115,39,0,0" TextWrapping="Wrap" Text="tarjeta" VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>

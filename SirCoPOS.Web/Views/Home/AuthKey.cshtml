@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "AuthKey";
+}
+
+<h2>AuthKey</h2>
+
+
+<hr />
+
+<img src="@Url.Action("Code", "Images", new { code = ViewBag.BarcodeUrl })" />
+
+@using (Html.BeginForm("AuthKey", "Home", FormMethod.Post))
+{
+    @Html.Hidden("key", (string)ViewBag.SecretKey)
+    @Html.Hidden("id", (int)ViewBag.id)
+    <input type="text" name="code" />
+    <input type="submit" />
+}

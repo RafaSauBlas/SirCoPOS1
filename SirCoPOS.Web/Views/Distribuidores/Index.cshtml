@@ -1,0 +1,152 @@
+﻿@model SirCoPOS.Common.Entities.Distribuidor
+
+@{
+    ViewBag.Title = "Index";
+    var ts = (TimeSpan)ViewBag.time;
+}
+
+@helper displayRelative(TimeSpan ts)
+{
+    if (ts.TotalDays > 365)
+    {
+        var years = ts.TotalDays / 365;
+        var mod = ts.TotalDays % 365;
+        @String.Format("{0} años", (int)years)
+        if (mod > 30)
+        {
+            var months = mod / 30;
+            @String.Format(" {0} meses", (int)months)
+        }
+        else if (mod > 1)
+        {
+            @String.Format(" {0} dias", (int)mod)
+        }
+    }
+    else if (ts.TotalDays > 30)
+    {
+        var months = ts.TotalDays / 30;
+        var mod = ts.TotalDays % 30;
+        @String.Format("{0} meses", (int)months)
+        if (mod > 1)
+        {
+            @String.Format(" {0} dias", (int)mod)
+        }
+    }
+    else if (ts.TotalDays > 1)
+    {
+        @String.Format("{0} dias", (int)ts.TotalDays)
+    }
+    else
+    {
+        if (ts.TotalHours > 1)
+        {
+            @String.Format("{0} horas", (int)ts.TotalHours)
+        }
+        else
+        {
+            @String.Format("{0} minutos", (int)ts.TotalMinutes)
+        }
+
+    }
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>Distribuidor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cuenta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cuenta)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApPaterno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApPaterno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApMaterno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApMaterno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Electronica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Electronica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContraVale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContraVale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Promocion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Promocion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Disponible)
+        </dt>
+
+        <dd>
+            @String.Format("{0:C}", Model.Disponible)            
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Plazos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Plazos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @String.Format("{0:d}", Model.Date) (@(displayRelative(ts)))
+        </dd>
+
+    </dl>
+</div>
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

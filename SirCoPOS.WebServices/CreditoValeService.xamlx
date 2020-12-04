@@ -1,0 +1,443 @@
+﻿<WorkflowService mc:Ignorable="sap sap2010 sads" p1:TextExpression.Namespaces="{x:Reference __ReferenceID6}" p1:TextExpression.References="{x:Reference __ReferenceID7}" ConfigurationName="CreditoValeService" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#" sap2010:WorkflowViewState.IdRef="WorkflowService_1" Name="CreditoValeService"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:p="http://tempuri.org/"
+ xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:sce="clr-namespace:SirCoPOS.Common.Entities;assembly=SirCoPOS.Common"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:scs="clr-namespace:SirCoPOS.Common.ServiceContracts;assembly=SirCoPOS.Common"
+ xmlns:ssx="clr-namespace:System.ServiceModel.XamlIntegration;assembly=System.ServiceModel"
+ xmlns:swa="clr-namespace:SirCoPOS.WebServices.Activities;assembly=SirCoPOS.WebServices"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <WorkflowService.ImplementedContracts>
+    <x:Type Type="scs:ICreditoValeService" />
+  </WorkflowService.ImplementedContracts>
+  <p1:Sequence DisplayName="Sequential Service" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <p1:TextExpression.Namespaces>
+      <sco:Collection x:TypeArguments="x:String" x:Name="__ReferenceID6">
+        <x:String>System</x:String>
+        <x:String>System.Collections.Generic</x:String>
+        <x:String>System.Data</x:String>
+        <x:String>System.Linq</x:String>
+        <x:String>System.Text</x:String>
+        <x:String>SirCoPOS.Common.Entities</x:String>
+      </sco:Collection>
+    </p1:TextExpression.Namespaces>
+    <p1:TextExpression.References>
+      <sco:Collection x:TypeArguments="p1:AssemblyReference" x:Name="__ReferenceID7">
+        <p1:AssemblyReference>Castle.Core</p1:AssemblyReference>
+        <p1:AssemblyReference>CommonServiceLocator</p1:AssemblyReference>
+        <p1:AssemblyReference>Elmah</p1:AssemblyReference>
+        <p1:AssemblyReference>EntityFramework</p1:AssemblyReference>
+        <p1:AssemblyReference>EntityFramework.SqlServer</p1:AssemblyReference>
+        <p1:AssemblyReference>Microsoft.CSharp</p1:AssemblyReference>
+        <p1:AssemblyReference>Microsoft.Web.Infrastructure</p1:AssemblyReference>
+        <p1:AssemblyReference>Newtonsoft.Json</p1:AssemblyReference>
+        <p1:AssemblyReference>Ninject</p1:AssemblyReference>
+        <p1:AssemblyReference>Ninject.Extensions.Conventions</p1:AssemblyReference>
+        <p1:AssemblyReference>Ninject.Extensions.Factory</p1:AssemblyReference>
+        <p1:AssemblyReference>Ninject.Extensions.Wcf</p1:AssemblyReference>
+        <p1:AssemblyReference>Ninject.Web.Common</p1:AssemblyReference>
+        <p1:AssemblyReference>Ninject.Web.Common.WebHost</p1:AssemblyReference>
+        <p1:AssemblyReference>NLog</p1:AssemblyReference>
+        <p1:AssemblyReference>PresentationCore</p1:AssemblyReference>
+        <p1:AssemblyReference>PresentationFramework</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Activities.Presentation</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ComponentModel.DataAnnotations</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Configuration</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Data.Services</p1:AssemblyReference>
+        <p1:AssemblyReference>System.IdentityModel</p1:AssemblyReference>
+        <p1:AssemblyReference>System.IO.Compression</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel.Activation</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel.Primitives</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel.Web</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Transactions</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.DynamicData</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Drawing</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.Entity</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web.ApplicationServices</p1:AssemblyReference>
+        <p1:AssemblyReference>System</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Activities</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Core</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Data</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Data.Entity</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Runtime.Serialization</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel.Activities</p1:AssemblyReference>
+        <p1:AssemblyReference>System.ServiceModel.Channels</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Web</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Xaml</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Xml</p1:AssemblyReference>
+        <p1:AssemblyReference>System.Xml.Linq</p1:AssemblyReference>
+        <p1:AssemblyReference>WebActivatorEx</p1:AssemblyReference>
+        <p1:AssemblyReference>WindowsBase</p1:AssemblyReference>
+        <p1:AssemblyReference>SirCoPOS.BusinessLogic</p1:AssemblyReference>
+        <p1:AssemblyReference>SirCoPOS.Common</p1:AssemblyReference>
+        <p1:AssemblyReference>SirCoPOS.Contracts</p1:AssemblyReference>
+        <p1:AssemblyReference>SirCoPOS.DataAccess</p1:AssemblyReference>
+        <p1:AssemblyReference>SirCoPOS.Server.Common</p1:AssemblyReference>
+        <p1:AssemblyReference>SirCoPOS.Services</p1:AssemblyReference>
+        <p1:AssemblyReference>mscorlib</p1:AssemblyReference>
+        <p1:AssemblyReference>SirCoPOS.WebServices</p1:AssemblyReference>
+      </sco:Collection>
+    </p1:TextExpression.References>
+    <p1:Sequence.Variables>
+      <p1:Variable x:TypeArguments="CorrelationHandle" Name="handle" />
+      <p1:Variable x:TypeArguments="sce:SolicitudCreditoRequest" Name="request" />
+      <p1:Variable x:TypeArguments="s:Guid" Name="gid" />
+      <p1:Variable x:TypeArguments="x:String" Name="suc" />
+      <p1:Variable x:TypeArguments="sce:SolicitudCreditoResponse" Name="response" />
+    </p1:Sequence.Variables>
+    <p1:Sequence DisplayName="Request_ReceiveAndSendReply" sap2010:WorkflowViewState.IdRef="Sequence_1">
+      <p1:Sequence.Variables>
+        <x:Reference>__ReferenceID1</x:Reference>
+      </p1:Sequence.Variables>
+      <Receive x:Name="__ReferenceID0" Action="http://tempuri.org/ICreditoValeService/Request" CanCreateInstance="True" DisplayName="Request_Receive" sap2010:WorkflowViewState.IdRef="Receive_1" OperationName="Request" ProtectionLevel="None" ServiceContractName="p:ICreditoValeService">
+        <Receive.CorrelationInitializers>
+          <RequestReplyCorrelationInitializer>
+            <RequestReplyCorrelationInitializer.CorrelationHandle>
+              <p1:InArgument x:TypeArguments="CorrelationHandle">
+                <p1:VariableValue x:TypeArguments="CorrelationHandle">
+                  <p1:VariableValue.Variable>
+                    <p1:Variable x:TypeArguments="CorrelationHandle" x:Name="__ReferenceID1" Name="__handle" />
+                  </p1:VariableValue.Variable>
+                </p1:VariableValue>
+              </p1:InArgument>
+            </RequestReplyCorrelationInitializer.CorrelationHandle>
+          </RequestReplyCorrelationInitializer>
+        </Receive.CorrelationInitializers>
+        <ReceiveParametersContent>
+          <p1:OutArgument x:TypeArguments="sce:SolicitudCreditoRequest" x:Key="item">
+            <mca:CSharpReference x:TypeArguments="sce:SolicitudCreditoRequest">request</mca:CSharpReference>
+          </p1:OutArgument>
+        </ReceiveParametersContent>
+      </Receive>
+      <swa:RequestActivity sap2010:WorkflowViewState.IdRef="RequestActivity_1">
+        <swa:RequestActivity.Request>
+          <p1:InArgument x:TypeArguments="sce:SolicitudCreditoRequest">
+            <mca:CSharpValue x:TypeArguments="sce:SolicitudCreditoRequest">request</mca:CSharpValue>
+          </p1:InArgument>
+        </swa:RequestActivity.Request>
+        <swa:RequestActivity.Response>
+          <p1:OutArgument x:TypeArguments="sce:SolicitudCreditoResponse">
+            <mca:CSharpReference x:TypeArguments="sce:SolicitudCreditoResponse">response</mca:CSharpReference>
+          </p1:OutArgument>
+        </swa:RequestActivity.Response>
+      </swa:RequestActivity>
+      <p1:Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+        <p1:Assign.To>
+          <p1:OutArgument x:TypeArguments="s:Guid">
+            <mca:CSharpReference x:TypeArguments="s:Guid">gid</mca:CSharpReference>
+          </p1:OutArgument>
+        </p1:Assign.To>
+        <p1:Assign.Value>
+          <p1:InArgument x:TypeArguments="s:Guid">
+            <mca:CSharpValue x:TypeArguments="s:Guid">response.Id</mca:CSharpValue>
+          </p1:InArgument>
+        </p1:Assign.Value>
+      </p1:Assign>
+      <p1:Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+        <p1:Assign.To>
+          <p1:OutArgument x:TypeArguments="x:String">
+            <mca:CSharpReference x:TypeArguments="x:String">suc</mca:CSharpReference>
+          </p1:OutArgument>
+        </p1:Assign.To>
+        <p1:Assign.Value>
+          <p1:InArgument x:TypeArguments="x:String">
+            <mca:CSharpValue x:TypeArguments="x:String">request.Sucursal</mca:CSharpValue>
+          </p1:InArgument>
+        </p1:Assign.Value>
+      </p1:Assign>
+      <SendReply Request="{x:Reference __ReferenceID0}" Action="http://tempuri.org/ICreditoValeService/RequestResponse" DisplayName="Request_SendReply" sap2010:WorkflowViewState.IdRef="SendReply_1">
+        <SendReply.CorrelationInitializers>
+          <QueryCorrelationInitializer>
+            <QueryCorrelationInitializer.CorrelationHandle>
+              <p1:InArgument x:TypeArguments="CorrelationHandle">
+                <mca:CSharpValue x:TypeArguments="CorrelationHandle">handle</mca:CSharpValue>
+              </p1:InArgument>
+            </QueryCorrelationInitializer.CorrelationHandle>
+            <XPathMessageQuery x:Key="key1">
+              <XPathMessageQuery.Namespaces>
+                <ssx:XPathMessageContextMarkup>
+                  <x:String x:Key="xg0">http://schemas.datacontract.org/2004/07/SirCoPOS.Common.Entities</x:String>
+                  <x:String x:Key="xgSc">http://tempuri.org/</x:String>
+                </ssx:XPathMessageContextMarkup>
+              </XPathMessageQuery.Namespaces>sm:body()/xgSc:RequestResponse/xgSc:RequestResult/xg0:Id</XPathMessageQuery>
+          </QueryCorrelationInitializer>
+        </SendReply.CorrelationInitializers>
+        <SendParametersContent>
+          <p1:InArgument x:TypeArguments="sce:SolicitudCreditoResponse" x:Key="RequestResult">
+            <mca:CSharpValue x:TypeArguments="sce:SolicitudCreditoResponse">response</mca:CSharpValue>
+          </p1:InArgument>
+        </SendParametersContent>
+      </SendReply>
+    </p1:Sequence>
+    <p1:If sap2010:WorkflowViewState.IdRef="If_1">
+      <p1:If.Condition>
+        <p1:InArgument x:TypeArguments="x:Boolean">
+          <mca:CSharpValue x:TypeArguments="x:Boolean">response.Processing.HasValue</mca:CSharpValue>
+        </p1:InArgument>
+      </p1:If.Condition>
+      <p1:If.Else>
+        <p1:Sequence sap2010:WorkflowViewState.IdRef="Sequence_8">
+          <swa:SlackNotificationActivity sap2010:WorkflowViewState.IdRef="SlackNotificationActivity_1">
+            <swa:SlackNotificationActivity.GID>
+              <p1:InArgument x:TypeArguments="s:Guid">
+                <mca:CSharpValue x:TypeArguments="s:Guid">gid</mca:CSharpValue>
+              </p1:InArgument>
+            </swa:SlackNotificationActivity.GID>
+          </swa:SlackNotificationActivity>
+          <p1:Persist sap2010:WorkflowViewState.IdRef="Persist_1" />
+          <p1:Pick sap2010:WorkflowViewState.IdRef="Pick_1">
+            <p1:PickBranch DisplayName="Branch1" sap2010:WorkflowViewState.IdRef="PickBranch_1">
+              <p1:PickBranch.Trigger>
+                <p1:Sequence DisplayName="Update_ReceiveAndSendReply" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                  <p1:Sequence.Variables>
+                    <x:Reference>__ReferenceID5</x:Reference>
+                    <p1:Variable x:TypeArguments="x:Int32" Name="uid" />
+                  </p1:Sequence.Variables>
+                  <Receive x:Name="__ReferenceID4" Action="http://tempuri.org/ICreditoValeService/Update" DisplayName="Update_Receive" sap2010:WorkflowViewState.IdRef="Receive_2" OperationName="Update" ProtectionLevel="None" ServiceContractName="p:ICreditoValeService">
+                    <Receive.CorrelatesOn>
+                      <XPathMessageQuery x:Key="key1">
+                        <XPathMessageQuery.Namespaces>
+                          <ssx:XPathMessageContextMarkup>
+                            <x:String x:Key="xgSc">http://tempuri.org/</x:String>
+                          </ssx:XPathMessageContextMarkup>
+                        </XPathMessageQuery.Namespaces>sm:body()/xgSc:Update/xgSc:gid</XPathMessageQuery>
+                    </Receive.CorrelatesOn>
+                    <Receive.CorrelatesWith>
+                      <p1:InArgument x:TypeArguments="CorrelationHandle">
+                        <mca:CSharpValue x:TypeArguments="CorrelationHandle">handle</mca:CSharpValue>
+                      </p1:InArgument>
+                    </Receive.CorrelatesWith>
+                    <Receive.CorrelationInitializers>
+                      <RequestReplyCorrelationInitializer>
+                        <RequestReplyCorrelationInitializer.CorrelationHandle>
+                          <p1:InArgument x:TypeArguments="CorrelationHandle">
+                            <p1:VariableValue x:TypeArguments="CorrelationHandle">
+                              <p1:VariableValue.Variable>
+                                <p1:Variable x:TypeArguments="CorrelationHandle" x:Name="__ReferenceID5" Name="__handle" />
+                              </p1:VariableValue.Variable>
+                            </p1:VariableValue>
+                          </p1:InArgument>
+                        </RequestReplyCorrelationInitializer.CorrelationHandle>
+                      </RequestReplyCorrelationInitializer>
+                    </Receive.CorrelationInitializers>
+                    <ReceiveParametersContent>
+                      <p1:OutArgument x:TypeArguments="s:Guid" x:Key="gid" />
+                      <p1:OutArgument x:TypeArguments="x:Int32" x:Key="uid">
+                        <mca:CSharpReference x:TypeArguments="x:Int32">uid</mca:CSharpReference>
+                      </p1:OutArgument>
+                    </ReceiveParametersContent>
+                  </Receive>
+                  <swa:UpdateActivity sap2010:WorkflowViewState.IdRef="UpdateActivity_2">
+                    <swa:UpdateActivity.GID>
+                      <p1:InArgument x:TypeArguments="s:Guid">
+                        <mca:CSharpValue x:TypeArguments="s:Guid">gid</mca:CSharpValue>
+                      </p1:InArgument>
+                    </swa:UpdateActivity.GID>
+                    <swa:UpdateActivity.UID>
+                      <p1:InArgument x:TypeArguments="x:Int32">
+                        <mca:CSharpValue x:TypeArguments="x:Int32">uid</mca:CSharpValue>
+                      </p1:InArgument>
+                    </swa:UpdateActivity.UID>
+                  </swa:UpdateActivity>
+                  <SendReply Request="{x:Reference __ReferenceID4}" Action="http://tempuri.org/ICreditoValeService/UpdateResponse" DisplayName="Update_SendReply" sap2010:WorkflowViewState.IdRef="SendReply_2">
+                    <SendParametersContent />
+                  </SendReply>
+                </p1:Sequence>
+              </p1:PickBranch.Trigger>
+              <p1:Sequence sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <p1:Persist sap2010:WorkflowViewState.IdRef="Persist_2" />
+                <swa:NotifyActivity Complete="False" sap2010:WorkflowViewState.IdRef="NotifyActivity_1">
+                  <swa:NotifyActivity.Client>
+                    <p1:InArgument x:TypeArguments="x:String">
+                      <mca:CSharpValue x:TypeArguments="x:String">suc</mca:CSharpValue>
+                    </p1:InArgument>
+                  </swa:NotifyActivity.Client>
+                  <swa:NotifyActivity.GID>
+                    <p1:InArgument x:TypeArguments="s:Guid">
+                      <mca:CSharpValue x:TypeArguments="s:Guid">gid</mca:CSharpValue>
+                    </p1:InArgument>
+                  </swa:NotifyActivity.GID>
+                </swa:NotifyActivity>
+                <p1:Sequence DisplayName="Complete_ReceiveAndSendReply" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                  <p1:Sequence.Variables>
+                    <x:Reference>__ReferenceID3</x:Reference>
+                    <p1:Variable x:TypeArguments="sce:ReplyCreditoRequest" Name="reply" />
+                  </p1:Sequence.Variables>
+                  <Receive x:Name="__ReferenceID2" Action="http://tempuri.org/ICreditoValeService/Complete" DisplayName="Complete_Receive" sap2010:WorkflowViewState.IdRef="Receive_3" OperationName="Complete" ProtectionLevel="None" ServiceContractName="p:ICreditoValeService">
+                    <Receive.CorrelatesOn>
+                      <XPathMessageQuery x:Key="key1">
+                        <XPathMessageQuery.Namespaces>
+                          <ssx:XPathMessageContextMarkup>
+                            <x:String x:Key="xg0">http://schemas.datacontract.org/2004/07/SirCoPOS.Common.Entities</x:String>
+                            <x:String x:Key="xgSc">http://tempuri.org/</x:String>
+                          </ssx:XPathMessageContextMarkup>
+                        </XPathMessageQuery.Namespaces>sm:body()/xgSc:Complete/xgSc:item/xg0:Id</XPathMessageQuery>
+                    </Receive.CorrelatesOn>
+                    <Receive.CorrelatesWith>
+                      <p1:InArgument x:TypeArguments="CorrelationHandle">
+                        <mca:CSharpValue x:TypeArguments="CorrelationHandle">handle</mca:CSharpValue>
+                      </p1:InArgument>
+                    </Receive.CorrelatesWith>
+                    <Receive.CorrelationInitializers>
+                      <RequestReplyCorrelationInitializer>
+                        <RequestReplyCorrelationInitializer.CorrelationHandle>
+                          <p1:InArgument x:TypeArguments="CorrelationHandle">
+                            <p1:VariableValue x:TypeArguments="CorrelationHandle">
+                              <p1:VariableValue.Variable>
+                                <p1:Variable x:TypeArguments="CorrelationHandle" x:Name="__ReferenceID3" Name="__handle" />
+                              </p1:VariableValue.Variable>
+                            </p1:VariableValue>
+                          </p1:InArgument>
+                        </RequestReplyCorrelationInitializer.CorrelationHandle>
+                      </RequestReplyCorrelationInitializer>
+                    </Receive.CorrelationInitializers>
+                    <ReceiveParametersContent>
+                      <p1:OutArgument x:TypeArguments="sce:ReplyCreditoRequest" x:Key="item">
+                        <mca:CSharpReference x:TypeArguments="sce:ReplyCreditoRequest">reply</mca:CSharpReference>
+                      </p1:OutArgument>
+                    </ReceiveParametersContent>
+                  </Receive>
+                  <swa:CompleteActivity sap2010:WorkflowViewState.IdRef="CompleteActivity_2">
+                    <swa:CompleteActivity.Reply>
+                      <p1:InArgument x:TypeArguments="sce:ReplyCreditoRequest">
+                        <mca:CSharpValue x:TypeArguments="sce:ReplyCreditoRequest">reply</mca:CSharpValue>
+                      </p1:InArgument>
+                    </swa:CompleteActivity.Reply>
+                  </swa:CompleteActivity>
+                  <SendReply Request="{x:Reference __ReferenceID2}" Action="http://tempuri.org/ICreditoValeService/CompleteResponse" DisplayName="Complete_SendReply" sap2010:WorkflowViewState.IdRef="SendReply_3">
+                    <SendParametersContent />
+                  </SendReply>
+                </p1:Sequence>
+              </p1:Sequence>
+            </p1:PickBranch>
+            <p1:PickBranch DisplayName="Branch2" sap2010:WorkflowViewState.IdRef="PickBranch_2">
+              <p1:PickBranch.Trigger>
+                <p1:Delay Duration="00:00:45" sap2010:WorkflowViewState.IdRef="Delay_1" />
+              </p1:PickBranch.Trigger>
+              <p1:Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
+                <p1:Persist sap2010:WorkflowViewState.IdRef="Persist_3" />
+                <swa:RejectActivity sap2010:WorkflowViewState.IdRef="RejectActivity_1">
+                  <swa:RejectActivity.GID>
+                    <p1:InArgument x:TypeArguments="s:Guid">
+                      <mca:CSharpValue x:TypeArguments="s:Guid">gid</mca:CSharpValue>
+                    </p1:InArgument>
+                  </swa:RejectActivity.GID>
+                </swa:RejectActivity>
+              </p1:Sequence>
+            </p1:PickBranch>
+          </p1:Pick>
+          <swa:NotifyActivity Complete="True" sap2010:WorkflowViewState.IdRef="NotifyActivity_2">
+            <swa:NotifyActivity.Client>
+              <p1:InArgument x:TypeArguments="x:String">
+                <mca:CSharpValue x:TypeArguments="x:String">suc</mca:CSharpValue>
+              </p1:InArgument>
+            </swa:NotifyActivity.Client>
+            <swa:NotifyActivity.GID>
+              <p1:InArgument x:TypeArguments="s:Guid">
+                <mca:CSharpValue x:TypeArguments="s:Guid">gid</mca:CSharpValue>
+              </p1:InArgument>
+            </swa:NotifyActivity.GID>
+          </swa:NotifyActivity>
+        </p1:Sequence>
+      </p1:If.Else>
+    </p1:If>
+    <sads:DebugSymbol.Symbol>d1ZUOlxURlNcU2hhb2xpblxaYXBhdGVyaWFUb3JyZW9uXFNpckNvUE9TXFNpckNvUE9TLldlYlNlcnZpY2VzXENyZWRpdG9WYWxlU2VydmljZS54YW1seDsVA+ICEQEBYQW0ARMChAG1AQXgAg0BAmUHeBECwwF5B4QBHQK0AYUBB5ABEwKlAZEBB5wBEwKWAZ0BB7MBEwKFAbgBC7gBZgEDvAEJ3gIXAQlqEW4kAssBdQ11bQLEAXwNfGUCvAGBAQ2BAW8CtQGNAQ2NAVQCrQGIAQ2IAVQCpgGZAQ2ZAVsCngGUAQ2UAVYClwGwAQ2wAWcCjQGiARGiAV4ChgG9AQvDASsBfcQBC8QBRQF8xQEL0QIVARjSAgvdAiABCsABEcABUAF+xgENwQIdASXCAg3QAh0BGdUCEdUCUgES2gIR2gJQAQzSAijSAi4BC8gBEf4BHwFVgAIPwAIdASbEAhHEAlsBI8YCD88CHQEazQET7gEdAWrvARP6ASgBWfsBE/0BHwFWgQIRgQJLAVSCAhGNAiYBRo4CEb8CHwEnxAIkxAIuASTHAhHHAksBIsgCEc4CJgEb2AEZ2AFmAXTfAR3jATABc+sBGesBYQFr8gEZ8gFYAWL3ARn3AVkBWoUCF4UCWAFOigIXigJWAUiCAi6CAjUBR5MCE7QCHQE0tQITuwIqASu8AhO+Ah8BKMsCF8sCVgEcnwIZnwJmAT6mAh2qAjABPbECGbECcwE1uAIZuAJrASw=</sads:DebugSymbol.Symbol>
+  </p1:Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="Receive_1" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="RequestActivity_1" sap:VirtualizedContainerService.HintSize="255,22" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="255,62" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="255,62" />
+      <sap2010:ViewStateData Id="SendReply_1" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="464,602">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Type Type="scs:ICreditoValeService" x:Key="contractType" />
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SlackNotificationActivity_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Persist_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Receive_2" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="UpdateActivity_2" sap:VirtualizedContainerService.HintSize="255,22" />
+      <sap2010:ViewStateData Id="SendReply_2" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="277,398">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Type Type="scs:ICreditoValeService" x:Key="contractType" />
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Persist_2" sap:VirtualizedContainerService.HintSize="277,22" />
+      <sap2010:ViewStateData Id="NotifyActivity_1" sap:VirtualizedContainerService.HintSize="277,22" />
+      <sap2010:ViewStateData Id="Receive_3" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="CompleteActivity_2" sap:VirtualizedContainerService.HintSize="255,22" />
+      <sap2010:ViewStateData Id="SendReply_3" sap:VirtualizedContainerService.HintSize="255,86" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="277,398">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Type Type="scs:ICreditoValeService" x:Key="contractType" />
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="299,646">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="PickBranch_1" sap:VirtualizedContainerService.HintSize="329,1242" />
+      <sap2010:ViewStateData Id="Delay_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Persist_3" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="RejectActivity_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="222,208">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="PickBranch_2" sap:VirtualizedContainerService.HintSize="252,1242" />
+      <sap2010:ViewStateData Id="Pick_1" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="NotifyActivity_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,210" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="486,976">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="WorkflowService_1" sap:VirtualizedContainerService.HintSize="516,1046" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</WorkflowService>

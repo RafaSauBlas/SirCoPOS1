@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="SirCoPOS.Client.Views.Tabs.CajaView1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:c="clr-namespace:SirCoPOS.Client.Converters"
+             xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
+             xmlns:vmd="clr-namespace:SirCoPOS.Client.DesignMode.ViewModels"
+             xmlns:tk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:vp="clr-namespace:SirCoPOS.Client.Views.Pagos"
+             xmlns:com="clr-namespace:SirCoPOS.Common.Constants;assembly=SirCoPOS.Common"             
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:m="clr-namespace:SirCoPOS.Client.Models"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             d:DataContext="{d:DesignInstance Type=vmd:CajaViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.DataContext>
+        <vm:CajaViewModel></vm:CajaViewModel>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <c:WindowStateConverter x:Key="windowState"></c:WindowStateConverter>
+        <c:ImageUrlConverter x:Key="imageUrl" />
+        <BooleanToVisibilityConverter x:Key="boolConv"></BooleanToVisibilityConverter>
+    </UserControl.Resources>
+    <Grid>
+        <tk:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}">
+            <Grid>
+                <Grid Margin="302,139.5,10,228">
+                    <DataGrid IsReadOnly="True" CanUserDeleteRows="False" CanUserAddRows="False" ItemsSource="{Binding Productos}" SelectedItem="{Binding SelectedItem}" x:Name="dataGrid" Margin="0,0,29,0"/>
+                    <Button x:Name="button" VerticalAlignment="Top" Height="78.44" HorizontalAlignment="Right" Width="24">
+                        <fa:ImageAwesome Icon="ArrowUp"/>
+                    </Button>
+                    <Button x:Name="button_Copy" HorizontalAlignment="Right" Height="81.44" VerticalAlignment="Bottom" Width="24">
+                        <fa:ImageAwesome Icon="ArrowDown"/>
+                    </Button>
+
+                </Grid>
+                <Grid HorizontalAlignment="Right" Margin="0,0,10,10" Width="218" Height="213" VerticalAlignment="Bottom">
+                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="SubTotal" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding SubTotal, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Right" Margin="0,38.94,10,0" TextWrapping="Wrap" Text="{Binding Descuento, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Right" Margin="0,67.88,10,0" TextWrapping="Wrap" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Right" Margin="0,96.82,10,0" TextWrapping="Wrap" Text="{Binding TotalPayment, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Right" Margin="0,125.76,10,0" TextWrapping="Wrap" Text="{Binding Remaining, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Right" Margin="0,154.7,10,0" TextWrapping="Wrap" Text="{Binding Monedero, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="10,38.94,0,0" TextWrapping="Wrap" Text="Descuento" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Copy7" HorizontalAlignment="Left" Margin="10,67.88,0,0" TextWrapping="Wrap" Text="Total" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBlock x:Name="textBlock_Copy8" HorizontalAlignment="Left" Margin="10,96.82,0,0" TextWrapping="Wrap" Text="Pagado" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Copy9" HorizontalAlignment="Left" Margin="10,125.76,0,0" TextWrapping="Wrap" Text="Saldo" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Copy10" HorizontalAlignment="Left" Margin="10,154.7,0,0" TextWrapping="Wrap" Text="Monedero" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Copy11" HorizontalAlignment="Left" Margin="11.29,183.64,0,0" TextWrapping="Wrap" Text="Unidades" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock_Copy12" HorizontalAlignment="Right" Margin="0,183.64,10,0" TextWrapping="Wrap" Text="{Binding Unidades, Mode=OneWay}" VerticalAlignment="Top"/>
+                </Grid>
+                <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Vendedor" VerticalAlignment="Top"/>
+                <Grid HorizontalAlignment="Left" Margin="10,139.5,0,42.94" Width="287">
+                    <ListBox x:Name="listBox" Margin="0,0,29,0"/>
+                    <Button x:Name="button4" HorizontalAlignment="Right" VerticalAlignment="Top" Width="24" Height="122.94">
+                        <fa:ImageAwesome Icon="ArrowUp"/>
+                    </Button>
+                    <Button x:Name="button4_Copy" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="24" Height="122.94">
+                        <fa:ImageAwesome Icon="ArrowDown"/>
+                    </Button>
+
+                </Grid>
+                <Grid Height="124.5" Margin="0,10,148,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="268.5">
+                    <Rectangle Fill="#FFF4F4F5" Stroke="Black"/>
+                    <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="textBlock2_Copy" HorizontalAlignment="Left" Margin="10,38.94,0,55.62" TextWrapping="Wrap" Text="TextBlock" d:LayoutOverrides="Height"/>
+                    <TextBlock x:Name="textBlock2_Copy1" HorizontalAlignment="Left" Margin="10,67.88,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+                    <Button x:Name="button1" Content="Load" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="46"/>
+                    <Button x:Name="button1_Copy" Content="Auth" HorizontalAlignment="Right" Margin="0,0,61,10" VerticalAlignment="Bottom" Width="46"/>
+                </Grid>
+                <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="92.053,10,0,0" TextWrapping="Wrap" Text="nombre de vendedor" VerticalAlignment="Top"/>
+                <Grid Height="121" Margin="302,0,233,69.06" VerticalAlignment="Bottom">
+                    <ListBox x:Name="listBox1" Margin="0,0,30,0"/>
+                    <Button x:Name="button2" HorizontalAlignment="Right" VerticalAlignment="Top" Width="25" Height="46.94">
+                        <fa:ImageAwesome Icon="ArrowUp"/>
+                    </Button>
+                    <Button x:Name="button2_Copy" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="25" Height="46.94">
+                        <fa:ImageAwesome Icon="ArrowDown"/>
+                    </Button>
+
+                </Grid>
+                <Button x:Name="button3" Content="Add Pago" HorizontalAlignment="Left" Margin="201,0,0,10" VerticalAlignment="Bottom" Width="96"/>
+                <TextBox x:Name="scanTextBox" HorizontalAlignment="Right" Height="23" Margin="0,111.5,10,0" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="133">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Return" Command="{Binding AddCommand}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+                <Button x:Name="button5" Content="Add Cupon" HorizontalAlignment="Right" Margin="0,0,233,195.06" VerticalAlignment="Bottom" Width="108"/>
+                <Button x:Name="button5_Copy" Content="Add Descuento" HorizontalAlignment="Left" Margin="302,0,0,195.06" VerticalAlignment="Bottom" Width="136"/>
+                <TextBlock x:Name="textBlock3" Margin="302,0,233,40.12" TextWrapping="Wrap" Foreground="Red" Text="mensajes de error o validacion" VerticalAlignment="Bottom" TextAlignment="Center"/>
+                <Grid Margin="0,11.5,10,0" HorizontalAlignment="Right" Width="133" Height="95" VerticalAlignment="Top">
+                    <Rectangle Stroke="Black"/>
+                    <Image Source="{Binding SelectedItem.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}" />
+                </Grid>
+
+            </Grid>
+        </tk:BusyIndicator>
+    </Grid>
+</UserControl>

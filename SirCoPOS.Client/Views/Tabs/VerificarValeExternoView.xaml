@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="SirCoPOS.Client.Views.Tabs.VerificarValeExternoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
+             xmlns:cv="clr-namespace:SirCoPOS.Client.Converters"             
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <vm:VerificarValeExternoViewModel></vm:VerificarValeExternoViewModel>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <cv:ImageUrlMultiConverter x:Key="imageUrl"></cv:ImageUrlMultiConverter>
+        <cv:BoolTextConverter x:Key="boolText"></cv:BoolTextConverter>
+        <BooleanToVisibilityConverter x:Key="bolvis"/>
+    </UserControl.Resources>
+    <Grid>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="108.866,97,0,0" TextWrapping="Wrap" Text="{Binding Vale.Vale}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="108.866,125.94,0,0" TextWrapping="Wrap" Text="{Binding Vale.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,97,0,0" TextWrapping="Wrap" Text="#" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,125.94,0,0" TextWrapping="Wrap" Text="Disponible" VerticalAlignment="Top"/>
+        <TextBlock Text="{Binding Vale.CanceladoMotivo, StringFormat={}Cancelado - {0}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="textBlock_Copy2" Margin="402.741,125.94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="textBlock2_Copy" Margin="402.24,39.94,0,0" TextWrapping="Wrap" Text="Distribuidor" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="textBlock2_Copy1" Margin="501.108,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} {1} {2}">
+                    <Binding Path="Vale.Distribuidor.Nombre" />
+                    <Binding Path="Vale.Distribuidor.ApPaterno" />
+                    <Binding Path="Vale.Distribuidor.ApMaterno" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        <TextBlock x:Name="textBlock2_Copy2" Margin="500.74,69,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Status}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="textBlock2_Copy3" Margin="402.24,68.88,0,0" TextWrapping="Wrap" Text="Estatus" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <ItemsControl Margin="10,164,10,10" ItemsSource="{Binding Vale.Distribuidor.Firmas}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"></StackPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding }"></TextBlock>
+                        <Image>
+                            <Image.Source>
+                                <MultiBinding Converter="{StaticResource ResourceKey=imageUrl}" ConverterParameter="FirmaUrl">
+                                    <Binding Path="DataContext.Vale.Distribuidor.Id" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}" ></Binding>
+                                    <Binding></Binding>
+                                </MultiBinding>
+                            </Image.Source>
+                        </Image>
+                        <!--<TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding Converter="{StaticResource ResourceKey=imageUrl}" ConverterParameter="FirmaUrl">
+                                    <Binding Path="DataContext.Vale.Distribuidor.Id" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}" ></Binding>
+                                    <Binding></Binding>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>-->
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <TextBlock x:Name="textBlock_Copy3" Margin="402.24,11,0,0" TextWrapping="Wrap" Text="Cuenta" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="textBlock_Copy4" Margin="557.294,13.576,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Cuenta}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="textBlock4" Margin="402.741,97,0,0" TextWrapping="Wrap" Text="Electronica" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Vale" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbVale" HorizontalAlignment="Left" Height="23" Margin="82.243,12.92,0,0" TextWrapping="Wrap" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
+            </TextBox.InputBindings>
+        </TextBox>
+        <TextBox Text="{Binding Negocio, UpdateSourceTrigger=PropertyChanged}" Height="23" Margin="82.243,44.86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="53.68"/>
+        <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="9.999,43.92,0,0" TextWrapping="Wrap" Text="Negocio" VerticalAlignment="Top"/>
+        <ComboBox IsTextSearchEnabled="True" SelectedValue="{Binding SelectedNegocio}" SelectedValuePath="Id" HorizontalAlignment="Left" Margin="141.243,40.92,0,0" VerticalAlignment="Top" ItemsSource="{Binding Negocios}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}-{1}">
+                                <Binding Path="Negocio"/>
+                                <Binding Path="Descripcion"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="10,74.92,0,0" TextWrapping="Wrap" Text="Cuenta" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="82.243,75.86,0,0" TextWrapping="Wrap" Text="{Binding Cuenta, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
+            </TextBox.InputBindings>
+        </TextBox>
+        <TextBlock x:Name="textBlock4_Copy" Margin="501.108,97.94,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Electronica, Converter={StaticResource boolText}}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+    </Grid>
+</UserControl>

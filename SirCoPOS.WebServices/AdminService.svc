@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="SirCoPOS.Services.AdminService" Factory="Ninject.Extensions.Wcf.NinjectServiceHostFactory" %>

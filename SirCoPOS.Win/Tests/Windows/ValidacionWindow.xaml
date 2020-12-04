@@ -1,0 +1,29 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SirCoPOS.Win.Tests.Windows"
+        xmlns:vm="clr-namespace:SirCoPOS.Win.Tests.ViewModels"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="SirCoPOS.Win.Tests.Windows.ValidacionWindow"
+        mc:Ignorable="d"
+        Title="ValidacionWindow" Height="250" Width="400">
+    <Window.Resources>
+    </Window.Resources>
+    <Window.DataContext>
+        <vm:ValidacionViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding Text}" VerticalAlignment="Top" FontSize="14"/>
+        <Button x:Name="button" Content="Save" HorizontalAlignment="Left" Margin="307,189,0,0" VerticalAlignment="Top" Width="75" Command="{Binding SaveCommand, Mode=OneWay}"/>
+        <Button x:Name="button_Copy" Content="Cancel" HorizontalAlignment="Left" Margin="227,189,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CancelCommand, Mode=OneWay}"/>
+        <Button x:Name="button_Copy1" Content="Validate" HorizontalAlignment="Left" Margin="147,189,0,0" VerticalAlignment="Top" Width="75" Command="{Binding ValidarCommand, Mode=OneWay}"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="262,10,0,0" TextWrapping="Wrap" Text="{Binding Prueba.Campo1, ValidatesOnDataErrors=True}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="23" Margin="262,38,0,0" TextWrapping="Wrap" Text="{Binding Prueba.Campo2, ValidatesOnDataErrors=True}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="23" Margin="262,66,0,0" TextWrapping="Wrap" Text="{Binding Prueba.Campo3, ValidatesOnDataErrors=True}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="208,13,0,0" TextWrapping="Wrap" Text="{Binding Prueba.Campo1}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="208,45,0,0" TextWrapping="Wrap" Text="{Binding Prueba.Campo2}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Margin="208,73,0,0" TextWrapping="Wrap" Text="{Binding Prueba.Campo3}" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

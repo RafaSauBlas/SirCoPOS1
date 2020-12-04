@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section headers
+{
+    @RenderSection("headers", required: false)
+}
+@section scripts
+{
+    @RenderSection("scripts", required: false)
+}
+@section menu
+{
+    <li>@Html.ActionLink("Ventas", "Index", "Ventas", routeValues: new { area = "Admin" }, htmlAttributes: null)</li>
+    <li>@Html.ActionLink("Devoluciones", "Index", "Devoluciones", routeValues: new { area = "Admin" }, htmlAttributes: null)</li>
+    <li>@Html.ActionLink("Cajas", "Index", "Cajas", routeValues: new { area = "Admin" }, htmlAttributes: null)</li>
+    <li>@Html.ActionLink("Fondos", "Index", "Fondos", routeValues: new { area = "Admin" }, htmlAttributes: null)</li>
+}
+
+@RenderBody()

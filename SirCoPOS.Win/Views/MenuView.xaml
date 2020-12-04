@@ -1,0 +1,150 @@
+﻿<UserControl x:Class="SirCoPOS.Win.Views.MenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:SirCoPOS.Win.ViewModels"
+             mc:Ignorable="d" 
+             xmlns:m="clr-namespace:SirCoPOS.Utilities.Constants;assembly=SirCoPOS.Utilities"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="menu">
+            <Setter Property="Width" Value="150" ></Setter>
+            <Setter Property="Height" Value="127"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <vm:MenuViewModel></vm:MenuViewModel>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/SirCoPOS.Win;component/Images/fondo 15%.png" TileMode="Tile" Stretch="None" ViewportUnits="Absolute" Viewport="0,0,114,76"/>
+        </Grid.Background>
+        <WrapPanel Width="620" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Margin="0,0,5,5" Command="{Binding OpenCommand}" Style="{DynamicResource menu}" >
+                <Button.CommandParameter>
+                    <m:TabType>Caja</m:TabType>
+                </Button.CommandParameter>
+                <Grid>
+                    <Image Height="100" Width="100" Source="/SirCoPOS.Win;component/Images/caja.png"/>
+                    <TextBlock Text="Caja (F1)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}" CommandParameter="creditoPersonal">
+                <Grid>
+                    <Image Height="100" Width="100" Source="/SirCoPOS.Win;component/Images/Credito Personal.png"/>
+                    <TextBlock Text="Crédito Personal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
+                <Button.CommandParameter>
+                    <m:TabType>VerificarVale</m:TabType>
+                </Button.CommandParameter>
+                <Grid>
+                    <Image Height="100" Width="100" Source="/SirCoPOS.Win;component/Images/Verificar Vale.png"/>
+                    <TextBlock Text="Verificar Vale (F6)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}" CommandParameter="dineroElectronico">
+                <Grid>
+                    <Image Height="100" Width="100" Source="/SirCoPOS.Win;component/Images/Dinero Electronico.png"/>
+                    <TextBlock Text="Dinero Electrónico" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}" CommandParameter="administracion">
+                <Grid>
+                    <Image Height="100" Width="100" Source="/SirCoPOS.Win;component/Images/Administracion.png"/>
+                    <TextBlock Text="Administración" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
+                <Button.CommandParameter>
+                    <m:TabType>Cambio</m:TabType>
+                </Button.CommandParameter>
+                <Grid>
+                    <Image Height="100" Width="100" Source="/SirCoPOS.Win;component/Images/Cambio.png"/>
+                    <TextBlock Text="Cambio (F2)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
+                <Button.CommandParameter>
+                    <m:TabType>Devolucion</m:TabType>
+                </Button.CommandParameter>
+                <Grid>
+                    <Image x:Name="image11" Height="100" Width="100" Source="/SirCoPOS.Win;component/Images/Devolucion.png"/>
+                    <TextBlock Text="Devolución (F3)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
+                <Button.CommandParameter>
+                    <m:TabType>Cancelacion</m:TabType>
+                </Button.CommandParameter>
+                <Grid>
+                    <Image Height="100" Width="100" Source="/SirCoPOS.Win;component/Images/Cancelacion.png"/>
+                    <TextBlock Text="Cancelación (F4)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
+                <Button.CommandParameter>
+                    <m:TabType>CancelacionDevolucion</m:TabType>
+                </Button.CommandParameter>
+                <Grid>
+                    <TextBlock Text="Cancelar Devolución (F5)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}" CommandParameter="pagos">
+                <Grid>
+                    <TextBlock Text="Pagos" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
+                <Button.CommandParameter>
+                    <m:TabType>Efectivo</m:TabType>
+                </Button.CommandParameter>
+                <Grid>
+                    <TextBlock Text="Entrega Efectivo" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
+                <Button.CommandParameter>
+                    <m:TabType>Corte</m:TabType>
+                </Button.CommandParameter>
+                <Grid>
+                    <TextBlock Text="Corte Caja" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>
+            <!--<Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
+                <Button.CommandParameter>
+                    <m:TabType>CajaNueva1</m:TabType>
+                </Button.CommandParameter>
+                <Grid>
+                    <TextBlock Text="Caja Nueva 1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>-->
+            <!--<Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
+                <Button.CommandParameter>
+                    <m:TabType>CajaNueva2</m:TabType>
+                </Button.CommandParameter>
+                <Grid>
+                    <TextBlock Text="Caja Nueva 2" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>-->
+            <!--<Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
+                <Button.CommandParameter>
+                    <m:TabType>CajaNueva3</m:TabType>
+                </Button.CommandParameter>
+                <Grid>
+                    <TextBlock Text="Caja Nueva 3" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>-->
+            <!--<Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
+                <Button.CommandParameter>
+                    <m:TabType>CajaNueva4</m:TabType>
+                </Button.CommandParameter>
+                <Grid>
+                    <TextBlock Text="Caja Nueva 4" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                </Grid>
+            </Button>-->
+        </WrapPanel>
+    </Grid>
+</UserControl>

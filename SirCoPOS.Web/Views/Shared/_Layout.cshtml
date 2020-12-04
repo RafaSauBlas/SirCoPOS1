@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Scripts/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Scripts/lib/highlight.js/styles/vs.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    @RenderSection("headers", required: false)
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("SirCoPOS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @RenderSection("menu", false)
+                    @if (!IsSectionDefined("menu"))
+                    {
+                        <li>@Html.ActionLink("Admin", "Index", "admin", routeValues: new { area = "" }, htmlAttributes: null)</li>
+
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+
+    <script src="~/Scripts/lib/jquery/jquery.js"></script>
+    <script src="~/Scripts/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/Scripts/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/lib/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/lib/twitter-bootstrap/js/bootstrap.js"></script>
+    <script src="~/Scripts/lib/highlight.js/highlight.min.js"></script>
+    <script src="~/Scripts/lib/highlight.js/languages/csp.min.js"></script>
+    <script src="~/Scripts/lib/knockout/knockout-latest.debug.js"></script>
+    <script src="~/Scripts/lib/knockout.mapping/knockout.mapping.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

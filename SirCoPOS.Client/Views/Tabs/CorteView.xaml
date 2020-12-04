@@ -1,0 +1,117 @@
+﻿<UserControl x:Class="SirCoPOS.Client.Views.Tabs.CorteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:cv="clr-namespace:SirCoPOS.Client.Converters"
+             xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
+             d:DesignHeight="600" d:DesignWidth="1100">
+    <UserControl.DataContext>
+        <vm:CorteViewModel></vm:CorteViewModel>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <cv:ValueVisibilityConverter x:Key="cval"></cv:ValueVisibilityConverter>
+    </UserControl.Resources>
+    <Grid>
+        <DataGrid SelectedItem="{Binding SelectedItemCorte}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Items}" HorizontalAlignment="Left" Margin="10,91,0,276" Width="553">
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Style.Triggers>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding RelativeSource={RelativeSource Mode=Self}, Path=IsSelected}" Value="True"></Condition>
+                                <Condition Binding="{Binding Complete}" Value="True"></Condition>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.Setters>
+                                <Setter Property="Background" Value="DarkGreen"></Setter>
+                                <Setter Property="Foreground" Value="White"></Setter>
+                            </MultiDataTrigger.Setters>
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Complete}" Value="True">
+                            <Setter Property="Background" Value="LightGreen"></Setter>
+                            <Setter Property="Foreground" Value="Black"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Header="FormaPago" Binding="{Binding Item.FormaPago}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Header="Unidades" Binding="{Binding Item.Count}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Header="Entrega" Binding="{Binding Entrega, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Header="Faltante" Binding="{Binding FaltanteEntrega}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Header="Total" Binding="{Binding Item.Total, StringFormat=C}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Header="Monto" Binding="{Binding Monto, StringFormat=C, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                <DataGridTextColumn IsReadOnly="True" Header="Faltante" Binding="{Binding FaltanteMonto, StringFormat=C}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Series}" HorizontalAlignment="Right" Margin="0,10,10,276" Width="322">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Reportado}" Value="True">
+                            <Setter Property="Background" Value="LightGreen"></Setter>
+                            <Setter Property="Foreground" Value="Black"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Serie" Binding="{Binding Item.Serie}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Importe" Binding="{Binding Item.Importe, StringFormat=C}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="button" Content="Guardar" Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
+        
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Efectivo" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="98,11,0,0" TextWrapping="Wrap" Text="{Binding Data.Importe, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+        
+        <TextBox IsEnabled="False" x:Name="textBox1" HorizontalAlignment="Right" Height="23" Margin="0,0,10,42.94" TextWrapping="Wrap" Text="{Binding Auditor.Id}" VerticalAlignment="Bottom" Width="120"/>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="291,36,0,0" TextWrapping="Wrap" Text="{Binding EfectivoFaltante, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbEntregar" HorizontalAlignment="Left" Height="23" Margin="98,39.94,0,0" TextWrapping="Wrap" Text="{Binding Entregar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="223,36,0,0" TextWrapping="Wrap" Text="Faltante" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" Text="Entregar" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="74.66,0,0,248.486" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="64">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
+            </TextBox.InputBindings>
+        </TextBox>
+        <TextBlock HorizontalAlignment="Left" Margin="143.66,0,0,247" TextWrapping="Wrap" Height="24" VerticalAlignment="Bottom">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} {1} {2}">
+                    <Binding Path="Auditor.Nombre" />
+                    <Binding Path="Auditor.ApellidoPaterno" />
+                    <Binding Path="Auditor.ApellidoMaterno" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,247.06" TextWrapping="Wrap" Text="Auditor" VerticalAlignment="Bottom"/>
+        <DataGrid CanUserAddRows="False" SelectedItem="{Binding SelectedDetalle}" AutoGenerateColumns="False" ItemsSource="{Binding SelectedItemCorte.Detalle}" Margin="568,91,337,276">
+            <!--<DataGrid.InputBindings>
+                <KeyBinding Key="Delete" Command="{Binding RemoveMontoCommand}"></KeyBinding>
+            </DataGrid.InputBindings>-->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Monto" Binding="{Binding Amount, StringFormat=\{0:C\}}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox HorizontalAlignment="Left" Margin="568,0,0,248" TextWrapping="Wrap" Text="{Binding MontoTicket, UpdateSourceTrigger=PropertyChanged, StringFormat=C, Delay=500}" Width="120" Height="23" VerticalAlignment="Bottom">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding AddMontoCommand}"></KeyBinding>
+            </TextBox.InputBindings>
+        </TextBox>
+        <TextBlock HorizontalAlignment="Left" Margin="693,0,0,248" TextWrapping="Wrap" Text="{Binding SelectedItemCorte.Item.FormaPago}" VerticalAlignment="Bottom"/>
+        <TextBox Text="{Binding Scan, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Height="23" Margin="0,0,10,248.486" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding ScanCommand}">
+                </KeyBinding>
+            </TextBox.InputBindings>
+        </TextBox>
+        <TextBlock Visibility="{Binding EfectivoFaltante, Converter={StaticResource cval}}" Foreground="Red" HorizontalAlignment="Left" Margin="10,0,0,10" TextWrapping="Wrap" Text="Faltante de efectivo generara cargo" Height="24" VerticalAlignment="Bottom"/>
+    </Grid>
+</UserControl>

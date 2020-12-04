@@ -1,0 +1,275 @@
+﻿<UserControl x:Class="SirCoPOS.Win.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:ct="clr-namespace:SirCoPOS.Win.Controls"
+             xmlns:vm="clr-namespace:SirCoPOS.Win.ViewModels"
+             xmlns:v="clr-namespace:SirCoPOS.Win.Views"
+             xmlns:m="clr-namespace:SirCoPOS.Utilities.Constants;assembly=SirCoPOS.Utilities"
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:c="clr-namespace:SirCoPOS.Win.Converters"             
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <c:ImageUrlConverter x:Key="imageUrl" />
+        <SolidColorBrush x:Key="TabItem.Selected.Background" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TabItem.Selected.Border" Color="#ACACAC"/>
+        <Style x:Key="TabControlStyle1" TargetType="{x:Type TabControl}">
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="{StaticResource TabItem.Selected.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TabItem.Selected.Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabControl}">
+                        <Grid x:Name="templateRoot" ClipToBounds="true" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="ColumnDefinition0"/>
+                                <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition x:Name="RowDefinition0" Height="Auto"/>
+                                <RowDefinition x:Name="RowDefinition1" Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TabPanel x:Name="headerPanel" Background="Transparent" Grid.Column="0" IsItemsHost="true" Margin="90,2,2,0" Grid.Row="0" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1"/>
+                            <Border x:Name="contentPanel" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
+                                <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="TabStripPlacement" Value="Bottom">
+                                <Setter Property="Grid.Row" TargetName="headerPanel" Value="1"/>
+                                <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
+                                <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                                <Setter Property="Height" TargetName="RowDefinition1" Value="Auto"/>
+                                <Setter Property="Margin" TargetName="headerPanel" Value="2,0,2,2"/>
+                            </Trigger>
+                            <Trigger Property="TabStripPlacement" Value="Left">
+                                <Setter Property="Grid.Row" TargetName="headerPanel" Value="0"/>
+                                <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
+                                <Setter Property="Grid.Column" TargetName="headerPanel" Value="0"/>
+                                <Setter Property="Grid.Column" TargetName="contentPanel" Value="1"/>
+                                <Setter Property="Width" TargetName="ColumnDefinition0" Value="Auto"/>
+                                <Setter Property="Width" TargetName="ColumnDefinition1" Value="*"/>
+                                <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                                <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                                <Setter Property="Margin" TargetName="headerPanel" Value="2,2,0,2"/>
+                            </Trigger>
+                            <Trigger Property="TabStripPlacement" Value="Right">
+                                <Setter Property="Grid.Row" TargetName="headerPanel" Value="0"/>
+                                <Setter Property="Grid.Row" TargetName="contentPanel" Value="0"/>
+                                <Setter Property="Grid.Column" TargetName="headerPanel" Value="1"/>
+                                <Setter Property="Grid.Column" TargetName="contentPanel" Value="0"/>
+                                <Setter Property="Width" TargetName="ColumnDefinition0" Value="*"/>
+                                <Setter Property="Width" TargetName="ColumnDefinition1" Value="Auto"/>
+                                <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                                <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                                <Setter Property="Margin" TargetName="headerPanel" Value="0,2,2,2"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="TextElement.Foreground" TargetName="templateRoot" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <vm:MainViewModel></vm:MainViewModel>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#FF000E4B" Offset="1"/>
+                    <GradientStop Color="#FF1E3C72"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Image x:Name="___SirCoPOS_Win_component_Images_Logo_Zapaterias_png" Margin="10,10,0,10" Source="/SirCoPOS.Win;component/Images/Logo Zapaterias.png" HorizontalAlignment="Left" Width="76.5"/>
+            <Menu x:Name="menu" HorizontalAlignment="Right" Margin="0,19,10,10" Grid.IsSharedSizeScope="True" Background="{x:Null}">
+                <Menu.DataContext>
+                    <vm:MenuViewModel></vm:MenuViewModel>
+                </Menu.DataContext>
+                <MenuItem>
+                    <MenuItem.Icon>
+                        <Image x:Name="___SirCoPOS_Win_component_Images_Icono_Menu_png" Source="/SirCoPOS.Win;component/Images/Icono Menu.png" />
+                    </MenuItem.Icon>
+                    <!--<MenuItem.Header>
+                        <Image x:Name="___SirCoPOS_Win_component_Images_Icono_Menu_png" Source="/SirCoPOS.Win;component/Images/Icono Menu.png" Width="30"/>
+                    </MenuItem.Header>-->
+                    <MenuItem Header="Caja" Command="{Binding OpenCommand}" >
+                        <MenuItem.CommandParameter>
+                            <m:TabType>Caja</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <!--<MenuItem Header="Nota Manual" Command="{Binding OpenCommand}" >
+                        <MenuItem.CommandParameter>
+                            <m:TabType>Nota</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>-->
+                    <MenuItem Header="Crédito Personal" Command="{Binding OpenCommand}" CommandParameter="creditoPersonal"/>
+                    <MenuItem Header="Verificar Vale" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>VerificarVale</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="Verificar Vale Externo" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>VerificarValeExterno</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="Dinero Electrónico" Command="{Binding OpenCommand}" CommandParameter="dineroElectronico"/>
+                    <MenuItem Header="Administración" Command="{Binding OpenCommand}" CommandParameter="administracion"/>
+                    <MenuItem Header="Cambio" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>Cambio</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="Devolución" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>Devolucion</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Cancelar Venta" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>Cancelacion</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="Cancelar Devolución" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>CancelacionDevolucion</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="Cancelar Cambio" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>CancelacionCambio</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Pagos" Command="{Binding OpenCommand}" CommandParameter="pagos"/>
+                    <Separator/>
+                    <MenuItem Header="Consulta Venta" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>ConsultaVenta</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="Consulta Devolución" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>ConsultaDevolucion</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="Consulta Producto" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>ConsultaProducto</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <Separator></Separator>
+                    <MenuItem Header="Revision Notas" Command="{Binding OpenCommand}" >
+                        <MenuItem.CommandParameter>
+                            <m:TabType>NotaRevision</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Abrir Fondo" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>FondoApertura</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="Cerrar Fondo" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>FondoCierre</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="Arqueo Fondo" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>FondoArqueo</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="Transferir Fondo" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>FondoTransferir</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="Cambiar Responsable" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>CambiarResponsable</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <MenuItem Header="Registrar Gasto" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>Gasto</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Bonos" Command="{Binding OpenCommand}">
+                        <MenuItem.CommandParameter>
+                            <m:TabType>Bonos</m:TabType>
+                        </MenuItem.CommandParameter>
+                    </MenuItem>
+                    <Separator/>
+                    <MenuItem Header="Corte" Command="{Binding OpenCommand}" CommandParameter="pagos"/>
+                    <MenuItem Header="Arqueo" Command="{Binding OpenCommand}" CommandParameter="pagos"/>
+                    <Separator/>
+                    <MenuItem Header="Cerrar Sesión" Command="{Binding LogoutCommand}"/>
+                    <MenuItem Header="Salir" Command="{Binding CloseCommand}"/>
+                </MenuItem>
+            </Menu>
+        </Grid>
+        <v:MenuView x:Name="menuView" Grid.Row="1"></v:MenuView>
+        <TabControl Visibility="Hidden" x:Name="tabControl" Grid.Row="1" Margin="0,-22,0,0" Style="{DynamicResource TabControlStyle1}" >
+            <!--<TabItem>
+                <TabItem.Header>
+                    <v:TabHeaderView></v:TabHeaderView>
+                </TabItem.Header>
+                content
+            </TabItem>-->
+        </TabControl>
+        <Rectangle Grid.Row="2">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#FFFECB00" Offset="0"/>
+                    <GradientStop Color="#FFF29200" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Grid Grid.Row="3">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                    <GradientStop Color="#FF000E4B" Offset="1"/>
+                    <GradientStop Color="#FF1E3C72"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <ct:ImageBorder ImageSource="{Binding Settings.Cajero.Id, Converter={StaticResource imageUrl}, ConverterParameter=EmpleadoUrl}" Height="50" Margin="65.877,0,0,0" HorizontalAlignment="Left" Width="50" />
+            <!--<Image Height="30" Margin="65.877,0,0,0" Source="/SirCoPOS.Win;component/Images/cajero.png" HorizontalAlignment="Left" Width="30"/>-->
+            <Image x:Name="___SirCoPOS_Win_component_Images_Reloj_png" Margin="0,10,187.003,10" Source="/SirCoPOS.Win;component/Images/Reloj.png" HorizontalAlignment="Right" Width="31"/>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Cajero" d:LayoutOverrides="Height" VerticalAlignment="Center" Foreground="White"/>
+            <TextBlock HorizontalAlignment="Left" Margin="120.877,18.03,0,18.03" TextWrapping="Wrap" Foreground="White" VerticalAlignment="Center">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{1} {2} {3}">
+                        <Binding Path="Settings.Cajero.Clave" />
+                        <Binding Path="Settings.Cajero.Nombre" />
+                        <Binding Path="Settings.Cajero.ApellidoPaterno" />
+                        <Binding Path="Settings.Cajero.ApellidoMaterno" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock x:Name="textBlock2" HorizontalAlignment="Right" Margin="0,0,10,0" TextWrapping="Wrap" Text="{Binding Fecha, StringFormat=\{0:g\}}" d:LayoutOverrides="Height" Foreground="White" VerticalAlignment="Center"/>
+            <Grid Height="30" Margin="0,0,291.995,0" HorizontalAlignment="Right">
+                <Image x:Name="___SirCoPOS_Win_component_Images_Sucursal_png" Source="/SirCoPOS.Win;component/Images/Sucursal.png" HorizontalAlignment="Left" Width="30.833"/>
+                <TextBlock x:Name="textBlock3" Margin="35.833,0,0,0" TextWrapping="Wrap" Text="{Binding Settings.Sucursal.Descripcion}" VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Left"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

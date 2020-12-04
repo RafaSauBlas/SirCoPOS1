@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="SirCoPOS.Client.Views.Caja.NotaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
+             mc:Ignorable="d" 
+             xmlns:v="clr-namespace:SirCoPOS.Client.Views.Caja"
+             xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
+             Height="240" Width="300" Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <vm:NotaViewModel></vm:NotaViewModel>
+    </UserControl.DataContext>
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,144,0,0" TextWrapping="Wrap" Text="Precio" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,169,0,0" TextWrapping="Wrap" Text="Razon" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbPrecio" HorizontalAlignment="Left" Height="23" Margin="99,140,0,0" TextWrapping="Wrap" Text="{Binding Precio, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="99,168,0,0" TextWrapping="Wrap" Text="{Binding Razon, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191"/>
+        <Grid Height="90" Margin="10,10,10,0" VerticalAlignment="Top">
+            <v:ProductoItemView DataContext="{Binding Item}"></v:ProductoItemView>
+        </Grid>
+        <Button Command="{Binding RestoreCommand}" Content="Restablecer" HorizontalAlignment="Left" Margin="10,198,0,0" VerticalAlignment="Top" Width="101"/>
+        <ComboBox DisplayMemberPath="Descripcion" SelectedItem="{Binding SelectedOpcion}" ItemsSource="{Binding Options}" HorizontalAlignment="Left" Margin="99,105,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,111,0,0" TextWrapping="Wrap" Text="Precio" VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>

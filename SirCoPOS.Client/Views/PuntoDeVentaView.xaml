@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="SirCoPOS.Client.Views.PuntoDeVentaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels"
+             xmlns:c="clr-namespace:SirCoPOS.Client.Converters"             
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:PuntoDeVentaViewModel></vm:PuntoDeVentaViewModel>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="boolToVis" />
+            <c:ImageUrlConverter x:Key="imageUrl" />
+            <FrameworkElement x:Key="proxy" DataContext="{Binding}" />
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <FrameworkElement x:Name="dummyElement" />
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Productos}" x:Name="dataGrid" HorizontalAlignment="Left" Height="206" Margin="10,10,0,0" VerticalAlignment="Top" Width="601" SelectedItem="{Binding SelectedItem}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Visibility="{Binding DataContext.ShowSerie, Converter={StaticResource boolToVis}, Source={x:Reference Name=dummyElement}}" Header="Serie" Binding="{Binding Serie}"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Image Source="{Binding Converter={StaticResource imageUrl}}"></Image>
+                                <!--<Image Source="{Binding Id, Converter={DynamicResource imageUrl}, ConverterParameter={Binding HasImage}}"></Image>-->
+                                <!--<Image Source="http://localhost:39075/Common/Image/33623"></Image>-->
+                                <!--<TextBlock Text="{Binding Id}"></TextBlock>-->
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Image" Binding="{Binding HasImage}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Marca" Binding="{Binding Marca}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Modelo" Binding="{Binding Modelo}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Talla" Binding="{Binding Talla}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Precio" Binding="{Binding Precio, StringFormat=\{0:C\}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Descuento" Binding="{Binding Descuento, StringFormat=\{0:C\}}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat=\{0:C\}}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="616,31,0,0" TextWrapping="Wrap" Text="Descuento" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="616,52,0,0" TextWrapping="Wrap" Text="Total" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="616,10,0,0" TextWrapping="Wrap" Text="SubTotal" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy3" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding SubTotal, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <TextBlock x:Name="textBlock_Copy4" Margin="0,31,10,0" TextWrapping="Wrap" Text="{Binding Descuento, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <TextBlock x:Name="textBlock_Copy5" Margin="0,52,10,0" TextWrapping="Wrap" Text="{Binding Total, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <CheckBox x:Name="checkBox" Content="Show Serie" HorizontalAlignment="Left" Margin="10,221,0,0" VerticalAlignment="Top" IsChecked="{Binding ShowSerie}"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="194,222,0,0" TextWrapping="Wrap" Text="{Binding Serie, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="75">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding AddCommand}" />
+            </TextBox.InputBindings>
+        </TextBox>
+        <Button x:Name="button" Content="Remove" HorizontalAlignment="Left" Margin="536,221,0,0" VerticalAlignment="Top" Width="75" Command="{Binding RemoveCommand}"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="362,223,0,0" TextWrapping="Wrap" Text="{Binding SelectedItem.Serie}" VerticalAlignment="Top" Width="169"/>
+        <Button x:Name="button1" Content="Button" HorizontalAlignment="Left" Margin="274,224,0,0" VerticalAlignment="Top" Width="75" Command="{Binding AddCommand}"/>
+        <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="85,277,0,0" TextWrapping="Wrap" Text="{Binding VendedorSearch}" VerticalAlignment="Top" Width="69"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,278,0,0" TextWrapping="Wrap" Text="Vendedor" VerticalAlignment="Top"/>
+        <TextBox x:Name="textBox1_Copy" HorizontalAlignment="Left" Height="23" Margin="85,305,0,0" TextWrapping="Wrap" Text="{Binding CajeroSearch}" VerticalAlignment="Top" Width="69"/>
+        <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="10,306,0,0" TextWrapping="Wrap" Text="Cajero" VerticalAlignment="Top"/>
+        <Button x:Name="button2" Content="Button" HorizontalAlignment="Left" Margin="284,280,0,0" VerticalAlignment="Top" Width="75" Command="{Binding FindVendedorCommand}"/>
+        <Button x:Name="button2_Copy" Content="Button" HorizontalAlignment="Left" Margin="284,307,0,0" VerticalAlignment="Top" Width="75" Command="{Binding FindCajeroCommand}"/>
+        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="159,277,0,0" TextWrapping="Wrap" Text="{Binding Vendedor.Usuario}" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBox x:Name="textBox2_Copy" HorizontalAlignment="Left" Height="23" Margin="159,305,0,0" TextWrapping="Wrap" Text="{Binding Cajero.Usuario}" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="105,226,0,0" TextWrapping="Wrap" Text="{Binding Serie}" VerticalAlignment="Top" Width="84"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="100" Margin="641,104,0,0" VerticalAlignment="Top" Width="130" Source="{Binding SelectedItem, Converter={StaticResource imageUrl}}"/>
+        <DataGrid AutoGenerateColumns="False" CanUserDeleteRows="True" CanUserAddRows="False" x:Name="dataGrid1" Margin="494,301,10,35" ItemsSource="{Binding Pagos}">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Header="FormaPago" Binding="{Binding FormaPago}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Importe" Binding="{Binding Importe, StringFormat=\{0:C\}}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ComboBox x:Name="comboBox" Margin="590,274,0,0" ItemsSource="{Binding FormasPago}" DisplayMemberPath="Key" HorizontalAlignment="Left" Width="120" Height="22" VerticalAlignment="Top" SelectedValuePath="Key" SelectedValue="{Binding SelectedFormaPago}"/>
+        <Button x:Name="button3" Content="Button" Margin="715,276,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="75" Command="{Binding AddFormaCommand, Mode=OneWay}" />
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="494,280,0,0" TextWrapping="Wrap" Text="{Binding Remaining, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+        <Button x:Name="button4" Content="Button" Margin="0,0,10,10" Command="{Binding SaleCommand, Mode=OneWay}" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75"/>
+
+    </Grid>
+</UserControl>

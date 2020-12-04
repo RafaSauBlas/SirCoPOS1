@@ -1,0 +1,40 @@
+﻿@model IEnumerable<SirCoPOS.Web.Areas.Admin.Models.Caja>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Item.Sucursal)</th>
+        <th>@Html.DisplayNameFor(model => model.Item.Numero)</th>
+        <th>@Html.DisplayNameFor(model => model.Item.Tipo)</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item.Disponible)
+        </th>
+        <th>Fondo</th>
+        <th>Responsable</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>@Html.DisplayFor(modelItem => item.Item.Sucursal)</td>
+    <td>@Html.DisplayFor(modelItem => item.Item.Numero)</td>
+    <td>@Html.DisplayFor(modelItem => item.Item.Tipo)</td>
+    <td>@String.Format("{0:C}", item.Item.Disponible)</td>
+    <td>@item.Fondo</td>
+    <td>@item.Responsable</td>
+    <td>
+        @Html.ActionLink("Detalle", "Detalle", "Cajas", routeValues: new { sucursal = item.Item.Sucursal, numero = item.Item.Numero }, htmlAttributes: null) |
+        @Html.ActionLink("Fondos", "Index", "Fondos", routeValues: new { sucursal = item.Item.Sucursal, numero = item.Item.Numero }, htmlAttributes: null)
+    </td>
+</tr>
+}
+
+</table>

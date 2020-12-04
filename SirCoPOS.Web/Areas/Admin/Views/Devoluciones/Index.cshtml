@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SirCoPOS.DataAccess.SirCoPV.Devolucion>
+@{
+    ViewBag.Title = "Devoluciones";
+}
+
+    <h2>Devoluciones</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Sucursal</th>
+            <th>Folio</th>
+            <th>Fecha</th>
+            <th>Estatus</th>
+            <th>Cajero</th>
+            <th>Vendedor</th>
+            <th>Cliente</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.sucursal</td>
+            <td>@item.devolvta</td>
+            <td>@item.fecha.Value.ToShortDateString()</td>
+            <td>@item.estatus</td>
+            <td>@item.idcajero</td>
+            <td>@item.idvendedor</td>
+            <td>@item.idcliente</td>
+            <td><a href="@Url.Action("Detalle", new { sucursal = item.sucursal, folio = item.devolvta })">detalle</a></td>
+        </tr>
+        }
+    </tbody>
+</table>

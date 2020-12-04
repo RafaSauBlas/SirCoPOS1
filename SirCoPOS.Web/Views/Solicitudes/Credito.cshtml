@@ -1,0 +1,142 @@
+﻿@model SirCoPOS.Web.Models.Distribuidor
+@{
+    ViewBag.Title = "Credito";
+}
+@{ 
+    var esmia = (bool?)ViewBag.mia;
+    var completado = (bool?)ViewBag.completado;
+    var credito = (SirCoPOS.Web.Models.SolicitudCliente)ViewBag.credito;
+}
+<h2>Credito</h2>
+
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#detalle" aria-controls="detalle" role="tab" data-toggle="tab">Detalle</a></li>
+        <li role="presentation"><a href="#credito" aria-controls="detalle" role="tab" data-toggle="tab">Credito</a></li>
+        <li role="presentation"><a href="#saldos" aria-controls="saldos" role="tab" data-toggle="tab">Saldos</a></li>
+        <li role="presentation"><a href="#pagos" aria-controls="pagos" role="tab" data-toggle="tab">Pagos</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="detalle">
+            @Html.Partial("_Details", Model)
+            <hr />
+            Saldo Distribuidor: @(String.Format("{0:C}", ViewBag.saldodis))
+        </div>
+        <div role="tabpanel" class="tab-pane" id="credito">
+            @Html.Partial("_Credito", credito)            
+        </div>
+        <div role="tabpanel" class="tab-pane" id="saldos">
+
+            <fieldset>
+                <legend>Cliente</legend>
+                Saldo: @(String.Format("{0:c}", ViewBag.saldocli))
+                <br />
+                Saldo Otros: @(String.Format("{0:c}", ViewBag.saldoOtros))
+                <br />
+                Saldo Total: <b>@(String.Format("{0:c}", ViewBag.saldocli + ViewBag.saldoOtros))</b>
+            </fieldset>
+
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="pagos">
+            @Html.Partial("_Pagos", (object)ViewBag.ultimos)
+        </div>
+    </div>
+
+    <hr />
+
+    <div>
+
+    </div>
+
+</div>
+
+@if (!(completado ?? false))
+{
+<div id="bind" style="display: none">
+    <div data-bind="visible: revisar() == 0">
+        <button data-bind="click: function () { doRevisar(true); }">revisar</button>
+    </div>
+    <span data-bind="text: revisar"></span>
+    <div data-bind="visible: revisar() == 1">
+        revisando
+        <hr />
+        @using (Ajax.BeginForm("Reply", "Solicitudes", routeValues: new { id = ViewBag.id },
+    ajaxOptions: new AjaxOptions { OnSuccess = "replied" },
+    htmlAttributes: new { id = "freply " }))
+        {
+            <text>Nuevo Limite Vale:</text>
+            <input type="text" name="monto" value="@((int)credito.Monto)" />
+            <br />
+            <text>Nuevo Limite Distribuidor:</text>
+            <input type="text" name="credito" value="@((int)Model.LimiteCredito)" />
+            <br />
+            <text>Electronica:</text>
+            <input type="checkbox" name="electronica" value="true" checked="@(Model.Electronica)" />
+            <br />
+            <input type="submit" name="res" value="aceptar" />
+            <input type="submit" name="res" value="rechazar" />
+        }
+    </div>
+    <div data-bind="visible: revisar() == 100">
+        complete
+    </div>
+    <div data-bind="visible: revisar() == -1">
+        la solicitud ya esta siendo revisada por alguien mas.
+    </div>
+</div>
+}
+else { 
+    @:complete
+}
+
+    @using (Ajax.BeginForm("Take", "Solicitudes", routeValues: new { id = ViewBag.id },
+        ajaxOptions: new AjaxOptions { OnSuccess = "taken" },
+        htmlAttributes: new { id = "ftake" }))
+    {
+
+    }
+
+    @section scripts
+{
+    <script>
+        function replied(data) {
+            vm.revisar(100);
+            alert(data.txt);
+        }
+        function taken(data) {
+            alert(data.txt);
+        }
+        function viewMovel() {
+            var self = this;
+            this.revisar = ko.observable(0);
+            this.monto = ko.observable();
+            this.doRevisar = function () {
+                $("#ftake").submit();
+                self.revisar(1);
+            };
+            this.doAceptar = function () {
+                alert('aceptar');
+            };
+        }
+        var vm = new viewMovel();
+        $(function () {            
+            @if (esmia.HasValue) {
+                if (esmia.Value)
+                {
+                    <text>vm.revisar(1);</text>
+                }
+                else
+                {
+                    <text>vm.revisar(-1);</text>
+                }
+            }
+            $('#bind').show();
+            ko.applyBindings(vm, $('#bind')[0]);            
+        });
+        </script>
+    }

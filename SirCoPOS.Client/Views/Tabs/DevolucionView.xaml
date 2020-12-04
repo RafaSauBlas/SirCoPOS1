@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="SirCoPOS.Client.Views.Tabs.DevolucionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:c="clr-namespace:SirCoPOS.Client.Converters"
+             xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
+             d:DesignHeight="600" d:DesignWidth="1100">
+    <UserControl.DataContext>
+        <vm:DevolucionViewModel></vm:DevolucionViewModel>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <c:WindowStateConverter x:Key="windowState"></c:WindowStateConverter>
+        <c:ImageUrlConverter x:Key="imageUrl"></c:ImageUrlConverter>
+    </UserControl.Resources>
+    <Grid>
+        <xt:BusyIndicator IsBusy="{Binding IsBusy}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <TextBox x:Name="searchTextBox" HorizontalAlignment="Left" Height="22" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Return" Command="{Binding LoadCommand}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+                <Button Command="{Binding ReturnCommand}" x:Name="button" Content="Generar" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Row="2"/>
+                <TextBlock x:Name="textBlock" HorizontalAlignment="Right" Margin="0,38.94,10,-2.88" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="0">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}-{1}">
+                            <Binding Path="Venta.Sucursal" />
+                            <Binding Path="Venta.Folio" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" x:Name="dataGrid" Margin="0" Grid.Row="1" ItemsSource="{Binding Productos}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Sucursal" Binding="{Binding Item.Sucursal}"/>
+                        <DataGridTextColumn Header="Folio" Binding="{Binding Item.Folio}"/>
+                        <DataGridTextColumn Header="Serie" Binding="{Binding Item.Serie}"/>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Image Source="{Binding Item.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}"/>
+                                        <!--<Image Source="/SirCoPOS.Win;component/Images/Vendedora.png" Width="40"/>-->
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Marca" Binding="{Binding Item.Marca}"/>
+                        <DataGridTextColumn Header="Modelo" Binding="{Binding Item.Modelo}"/>
+                        <DataGridTextColumn Header="Talla" Binding="{Binding Item.Talla}"/>
+                        <DataGridTextColumn Header="Importe" Binding="{Binding Item.Precio, StringFormat=\{0:C\}}"/>
+                        <DataGridTextColumn Header="Pago" Binding="{Binding Item.Pago, StringFormat=\{0:C\}}"/>
+                        <DataGridTextColumn Header="Desc" Binding="{Binding Item.DescuentoPorcentaje, StringFormat=\{0:P\}}"/>
+                        <DataGridTextColumn Header="Razon" Binding="{Binding RazonId}"/>
+                        <DataGridTextColumn Header="Razon" Binding="{Binding Razon}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+                <TextBlock Foreground="Red" x:Name="textBlock1" HorizontalAlignment="Left" Margin="150.11,10,0,0" TextWrapping="Wrap" Text="{Binding ErrorMessage}" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="10,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Cliente: {0} {1} {2}">
+                            <Binding Path="NuevoCliente.Nombre" />
+                            <Binding Path="NuevoCliente.ApPaterno" />
+                            <Binding Path="NuevoCliente.ApMaterno" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <Button Content="Load" Command="{Binding LoadClienteCommand}" Margin="438,0,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="50"/>
+                <Button Content="x" Command="{Binding ClearClienteCommand}" Margin="404,0,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="28"/>
+            </Grid>
+        </xt:BusyIndicator>
+
+        <xt:ChildWindow DesignerWindowState="Open" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="160" Width="200" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid>
+                <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Sucursal" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding Sucursal.Clave}" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="10,33.62,0,0" TextWrapping="Wrap" Text="Folio" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="10,57.24,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,33.62,10,0" TextWrapping="Wrap" Text="{Binding Folio}" VerticalAlignment="Top"/>
+                <TextBlock Text="{Binding ClienteId}" HorizontalAlignment="Right" Margin="0,57.24,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <Button Command="{Binding CloseCommand}" Content="Aceptar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Margin="0,0,10,10"/>
+                <Button Command="{Binding PrintCommand}" Margin="10,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75">
+                    <Button.Content>
+                        <fa:ImageAwesome Icon="Print" Height="24"></fa:ImageAwesome>
+                    </Button.Content>
+                </Button>
+            </Grid>
+        </xt:ChildWindow>
+    </Grid>
+</UserControl>

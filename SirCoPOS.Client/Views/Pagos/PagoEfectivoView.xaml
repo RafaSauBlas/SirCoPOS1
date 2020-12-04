@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="SirCoPOS.Client.Views.Pagos.PagoEfectivoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:m="clr-namespace:SirCoPOS.Client.Models.Pagos"
+             d:DataContext="{d:DesignInstance Type=m:Pago, IsDesignTimeCreatable=True}"
+             d:DesignHeight="100" d:DesignWidth="300">
+    <Grid>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="{Binding FormaPago}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+    </Grid>
+</UserControl>

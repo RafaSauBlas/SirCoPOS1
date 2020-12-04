@@ -1,0 +1,663 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{96E324D0-C607-4791-A88C-763C26E82444}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <RootNamespace>SirCoPOS.Client</RootNamespace>
+    <AssemblyName>SirCoPOS.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.5\lib\net48\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="FontAwesome.WPF, Version=4.7.0.37774, Culture=neutral, PublicKeyToken=0758b07a11a4f466, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.WPF.4.7.0.9\lib\net40\FontAwesome.WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras, Version=5.4.1.0, Culture=neutral, PublicKeyToken=669f0b5e8f868abf, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Extras.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, PublicKeyToken=5f873c45e98af8a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="RSG.Promise, Version=3.0.1.0, Culture=neutral, PublicKeyToken=7019fe0722eef3a4, processorArchitecture=MSIL">
+      <HintPath>..\packages\RSG.Promise.3.0.1\lib\net35\RSG.Promise.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=3.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.3.6.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Converters\ArrayMultiConverter.cs" />
+    <Compile Include="Converters\BoolTextConverter.cs" />
+    <Compile Include="Converters\ImageUrlConverter.cs" />
+    <Compile Include="Converters\ImageUrlMultiConverter.cs" />
+    <Compile Include="Converters\InverseBoolConverter.cs" />
+    <Compile Include="Converters\TipoCajaConverter.cs" />
+    <Compile Include="Converters\ValueVisibilityConverter.cs" />
+    <Compile Include="Converters\WindowStateConverter.cs" />
+    <Compile Include="DesignMode\Models\Pagos\PagoTarjeta.cs" />
+    <Compile Include="DesignMode\Models\Pagos\PagoVale.cs" />
+    <Compile Include="DesignMode\ViewModels\CajaViewModel.cs" />
+    <Compile Include="Helpers\CommonHelper.cs" />
+    <Compile Include="Helpers\ModalViewModelBase.cs" />
+    <Compile Include="Helpers\PagoViewModel.cs" />
+    <Compile Include="Helpers\Parsers.cs" />
+    <Compile Include="Helpers\ReportsHelper.cs" />
+    <Compile Include="Helpers\ServiceClient.cs" />
+    <Compile Include="Helpers\TabsPagosViewModel.cs" />
+    <Compile Include="Helpers\TabViewModelBase.cs" />
+    <Compile Include="Mappings\Mapping.cs" />
+    <Compile Include="Messages\ClienteMessage.cs" />
+    <Compile Include="Messages\DescuentoEspecial.cs" />
+    <Compile Include="Messages\NotaItem.cs" />
+    <Compile Include="Messages\ProductoDevolucionMessage.cs" />
+    <Compile Include="Messages\Vendedor.cs" />
+    <Compile Include="Models\CajaFormaPagoEntrega.cs" />
+    <Compile Include="Models\CancelProducto.cs" />
+    <Compile Include="Models\FirmaIndex.cs" />
+    <Compile Include="Models\FormaPagoKey.cs" />
+    <Compile Include="Models\ItemCorte.cs" />
+    <Compile Include="Models\MoveDirection.cs" />
+    <Compile Include="Models\NuevoCliente.cs" />
+    <Compile Include="Models\Pagos\Pago.cs" />
+    <Compile Include="Models\Pagos\PagoContraVale.cs" />
+    <Compile Include="Models\Pagos\PagoDevolucion.cs" />
+    <Compile Include="Models\Pagos\PagoTarjeta.cs" />
+    <Compile Include="Models\Pagos\PagoVale.cs" />
+    <Compile Include="Models\PlanPagoItem.cs" />
+    <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\ProductoCambio.cs" />
+    <Compile Include="Models\ProductoDevolucion.cs" />
+    <Compile Include="Models\ProductoNota.cs" />
+    <Compile Include="Models\SucursalFolio.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Resources\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Caja\DescuentoEspecialViewModel.cs" />
+    <Compile Include="ViewModels\Caja\LoadClienteViewModel.cs" />
+    <Compile Include="ViewModels\Caja\LoadVendedorViewModel.cs" />
+    <Compile Include="ViewModels\Caja\NotaViewModel.cs" />
+    <Compile Include="ViewModels\Caja\PagoContraValeViewModel.cs" />
+    <Compile Include="ViewModels\Caja\PagoContraValeViewModel2.cs" />
+    <Compile Include="ViewModels\Caja\PagoCreditoDistribuidorViewModel.cs" />
+    <Compile Include="ViewModels\Caja\PagoCreditoDistribuidorViewModel2.cs" />
+    <Compile Include="ViewModels\Caja\PagoCreditoViewModel.cs" />
+    <Compile Include="ViewModels\Caja\PagoCreditoViewModel2.cs" />
+    <Compile Include="ViewModels\Caja\PagoDevolucionViewModel.cs" />
+    <Compile Include="ViewModels\Caja\PagoEfectivoViewModel.cs" />
+    <Compile Include="ViewModels\Caja\PagoMonederoElectronicoViewModel.cs" />
+    <Compile Include="ViewModels\Caja\PagoTarjetaCreditoViewModel.cs" />
+    <Compile Include="ViewModels\Caja\PagoTarjetaDebitoViewModel.cs" />
+    <Compile Include="ViewModels\Caja\PagoValeDigitalViewModel.cs" />
+    <Compile Include="ViewModels\Caja\PagoValeDigitalViewModel2.cs" />
+    <Compile Include="ViewModels\Caja\PagoValeExternoViewModel.cs" />
+    <Compile Include="ViewModels\Caja\PagoValeExternoViewModel2.cs" />
+    <Compile Include="ViewModels\Caja\PagoValeViewModel.cs" />
+    <Compile Include="ViewModels\Devolucion\DevolucionItemViewModel.cs" />
+    <Compile Include="ViewModels\NuevoClienteViewModel.cs" />
+    <Compile Include="ViewModels\PuntoDeVentaViewModel.cs" />
+    <Compile Include="ViewModels\PuntoDeVentaViewModel.Properties.cs" />
+    <Compile Include="ViewModels\Tabs\AbonoViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\BonosViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\CajaViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\CajaViewModel.Events.cs" />
+    <Compile Include="ViewModels\Tabs\CajaViewModel.Properties.cs" />
+    <Compile Include="ViewModels\Tabs\CambiarResponsableViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\CambioViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\CancelacionDevolucionViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\CancelacionViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\ConsultaDevolucionViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\ConsultaProductoViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\ConsultaVentaViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\CorteViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\DevolucionViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\EntregaEfectivoViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\FondoAperturaViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\FondoArqueoViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\FondoCierreViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\FondoTransferirViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\GastoViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\NotaManualViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\NotaManualViewModel1.cs" />
+    <Compile Include="ViewModels\Tabs\NotaRevisionViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\VerificarValeExternoViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\VerificarValeViewModel.cs" />
+    <Compile Include="Views\CajaDualView.xaml.cs">
+      <DependentUpon>CajaDualView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\DescuentoEspecialView.xaml.cs">
+      <DependentUpon>DescuentoEspecialView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\LoadClienteNewView.xaml.cs">
+      <DependentUpon>LoadClienteNewView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\LoadClienteSearchView.xaml.cs">
+      <DependentUpon>LoadClienteSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\LoadClienteView.xaml.cs">
+      <DependentUpon>LoadClienteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\LoadVendedorView.xaml.cs">
+      <DependentUpon>LoadVendedorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\NotaView.xaml.cs">
+      <DependentUpon>NotaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\PagoContraValeView.xaml.cs">
+      <DependentUpon>PagoContraValeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\PagoCreditoDistribuidorView.xaml.cs">
+      <DependentUpon>PagoCreditoDistribuidorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\PagoCreditoView.xaml.cs">
+      <DependentUpon>PagoCreditoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\PagoDevolucionView.xaml.cs">
+      <DependentUpon>PagoDevolucionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\PagoEfectivoView.xaml.cs">
+      <DependentUpon>PagoEfectivoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\PagoMonederoElectronicoView.xaml.cs">
+      <DependentUpon>PagoMonederoElectronicoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\PagoTarjetaCreditoView.xaml.cs">
+      <DependentUpon>PagoTarjetaCreditoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\PagoTarjetaDebitoView.xaml.cs">
+      <DependentUpon>PagoTarjetaDebitoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\PagoValeDigitalView.xaml.cs">
+      <DependentUpon>PagoValeDigitalView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\PagoValeExternoView.xaml.cs">
+      <DependentUpon>PagoValeExternoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\PagoValeView.xaml.cs">
+      <DependentUpon>PagoValeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\ProductoItemView.xaml.cs">
+      <DependentUpon>ProductoItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Caja\ProductoView.xaml.cs">
+      <DependentUpon>ProductoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Devolucion\DevolucionView.xaml.cs">
+      <DependentUpon>DevolucionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Devolucion\ProductoItemView.xaml.cs">
+      <DependentUpon>ProductoItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NuevoCliente.xaml.cs">
+      <DependentUpon>NuevoCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pagos\PagoContraValeView.xaml.cs">
+      <DependentUpon>PagoContraValeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pagos\PagoDevolucionView.xaml.cs">
+      <DependentUpon>PagoDevolucionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pagos\PagoEfectivoView.xaml.cs">
+      <DependentUpon>PagoEfectivoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pagos\PagoTarjetaCreditoView.xaml.cs">
+      <DependentUpon>PagoTarjetaCreditoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pagos\PagoValeExternoView.xaml.cs">
+      <DependentUpon>PagoValeExternoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pagos\PagoValeView.xaml.cs">
+      <DependentUpon>PagoValeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PuntoDeVentaView.xaml.cs">
+      <DependentUpon>PuntoDeVentaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\AbonoView.xaml.cs">
+      <DependentUpon>AbonoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\BonosView.xaml.cs">
+      <DependentUpon>BonosView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\CajaView.xaml.cs">
+      <DependentUpon>CajaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\CajaView1.xaml.cs">
+      <DependentUpon>CajaView1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\CajaView2.xaml.cs">
+      <DependentUpon>CajaView2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\CajaView3.xaml.cs">
+      <DependentUpon>CajaView3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\CajaView4.xaml.cs">
+      <DependentUpon>CajaView4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\CambiarResponsableView.xaml.cs">
+      <DependentUpon>CambiarResponsableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\CambioView.xaml.cs">
+      <DependentUpon>CambioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\CambioView1.xaml.cs">
+      <DependentUpon>CambioView1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\CancelacionDevolucionView.xaml.cs">
+      <DependentUpon>CancelacionDevolucionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\CancelacionView.xaml.cs">
+      <DependentUpon>CancelacionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\ConsultaDevolucionView.xaml.cs">
+      <DependentUpon>ConsultaDevolucionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\ConsultaProductosView.xaml.cs">
+      <DependentUpon>ConsultaProductosView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\ConsultaVentaView.xaml.cs">
+      <DependentUpon>ConsultaVentaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\CorteView.xaml.cs">
+      <DependentUpon>CorteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\DevolucionView.xaml.cs">
+      <DependentUpon>DevolucionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\EntregaEfectivoView.xaml.cs">
+      <DependentUpon>EntregaEfectivoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\FondoApertura.xaml.cs">
+      <DependentUpon>FondoApertura.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\FondoArqueo.xaml.cs">
+      <DependentUpon>FondoArqueo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\FondoCierre.xaml.cs">
+      <DependentUpon>FondoCierre.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\FondoTransferir.xaml.cs">
+      <DependentUpon>FondoTransferir.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\GastoView.xaml.cs">
+      <DependentUpon>GastoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\NotaManualView.xaml.cs">
+      <DependentUpon>NotaManualView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\NotaManualView1.xaml.cs">
+      <DependentUpon>NotaManualView1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\NotasRevisionView.xaml.cs">
+      <DependentUpon>NotasRevisionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\VerificarValeExternoView.xaml.cs">
+      <DependentUpon>VerificarValeExternoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\VerificarValeView.xaml.cs">
+      <DependentUpon>VerificarValeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DualWindow.xaml.cs">
+      <DependentUpon>DualWindow.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Page Include="Views\CajaDualView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\DescuentoEspecialView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\LoadClienteNewView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\LoadClienteSearchView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\LoadClienteView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\LoadVendedorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\NotaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\PagoContraValeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\PagoCreditoDistribuidorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\PagoCreditoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\PagoDevolucionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\PagoEfectivoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\PagoMonederoElectronicoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\PagoTarjetaCreditoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\PagoTarjetaDebitoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\PagoValeDigitalView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\PagoValeExternoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\PagoValeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\ProductoItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Caja\ProductoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Devolucion\DevolucionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Devolucion\ProductoItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\NuevoCliente.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pagos\PagoContraValeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pagos\PagoDevolucionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pagos\PagoEfectivoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pagos\PagoTarjetaCreditoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pagos\PagoValeExternoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Pagos\PagoValeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PuntoDeVentaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\AbonoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\BonosView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\CajaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\CajaView1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\CajaView2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\CajaView3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\CajaView4.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\CambiarResponsableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tabs\CambioView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\CambioView1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\CancelacionDevolucionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\CancelacionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\ConsultaDevolucionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\ConsultaProductosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tabs\ConsultaVentaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\CorteView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\DevolucionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\EntregaEfectivoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\FondoApertura.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\FondoArqueo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\FondoCierre.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\FondoTransferir.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\GastoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tabs\NotaManualView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\NotaManualView1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\NotasRevisionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\VerificarValeExternoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\VerificarValeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\DualWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SirCoPOS.Common\SirCoPOS.Common.csproj">
+      <Project>{e84851fe-a33d-477f-8a55-4233f134446c}</Project>
+      <Name>SirCoPOS.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SirCoPOS.Reports\SirCoPOS.Reports.csproj">
+      <Project>{a075f0ab-a4e6-497d-b282-081e9cbbcee4}</Project>
+      <Name>SirCoPOS.Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SirCoPOS.Utilities\SirCoPOS.Utilities.csproj">
+      <Project>{27545e34-b7c2-4cae-a038-1697a8964894}</Project>
+      <Name>SirCoPOS.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

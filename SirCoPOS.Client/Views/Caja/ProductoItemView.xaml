@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="SirCoPOS.Client.Views.Caja.ProductoItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SirCoPOS.Client.Views.Caja"
+             mc:Ignorable="d" 
+             xmlns:c="clr-namespace:SirCoPOS.Client.Converters"             
+             xmlns:vm="clr-namespace:SirCoPOS.Client.Models"
+             d:DataContext="{vm:Producto}"
+             d:DesignHeight="90" d:DesignWidth="300">
+    <UserControl.Resources>
+        <c:ImageUrlConverter x:Key="imageUrl" />
+        <c:ValueVisibilityConverter x:Key="valvis"></c:ValueVisibilityConverter>
+    </UserControl.Resources>
+    <Grid>
+        <Grid HorizontalAlignment="Left" Margin="5" Width="80" Height="80">
+            <Rectangle Fill="#FFF4F4F5" Stroke="Black"/>
+            <Image x:Name="image" Margin="2" Source="{Binding Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}"/>
+        </Grid>
+        <TextBlock Margin="95,5,0,0" TextWrapping="Wrap" Text="{Binding Marca, StringFormat=Marca: \{0\}}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock Margin="95,34,0,0" TextWrapping="Wrap" Text="{Binding Modelo, StringFormat=Modelo: \{0\}}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="95,63,0,0" TextWrapping="Wrap" Text="{Binding Precio, Mode=OneWay, StringFormat=Precio: \{0:C\}}" Height="24" VerticalAlignment="Top"/>
+
+    </Grid>
+</UserControl>

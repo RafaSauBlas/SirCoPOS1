@@ -1,0 +1,162 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Win", "SirCoPOS.Win\SirCoPOS.Win.csproj", "{1419F022-3EC7-45F1-9E31-C4174E88D43F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.DataAccess", "SirCoPOS.DataAccess\SirCoPOS.DataAccess.csproj", "{51734512-D5F3-4AA8-AD42-968E67858741}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Web", "SirCoPOS.Web\SirCoPOS.Web.csproj", "{348FF2EF-2C4D-4F1D-949F-8C036ACFAD9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Common", "SirCoPOS.Common\SirCoPOS.Common.csproj", "{E84851FE-A33D-477F-8A55-4233F134446C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Reports", "SirCoPOS.Reports\SirCoPOS.Reports.csproj", "{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.BusinessLogic", "SirCoPOS.BusinessLogic\SirCoPOS.BusinessLogic.csproj", "{B34987AD-F9CA-40BD-8B45-13E62EA4AAAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Services", "SirCoPOS.Services\SirCoPOS.Services.csproj", "{BC1B99E7-2710-4D0C-ABF3-CEAA7A51625A}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SirCoLogs.Database", "SirCoLogs.Database\SirCoLogs.Database.sqlproj", "{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Server.Common", "SirCoPOS.Server.Common\SirCoPOS.Server.Common.csproj", "{869FE2ED-F937-4505-AFB7-43890EF4BB2E}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SirCoPOS.Database", "SirCoPOS.Database\SirCoPOS.Database.sqlproj", "{01449F51-8FB9-4881-88D6-698FAF394BD9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Databses", "Databses", "{B3150754-16CA-4EE2-BB66-538A450BEEF7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{B95A368C-67E9-4BBC-B613-3872588407C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.App.Android", "SirCoPOS.App\SirCoPOS.App.Android\SirCoPOS.App.Android.csproj", "{83123098-A953-4F26-85CC-77A3C5C3E495}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.App", "SirCoPOS.App\SirCoPOS.App\SirCoPOS.App.csproj", "{71015F5F-6237-4CFE-9411-D510C1DEFB84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Contracts", "SirCoPOS.Contracts\SirCoPOS.Contracts.csproj", "{C0F329D8-05B4-415A-A580-E54FA9AA45E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1419F022-3EC7-45F1-9E31-C4174E88D43F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1419F022-3EC7-45F1-9E31-C4174E88D43F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1419F022-3EC7-45F1-9E31-C4174E88D43F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1419F022-3EC7-45F1-9E31-C4174E88D43F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51734512-D5F3-4AA8-AD42-968E67858741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51734512-D5F3-4AA8-AD42-968E67858741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51734512-D5F3-4AA8-AD42-968E67858741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51734512-D5F3-4AA8-AD42-968E67858741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{348FF2EF-2C4D-4F1D-949F-8C036ACFAD9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{348FF2EF-2C4D-4F1D-949F-8C036ACFAD9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{348FF2EF-2C4D-4F1D-949F-8C036ACFAD9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{348FF2EF-2C4D-4F1D-949F-8C036ACFAD9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B34987AD-F9CA-40BD-8B45-13E62EA4AAAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B34987AD-F9CA-40BD-8B45-13E62EA4AAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B34987AD-F9CA-40BD-8B45-13E62EA4AAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B34987AD-F9CA-40BD-8B45-13E62EA4AAAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC1B99E7-2710-4D0C-ABF3-CEAA7A51625A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1B99E7-2710-4D0C-ABF3-CEAA7A51625A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1B99E7-2710-4D0C-ABF3-CEAA7A51625A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1B99E7-2710-4D0C-ABF3-CEAA7A51625A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{869FE2ED-F937-4505-AFB7-43890EF4BB2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{869FE2ED-F937-4505-AFB7-43890EF4BB2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{869FE2ED-F937-4505-AFB7-43890EF4BB2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{869FE2ED-F937-4505-AFB7-43890EF4BB2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{83123098-A953-4F26-85CC-77A3C5C3E495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83123098-A953-4F26-85CC-77A3C5C3E495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83123098-A953-4F26-85CC-77A3C5C3E495}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{83123098-A953-4F26-85CC-77A3C5C3E495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83123098-A953-4F26-85CC-77A3C5C3E495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83123098-A953-4F26-85CC-77A3C5C3E495}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{71015F5F-6237-4CFE-9411-D510C1DEFB84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71015F5F-6237-4CFE-9411-D510C1DEFB84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71015F5F-6237-4CFE-9411-D510C1DEFB84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71015F5F-6237-4CFE-9411-D510C1DEFB84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0F329D8-05B4-415A-A580-E54FA9AA45E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0F329D8-05B4-415A-A580-E54FA9AA45E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0F329D8-05B4-415A-A580-E54FA9AA45E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0F329D8-05B4-415A-A580-E54FA9AA45E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B} = {B3150754-16CA-4EE2-BB66-538A450BEEF7}
+		{01449F51-8FB9-4881-88D6-698FAF394BD9} = {B3150754-16CA-4EE2-BB66-538A450BEEF7}
+		{83123098-A953-4F26-85CC-77A3C5C3E495} = {B95A368C-67E9-4BBC-B613-3872588407C6}
+		{71015F5F-6237-4CFE-9411-D510C1DEFB84} = {B95A368C-67E9-4BBC-B613-3872588407C6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2ADB3E9-6A44-4B63-851C-CE1E6940C6BE}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 14
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://shaolin.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = SirCoPOS.Win\\SirCoPOS.Win.csproj
+		SccProjectName1 = SirCoPOS.Win
+		SccLocalPath1 = SirCoPOS.Win
+		SccProjectUniqueName2 = SirCoPOS.DataAccess\\SirCoPOS.DataAccess.csproj
+		SccProjectName2 = SirCoPOS.DataAccess
+		SccLocalPath2 = SirCoPOS.DataAccess
+		SccProjectUniqueName3 = SirCoPOS.Web\\SirCoPOS.Web.csproj
+		SccProjectName3 = SirCoPOS.Web
+		SccLocalPath3 = SirCoPOS.Web
+		SccProjectUniqueName4 = SirCoPOS.Common\\SirCoPOS.Common.csproj
+		SccProjectName4 = SirCoPOS.Common
+		SccLocalPath4 = SirCoPOS.Common
+		SccProjectUniqueName5 = SirCoPOS.Reports\\SirCoPOS.Reports.csproj
+		SccProjectName5 = SirCoPOS.Reports
+		SccLocalPath5 = SirCoPOS.Reports
+		SccProjectUniqueName6 = SirCoPOS.BusinessLogic\\SirCoPOS.BusinessLogic.csproj
+		SccProjectName6 = SirCoPOS.BusinessLogic
+		SccLocalPath6 = SirCoPOS.BusinessLogic
+		SccProjectUniqueName7 = SirCoPOS.Services\\SirCoPOS.Services.csproj
+		SccProjectName7 = SirCoPOS.Services
+		SccLocalPath7 = SirCoPOS.Services
+		SccProjectUniqueName8 = SirCoLogs.Database\\SirCoLogs.Database.sqlproj
+		SccProjectTopLevelParentUniqueName8 = SirCoPOS.sln
+		SccProjectName8 = SirCoLogs.Database
+		SccLocalPath8 = SirCoLogs.Database
+		SccProjectUniqueName9 = SirCoPOS.Server.Common\\SirCoPOS.Server.Common.csproj
+		SccProjectName9 = SirCoPOS.Server.Common
+		SccLocalPath9 = SirCoPOS.Server.Common
+		SccProjectUniqueName10 = SirCoPOS.Database\\SirCoPOS.Database.sqlproj
+		SccProjectTopLevelParentUniqueName10 = SirCoPOS.sln
+		SccProjectName10 = SirCoPOS.Database
+		SccLocalPath10 = SirCoPOS.Database
+		SccProjectUniqueName11 = SirCoPOS.App\\SirCoPOS.App.Android\\SirCoPOS.App.Android.csproj
+		SccProjectTopLevelParentUniqueName11 = SirCoPOS.sln
+		SccProjectName11 = SirCoPOS.App/SirCoPOS.App.Android
+		SccLocalPath11 = SirCoPOS.App\\SirCoPOS.App.Android
+		SccProjectUniqueName12 = SirCoPOS.App\\SirCoPOS.App\\SirCoPOS.App.csproj
+		SccProjectTopLevelParentUniqueName12 = SirCoPOS.sln
+		SccProjectName12 = SirCoPOS.App/SirCoPOS.App
+		SccLocalPath12 = SirCoPOS.App\\SirCoPOS.App
+		SccProjectUniqueName13 = SirCoPOS.Contracts\\SirCoPOS.Contracts.csproj
+		SccProjectName13 = SirCoPOS.Contracts
+		SccLocalPath13 = SirCoPOS.Contracts
+	EndGlobalSection
+EndGlobal

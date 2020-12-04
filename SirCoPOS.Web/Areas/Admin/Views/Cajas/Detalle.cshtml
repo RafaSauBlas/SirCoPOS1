@@ -1,0 +1,27 @@
+﻿@model SirCoPOS.DataAccess.SirCoPOS.Caja
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>@String.Format("{0}-{1}", Model.Sucursal, Model.Numero)</h2>
+<h4>@Model.Tipo</h4>
+<hr />
+Efectivo: @String.Format("{0:C}", Model.Disponible)
+<hr />
+<table class="table">
+    <thead>
+        <tr>
+            <th>FormaPago</th>
+            <th>Monto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.FormasPago)
+        {
+            <tr>
+                <td>@((SirCoPOS.Common.Constants.FormaPago)item.FormaPago)</td>
+                <td>@String.Format("{0:C}", item.Monto)</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:c="clr-namespace:SirCoPOS.App.Converters"
+             xmlns:vm="clr-namespace:SirCoPOS.App.ViewModels"
+             x:Class="SirCoPOS.App.Views.MainView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <c:ImageUrlConverter x:Key="imgUrl"></c:ImageUrlConverter>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.BindingContext>
+        <vm:MainViewModel></vm:MainViewModel>
+    </ContentView.BindingContext>
+  <ContentView.Content>
+      <StackLayout>
+            <Editor Text="{Binding Sucursal}" />
+            <Editor Keyboard="Numeric" Text="{Binding Serie}" />
+            <Button Text="Add" Command="{Binding AddCommand}"></Button>
+            <CollectionView ItemsSource="{Binding Productos}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image IsVisible="{Binding Item.HasImage}" Source="{Binding Item.Id, Converter={StaticResource imgUrl}}" />
+                                    <Label Text="{Binding Item.Id}"></Label>
+                                    <Label Text="{Binding Item.Serie}"></Label>
+                                    <Label Text="{Binding Item.Precio}"></Label>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label Text="{Binding Total}"></Label>
+            <Editor Text="{Binding Pagar}" />
+            <Button Text="Comprar" Command="{Binding SaleCommand}"></Button>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

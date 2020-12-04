@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Blend for Visual Studio Version 16
+VisualStudioVersion = 16.0.29209.62
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Win", "SirCoPOS.Win\SirCoPOS.Win.csproj", "{1419F022-3EC7-45F1-9E31-C4174E88D43F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Common", "SirCoPOS.Common\SirCoPOS.Common.csproj", "{E84851FE-A33D-477F-8A55-4233F134446C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Reports", "SirCoPOS.Reports\SirCoPOS.Reports.csproj", "{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Utilities", "SirCoPOS.Utilities\SirCoPOS.Utilities.csproj", "{27545E34-B7C2-4CAE-A038-1697A8964894}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Client", "SirCoPOS.Client\SirCoPOS.Client.csproj", "{96E324D0-C607-4791-A88C-763C26E82444}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1419F022-3EC7-45F1-9E31-C4174E88D43F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1419F022-3EC7-45F1-9E31-C4174E88D43F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1419F022-3EC7-45F1-9E31-C4174E88D43F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1419F022-3EC7-45F1-9E31-C4174E88D43F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27545E34-B7C2-4CAE-A038-1697A8964894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27545E34-B7C2-4CAE-A038-1697A8964894}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27545E34-B7C2-4CAE-A038-1697A8964894}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27545E34-B7C2-4CAE-A038-1697A8964894}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96E324D0-C607-4791-A88C-763C26E82444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E324D0-C607-4791-A88C-763C26E82444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E324D0-C607-4791-A88C-763C26E82444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E324D0-C607-4791-A88C-763C26E82444}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2ADB3E9-6A44-4B63-851C-CE1E6940C6BE}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://shaolin.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = SirCoPOS.Win\\SirCoPOS.Win.csproj
+		SccProjectName1 = SirCoPOS.Win
+		SccLocalPath1 = SirCoPOS.Win
+		SccProjectUniqueName2 = SirCoPOS.Common\\SirCoPOS.Common.csproj
+		SccProjectName2 = SirCoPOS.Common
+		SccLocalPath2 = SirCoPOS.Common
+		SccProjectUniqueName3 = SirCoPOS.Reports\\SirCoPOS.Reports.csproj
+		SccProjectName3 = SirCoPOS.Reports
+		SccLocalPath3 = SirCoPOS.Reports
+		SccProjectUniqueName4 = SirCoPOS.Utilities\\SirCoPOS.Utilities.csproj
+		SccProjectName4 = SirCoPOS.Utilities
+		SccLocalPath4 = SirCoPOS.Utilities
+		SccProjectUniqueName5 = SirCoPOS.Client\\SirCoPOS.Client.csproj
+		SccProjectName5 = SirCoPOS.Client
+		SccLocalPath5 = SirCoPOS.Client
+	EndGlobalSection
+EndGlobal

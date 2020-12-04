@@ -1,0 +1,36 @@
+﻿@model IEnumerable<SirCoPOS.DataAccess.SirCoPOS.FondoFormaPago>
+@{
+    ViewBag.Title = "FondoFormasPago";
+}
+
+<h2>FondoFormasPago</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>FormaPaga</th>
+            <th>Monto</th>
+            <th>Cantidad</th>
+            <th>Usuario</th>
+            <th>Entrada</th>
+            <th>Fecha</th>
+            <th>Referencia</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        { 
+        <tr>
+            <td>@((SirCoPOS.Common.Constants.FormaPago)item.FormaPago)</td>
+            <td>@String.Format("{0:C}", item.Monto)</td>
+            <td>@Html.DisplayFor(modelItem => item.Cantidad)</td>
+            <td>@Html.DisplayFor(modelItem => item.UsuarioId)</td>
+            <td>@Html.DisplayFor(modelItem => item.Entrada)</td>
+
+            <td>@Html.DisplayFor(modelItem => item.Fecha)</td>
+            <td>@Html.DisplayFor(modelItem => item.Referencia)</td>
+
+        </tr>
+        }
+    </tbody>
+</table>

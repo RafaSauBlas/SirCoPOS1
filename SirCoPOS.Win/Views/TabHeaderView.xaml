@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="SirCoPOS.Win.Views.TabHeaderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:vm="clr-namespace:SirCoPOS.Win.ViewModels"
+             d:DesignHeight="20" d:DesignWidth="70">
+    <UserControl.DataContext>
+        <vm:TabHeaderViewModel></vm:TabHeaderViewModel>
+    </UserControl.DataContext>
+    <StackPanel Orientation="Horizontal">
+        <TextBlock Text="{Binding Title}"></TextBlock>
+        <Button Command="{Binding CloseCommand}" x:Name="closeButton" Margin="5,0,0,0" Padding="4,0">
+            <fa:ImageAwesome Icon="Remove" Width="10" Height="10" />
+        </Button>
+    </StackPanel>
+</UserControl>

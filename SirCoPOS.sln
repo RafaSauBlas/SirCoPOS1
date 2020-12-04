@@ -1,0 +1,250 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Win", "SirCoPOS.Win\SirCoPOS.Win.csproj", "{1419F022-3EC7-45F1-9E31-C4174E88D43F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.DataAccess", "SirCoPOS.DataAccess\SirCoPOS.DataAccess.csproj", "{51734512-D5F3-4AA8-AD42-968E67858741}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Web", "SirCoPOS.Web\SirCoPOS.Web.csproj", "{348FF2EF-2C4D-4F1D-949F-8C036ACFAD9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Common", "SirCoPOS.Common\SirCoPOS.Common.csproj", "{E84851FE-A33D-477F-8A55-4233F134446C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Reports", "SirCoPOS.Reports\SirCoPOS.Reports.csproj", "{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.BusinessLogic", "SirCoPOS.BusinessLogic\SirCoPOS.BusinessLogic.csproj", "{B34987AD-F9CA-40BD-8B45-13E62EA4AAAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Services", "SirCoPOS.Services\SirCoPOS.Services.csproj", "{BC1B99E7-2710-4D0C-ABF3-CEAA7A51625A}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SirCoLogs.Database", "SirCoLogs.Database\SirCoLogs.Database.sqlproj", "{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Server.Common", "SirCoPOS.Server.Common\SirCoPOS.Server.Common.csproj", "{869FE2ED-F937-4505-AFB7-43890EF4BB2E}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SirCoPOS.Database", "SirCoPOS.Database\SirCoPOS.Database.sqlproj", "{01449F51-8FB9-4881-88D6-698FAF394BD9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Databses", "Databses", "{B3150754-16CA-4EE2-BB66-538A450BEEF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SirCoPOS.Contracts", "SirCoPOS.Contracts\SirCoPOS.Contracts.csproj", "{C0F329D8-05B4-415A-A580-E54FA9AA45E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.ServiceHost", "SirCoPOS.ServiceHost\SirCoPOS.ServiceHost.csproj", "{F2C0E381-7483-4DE6-B0C2-6195F0F01925}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.WebServices", "SirCoPOS.WebServices\SirCoPOS.WebServices.csproj", "{BE79F468-2E6C-4379-949E-119CB4E5A5B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.AzureServices", "SirCoPOS.AzureServices\SirCoPOS.AzureServices.csproj", "{7F1A2CCC-E0A4-4A11-ABF7-BE741215859A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{2F3E2831-2462-482F-938E-2150DD05CEBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Client", "SirCoPOS.Client\SirCoPOS.Client.csproj", "{96E324D0-C607-4791-A88C-763C26E82444}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{DF87F2DF-3E66-400C-B299-8957E26CDB01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{66ECE086-6A1D-456D-B564-C0747A961070}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{35C2AEB7-FA31-45BE-B0C5-1CAC241A1FC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Sync", "SirCoPOS.Sync\SirCoPOS.Sync.csproj", "{927E3130-D6E5-41FD-AFAB-4690E95CC029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Utilities", "SirCoPOS.Utilities\SirCoPOS.Utilities.csproj", "{27545E34-B7C2-4CAE-A038-1697A8964894}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7C410FAF-8487-4534-A5FC-4CB252DE59AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Client.Tests", "SirCoPOS.Client.Tests\SirCoPOS.Client.Tests.csproj", "{8619A452-D8A7-46DD-85AE-61AB501B907D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Shared", "SirCoPOS.Shared\SirCoPOS.Shared.csproj", "{DBF429C2-5E7F-4697-B8CF-D32AAE360F4B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1419F022-3EC7-45F1-9E31-C4174E88D43F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1419F022-3EC7-45F1-9E31-C4174E88D43F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1419F022-3EC7-45F1-9E31-C4174E88D43F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1419F022-3EC7-45F1-9E31-C4174E88D43F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51734512-D5F3-4AA8-AD42-968E67858741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51734512-D5F3-4AA8-AD42-968E67858741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51734512-D5F3-4AA8-AD42-968E67858741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51734512-D5F3-4AA8-AD42-968E67858741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{348FF2EF-2C4D-4F1D-949F-8C036ACFAD9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{348FF2EF-2C4D-4F1D-949F-8C036ACFAD9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{348FF2EF-2C4D-4F1D-949F-8C036ACFAD9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{348FF2EF-2C4D-4F1D-949F-8C036ACFAD9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A075F0AB-A4E6-497D-B282-081E9CBBCEE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B34987AD-F9CA-40BD-8B45-13E62EA4AAAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B34987AD-F9CA-40BD-8B45-13E62EA4AAAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B34987AD-F9CA-40BD-8B45-13E62EA4AAAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B34987AD-F9CA-40BD-8B45-13E62EA4AAAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC1B99E7-2710-4D0C-ABF3-CEAA7A51625A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1B99E7-2710-4D0C-ABF3-CEAA7A51625A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1B99E7-2710-4D0C-ABF3-CEAA7A51625A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1B99E7-2710-4D0C-ABF3-CEAA7A51625A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{869FE2ED-F937-4505-AFB7-43890EF4BB2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{869FE2ED-F937-4505-AFB7-43890EF4BB2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{869FE2ED-F937-4505-AFB7-43890EF4BB2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{869FE2ED-F937-4505-AFB7-43890EF4BB2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C0F329D8-05B4-415A-A580-E54FA9AA45E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0F329D8-05B4-415A-A580-E54FA9AA45E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0F329D8-05B4-415A-A580-E54FA9AA45E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0F329D8-05B4-415A-A580-E54FA9AA45E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2C0E381-7483-4DE6-B0C2-6195F0F01925}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2C0E381-7483-4DE6-B0C2-6195F0F01925}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2C0E381-7483-4DE6-B0C2-6195F0F01925}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2C0E381-7483-4DE6-B0C2-6195F0F01925}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE79F468-2E6C-4379-949E-119CB4E5A5B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE79F468-2E6C-4379-949E-119CB4E5A5B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE79F468-2E6C-4379-949E-119CB4E5A5B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE79F468-2E6C-4379-949E-119CB4E5A5B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F1A2CCC-E0A4-4A11-ABF7-BE741215859A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F1A2CCC-E0A4-4A11-ABF7-BE741215859A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F1A2CCC-E0A4-4A11-ABF7-BE741215859A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F1A2CCC-E0A4-4A11-ABF7-BE741215859A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96E324D0-C607-4791-A88C-763C26E82444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E324D0-C607-4791-A88C-763C26E82444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E324D0-C607-4791-A88C-763C26E82444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E324D0-C607-4791-A88C-763C26E82444}.Release|Any CPU.Build.0 = Release|Any CPU
+		{927E3130-D6E5-41FD-AFAB-4690E95CC029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{927E3130-D6E5-41FD-AFAB-4690E95CC029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{927E3130-D6E5-41FD-AFAB-4690E95CC029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{927E3130-D6E5-41FD-AFAB-4690E95CC029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27545E34-B7C2-4CAE-A038-1697A8964894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27545E34-B7C2-4CAE-A038-1697A8964894}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27545E34-B7C2-4CAE-A038-1697A8964894}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27545E34-B7C2-4CAE-A038-1697A8964894}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8619A452-D8A7-46DD-85AE-61AB501B907D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8619A452-D8A7-46DD-85AE-61AB501B907D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8619A452-D8A7-46DD-85AE-61AB501B907D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8619A452-D8A7-46DD-85AE-61AB501B907D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBF429C2-5E7F-4697-B8CF-D32AAE360F4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBF429C2-5E7F-4697-B8CF-D32AAE360F4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBF429C2-5E7F-4697-B8CF-D32AAE360F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBF429C2-5E7F-4697-B8CF-D32AAE360F4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1419F022-3EC7-45F1-9E31-C4174E88D43F} = {2F3E2831-2462-482F-938E-2150DD05CEBE}
+		{51734512-D5F3-4AA8-AD42-968E67858741} = {DF87F2DF-3E66-400C-B299-8957E26CDB01}
+		{348FF2EF-2C4D-4F1D-949F-8C036ACFAD9A} = {2F3E2831-2462-482F-938E-2150DD05CEBE}
+		{E84851FE-A33D-477F-8A55-4233F134446C} = {35C2AEB7-FA31-45BE-B0C5-1CAC241A1FC1}
+		{A075F0AB-A4E6-497D-B282-081E9CBBCEE4} = {66ECE086-6A1D-456D-B564-C0747A961070}
+		{B34987AD-F9CA-40BD-8B45-13E62EA4AAAD} = {DF87F2DF-3E66-400C-B299-8957E26CDB01}
+		{BC1B99E7-2710-4D0C-ABF3-CEAA7A51625A} = {DF87F2DF-3E66-400C-B299-8957E26CDB01}
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B} = {B3150754-16CA-4EE2-BB66-538A450BEEF7}
+		{869FE2ED-F937-4505-AFB7-43890EF4BB2E} = {DF87F2DF-3E66-400C-B299-8957E26CDB01}
+		{01449F51-8FB9-4881-88D6-698FAF394BD9} = {B3150754-16CA-4EE2-BB66-538A450BEEF7}
+		{C0F329D8-05B4-415A-A580-E54FA9AA45E4} = {35C2AEB7-FA31-45BE-B0C5-1CAC241A1FC1}
+		{BE79F468-2E6C-4379-949E-119CB4E5A5B1} = {2F3E2831-2462-482F-938E-2150DD05CEBE}
+		{7F1A2CCC-E0A4-4A11-ABF7-BE741215859A} = {2F3E2831-2462-482F-938E-2150DD05CEBE}
+		{96E324D0-C607-4791-A88C-763C26E82444} = {66ECE086-6A1D-456D-B564-C0747A961070}
+		{927E3130-D6E5-41FD-AFAB-4690E95CC029} = {2F3E2831-2462-482F-938E-2150DD05CEBE}
+		{27545E34-B7C2-4CAE-A038-1697A8964894} = {66ECE086-6A1D-456D-B564-C0747A961070}
+		{8619A452-D8A7-46DD-85AE-61AB501B907D} = {7C410FAF-8487-4534-A5FC-4CB252DE59AF}
+		{DBF429C2-5E7F-4697-B8CF-D32AAE360F4B} = {35C2AEB7-FA31-45BE-B0C5-1CAC241A1FC1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2ADB3E9-6A44-4B63-851C-CE1E6940C6BE}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 20
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://shaolin.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = SirCoPOS.Win\\SirCoPOS.Win.csproj
+		SccProjectTopLevelParentUniqueName1 = SirCoPOS.sln
+		SccProjectName1 = SirCoPOS.Win
+		SccLocalPath1 = SirCoPOS.Win
+		SccProjectUniqueName2 = SirCoPOS.DataAccess\\SirCoPOS.DataAccess.csproj
+		SccProjectTopLevelParentUniqueName2 = SirCoPOS.sln
+		SccProjectName2 = SirCoPOS.DataAccess
+		SccLocalPath2 = SirCoPOS.DataAccess
+		SccProjectUniqueName3 = SirCoPOS.Web\\SirCoPOS.Web.csproj
+		SccProjectTopLevelParentUniqueName3 = SirCoPOS.sln
+		SccProjectName3 = SirCoPOS.Web
+		SccLocalPath3 = SirCoPOS.Web
+		SccProjectUniqueName4 = SirCoPOS.Common\\SirCoPOS.Common.csproj
+		SccProjectTopLevelParentUniqueName4 = SirCoPOS.sln
+		SccProjectName4 = SirCoPOS.Common
+		SccLocalPath4 = SirCoPOS.Common
+		SccProjectUniqueName5 = SirCoPOS.Reports\\SirCoPOS.Reports.csproj
+		SccProjectTopLevelParentUniqueName5 = SirCoPOS.sln
+		SccProjectName5 = SirCoPOS.Reports
+		SccLocalPath5 = SirCoPOS.Reports
+		SccProjectUniqueName6 = SirCoPOS.BusinessLogic\\SirCoPOS.BusinessLogic.csproj
+		SccProjectTopLevelParentUniqueName6 = SirCoPOS.sln
+		SccProjectName6 = SirCoPOS.BusinessLogic
+		SccLocalPath6 = SirCoPOS.BusinessLogic
+		SccProjectUniqueName7 = SirCoPOS.Services\\SirCoPOS.Services.csproj
+		SccProjectTopLevelParentUniqueName7 = SirCoPOS.sln
+		SccProjectName7 = SirCoPOS.Services
+		SccLocalPath7 = SirCoPOS.Services
+		SccProjectUniqueName8 = SirCoLogs.Database\\SirCoLogs.Database.sqlproj
+		SccProjectTopLevelParentUniqueName8 = SirCoPOS.sln
+		SccProjectName8 = SirCoLogs.Database
+		SccLocalPath8 = SirCoLogs.Database
+		SccProjectUniqueName9 = SirCoPOS.Server.Common\\SirCoPOS.Server.Common.csproj
+		SccProjectTopLevelParentUniqueName9 = SirCoPOS.sln
+		SccProjectName9 = SirCoPOS.Server.Common
+		SccLocalPath9 = SirCoPOS.Server.Common
+		SccProjectUniqueName10 = SirCoPOS.Database\\SirCoPOS.Database.sqlproj
+		SccProjectTopLevelParentUniqueName10 = SirCoPOS.sln
+		SccProjectName10 = SirCoPOS.Database
+		SccLocalPath10 = SirCoPOS.Database
+		SccProjectUniqueName11 = SirCoPOS.Contracts\\SirCoPOS.Contracts.csproj
+		SccProjectTopLevelParentUniqueName11 = SirCoPOS.sln
+		SccProjectName11 = SirCoPOS.Contracts
+		SccLocalPath11 = SirCoPOS.Contracts
+		SccProjectUniqueName12 = SirCoPOS.ServiceHost\\SirCoPOS.ServiceHost.csproj
+		SccProjectName12 = SirCoPOS.ServiceHost
+		SccLocalPath12 = SirCoPOS.ServiceHost
+		SccProjectUniqueName13 = SirCoPOS.WebServices\\SirCoPOS.WebServices.csproj
+		SccProjectTopLevelParentUniqueName13 = SirCoPOS.sln
+		SccProjectName13 = SirCoPOS.WebServices
+		SccLocalPath13 = SirCoPOS.WebServices
+		SccProjectUniqueName14 = SirCoPOS.AzureServices\\SirCoPOS.AzureServices.csproj
+		SccProjectTopLevelParentUniqueName14 = SirCoPOS.sln
+		SccProjectName14 = SirCoPOS.AzureServices
+		SccLocalPath14 = SirCoPOS.AzureServices
+		SccProjectUniqueName15 = SirCoPOS.Client\\SirCoPOS.Client.csproj
+		SccProjectTopLevelParentUniqueName15 = SirCoPOS.sln
+		SccProjectName15 = SirCoPOS.Client
+		SccLocalPath15 = SirCoPOS.Client
+		SccProjectUniqueName16 = SirCoPOS.Sync\\SirCoPOS.Sync.csproj
+		SccProjectTopLevelParentUniqueName16 = SirCoPOS.sln
+		SccProjectName16 = SirCoPOS.Sync
+		SccLocalPath16 = SirCoPOS.Sync
+		SccProjectUniqueName17 = SirCoPOS.Utilities\\SirCoPOS.Utilities.csproj
+		SccProjectTopLevelParentUniqueName17 = SirCoPOS.sln
+		SccProjectName17 = SirCoPOS.Utilities
+		SccLocalPath17 = SirCoPOS.Utilities
+		SccProjectUniqueName18 = SirCoPOS.Client.Tests\\SirCoPOS.Client.Tests.csproj
+		SccProjectTopLevelParentUniqueName18 = SirCoPOS.sln
+		SccProjectName18 = SirCoPOS.Client.Tests
+		SccLocalPath18 = SirCoPOS.Client.Tests
+		SccProjectUniqueName19 = SirCoPOS.Shared\\SirCoPOS.Shared.csproj
+		SccProjectTopLevelParentUniqueName19 = SirCoPOS.sln
+		SccProjectName19 = SirCoPOS.Shared
+		SccLocalPath19 = SirCoPOS.Shared
+	EndGlobalSection
+EndGlobal

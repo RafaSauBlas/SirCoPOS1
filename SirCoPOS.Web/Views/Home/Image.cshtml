@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Image";
+}
+
+<h2>@($"{ViewBag.type} - {ViewBag.id}")</h2>
+
+@if (ViewBag.type == "qrcode")
+{
+    <img src="@Url.Action("QrCode", "Images", new { id = ViewBag.id, w = 200, h = 200 })" />
+}
+@if (ViewBag.type == "barcode")
+{
+    <img src="@Url.Action("BarCode", "Images", new { id = ViewBag.id, w = 300, h = 100 })" />
+}

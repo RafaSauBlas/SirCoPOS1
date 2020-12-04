@@ -1,0 +1,108 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "defaultDestination": "Scripts/lib/",
+  "libraries": [
+    {
+      "library": "jquery@3.4.1",
+      "destination": "Scripts/lib/jquery/",
+      "files": [
+        "jquery.js",
+        "jquery.min.js",
+        "jquery.min.map"
+      ]
+    },
+    {
+      "library": "twitter-bootstrap@3.4.1",
+      "destination": "Scripts/lib/twitter-bootstrap/"
+    },
+    {
+      "library": "jquery-validate@1.19.1",
+      "destination": "Scripts/lib/jquery-validate/",
+      "files": [
+        "jquery.validate.js",
+        "jquery.validate.min.js",
+        "additional-methods.js",
+        "additional-methods.min.js",
+        "localization/messages_es.js",
+        "localization/messages_es.min.js"
+      ]
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "destination": "Scripts/lib/jquery-validation-unobtrusive/"
+    },
+    {
+      "provider": "unpkg",
+      "library": "jquery-ajax-unobtrusive@3.2.6",
+      "destination": "Scripts/lib/jquery-ajax-unobtrusive/",
+      "files": [
+        "dist/jquery.unobtrusive-ajax.js",
+        "dist/jquery.unobtrusive-ajax.min.js"
+      ]
+    },
+    {
+      "library": "highlight.js@9.15.10",
+      "destination": "Scripts/lib/highlight.js/",
+      "files": [
+        "highlight.min.js",
+        "languages/csp.min.js",
+        "styles/vs2015.min.css",
+        "styles/vs.min.css"
+      ]
+    },
+    {
+      "library": "knockout@3.5.1",
+      "destination": "Scripts/lib/knockout/",
+      "files": [
+        "knockout-latest.debug.js",
+        "knockout-latest.debug.min.js",
+        "knockout-latest.debug.min.js.map",
+        "knockout-latest.js",
+        "knockout-latest.min.js",
+        "knockout-latest.min.js.map"
+      ]
+    },
+    {
+      "library": "knockout.mapping@2.4.1",
+      "destination": "Scripts/lib/knockout.mapping/",
+      "files": [
+        "knockout.mapping.min.js",
+        "knockout.mapping.js"
+      ]
+    },
+    {
+      "library": "angular.js@1.8.0",
+      "destination": "Scripts/lib/angular.js/",
+      "files": [
+        "angular-csp.css",
+        "angular-csp.min.css",
+        "angular.js",
+        "angular.min.js",
+        "angular.min.js.map"
+      ]
+    },
+    {
+      "library": "angular-ui-router@1.0.27",
+      "destination": "Scripts/lib/angular-ui-router/",
+      "files": [
+        "angular-ui-router.min.js",
+        "angular-ui-router.js",
+        "angular-ui-router.js.map",
+        "angular-ui-router.min.js.map"
+      ]
+    },
+    {
+      "library": "angular-ui-bootstrap@2.5.6",
+      "destination": "Scripts/lib/angular-ui-bootstrap/",
+      "files": [
+        "ui-bootstrap-csp.css",
+        "ui-bootstrap-csp.min.css",
+        "ui-bootstrap-tpls.js",
+        "ui-bootstrap-tpls.min.js",
+        "ui-bootstrap.js",
+        "ui-bootstrap.min.js"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29911.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Databases", "Databases", "{C40702E4-F075-4704-9D2A-E4BA27E21F44}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SirCoPV.Database", "SirCoPV.Database\SirCoPV.Database.sqlproj", "{3123225B-0D9D-4A1D-926A-48C3531D740A}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SirCo.Database", "SirCo.Database\SirCo.Database.sqlproj", "{0585BE27-744B-4B8C-8A9C-0A7FE5F4C4FF}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SirCoControl.Database", "SirCoControl.Database\SirCoControl.Database.sqlproj", "{E08DEDBE-9DB6-4CCA-8D5D-3464376315FB}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SirCoNomina.Database", "SirCoNomina.Database\SirCoNomina.Database.sqlproj", "{03874486-387D-4036-95D0-3F0FC108D738}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SirCoCredito.Database", "SirCoCredito.Database\SirCoCredito.Database.sqlproj", "{C779E57C-2C1F-43DF-B7DE-5F4A5B4289FF}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SirCoLogs.Database", "SirCoLogs.Database\SirCoLogs.Database.sqlproj", "{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Common", "SirCoPOS.Common\SirCoPOS.Common.csproj", "{E84851FE-A33D-477F-8A55-4233F134446C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.DataAccess", "SirCoPOS.DataAccess\SirCoPOS.DataAccess.csproj", "{51734512-D5F3-4AA8-AD42-968E67858741}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SirCoAPP.Database", "SirCoAPP.Database\SirCoAPP.Database.sqlproj", "{F101A85F-057A-4BB1-8BF7-B39C69F54E4D}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "SirCoPOS.Database", "SirCoPOS.Database\SirCoPOS.Database.sqlproj", "{01449F51-8FB9-4881-88D6-698FAF394BD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3123225B-0D9D-4A1D-926A-48C3531D740A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3123225B-0D9D-4A1D-926A-48C3531D740A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3123225B-0D9D-4A1D-926A-48C3531D740A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3123225B-0D9D-4A1D-926A-48C3531D740A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3123225B-0D9D-4A1D-926A-48C3531D740A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3123225B-0D9D-4A1D-926A-48C3531D740A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0585BE27-744B-4B8C-8A9C-0A7FE5F4C4FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0585BE27-744B-4B8C-8A9C-0A7FE5F4C4FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0585BE27-744B-4B8C-8A9C-0A7FE5F4C4FF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0585BE27-744B-4B8C-8A9C-0A7FE5F4C4FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0585BE27-744B-4B8C-8A9C-0A7FE5F4C4FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0585BE27-744B-4B8C-8A9C-0A7FE5F4C4FF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E08DEDBE-9DB6-4CCA-8D5D-3464376315FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E08DEDBE-9DB6-4CCA-8D5D-3464376315FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E08DEDBE-9DB6-4CCA-8D5D-3464376315FB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E08DEDBE-9DB6-4CCA-8D5D-3464376315FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E08DEDBE-9DB6-4CCA-8D5D-3464376315FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E08DEDBE-9DB6-4CCA-8D5D-3464376315FB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{03874486-387D-4036-95D0-3F0FC108D738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03874486-387D-4036-95D0-3F0FC108D738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03874486-387D-4036-95D0-3F0FC108D738}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{03874486-387D-4036-95D0-3F0FC108D738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03874486-387D-4036-95D0-3F0FC108D738}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03874486-387D-4036-95D0-3F0FC108D738}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{C779E57C-2C1F-43DF-B7DE-5F4A5B4289FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C779E57C-2C1F-43DF-B7DE-5F4A5B4289FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C779E57C-2C1F-43DF-B7DE-5F4A5B4289FF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{C779E57C-2C1F-43DF-B7DE-5F4A5B4289FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C779E57C-2C1F-43DF-B7DE-5F4A5B4289FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C779E57C-2C1F-43DF-B7DE-5F4A5B4289FF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F4DF1C3-CFC4-4B0B-B7C3-26192DDCF45B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E84851FE-A33D-477F-8A55-4233F134446C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51734512-D5F3-4AA8-AD42-968E67858741}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51734512-D5F3-4AA8-AD42-968E67858741}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51734512-D5F3-4AA8-AD42-968E67858741}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51734512-D5F3-4AA8-AD42-968E67858741}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F101A85F-057A-4BB1-8BF7-B39C69F54E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F101A85F-057A-4BB1-8BF7-B39C69F54E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F101A85F-057A-4BB1-8BF7-B39C69F54E4D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F101A85F-057A-4BB1-8BF7-B39C69F54E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F101A85F-057A-4BB1-8BF7-B39C69F54E4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F101A85F-057A-4BB1-8BF7-B39C69F54E4D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01449F51-8FB9-4881-88D6-698FAF394BD9}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3123225B-0D9D-4A1D-926A-48C3531D740A} = {C40702E4-F075-4704-9D2A-E4BA27E21F44}
+		{0585BE27-744B-4B8C-8A9C-0A7FE5F4C4FF} = {C40702E4-F075-4704-9D2A-E4BA27E21F44}
+		{E08DEDBE-9DB6-4CCA-8D5D-3464376315FB} = {C40702E4-F075-4704-9D2A-E4BA27E21F44}
+		{03874486-387D-4036-95D0-3F0FC108D738} = {C40702E4-F075-4704-9D2A-E4BA27E21F44}
+		{C779E57C-2C1F-43DF-B7DE-5F4A5B4289FF} = {C40702E4-F075-4704-9D2A-E4BA27E21F44}
+		{F101A85F-057A-4BB1-8BF7-B39C69F54E4D} = {C40702E4-F075-4704-9D2A-E4BA27E21F44}
+		{01449F51-8FB9-4881-88D6-698FAF394BD9} = {C40702E4-F075-4704-9D2A-E4BA27E21F44}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C2ADB3E9-6A44-4B63-851C-CE1E6940C6BE}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 11
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://shaolin.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = SirCoPV.Database\\SirCoPV.Database.sqlproj
+		SccProjectTopLevelParentUniqueName1 = SirCoPOS.Database.sln
+		SccProjectName1 = SirCoPV.Database
+		SccLocalPath1 = SirCoPV.Database
+		SccProjectUniqueName2 = SirCoControl.Database\\SirCoControl.Database.sqlproj
+		SccProjectTopLevelParentUniqueName2 = SirCoPOS.Database.sln
+		SccProjectName2 = SirCoControl.Database
+		SccLocalPath2 = SirCoControl.Database
+		SccProjectUniqueName3 = SirCo.Database\\SirCo.Database.sqlproj
+		SccProjectTopLevelParentUniqueName3 = SirCoPOS.Database.sln
+		SccProjectName3 = SirCo.Database
+		SccLocalPath3 = SirCo.Database
+		SccProjectUniqueName4 = SirCoNomina.Database\\SirCoNomina.Database.sqlproj
+		SccProjectTopLevelParentUniqueName4 = SirCoPOS.Database.sln
+		SccProjectName4 = SirCoNomina.Database
+		SccLocalPath4 = SirCoNomina.Database
+		SccProjectUniqueName5 = SirCoCredito.Database\\SirCoCredito.Database.sqlproj
+		SccProjectTopLevelParentUniqueName5 = SirCoPOS.Database.sln
+		SccProjectName5 = SirCoCredito.Database
+		SccLocalPath5 = SirCoCredito.Database
+		SccProjectUniqueName6 = SirCoLogs.Database\\SirCoLogs.Database.sqlproj
+		SccProjectName6 = SirCoLogs.Database
+		SccLocalPath6 = SirCoLogs.Database
+		SccProjectUniqueName7 = SirCoPOS.Common\\SirCoPOS.Common.csproj
+		SccProjectName7 = SirCoPOS.Common
+		SccLocalPath7 = SirCoPOS.Common
+		SccProjectUniqueName8 = SirCoPOS.DataAccess\\SirCoPOS.DataAccess.csproj
+		SccProjectName8 = SirCoPOS.DataAccess
+		SccLocalPath8 = SirCoPOS.DataAccess
+		SccProjectUniqueName9 = SirCoAPP.Database\\SirCoAPP.Database.sqlproj
+		SccProjectTopLevelParentUniqueName9 = SirCoPOS.Database.sln
+		SccProjectName9 = SirCoAPP.Database
+		SccLocalPath9 = SirCoAPP.Database
+		SccProjectUniqueName10 = SirCoPOS.Database\\SirCoPOS.Database.sqlproj
+		SccProjectTopLevelParentUniqueName10 = SirCoPOS.Database.sln
+		SccProjectName10 = SirCoPOS.Database
+		SccLocalPath10 = SirCoPOS.Database
+	EndGlobalSection
+EndGlobal

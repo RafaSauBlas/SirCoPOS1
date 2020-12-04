@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SirCoPOS.DataAccess.SirCoPOS.FondoArqueoFormaPago>
+
+@{
+    ViewBag.Title = "FormasPago";
+}
+
+<h2>FormasPago</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>FormaPago</th>
+            <th>Unidades</th>
+            <th>Monto</th>
+            <th>Faltante Unidades</th>
+            <th>Faltante Monto</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        { 
+        <tr>
+            <td>@item.FormaPago</td>
+            <td>@item.ReportadoUnidades</td>
+            <td>@String.Format("{0:C}", item.ReportadoMonto)</td>
+            <td>@(item.Unidades - item.ReportadoUnidades)</td>
+            <td>@String.Format("{0:C}", (item.Monto - item.ReportadoMonto))</td>
+        </tr>
+        }
+    </tbody>
+</table>

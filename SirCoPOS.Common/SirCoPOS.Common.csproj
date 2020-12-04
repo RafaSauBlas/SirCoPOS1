@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E84851FE-A33D-477F-8A55-4233F134446C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SirCoPOS.Common</RootNamespace>
+    <AssemblyName>SirCoPOS.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator, Version=2.0.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.2.0.5\lib\net48\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\Divisiones.cs" />
+    <Compile Include="Constants\FormaPagoPromocion.cs" />
+    <Compile Include="Constants\Parametros.cs" />
+    <Compile Include="Constants\PercepcionDeduccion.cs" />
+    <Compile Include="Constants\StatusDistribuidor.cs" />
+    <Compile Include="Constants\StatusVenta.cs" />
+    <Compile Include="Constants\TipoDistribuidor.cs" />
+    <Compile Include="Constants\TipoFondo.cs" />
+    <Compile Include="Constants\TipoMovimiento.cs" />
+    <Compile Include="Constants\TipoPromocion.cs" />
+    <Compile Include="Entities\Bonos.cs" />
+    <Compile Include="Entities\Caja.cs" />
+    <Compile Include="Entities\CajaFormas.cs" />
+    <Compile Include="Entities\CancelSaleRequest.cs" />
+    <Compile Include="Constants\Departamento.cs" />
+    <Compile Include="Entities\ChangeItem.cs" />
+    <Compile Include="Entities\ChangeRequest.cs" />
+    <Compile Include="Entities\ChangeResponse.cs" />
+    <Compile Include="Entities\CheckPromocionesRequest.cs" />
+    <Compile Include="Entities\Colonia.cs" />
+    <Compile Include="Entities\ContraVale.cs" />
+    <Compile Include="Entities\CorteRequest.cs" />
+    <Compile Include="Entities\CorteResponse.cs" />
+    <Compile Include="Entities\Cupon.cs" />
+    <Compile Include="Entities\DescuentoAdicional.cs" />
+    <Compile Include="Entities\Devolucion.cs" />
+    <Compile Include="Entities\DevolucionResponse.cs" />
+    <Compile Include="Entities\DevolucionView.cs" />
+    <Compile Include="Entities\Distribuidor.cs" />
+    <Compile Include="Entities\Empleado.cs" />
+    <Compile Include="Constants\FormaPago.cs" />
+    <Compile Include="Entities\Cliente.cs" />
+    <Compile Include="Entities\EntregaRequest.cs" />
+    <Compile Include="Entities\FileSync.cs" />
+    <Compile Include="Entities\FondoRequest.cs" />
+    <Compile Include="Entities\FormaPagoCorte.cs" />
+    <Compile Include="Entities\FormaPagoImporte.cs" />
+    <Compile Include="Entities\GastoRequest.cs" />
+    <Compile Include="Entities\ItemCorte.cs" />
+    <Compile Include="Entities\MedidasCorridas.cs" />
+    <Compile Include="Entities\NegocioExterno.cs" />
+    <Compile Include="Entities\NoteHeader.cs" />
+    <Compile Include="Entities\NotePago.cs" />
+    <Compile Include="Entities\NoteDetalle.cs" />
+    <Compile Include="Entities\NoteRequest.cs" />
+    <Compile Include="Entities\Option.cs" />
+    <Compile Include="Entities\PagoRequest.cs" />
+    <Compile Include="Entities\Producto.cs" />
+    <Compile Include="Entities\ProductoDevolucion.cs" />
+    <Compile Include="Constants\Puesto.cs" />
+    <Compile Include="Entities\ProductoPromocion.cs" />
+    <Compile Include="Entities\ProductoView.cs" />
+    <Compile Include="Entities\Promocion.cs" />
+    <Compile Include="Entities\PromocionCupon.cs" />
+    <Compile Include="Entities\PromocionCuponItem.cs" />
+    <Compile Include="Entities\PromocionesResponse.cs" />
+    <Compile Include="Entities\RazonNotaDevolucion.cs" />
+    <Compile Include="Entities\RegisterValeRequest.cs" />
+    <Compile Include="Entities\RegisterValeResponse.cs" />
+    <Compile Include="Entities\ReplyCreditoRequest.cs" />
+    <Compile Include="Entities\Reports\Producto.cs" />
+    <Compile Include="Entities\Reports\ReciboCompra.cs" />
+    <Compile Include="Entities\Reports\ReciboDevolucion.cs" />
+    <Compile Include="Entities\RequestCorte.cs" />
+    <Compile Include="Entities\Response.cs" />
+    <Compile Include="Entities\ReturnRequest.cs" />
+    <Compile Include="Entities\SaldoTarjetahabiente.cs" />
+    <Compile Include="Entities\SaleRequest.cs" />
+    <Compile Include="Entities\SaleResponse.cs" />
+    <Compile Include="Entities\ScanDevolucionResponse.cs" />
+    <Compile Include="Entities\ScanResponse.cs" />
+    <Compile Include="Constants\Status.cs" />
+    <Compile Include="Entities\SerieFormasPago.cs" />
+    <Compile Include="Entities\SeriePrecio.cs" />
+    <Compile Include="Entities\SolicitudCreditoRequest.cs" />
+    <Compile Include="Entities\SolicitudCreditoResponse.cs" />
+    <Compile Include="Entities\Sucursal.cs" />
+    <Compile Include="Constants\TipoCredito.cs" />
+    <Compile Include="Entities\SucursalExistencia.cs" />
+    <Compile Include="Entities\TallaPrecio.cs" />
+    <Compile Include="Entities\ValeResponse.cs" />
+    <Compile Include="Entities\VentaView.cs" />
+    <Compile Include="Extensions\NinjectServiceLocator.cs" />
+    <Compile Include="Helpers\CommonHelper.cs" />
+    <Compile Include="Helpers\TypeHelper.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="MappingAttribute.cs" />
+    <Compile Include="MappingConfig.cs" />
+    <Compile Include="ObservableObject.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceContracts\IAdminService.cs" />
+    <Compile Include="ServiceContracts\IAdminServiceAsync.cs" />
+    <Compile Include="ServiceContracts\ICommonService.cs" />
+    <Compile Include="ServiceContracts\ICommonServiceAsync.cs" />
+    <Compile Include="ServiceContracts\ICreditoValeService.cs" />
+    <Compile Include="ServiceContracts\ICreditoValeServiceAsync.cs" />
+    <Compile Include="ServiceContracts\IDataService.cs" />
+    <Compile Include="ServiceContracts\IDataServiceAsync.cs" />
+    <Compile Include="ServiceContracts\ILocalService.cs" />
+    <Compile Include="ServiceContracts\INoteService.cs" />
+    <Compile Include="ServiceContracts\INoteServiceAsync.cs" />
+    <Compile Include="ServiceContracts\IPrintService.cs" />
+    <Compile Include="ServiceContracts\IPrintServiceAsync.cs" />
+    <Compile Include="ServiceContracts\IProcessService.cs" />
+    <Compile Include="ServiceContracts\IProcessServiceAsync.cs" />
+    <Compile Include="ServiceContracts\IServiceDuplex.cs" />
+    <Compile Include="ServiceContracts\IServiceDuplexCallback.cs" />
+    <Compile Include="ServiceContracts\ISyncService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

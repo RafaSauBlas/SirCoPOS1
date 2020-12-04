@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="SirCoPOS.Client.Views.Tabs.CambiarResponsableView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SirCoPOS.Client.Views.Tabs"
+             xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:CambiarResponsableViewModel></vm:CambiarResponsableViewModel>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="vis"></BooleanToVisibilityConverter>
+    </UserControl.Resources>
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Efectivo" VerticalAlignment="Top"/>
+        <Button Command="{Binding SaveCommand}" Content="Save" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
+        <TextBlock HorizontalAlignment="Left" Margin="77.096,10,0,0" TextWrapping="Wrap" Text="{Binding Data.Efectivo, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+        <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="10,67.88,436,225.12" ItemsSource="{Binding FormasPago}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="FormaPago" Binding="{Binding CajaFormaPago.FormaPago}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Unidades" Binding="{Binding CajaFormaPago.Unidades}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Total" Binding="{Binding CajaFormaPago.Monto, StringFormat=C}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Entregar" Binding="{Binding Entregar, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Monto" Binding="{Binding EntregarMonto, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock HorizontalAlignment="Left" Margin="10,38.94,0,0" TextWrapping="Wrap" Text="Entregar" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="77.097,38.94,0,0" TextWrapping="Wrap" Text="{Binding Entrega, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="10,0,0,197.12" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="120">
+            <TextBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
+            </TextBox.InputBindings>
+        </TextBox>
+        <TextBlock HorizontalAlignment="Left" Margin="135,0,0,196.18" TextWrapping="Wrap" VerticalAlignment="Bottom">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} {1} {2}">
+                    <Binding Path="Auditor.Nombre" />
+                    <Binding Path="Auditor.ApellidoPaterno" />
+                    <Binding Path="Auditor.ApellidoMaterno" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+    </Grid>
+</UserControl>

@@ -1,0 +1,38 @@
+﻿<Page x:Class="SirCoPOS.Win.Pages.DemoMenuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SirCoPOS.Win.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Menu">
+
+    <Grid>
+        <Button x:Name="button" Content="Reports" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="110" Click="Button_Click"/>
+        <Button x:Name="button1" Content="Punto De Venta" HorizontalAlignment="Left" Margin="10,35,0,0" VerticalAlignment="Top" Width="110" Click="Button1_Click"/>
+        <Button x:Name="button3" Content="Login" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="Button3_Click"/>
+        <Button x:Name="button3_Copy" Content="Menu" Margin="0,35,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="Button3_Copy_Click"/>
+        <Button x:Name="button3_Copy1" Content="Caja" Margin="0,60,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="Button3_Copy1_Click"/>
+        <Button x:Name="button5" Content="Button" Margin="0,85,10,0" VerticalAlignment="Top" Click="Button5_Click" HorizontalAlignment="Right" Width="75"/>
+        <Button x:Name="menuButton" Content="menu" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="menuButton_Click"/>
+        <Button x:Name="button7" Content="Validation" Margin="0,110,10,0" VerticalAlignment="Top" Click="Button7_Click" HorizontalAlignment="Right" Width="75"/>
+        <Button x:Name="loginButton" Content="login" HorizontalAlignment="Left" Margin="10,0,0,35" Width="75" Height="20" VerticalAlignment="Bottom" Click="loginButton_Click"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,0,0,60" TextWrapping="Wrap" Text="Sucursal" VerticalAlignment="Bottom"/>
+        <TextBox Text="01" x:Name="sucursalTextBox" HorizontalAlignment="Left" Height="23" Margin="82,0,0,60" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
+        <TextBox IsReadOnly="True" x:Name="cajeroTextBox" HorizontalAlignment="Left" Height="23" Margin="82,0,0,88" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="240"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,0,0,88" TextWrapping="Wrap" Text="Cajero" VerticalAlignment="Bottom"/>
+        <Button x:Name="clearButton" Content="clear" HorizontalAlignment="Left" Margin="90,0,0,10" VerticalAlignment="Bottom" Width="75" Click="ClearButton_Click"/>
+        <Button x:Name="button7_Copy" Content="Pagos List" HorizontalAlignment="Right" Margin="0,135,10,0" VerticalAlignment="Top" Width="75" Click="button7_Copy_Click"/>
+        <CheckBox x:Name="checkBox" Content="MultiCaja" HorizontalAlignment="Left" Margin="207,0,0,60.901" VerticalAlignment="Bottom" />
+        <Button x:Name="button2" Content="client ex" HorizontalAlignment="Right" Margin="0,160,10,0" VerticalAlignment="Top" Width="75" Click="button2_Click"/>
+        <Button x:Name="buttonWeb" Content="web" Margin="0,0,10,10" Height="28" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="buttonWeb_Click"/>
+        <Button x:Name="buttonConfig" Content="config" Margin="0,0,10,43" Height="28" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="buttonConfig_Click"/>
+        <Button x:Name="buttonDebug" Content="debug" Margin="0,0,10,76" Height="28" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="buttonDebug_Click"/>
+        <Button x:Name="button2_Copy" Content="server ex" HorizontalAlignment="Right" Margin="0,188,10,0" VerticalAlignment="Top" Width="75" Click="buttonserverex_Click"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="82,0,0,116" Width="120" Height="22" VerticalAlignment="Bottom"/>
+        <Button Content="Connect" HorizontalAlignment="Left" Margin="635,412,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button Content="sync" Margin="0,221,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="Button_Click_2"/>
+
+    </Grid>
+</Page>

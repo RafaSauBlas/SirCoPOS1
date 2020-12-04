@@ -1,0 +1,57 @@
+﻿<Window x:Class="SirCoPOS.Win.Tests.Windows.PagosWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SirCoPOS.Win.Tests.Windows"
+        mc:Ignorable="d" xmlns:vm="clr-namespace:SirCoPOS.Win.Tests.ViewModels"
+        xmlns:v="clr-namespace:SirCoPOS.Win.Tests.Views.Pagos"
+        xmlns:c="clr-namespace:SirCoPOS.Win.Tests.Converters"
+        xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="PagosWindow" Height="300" Width="600">
+    <Window.DataContext>
+        <vm:PagosViewModel></vm:PagosViewModel>
+    </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary>
+            <c:DataTypeVisibilityConverter x:Key="dtc"></c:DataTypeVisibilityConverter>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <ItemsControl Margin="0,0,358,0" ItemsSource="{Binding Pagos}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Visibility="{Binding Nombre, Converter={StaticResource dtc}, ConverterParameter=PagoEfectivo}" Text="EFECTIVO"></TextBlock>
+                        <TextBlock Text="{Binding Importe}"></TextBlock>
+                        <TextBlock Text="{Binding}"></TextBlock>
+                        <TextBlock Text="{Binding Nombre, Converter={StaticResource dtc}, ConverterParameter=PagoEfectivo}"></TextBlock>
+                        <TextBlock Text="{Binding Nombre}"></TextBlock>
+                        <v:PagoEfectivoItemView Visibility="{Binding Nombre, Converter={StaticResource dtc}, ConverterParameter=PagoEfectivo}"></v:PagoEfectivoItemView>
+                        <v:PagoTarjetaItemView Visibility="{Binding Nombre, Converter={StaticResource dtc}, ConverterParameter=PagoTarjeta}"></v:PagoTarjetaItemView>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <ItemsControl ItemsSource="{Binding Pagos}" Margin="239,0,0,191">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel></StackPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <TextBlock Text="{Binding Importe}"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="481,134,0,0" VerticalAlignment="Top" Width="75"/>
+        <xt:WindowContainer>
+            <xt:ChildWindow WindowState="Open" IsModal="True" Canvas.Left="180" Canvas.Top="80">
+                <TextBlock Text="hello world!" Padding="10"></TextBlock>
+            </xt:ChildWindow>
+        </xt:WindowContainer>
+    </Grid>
+</Window>

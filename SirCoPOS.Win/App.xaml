@@ -1,0 +1,25 @@
+﻿<Application x:Class="SirCoPOS.Win.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:SirCoPOS.Win"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
+             StartupUri="ShellWindow.xaml">
+    <Application.Resources>
+        <system:Double x:Key="fontSize">18</system:Double>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>
+        </Style>
+        <Style TargetType="Control" x:Key="fs">
+            <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>
+        </Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource fs}"></Style>
+        <Style TargetType="Button" BasedOn="{StaticResource fs}"></Style>
+        <Style TargetType="CheckBox" BasedOn="{StaticResource fs}"></Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource fs}"></Style>
+        <Style TargetType="DataGridCellsPresenter" BasedOn="{StaticResource fs}"></Style>
+        <Style TargetType="ListBox" BasedOn="{StaticResource fs}"></Style>
+        <Style TargetType="xt:WatermarkTextBox" BasedOn="{StaticResource fs}"></Style>
+        <Style TargetType="xt:WatermarkPasswordBox" BasedOn="{StaticResource fs}"></Style>
+    </Application.Resources>
+</Application>

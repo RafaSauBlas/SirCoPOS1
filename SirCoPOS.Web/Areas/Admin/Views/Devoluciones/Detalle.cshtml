@@ -1,0 +1,106 @@
+﻿@model SirCoPOS.Web.Areas.Admin.Models.Devolucion
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+@helper printPersona(SirCoPOS.Web.Areas.Admin.Models.Persona per)
+{
+    if (per != null)
+    {
+        @String.Format("{0} - {1} {2} {3}", per.Id, per.Nombre, per.ApPaterno, per.ApMaterno)
+    }
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Devolucion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Sucursal</dt>
+        <dd>@Model.Sucursal</dd>
+
+        <dt>Folio</dt>
+        <dd>@Model.Folio</dd>
+
+        <dt>Fecha</dt>
+        <dd>@Model.Fecha</dd>
+
+        <dt>Estatus</dt>
+        <dd>@Model.Estatus</dd>
+
+        <dt>Total</dt>
+        <dd>@($"{Model.Total:c}")</dd>
+
+        <dt>Disponible</dt>
+        <dd>@($"{Model.Disponible:c}")</dd>
+
+        <dt>Venta</dt>
+        <dd><a href="@Url.Action("Detalle", "Ventas", new { sucursal = Model.VentaSucursal, folio = Model.VentaFolio })">@($"{Model.VentaSucursal}-{Model.VentaFolio}")</a></dd>
+
+        <dt>Cliente</dt>
+        <dd>@printPersona(Model.Cliente)</dd>
+    </dl>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Serie</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Precio</th>
+                <th>Pago</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Detalle)
+            {
+                <tr>
+                    <td>@item.Serie</td>
+                    <td>@item.Marca</td>
+                    <td>@item.Modelo</td>
+                    <td>@item.Precio.Value.ToString("c")</td>
+                    <td>@item.Pago.Value.ToString("c")</td>
+                    <td>
+                        @if (item.NotaRazon != null)
+                        {
+                            @String.Format("{0} - {1}", item.NotaRazon, item.Notas)
+                        }
+                    </td>
+                    <td>
+                        @if (item.HasImage)
+                        {
+                            <img src="@Url.Action("Producto", "Images", new { area = "", marca = item.Marca, modelo = item.Modelo, w = 100, h = 100 })" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <h4>Ventas</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Venta</th>
+                <th>Importe</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Ventas)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Detalle", "Ventas", new { sucursal = item.Sucursal, folio = item.Folio })">@($"{item.Sucursal}-{item.Folio}")</a>
+                    </td>
+                    <td>@($"{item.Importe:c}")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Back", "Index")
+</p>

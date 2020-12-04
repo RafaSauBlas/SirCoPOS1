@@ -1,0 +1,112 @@
+﻿@model SirCoPOS.DataAccess.SirCoLogs.Log
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <h4>Log</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Application)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Application)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Module)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Module)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Exception)
+        </dt>
+
+        <dd>
+            <pre>
+                <code class="csharp">@Html.DisplayFor(model => model.Exception)</code>
+            </pre>            
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MachineName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MachineName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Level)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Level)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Logger)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Logger)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Callsite)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Callsite)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back", "Index")
+</p>
+
+@section scripts
+{
+    <script>hljs.initHighlightingOnLoad();</script>
+}

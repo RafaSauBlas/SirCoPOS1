@@ -1,0 +1,210 @@
+﻿@model SirCoPOS.Web.Areas.Admin.Models.Venta
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+@helper printPersona(SirCoPOS.Web.Areas.Admin.Models.Persona per)
+{
+if (per != null)
+{ 
+@String.Format("{0} - {1} {2} {3}", per.Id, per.Nombre, per.ApPaterno, per.ApMaterno)
+}
+} 
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Venta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Sucursal</dt>
+        <dd>@Model.Sucursal</dd>
+
+        <dt>Folio</dt>
+        <dd>@Model.Folio</dd>
+
+        <dt>Fecha</dt>
+        <dd>@Model.Fecha</dd>
+
+        <dt>Estatus</dt>
+        <dd>@Model.Estatus</dd>
+
+        <dt>Cajero</dt>
+        <dd>@printPersona(Model.Cajero)</dd>
+
+        <dt>Vendedor</dt>
+        <dd>@printPersona(Model.Vendedor)</dd>
+
+        <dt>Cliente</dt>
+        <dd>@printPersona(Model.Cliente)</dd>
+    </dl>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Serie</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Precio</th>
+                <th>Pago</th>
+                <th>Descuento</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Detalle)
+            {
+            <tr>
+                <td>@item.Serie</td>
+                <td>@item.Marca</td>
+                <td>@item.Modelo</td>
+                <td>
+                    @item.Precio.Value.ToString("c")
+                    @if (item.NotaRazon != null)
+                    {
+                        if (item.Notas != null)
+                        {
+                            @String.Format("({0} - {1})", item.NotaRazon, item.Notas)
+                        }
+                        else
+                        {
+                            @String.Format("({0})", item.NotaRazon)
+                        }
+                    }
+                </td>
+                <td>@item.Pago.Value.ToString("c")</td>
+                <td>@String.Format("{0:p}", item.DescuentoPorcentaje)</td>
+                <td>@item.Comments</td>
+                <td>
+                    @if (item.HasImage)
+                    {
+                        <img src="@Url.Action("Producto", "Images", new { area = "", marca = item.Marca, modelo = item.Modelo, w = 100, h = 100 })" />
+                    }
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <h4>Pago</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Fecha</dt>
+        <dd>@Model.Pago.Fecha</dd>
+
+        <dt>Estatus</dt>
+        <dd>@Model.Pago.Estatus</dd>
+    </dl>
+    <table class="table table-condensed table-hover">
+        <thead>
+            <tr>
+                <th>TipoPago</th>
+                <th>Importe</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Pago.Detalle)
+            {
+                <tr>
+                    <td>@($"{item.FormaPago} - {(SirCoPOS.Common.Constants.FormaPago)item.FormaPago}")</td>
+                    <td>@($"{item.Importe:c}")</td>
+                    <td>
+                        @if (item.FormaPago == (int)SirCoPOS.Common.Constants.FormaPago.DV && item.Folio != null)
+                        {
+                            <a href="@Url.Action("Detalle", "Devoluciones", new { sucursal = item.Sucursal, folio = item.Folio })">@($"{item.Sucursal}-{item.Folio}")</a>
+                        }
+                        @if ((item.FormaPago == (int)SirCoPOS.Common.Constants.FormaPago.TC || item.FormaPago == (int)SirCoPOS.Common.Constants.FormaPago.TD)
+                            && item.Terminacion != null)
+                        {
+                            @($"Terminacion: {item.Terminacion}, Transaccion: {item.Transaccion}")
+                        }
+                        @if (item.FormaPago == (int)SirCoPOS.Common.Constants.FormaPago.VA && item.Folio != null)
+                        {
+                            @($"Vale: {item.Folio}")
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (Model.ContraVales.Any())
+    {
+        <h4>Contra Vales</h4>
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Importe</th>
+                    <th>Saldo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var cv in Model.ContraVales)
+                {
+                    <tr>
+                        <td>@cv.Folio</td>
+                        <td>@cv.Importe</td>
+                        <td>@cv.Disponible</td>
+                    </tr>
+                }
+            </tbody>
+        </table>    
+    }
+    @if (ViewBag.hasPlanPagos ?? false)
+    {
+        foreach (var pp in Model.PlanPago)
+        {
+            <h4>Plan Pagos - @pp.Vale</h4>
+            <hr />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Fecha</th>
+                        <th>Importe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in pp.Detalle)
+                    {
+                        <tr>
+                            <td>@item.Number</td>
+                            <td>@item.Fecha.ToShortDateString()</td>
+                            <td>@item.Importe.ToString("c")</td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        }
+    }
+
+<div>
+    <h4>Devoluciones</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Devolucion</th>
+                <th>Disponible</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Devoluciones)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Detalle", "Devoluciones", new { sucursal = item.Sucursal, folio = item.Folio })">@($"{item.Sucursal}-{item.Folio}")</a>
+                    </td>
+                    <td>@($"{item.Importe:c}")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+</div>
+<p>
+    @Html.ActionLink("Back", "Index")
+</p>
