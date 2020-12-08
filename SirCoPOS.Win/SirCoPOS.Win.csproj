@@ -144,6 +144,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\dlls\FDx\DotNET\Bin\i386\SecuGen.FDxSDKPro.Windows.dll</HintPath>
     </Reference>
+    <Reference Include="SirCoPOS.Client">
+      <HintPath>..\SirCoPOS.Client\bin\Debug\SirCoPOS.Client.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.Composition.Registration" />
@@ -586,10 +589,6 @@
     <Folder Include="DesignMode\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SirCoPOS.Client\SirCoPOS.Client.csproj">
-      <Project>{96e324d0-c607-4791-a88c-763c26e82444}</Project>
-      <Name>SirCoPOS.Client</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SirCoPOS.Common\SirCoPOS.Common.csproj">
       <Project>{e84851fe-a33d-477f-8a55-4233f134446c}</Project>
       <Name>SirCoPOS.Common</Name>
@@ -606,7 +605,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 y x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -623,7 +622,9 @@
     if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
     xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
   </PropertyGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <ItemGroup>
     <PublishFile Include="SirCoPOS.Common.pdb">
       <Visible>False</Visible>

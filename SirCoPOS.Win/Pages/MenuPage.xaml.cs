@@ -24,5 +24,10 @@ namespace SirCoPOS.Win.Pages
         {
             InitializeComponent();
         }
+
+        private void mainView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

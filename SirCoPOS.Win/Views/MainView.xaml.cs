@@ -204,6 +204,11 @@ namespace SirCoPOS.Win.Views
             }
         }
 
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
 
 
 

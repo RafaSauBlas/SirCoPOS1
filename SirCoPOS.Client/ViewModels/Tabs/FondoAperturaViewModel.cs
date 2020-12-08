@@ -36,7 +36,6 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     MessageBox.Show("codigo no valido");
                     return;
                 }
-
                 var request = new Common.Entities.FondoRequest
                 {
                     Importe = this.Importe.Value,

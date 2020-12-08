@@ -34,9 +34,9 @@ namespace SirCoPOS.Client.Views.Tabs
             
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cb_NumCaja_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+           
         }
     }
 }

@@ -61,6 +61,10 @@
     <Reference Include="RSG.Promise, Version=3.0.1.0, Culture=neutral, PublicKeyToken=7019fe0722eef3a4, processorArchitecture=MSIL">
       <HintPath>..\packages\RSG.Promise.3.0.1\lib\net35\RSG.Promise.dll</HintPath>
     </Reference>
+    <Reference Include="SirCoPOS.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SirCoPOS.Client.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

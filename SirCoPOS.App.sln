@@ -29,9 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{B95A368C-67E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.App.Android", "SirCoPOS.App\SirCoPOS.App.Android\SirCoPOS.App.Android.csproj", "{83123098-A953-4F26-85CC-77A3C5C3E495}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.App", "SirCoPOS.App\SirCoPOS.App\SirCoPOS.App.csproj", "{71015F5F-6237-4CFE-9411-D510C1DEFB84}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SirCoPOS.App", "SirCoPOS.App\SirCoPOS.App\SirCoPOS.App.csproj", "{71015F5F-6237-4CFE-9411-D510C1DEFB84}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Contracts", "SirCoPOS.Contracts\SirCoPOS.Contracts.csproj", "{C0F329D8-05B4-415A-A580-E54FA9AA45E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SirCoPOS.Contracts", "SirCoPOS.Contracts\SirCoPOS.Contracts.csproj", "{C0F329D8-05B4-415A-A580-E54FA9AA45E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Client", "SirCoPOS.Client\SirCoPOS.Client.csproj", "{96E324D0-C607-4791-A88C-763C26E82444}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +99,10 @@ Global
 		{C0F329D8-05B4-415A-A580-E54FA9AA45E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0F329D8-05B4-415A-A580-E54FA9AA45E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0F329D8-05B4-415A-A580-E54FA9AA45E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96E324D0-C607-4791-A88C-763C26E82444}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E324D0-C607-4791-A88C-763C26E82444}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E324D0-C607-4791-A88C-763C26E82444}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E324D0-C607-4791-A88C-763C26E82444}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -109,54 +115,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2ADB3E9-6A44-4B63-851C-CE1E6940C6BE}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 14
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://shaolin.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = SirCoPOS.Win\\SirCoPOS.Win.csproj
-		SccProjectName1 = SirCoPOS.Win
-		SccLocalPath1 = SirCoPOS.Win
-		SccProjectUniqueName2 = SirCoPOS.DataAccess\\SirCoPOS.DataAccess.csproj
-		SccProjectName2 = SirCoPOS.DataAccess
-		SccLocalPath2 = SirCoPOS.DataAccess
-		SccProjectUniqueName3 = SirCoPOS.Web\\SirCoPOS.Web.csproj
-		SccProjectName3 = SirCoPOS.Web
-		SccLocalPath3 = SirCoPOS.Web
-		SccProjectUniqueName4 = SirCoPOS.Common\\SirCoPOS.Common.csproj
-		SccProjectName4 = SirCoPOS.Common
-		SccLocalPath4 = SirCoPOS.Common
-		SccProjectUniqueName5 = SirCoPOS.Reports\\SirCoPOS.Reports.csproj
-		SccProjectName5 = SirCoPOS.Reports
-		SccLocalPath5 = SirCoPOS.Reports
-		SccProjectUniqueName6 = SirCoPOS.BusinessLogic\\SirCoPOS.BusinessLogic.csproj
-		SccProjectName6 = SirCoPOS.BusinessLogic
-		SccLocalPath6 = SirCoPOS.BusinessLogic
-		SccProjectUniqueName7 = SirCoPOS.Services\\SirCoPOS.Services.csproj
-		SccProjectName7 = SirCoPOS.Services
-		SccLocalPath7 = SirCoPOS.Services
-		SccProjectUniqueName8 = SirCoLogs.Database\\SirCoLogs.Database.sqlproj
-		SccProjectTopLevelParentUniqueName8 = SirCoPOS.sln
-		SccProjectName8 = SirCoLogs.Database
-		SccLocalPath8 = SirCoLogs.Database
-		SccProjectUniqueName9 = SirCoPOS.Server.Common\\SirCoPOS.Server.Common.csproj
-		SccProjectName9 = SirCoPOS.Server.Common
-		SccLocalPath9 = SirCoPOS.Server.Common
-		SccProjectUniqueName10 = SirCoPOS.Database\\SirCoPOS.Database.sqlproj
-		SccProjectTopLevelParentUniqueName10 = SirCoPOS.sln
-		SccProjectName10 = SirCoPOS.Database
-		SccLocalPath10 = SirCoPOS.Database
-		SccProjectUniqueName11 = SirCoPOS.App\\SirCoPOS.App.Android\\SirCoPOS.App.Android.csproj
-		SccProjectTopLevelParentUniqueName11 = SirCoPOS.sln
-		SccProjectName11 = SirCoPOS.App/SirCoPOS.App.Android
-		SccLocalPath11 = SirCoPOS.App\\SirCoPOS.App.Android
-		SccProjectUniqueName12 = SirCoPOS.App\\SirCoPOS.App\\SirCoPOS.App.csproj
-		SccProjectTopLevelParentUniqueName12 = SirCoPOS.sln
-		SccProjectName12 = SirCoPOS.App/SirCoPOS.App
-		SccLocalPath12 = SirCoPOS.App\\SirCoPOS.App
-		SccProjectUniqueName13 = SirCoPOS.Contracts\\SirCoPOS.Contracts.csproj
-		SccProjectName13 = SirCoPOS.Contracts
-		SccLocalPath13 = SirCoPOS.Contracts
 	EndGlobalSection
 EndGlobal

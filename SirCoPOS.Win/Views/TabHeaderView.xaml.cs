@@ -24,5 +24,10 @@ namespace SirCoPOS.Win.Views
         {
             InitializeComponent();
         }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

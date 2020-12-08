@@ -101,7 +101,7 @@
                 <Menu.DataContext>
                     <vm:MenuViewModel></vm:MenuViewModel>
                 </Menu.DataContext>
-                <MenuItem>
+                <MenuItem Click="MenuItem_Click">
                     <MenuItem.Icon>
                         <Image x:Name="___SirCoPOS_Win_component_Images_Icono_Menu_png" Source="/SirCoPOS.Win;component/Images/Icono Menu.png" />
                     </MenuItem.Icon>
@@ -182,7 +182,7 @@
                         </MenuItem.CommandParameter>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem Header="Abrir Fondo" Command="{Binding OpenCommand}">
+                    <MenuItem Header="Abrir Fondo" Command="{Binding OpenCommand}" Click="MenuItem_Click">
                         <MenuItem.CommandParameter>
                             <m:TabType>FondoApertura</m:TabType>
                         </MenuItem.CommandParameter>

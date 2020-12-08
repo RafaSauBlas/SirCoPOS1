@@ -14,8 +14,8 @@
         <c:TipoCajaConverter x:Key="tipoc"></c:TipoCajaConverter>
     </UserControl.Resources>
     <Grid>
-        <ComboBox ItemsSource="{Binding Cajas}" SelectedItem="{Binding SelectedCaja}" x:Name="comboBox" HorizontalAlignment="Left" Margin="152,42,0,0" VerticalAlignment="Top">
-            <ComboBox.ItemTemplate>
+        <ComboBox ItemsSource="{Binding Cajas}" SelectedItem="{Binding SelectedCaja}" x:Name="comboBox" HorizontalAlignment="Left" Margin="152,42,0,0" VerticalAlignment="Top" Width="120">
+         <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
                         <TextBlock.Text>
