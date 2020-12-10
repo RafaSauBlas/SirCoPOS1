@@ -15,7 +15,7 @@
     </UserControl.Resources>
     <Grid>
         <ComboBox ItemsSource="{Binding Cajas}" SelectedItem="{Binding SelectedCaja}" x:Name="comboBox" HorizontalAlignment="Left" Margin="152,42,0,0" VerticalAlignment="Top" Width="120">
-         <ComboBox.ItemTemplate>
+            <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
                         <TextBlock.Text>
@@ -30,17 +30,17 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="22" Margin="152,76.94,0,0" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="22" Margin="152,103.94,0,0" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="27" Margin="152,77,0,0" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="27" Margin="152,110,0,0" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <Button Command="{Binding SaveCommand}" Content="Guardar" HorizontalAlignment="Left" Margin="152,130.94,0,0" Width="74" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
+        <Button Command="{Binding SaveCommand}" Content="Guardar" HorizontalAlignment="Left" Margin="152,142,0,0" Width="74" VerticalAlignment="Top"/>
 
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Apertura Fondo" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="12,75,0,0" TextWrapping="Wrap" Text="Recibir" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Margin="10,102,0,0" TextWrapping="Wrap" Text="Auditor" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Margin="10,108,0,0" TextWrapping="Wrap" Text="Auditor" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="277,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0} {1} {2}">

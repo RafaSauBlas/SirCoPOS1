@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:SirCoPOS.Win.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Menu">
+      Title="Menu"
+      Loaded="loginButton_Click">
 
     <Grid>
         <Button x:Name="button" Content="Reports" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="110" Click="Button_Click"/>

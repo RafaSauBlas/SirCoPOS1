@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       xmlns:v="clr-namespace:SirCoPOS.Win.Views"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="MenuPage">
+      Title="MenuPage" UseLayoutRounding="False" Foreground="{x:Null}">
 
     <v:MainView x:Name="mainView" Loaded="mainView_Loaded"></v:MainView>
 </Page>

@@ -29,16 +29,16 @@ namespace SirCoPOS.Win.Pages
             InitializeComponent();
 
             _loginPage = new Lazy<LoginPage>();
-            
+
             GalaSoft.MvvmLight.Messaging.Messenger.Default.Register<Messages.LoginResponse>(this, lr => {
                 if (lr.Success)
                 {
                     var cajero = lr.Empleado;
                     this.cajeroTextBox.Text = $"{cajero.Nombre} {cajero.ApellidoPaterno} {cajero.ApellidoMaterno}";
-                    this.sucursalTextBox.IsReadOnly = true;                    
+                    this.sucursalTextBox.IsReadOnly = true;
                     Properties.Settings.Default.Sucursal = this.sucursalTextBox.Text;
                     Properties.Settings.Default.Cajero = cajero.Usuario;
-                    Properties.Settings.Default.Save();                    
+                    Properties.Settings.Default.Save();
                 }
             });
 
@@ -76,7 +76,7 @@ namespace SirCoPOS.Win.Pages
                 }
                 this.checkBox.IsChecked = Properties.Settings.Default.MultiCaja;
             }
-        }        
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -120,13 +120,17 @@ namespace SirCoPOS.Win.Pages
                 return;
             }
             if(this.comboBox.SelectedIndex != -1)
-                _settings.Scanner = (string)this.comboBox.SelectedItem;
+            _settings.Scanner = (string)this.comboBox.SelectedItem;
             _settings.MultiCaja = this.checkBox.IsChecked ?? false;
             Properties.Settings.Default.MultiCaja = _settings.MultiCaja;            
             Properties.Settings.Default.Save();
             this.NavigationService.Navigate(new MenuPage());
         }
         private void loginButton_Click(object sender, RoutedEventArgs e)
+        {
+            log();
+        }
+        private void log()
         {
             if (string.IsNullOrEmpty(this.sucursalTextBox.Text))
             {
@@ -137,7 +141,6 @@ namespace SirCoPOS.Win.Pages
             Properties.Settings.Default.Save();
             this.NavigationService.Navigate(_loginPage.Value);
         }
-        
         private void Button7_Click(object sender, RoutedEventArgs e)
         {
             var win = new Tests.Windows.ValidacionWindow();

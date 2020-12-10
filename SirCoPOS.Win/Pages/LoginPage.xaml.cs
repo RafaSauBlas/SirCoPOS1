@@ -32,7 +32,7 @@ namespace SirCoPOS.Win.Pages
 
                     if (!m.Success)
                     {
-                        MessageBox.Show("El usuario o contraseña no son válidos.");
+                        MessageBox.Show("El usuario o contraseña no son válidos.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
                         return;
                     }
                     var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
