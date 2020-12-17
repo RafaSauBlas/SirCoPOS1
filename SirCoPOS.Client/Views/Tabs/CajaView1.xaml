@@ -82,15 +82,15 @@
                     </Button>
 
                 </Grid>
-                <Button x:Name="button3" Content="Add Pago" HorizontalAlignment="Left" Margin="201,0,0,10" VerticalAlignment="Bottom" Width="96"/>
+                <Button x:Name="button3" Content="Agregar Pago" HorizontalAlignment="Left" Margin="201,0,0,10" VerticalAlignment="Bottom" Width="96"/>
                 <TextBox x:Name="scanTextBox" HorizontalAlignment="Right" Height="23" Margin="0,111.5,10,0" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="133">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding AddCommand}"/>
                     </TextBox.InputBindings>
                 </TextBox>
-                <Button x:Name="button5" Content="Add Cupon" HorizontalAlignment="Right" Margin="0,0,233,195.06" VerticalAlignment="Bottom" Width="108"/>
-                <Button x:Name="button5_Copy" Content="Add Descuento" HorizontalAlignment="Left" Margin="302,0,0,195.06" VerticalAlignment="Bottom" Width="136"/>
-                <TextBlock x:Name="textBlock3" Margin="302,0,233,40.12" TextWrapping="Wrap" Foreground="Red" Text="mensajes de error o validacion" VerticalAlignment="Bottom" TextAlignment="Center"/>
+                <Button x:Name="button5" Content="Agregar Cupon" HorizontalAlignment="Right" Margin="0,0,233,195.06" VerticalAlignment="Bottom" Width="108"/>
+                <Button x:Name="button5_Copy" Content="Agregar Descuento" HorizontalAlignment="Left" Margin="302,0,0,195.06" VerticalAlignment="Bottom" Width="136"/>
+                <TextBlock x:Name="textBlock3" Margin="302,0,233,40.12" TextWrapping="Wrap" Foreground="Red" Text="Mensajes de error o validación" VerticalAlignment="Bottom" TextAlignment="Center"/>
                 <Grid Margin="0,11.5,10,0" HorizontalAlignment="Right" Width="133" Height="95" VerticalAlignment="Top">
                     <Rectangle Stroke="Black"/>
                     <Image Source="{Binding SelectedItem.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}" />

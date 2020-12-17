@@ -18,7 +18,7 @@
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Items}" IsReadOnly="True" x:Name="dataGrid" Margin="10,38,10,200.705">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Unidades" Binding="{Binding Unidades}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Descripcion" Binding="{Binding Descripcion}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Importe" Binding="{Binding Importe, StringFormat=\{0:C\}}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>

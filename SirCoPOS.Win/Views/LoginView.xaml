@@ -21,9 +21,6 @@
     <tk:BusyIndicator IsBusy="{Binding IsBusy}">
 
         <Grid>
-            <Grid.Background>
-                <ImageBrush ImageSource="/SirCoPOS.Win;component/Images/fondo 25%.png" Stretch="None" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,114,76"/>
-            </Grid.Background>
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="171" >
                 <Grid HorizontalAlignment="Left" Height="80" VerticalAlignment="Bottom" Width="250">
                     <Rectangle Fill="#FF8A95B3" Stroke="Black" RadiusY="13.5" RadiusX="13.5" />

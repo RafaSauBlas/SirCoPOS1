@@ -49,7 +49,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         this.ClienteTelefonoSearch = null;
                     }
                     else
-                        MessageBox.Show("Cliente no encontrado");
+                        MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
             });
@@ -148,7 +148,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     }, this.GID);
                 }
                 else
-                    MessageBox.Show("telefono duplicado.");
+                    MessageBox.Show("El telefono esta duplicado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (this.Screen == "search")
             {

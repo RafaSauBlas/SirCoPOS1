@@ -65,7 +65,7 @@
         </ItemsControl>
         <TextBlock x:Name="textBlock_Copy3" Margin="402.24,11,0,0" TextWrapping="Wrap" Text="Cuenta" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <TextBlock x:Name="textBlock_Copy4" Margin="557.294,13.576,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Cuenta}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <TextBlock x:Name="textBlock4" Margin="402.741,97,0,0" TextWrapping="Wrap" Text="Electronica" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="textBlock4" Margin="402.741,97,0,0" TextWrapping="Wrap" Text="Electrónica" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Vale" VerticalAlignment="Top"/>
         <TextBox x:Name="tbVale" HorizontalAlignment="Left" Height="23" Margin="82.243,12.92,0,0" TextWrapping="Wrap" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
             <TextBox.InputBindings>

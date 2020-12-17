@@ -39,7 +39,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,155,0,0" TextWrapping="Wrap" Text="Talla" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,184,0,0" TextWrapping="Wrap" Text="Unico" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,213,0,0" TextWrapping="Wrap" Text="Plazos" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,242,0,0" TextWrapping="Wrap" Text="Electronica" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,242,0,0" TextWrapping="Wrap" Text="Electrónica" VerticalAlignment="Top"/>
         <Grid HorizontalAlignment="Left" Height="169" Margin="10,271,0,0" VerticalAlignment="Top" Width="169">
             <Rectangle Stroke="Black"/>
             <Image Height="150" Width="150" Source="{Binding Item.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}" Margin="2" />

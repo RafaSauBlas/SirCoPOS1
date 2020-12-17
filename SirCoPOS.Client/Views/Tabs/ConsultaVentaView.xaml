@@ -30,8 +30,8 @@
                 <DataGridTextColumn Header="Precio" Binding="{Binding Precio, StringFormat=\{0:C\}}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Print" Command="{Binding PrintCommand}" HorizontalAlignment="Left" Margin="10,0,0,188" VerticalAlignment="Bottom" Width="75"/>
-        <Button Command="{Binding UltimaVentaCommand}" Content="ultima venta" Margin="0,6,258,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="114"/>
+        <Button Content="Imprimir" Command="{Binding PrintCommand}" HorizontalAlignment="Left" Margin="10,0,0,188" VerticalAlignment="Bottom" Width="75"/>
+        <Button Command="{Binding UltimaVentaCommand}" Content="Ultima venta" Margin="0,6,258,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="114"/>
 
     </Grid>
 </UserControl>

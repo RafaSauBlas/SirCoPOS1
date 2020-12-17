@@ -222,7 +222,7 @@
                     <MenuItem Header="Corte" Command="{Binding OpenCommand}" CommandParameter="pagos"/>
                     <MenuItem Header="Arqueo" Command="{Binding OpenCommand}" CommandParameter="pagos"/>
                     <Separator/>
-                    <MenuItem Header="Cerrar Sesión" Command="{Binding LogoutCommand}"/>
+                    <MenuItem Header="Cerrar Sesión" Command="{Binding CloseCommand}"/>
                     <MenuItem Header="Salir" Command="{Binding CloseCommand}"/>
                 </MenuItem>
             </Menu>

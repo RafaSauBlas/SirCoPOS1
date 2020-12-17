@@ -136,7 +136,7 @@
                 </TextBox>
                 <Grid Margin="0,0,10,42.94" HorizontalAlignment="Right" Width="200" Height="150" VerticalAlignment="Bottom">
                     <Rectangle Fill="#FFF4F4F5" Stroke="Black" d:IsHidden="True"/>
-                    <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Devolucion" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Devolución" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,38.94,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,67.88,0,0" TextWrapping="Wrap" Text="Pagado" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,96.82,0,0" TextWrapping="Wrap" Text="Saldo" VerticalAlignment="Top"/>

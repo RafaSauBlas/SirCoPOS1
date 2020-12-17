@@ -10,6 +10,13 @@
       Title="LoginPage">
 
     <Grid>
-        <v:LoginView x:Name="loginView"></v:LoginView>
+        <v:LoginView x:Name="loginView" Foreground="Black">
+            <v:LoginView.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF000E4B"/>
+                    <GradientStop Color="#FF1E3C72" Offset="1"/>
+                </LinearGradientBrush>
+            </v:LoginView.Background>
+        </v:LoginView>
     </Grid>
 </Page>

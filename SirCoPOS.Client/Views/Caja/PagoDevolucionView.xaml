@@ -18,7 +18,7 @@
                     <KeyBinding Key="Return" Command="{Binding FindCommand}"></KeyBinding>
                 </TextBox.InputBindings>
             </TextBox>
-            <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="Devolucion" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="Devolución" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,65,0,0" TextWrapping="Wrap" Text="Disponible" VerticalAlignment="Top"/>
             <TextBox x:Name="textBox_Copy" Height="23" Margin="0,37,9,0" TextWrapping="Wrap" Text="{Binding Folio, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120">
                 <TextBox.InputBindings>

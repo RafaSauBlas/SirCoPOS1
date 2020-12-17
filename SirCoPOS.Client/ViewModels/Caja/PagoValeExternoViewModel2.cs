@@ -44,7 +44,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     this.Caja.UpdatePagos();
                 }
                 else
-                    MessageBox.Show("Distribuidor no encontrado");
+                    MessageBox.Show("Distribuidor no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }, () => !string.IsNullOrEmpty(this.ValeSearch) && this.SelectedNegocio.HasValue && !string.IsNullOrEmpty(this.Cuenta));
 
 

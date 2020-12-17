@@ -33,7 +33,7 @@ namespace SirCoPOS.Win.ViewModels
 
                 , { Utilities.Constants.TabType.ConsultaVenta, false }
                 , { Utilities.Constants.TabType.ConsultaDevolucion, false }
-                , { Utilities.Constants.TabType.ConsultaProducto, true }
+                , { Utilities.Constants.TabType.ConsultaProducto, false }
                     
                 , { Utilities.Constants.TabType.Pagos, false }
                 , { Utilities.Constants.TabType.Corte, false }

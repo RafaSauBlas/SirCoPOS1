@@ -45,7 +45,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 }
                 else
                 {
-                    MessageBox.Show("auditor no valido");
+                    MessageBox.Show("Auditor no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }, () => this.SearchAuditor.HasValue);
             //this.RemoveMontoCommand = new RelayCommand(() =>
@@ -74,7 +74,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 var isValid = _proxy.ValidarCodigo(this.Auditor.Id, code);
                 if (!isValid)
                 {
-                    MessageBox.Show("codigo no valido");
+                    MessageBox.Show("Código no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -93,7 +93,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     Entregar = this.Entregar.Value                    
                 };
                 _proxy.Corte(request);
-                MessageBox.Show("Generado exitosamente");
+                MessageBox.Show("Corte generado exitosamente", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.FondoAperturaCierre { Open = false });
                 this.CloseCommand.Execute(null);
             }, () => this.Auditor != null

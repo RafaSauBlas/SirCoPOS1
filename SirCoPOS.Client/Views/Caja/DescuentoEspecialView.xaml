@@ -9,11 +9,11 @@
         <vm:DescuentoEspecialViewModel></vm:DescuentoEspecialViewModel>
     </UserControl.DataContext>
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="10,15.68,0,0" TextWrapping="Wrap" Text="Razon" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,15.68,0,0" TextWrapping="Wrap" Text="Razón" VerticalAlignment="Top"/>
         <ComboBox x:Name="comboBox" Margin="107.59,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" ItemsSource="{Binding Items}" DisplayMemberPath="Descripcion" SelectedItem="{Binding SelectedItem}"/>
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="107.59,44.62,0,0" TextWrapping="Wrap" Text="{Binding SelectedItem.Descuento, StringFormat=\{0:P0\}}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,44.62,0,0" TextWrapping="Wrap" Text="Descuento" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,73.56,0,0" TextWrapping="Wrap" Text="Descripcion" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,73.56,0,0" TextWrapping="Wrap" Text="Descripción" VerticalAlignment="Top"/>
         <TextBox Margin="107.59,72.56,0,0" TextWrapping="Wrap" Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
 
     </Grid>

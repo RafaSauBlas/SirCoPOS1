@@ -107,9 +107,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 else
                 {
                     if(item == null)
-                        this.ErrorMessage = "Articulo no encontrado";
+                        this.ErrorMessage = "Artículo no encontrado";
                     else
-                        this.ErrorMessage = "Articulo no valido";
+                        this.ErrorMessage = "Artículo no valido";
                     //this.ErrorMessage = Resources.Resource.Cancelacion_NoValido;
                 }
             }

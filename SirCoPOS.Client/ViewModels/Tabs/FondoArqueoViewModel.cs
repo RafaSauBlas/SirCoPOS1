@@ -24,7 +24,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 }
                 else
                 {
-                    MessageBox.Show("auditor no valido");
+                    MessageBox.Show("Auditor no valido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }, () => this.SearchAuditor.HasValue);
             this.SaveCommand = new RelayCommand(() => {
@@ -32,7 +32,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 var isValid = _proxy.ValidarCodigo(this.Auditor.Id, code);
                 if (!isValid)
                 {
-                    MessageBox.Show("codigo no valido");
+                    MessageBox.Show("Código no valido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 

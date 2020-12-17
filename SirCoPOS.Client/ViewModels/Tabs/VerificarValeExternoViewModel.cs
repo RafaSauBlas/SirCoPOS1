@@ -26,7 +26,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
 
                 this.Vale = _proxy.FindDistribuidorExterno(this.SelectedNegocio.Value, this.Cuenta, this.ValeSearch);
                 if (this.Vale == null)
-                    MessageBox.Show("Distribuidor no encontrado");
+                    MessageBox.Show("Distribuidor no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }, () => !string.IsNullOrEmpty(this.ValeSearch) && this.SelectedNegocio.HasValue && !string.IsNullOrEmpty(this.Cuenta));
 
             if (this.IsInDesignMode)

@@ -27,7 +27,7 @@ namespace SirCoPOS.Win.Pages
 
         private void mainView_Loaded(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }

@@ -44,9 +44,6 @@
             </Rectangle.Fill>
         </Rectangle>
         <Grid Margin="0,50,0,60">
-            <Grid.Background>
-                <ImageBrush ImageSource="/SirCoPOS.Win;component/Images/fondo 15%.png" TileMode="Tile" Stretch="None" ViewportUnits="Absolute" Viewport="0,0,114,76"/>
-            </Grid.Background>
             <Grid Width="550" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button x:Name="button" HorizontalAlignment="Left" Margin="0,0,0,123" Width="133">
                     <Image x:Name="image5" Height="100" Width="100" Source="/SirCoPOS.Win;component/Images/caja.png"/>

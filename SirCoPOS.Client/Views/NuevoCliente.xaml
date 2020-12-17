@@ -19,7 +19,7 @@
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,39,0,0" TextWrapping="Wrap" Text="Ap. Paterno" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,67,0,0" TextWrapping="Wrap" Text="Ap. Materno" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="10,95,0,0" TextWrapping="Wrap" Text="Celular" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,123,0,0" TextWrapping="Wrap" Text="Codigo Postal" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,123,0,0" TextWrapping="Wrap" Text="Código Postal" VerticalAlignment="Top"/>
         <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="116,150,0,0" Width="120" ItemsSource="{Binding Colonias}" DisplayMemberPath="Nombre" SelectedValuePath="Id" SelectedValue="{Binding Cliente.Colonia}" SelectedItem="{Binding SelectedColonia}" VerticalAlignment="Top" />
         <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,156,0,0" TextWrapping="Wrap" Text="Colonia" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="116,176.96,0,0" TextWrapping="Wrap" Text="{Binding SelectedColonia.CiudadNombre}" VerticalAlignment="Top"/>
@@ -31,7 +31,7 @@
         <TextBox x:Name="textBox_Copy6" HorizontalAlignment="Left" Margin="116,274.88,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Referencia}" Width="120" Height="23" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox_Copy7" HorizontalAlignment="Left" Margin="116,302.88,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Email}" Width="120" Height="23" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy7" HorizontalAlignment="Left" Margin="10,219.88,0,0" TextWrapping="Wrap" Text="Calle" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy8" HorizontalAlignment="Left" Margin="10,247.88,0,0" TextWrapping="Wrap" Text="Numero" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy8" HorizontalAlignment="Left" Margin="10,247.88,0,0" TextWrapping="Wrap" Text="Número" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy9" HorizontalAlignment="Left" Margin="10,275.88,0,0" TextWrapping="Wrap" Text="Referencia" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy10" HorizontalAlignment="Left" Margin="10,303.88,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top"/>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Command="{Binding SaveCommand, Mode=OneWay}"/>

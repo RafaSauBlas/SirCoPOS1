@@ -17,7 +17,7 @@
         <TextBlock x:Name="textBlock3" HorizontalAlignment="Right" Margin="0,125.76,10,0.3" TextWrapping="Wrap" Text="{Binding Info.Distribuidor}" d:LayoutOverrides="Height"/>
         <TextBlock Visibility="{Binding Info.SoloCalzado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="textBlock4" Margin="115.58,10,0,0" TextWrapping="Wrap" Text="Solo Cazado" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <TextBlock x:Name="textBlock5" HorizontalAlignment="Left" Margin="10,74.88,0,51.18" TextWrapping="Wrap" Text="Plazos" d:LayoutOverrides="Height"/>
-        <TextBlock x:Name="textBlock5_Copy" HorizontalAlignment="Left" Margin="10,39.94,0,0" TextWrapping="Wrap" Text="Promocion" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
+        <TextBlock x:Name="textBlock5_Copy" HorizontalAlignment="Left" Margin="10,39.94,0,0" TextWrapping="Wrap" Text="Promoción" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
         <ComboBox IsEnabled="False" ItemsSource="{Binding Plazos}" SelectedItem="{Binding SelectedPlazo}"  Margin="101.34,68.88,78.66,51.18" d:LayoutOverrides="Height"/>
         <ComboBox IsEnabled="False" ItemStringFormat="M" ItemsSource="{Binding Promociones}" SelectedItem="{Binding SelectedPromocion}" Margin="101.34,33.94,78.66,0" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>
         <!--<ComboBox IsEnabled="{Binding Info.Promocion}" ItemStringFormat="M" ItemsSource="{Binding Promociones}" SelectedItem="{Binding SelectedPromocion}" Margin="101.34,33.94,78.66,0" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>-->

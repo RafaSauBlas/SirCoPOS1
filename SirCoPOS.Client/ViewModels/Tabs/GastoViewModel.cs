@@ -31,7 +31,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 }
                 else
                 {
-                    MessageBox.Show("solicitante no valido");
+                    MessageBox.Show("Solicitante no valido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }, () => this.EmpleadoSearch.HasValue);
             this.SaveCommand = new RelayCommand(() =>

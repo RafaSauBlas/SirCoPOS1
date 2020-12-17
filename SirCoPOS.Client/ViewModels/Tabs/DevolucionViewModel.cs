@@ -75,19 +75,19 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                             this.SerieSearch = null;
                         }
                         else
-                            MessageBox.Show($"el producto {item.Producto.Serie}, no pertenece a la misma venta");
+                            MessageBox.Show($"El producto {item.Producto.Serie}, no pertenece a la misma venta");
                     }
                 }
                 else
                 {
                     if (item == null)
-                        this.ErrorMessage = "Articulo no encontrado";
+                        this.ErrorMessage = "Artículo no encontrado";
                     else
                     {
                         if(item.Status == Common.Constants.Status.BA)
-                            this.ErrorMessage = "El articulo ya excedió el tiempo valido para su devolución o cambio";
+                            this.ErrorMessage = "El articulo ha excedido el tiempo valido para su devolución o cambio";
                         else
-                            this.ErrorMessage = "Articulo no valido";
+                            this.ErrorMessage = "Artículo no valido";
                     }
                 }
                 this.IsBusy = false;

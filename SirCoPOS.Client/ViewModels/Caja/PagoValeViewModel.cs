@@ -70,7 +70,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 }
                 else
                 {
-                    MessageBox.Show("El vale que ingresas no existe, valida nuevamente por favor");
+                    MessageBox.Show("El vale que ingresó no existe, por favor validelo nuevamente.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.Search));

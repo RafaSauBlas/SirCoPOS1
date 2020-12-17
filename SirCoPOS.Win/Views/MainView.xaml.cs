@@ -188,7 +188,7 @@ namespace SirCoPOS.Win.Views
                 tabv?.Init();
             };            
             var ind = this.tabControl.Items.Add(ti);
-            this.tabControl.SelectedIndex = ind;            
+            this.tabControl.SelectedIndex = ind;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -203,15 +203,14 @@ namespace SirCoPOS.Win.Views
                 this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Caja }, item.Id);
             }
         }
-
+        private void lodo()
+        {
+            this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Caja });
+        }
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
 
         }
-
-
-
-
         //private void Button_Copy_Click(object sender, RoutedEventArgs e)
         //{
         //    if (!this.tabControl.HasItems)

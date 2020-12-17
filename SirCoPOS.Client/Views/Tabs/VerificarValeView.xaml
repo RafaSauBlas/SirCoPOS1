@@ -73,7 +73,7 @@
         </ItemsControl>
         <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="266.5,11,0,0" TextWrapping="Wrap" Text="Cuenta" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy4" Margin="365.366,13.576,378.447,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Cuenta}" VerticalAlignment="Top" d:LayoutOverrides="Width"/>
-        <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="267,97,0,0" TextWrapping="Wrap" Text="Electronica" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="267,97,0,0" TextWrapping="Wrap" Text="Electrónica" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock4_Copy" Margin="358.113,97,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Electronica, Converter={StaticResource boolText}}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <TextBlock HorizontalAlignment="Left" Margin="266,126,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="366,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top">

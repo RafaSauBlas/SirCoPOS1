@@ -31,7 +31,7 @@
             </TextBlock.Text>
         </TextBlock>
         <TextBox HorizontalAlignment="Left" Height="22" Margin="114,102,0,0" TextWrapping="Wrap" Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" Text="Descripcion" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" Text="Descripción" VerticalAlignment="Top"/>
         <Button Command="{Binding SaveCommand}" Content="Save" HorizontalAlignment="Left" Margin="114,129,0,0" VerticalAlignment="Top" Width="76"/>
     </Grid>
 </UserControl>

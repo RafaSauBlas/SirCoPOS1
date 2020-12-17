@@ -26,7 +26,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 var isValid = _proxy.ValidarCodigo(this.Auditor.Id, code);
                 if (!isValid)
                 {
-                    MessageBox.Show("codigo no valido");
+                   MessageBox.Show("Código no valido.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
                     return;
                 }
 

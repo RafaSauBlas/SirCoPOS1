@@ -18,9 +18,6 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <Grid.Background>
-            <ImageBrush ImageSource="/SirCoPOS.Win;component/Images/fondo 25%.png" Stretch="None" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0,114,76"/>
-        </Grid.Background>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="250">
             <Grid HorizontalAlignment="Left" Height="71" VerticalAlignment="Top" Width="250" Margin="0,179,0,0">
                 <Rectangle Fill="#FF8A95B3" Stroke="Black" RadiusY="13.5" RadiusX="13.5"/>

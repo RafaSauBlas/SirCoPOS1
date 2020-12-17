@@ -54,7 +54,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
 
                         if (this.Sucursal.Clave != dev.Sucursal)
                         {
-                            MessageBox.Show($"La devolucion pertenece a otra sucursal ({dev.Sucursal})");
+                            MessageBox.Show($"La devolución pertenece a otra sucursal ({dev.Sucursal})");
                             return;
                         }
 
@@ -153,9 +153,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 else
                 {
                     if (item == null)
-                        this.ErrorMessage = "Articulo no encontrado";
+                        this.ErrorMessage = "Artículo no encontrado";
                     else
-                        this.ErrorMessage = "Articulo no valido";
+                        this.ErrorMessage = "Artículo no valido";
                     //this.ErrorMessage = Resources.Resource.Cancelacion_NoValido;
                 }
             }

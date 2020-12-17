@@ -381,7 +381,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
-                <Button Command="{Binding PagarCommand}" Content="Add Pago" HorizontalAlignment="Right" Margin="0,0,10,204.06" VerticalAlignment="Bottom" Width="96"/>
+                <Button Command="{Binding PagarCommand}" Content="Agregar Pago" HorizontalAlignment="Right" Margin="0,0,10,204.06" VerticalAlignment="Bottom" Width="96"/>
                 <TextBox x:Name="scanTextBox" HorizontalAlignment="Right" Height="23" Margin="0,10.94,302,0" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding AddCommand}"/>
@@ -416,8 +416,8 @@
                 <Button Content="Load" Command="{Binding LoadClienteCommand}" HorizontalAlignment="Right" Margin="0,0,384,204.06" VerticalAlignment="Bottom" Width="51"/>
                 <Button Content="x" Command="{Binding ClearClienteCommand}" Margin="0,0,440,204.06" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="29.353"/>
                 <CheckBox IsChecked="{Binding ClientConfirmed}" HorizontalAlignment="Right" Margin="0,0,302,208.06" VerticalAlignment="Bottom"/>
-                <Button Command="{Binding TestCommand}" CommandParameter="start" x:Name="button" Content="start" HorizontalAlignment="Left" Margin="360.143,0,0,42.12" VerticalAlignment="Bottom" Width="62"/>
-                <Button Command="{Binding TestCommand}" CommandParameter="stop" x:Name="button_Copy" Content="stop" Margin="430.647,0,0,42.94" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="62"/>
+                <Button Command="{Binding TestCommand}" CommandParameter="start" x:Name="button" Content="Iniciar" HorizontalAlignment="Left" Margin="360.143,0,0,42.12" VerticalAlignment="Bottom" Width="62"/>
+                <Button Command="{Binding TestCommand}" CommandParameter="stop" x:Name="button_Copy" Content="Detener" Margin="430.647,0,0,42.94" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="62"/>
                 <Button Command="{Binding AddNotaCommand}" Content="Nota" HorizontalAlignment="Left" Margin="222,0,0,204" Width="75" Height="28" VerticalAlignment="Bottom"/>
                 <Button Content="v" Command="{Binding LoadVendedorCommand}" HorizontalAlignment="Left" Margin="402,6,0,0" VerticalAlignment="Top" Width="20"/>
                 <Button Content="x" Command="{Binding RemoveVendedorCommand}" HorizontalAlignment="Left" Margin="427,6,0,0" VerticalAlignment="Top" Width="20"/>

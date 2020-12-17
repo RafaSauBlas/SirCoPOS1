@@ -116,7 +116,7 @@ namespace SirCoPOS.Win.Pages
         {
             if (_settings.Cajero == null)
             {
-                MessageBox.Show("falta cargar el cajero");
+                MessageBox.Show("No se ha cargado el cajero.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if(this.comboBox.SelectedIndex != -1)
@@ -134,7 +134,7 @@ namespace SirCoPOS.Win.Pages
         {
             if (string.IsNullOrEmpty(this.sucursalTextBox.Text))
             {
-                MessageBox.Show("falta especificar la sucursal");
+                MessageBox.Show("No se ha especificado la sucursal.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             Properties.Settings.Default.Sucursal = this.sucursalTextBox.Text;

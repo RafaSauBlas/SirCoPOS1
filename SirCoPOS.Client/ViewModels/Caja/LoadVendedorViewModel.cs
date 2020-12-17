@@ -77,7 +77,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             if (this.Vendedor != null)
                 this.VendedorSearch = null;
             else
-                MessageBox.Show("Vendedor no encontrado");
+                MessageBox.Show("Vendedor no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             this.Result = true;
         }
         public RelayCommand FindVendedorCommand { get; private set; }

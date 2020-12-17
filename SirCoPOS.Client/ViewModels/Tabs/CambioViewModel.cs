@@ -290,13 +290,13 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 {
                     if (current.NewItem == null)
                     {
-                        var res = MessageBox.Show($"Serie '{ser}' ya registrada en el cambio\nDeseas removerla?", "Confirmar", MessageBoxButton.YesNo);
+                        var res = MessageBox.Show($"La serie '{ser}' ya está registrada en el cambio\nDesea removerla?", "Confirmar", MessageBoxButton.YesNo);
                         if (res == MessageBoxResult.Yes)
                             this.Productos.Remove(current);
                     }
                     else
                     {
-                        var res = MessageBox.Show($"Serie '{ser}' ya registrada en el cambio\nDeseas removerla?", "Confirmar", MessageBoxButton.YesNo);
+                        var res = MessageBox.Show($"La serie '{ser}' ya está registrada en el cambio\nDesea removerla?", "Confirmar", MessageBoxButton.YesNo);
                         if (res == MessageBoxResult.Yes)
                             current.OldItem = null;
                     }
@@ -310,7 +310,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     this.SerieSearch = null;
                     if (curnew.OldItem == null)
                     {
-                        var res = MessageBox.Show($"Serie '{ser}' ya registrada en el cambio\nDeseas removerla?", "Confirmar", MessageBoxButton.YesNo);
+                        var res = MessageBox.Show($"La serie '{ser}' ya está registrada en el cambio\nDesea removerla?", "Confirmar", MessageBoxButton.YesNo);
                         if (res == MessageBoxResult.Yes)
                         {
                             await _client.ReleaseProductoAsync(curnew.NewItem.Serie);
@@ -319,7 +319,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     }
                     else
                     {
-                        var res = MessageBox.Show($"Serie '{ser}' ya registrada en el cambio\nDeseas removerla?", "Confirmar", MessageBoxButton.YesNo);
+                        var res = MessageBox.Show($"La serie '{ser}' ya está registrada en el cambio\nDeseas removerla?", "Confirmar", MessageBoxButton.YesNo);
                         if (res == MessageBoxResult.Yes)
                         {
                             await _client.ReleaseProductoAsync(curnew.NewItem.Serie);
@@ -431,7 +431,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                                 this.SerieSearch = null;
                             }
                             else
-                                MessageBox.Show($"producto {ser} no valido");
+                                MessageBox.Show($"Producto {ser} no valido");
                         }
                     }
                     return;
@@ -466,9 +466,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 else
                 {
                     if (item == null)
-                        MessageBox.Show("Articulo no encontrado");
+                        MessageBox.Show("Artículo no encontrado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     else
-                        MessageBox.Show("Articulo no valido");
+                        MessageBox.Show("Artículo no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             //scans siguientes ya no van al server

@@ -12,7 +12,7 @@
     </UserControl.DataContext>
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="10,144,0,0" TextWrapping="Wrap" Text="Precio" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,169,0,0" TextWrapping="Wrap" Text="Razon" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,169,0,0" TextWrapping="Wrap" Text="Razón" VerticalAlignment="Top"/>
         <TextBox x:Name="tbPrecio" HorizontalAlignment="Left" Height="23" Margin="99,140,0,0" TextWrapping="Wrap" Text="{Binding Precio, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="99,168,0,0" TextWrapping="Wrap" Text="{Binding Razon, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191"/>
         <Grid Height="90" Margin="10,10,10,0" VerticalAlignment="Top">

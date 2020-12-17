@@ -46,7 +46,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     Tipo = (Common.Constants.TipoFondo)this.SelectedCaja.Tipo
                 };
                 _proxy.AbrirFondo(request);
-                MessageBox.Show("Se realizó correctamente","Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("La operación se finalizó correctamente","Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.FondoAperturaCierre { Open = true });
 
                 this.CloseCommand.Execute(null);
@@ -96,11 +96,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (this.Importe.HasValue && this.Importe < 0)
-                yield return new ValidationResult("monto invalido", new string[] { "Importe" });
+                yield return new ValidationResult("Monto no valido", new string[] { "Importe" });
             if (this.Auditor != null && this.Auditor.Disponible.HasValue && this.Importe.HasValue
                 && this.Importe > this.Auditor.Disponible)
             {
-                yield return new ValidationResult("sin fondos", new string[] { "Importe" });
+                yield return new ValidationResult("Sin Fondos", new string[] { "Importe" });
             }
         }
 
