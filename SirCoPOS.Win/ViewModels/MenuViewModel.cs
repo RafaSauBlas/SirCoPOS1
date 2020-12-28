@@ -17,36 +17,36 @@ namespace SirCoPOS.Win.ViewModels
         public MenuViewModel()
         {
             _options = new Dictionary<Utilities.Constants.TabType, bool>() {
-                { Utilities.Constants.TabType.Caja, false },
-                { Utilities.Constants.TabType.Nota, false },
-                { Utilities.Constants.TabType.NotaRevision, false },
-                { Utilities.Constants.TabType.CreditoPersonal, false },
-                { Utilities.Constants.TabType.VerificarVale, false },
-                { Utilities.Constants.TabType.VerificarValeExterno, false },
-                { Utilities.Constants.TabType.DineroElectronico, false },
-                { Utilities.Constants.TabType.Administracion, false },
-                { Utilities.Constants.TabType.Cambio, false },
-                { Utilities.Constants.TabType.Devolucion, false },
-                { Utilities.Constants.TabType.Cancelacion, false },
-                { Utilities.Constants.TabType.CancelacionDevolucion, false },
-                { Utilities.Constants.TabType.CancelacionCambio, false }
+                { Utilities.Constants.TabType.Caja, true }
+                ,{ Utilities.Constants.TabType.Nota, true }
+                ,{ Utilities.Constants.TabType.NotaRevision, true }
+                ,{ Utilities.Constants.TabType.CreditoPersonal, true }
+                ,{ Utilities.Constants.TabType.VerificarVale, true }
+                ,{ Utilities.Constants.TabType.VerificarValeExterno, true }
+                ,{ Utilities.Constants.TabType.DineroElectronico, true }
+                ,{ Utilities.Constants.TabType.Administracion, true }
+                ,{ Utilities.Constants.TabType.Cambio, true }
+                ,{ Utilities.Constants.TabType.Devolucion, true }
+                ,{ Utilities.Constants.TabType.Cancelacion, true }
+                ,{ Utilities.Constants.TabType.CancelacionDevolucion, true }
+                ,{ Utilities.Constants.TabType.CancelacionCambio, true }
 
-                , { Utilities.Constants.TabType.ConsultaVenta, false }
-                , { Utilities.Constants.TabType.ConsultaDevolucion, false }
-                , { Utilities.Constants.TabType.ConsultaProducto, false }
+                , { Utilities.Constants.TabType.ConsultaVenta, true }
+                , { Utilities.Constants.TabType.ConsultaDevolucion, true }
+                , { Utilities.Constants.TabType.ConsultaProducto, true }
                     
-                , { Utilities.Constants.TabType.Pagos, false }
-                , { Utilities.Constants.TabType.Corte, false }
-                , { Utilities.Constants.TabType.Efectivo, false }
+                , { Utilities.Constants.TabType.Pagos, true }
+                , { Utilities.Constants.TabType.Corte, true }
+                , { Utilities.Constants.TabType.Efectivo, true }
                     
                 , { Utilities.Constants.TabType.FondoApertura, true }
-                , { Utilities.Constants.TabType.FondoCierre, false }
-                , { Utilities.Constants.TabType.FondoArqueo, false }
-                , { Utilities.Constants.TabType.FondoTransferir, false }
-                , { Utilities.Constants.TabType.CambiarResponsable, false }
-                , { Utilities.Constants.TabType.Gasto, false }
+                , { Utilities.Constants.TabType.FondoCierre, true }
+                , { Utilities.Constants.TabType.FondoArqueo, true }
+                , { Utilities.Constants.TabType.FondoTransferir, true }
+                , { Utilities.Constants.TabType.CambiarResponsable, true }
+                , { Utilities.Constants.TabType.Gasto, true }
 
-                , { Utilities.Constants.TabType.Bonos, false }
+                , { Utilities.Constants.TabType.Bonos, true }
             };            
             this.OpenCommand = new RelayCommand<Utilities.Constants.TabType>(
                 m => {                    
@@ -57,7 +57,7 @@ namespace SirCoPOS.Win.ViewModels
             );
 
             this.CloseCommand = new RelayCommand(() => {
-                GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Messages.CloseMenu());
+                System.Windows.Application.Current.Shutdown();
             });
             this.LogoutCommand = new RelayCommand(() => {
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
@@ -65,13 +65,41 @@ namespace SirCoPOS.Win.ViewModels
                 //ls.ClearCajero();                
             });
 
-            GalaSoft.MvvmLight.Messaging.Messenger.Default.Register<Utilities.Messages.FondoAperturaCierre>(this, m => 
+            GalaSoft.MvvmLight.Messaging.Messenger.Default.Register<Utilities.Messages.FondoAperturaCierre>(this, m =>
             {
                 foreach (var key in _options.Keys.ToArray())
                 {
                     _options[key] = m.Open;
                 }
-                _options[Utilities.Constants.TabType.FondoApertura] = !m.Open;                
+                
+                _options[Utilities.Constants.TabType.Caja] = !m.Open;
+                _options[Utilities.Constants.TabType.Nota] = !m.Open;
+                _options[Utilities.Constants.TabType.NotaRevision] = !m.Open;
+                _options[Utilities.Constants.TabType.CreditoPersonal] = !m.Open;
+                _options[Utilities.Constants.TabType.VerificarVale] = !m.Open;
+                _options[Utilities.Constants.TabType.VerificarValeExterno] = !m.Open;
+                _options[Utilities.Constants.TabType.DineroElectronico] = !m.Open;
+
+                _options[Utilities.Constants.TabType.FondoApertura] = !m.Open;
+                _options[Utilities.Constants.TabType.Cambio] = !m.Open;
+                _options[Utilities.Constants.TabType.Devolucion] = !m.Open;
+                _options[Utilities.Constants.TabType.Cancelacion] = !m.Open;
+                _options[Utilities.Constants.TabType.CancelacionDevolucion] = !m.Open;
+               //_options[Utilities.Constants.TabType.CancelacionCambio] = !m.Open;
+                _options[Utilities.Constants.TabType.ConsultaVenta] = !m.Open;
+                _options[Utilities.Constants.TabType.ConsultaDevolucion] = !m.Open;
+                _options[Utilities.Constants.TabType.ConsultaProducto] = !m.Open;
+                _options[Utilities.Constants.TabType.Pagos] = !m.Open;
+                //_options[Utilities.Constants.TabType.Corte] = !m.Open;
+                //_options[Utilities.Constants.TabType.Efectivo] = !m.Open;
+                _options[Utilities.Constants.TabType.FondoApertura] = !m.Open;
+                _options[Utilities.Constants.TabType.FondoCierre] = !m.Open;
+                _options[Utilities.Constants.TabType.FondoArqueo] = !m.Open;
+                _options[Utilities.Constants.TabType.FondoTransferir] = !m.Open;
+                //_options[Utilities.Constants.TabType.CambiarResponsable] = !m.Open;
+                _options[Utilities.Constants.TabType.Gasto] = !m.Open;
+                _options[Utilities.Constants.TabType.Bonos] = !m.Open;
+                //_options[Utilities.Constants.TabType.Credit] = !m.Open;
                 this.OpenCommand.RaiseCanExecuteChanged();
             });
 

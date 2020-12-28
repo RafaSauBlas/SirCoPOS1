@@ -12,9 +12,9 @@
     </UserControl.DataContext>
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Monto" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="114,11,0,0" TextWrapping="Wrap" Text="{Binding Monto, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="114,7,0,0" TextWrapping="Wrap" Text="{Binding Monto, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,39,0,0" TextWrapping="Wrap" Text="Tipo" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="114,74,0,0" TextWrapping="Wrap" Text="{Binding EmpleadoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="114,70,0,0" TextWrapping="Wrap" Text="{Binding EmpleadoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadSolicitanteCommand}"></KeyBinding>
             </TextBox.InputBindings>
@@ -30,7 +30,7 @@
                 </MultiBinding>
             </TextBlock.Text>
         </TextBlock>
-        <TextBox HorizontalAlignment="Left" Height="22" Margin="114,102,0,0" TextWrapping="Wrap" Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="114,100,0,0" TextWrapping="Wrap" Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" Text="Descripción" VerticalAlignment="Top"/>
         <Button Command="{Binding SaveCommand}" Content="Save" HorizontalAlignment="Left" Margin="114,129,0,0" VerticalAlignment="Top" Width="76"/>
     </Grid>

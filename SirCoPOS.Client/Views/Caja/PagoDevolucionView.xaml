@@ -13,20 +13,20 @@
     <xt:BusyIndicator IsBusy="{Binding IsBusy}">
         <Grid>
             <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Sucursal" VerticalAlignment="Top"/>
-            <TextBox x:Name="tbSucursal" Height="23" Margin="0,9,10,0" TextWrapping="Wrap" Text="{Binding Sucursal, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120">
+            <TextBox x:Name="tbSucursal" Height="27" Margin="0,5,10,0" TextWrapping="Wrap" Text="{Binding Sucursal, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding FindCommand}"></KeyBinding>
                 </TextBox.InputBindings>
             </TextBox>
             <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="Devolución" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,65,0,0" TextWrapping="Wrap" Text="Disponible" VerticalAlignment="Top"/>
-            <TextBox x:Name="textBox_Copy" Height="23" Margin="0,37,9,0" TextWrapping="Wrap" Text="{Binding Folio, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120">
+            <TextBox x:Name="textBox_Copy" Height="27" Margin="0,36,9,0" TextWrapping="Wrap" Text="{Binding Folio, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding FindCommand}"></KeyBinding>
                 </TextBox.InputBindings>
             </TextBox>
             <TextBlock x:Name="textBlock_Copy2" Margin="0,65,10,0" TextWrapping="Wrap" Text="{Binding Devolucion.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <TextBox x:Name="textBox_Copy1" Height="23" Margin="0,86,9,0" TextWrapping="Wrap" Text="{Binding Pagar, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
+            <TextBox x:Name="textBox_Copy1" Height="27" Margin="0,84,9,0" TextWrapping="Wrap" Text="{Binding Pagar, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
             <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,87,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock_Copy4" Margin="0,114,10,0" TextWrapping="Wrap" Text="{Binding Total, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="10,114,0,0" TextWrapping="Wrap" Text="Saldo" VerticalAlignment="Top"/>

@@ -46,7 +46,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     Descripcion = this.Descripcion
                 };
                 _proxy.GenerarGasto(request);
-                MessageBox.Show("ready");
+                MessageBox.Show("Ready");
                 this.CloseCommand.Execute(null);
             }, () => this.SelectedOption.HasValue && this.Monto.HasValue && this.Empleado != null);
             if (this.IsInDesignMode)

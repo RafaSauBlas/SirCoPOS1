@@ -35,7 +35,7 @@
                     <RowDefinition/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                <TextBox HorizontalAlignment="Left" Height="22" Margin="10,14,0,14" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="140.441">
+                <TextBox HorizontalAlignment="Left" Height="25" Margin="10,14,0,14" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="140.441">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding ScanCommand}"/>
                     </TextBox.InputBindings>

@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight.Command;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,7 @@ namespace SirCoPOS.Win.Views
             _dt.Interval = Properties.Settings.Default.Timeout;
             //_dt.Start();
         }
+
         private void RegisterMessages()
         {
             Messenger.Default.Register<Messages.MenuItem>(this,
@@ -100,6 +102,7 @@ namespace SirCoPOS.Win.Views
                 {
                     switch (m.Key)
                     {
+                       
                         case Key.F1:
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Caja });
                             break;
@@ -203,11 +206,36 @@ namespace SirCoPOS.Win.Views
                 this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Caja }, item.Id);
             }
         }
-        private void lodo()
+
+        private void Set(string v, ref string title, string value)
         {
-            this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Caja });
+            throw new NotImplementedException();
         }
+
+        public RelayCommand CloseCommand { get; private set; }
+
+
         private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuView_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuView_Loaded_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuView_Loaded_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
 
         }

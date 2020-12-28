@@ -18,17 +18,17 @@
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Serie" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,39,0,0" TextWrapping="Wrap" Text="Marca / Modelo" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbserie" HorizontalAlignment="Left" Height="23" Margin="143,9,0,0" TextWrapping="Wrap" Text="{Binding Serie, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="133">
+        <TextBox x:Name="tbserie" HorizontalAlignment="Left" Height="27" Margin="143,7,0,0" TextWrapping="Wrap" Text="{Binding Serie, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="133">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="143,40,0,0" TextWrapping="Wrap" Text="{Binding Marca, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="50">
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="143,38,0,0" TextWrapping="Wrap" Text="{Binding Marca, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="50">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="198,40,0,0" TextWrapping="Wrap" Text="{Binding Modelo, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="50">
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="198,38,0,0" TextWrapping="Wrap" Text="{Binding Modelo, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="50">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
             </TextBox.InputBindings>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SirCoPOS.Win.ViewModels
 {
-    class TabHeaderViewModel : GalaSoft.MvvmLight.ViewModelBase
+    public partial class TabHeaderViewModel : GalaSoft.MvvmLight.ViewModelBase
     {
         public TabHeaderViewModel()
         {

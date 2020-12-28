@@ -45,7 +45,7 @@ namespace SirCoPOS.Win
             {
                 _mutex.Close();
                 //Microsoft.VisualBasic.Interaction.MsgBox("Application instance is already running!");
-                MessageBox.Show("Application instance is already running!");
+                MessageBox.Show("La instrancia de la aplicación ya se está ejecutando!!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 Shutdown();
                 return;
             }
@@ -85,7 +85,7 @@ namespace SirCoPOS.Win
                 var success = sa.Sync();
                 if (!success)
                 {
-                    MessageBox.Show("FileSync: FAILED - file in use.");
+                    MessageBox.Show("FileSync: ERROR - archivo en uso.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     this.Shutdown();
                     return;
                 }

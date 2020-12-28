@@ -75,7 +75,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                             this.SerieSearch = null;
                         }
                         else
-                            MessageBox.Show($"El producto {item.Producto.Serie}, no pertenece a la misma venta");
+                            MessageBox.Show($"El producto {item.Producto.Serie}, no pertenece a la misma venta.");
                     }
                 }
                 else

@@ -13,7 +13,7 @@
         <c:ImageUrlConverter x:Key="imageUrl"></c:ImageUrlConverter>
     </UserControl.Resources>
     <Grid>
-        <Button Command="{Binding ChangeViewCommand}" CommandParameter="new" x:Name="button" Content="Nuevo" Margin="0,12,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+        <Button Command="{Binding ChangeViewCommand}" CommandParameter="new" x:Name="button" Content="Nuevo" Margin="0,165,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top"/>
         <TextBox x:Name="tbSearch" HorizontalAlignment="Left" Height="23" Margin="113.85,14.94,0,0" TextWrapping="Wrap" Text="{Binding ClienteSearch, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" VerticalAlignment="Top" Width="120">
             <TextBox.InputBindings>
@@ -28,9 +28,9 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,108,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,132,0,0" TextWrapping="Wrap" Text="Ap. Paterno" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,156,0,0" TextWrapping="Wrap" Text="Ap. Materno" VerticalAlignment="Top"/>
-        <Image Source="{Binding Cliente.Id, Converter={StaticResource imageUrl}, ConverterParameter=ClienteUrl}" x:Name="image" HorizontalAlignment="Right" Margin="0,39.62,10,0" Width="140" Height="140" VerticalAlignment="Top"/>
+        <Image Source="{Binding Cliente.Id, Converter={StaticResource imageUrl}, ConverterParameter=ClienteUrl}" x:Name="image" HorizontalAlignment="Right" Margin="0,13,10,0" Width="140" Height="140" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,43,0,0" TextWrapping="Wrap" Text="Telefono" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox Mask="(000) 000-0000" HorizontalAlignment="Left" Height="23" Margin="114,43,0,0" TextWrapping="Wrap" Text="{Binding ClienteTelefonoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+        <xt:MaskedTextBox Mask="(000) 000-0000" HorizontalAlignment="Left" Height="23" Margin="114,43,0,0" TextWrapping="Wrap" Text="{Binding ClienteTelefonoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyboardNavigation.TabIndex ="1">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </TextBox.InputBindings>

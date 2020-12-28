@@ -33,7 +33,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 var isValid = _proxy.ValidarCodigo(this.Auditor.Id, code);
                 if (!isValid)
                 {
-                    MessageBox.Show("Codigo no valido","Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Código no valido","Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 var request = new Common.Entities.FondoRequest
@@ -46,7 +46,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     Tipo = (Common.Constants.TipoFondo)this.SelectedCaja.Tipo
                 };
                 _proxy.AbrirFondo(request);
-                MessageBox.Show("La operación se finalizó correctamente","Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("La operación se completó correctamente","Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.FondoAperturaCierre { Open = true });
 
                 this.CloseCommand.Execute(null);

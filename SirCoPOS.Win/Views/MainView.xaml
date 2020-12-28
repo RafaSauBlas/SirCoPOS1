@@ -108,7 +108,7 @@
                     <!--<MenuItem.Header>
                         <Image x:Name="___SirCoPOS_Win_component_Images_Icono_Menu_png" Source="/SirCoPOS.Win;component/Images/Icono Menu.png" Width="30"/>
                     </MenuItem.Header>-->
-                    <MenuItem Header="Caja" Command="{Binding OpenCommand}" >
+                    <MenuItem Header="Caja" Command="{Binding OpenCommand}">
                         <MenuItem.CommandParameter>
                             <m:TabType>Caja</m:TabType>
                         </MenuItem.CommandParameter>
@@ -182,7 +182,7 @@
                         </MenuItem.CommandParameter>
                     </MenuItem>
                     <Separator/>
-                    <MenuItem Header="Abrir Fondo" Command="{Binding OpenCommand}" Click="MenuItem_Click">
+                    <MenuItem Header="Abrir Fondo" Command="{Binding OpenCommand}">
                         <MenuItem.CommandParameter>
                             <m:TabType>FondoApertura</m:TabType>
                         </MenuItem.CommandParameter>
@@ -222,12 +222,12 @@
                     <MenuItem Header="Corte" Command="{Binding OpenCommand}" CommandParameter="pagos"/>
                     <MenuItem Header="Arqueo" Command="{Binding OpenCommand}" CommandParameter="pagos"/>
                     <Separator/>
-                    <MenuItem Header="Cerrar Sesión" Command="{Binding CloseCommand}"/>
-                    <MenuItem Header="Salir" Command="{Binding CloseCommand}"/>
+                    <MenuItem Header="Cerrar Sesión" Command="{Binding LogoutCommand}"/>
+                    <MenuItem Header="Salir" Command="{Binding CloseCommand}" Click="MenuItem_Click_1"/>
                 </MenuItem>
             </Menu>
         </Grid>
-        <v:MenuView x:Name="menuView" Grid.Row="1"></v:MenuView>
+        <v:MenuView x:Name="menuView" Grid.Row="1" Loaded="menuView_Loaded_2"></v:MenuView>
         <TabControl Visibility="Hidden" x:Name="tabControl" Grid.Row="1" Margin="0,-22,0,0" Style="{DynamicResource TabControlStyle1}" >
             <!--<TabItem>
                 <TabItem.Header>

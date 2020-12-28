@@ -290,13 +290,13 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 {
                     if (current.NewItem == null)
                     {
-                        var res = MessageBox.Show($"La serie '{ser}' ya está registrada en el cambio\nDesea removerla?", "Confirmar", MessageBoxButton.YesNo);
+                        var res = MessageBox.Show($"La serie '{ser}' ya está registrada en el cambio\nDesea removerla?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         if (res == MessageBoxResult.Yes)
                             this.Productos.Remove(current);
                     }
                     else
                     {
-                        var res = MessageBox.Show($"La serie '{ser}' ya está registrada en el cambio\nDesea removerla?", "Confirmar", MessageBoxButton.YesNo);
+                        var res = MessageBox.Show($"La serie '{ser}' ya está registrada en el cambio\nDesea removerla?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         if (res == MessageBoxResult.Yes)
                             current.OldItem = null;
                     }
@@ -310,7 +310,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     this.SerieSearch = null;
                     if (curnew.OldItem == null)
                     {
-                        var res = MessageBox.Show($"La serie '{ser}' ya está registrada en el cambio\nDesea removerla?", "Confirmar", MessageBoxButton.YesNo);
+                        var res = MessageBox.Show($"La serie '{ser}' ya está registrada en el cambio\nDesea removerla?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         if (res == MessageBoxResult.Yes)
                         {
                             await _client.ReleaseProductoAsync(curnew.NewItem.Serie);
@@ -319,7 +319,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     }
                     else
                     {
-                        var res = MessageBox.Show($"La serie '{ser}' ya está registrada en el cambio\nDeseas removerla?", "Confirmar", MessageBoxButton.YesNo);
+                        var res = MessageBox.Show($"La serie '{ser}' ya está registrada en el cambio\nDeseas removerla?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         if (res == MessageBoxResult.Yes)
                         {
                             await _client.ReleaseProductoAsync(curnew.NewItem.Serie);

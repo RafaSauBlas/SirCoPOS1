@@ -12,11 +12,11 @@
     <Grid>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Transferir Fondo" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="10,38.94,0,0" TextWrapping="Wrap" Text="Importe" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="148.76,37.94,0,0" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="27" Margin="149,32,0,0" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}}" VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="10,67.88,0,0" TextWrapping="Wrap" Text="UserFrom" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Margin="10,96.82,0,0" TextWrapping="Wrap" Text="UserTo" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="23" Margin="148.76,65.94,0,0" TextWrapping="Wrap" Text="{Binding UserFrom}" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="23" Margin="148.76,93.94,0,0" TextWrapping="Wrap" Text="{Binding UserTo}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="27" Margin="149,62,0,0" TextWrapping="Wrap" Text="{Binding UserFrom}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="27" Margin="148.76,93.94,0,0" TextWrapping="Wrap" Text="{Binding UserTo}" VerticalAlignment="Top" Width="120"/>
         <Button Command="{Binding SaveCommand}" Content="Guardar" HorizontalAlignment="Left" Margin="148.76,188.507,0,0" VerticalAlignment="Top" Width="75"/>
     </Grid>
 </UserControl>

@@ -8,7 +8,7 @@
              mc:Ignorable="d" d:DataContext="{d:DesignInstance Type={x:Type vm:LoadClienteViewModel}}"
              Height="400" Width="400" Loaded="UserControl_Loaded">
     <Grid>
-        <Button Command="{Binding ChangeViewCommand}" CommandParameter="search" x:Name="button" Content="Buscar" Margin="0,12,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+        <Button Command="{Binding ChangeViewCommand}" CommandParameter="search" x:Name="button" Content="Buscar" Margin="0,365,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
 
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,11,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
         <TextBox x:Name="tbNombre" HorizontalAlignment="Left" Height="23" Margin="124.94,10,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Nombre}" VerticalAlignment="Top" Width="120"/>

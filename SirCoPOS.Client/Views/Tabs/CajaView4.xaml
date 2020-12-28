@@ -382,7 +382,7 @@
                     </ListBox>
                 </Grid>
                 <Button Command="{Binding PagarCommand}" Content="Agregar Pago" HorizontalAlignment="Right" Margin="0,0,10,204.06" VerticalAlignment="Bottom" Width="96"/>
-                <TextBox x:Name="scanTextBox" HorizontalAlignment="Right" Height="23" Margin="0,10.94,302,0" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140">
+                <TextBox x:Name="scanTextBox" HorizontalAlignment="Right" Height="27" Margin="0,7,302,0" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding AddCommand}"/>
                     </TextBox.InputBindings>

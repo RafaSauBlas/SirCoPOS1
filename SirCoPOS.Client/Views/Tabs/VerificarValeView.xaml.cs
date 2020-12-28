@@ -31,7 +31,7 @@ namespace SirCoPOS.Client.Views.Tabs
 
         public void Init()
         {
-            this.searchTextBox.Focus();
+            this.txt_buscar.Focus();
         }
     }
 }

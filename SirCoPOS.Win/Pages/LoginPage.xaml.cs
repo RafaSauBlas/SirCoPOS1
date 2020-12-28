@@ -34,6 +34,8 @@ namespace SirCoPOS.Win.Pages
                     {
                         MessageBox.Show("El usuario o contraseña no son válidos.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
                         return;
+                        Views.LoginView objeto = new Views.LoginView();
+                        objeto.userTextBox.Focus();
                     }
                     var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
                     settings.Cajero = m.Empleado;

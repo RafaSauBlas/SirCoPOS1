@@ -238,7 +238,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             var item = this.Cupones.Where(i => i.Folio == cupon).SingleOrDefault();
             if (item != null)
             {
-                var res = MessageBox.Show("Cupon ya agregado, desea removerlo?", "AVISO", MessageBoxButton.YesNo);
+                var res = MessageBox.Show("Este cupón ya ha sido agregado, desea removerlo?", "AVISO", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (res == MessageBoxResult.Yes)
                 {
                     var remove = this.PromocionesCupones.OfType<Common.Entities.PromocionCupon>().Where(i => i.Cupon == cupon).ToList();
@@ -818,7 +818,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             {
                 if (this.SelectedItem == q)
                 {
-                    var res = MessageBox.Show($"La serie '{ser}' ya está registrada en la ventan\nDesea removerla?", "Confirmar", MessageBoxButton.YesNo);
+                    var res = MessageBox.Show($"La serie '{ser}' ya está registrada en la ventan\nDesea removerla?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (res == MessageBoxResult.Yes)
                     {
                         await RemoveItem(q);                        

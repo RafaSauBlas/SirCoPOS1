@@ -22,15 +22,15 @@ namespace SirCoPOS.Win.Views
     {
         public LoginView()
         {
+            Application.Current.MainWindow.WindowState = WindowState.Maximized;
             InitializeComponent();
-
             var dc = (ViewModels.LoginViewModel)this.DataContext;
             dc.PasswordHandler = () => this.passTextBox.Password;
+            this.userTextBox.Focus();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //this.userTextBox.Focus();
             this.userTextBox.Focus();
         }
     }

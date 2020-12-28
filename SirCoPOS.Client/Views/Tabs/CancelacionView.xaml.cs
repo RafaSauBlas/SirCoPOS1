@@ -28,7 +28,6 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             InitializeComponent();
         }
-
         public void Init()
         {
             this.scanTextBox.Focus();

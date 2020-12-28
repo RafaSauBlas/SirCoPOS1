@@ -18,7 +18,7 @@
     </UserControl.DataContext>
     <Grid>
         <WrapPanel Width="620" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Margin="0,0,5,5" Command="{Binding OpenCommand}" Style="{DynamicResource menu}" >
+            <Button Margin="0,0,5,5" Command="{Binding OpenCommand}" Style="{DynamicResource menu}" Click="MenuItem_Click">
                 <Button.CommandParameter>
                     <m:TabType>Caja</m:TabType>
                 </Button.CommandParameter>
@@ -27,7 +27,7 @@
                     <TextBlock Text="Caja (F1)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
-            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}" CommandParameter="creditoPersonal">
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}" CommandParameter="creditoPersonal" IsEnabled="True">
                 <Grid>
                     <Image Height="100" Width="100" Source="/SirCoPOS.Win;component/Images/Credito Personal.png"/>
                     <TextBlock Text="Crédito Personal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
@@ -86,7 +86,7 @@
                     <m:TabType>CancelacionDevolucion</m:TabType>
                 </Button.CommandParameter>
                 <Grid>
-                    <TextBlock Text="Cancelar Devolución (F5)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                    <TextBlock Text="Cancelar Devolución&#10;              (F5)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,-2,0,-26" FontSize="16"/>
                 </Grid>
             </Button>
             <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}" CommandParameter="pagos">

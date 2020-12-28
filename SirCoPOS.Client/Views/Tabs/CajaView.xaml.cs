@@ -86,26 +86,26 @@ namespace SirCoPOS.Client.Views.Tabs
                     break;
             }
         }
+ /*=================================================================================================================
+        private void Vm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
 
-        //private void Vm_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        //{
-            
-            
-        //    switch (e.PropertyName)
-        //    {
-        //        case nameof(ViewModels.Tabs.CajaViewModel.HasPagos):
-        //            {
-        //                if (vm.HasPagos && vm.Pagos.Count == 1)
-        //                {
-                            
-        //                }
-        //                else if(!vm.HasPagos)
-        //                {
-                            
-        //                }
-        //            }
-        //            break;
-        //    }
-        //}
+
+            switch (e.PropertyName)
+            {
+                case nameof(ViewModels.Tabs.CajaViewModel.HasPagos):
+                    {
+                        if (vm.HasPagos && vm.Pagos.Count == 1)
+                        {
+
+                        }
+                        else if (!vm.HasPagos)
+                        {
+
+                        }
+                    }
+                    break;
+            }
+        }*/
     }
 }
