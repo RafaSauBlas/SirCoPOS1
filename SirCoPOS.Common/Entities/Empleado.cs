@@ -15,6 +15,7 @@ namespace SirCoPOS.Common.Entities
         public string Nombre { get; set; }
         public string Usuario { get; set; }
         public int Puesto { get; set; }
+        public int Depto { get; set; }
         public decimal? Disponible { get; set; }
     }
 }

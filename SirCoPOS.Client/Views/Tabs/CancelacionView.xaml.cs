@@ -30,7 +30,12 @@ namespace SirCoPOS.Client.Views.Tabs
         }
         public void Init()
         {
-            this.scanTextBox.Focus();
+            var depto = (int)Common.Constants.Departamento.TDA;
+            if (depto <= 2)
+            {
+                this.scanTextBox.IsEnabled = true;
+                this.scanTextBox.Focus();
+            }
         }
     }
 }

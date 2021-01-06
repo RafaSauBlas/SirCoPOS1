@@ -36,7 +36,14 @@ namespace SirCoPOS.Client.Views.Tabs
 
         public void Init()
         {
-            this.scanTextBox.Focus();
+            var dato = new SirCoPOS.Common.Entities.Empleado();
+            int depto = dato.Depto;
+
+            if ( depto <= 2)
+            {
+                this.scanTextBox.IsEnabled = true;
+                this.scanTextBox.Focus();
+            }
             var vm = (ViewModels.Tabs.CajaViewModel)this.DataContext;
         }
         private void DualButton_Click(object sender, RoutedEventArgs e)

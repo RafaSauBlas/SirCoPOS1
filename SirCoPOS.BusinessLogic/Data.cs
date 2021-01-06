@@ -254,22 +254,20 @@ namespace SirCoPOS.BusinessLogic
             }            
             return res;
         }
-        
-        public Empleado Login(string sucursal, string user, string pass)
+        public int tipo;
+        public Empleado Login(string user, string pass)
         {
-            var puestos = new int[] { 
+            var puestos = new int[] {
                 (int)Common.Constants.Puesto.CJA,
                 (int)Common.Constants.Puesto.ENC,
                 (int)Common.Constants.Puesto.SUP
             };
             var ctx = new DataAccess.SirCoNominaDataContext();
-            var item = ctx.Empleados.Where(i => i.usuariosistema.Trim() == user && 
+            var item = ctx.Empleados.Where(i => i.usuariosistema.Trim() == user &&
                 i.password.Trim() == pass
                 && i.iddepto == (int)Common.Constants.Departamento.TDA
                 && puestos.Contains(i.idpuesto)
-                && i.estatus == "A"
-                && i.clave.Substring(0, 2) == sucursal).SingleOrDefault();
-            int id;
+                && i.estatus == "A").SingleOrDefault();
             //if (!int.TryParse(user, out id))
             //    return null;
             //if (pass != "123")
@@ -289,10 +287,11 @@ namespace SirCoPOS.BusinessLogic
                     Nombre = item.nombre,
                     Usuario = item.usuariosistema,
                     Clave = item.clave,
-                    Puesto = item.idpuesto
+                    Puesto = item.idpuesto,
+                    Depto = item.iddepto
                 };
             }
             return null;
-        }        
+        }
     }
 }
