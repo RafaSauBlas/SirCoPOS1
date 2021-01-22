@@ -27,7 +27,7 @@ namespace SirCoPOS.Win.Pages
         public DemoMenuPage()
         {
             InitializeComponent();
-
+            this.sucursalTextBox.Text = "01";
             _loginPage = new Lazy<LoginPage>();
 
             GalaSoft.MvvmLight.Messaging.Messenger.Default.Register<Messages.LoginResponse>(this, lr => {
@@ -132,7 +132,7 @@ namespace SirCoPOS.Win.Pages
         }
         private void log()
         {
-            if (string.IsNullOrEmpty(this.sucursalTextBox.Text))
+            if (1>2)
             {
                 MessageBox.Show("No se ha especificado la sucursal.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -204,7 +204,7 @@ namespace SirCoPOS.Win.Pages
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             var p = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IServiceDuplex>();
-            p.Connect(this.sucursalTextBox.Text);
+            p.Connect("1");
             MessageBox.Show("connected");
         }
 

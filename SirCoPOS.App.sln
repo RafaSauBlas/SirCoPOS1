@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.Win", "SirCoPOS.Win\SirCoPOS.Win.csproj", "{1419F022-3EC7-45F1-9E31-C4174E88D43F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{869FE2ED-F937-4505-AFB7-43890EF4BB2E} = {869FE2ED-F937-4505-AFB7-43890EF4BB2E}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SirCoPOS.DataAccess", "SirCoPOS.DataAccess\SirCoPOS.DataAccess.csproj", "{51734512-D5F3-4AA8-AD42-968E67858741}"
 EndProject

@@ -58,6 +58,25 @@
     <Reference Include="OtpSharp, Version=1.3.0.4, Culture=neutral, PublicKeyToken=1ec2a4a54aeffc1e, processorArchitecture=MSIL">
       <HintPath>..\packages\OtpSharp.1.3.0.4\lib\net40\OtpSharp.dll</HintPath>
     </Reference>
+    <Reference Include="SirCoPOS.BusinessLogic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SirCoPOS.BusinessLogic\bin\Debug\SirCoPOS.BusinessLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="SirCoPOS.Client">
+      <HintPath>..\SirCoPOS.Client\bin\Debug\SirCoPOS.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="SirCoPOS.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SirCoPOS.Server.Common\bin\Debug\SirCoPOS.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SirCoPOS.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SirCoPOS.BusinessLogic\bin\Debug\SirCoPOS.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="SirCoPOS.Server.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SirCoPOS.Server.Common\bin\Debug\SirCoPOS.Server.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Activities" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -69,6 +88,7 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -87,24 +107,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SirCoPOS.BusinessLogic\SirCoPOS.BusinessLogic.csproj">
-      <Project>{b34987ad-f9ca-40bd-8b45-13e62ea4aaad}</Project>
-      <Name>SirCoPOS.BusinessLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SirCoPOS.Common\SirCoPOS.Common.csproj">
-      <Project>{e84851fe-a33d-477f-8a55-4233f134446c}</Project>
-      <Name>SirCoPOS.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SirCoPOS.DataAccess\SirCoPOS.DataAccess.csproj">
-      <Project>{51734512-d5f3-4aa8-ad42-968e67858741}</Project>
-      <Name>SirCoPOS.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SirCoPOS.Server.Common\SirCoPOS.Server.Common.csproj">
-      <Project>{869fe2ed-f937-4505-afb7-43890ef4bb2e}</Project>
-      <Name>SirCoPOS.Server.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

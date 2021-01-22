@@ -11,7 +11,7 @@ namespace SirCoPOS.DataAccess
     public class SirCoPVDataContext : DbContext
     {
         public SirCoPVDataContext()
-            : base("SirCoPV")
+            : base("SirCoPvPruebas")
         {
 
         }

@@ -41,14 +41,14 @@ namespace SirCoPOS.Win
             bool isnew;
             _mutex = new Mutex(true, String.Intern("SirCoPOS"), out isnew);
 
-            if (!isnew || !_mutex.WaitOne(0))
-            {
-                _mutex.Close();
-                //Microsoft.VisualBasic.Interaction.MsgBox("Application instance is already running!");
-                MessageBox.Show("La instrancia de la aplicación ya se está ejecutando!!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                Shutdown();
-                return;
-            }
+            //if (!isnew || !_mutex.WaitOne(0))
+            //{
+            //    _mutex.Close();
+            //    //Microsoft.VisualBasic.Interaction.MsgBox("Application instance is already running!");
+            //    MessageBox.Show("La instrancia de la aplicación ya se está ejecutando!!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    Shutdown();
+            //    return;
+            //}
 
             var culture = new CultureInfo("es-MX");
             Thread.CurrentThread.CurrentCulture = culture;
@@ -72,7 +72,7 @@ namespace SirCoPOS.Win
             config.Export<Mappings.Mapping>();            
 
             var mef = Utilities.Helpers.Singleton<Helpers.PlugInServiceLocator>.Instance;
-            //mef.Export(Assembly.GetExecutingAssembly());            
+            mef.Export(Assembly.GetExecutingAssembly());
             if (ApplicationDeployment.IsNetworkDeployed)
             {
                 //var del = System.IO.Directory.GetFiles(@"SirCoPOS.Client.*");

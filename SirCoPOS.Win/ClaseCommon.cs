@@ -1,16 +1,16 @@
-﻿using SirCoPOS.Common.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SirCoPOS.Common.Entities;
 
-namespace SirCoPOS.Services
+namespace SirCoPOS.Win
 {
-    public class CommonService : Common.ServiceContracts.ICommonService
+    public class ClaseCommon
     {
         private readonly BusinessLogic.Data _helpers;
-        public CommonService()
+        public ClaseCommon()
         {
             _helpers = new BusinessLogic.Data();
         }
@@ -20,7 +20,7 @@ namespace SirCoPOS.Services
         }
         public Empleado FindVendedor(int id)
         {
-            var ctx = new DataAccess.SirCoNominaDataContext();
+            var ctx = new SirCoPOS.DataAccess.SirCoNominaDataContext();
             var item = ctx.Empleados.Where(i => i.idempleado == id
                 && i.iddepto == (int)Common.Constants.Departamento.TDA
                 && i.idpuesto == (int)Common.Constants.Puesto.VEN
@@ -44,14 +44,10 @@ namespace SirCoPOS.Services
         {
             return _helpers.FindCajero(user);
         }
-//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-        //El error se genera aqui, "sucursal" no tiene ningun valor
-        //Cambia "_helpers.FindSucursal(sucursal); por _helpers.FindSucursal("01"); para que funcione"
         public Sucursal FindSucursal(string sucursal)
         {
-            return _helpers.FindSucursal("01");
+            return _helpers.FindSucursal(sucursal);
         }
-//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         public Empleado CheckFingerLogin(string sucursal, byte[] huella)
         {
             var puestos = new int[] {
@@ -60,7 +56,7 @@ namespace SirCoPOS.Services
                 (int)Common.Constants.Puesto.SUP
             };
             var proxy = new System.ServiceModel.ChannelFactory<Common.ServiceContracts.ILocalService>("*").CreateChannel();
-            var ctx = new DataAccess.SirCoNominaDataContext();
+            var ctx = new SirCoPOS.DataAccess.SirCoNominaDataContext();
             //var helper = new BusinessLogic.Helpers.FingerHelper();
             var q = ctx.Empleados.Where(i => i.HuellasPOS.Any()
                 && i.iddepto == (int)Common.Constants.Departamento.TDA
@@ -68,7 +64,7 @@ namespace SirCoPOS.Services
                 && i.estatus == "A"
                 && i.clave.Substring(0, 2) == sucursal)
                 .OrderByDescending(i => i.idpuesto);
-            DataAccess.SirCoNomina.Empleado item = null;
+        SirCoPOS.DataAccess.SirCoNomina.Empleado item = null;
             var valid = false;
             foreach (var empleado in q)
             {
@@ -113,22 +109,22 @@ namespace SirCoPOS.Services
                 //,MEN = 14 //MENSAJERO
             };
             var proxy = new System.ServiceModel.ChannelFactory<Common.ServiceContracts.ILocalService>("*").CreateChannel();
-            var ctx = new DataAccess.SirCoNominaDataContext();
+            var ctx = new SirCoPOS.DataAccess.SirCoNominaDataContext();
             //var helper = new BusinessLogic.Helpers.FingerHelper();
             var q = ctx.Empleados.Where(i => i.Huellas.Any()
                 && i.iddepto == (int)Common.Constants.Departamento.ADM
                 //&& puestos.Contains(i.idpuesto)
                 && i.estatus == "A");
-            DataAccess.SirCoNomina.Empleado item = null;
+            SirCoPOS.DataAccess.SirCoNomina.Empleado item = null;
             var huellas = new Dictionary<int, byte[]>();
-            var empleados = new Dictionary<int, DataAccess.SirCoNomina.Empleado>();
+            var empleados = new Dictionary<int, SirCoPOS.DataAccess.SirCoNomina.Empleado>();
             foreach (var empleado in q)
             {
                 foreach (var dedo in empleado.Huellas)
                 {
                     empleados.Add(dedo.iddedo, empleado);
-                    huellas.Add(dedo.iddedo, dedo.template);                    
-                }                
+                    huellas.Add(dedo.iddedo, dedo.template);
+                }
             }
             var did = proxy.Find(huella, huellas);
             if (did.HasValue)
@@ -149,7 +145,7 @@ namespace SirCoPOS.Services
         }
         public byte[] GetFingerEmpleado(int idempleado)
         {
-            var ctx = new DataAccess.SirCoNominaDataContext();
+            var ctx = new SirCoPOS.DataAccess.SirCoNominaDataContext();
             var item = ctx.Empleados.Where(i => i.Huellas.Any()
                 && i.idempleado == idempleado
                 && i.estatus == "A").SingleOrDefault();

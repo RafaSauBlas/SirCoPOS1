@@ -77,18 +77,18 @@ namespace SirCoPOS.Services
                 }
                 return null;
             });
-            if (res.Success)
-            {
-                //var txt = System.Web.HttpUtility.UrlEncode($"Gracias por tu compra, folio: {res.Item.Folio}");
-                //var url = $"http://dev.itnnovation.net:81/FCM/api/sendMessage?number={8112123587}&txt={txt}";
-                var url = $"http://dev.itnnovation.net:81/FCM/api/sendMessage";
+            //if (res.Success)
+            //{
+            //    //var txt = System.Web.HttpUtility.UrlEncode($"Gracias por tu compra, folio: {res.Item.Folio}");
+            //    //var url = $"http://dev.itnnovation.net:81/FCM/api/sendMessage?number={8112123587}&txt={txt}";
+            //    var url = $"http://dev.itnnovation.net:81/FCM/api/sendMessage";
 
-                var client = new WebClient();
-                client.QueryString.Add("number", "8112123587");
-                client.QueryString.Add("txt", $"Gracias por tu compra, folio: {res.Item.Folio}");
-                var reqparm = new System.Collections.Specialized.NameValueCollection();
-                //var response = client.UploadValues(url, "POST", reqparm);
-            }
+            //    var client = new WebClient();
+            //    client.QueryString.Add("number", "8112123587");
+            //    client.QueryString.Add("txt", $"Gracias por tu compra, folio: {res.Item.Folio}");
+            //    var reqparm = new System.Collections.Specialized.NameValueCollection();
+            //    //var response = client.UploadValues(url, "POST", reqparm);
+            //}
             return res;
         }
         public Response CancelReturn(string sucursal, string folio)

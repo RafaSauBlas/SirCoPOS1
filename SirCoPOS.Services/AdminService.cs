@@ -30,7 +30,7 @@ namespace SirCoPOS.Services
         public IEnumerable<Common.Entities.Option> GetTiposGasto()
         {
             var ctx = new DataAccess.SirCoDataContext();
-            var q = ctx.DetalleGastos.Select(i => 
+            var q = ctx.DetalleGastos.Select(i =>
                 new Common.Entities.Option { 
                     Id = i.idgasto, 
                     Text = i.descrip

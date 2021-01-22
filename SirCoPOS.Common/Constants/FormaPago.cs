@@ -8,21 +8,18 @@ namespace SirCoPOS.Common.Constants
 {
     public enum FormaPago
     {
-        EF = 12 //EFECTIVO  
-        ,TC = 18 //T. CREDITO
-        ,TD = 19 //T. DEBITO
-        ,DV = 11 //DEV./VENTA
-        ,VA = 21 //VALE        
-        ,CP = 5 //C. PERSONA
-        ,CV = 7 //CONTRAVALE
-        ,MD = 15 //DINERO ELE
-
-        ,CI = 4	//CARGO INV 
-
-        ,VS = 100 //VA - sin promocion
-
-        , VD = 99 //VALE DIGITAL - ID???
-        , CD = 98 //C. DISTRIBUIDOR - ID???
-        , VE = 97 //VALE EXTERNO - ID???
+        CI = 4,	//CARGO INV 
+        CP = 5, //C. PERSONA
+        CV = 7, //CONTRAVALE
+        DV = 11, //DEV./VENTA
+        EF = 12, //EFECTIVO  
+        MD = 15, //DINERO ELE
+        TC = 18, //T. CREDITO
+        TD = 19, //T. DEBITO
+        VA = 21, //VALE        
+        VE = 97, //VALE EXTERNO - ID???
+        CD = 98, //C. DISTRIBUIDOR - ID???
+        VD = 99, //VALE DIGITAL - ID???
+        VS = 100 //VA - sin promocion
     }
 }

@@ -20,7 +20,7 @@ namespace SirCoPOS.Common
         }
         public void Export(string assembly)
         {
-            var path = String.Format(@"{0}\{1}.dll", AppDomain.CurrentDomain.RelativeSearchPath ?? ".", assembly);
+            var path = String.Format(@"{1}.dll", AppDomain.CurrentDomain.RelativeSearchPath ?? ".", "SirCoPOS.Client");
             var ac = new AssemblyCatalog(path);
             _catalog.Catalogs.Add(ac);
         }
