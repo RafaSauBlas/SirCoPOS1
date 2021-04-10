@@ -37,6 +37,7 @@ namespace SirCoPOS.DataAccess
         protected int ExecuteStoreCommand(string spname, params SqlParameter[] param)
         {
             var cmd = CreateCommand(spname, param);
+            //Esta linea de codigo tiene que ver con el error de SirCoPOS
             var res = this.Database.ExecuteSqlCommand(cmd, param);
             return res;
 

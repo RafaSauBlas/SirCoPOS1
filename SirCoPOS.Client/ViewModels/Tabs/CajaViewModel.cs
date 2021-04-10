@@ -96,7 +96,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 await this.RemoveItem(this.SelectedItem);
             }, () => this.SelectedItem != null);
             this.AddCommand = new RelayCommand(async () => {
-                this.IsBusy = true;
+                //this.IsBusy = true;
                 await Add();
                 this.IsBusy = false;
             }, () => !string.IsNullOrWhiteSpace(this.SerieSearch));
@@ -527,7 +527,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 })
             };
             sale.Cliente = Helpers.Parsers.PaseCliente(this.NuevoCliente, this.Cliente, this.Sucursal);
-
+            //AQUI SALTA EL ERROR EN EL EJECUTABLE
             sale.Pagos = this.PreparePagos();
             this.SaleResponse = await _client.SaleAsync(sale);
             this.Clear(false);
@@ -833,7 +833,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     return;
                 }
             }
-
+            //A PARTIR DE ESTA LINEA SE ESTÁ GENERANDO EL ERROR EN EL EJECUTABLE ¿POR QUÉ? QUIEN SABE xd
             var item = await _proxy.ScanProductoAsync(ser, this.Sucursal.Clave);
             if (item != null)
             {

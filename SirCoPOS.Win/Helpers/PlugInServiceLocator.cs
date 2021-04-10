@@ -42,8 +42,6 @@ namespace SirCoPOS.Win.Helpers
         }
         public UserControl GetView(Utilities.Constants.TabType view)
         {
-            //var q = _container.GetExports<UserControl, IDictionary<string, object>>()
-            //    .Where(i => (Utilities.Constants.TabType)i.Metadata["View"] == view);
             var q = _container.GetExports<UserControl, Utilities.Extensions.ITab>()
                 .Where(i => i.Metadata.Tab == view);
             var res = q.SingleOrDefault();

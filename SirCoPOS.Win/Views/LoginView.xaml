@@ -24,11 +24,13 @@
             <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="171" >
                 <Grid HorizontalAlignment="Left" Height="80" VerticalAlignment="Bottom" Width="250">
                     <Rectangle Fill="#FF8A95B3" Stroke="Black" RadiusY="13.5" RadiusX="13.5" />
+                    <!--Campo de usuario-->
                     <xt:WatermarkTextBox x:Name="userTextBox" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Watermark="Usuario" HorizontalAlignment="Left" Height="28" Margin="28,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185">
                         <xt:WatermarkTextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding LoginCommand}" />
                         </xt:WatermarkTextBox.InputBindings>
                     </xt:WatermarkTextBox>
+                    <!--Campo de password-->
                     <xt:WatermarkPasswordBox x:Name="passTextBox" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Watermark="Contraseña" HorizontalAlignment="Left" Height="28" Margin="28,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185">
                         <xt:WatermarkPasswordBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding LoginCommand}" />

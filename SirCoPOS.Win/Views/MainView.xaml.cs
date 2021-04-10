@@ -19,9 +19,6 @@ using System.Windows.Shapes;
 
 namespace SirCoPOS.Win.Views
 {
-    /// <summary>
-    /// Interaction logic for MenuView.xaml
-    /// </summary>
     public partial class MainView : UserControl, IDisposable
     {
         private System.Windows.Threading.DispatcherTimer _dt;
@@ -42,7 +39,6 @@ namespace SirCoPOS.Win.Views
             InitializeComponent();
 
             _plugins = Utilities.Helpers.Singleton<Helpers.PlugInServiceLocator>.Instance;
-            //_count = 0;
             _tabs = new Dictionary<Guid, TabItem>();                        
 
             if (!GalaSoft.MvvmLight.ViewModelBase.IsInDesignModeStatic)
@@ -62,7 +58,6 @@ namespace SirCoPOS.Win.Views
             _dt = new System.Windows.Threading.DispatcherTimer();
             _dt.Tick += Dt_Tick;            
             _dt.Interval = Properties.Settings.Default.Timeout;
-            //_dt.Start();
         }
 
         private void RegisterMessages()
@@ -161,7 +156,7 @@ namespace SirCoPOS.Win.Views
             OpenTab(mi, uc, gid);
             _dt.Stop();
         }
-        //private int _count;
+
         private IDictionary<Guid, TabItem> _tabs;
         private void OpenTab(Messages.MenuItem mi, UserControl uc, Guid? id = null)
         {
@@ -169,11 +164,8 @@ namespace SirCoPOS.Win.Views
             var tabv = uc as Utilities.Interfaces.ITabView;
             var tabvm = (Utilities.Interfaces.ITabViewModel)uc.DataContext;
             tabvm.TabType = mi.Name;
-            //tabvm.Sucursal = _settings.Sucursal;
-            //tabvm.Cajero = _settings.Cajero;
             var header = new Views.TabHeaderView();
             var vm = (ViewModels.TabHeaderViewModel)header.DataContext;
-            //vm.Title = $"{mi.Name} {++_count}";
             vm.Title = $"{mi.Name}";
             vm.GID = gid;
             var ti = new TabItem { Header = header, Content = uc };
@@ -182,8 +174,6 @@ namespace SirCoPOS.Win.Views
             Console.WriteLine($"count: {_tabs.Count}");
             ti.Tag = gid;
             ti.Loaded += (s, e) => {
-                //if (!_tabs.ContainsKey(gid))
-                //    return;
                 var sti = (TabItem)s;
                 var gi = (Guid)sti.Tag;
                 Console.WriteLine($"init: {gi}");
@@ -239,12 +229,5 @@ namespace SirCoPOS.Win.Views
         {
 
         }
-        //private void Button_Copy_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (!this.tabControl.HasItems)
-        //        return;
-        //    this.tabControl.Items.RemoveAt(this.tabControl.Items.Count - 1);
-        //    this.tabControl.SelectedIndex = this.tabControl.Items.Count - 1;
-        //}
     }
 }

@@ -23,6 +23,7 @@ namespace SirCoPOS.BusinessLogic
             {
                 var item = qs.Single();
                 return (T)converter.ConvertFrom(item.valor);                
+
             }
             else
             {
@@ -35,7 +36,7 @@ namespace SirCoPOS.BusinessLogic
         public Sucursal FindSucursal(string sucursal)
         {
             var ctx = new DataAccess.SirCoControlDataContext();
-            var item = ctx.Sucursales.Where(i => i.sucursal == sucursal).Single();
+            var item = ctx.Sucursales.Where(i => i.sucursal == "01").Single();
             var res = new Common.Entities.Sucursal
             {
                 Id = item.idsucursal,

@@ -8,7 +8,7 @@
              xmlns:vm="clr-namespace:SirCoPOS.Win.Tests.Models"
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance vm:PagoTarjeta, IsDesignTimeCreatable=True}">
-    <Grid>
+    <Grid Background="#FFFF7E7E">
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Importe" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="57,13,0,0" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="10,31,0,0" TextWrapping="Wrap" Text="{Binding Terminacion}" VerticalAlignment="Top"/>

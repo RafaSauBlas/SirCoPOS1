@@ -5,21 +5,38 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
-             Height="170" Width="230" Loaded="UserControl_Loaded">
+             Height="222.73" Width="230" Loaded="UserControl_Loaded">
     <UserControl.DataContext>
         <vm:PagoEfectivoViewModel></vm:PagoEfectivoViewModel>
     </UserControl.DataContext>
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+        </Grid.Background>
+        <!--Titulo Total-->
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Total" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,31.96,0,0" TextWrapping="Wrap" Text="Pagar Con" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,59.96,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="10,86.96,0,0" TextWrapping="Wrap" Text="Regresar" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,107.92,0,0" TextWrapping="Wrap" Text="Saldo" VerticalAlignment="Top"/>
+        <!--Titulo Pagar con-->
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,41,0,0" TextWrapping="Wrap" Text="Pagar Con" VerticalAlignment="Top"/>
+        <!--Titulo Pagar-->
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,73,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
+        <!--Titulo Regresar (Cambio)-->
+        <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="10,106,0,0" TextWrapping="Wrap" Text="Regresar" VerticalAlignment="Top"/>
+        <!--Saldo-->
+        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,139,0,0" TextWrapping="Wrap" Text="Saldo" VerticalAlignment="Top"/>
+        <!--Importe venta-->
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Right" Margin="0,86.96,10,0" TextWrapping="Wrap" Text="{Binding Regresar, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Right" Margin="0,107.92,10,0" TextWrapping="Wrap" Text="{Binding Pendiente, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-        <TextBox x:Name="pagarConTextBox" Height="23" Margin="0,32,10,0" TextWrapping="Wrap" Text="{Binding PagaCon, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" TextAlignment="Right" />
-        <TextBox GotFocus="pagarTextBox_GotFocus" x:Name="pagarTextBox" Height="23" Margin="0,59,10,0" TextWrapping="Wrap" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Delay=500}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" TextAlignment="Right" />
-        <Button Command="{Binding CompletarCommand}" x:Name="button" Content="Completar" Margin="10.187,0,0,5.2" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="98"/>
+        <!--Importe Regresar (Cambio)-->
+        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Right" Margin="0,106,10,0" TextWrapping="Wrap" Text="{Binding Regresar, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+        <!--Importe Saldo-->
+        <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Right" Margin="0,139,10,0" TextWrapping="Wrap" Text="{Binding Pendiente, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+        <!--Importe con que se paga-->
+        <TextBox x:Name="pagarConTextBox" Height="25" Margin="0,39,10,0" TextWrapping="Wrap" Text="{Binding PagaCon, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" TextAlignment="Right" />
+        <TextBox GotFocus="pagarTextBox_GotFocus" x:Name="pagarTextBox" Height="25" Margin="0,71,10,0" TextWrapping="Wrap" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Delay=500}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" TextAlignment="Right" />
+        <!--Boton completar-->
+        <Button Command="{Binding CompletarCommand}" x:Name="button" Content="Completar" Margin="10,0,0,23" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="98">
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </UserControl>

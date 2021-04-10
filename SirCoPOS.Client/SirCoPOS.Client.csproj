@@ -65,6 +65,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\SirCoPOS.Client.dll</HintPath>
     </Reference>
+    <Reference Include="SirCoPOS.Services">
+      <HintPath>..\SirCoPOS.Services\bin\Debug\SirCoPOS.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="SirCoPOS.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\SirCoPOS.Utilities.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -410,7 +417,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Views\Tabs\accept.png" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\CajaDualView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -657,10 +666,6 @@
     <ProjectReference Include="..\SirCoPOS.Reports\SirCoPOS.Reports.csproj">
       <Project>{a075f0ab-a4e6-497d-b282-081e9cbbcee4}</Project>
       <Name>SirCoPOS.Reports</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SirCoPOS.Utilities\SirCoPOS.Utilities.csproj">
-      <Project>{27545e34-b7c2-4cae-a038-1697a8964894}</Project>
-      <Name>SirCoPOS.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

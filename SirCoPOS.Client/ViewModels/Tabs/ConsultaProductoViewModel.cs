@@ -20,7 +20,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 await this.Search();
                 this.IsBusy = false;
             }, () => {
-                if (string.IsNullOrEmpty(this.Serie))
+                if (string.IsNullOrEmpty(this.Serie)) 
                     return true;
                 if (string.IsNullOrEmpty(this.Marca) && string.IsNullOrEmpty(this.Modelo))
                     return true;
@@ -64,9 +64,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 this.SelectedMedida = "24-";
                 this.Existencias = new Common.Entities.SucursalExistencia[]
                 {
-                    new Common.Entities.SucursalExistencia { Sucursal = "08", Count = 10 },
-                    new Common.Entities.SucursalExistencia { Sucursal = "01", Count = 30 },
-                    new Common.Entities.SucursalExistencia { Sucursal = "04", Count = 5 }
+                    //new Common.Entities.SucursalExistencia { Sucursal = "08", Count = 10 },
+                    //new Common.Entities.SucursalExistencia { Sucursal = "01", Count = 30 },
+                    //new Common.Entities.SucursalExistencia { Sucursal = "04", Count = 5 }
                 };
 
                 this.ItemStatus = Common.Constants.Status.CA;

@@ -31,8 +31,9 @@ namespace SirCoPOS.Services
         {
             var ctx = new DataAccess.SirCoDataContext();
             var q = ctx.DetalleGastos.Select(i =>
-                new Common.Entities.Option { 
-                    Id = i.idgasto, 
+                new Common.Entities.Option
+                {
+                    Id = i.idgasto,
                     Text = i.descrip
                 });
             return q;
@@ -49,10 +50,10 @@ namespace SirCoPOS.Services
 
             fondo.Movimientos.Add(new DataAccess.SirCoPOS.FondoMovimiento
             {
-                Entrada = false, 
-                Fecha = now, 
-                Importe = request.Monto, 
-                Tipo = "Gasto", 
+                Entrada = false,
+                Fecha = now,
+                Importe = request.Monto,
+                Tipo = "Gasto",
                 UsuarioId = request.SolicitaId
             });
             fondo.Disponible -= request.Monto;
@@ -63,21 +64,21 @@ namespace SirCoPOS.Services
             var nfolio = folio == null ? 0 : int.Parse(folio.Substring(2));
             var item = new DataAccess.SirCo.Gasto
             {
-                folio = id + 1, 
-                cantidad = request.Monto, 
-                sucursal = request.Sucursal, 
-                fecha = now, 
-                idgasto = (short)request.Tipo, 
-                solicita = (short)request.SolicitaId, 
-                revisa = 0, 
-                autoriza = 0, 
-                status = "CA", 
-                comentarios = request.Descripcion, 
-                usuario = (short)request.CajeroId, 
-                fum = now, 
-                usumodrevisa = "0", 
-                fummodrevisa = null, 
-                usumodautoriza = "0", 
+                folio = id + 1,
+                cantidad = request.Monto,
+                sucursal = request.Sucursal,
+                fecha = now,
+                idgasto = (short)request.Tipo,
+                solicita = (short)request.SolicitaId,
+                revisa = 0,
+                autoriza = 0,
+                status = "CA",
+                comentarios = request.Descripcion,
+                usuario = (short)request.CajeroId,
+                fum = now,
+                usumodrevisa = "0",
+                fummodrevisa = null,
+                usumodautoriza = "0",
                 fummodautoriza = null,
                 foliosuc = $"{request.Sucursal}{(nfolio + 1):000000}"
             };
@@ -99,27 +100,27 @@ namespace SirCoPOS.Services
             //long timeStepMatched = 0;
             //var otp = new Totp(Base32Encoder.Decode(emp.authkey));
             //bool valid = otp.VerifyTotp(token, out timeStepMatched, new VerificationWindow(2, 2));
-            
+
             return valid;
         }
         public void AbrirFondo(FondoRequest request)
         {
-            using (var tran = new System.Transactions.TransactionScope())
-            {
+            //using (var tran = new System.Transactions.TransactionScope())
+            //{
                 this.AbrirFondoHelper(request);
-                tran.Complete();
-            }
+            //    tran.Complete();
+            //}
         }
-        private void AbrirFondoHelper(FondoRequest request)
+        public void AbrirFondoHelper(FondoRequest request)
         {
             var now = BusinessLogic.Helpers.Common.GetNow();
             var ctx = new DataAccess.SirCoPOSDataContext();
-            
+
             var qc = ctx.Fondos.Where(i => i.CajaSucursal == request.Sucursal && i.CajaNumero == request.Numero && !i.FechaCierre.HasValue);
             var qr = ctx.Fondos.Where(i => i.ResponsableId == request.Responsable && !i.FechaCierre.HasValue);
             if (qc.Any() || qr.Any())
                 throw new NotSupportedException();
-            
+
             var item = new DataAccess.SirCoPOS.Fondo
             {
                 ResponsableId = request.Responsable,
@@ -135,7 +136,7 @@ namespace SirCoPOS.Services
             {
                 ctx.Entry(item).Reference(i => i.Caja).Load();
                 //var importe = item.Caja.Disponible + request.Importe;
-                
+
                 //this.ArqueoFondoHelper(new FondoArqueoRequest {
                 //    Auditor = request.Auditor, 
                 //    Responsable = request.Responsable, 
@@ -154,9 +155,11 @@ namespace SirCoPOS.Services
                     (int)Common.Constants.Puesto.ENC,
                     (int)Common.Constants.Puesto.SUP
                 };
-                var ctxn = new SirCoNominaDataContext();
-                var auditor = ctxn.Empleados.Where(i => i.idempleado == request.Auditor).Single();
-                var isGerente = gerentes.Contains(auditor.idpuesto);
+
+                //var ctxn = new SirCoNominaDataContext();
+                //var auditor = ctxn.Empleados.Where(i => i.idempleado == request.Auditor).Single();
+
+                var isGerente = gerentes.Contains(request.Auditor);
 
                 if (!isGerente)
                 {
@@ -214,9 +217,9 @@ namespace SirCoPOS.Services
             var ctx = new DataAccess.SirCoPOSDataContext();
             var gid = Guid.NewGuid();
 
-            var cfrom = ctx.Fondos.Where(i => i.ResponsableId == request.UserFrom 
+            var cfrom = ctx.Fondos.Where(i => i.ResponsableId == request.UserFrom
                 && !i.FechaCierre.HasValue).Single();
-            var cto = ctx.Fondos.Where(i => i.ResponsableId == request.UserTo 
+            var cto = ctx.Fondos.Where(i => i.ResponsableId == request.UserTo
                 && !i.FechaCierre.HasValue).Single();
 
             cfrom.Movimientos.Add(new DataAccess.SirCoPOS.FondoMovimiento
@@ -250,7 +253,7 @@ namespace SirCoPOS.Services
         private void CierreFondoHelper(FondoArqueoRequest request, DateTime? date = null)
         {
             var now = date ?? BusinessLogic.Helpers.Common.GetNow();
-            var ctx = new DataAccess.SirCoPOSDataContext();            
+            var ctx = new DataAccess.SirCoPOSDataContext();
             this.ArqueoFondoHelper(new FondoArqueoRequest
             {
                 Importe = request.Importe,
@@ -281,7 +284,7 @@ namespace SirCoPOS.Services
                 {
                     this.TransferirFondo(new FondoTransferRequest
                     {
-                        Importe = request.Entregar.Value,                        
+                        Importe = request.Entregar.Value,
                         UserFrom = request.Responsable,
                         UserTo = request.Auditor
                     });
@@ -335,7 +338,7 @@ namespace SirCoPOS.Services
             {
                 ArqueoFondoHelper(request, BusinessLogic.Helpers.Common.GetNow());
                 tran.Complete();
-            }            
+            }
         }
         private void ArqueoFondoHelper(FondoArqueoRequest request, DateTime? pnow = null, bool cierre = false)
         {
@@ -354,7 +357,7 @@ namespace SirCoPOS.Services
                 AuditorId = request.Auditor,
                 Fecha = now,
                 Importe = disponible,
-                Reportado = request.Importe                
+                Reportado = request.Importe
             };
             fondo.Arqueos.Add(item);
             fondo.Disponible = request.Importe;
@@ -370,13 +373,13 @@ namespace SirCoPOS.Services
 
             var periodo = nctx.Periodos.Where(i => i.estatus == "A" && i.fechafin < now)
                 .OrderByDescending(i => i.fechaini).First();
-            
+
             var pago = new DataAccess.SirCoPOS.Pago
-            { 
-                EmisorId = supervisor, 
-                ReceptorId = empleado, 
-                Fecha = now, 
-                Importe = importe, 
+            {
+                EmisorId = supervisor,
+                ReceptorId = empleado,
+                Fecha = now,
+                Importe = importe,
                 PeriodoId = periodo.idperiodo
             };
             pctx.Pagos.Add(pago);
@@ -388,14 +391,14 @@ namespace SirCoPOS.Services
             var ctx = new DataAccess.SirCoPOSDataContext();
             var fondo = ctx.Fondos.Where(i => i.ResponsableId == gerente && !i.FechaCierre.HasValue).Single();
             var gid = Guid.NewGuid();
-            fondo.Movimientos.Add(new DataAccess.SirCoPOS.FondoMovimiento 
+            fondo.Movimientos.Add(new DataAccess.SirCoPOS.FondoMovimiento
             {
                 Importe = importe,
                 UsuarioId = empleado,
                 Entrada = false,
                 Fecha = now,
                 Referencia = gid,
-                Tipo = "Bono" 
+                Tipo = "Bono"
             });
             fondo.Disponible -= importe;
             fondo.Caja.Disponible -= importe;
@@ -418,7 +421,7 @@ namespace SirCoPOS.Services
 
             foreach (var item in q)
             {
-                item.movimiento = gid;                
+                item.movimiento = gid;
             }
             ctx.SaveChanges();
         }
@@ -471,8 +474,8 @@ namespace SirCoPOS.Services
             {
                 Efectivo = caja.Disponible
             };
-            res.FormasPago = caja.FormasPago.Where(i => i.Unidades > 0).Select(i => 
-                new CajaFormaPago 
+            res.FormasPago = caja.FormasPago.Where(i => i.Unidades > 0).Select(i =>
+                new CajaFormaPago
                 {
                     FormaPago = (Common.Constants.FormaPago)i.FormaPago,
                     Unidades = i.Unidades,
@@ -602,7 +605,10 @@ namespace SirCoPOS.Services
             var ctxn = new DataAccess.SirCoNominaDataContext();
             var ctx = new DataAccess.SirCoDataContext();
             var fondo = ctxpos.Fondos.Where(i => i.ResponsableId == request.CajeroId && !i.FechaCierre.HasValue).Single();
+
+            //ESTA ES LA OTRA LINEA DONDE APARECE EL ERROR
             var corte = _admin.GetCorteCaja(request.Sucursal, request.CajeroId);
+
             //var item = new DataAccess.SirCoPOS.Corte
             //{
             //    CajeroId = request.CajeroId,
@@ -719,7 +725,7 @@ namespace SirCoPOS.Services
                         Cantidad = rfp.Entregar,
                         UsuarioId = request.CajeroId,
                         Monto = rfp.Amount,
-                        Fecha = now, 
+                        Fecha = now,
                         Referencia = gid
                     });
                     cfp.Unidades -= rfp.Entregar;
@@ -860,7 +866,7 @@ namespace SirCoPOS.Services
         }
         private void GenerarRepetitivo(decimal monto, string sucursal, int idcajero, int idauditor, DateTime now)
         {
-            var ctxn = new DataAccess.SirCoNominaDataContext();            
+            var ctxn = new DataAccess.SirCoNominaDataContext();
 
             var aud = ctxn.Empleados.Where(i => i.idempleado == idauditor).Single();
             var last = ctxn.Repetitivos.OrderByDescending(i => i.fum).FirstOrDefault();
@@ -981,7 +987,7 @@ namespace SirCoPOS.Services
                 fondo.Disponible -= request.Entregar;
                 fondo.Caja.Disponible -= request.Entregar;
             }
-            var arqueo = new DataAccess.SirCoPOS.FondoArqueo 
+            var arqueo = new DataAccess.SirCoPOS.FondoArqueo
             {
                 AuditorId = request.AuditorId,
                 Fecha = now,
@@ -1001,10 +1007,10 @@ namespace SirCoPOS.Services
                 //    Entregado = rfp.Entregar,
                 //    Total = rfp.Amount
                 //});
-                arqueo.FormasPago.Add(new DataAccess.SirCoPOS.FondoArqueoFormaPago 
-                { 
-                    FormaPago = (int)fp.FormaPago, 
-                    Monto = fp.Total.Value, 
+                arqueo.FormasPago.Add(new DataAccess.SirCoPOS.FondoArqueoFormaPago
+                {
+                    FormaPago = (int)fp.FormaPago,
+                    Monto = fp.Total.Value,
                     Unidades = fp.Count,
                     ReportadoUnidades = rfp.Entregar,
                     ReportadoMonto = rfp.Amount
@@ -1024,17 +1030,17 @@ namespace SirCoPOS.Services
                 if (rfp.Entregar > 0)
                 {
                     fondo.FormasPago.Add(new DataAccess.SirCoPOS.FondoFormaPago
-                    {   
+                    {
                         Entrada = false,
                         FormaPago = (int)rfp.FormaPago,
                         Cantidad = rfp.Entregar,
-                        UsuarioId = request.AuditorId, 
-                        Monto = rfp.Amount, 
-                        Fecha = now, 
+                        UsuarioId = request.AuditorId,
+                        Monto = rfp.Amount,
+                        Fecha = now,
                         Referencia = gid
-                    });                                        
+                    });
                     cfp.Unidades -= rfp.Entregar;
-                    cfp.Monto -= rfp.Amount;                    
+                    cfp.Monto -= rfp.Amount;
                 }
                 //fondo.ArqueosFormaPagos.Add(new DataAccess.SirCoPOS.FondoArqueoFormaPago
                 //{
@@ -1065,7 +1071,7 @@ namespace SirCoPOS.Services
                     });
 
                     this.GenerarRepetitivoCalzado(s.Serie, fondo.CajaSucursal, request, now);
-                }                
+                }
             }
 
             //this.CierreFondoHelper(new FondoArqueoRequest
@@ -1175,7 +1181,7 @@ namespace SirCoPOS.Services
                         Cantidad = rfp.Entregar,
                         UsuarioId = request.AuditorId,
                         Monto = rfp.Amount,
-                        Fecha = now, 
+                        Fecha = now,
                         Referencia = gid
                     });
                     cfp.Unidades -= rfp.Entregar;
@@ -1210,7 +1216,7 @@ namespace SirCoPOS.Services
                 FechaApertura = now,
                 Disponible = 0,
                 Tipo = fondo.Tipo,
-                AuditorAperturaId = request.CajeroId,                
+                AuditorAperturaId = request.CajeroId,
                 //public string CajaSucursal { get; set; }
                 //public byte? CajaNumero { get; set; },
                 Caja = fondo.Caja
@@ -1266,8 +1272,8 @@ namespace SirCoPOS.Services
                     }
                 }
             }
-            
-            
+
+
             //item.Series = new HashSet<DataAccess.SirCoPOS.CorteSerie>();
             //foreach (var s in corte.Series)
             //{
@@ -1299,7 +1305,7 @@ namespace SirCoPOS.Services
                 //this.GenerarRepetitivo(fondo.Disponible, fondo.CajaSucursal, request, now);
             }
 
-            
+
             //ctxn.SaveChanges();
             ctxpos.SaveChanges();
         }
@@ -1316,8 +1322,8 @@ namespace SirCoPOS.Services
             var ctx = new DataAccess.SirCoPOSDataContext();
 
             var emp = ctxn.Empleados.Where(i => i.idempleado == idempleado).Single();
-            var q = ctx.Cajas.Where(i => i.Sucursal == sucursal 
-                && i.Disponible == 0 && /* ! */i.ResponsableId.HasValue 
+            var q = ctx.Cajas.Where(i => i.Sucursal == sucursal
+                && i.Disponible == 0 && /* ! */i.ResponsableId.HasValue
                 && !i.Fondos.Where(f => !f.FechaCierre.HasValue).Any());
             if (emp.idpuesto == (int)Common.Constants.Puesto.CJA)
             {
@@ -1331,11 +1337,11 @@ namespace SirCoPOS.Services
             else
                 return null;
 
-            return q.Select(i => new Common.Entities.Caja 
+            return q.Select(i => new Common.Entities.Caja
             {
-                Tipo = (byte)i.Tipo, 
+                Tipo = (byte)i.Tipo,
                 Numero = i.Numero,
-                Importe = i.Disponible 
+                Importe = i.Disponible
             });
         }
         public byte[] GetHuella(int idempleado)

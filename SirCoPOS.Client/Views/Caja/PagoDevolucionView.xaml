@@ -12,25 +12,37 @@
     </UserControl.DataContext>
     <xt:BusyIndicator IsBusy="{Binding IsBusy}">
         <Grid>
+            
+            <!--Titulo Sucursal-->
             <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Sucursal" VerticalAlignment="Top"/>
+           <!--Captura Sucursal-->
             <TextBox x:Name="tbSucursal" Height="27" Margin="0,5,10,0" TextWrapping="Wrap" Text="{Binding Sucursal, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding FindCommand}"></KeyBinding>
                 </TextBox.InputBindings>
             </TextBox>
+            <!--Titulo Devolucion-->
             <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="Devolución" VerticalAlignment="Top"/>
+            <!--Titulo Disponible-->
             <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,65,0,0" TextWrapping="Wrap" Text="Disponible" VerticalAlignment="Top"/>
+            <!--Captura Folio Devolucion-->
             <TextBox x:Name="textBox_Copy" Height="27" Margin="0,36,9,0" TextWrapping="Wrap" Text="{Binding Folio, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding FindCommand}"></KeyBinding>
                 </TextBox.InputBindings>
             </TextBox>
+            <!--Disponible Distribuidor-->
             <TextBlock x:Name="textBlock_Copy2" Margin="0,65,10,0" TextWrapping="Wrap" Text="{Binding Devolucion.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <TextBox x:Name="textBox_Copy1" Height="27" Margin="0,84,9,0" TextWrapping="Wrap" Text="{Binding Pagar, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
+            <!--Titulo pagar-->
             <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,87,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
+            <!--Saldo de la Devolucion-->
             <TextBlock x:Name="textBlock_Copy4" Margin="0,114,10,0" TextWrapping="Wrap" Text="{Binding Total, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <!--Titulo Saldo-->
             <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="10,114,0,0" TextWrapping="Wrap" Text="Saldo" VerticalAlignment="Top"/>
+            <!--Importe pendiente--> 
             <TextBlock x:Name="textBlock_Copy6" Margin="0,135,10,0" TextWrapping="Wrap" Text="{Binding Pendiente, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <!--Titulo Pendiente-->
             <TextBlock x:Name="textBlock_Copy7" HorizontalAlignment="Left" Margin="10,135,0,0" TextWrapping="Wrap" Text="Pendiente" VerticalAlignment="Top"/>
         </Grid>
     </xt:BusyIndicator>

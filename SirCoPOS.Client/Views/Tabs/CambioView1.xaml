@@ -129,7 +129,7 @@
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                 </ListBox>
-                <TextBox x:Name="scanTextBox" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}"  Height="27" Margin="0,6,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="140" IsEnabled="False">
+                <TextBox x:Name="scanTextBox" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}"  Height="27" Margin="0,6,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="140" IsEnabled="True">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding ScanCommand}"/>
                     </TextBox.InputBindings>

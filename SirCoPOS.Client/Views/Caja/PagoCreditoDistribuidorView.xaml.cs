@@ -31,7 +31,8 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            this.tbDistrib.Focus();
+             ///-Numero de  distribuidor, -- >
+             this.tbDistrib.Focus();
         }
         private void TabControl_TargetUpdated(object sender, DataTransferEventArgs e)
         {

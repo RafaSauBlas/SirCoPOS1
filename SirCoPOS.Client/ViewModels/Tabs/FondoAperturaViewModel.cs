@@ -11,6 +11,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
 {
     class FondoAperturaViewModel : Helpers.TabViewModelBase, IValidatableObject
     {
+        SirCoPOS.Services.AdminService DEM = new SirCoPOS.Services.AdminService();
         private readonly Common.ServiceContracts.IAdminServiceAsync _proxy;
         private readonly Common.ServiceContracts.IDataServiceAsync _data;
         public FondoAperturaViewModel()
@@ -25,17 +26,17 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 }
                 else
                 {
-                    MessageBox.Show("Auditor no valido","Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Auditor no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }, () => this.SearchAuditor.HasValue);
             this.SaveCommand = new RelayCommand(() => {
-                var code = Microsoft.VisualBasic.Interaction.InputBox("Codigo Auditor:");
-                var isValid = _proxy.ValidarCodigo(this.Auditor.Id, code);
-                if (!isValid)
-                {
-                    MessageBox.Show("Código no valido","Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
+                //var code = Microsoft.VisualBasic.Interaction.InputBox("Codigo Auditor:");
+                //var isValid = _proxy.ValidarCodigo(this.Auditor.Id, code);
+                //if (!isValid)
+                //{
+                //    MessageBox.Show("Código no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                //    return;
+                //}
                 var request = new Common.Entities.FondoRequest
                 {
                     Importe = this.Importe.Value,
@@ -46,7 +47,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     Tipo = (Common.Constants.TipoFondo)this.SelectedCaja.Tipo
                 };
                 _proxy.AbrirFondo(request);
-                MessageBox.Show("La operación se completó correctamente","Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("La operación se completó correctamente", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.FondoAperturaCierre { Open = true });
 
                 this.CloseCommand.Execute(null);
@@ -57,8 +58,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             {
                 this.Auditor = new Common.Entities.Empleado
                 {
-                    Nombre = "nombre", 
-                    ApellidoPaterno = "appat", 
+                    Nombre = "nombre",
+                    ApellidoPaterno = "appat",
                     ApellidoMaterno = "apmat"
                 };
                 this.SearchAuditor = 2;
@@ -68,7 +69,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     new Common.Entities.Caja { Tipo = 0, Numero = 2 },
                     new Common.Entities.Caja { Tipo = 1, Numero = 3 }
                 };
-                this.SelectedCaja = this.Cajas.First();                
+                this.SelectedCaja = this.Cajas.First();
             }
             else
             {
@@ -85,11 +86,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         {
             switch (e.PropertyName)
             {
-                case nameof(this.Auditor):                    
+                case nameof(this.Auditor):
                 case nameof(this.SelectedCaja):
                 case nameof(this.Importe):
                     this.SaveCommand.RaiseCanExecuteChanged();
-                    break;                
+                    break;
             }
         }
 
@@ -119,7 +120,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
 
 
         private decimal? _importe;
-        public decimal? Importe {
+        public decimal? Importe
+        {
             get => _importe;
             set => this.Set(nameof(this.Importe), ref _importe, value);
         }
@@ -139,7 +141,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         #region computed        
         #endregion
         #region commands
-        public RelayCommand LoadAuditorCommand { get; private set; }        
+        public RelayCommand LoadAuditorCommand { get; private set; }
         #endregion
     }
 }

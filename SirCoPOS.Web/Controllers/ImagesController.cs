@@ -32,6 +32,7 @@ namespace SirCoPOS.Web.Controllers
                 if (modelo.Length < 7)
                     modelo = modelo.PadLeft(7);
             }
+            //=============================================================================================================================================
             var img = ctxi.Imagenes.Where(i => i.Marca == marca && i.Estilon == modelo).SingleOrDefault();
             if (img == null || img.Foto == null)
                 return HttpNotFound();

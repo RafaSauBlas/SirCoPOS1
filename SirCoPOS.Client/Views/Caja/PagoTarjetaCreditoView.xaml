@@ -11,15 +11,18 @@
         <vm:PagoTarjetaCreditoViewModel></vm:PagoTarjetaCreditoViewModel>
     </UserControl.DataContext>
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ActiveCaptionColorKey}}"/>
+        </Grid.Background>
         <TextBlock HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding Total, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Total" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Right" Height="23" Margin="0,30.96,10,0" TextWrapping="Wrap" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Top" Width="120" TextAlignment="Right"/>
-        <xt:MaskedTextBox Mask="000" x:Name="terminacionTextBox" HorizontalAlignment="Right" Height="23" Margin="0,58.96,10,0" TextWrapping="Wrap" Text="{Binding Terminacion, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Right" Height="25" Margin="0,30.96,10,0" TextWrapping="Wrap" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Top" Width="120" TextAlignment="Right"/>
+        <xt:MaskedTextBox Mask="000" x:Name="terminacionTextBox" HorizontalAlignment="Right" Height="25" Margin="0,58.96,10,0" TextWrapping="Wrap" Text="{Binding Terminacion, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Right" Margin="0,114.96,10,0" TextWrapping="Wrap" Text="{Binding Pendiente, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,31.96,0,0" TextWrapping="Wrap" Text="Pago" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,59.96,0,0" TextWrapping="Wrap" Text="Terminación" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,86.96,0,0" TextWrapping="Wrap" Text="Referencia" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Right" Margin="0,86.96,10,0" TextWrapping="Wrap" Text="{Binding Referencia, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="120" Height="23" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Right" Margin="0,86.96,10,0" TextWrapping="Wrap" Text="{Binding Referencia, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="120" Height="25" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,112.3,0,0" TextWrapping="Wrap" Text="Saldo" VerticalAlignment="Top"/>
 
     </Grid>

@@ -49,7 +49,7 @@ namespace SirCoPOS.Services
         //Cambia "_helpers.FindSucursal(sucursal); por _helpers.FindSucursal("01"); para que funcione"
         public Sucursal FindSucursal(string sucursal)
         {
-            return _helpers.FindSucursal("01");
+            return _helpers.FindSucursal(sucursal);
         }
 //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         public Empleado CheckFingerLogin(string sucursal, byte[] huella)

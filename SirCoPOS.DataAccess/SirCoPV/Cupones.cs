@@ -19,6 +19,7 @@ namespace SirCoPOS.DataAccess.SirCoPV
         public string estatus { get; set; }
         public string tipo { get; set; }
         public byte[] imagen { get; set; }
+        public DateTime? fecha { get; set; }
         public DateTime? fecini { get; set; }
         public DateTime? fecfin { get; set; }
 

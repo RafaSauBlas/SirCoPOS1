@@ -36,6 +36,7 @@ namespace SirCoPOS.Client.Views.Tabs
 
         public void Init()
         {
+        
             var dato = new SirCoPOS.Common.Entities.Empleado();
             int depto = dato.Depto;
 

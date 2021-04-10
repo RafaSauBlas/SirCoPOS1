@@ -63,7 +63,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             this.RaisePropertyChanged(nameof(this.HasPagos));
             this.RaisePropertyChanged(nameof(this.HasVale));
             this.RaisePropertyChanged(nameof(this.TotalPayment));
-            //await this.UpdatePromociones();            
+            //await this.UpdatePromociones();         
+            //====================================================================================================================================
+            
             await this.RefreshPromociones();
             this.AddFormaCommand.RaiseCanExecuteChanged();
             this.SaleCommand.RaiseCanExecuteChanged();

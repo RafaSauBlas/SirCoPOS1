@@ -12,7 +12,7 @@ namespace SirCoPOS.Win.DataAccess
     class DataContext : DbContext
     {
         public DataContext()
-            : base("MyDB")
+            : base("SirCoLocal")
         {
             
         }

@@ -15,8 +15,8 @@ namespace SirCoPOS.DataAccess
     {
         public int UpdateSerieStatus(string serie, Common.Constants.Status status, Common.Constants.Status statusCurrent, int idusuario)
         {
-            var cmd = 
-@"UPDATE [dbo].[serie] SET [status] = @status, [idusuariocaja] = @idusuario, [fechacaja] = GETDATE() 
+            var cmd =
+@"UPDATE [dbo].[serie] SET [status] = @status, [idusuariocaja] = @idusuario, [fechacaja] = GETDATE()
 WHERE [serie] = @serie AND [status] = @statusCurrent";
             SqlParameter[] param = {
                 new SqlParameter("@serie", serie),

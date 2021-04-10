@@ -70,6 +70,7 @@ namespace SirCoPOS.Services
                 
             return $"{emp.nombre} {emp.appaterno} {emp.apmaterno}";
         }
+
         public ReciboCompraReport GetReciboCompra(string sucursal, string folio)
         {
             var ctxpv = new DataAccess.SirCoPVDataContext();
@@ -146,7 +147,8 @@ namespace SirCoPOS.Services
 
             var pplist = new List<Common.Entities.Reports.PlanPago>();
             var ctxcr = new DataAccess.SirCoCreditoDataContext();
-            var ppagos = ctxcr.PlanPagosDetalle.Where(i => i.sucursal == venta.sucursal && i.nota == venta.venta);
+            //==============================================================================================
+            var ppagos = ctxcr.PlanPagosDetalle.Where(i => i.sucursal == "447279");
             foreach (var det in ppagos)
             {
                 pplist.Add(new PlanPago

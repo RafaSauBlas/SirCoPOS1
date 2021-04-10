@@ -11,15 +11,32 @@
         <vm:NotaViewModel></vm:NotaViewModel>
     </UserControl.DataContext>
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="10,144,0,0" TextWrapping="Wrap" Text="Precio" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,169,0,0" TextWrapping="Wrap" Text="Razón" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbPrecio" HorizontalAlignment="Left" Height="23" Margin="99,140,0,0" TextWrapping="Wrap" Text="{Binding Precio, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="99,168,0,0" TextWrapping="Wrap" Text="{Binding Razon, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191"/>
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+        </Grid.Background>
+        <TextBlock HorizontalAlignment="Left" Margin="10,145,0,0" TextWrapping="Wrap" Text="Precio" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,173,0,0" TextWrapping="Wrap" Text="Razón" VerticalAlignment="Top"/>
+        <!--TextBox para asignar precio nuevo-->
+        <TextBox x:Name="tbPrecio" HorizontalAlignment="Left" Height="28" Margin="99,140,0,0" TextWrapping="Wrap" Text="{Binding Precio, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191"/>
+        <!--TextBox para razon de cambio precio-->
+        <TextBox HorizontalAlignment="Left" Height="28" Margin="99,171,0,0" TextWrapping="Wrap" Text="{Binding Razon, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191"/>
         <Grid Height="90" Margin="10,10,10,0" VerticalAlignment="Top">
             <v:ProductoItemView DataContext="{Binding Item}"></v:ProductoItemView>
         </Grid>
-        <Button Command="{Binding RestoreCommand}" Content="Restablecer" HorizontalAlignment="Left" Margin="10,198,0,0" VerticalAlignment="Top" Width="101"/>
-        <ComboBox DisplayMemberPath="Descripcion" SelectedItem="{Binding SelectedOpcion}" ItemsSource="{Binding Options}" HorizontalAlignment="Left" Margin="99,105,0,0" VerticalAlignment="Top"/>
+        <!--Boton Restablecer de precio-->
+        <Button Command="{Binding RestoreCommand}" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top" Width="101">
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </Button.Background>
+            <Image x:Name="limpiar" Height="23" Width="25" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\Limpiar.png" />
+        </Button>
+
+        <!--Combo Razon, cambio precio nota-->
+        <ComboBox DisplayMemberPath="Descripcion" SelectedItem="{Binding SelectedOpcion}" ItemsSource="{Binding Options}" HorizontalAlignment="Left" Margin="99,105,0,0" VerticalAlignment="Top" Width="140">
+            <ComboBox.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </ComboBox.Background>
+        </ComboBox>
         <TextBlock HorizontalAlignment="Left" Margin="10,111,0,0" TextWrapping="Wrap" Text="Precio" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

@@ -20,6 +20,7 @@ namespace SirCoPOS.Common.Constants
         VE = 97, //VALE EXTERNO - ID???
         CD = 98, //C. DISTRIBUIDOR - ID???
         VD = 99, //VALE DIGITAL - ID???
-        VS = 100 //VA - sin promocion
+        VS = 100, //VA - sin promocion
+        CS = 101
     }
 }

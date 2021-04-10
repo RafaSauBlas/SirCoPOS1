@@ -14,6 +14,7 @@ namespace SirCoPOS.BusinessLogic
         private readonly Admin _admin;
         private readonly Data _data;
         private readonly Sale _sale;
+
         public Process()
         {
             _empty = DateTime.Parse("1900-01-01T00:00:00.000");
@@ -26,12 +27,13 @@ namespace SirCoPOS.BusinessLogic
             var ctx = new DataAccess.SirCoDataContext();
             ctx.UpdateSerieStatus(serie, Status.AC, Status.CA, idusuario: idusuario);
         }
-
+        //============================================================================================================================================
         public bool RequestProducto(string serie, int idusuario)
         {
             var now = DateTime.Now;
             var ctx = new DataAccess.SirCoDataContext();
             var item = ctx.Series.Where(i => i.serie == serie).Single();
+            ctx.SaveChanges();
             var valid = new string[] {
                 Status.AC.ToString(),
                 Status.IF.ToString(),
@@ -48,6 +50,7 @@ namespace SirCoPOS.BusinessLogic
             }
             return false;
         }
+        //============================================================================================================================================
         public int AddCliente(Common.Entities.Cliente model)
         {
             var now = Helpers.Common.GetNow();
@@ -77,7 +80,7 @@ namespace SirCoPOS.BusinessLogic
                 idusuariomodif = 0,
                 fummodif = DateTime.Parse(Formats.DATE_EMPTY),
                 sistema = null,
-                
+
                 celular = model.Celular
             };
             ctx.Clientes.Add(item);
@@ -85,11 +88,147 @@ namespace SirCoPOS.BusinessLogic
             return item.idcliente;
         }
 
-        public SaleResponse Sale(SaleRequest model, int idcajero, IEnumerable<ChangeItem> change = null)
+        public string DEMO()
+        {
+            var ztx = new DataAccess.SirCoDataContext();
+            var q = ztx.Series.Where(i => i.serie == "0000003524085").Single();
+            return "";
+        }
+
+
+        //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        public SaleResponse Sale2(SaleRequest model, int idcajero, IEnumerable<ChangeItem> change = null)
+        {
+            var now = Helpers.Common.GetNow();
+            var ctxc = new DataAccess.SirCoControlDataContext();
+            var ctxcr = new DataAccess.SirCoCreditoDataContext();
+            var cvales = new List<ContraValeResponse>();
+            var ctxpv = new DataAccess.SirCoPVDataContext();
+            var suc = ctxc.Sucursales.Where(i => i.sucursal == model.Sucursal).Single();
+            var folio = suc.cajas + 1;
+            var venta = new VentaP();
+            var sale = new Sale();
+
+            var request = new Common.Entities.CheckPromocionesCuponesRequest
+            {
+                PromocionesCupones = model.PromocionesCupones,
+                Productos = model.Productos.Select(i =>
+                    new SerieFormasPago
+                    {
+                        Serie = i.Serie,
+                        Precio = i.Precio,
+                        FormasPago = i.FormasPago,
+                        Pagos = i.Pagos,
+                        Promociones = i.Promociones
+                    }),
+                Sucursal = model.Sucursal
+            };
+
+            var header = new DataAccess.SirCoPV.Venta
+            {
+                sucursal = model.Sucursal,
+                idcajero = idcajero,
+                idvendedor = model.VendedorId,
+                fecha = now,
+                venta = folio.Value.ToString("000000"),
+                estatus = Common.Constants.StatusVenta.Aplicada,
+                idusuario = idcajero,
+                fumcancela = _empty,
+                idusuariocancela = 0,
+                fum = now
+            };
+
+            var pago = new DataAccess.SirCoPV.Pago
+            {
+                sucursal = header.sucursal,
+                pago = header.venta,
+                fecha = now,
+                estatus = "AP",
+                idcajero = idcajero,
+                idvendedor = model.VendedorId,
+                idusuario = idcajero,
+                fum = now,
+                idusuariocancela = 0,
+                fumcancela = _empty,
+                Venta = header
+            };
+
+
+            var vdet = new DataAccess.SirCoPV.VentaDetalle
+            {
+                sucursal = header.sucursal,
+                venta = header.venta,
+                serie = "0000003524022",
+                marca = "CTA",
+                estilon = "    786",
+                medida = "18-",
+
+                renglon = 0,
+                corrida = "A",
+                idpromocion = 0,
+                idpromocionnumero = 0,
+                idtipo = 0,
+                ctd = 1,
+                precio = 529,
+                precdesc = 0,
+                costomargen = 529,
+                iva = 16,
+                idusuario = 0,
+                fum = now,
+                notas = "A",
+                idrazon = 0
+            };
+
+            header.Detalles = new HashSet<DataAccess.SirCoPV.VentaDetalle>();
+
+            header.Detalles.Add(new DataAccess.SirCoPV.VentaDetalle
+            {
+                sucursal = header.sucursal,
+                venta = header.venta,
+                serie = "0000003524022",
+                marca = "CTA",
+                estilon = "    786",
+                medida = "18-",
+
+                renglon = 0,
+                corrida = "A",
+                idpromocion = null,
+                idtipo = 0,
+                ctd = 1,
+                //precio = old.precio,
+                //precdesc = old.precdesc,
+                precio = 529,//cor.precio,
+                precdesc = 500,//cor.precio,
+                costomargen = 270,
+                iva = 16,
+                idusuario = 0,
+                fum = now,
+            });
+
+
+            var importe = model.Pagos.Sum(i => i.Importe);
+
+            pago.Detalle = new HashSet<DataAccess.SirCoPV.PagoDetalle>();
+
+            header.Detalles.Add(vdet);
+            ctxpv.Ventas.Add(header);
+            ctxpv.Pagos.Add(pago);
+            //ctxpv.SaveChanges();
+            
+
+            return new SaleResponse
+            {
+                Folio = header.venta,
+                Cliente = header.idcliente,
+                ContraVales = cvales,
+               // Monedero = promos.Monedero
+            };
+        }
+        //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+            public SaleResponse Sale(SaleRequest model, int idcajero, IEnumerable<ChangeItem> change = null)
         {
             if (model.Pagos == null)
                 throw new NotSupportedException();
-
             var gid = Guid.NewGuid();
             var iva = 16;
             var now = Helpers.Common.GetNow();
@@ -98,8 +237,11 @@ namespace SirCoPOS.BusinessLogic
             var ctxc = new DataAccess.SirCoControlDataContext();
             var ctxcr = new DataAccess.SirCoCreditoDataContext();
             var ctx = new DataAccess.SirCoDataContext();
+
+           
             var ctxap = new DataAccess.SirCoAPPDataContext();
             var helper = new BusinessLogic.Data();
+            
             var suc = ctxc.Sucursales.Where(i => i.sucursal == model.Sucursal).Single();
             var folio = suc.cajas + 1;
             suc.cajas = folio;
@@ -115,8 +257,8 @@ namespace SirCoPOS.BusinessLogic
                 fumcancela = _empty,
                 idusuariocancela = 0,
                 fum = now
-            };            
-
+            };
+            
             header.Detalles = new HashSet<DataAccess.SirCoPV.VentaDetalle>();
             short count = 0;
             var valid = new string[] {
@@ -125,6 +267,7 @@ namespace SirCoPOS.BusinessLogic
                 //Status.IF.ToString()
             };
             var sale = new Sale();
+            var venta = new VentaP();
             var request = new Common.Entities.CheckPromocionesCuponesRequest
             {
                 PromocionesCupones = model.PromocionesCupones,
@@ -138,13 +281,31 @@ namespace SirCoPOS.BusinessLogic
                     }),
                 Sucursal = model.Sucursal
             };
+            //=============================================================
+            var req = new Common.Entities.SaleRequest
+            {
+                Productos = model.Productos.Select(i => new SerieFormasPago
+                {
+                    Serie = i.Serie,
+                    Precio = i.Precio,
+                    FormasPago = i.FormasPago,
+                    Pagos = i.Pagos,
+                    Promociones = i.Promociones
+                })
+            };
+            //=============================================================
             if (model.Cliente != null)
             {
                 request.HasCliente = true;
                 request.ClienteId = model.Cliente.Id;
             }
             if (request.PromocionesCupones == null)
-                request.PromocionesCupones = new Common.Entities.PromocionCuponItem[] { };            
+                request.PromocionesCupones = new Common.Entities.PromocionCuponItem[] { };
+            //AQUI APARECE OTRO ERROR DE CONTROL REMOTO
+            //===================================================================================================================
+            //SirCoPOS.Common.Entities.SeriesFormaPago
+            //var promo2 = venta.prueba("0000003524047", "01");
+            //var promoz = sale.prueba();
             var promos = sale.CheckPromociones(request);
 
             DataAccess.SirCoPV.Venta dvet = null;
@@ -258,6 +419,8 @@ namespace SirCoPOS.BusinessLogic
                     }
                 }
             }
+
+            //===========================AQUI ES DONDE SE SUPONER QUE SE DEBE REGISTRAR LA VENTA======================================
             ctxpv.Ventas.Add(header);
             var total = header.Detalles.ToArray().Sum(i => (i.precdesc ?? 0));
             if (model.Pagos == null || !model.Pagos.Any())
@@ -1086,6 +1249,9 @@ namespace SirCoPOS.BusinessLogic
                 Monedero = promos.Monedero
             };
         }
+
+
+
         private int? AddClienteFromModel(Cliente cliente, int idsucursal)
         {
             if (cliente == null)
@@ -1984,6 +2150,7 @@ namespace SirCoPOS.BusinessLogic
                 //importe = ??, // subtotal menos descuentos
                 vencido = 0,
                 descuentovencido = 0,
+
                 cobrador = 0,
                 idconvenio = 0,
                 idusuario = model.Cajero,

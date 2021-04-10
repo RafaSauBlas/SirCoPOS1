@@ -17,7 +17,9 @@
         <vm:MenuViewModel></vm:MenuViewModel>
     </UserControl.DataContext>
     <Grid>
-        <WrapPanel Width="620" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <!--Panel dee Botones Caja-->
+        <WrapPanel Width="620" HorizontalAlignment="Center" VerticalAlignment="Center" Height="450" Margin="90,0">
+            <!--Boton Caja-->
             <Button Margin="0,0,5,5" Command="{Binding OpenCommand}" Style="{DynamicResource menu}" Click="MenuItem_Click">
                 <Button.CommandParameter>
                     <m:TabType>Caja</m:TabType>
@@ -27,12 +29,14 @@
                     <TextBlock Text="Caja (F1)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
+            <!--Boton  Credito Personal-->
             <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}" CommandParameter="creditoPersonal" IsEnabled="True">
                 <Grid>
                     <Image Height="100" Width="100" Source="/SirCoPOS.Win;component/Images/Credito Personal.png"/>
                     <TextBlock Text="Crédito Personal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
+            <!--Boton Verificar Vale-->
             <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
                 <Button.CommandParameter>
                     <m:TabType>VerificarVale</m:TabType>
@@ -42,18 +46,21 @@
                     <TextBlock Text="Verificar Vale (F6)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
+            <!--Boton Dinero Electronico-->
             <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}" CommandParameter="dineroElectronico">
                 <Grid>
                     <Image Height="100" Width="100" Source="/SirCoPOS.Win;component/Images/Dinero Electronico.png"/>
                     <TextBlock Text="Dinero Electrónico" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
+            <!--Boton Administracion-->
             <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}" CommandParameter="administracion">
                 <Grid>
                     <Image Height="100" Width="100" Source="/SirCoPOS.Win;component/Images/Administracion.png"/>
                     <TextBlock Text="Administración" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
+            <!--Boton Cambios-->
             <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
                 <Button.CommandParameter>
                     <m:TabType>Cambio</m:TabType>
@@ -63,6 +70,7 @@
                     <TextBlock Text="Cambio (F2)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
+            <!--Boton Devolucion-->
             <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
                 <Button.CommandParameter>
                     <m:TabType>Devolucion</m:TabType>
@@ -72,6 +80,7 @@
                     <TextBlock Text="Devolución (F3)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
+            <!--Boton Cancelacion-->
             <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
                 <Button.CommandParameter>
                     <m:TabType>Cancelacion</m:TabType>
@@ -81,6 +90,7 @@
                     <TextBlock Text="Cancelación (F4)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
+            <!--Boton Cancelar Devolucion-->
             <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
                 <Button.CommandParameter>
                     <m:TabType>CancelacionDevolucion</m:TabType>
@@ -94,6 +104,7 @@
                     <TextBlock Text="Pagos" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
+            <!--Boton Entrega de Efectivo-->
             <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
                 <Button.CommandParameter>
                     <m:TabType>Efectivo</m:TabType>
@@ -102,6 +113,7 @@
                     <TextBlock Text="Entrega Efectivo" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
+            <!--Boton Corte Caja-->
             <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
                 <Button.CommandParameter>
                     <m:TabType>Corte</m:TabType>
@@ -110,6 +122,9 @@
                     <TextBlock Text="Corte Caja" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
+
+
+
             <!--<Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
                 <Button.CommandParameter>
                     <m:TabType>CajaNueva1</m:TabType>

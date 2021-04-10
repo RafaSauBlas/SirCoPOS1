@@ -7,7 +7,7 @@
              mc:Ignorable="d"              
              xmlns:c="clr-namespace:SirCoPOS.Client.Converters"
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1196">
     <UserControl.DataContext>
         <vm:ConsultaProductoViewModel></vm:ConsultaProductoViewModel>
     </UserControl.DataContext>
@@ -16,47 +16,59 @@
         <c:BoolTextConverter x:Key="boolText"></c:BoolTextConverter>
     </UserControl.Resources>
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Serie" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,39,0,0" TextWrapping="Wrap" Text="Marca / Modelo" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbserie" HorizontalAlignment="Left" Height="27" Margin="143,7,0,0" TextWrapping="Wrap" Text="{Binding Serie, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="133">
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+        </Grid.Background>
+        <TextBlock HorizontalAlignment="Left" Margin="10,26,0,0" TextWrapping="Wrap" Text="Serie" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,68,0,0" TextWrapping="Wrap" Text="Marca / Modelo" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbserie" HorizontalAlignment="Left" Height="27" Margin="143,23,0,0" TextWrapping="Wrap" Text="{Binding Serie, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Height="27" Margin="143,38,0,0" TextWrapping="Wrap" Text="{Binding Marca, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="50">
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="143,65,0,0" TextWrapping="Wrap" Text="{Binding Marca, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="50">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBox HorizontalAlignment="Left" Height="27" Margin="198,38,0,0" TextWrapping="Wrap" Text="{Binding Modelo, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="50">
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="198,65,0,0" TextWrapping="Wrap" Text="{Binding Modelo, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="50">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="10,68,0,0" TextWrapping="Wrap" Text="Serie" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,97,0,0" TextWrapping="Wrap" Text="Marca" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,126,0,0" TextWrapping="Wrap" Text="Modelo" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,155,0,0" TextWrapping="Wrap" Text="Talla" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,184,0,0" TextWrapping="Wrap" Text="Unico" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,213,0,0" TextWrapping="Wrap" Text="Plazos" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,242,0,0" TextWrapping="Wrap" Text="Electrónica" VerticalAlignment="Top"/>
-        <Grid HorizontalAlignment="Left" Height="169" Margin="10,271,0,0" VerticalAlignment="Top" Width="169">
-            <Rectangle Stroke="Black"/>
-            <Image Height="150" Width="150" Source="{Binding Item.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}" Margin="2" />
+        <TextBlock HorizontalAlignment="Right" Margin="0,26,882,0" TextWrapping="Wrap" Text="Serie" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,60,873,0" TextWrapping="Wrap" Text="Marca" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,94,864,0" TextWrapping="Wrap" Text="Modelo" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,128,889,0" TextWrapping="Wrap" Text="Talla" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,162,879,0" TextWrapping="Wrap" Text="Unico" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,196,875,0" TextWrapping="Wrap" Text="Plazos" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,230,840,0" TextWrapping="Wrap" Text="Electrónica" VerticalAlignment="Top"/>
+        <Grid HorizontalAlignment="Right" Height="244" Margin="0,23,423,0" VerticalAlignment="Top" Width="220">
+            <Rectangle Stroke="Black" Height="244" VerticalAlignment="Top"/>
+            <Image Height="244" Source="{Binding Item.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}" VerticalAlignment="Top" />
         </Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="143,73,0,0" TextWrapping="Wrap" Text="{Binding Item.Serie}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="143,97,0,0" TextWrapping="Wrap" Text="{Binding Item.Marca}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="143,126,0,0" TextWrapping="Wrap" Text="{Binding Item.Modelo}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="143,155,0,0" TextWrapping="Wrap" Text="{Binding Item.Talla}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="143,184,0,0" TextWrapping="Wrap" Text="{Binding Item.ParUnico, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="143,213,0,0" TextWrapping="Wrap" Text="{Binding Item.MaxPlazos}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="143,242,0,0" TextWrapping="Wrap" Text="{Binding Item.Electronica, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
-        <DataGrid IsReadOnly="True" ItemsSource="{Binding Existencias}" Margin="543,39,10,0" Height="227" VerticalAlignment="Top" />
-        <TextBlock HorizontalAlignment="Left" Margin="543,10,0,0" TextWrapping="Wrap" Text="Tallas" VerticalAlignment="Top"/>
-        <ComboBox ItemsSource="{Binding Corridas.Medidas}" SelectedItem="{Binding SelectedMedida}" HorizontalAlignment="Left" Margin="590,4,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Command="{Binding FindMedidaCommand}" Content="Buscar" Margin="0,6,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
-        <TextBlock HorizontalAlignment="Left" Margin="198,155,0,0" TextWrapping="Wrap" Text="{Binding ItemStatus}" VerticalAlignment="Top"/>
-        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Corridas.Corridas}" HorizontalAlignment="Left" Height="226" Margin="281,40,0,0" VerticalAlignment="Top" Width="257">
+        <TextBlock HorizontalAlignment="Right" Margin="0,26,687,0" TextWrapping="Wrap" Text="{Binding Item.Serie}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,60,780,0" TextWrapping="Wrap" Text="{Binding Item.Marca}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,94,756,0" TextWrapping="Wrap" Text="{Binding Item.Modelo}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,128,794,0" TextWrapping="Wrap" Text="{Binding Item.Talla}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,162,789,0" TextWrapping="Wrap" Text="{Binding Item.ParUnico, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,196,793,0" TextWrapping="Wrap" Text="{Binding Item.MaxPlazos}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,230,790,0" TextWrapping="Wrap" Text="{Binding Item.Electronica, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
+        <DataGrid IsReadOnly="True" ItemsSource="{Binding Existencias}" Margin="0,23,10,0" Height="244" VerticalAlignment="Top" Width="146" HorizontalAlignment="Right" />
+        <TextBlock HorizontalAlignment="Left" Margin="10,110,0,0" TextWrapping="Wrap" Text="Tallas" VerticalAlignment="Top"/>
+        <ComboBox ItemsSource="{Binding Corridas.Medidas}" SelectedItem="{Binding SelectedMedida}" HorizontalAlignment="Left" Margin="62,107,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBox.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </ComboBox.Background>
+        </ComboBox>
+        <Button Command="{Binding FindMedidaCommand}" Margin="198,107,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="50" Height="30">
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </Button.Background>
+            <Image x:Name="cancel" Height="23" Width="25" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\lupa.png" />
+        </Button>
+        <TextBlock HorizontalAlignment="Right" Margin="0,128,740,0" TextWrapping="Wrap" Text="{Binding ItemStatus}" VerticalAlignment="Top"/>
+        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Corridas.Corridas}" HorizontalAlignment="Right" Height="244" Margin="0,23,161,0" VerticalAlignment="Top" Width="257">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Corrida" Binding="{Binding Corrida}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Talla" Binding="{Binding MedidaInicio}"></DataGridTextColumn>
@@ -64,15 +76,15 @@
                 <DataGridTextColumn Header="Precio" Binding="{Binding Precio, StringFormat=\{0:C\}}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBlock HorizontalAlignment="Left" Margin="462,10,0,0" TextWrapping="Wrap" Text="{Binding Item.Precio, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="281,10,0,0" TextWrapping="Wrap" Text="Precio" VerticalAlignment="Top"/>
-        <ListBox Margin="184,271,10,10" ItemsSource="{Binding Promos}">
+        <TextBlock HorizontalAlignment="Left" Margin="143,160,0,0" TextWrapping="Wrap" Text="{Binding Item.Precio, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="9,160,0,0" TextWrapping="Wrap" Text="Precio" VerticalAlignment="Top"/>
+        <ListBox Margin="10,271,10,10" ItemsSource="{Binding Promos}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Nombre}"></TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <TextBlock HorizontalAlignment="Left" Margin="198,242,0,0" TextWrapping="Wrap" Text="{Binding Item.Sucursal}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,230,746,0" TextWrapping="Wrap" Text="{Binding Item.Sucursal}" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

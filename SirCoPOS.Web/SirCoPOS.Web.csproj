@@ -158,6 +158,26 @@
     <Reference Include="QRCoder, Version=1.3.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\QRCoder.1.3.9\lib\net40\QRCoder.dll</HintPath>
     </Reference>
+    <Reference Include="SirCoPOS.BusinessLogic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SirCoPOS.BusinessLogic\bin\Debug\SirCoPOS.BusinessLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="SirCoPOS.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SirCoPOS.Server.Common\bin\Debug\SirCoPOS.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SirCoPOS.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SirCoPOS.BusinessLogic\bin\Debug\SirCoPOS.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="SirCoPOS.Server.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SirCoPOS.Server.Common\bin\Debug\SirCoPOS.Server.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SirCoPOS.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SirCoPOS.Services\bin\Debug\SirCoPOS.Services.dll</HintPath>
+    </Reference>
     <Reference Include="System.Activities" />
     <Reference Include="System.Activities.Presentation" />
     <Reference Include="System.IdentityModel" />
@@ -430,6 +450,10 @@
     <Content Include="Scripts\lib\angular-ui-router\angular-ui-router.js.map" />
     <Content Include="Scripts\lib\angular-ui-router\angular-ui-router.min.js.map" />
     <Content Include="Views\Home\AuthKey.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
+    <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -437,31 +461,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SirCoPOS.BusinessLogic\SirCoPOS.BusinessLogic.csproj">
-      <Project>{b34987ad-f9ca-40bd-8b45-13e62ea4aaad}</Project>
-      <Name>SirCoPOS.BusinessLogic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SirCoPOS.Common\SirCoPOS.Common.csproj">
-      <Project>{e84851fe-a33d-477f-8a55-4233f134446c}</Project>
-      <Name>SirCoPOS.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SirCoPOS.DataAccess\SirCoPOS.DataAccess.csproj">
-      <Project>{51734512-d5f3-4aa8-ad42-968e67858741}</Project>
-      <Name>SirCoPOS.DataAccess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SirCoPOS.Server.Common\SirCoPOS.Server.Common.csproj">
-      <Project>{869fe2ed-f937-4505-afb7-43890ef4bb2e}</Project>
-      <Name>SirCoPOS.Server.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SirCoPOS.Services\SirCoPOS.Services.csproj">
-      <Project>{bc1b99e7-2710-4d0c-abf3-ceaa7a51625a}</Project>
-      <Name>SirCoPOS.Services</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\PublishProfiles\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

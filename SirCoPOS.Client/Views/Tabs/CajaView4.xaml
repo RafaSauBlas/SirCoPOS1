@@ -25,11 +25,24 @@
         <c:ValueVisibilityConverter x:Key="valvis"></c:ValueVisibilityConverter>
     </UserControl.Resources>
     <Grid>
-        <FrameworkElement x:Name="dummyElement"/>
-        <tk:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="293*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <FrameworkElement x:Name="dummyElement" Grid.RowSpan="2"/>
+        <tk:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}" Grid.RowSpan="2">
             <Grid>
-                <Grid Margin="10,38.94,302,237">
-                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserAddRows="False" ItemsSource="{Binding Productos}" SelectedItem="{Binding SelectedItem}" Margin="0,0,29,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="499*"/>
+                    <ColumnDefinition Width="601*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Margin="10,39,302,237" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="85*"/>
+                        <ColumnDefinition Width="112*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Data Grid de Articulos-->
+                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserAddRows="False" ItemsSource="{Binding Productos}" SelectedItem="{Binding SelectedItem}" Margin="0,0,29,0.06" Grid.ColumnSpan="2">
                         <DataGrid.InputBindings>
                             <!--<KeyBinding Key="Delete" Command="{Binding RemoveCommand}"></KeyBinding>-->
                         </DataGrid.InputBindings>
@@ -151,13 +164,21 @@
                             <DataGridTextColumn Binding="{Binding Notas}"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Command="{Binding MoveProductoCommand, Mode=OneWay}" VerticalAlignment="Top" Height="78.44" HorizontalAlignment="Right" Width="24">
+                    <!--Boton Subir Producto-->
+                    <Button Command="{Binding MoveProductoCommand, Mode=OneWay}" VerticalAlignment="Top" Height="78" HorizontalAlignment="Right" Width="24" Grid.Column="1">
+                        <Button.Background>
+                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                        </Button.Background>
                         <Button.CommandParameter>
                             <m:MoveDirection>Up</m:MoveDirection>
                         </Button.CommandParameter>
                         <fa:ImageAwesome Icon="ArrowUp"/>
                     </Button>
-                    <Button Command="{Binding MoveProductoCommand, Mode=OneWay}" HorizontalAlignment="Right" Height="81.44" VerticalAlignment="Bottom" Width="24">
+                    <!--Boton Bajar Producto-->
+                    <Button Command="{Binding MoveProductoCommand, Mode=OneWay}" HorizontalAlignment="Right" Height="81" VerticalAlignment="Bottom" Width="24" Grid.Column="1" Margin="0,0,0,0.06">
+                        <Button.Background>
+                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                        </Button.Background>
                         <Button.CommandParameter>
                             <m:MoveDirection>Down</m:MoveDirection>
                         </Button.CommandParameter>
@@ -165,11 +186,15 @@
                     </Button>
 
                 </Grid>
-                <Grid HorizontalAlignment="Right" Margin="0,0,10,42.94" Width="213" Height="156.12" VerticalAlignment="Bottom">
+                <!--Grid totales-->
+                <Grid HorizontalAlignment="Right" Margin="0,0,10,43" Width="213" Height="156" VerticalAlignment="Bottom" Grid.Column="1">
                     <Rectangle Stroke="Black" d:IsHidden="True"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="SubTotal" VerticalAlignment="Top"/>
+                    <!--Total Venta-->
                     <TextBlock HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding SubTotal, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+                    <!--Descuento-->
                     <TextBlock Foreground="Red" HorizontalAlignment="Right" Margin="0,38.94,10,0" TextWrapping="Wrap" Text="{Binding Descuento, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+                    <!--Total-->
                     <TextBlock HorizontalAlignment="Right" Margin="0,67.88,10,0" TextWrapping="Wrap" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top" FontWeight="Bold"/>
                     <TextBlock HorizontalAlignment="Right" Margin="0,96.82,10,0" TextWrapping="Wrap" Text="{Binding TotalPayment, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Right" Margin="0,125.76,10,0" TextWrapping="Wrap" Text="{Binding Remaining, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
@@ -178,7 +203,8 @@
                     <TextBlock HorizontalAlignment="Left" Margin="10,96.82,0,0" TextWrapping="Wrap" Text="Pagado" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,125.76,0,0" TextWrapping="Wrap" Text="Saldo" VerticalAlignment="Top"/>
                 </Grid>
-                <Grid Margin="0,10,10,237" HorizontalAlignment="Right" Width="287">
+                <Grid Margin="0,10,10,237" HorizontalAlignment="Right" Width="287" Grid.Column="1">
+                    <!--ListBox de  Formas de Pago-->
                     <ListBox SelectedItem="{Binding SelectedPago}" ItemsSource="{Binding Pagos}" Margin="0,0,29,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                         <ListBox.Resources>
                             <DataTemplate x:Key="pagoEF">
@@ -255,12 +281,18 @@
                         </ListBox.ItemsPanel>
                     </ListBox>
                     <Button Command="{Binding MovePagoCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="24" Height="122.94">
+                        <Button.Background>
+                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                        </Button.Background>
                         <Button.CommandParameter>
                             <m:MoveDirection>Up</m:MoveDirection>
                         </Button.CommandParameter>
                         <fa:ImageAwesome Icon="ArrowUp"/>
                     </Button>
                     <Button Command="{Binding MovePagoCommand}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="24" Height="122.94">
+                        <Button.Background>
+                            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                        </Button.Background>
                         <Button.CommandParameter>
                             <m:MoveDirection>Down</m:MoveDirection>
                         </Button.CommandParameter>
@@ -278,8 +310,9 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <Grid Height="124" Margin="10,0,371,75.06" VerticalAlignment="Bottom">
-                    <ListBox SelectedItem="{Binding SelectedPromocion}" ItemsSource="{Binding PromocionesCupones}" Margin="165,0,30,0">
+                <Grid Height="124" Margin="10,0,371,75" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
+                    <!--Lista de Promociones en articulos-->
+                    <ListBox SelectedItem="{Binding SelectedPromocion}" ItemsSource="{Binding PromocionesCupones}" Margin="165,0,30,-30">
                         <ListBox.Resources>
                             <DataTemplate x:Key="promo">
                                 <StackPanel Orientation="Horizontal">
@@ -351,19 +384,21 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+                    <!--Boton Bajar Producto-->
                     <Button Command="{Binding MoveCuponCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" Width="25" Height="46.94">
                         <Button.CommandParameter>
                             <m:MoveDirection>Up</m:MoveDirection>
                         </Button.CommandParameter>
                         <fa:ImageAwesome Icon="ArrowUp"/>
                     </Button>
-                    <Button Command="{Binding MoveCuponCommand}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="25" Height="46.94">
+                    <Button Command="{Binding MoveCuponCommand}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="25" Height="47" Margin="0,0,0,-30">
                         <Button.CommandParameter>
                             <m:MoveDirection>Down</m:MoveDirection>
                         </Button.CommandParameter>
                         <fa:ImageAwesome Icon="ArrowDown"/>
                     </Button>
-                    <ListBox SelectedItem="{Binding SelectedCupon}" ItemsSource="{Binding Cupones}" HorizontalAlignment="Left" Width="160">
+                    <!--Lista de Cupones en Articulos-->
+                    <ListBox SelectedItem="{Binding SelectedCupon}" ItemsSource="{Binding Cupones}" HorizontalAlignment="Left" Width="160" Margin="0,0,0,-30">
                         <ListBox.InputBindings>
                             <KeyBinding Key="Delete" Command="{Binding RemoveCuponCommand}"/>
                         </ListBox.InputBindings>
@@ -381,21 +416,39 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </Grid>
-                <Button Command="{Binding PagarCommand}" Content="Agregar Pago" HorizontalAlignment="Right" Margin="0,0,10,204.06" VerticalAlignment="Bottom" Width="96"/>
-                <TextBox x:Name="scanTextBox" HorizontalAlignment="Right" Height="27" Margin="0,7,302,0" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140" IsEnabled="False">
+                <!--Boton de pagar-->
+                <Button Command="{Binding PagarCommand}" HorizontalAlignment="Right" Margin="0,0,13,204" VerticalAlignment="Bottom" Grid.Column="1">
+                    <fa:ImageAwesome Icon="Dollar" Height="22" Width="44"/>
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                    </Button.Background>
+                </Button>
+                <!-- Textbox de scan serie  -->
+                <TextBox x:Name="scanTextBox" HorizontalAlignment="Right" Height="27" Margin="0,7,302,0" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140" IsEnabled="False" Grid.Column="1">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding AddCommand}"/>
                     </TextBox.InputBindings>
                 </TextBox>
-                <Button Content="Add Desc" Command="{Binding AddDescuentoAdicional}" HorizontalAlignment="Left" Margin="135,0,0,204.06" VerticalAlignment="Bottom" Width="82"/>
-                <Grid Margin="0,0,228,75.06" HorizontalAlignment="Right" Width="138" VerticalAlignment="Bottom">
-                    <Rectangle Stroke="Black"/>
-                    <Image Height="120" Width="120" Source="{Binding SelectedItem.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}" Margin="2" />
+                <!--Boton Descuento Adicional-->
+                <Button Command="{Binding AddDescuentoAdicional}" HorizontalAlignment="Left" Margin="135,0,0,204" VerticalAlignment="Bottom" Height="28">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                    </Button.Background>
+                    <Image x:Name="adddesc" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\descuento.png" />
+                </Button>
+                <Grid Margin="0,0,228,74" HorizontalAlignment="Right" Width="138" Height="157"  VerticalAlignment="Bottom" Grid.Column="1">
+                    <Rectangle Stroke="Black" Margin="0,31,0,-31"/>
+                    <Image Height="120" Width="120" Source="{Binding SelectedItem.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}" Margin="9,50,9,-13.88" />
                 </Grid>
-                <TextBlock Margin="0,10,447,0" TextWrapping="Wrap" Text="{Binding Unidades, Mode=OneWay, StringFormat=Unidades: \{0\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-                <TextBlock Margin="0,0,111,208.06" TextWrapping="Wrap" Text="{Binding Monedero, Mode=OneWay, StringFormat=Dinero Electronico: \{0:C\}}" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
-                <Button Command="{Binding SaleCommand}" Content="Comprar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="96"/>
-                <TextBlock HorizontalAlignment="Right" Margin="0,0,474.353,206.06" TextWrapping="Wrap" VerticalAlignment="Bottom">
+                <TextBlock Margin="0,10,447,0" TextWrapping="Wrap" Text="{Binding Unidades, Mode=OneWay, StringFormat=Unidades: \{0\}}" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
+                <TextBlock Margin="0,0,67,208" TextWrapping="Wrap" Text="{Binding Monedero, Mode=OneWay, StringFormat=Dinero Electronico: \{0:C\}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1"/>
+                <Button Command="{Binding SaleCommand}"  HorizontalAlignment="Right" Margin="0,0,10,3" VerticalAlignment="Bottom" Height="35" Width="49" Grid.Column="1">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                    </Button.Background>
+                    <Image x:Name="image5" Height="23" Width="25" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\ok.png" />
+                </Button>
+                <TextBlock HorizontalAlignment="Right" Margin="0,0,493,206" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}Cliente: {0} {1} {2}">
                             <Binding Path="NuevoCliente.Nombre" />
@@ -404,58 +457,80 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <ItemsControl Height="27.94" Margin="10,0,228,10" VerticalAlignment="Bottom"/>
-                <Button Click="DualButton_Click" Content="Dual" HorizontalAlignment="Right" Margin="0,0,174,10" VerticalAlignment="Bottom" Width="49"/>
-                <TextBox Text="{Binding CuponSearch, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="10,0,0,209" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120">
+                <Button Click="DualButton_Click" Content="Dual" HorizontalAlignment="Right" Margin="0,0,174,10" VerticalAlignment="Bottom" Width="49" Visibility="Hidden" Grid.Column="1">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                    </Button.Background>
+                </Button>
+                <TextBox Text="{Binding CuponSearch, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="27" Margin="10,0,0,205" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding AddCuponCommand}"/>
                     </TextBox.InputBindings>
                 </TextBox>
-                <TextBlock Foreground="Red" Text="{Binding Error}" HorizontalAlignment="Left" Margin="10,0,0,46.12" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+                <TextBlock Foreground="Red" Text="{Binding Error}" HorizontalAlignment="Left" Margin="10,0,0,46" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
                 <!--<Button Content="Validate" HorizontalAlignment="Right" Margin="0,0,302,204.06" VerticalAlignment="Bottom" Width="77"/>-->
-                <Button Content="Load" Command="{Binding LoadClienteCommand}" HorizontalAlignment="Right" Margin="0,0,384,204.06" VerticalAlignment="Bottom" Width="51"/>
-                <Button Content="x" Command="{Binding ClearClienteCommand}" Margin="0,0,440,204.06" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="29.353"/>
-                <CheckBox IsChecked="{Binding ClientConfirmed}" HorizontalAlignment="Right" Margin="0,0,302,208.06" VerticalAlignment="Bottom"/>
-                <Button Command="{Binding TestCommand}" CommandParameter="start" x:Name="button" Content="Iniciar" HorizontalAlignment="Left" Margin="360.143,0,0,42.12" VerticalAlignment="Bottom" Width="62"/>
-                <Button Command="{Binding TestCommand}" CommandParameter="stop" x:Name="button_Copy" Content="Detener" Margin="430.647,0,0,42.94" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="62"/>
-                <Button Command="{Binding AddNotaCommand}" Content="Nota" HorizontalAlignment="Left" Margin="222,0,0,204" Width="75" Height="28" VerticalAlignment="Bottom"/>
-                <Button Content="v" Command="{Binding LoadVendedorCommand}" HorizontalAlignment="Left" Margin="402,6,0,0" VerticalAlignment="Top" Width="20"/>
-                <Button Content="x" Command="{Binding RemoveVendedorCommand}" HorizontalAlignment="Left" Margin="427,6,0,0" VerticalAlignment="Top" Width="20"/>
-
+                <Button Command="{Binding LoadClienteCommand}" HorizontalAlignment="Right" Margin="0,0,403,204" VerticalAlignment="Bottom" Width="51" Grid.Column="1">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                    </Button.Background>
+                    <Image x:Name="addclient" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\cliente.png" Height="23" Width="23" />
+                </Button>
+                <Button Command="{Binding ClearClienteCommand}" Margin="0,0,459,204" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="29" Grid.Column="1">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                    </Button.Background>
+                    <Image x:Name="quitcliente" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\Close.png" />
+                </Button>
+                <CheckBox IsChecked="{Binding ClientConfirmed}" HorizontalAlignment="Right" Margin="0,0,282,208" VerticalAlignment="Bottom" Grid.Column="1"/>
+                <Button Command="{Binding TestCommand}" CommandParameter="start" x:Name="button" Content="Iniciar" HorizontalAlignment="Left" Margin="360,0,0,42" VerticalAlignment="Bottom" Width="62" Visibility="Hidden">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                    </Button.Background>
+                </Button>
+                <Button Command="{Binding TestCommand}" CommandParameter="stop" x:Name="button_Copy" Content="Detener" Margin="431,0,0,43" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="62" Visibility="Hidden">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                    </Button.Background>
+                </Button>
+                <!--Boton Nota-->
+                <Button Command="{Binding AddNotaCommand}" HorizontalAlignment="Left" Margin="222,0,0,204" Width="75" Height="28" VerticalAlignment="Bottom">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                    </Button.Background>
+                    <Image x:Name="añadirnota" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\documento.png" />
+                </Button>
+                <Button Content="v" Command="{Binding LoadVendedorCommand}" HorizontalAlignment="Left" Margin="402,6,0,0" VerticalAlignment="Top" Width="20">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                    </Button.Background>
+                </Button>
+                <Button Command="{Binding RemoveVendedorCommand}" HorizontalAlignment="Left" Margin="427,6,0,0" VerticalAlignment="Top" Width="20" Height="29">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                    </Button.Background>
+                    <Image x:Name="quitvendedor" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\Close.png" />
+                </Button>
             </Grid>
         </tk:BusyIndicator>
 
-        <tk:ChildWindow DesignerWindowState="Open" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="250" Width="250" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Grid>
-                <Button Command="{Binding CloseCommand}" Content="Aceptar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
-                <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Sucursal" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding Sucursal.Clave}" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Left" Margin="10,33.62,0,0" TextWrapping="Wrap" Text="Folio" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Right" Margin="0,33.62,10,0" TextWrapping="Wrap" Text="{Binding SaleResponse.Folio}" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Right" Margin="0,57.24,10,0" TextWrapping="Wrap" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Left" Margin="10,57.24,0,0" TextWrapping="Wrap" Text="Importe" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Right" Margin="0,80.86,10,0" TextWrapping="Wrap" Text="{Binding SaleResponse.Cliente}" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Left" Margin="10,80.86,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top"/>
-                <ListBox ItemsSource="{Binding SaleResponse.ContraVales}" Margin="10,109.8,10,42.94">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock>
-                                    <TextBlock.Text>
-                                        <MultiBinding StringFormat="{}{0} ({1:C})">
-                                            <Binding Path="ContraVale" />
-                                            <Binding Path="Importe" />
-                                        </MultiBinding>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <Button Command="{Binding PrintCommand}" Margin="10,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75">
-                    <Button.Content>
-                        <fa:ImageAwesome Icon="Print" Height="24"></fa:ImageAwesome>
-                    </Button.Content>
+        <tk:ChildWindow DesignerWindowState="Open" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="172" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-9,0,0,0">
+            <tk:ChildWindow.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
+            </tk:ChildWindow.Background>
+            <Grid Margin="0,0,0,45">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="11,17,11,0" TextWrapping="Wrap" Text="La venta se ha concretado exitosamente!!" VerticalAlignment="Top" Height="65" Grid.Column="4" TextAlignment="Center"/>
+                <Button Content="Aceptar" Command="{Binding PrintCommand}" Margin="92,0,92,-31" VerticalAlignment="Bottom" Grid.Column="4" Height="30">
+                    <Button.Background>
+                        <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                    </Button.Background>
                 </Button>
             </Grid>
         </tk:ChildWindow>

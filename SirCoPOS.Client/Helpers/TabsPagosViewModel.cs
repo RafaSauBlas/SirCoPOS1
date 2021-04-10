@@ -44,6 +44,7 @@ namespace SirCoPOS.Client.Helpers
                 { FormaPago.VD, new Models.FormaPagoKey { Enabled = true, Key = Key.F9, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
                 { FormaPago.VE, new Models.FormaPagoKey { Enabled = true, Key = Key.F11, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
                 { FormaPago.CI, new Models.FormaPagoKey { Enabled = true, Key = Key.F12, Duplicate = true, WithClient = false, ClientRequired = false, Credito = true } },
+                { FormaPago.VS, new Models.FormaPagoKey { Enabled = true, Key = Key.J, Duplicate = true, WithClient = false, ClientRequired = false, Credito = true } }
             };
             this.FormasPago = CollectionViewSource.GetDefaultView(_formas);
             this.FormasPago.Filter = k => {
@@ -67,21 +68,21 @@ namespace SirCoPOS.Client.Helpers
                 }
                 return item.Value.Enabled;
             };
-
-            if (!IsInDesignMode)
-            {
-                var proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
-                
-                var formas = proxy.GetFormasPago();
-                foreach (var item in _formas)
-                {
-                    item.Value.Enabled = false;
-                }
-                foreach (var item in formas)
-                {
-                    _formas[item].Enabled = true;
-                }
-            }
+            //=========================================== ESTO OMITE LA EJECUCION DE CAJA Y CAMBIO ===========================
+            //if (!IsInDesignMode)
+            //{
+            //    var proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
+            //    var formas = proxy.GetFormasPago();
+            //    foreach (var item in _formas)
+            //    {
+            //        item.Value.Enabled = false;
+            //    }
+            //    foreach (var item in formas)
+            //    {
+            //        _formas[item].Enabled = true;
+            //    }
+            //}
+            //================================================================================================================
 
             this.AddFormaCommand = new RelayCommand<FormaPago>(fp => {
                 this.ShowPagos = false;

@@ -11,7 +11,7 @@ namespace SirCoPOS.DataAccess
     public partial class SirCoDataContext : BaseDataContext
     {
         public SirCoDataContext()
-            : base("SirCoPruebas")
+            : base("SirCo")
         {
 
         }

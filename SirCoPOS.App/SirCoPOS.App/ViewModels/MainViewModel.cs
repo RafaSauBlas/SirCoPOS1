@@ -59,6 +59,7 @@ namespace SirCoPOS.App.ViewModels
 
                 this.Productos.Clear();
                 this.Pagar = null;
+
             }, () => (this.Total ?? 0) > 0 && this.Pagar == this.Total);
 
             if (this.IsInDesignMode)

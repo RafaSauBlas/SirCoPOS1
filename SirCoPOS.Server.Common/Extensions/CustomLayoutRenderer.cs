@@ -47,16 +47,16 @@ namespace SirCoPOS.Server.Common.Extensions
                         if (isRequest.Value)
                         {
                             var item = xdoc.XPathSelectElement("/x:MessageLogTraceRecord/x:HttpRequest/x:WebHeaders/x:SOAPAction", xnm);
-                            var txt = item.Value.Trim('"');
-                            builder.Append(txt);
+                            //var txt = item.Value.Trim('"');
+                            //builder.Append(txt);
                         }
                         else
                         {
                             xnm.AddNamespace("s", "http://schemas.xmlsoap.org/soap/envelope/");
                             xnm.AddNamespace("y", "http://schemas.microsoft.com/ws/2005/05/addressing/none");
                             var item = xdoc.XPathSelectElement("/x:MessageLogTraceRecord/s:Envelope/s:Header/y:Action", xnm);
-                            var txt = item.Value;
-                            builder.Append(txt);
+                            //var txt = item.Value;
+                            //builder.Append(txt);
                         }
                     }
                     break;
@@ -69,8 +69,8 @@ namespace SirCoPOS.Server.Common.Extensions
                             var item = xdoc.XPathSelectElement("/x:MessageLogTraceRecord/x:HttpRequest/x:WebHeaders/x:UserId", xnm);
                             if (item != null)
                             {
-                                var txt = item.Value;
-                                builder.Append(txt);
+                                //var txt = item.Value;
+                                //builder.Append(txt);
                             }
                         }
                     }
@@ -84,8 +84,8 @@ namespace SirCoPOS.Server.Common.Extensions
                             var item = xdoc.XPathSelectElement("/x:MessageLogTraceRecord/x:HttpRequest/x:WebHeaders/x:Sucursal", xnm);
                             if (item != null)
                             {
-                                var txt = item.Value;
-                                builder.Append(txt);
+                                //var txt = item.Value;
+                                //builder.Append(txt);
                             }
                         }
                     }
@@ -99,8 +99,8 @@ namespace SirCoPOS.Server.Common.Extensions
                             var item = xdoc.XPathSelectElement("/x:MessageLogTraceRecord/x:HttpRequest/x:WebHeaders/x:MachineName", xnm);
                             if (item != null)
                             {
-                                var txt = item.Value;
-                                builder.Append(txt);
+                                //var txt = item.Value;
+                                //builder.Append(txt);
                             }
                         }
                     }

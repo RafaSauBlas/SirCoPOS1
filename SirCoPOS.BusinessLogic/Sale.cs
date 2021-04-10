@@ -294,27 +294,31 @@ namespace SirCoPOS.BusinessLogic
                 p.Id = corrida?.ArticuloId;
                 p.HasImage = qimg.Any();
             }
-
             return model;
-        }        
+        }
+       
+        //========================= CREO QUE SE TENDRÁ QUE CAMBIAR EL METODO ENTERO ===================================================================
+        //ALGO ESTA MAL AQUI, PORQUE EN LA CLASE DE "Process.cs"  SI HACE EL PROCESO (LITERALMENTE ES EL MISMO CODIGO)
         private IEnumerable<Entities.ProductoPromocion> ParseProductos(IEnumerable<Common.Entities.SerieFormasPago> series)
         {
             var ctx = new DataAccess.SirCoDataContext();
             var items = new List<Entities.ProductoPromocion>();
             var count = 0;
             foreach (var sf in series)
-            {
+            {       
                 if (sf.Serie != null)
                 {
-                    var serie = ctx.Series.Include(i => i.Articulo)
-                        .Where(i => i.serie == sf.Serie).Single();
+                    //AQUI ES DONDE SURGE EL ERROR DE ACCESO REMOTO
+                    var serie = ctx.Series.Include(i => i.Articulo).Where(i => i.serie == sf.Serie).Single();
+                    //=============================================
                     var corrida = ctx.GetCorrida(serie);
-
+                    ctx = new DataAccess.SirCoDataContext();
                     items.Add(new Entities.ProductoPromocion
                     {
                         Order = count++,
                         Key = sf.Serie,
                         SerieFormaPago = sf,
+
                         Serie = serie,
                         Corrida = corrida,
                         AgrupacionId = corrida.Articulo.idagrupacion
@@ -325,7 +329,7 @@ namespace SirCoPOS.BusinessLogic
                     var corrida = ctx.Corridas.Where(i => i.ArticuloId == sf.ArticuloId)
                         .OrderByDescending(i => i.ult_vta)
                         .First();
-
+                    ctx = new DataAccess.SirCoDataContext();
                     items.Add(new Entities.ProductoPromocion
                     {
                         Order = count++,
@@ -339,6 +343,20 @@ namespace SirCoPOS.BusinessLogic
             }
             return items;
         }
+        //===========================================================================================================================================
+        public string prueba()
+        {
+            var now = DateTime.Now;
+            var ctx = new DataAccess.SirCoDataContext();
+            var item = ctx.Series.Where(i => i.serie == "0000003524047").Single();
+            var valid = new string[] {
+                Status.AC.ToString(),
+                Status.IF.ToString(),
+                Status.AB.ToString()
+            };
+            return "";
+        }
+        //===========================================================================================================================================
         public IEnumerable<Common.Entities.Promocion> GetPromociones(CheckPromocionesRequest request)
         {
             var today = DateTime.Today;
@@ -352,7 +370,7 @@ namespace SirCoPOS.BusinessLogic
                     && today >= i.iniciopromo
                     && today <= i.finpromo
                     && !i.Cupones.Any())
-                .Select(i => new { 
+                .Select(i => new {
                     promo = i,
                     desc = i.Detalle.Max(k => k.descdirecto),
                     hasFijo = i.Detalle.Where(k => k.impfijo > 0).Any(),
@@ -366,8 +384,8 @@ namespace SirCoPOS.BusinessLogic
                 .ThenByDescending(i => i.desc)
                 .ThenByDescending(i => i.descFijo)
                 .ThenByDescending(i => i.porcDin)
-                .ThenByDescending(i => i.bono)
-                ;
+                .ThenByDescending(i => i.bono);
+
             var res = new List<Common.Entities.Promocion>();
             foreach (var item in q)
             {
@@ -505,6 +523,7 @@ namespace SirCoPOS.BusinessLogic
             var ctx = new DataAccess.SirCoDataContext();
             var ctxc = new DataAccess.SirCoControlDataContext();
 
+            //var ite = prueba(request.Productos);
             var items = ParseProductos(request.Productos);
             var mapping = this.GetFormaPagoMapping();
 
@@ -1353,7 +1372,6 @@ namespace SirCoPOS.BusinessLogic
                 var fp = (Common.Constants.FormaPago)Enum.Parse(typeof(Common.Constants.FormaPago), item.formapago);
                 dic.Add(fp, item.promocion ?? fp.ToString());
             }
-            dic.Add(Common.Constants.FormaPago.VS, "VS");
             return dic;
         }
         private Entities.PromocionValores CheckFormasPago(SerieFormasPago item, Promociones promocion, string tipo, 
@@ -1415,7 +1433,7 @@ namespace SirCoPOS.BusinessLogic
                     && item.Promociones.ContainsKey(sfp)
                     && !item.Promociones[sfp])
                 {
-                    sfp = Common.Constants.FormaPago.VS;
+                  
                 }
                 if (!mapping.ContainsKey(sfp))
                     continue;

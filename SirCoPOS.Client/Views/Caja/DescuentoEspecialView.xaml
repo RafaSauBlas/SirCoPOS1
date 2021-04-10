@@ -9,12 +9,22 @@
         <vm:DescuentoEspecialViewModel></vm:DescuentoEspecialViewModel>
     </UserControl.DataContext>
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+        </Grid.Background>
         <TextBlock HorizontalAlignment="Left" Margin="10,15.68,0,0" TextWrapping="Wrap" Text="Razón" VerticalAlignment="Top"/>
-        <ComboBox x:Name="comboBox" Margin="107.59,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" ItemsSource="{Binding Items}" DisplayMemberPath="Descripcion" SelectedItem="{Binding SelectedItem}"/>
-        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="107.59,44.62,0,0" TextWrapping="Wrap" Text="{Binding SelectedItem.Descuento, StringFormat=\{0:P0\}}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,44.62,0,0" TextWrapping="Wrap" Text="Descuento" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,73.56,0,0" TextWrapping="Wrap" Text="Descripción" VerticalAlignment="Top"/>
-        <TextBox Margin="107.59,72.56,0,0" TextWrapping="Wrap" Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}" Height="23" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
+        <!--Combo Razon Descuento Adicional-->
+        <ComboBox x:Name="comboBox" Margin="107.59,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" ItemsSource="{Binding Items}" DisplayMemberPath="Descripcion" SelectedItem="{Binding SelectedItem}">
+            <ComboBox.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </ComboBox.Background>
+        </ComboBox>
+        <!--Despliegue de % Descuento adicional-->
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="108,55,0,0" TextWrapping="Wrap" Text="{Binding SelectedItem.Descuento, StringFormat=\{0:P0\}}" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,55,0,0" TextWrapping="Wrap" Text="Descuento" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,96,0,0" TextWrapping="Wrap" Text="Descripción" VerticalAlignment="Top"/>
+        <!--TextBox descricpcion Descuento Adicional-->
+        <TextBox Margin="108,93,0,0" TextWrapping="Wrap" Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
 
     </Grid>
 </UserControl>

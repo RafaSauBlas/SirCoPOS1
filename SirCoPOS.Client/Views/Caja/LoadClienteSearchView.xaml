@@ -8,29 +8,49 @@
              xmlns:s="clr-namespace:Microsoft.CSharp;assembly=System"
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance Type={x:Type vm:LoadClienteViewModel}}"
-             Height="200" Width="400" Loaded="UserControl_Loaded">
+             Height="213.974" Width="400" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <c:ImageUrlConverter x:Key="imageUrl"></c:ImageUrlConverter>
     </UserControl.Resources>
     <Grid>
-        <Button Command="{Binding ChangeViewCommand}" CommandParameter="new" x:Name="button" Content="Nuevo" Margin="0,165,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75"/>
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+        </Grid.Background>
+        <!--Boton genera Nuevo Cliente-->
+        <Button Command="{Binding ChangeViewCommand}" CommandParameter="new" x:Name="button"  Margin="0,172,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75">
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </Button.Background>
+            <Image x:Name="agregarcliente" Height="23" Width="25" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\nuev.png" />
+        </Button>
+        <!--Etiqueta cliente-->
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbSearch" HorizontalAlignment="Left" Height="23" Margin="113.85,14.94,0,0" TextWrapping="Wrap" Text="{Binding ClienteSearch, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" VerticalAlignment="Top" Width="120">
+        <!--Captura del idcliente para busqueda-->
+        <TextBox x:Name="tbSearch" HorizontalAlignment="Left" Height="25" Margin="113.85,14.94,0,0" TextWrapping="Wrap" Text="{Binding ClienteSearch, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" VerticalAlignment="Top" Width="120">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="91,84,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Id}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,84,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="114,108,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Nombre}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="114,132,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApPaterno}" VerticalAlignment="Top"/>
-        <TextBlock Margin="114,156,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApMaterno}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,108,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,132,0,0" TextWrapping="Wrap" Text="Ap. Paterno" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,156,0,0" TextWrapping="Wrap" Text="Ap. Materno" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="114,78,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Id}" VerticalAlignment="Top"/>
+        <!--Etiqueta Id-->
+        <TextBlock HorizontalAlignment="Left" Margin="10,78,0,0" TextWrapping="Wrap" Text="Id" VerticalAlignment="Top"/>
+        <!--Nombre Cliente-->
+        <TextBlock HorizontalAlignment="Left" Margin="114,107,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Nombre}" VerticalAlignment="Top"/>
+        <!--Apellido Paterno-->
+        <TextBlock HorizontalAlignment="Left" Margin="114,142,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApPaterno}" VerticalAlignment="Top"/>
+        <!--Apellido Materno-->
+        <TextBlock Margin="114,175,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApMaterno}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <!--Eiqueta Nombre-->
+        <TextBlock HorizontalAlignment="Left" Margin="10,107,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
+        <!--Etiqueta Apellido Paterno-->
+        <TextBlock HorizontalAlignment="Left" Margin="10,142,0,0" TextWrapping="Wrap" Text="Ap. Paterno" VerticalAlignment="Top"/>
+        <!--Etiqueta apellido paterno-->
+        <TextBlock HorizontalAlignment="Left" Margin="10,175,0,0" TextWrapping="Wrap" Text="Ap. Materno" VerticalAlignment="Top"/>
         <Image Source="{Binding Cliente.Id, Converter={StaticResource imageUrl}, ConverterParameter=ClienteUrl}" x:Name="image" HorizontalAlignment="Right" Margin="0,13,10,0" Width="140" Height="140" VerticalAlignment="Top"/>
+        <!--Etiqueta telefono-->
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,43,0,0" TextWrapping="Wrap" Text="Telefono" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox Mask="(000) 000-0000" HorizontalAlignment="Left" Height="23" Margin="114,43,0,0" TextWrapping="Wrap" Text="{Binding ClienteTelefonoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyboardNavigation.TabIndex ="1">
+        <!--Captura de telefono para busqueda-->
+        <xt:MaskedTextBox Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="114,43,0,0" TextWrapping="Wrap" Text="{Binding ClienteTelefonoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyboardNavigation.TabIndex ="1">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </TextBox.InputBindings>

@@ -13,8 +13,8 @@ namespace SirCoPOS.BusinessLogic
             var corrida = ctx.Corridas.Where(i => i.marca == item.marca
                 && i.estilon == item.estilon
                 && i.proveedor == item.proveedors
-                && String.Compare(ctx.ValorMedida(item.medida), ctx.ValorMedida(i.medini)) >= 0
-                && String.Compare(ctx.ValorMedida(item.medida), ctx.ValorMedida(i.medfin)) <= 0
+                && String.Compare(item.medida, i.medini) >= 0
+                && String.Compare(item.medida, i.medfin) <= 0
             ).SingleOrDefault();
             return corrida;
         }
