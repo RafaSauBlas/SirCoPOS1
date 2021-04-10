@@ -1172,6 +1172,7 @@ namespace SirCoPOS.Services
                     };
                     fondo.Caja.FormasPago.Add(cfp);
                 }
+
                 if (rfp.Entregar > 0)
                 {
                     fondo.FormasPago.Add(new DataAccess.SirCoPOS.FondoFormaPago
