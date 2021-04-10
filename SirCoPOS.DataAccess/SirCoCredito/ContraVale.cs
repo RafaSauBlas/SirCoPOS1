@@ -11,6 +11,7 @@ namespace SirCoPOS.DataAccess.SirCoCredito
     [Table("cvale", Schema = "dbo")]
     public class ContraVale
     {
+
         [Key]
         [Column(Order = 0)]
         public string sucursal { get; set; }
