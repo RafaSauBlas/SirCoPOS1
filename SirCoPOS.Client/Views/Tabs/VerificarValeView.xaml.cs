@@ -33,5 +33,13 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             this.txt_buscar.Focus();
         }
+
+        private void TabControl_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+            var tc = (TabControl)sender;
+            var tabs = tc.Items;
+            if (tc.Items.Count > 0)
+                tc.SelectedIndex = 0;
+        }
     }
 }

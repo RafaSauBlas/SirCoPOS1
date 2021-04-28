@@ -28,7 +28,7 @@
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Button.Background>
-            <Image x:Name="limpiar" Height="23" Width="25" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\Limpiar.png" />
+            <Image x:Name="limpiar" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/Limpiar.png" />
         </Button>
 
         <!--Combo Razon, cambio precio nota-->

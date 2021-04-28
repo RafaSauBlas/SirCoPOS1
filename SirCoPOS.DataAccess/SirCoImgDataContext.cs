@@ -15,6 +15,6 @@ namespace SirCoPOS.DataAccess
         {
 
         }
-        public virtual DbSet<ArticuloImg> Imagenes { get; set; }        
+        public virtual DbSet<ArticuloImg> Imagenes { get; set; }
     }
 }

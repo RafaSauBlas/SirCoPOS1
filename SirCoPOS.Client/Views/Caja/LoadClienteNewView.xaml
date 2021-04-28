@@ -16,7 +16,7 @@
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Button.Background>
-            <Image x:Name="cancel" Height="23" Width="25" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\lupa.png" />
+            <Image x:Name="cancel" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/lupa.png" />
         </Button>
         <!--Etiqueta Nombre-->
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="30,9,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>

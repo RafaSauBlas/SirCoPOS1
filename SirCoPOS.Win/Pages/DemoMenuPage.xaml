@@ -20,7 +20,7 @@
         <Button x:Name="button7" Content="Validation" Margin="0,110,10,0" VerticalAlignment="Top" Click="Button7_Click" HorizontalAlignment="Right" Width="75"/>
         <Button x:Name="loginButton" Content="login" HorizontalAlignment="Left" Margin="10,0,0,35" Width="75" Height="20" VerticalAlignment="Bottom" Click="loginButton_Click"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,0,0,60" TextWrapping="Wrap" Text="Sucursal" VerticalAlignment="Bottom"/>
-        <TextBox Text="01" x:Name="sucursalTextBox" HorizontalAlignment="Left" Height="23" Margin="82,0,0,60" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
+        <TextBox Text="06" x:Name="sucursalTextBox" HorizontalAlignment="Left" Height="23" Margin="82,0,0,60" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
         <TextBox IsReadOnly="True" x:Name="cajeroTextBox" HorizontalAlignment="Left" Height="23" Margin="82,0,0,88" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="240"/>
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,0,0,88" TextWrapping="Wrap" Text="Cajero" VerticalAlignment="Bottom"/>
         <Button x:Name="clearButton" Content="clear" HorizontalAlignment="Left" Margin="90,0,0,10" VerticalAlignment="Bottom" Width="75" Click="ClearButton_Click"/>

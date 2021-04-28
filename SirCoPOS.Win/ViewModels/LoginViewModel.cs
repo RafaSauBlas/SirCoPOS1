@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SirCoPOS.Win.ViewModels
 {
@@ -11,47 +12,56 @@ namespace SirCoPOS.Win.ViewModels
         private Common.ServiceContracts.ICommonServiceAsync _proxy;        
         public LoginViewModel()
         {
-            if(!IsInDesignMode)
-                _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.ICommonServiceAsync>();
-
-            this.LoginCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () => {
-                this.IsBusy = true;
-                var pass = this.PasswordHandler();
-                var item = await _proxy.LoginAsync(
-                    sucursal: Properties.Settings.Default.Sucursal, 
-                    user: this.UserName, 
-                    pass: pass);
-                GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
-                    new Messages.LoginResponse { Success = item != null, Empleado = item });
-                this.Password = null;
-                this.UserName = null;
-                this.IsBusy = false;
-            }, () => {
-                return !string.IsNullOrEmpty(this.UserName) && 
-                !string.IsNullOrEmpty(this.Password);
-            });
-
-            this.PropertyChanged += Login_PropertyChanged;
-
-            this.ScanCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () => 
+            try
             {
-                this.Scanning = true;
-                var fh = new Helpers.FingerPrintHelper();
-                if (fh.Connect())
+                if (!IsInDesignMode)
+                    _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.ICommonServiceAsync>();
+
+                this.LoginCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
                 {
-                    var finger = await fh.Scan();
-                    fh.Close();
-                    if (finger != null)
+                    this.IsBusy = true;
+                    var pass = this.PasswordHandler();
+                    var item = await _proxy.LoginAsync(
+                        sucursal: Properties.Settings.Default.Sucursal,
+                        user: this.UserName,
+                        pass: pass);
+                    GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
+                        new Messages.LoginResponse { Success = item != null, Empleado = item });
+                    this.Password = null;
+                    this.UserName = null;
+                    this.IsBusy = false;
+                }, () =>
+                {
+                    return !string.IsNullOrEmpty(this.UserName) &&
+                    !string.IsNullOrEmpty(this.Password);
+                });
+
+                this.PropertyChanged += Login_PropertyChanged;
+
+                this.ScanCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
+                {
+                    this.Scanning = true;
+                    var fh = new Helpers.FingerPrintHelper();
+                    if (fh.Connect())
                     {
-                        var item = _proxy.CheckFingerLogin(Properties.Settings.Default.Sucursal, finger);
-                        GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
-                            new Messages.LoginResponse { Success = item != null, Empleado = item });
-                        this.Password = null;
-                        this.UserName = null;
+                        var finger = await fh.Scan();
+                        fh.Close();
+                        if (finger != null)
+                        {
+                            var item = _proxy.CheckFingerLogin(Properties.Settings.Default.Sucursal, finger);
+                            GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
+                                new Messages.LoginResponse { Success = item != null, Empleado = item });
+                            this.Password = null;
+                            this.UserName = null;
+                        }
                     }
-                }
-                this.Scanning = false;
-            }, () => !this.Scanning);
+                    this.Scanning = false;
+                }, () => !this.Scanning);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("A handled exception just occurred: " + ex.Message, "Exception Sample");
+            }
         }
         private void Login()
         { 

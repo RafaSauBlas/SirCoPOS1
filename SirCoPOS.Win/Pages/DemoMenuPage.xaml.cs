@@ -27,7 +27,7 @@ namespace SirCoPOS.Win.Pages
         public DemoMenuPage()
         {
             InitializeComponent();
-            this.sucursalTextBox.Text = "01";
+            this.sucursalTextBox.Text = "08";
             _loginPage = new Lazy<LoginPage>();
 
             GalaSoft.MvvmLight.Messaging.Messenger.Default.Register<Messages.LoginResponse>(this, lr => {

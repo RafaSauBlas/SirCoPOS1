@@ -70,13 +70,13 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             }, () => !String.IsNullOrEmpty(this.Scan));
             this.SaveCommand = new RelayCommand(() =>
             {
-                var code = Microsoft.VisualBasic.Interaction.InputBox("Codigo Auditor:");
-                var isValid = _proxy.ValidarCodigo(this.Auditor.Id, code);
-                if (!isValid)
-                {
-                    MessageBox.Show("Código no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
+                //var code = Microsoft.VisualBasic.Interaction.InputBox("Codigo Auditor:");
+                //var isValid = _proxy.ValidarCodigo(this.Auditor.Id, code);
+                //if (!isValid)
+                //{
+                //    MessageBox.Show("Código no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                //    return;
+                //}
 
                 var request = new Common.Entities.CorteRequest
                 {

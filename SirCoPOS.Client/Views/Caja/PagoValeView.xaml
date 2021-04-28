@@ -42,10 +42,10 @@
                                 <TextBlock Text="{Binding }"></TextBlock>
                                 <Button Command="{Binding DataContext.OpenFirma, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}">
                                     <Button.CommandParameter>
-                                        <MultiBinding Converter="{StaticResource arr}">
+                                        <!--<MultiBinding Converter="{StaticResource arr}">-->
                                             <Binding Path="DataContext.Vale.Distribuidor.Id" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}" ></Binding>
-                                            <Binding></Binding>
-                                        </MultiBinding>
+                                            <!--<Binding></Binding>
+                                        </MultiBinding>-->
                                     </Button.CommandParameter>
                                     <Image>
                                         <Image.Source>
@@ -56,14 +56,6 @@
                                         </Image.Source>
                                     </Image>
                                 </Button>
-                                <!--<TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding Converter="{StaticResource ResourceKey=imageUrl}" ConverterParameter="FirmaUrl">
-                                    <Binding Path="DataContext.Vale.Distribuidor.Id" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}" ></Binding>
-                                    <Binding></Binding>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>-->
                             </StackPanel>
                         </ScrollViewer>
                     </DataTemplate>

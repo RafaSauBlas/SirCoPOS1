@@ -21,7 +21,7 @@
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Button.Background>
-            <Image x:Name="agregarcliente" Height="23" Width="25" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\nuev.png" />
+            <Image x:Name="agregarcliente" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/nuev.png" />
         </Button>
         <!--Etiqueta cliente-->
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top"/>

@@ -65,7 +65,7 @@
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Button.Background>
-            <Image x:Name="cancel" Height="23" Width="25" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\lupa.png" />
+            <Image x:Name="cancel" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/lupa.png" />
         </Button>
         <TextBlock HorizontalAlignment="Right" Margin="0,128,740,0" TextWrapping="Wrap" Text="{Binding ItemStatus}" VerticalAlignment="Top"/>
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Corridas.Corridas}" HorizontalAlignment="Right" Height="244" Margin="0,23,161,0" VerticalAlignment="Top" Width="257">
