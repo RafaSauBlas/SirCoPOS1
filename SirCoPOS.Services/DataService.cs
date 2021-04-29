@@ -112,6 +112,7 @@ namespace SirCoPOS.Services
         public ValeResponse FindDistribuidor(string id)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
+            var ct = new SirCoPOS.DataAccess.SirCoCredito.Distribuidor();
 
             //var vale = "abc";
             //var valera = ctx.Valeras.Where(i =>
@@ -143,6 +144,7 @@ namespace SirCoPOS.Services
                 ApPaterno = item.apmaterno,
                 Status = item.idestatus.Value,
                 Electronica = item.solocalzado == 0,
+                Electronica2 = item.negext == 0,
                 Plazos = item.idperiodicidad.Value,
                 Promocion = item.promocion == 1,
                 Number = item.distrib,
@@ -273,6 +275,7 @@ namespace SirCoPOS.Services
                 Nombre = item.nombrecompleto,
                 Status = item.idestatus.Value,
                 Electronica = item.solocalzado == 0,
+                Electronica2 = item.negext == 0,
                 Plazos = item.idperiodicidad.Value,
                 Promocion = item.promocion == 1
                 , Number = item.distrib
@@ -609,6 +612,7 @@ namespace SirCoPOS.Services
                 Nombre = item.nombrecompleto,
                 Status = item.idestatus.Value,
                 Electronica = item.solocalzado == 0,
+                Electronica2 = item.negext == 0,
                 ContraVale = item.contravale == 1,
                 Promocion = item.promocion == 1
             };

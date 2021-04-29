@@ -17,6 +17,7 @@ namespace SirCoPOS.Common.Entities
         public bool Electronica { get; set; }        
         public IEnumerable<short> Firmas { get; set; }
         public bool ContraVale { get; set; }
+        public bool Electronica2 { get; set; }
         public bool Promocion { get; set; }
         public decimal? Disponible { get; set; }
         public short Plazos { get; set; }

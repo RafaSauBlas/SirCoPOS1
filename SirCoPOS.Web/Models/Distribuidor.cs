@@ -15,6 +15,7 @@ namespace SirCoPOS.Web.Models
         public string ApMaterno { get; set; }
         public Common.Constants.StatusDistribuidor Status { get; set; }
         public bool Electronica { get; set; }
+        public bool Valeext { get; set; }
         public IEnumerable<short> Firmas { get; set; }
         public bool ContraVale { get; set; }
         public bool Promocion { get; set; }

@@ -46,6 +46,7 @@ namespace SirCoPOS.DataAccess.SirCoCredito
         public short? solocalzado { get; set; }
         public short? idperiodicidad { get; set; }
         public short? contravale { get; set; }
+        public short? negext { get; set; }
         public short? promocion { get; set; }
         public string succtedi { get; set; }
         public string clientedi { get; set; }
