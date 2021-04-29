@@ -28,7 +28,7 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             InitializeComponent();
         }
-
+        //xd
         public void Init()
         {
             this.txt_buscar.Focus();
