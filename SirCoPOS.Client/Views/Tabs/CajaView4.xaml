@@ -31,7 +31,7 @@
         </Grid.RowDefinitions>
         <FrameworkElement x:Name="dummyElement" Grid.RowSpan="2"/>
         <tk:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}" Grid.RowSpan="2">
-            <Grid>
+            <Grid Background="#FFA21616">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="499*"/>
                     <ColumnDefinition Width="601*"/>
