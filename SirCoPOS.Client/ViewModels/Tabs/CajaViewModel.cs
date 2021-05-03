@@ -214,6 +214,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             this.PrintCommand = new RelayCommand(() => {
 
                 _reports.Compra(this.Sucursal.Clave, this.SaleResponse.Folio);
+                this.CloseCommand.Execute(null);
 
             }, () => this.IsComplete);
 

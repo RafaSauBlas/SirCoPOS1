@@ -119,6 +119,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
 
                 _reports.Devolucion(this.Sucursal.Clave, this.Folio);
 
+                this.CloseCommand.Execute(null);
+
             }, () => this.IsComplete);
 
             this.LoadClienteCommand = new RelayCommand(() =>

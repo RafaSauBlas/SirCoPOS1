@@ -1172,7 +1172,6 @@ namespace SirCoPOS.Services
                     };
                     fondo.Caja.FormasPago.Add(cfp);
                 }
-
                 if (rfp.Entregar > 0)
                 {
                     fondo.FormasPago.Add(new DataAccess.SirCoPOS.FondoFormaPago
@@ -1324,7 +1323,7 @@ namespace SirCoPOS.Services
 
             var emp = ctxn.Empleados.Where(i => i.idempleado == idempleado).Single();
             var q = ctx.Cajas.Where(i => i.Sucursal == sucursal
-                && i.Disponible == 0 &&  !i.ResponsableId.HasValue
+                && i.Disponible == 0 && !i.ResponsableId.HasValue
                 && !i.Fondos.Where(f => !f.FechaCierre.HasValue).Any());
             if (emp.idpuesto == (int)Common.Constants.Puesto.CJA)
             {

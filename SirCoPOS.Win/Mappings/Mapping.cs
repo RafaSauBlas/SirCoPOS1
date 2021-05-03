@@ -22,6 +22,10 @@ namespace SirCoPOS.Win.Mappings
             map.CreateMap<Common.Entities.Reports.Producto, SirCoPOS.Reports.Entities.Producto>();
             map.CreateMap<Common.Entities.Reports.Pago, SirCoPOS.Reports.Entities.Pago>();
             map.CreateMap<Common.Entities.Reports.PlanPago, SirCoPOS.Reports.Entities.PlanPago>();
+            map.CreateMap<Common.Entities.Reports.PlanPagoDetalle, SirCoPOS.Reports.Entities.PlanPagoDetalle>();
+            map.CreateMap<Common.Entities.Reports.ReciboContraVale, SirCoPOS.Reports.Entities.ContraVale>();
+            map.CreateMap<Common.Entities.Reports.TicketMensaje, SirCoPOS.Reports.Entities.TicketMensaje>();
+
         }
     }
 }

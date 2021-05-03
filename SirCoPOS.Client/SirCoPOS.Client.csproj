@@ -79,10 +79,6 @@
     <Reference Include="RSG.Promise, Version=3.0.1.0, Culture=neutral, PublicKeyToken=7019fe0722eef3a4, processorArchitecture=MSIL">
       <HintPath>..\packages\RSG.Promise.3.0.1\lib\net35\RSG.Promise.dll</HintPath>
     </Reference>
-    <Reference Include="SirCoPOS.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\SirCoPOS.Client.dll</HintPath>
-    </Reference>
     <Reference Include="SirCoPOS.Services">
       <HintPath>..\SirCoPOS.Services\bin\Debug\SirCoPOS.Services.dll</HintPath>
     </Reference>
@@ -148,6 +144,7 @@
     <Compile Include="Helpers\ModalViewModelBase.cs" />
     <Compile Include="Helpers\PagoViewModel.cs" />
     <Compile Include="Helpers\Parsers.cs" />
+    <Compile Include="Helpers\PrintFile.cs" />
     <Compile Include="Helpers\ReportsHelper.cs" />
     <Compile Include="Helpers\ServiceClient.cs" />
     <Compile Include="Helpers\TabsPagosViewModel.cs" />

@@ -16,7 +16,8 @@ namespace SirCoPOS.DataAccess.SirCoControl
         public int idestado { get; set; }
         //[Key]
         //[Column(Order = 1)]
-        public string estado { get; set; }        
+        public string estado { get; set; }
+        public string abrev { get; set; }
         public virtual ICollection<Ciudad> Ciudades { get; set; }
     }
 }

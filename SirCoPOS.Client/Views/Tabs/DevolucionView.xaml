@@ -82,13 +82,12 @@
         <xt:ChildWindow DesignerWindowState="Open" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="160" Width="200" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid>
                 <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Sucursal" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding Sucursal.Clave}" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding Sucursal.Clave}" VerticalAlignment="Top" Width="29"/>
                 <TextBlock HorizontalAlignment="Left" Margin="10,33.62,0,0" TextWrapping="Wrap" Text="Folio" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Margin="10,57.24,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Right" Margin="0,33.62,10,0" TextWrapping="Wrap" Text="{Binding Folio}" VerticalAlignment="Top"/>
                 <TextBlock Text="{Binding ClienteId}" HorizontalAlignment="Right" Margin="0,57.24,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                <Button Command="{Binding CloseCommand}" Content="Aceptar" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="75" Margin="0,0,10,10"/>
-                <Button Command="{Binding PrintCommand}" Margin="10,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="75">
+                <Button Command="{Binding PrintCommand}" Margin="57,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="77">
                     <Button.Content>
                         <fa:ImageAwesome Icon="Print" Height="24"></fa:ImageAwesome>
                     </Button.Content>

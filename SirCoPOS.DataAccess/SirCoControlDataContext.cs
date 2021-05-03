@@ -31,5 +31,6 @@ namespace SirCoPOS.DataAccess
         public virtual DbSet<Parametro> Parametros { get; set; }
         public virtual DbSet<NegocioExterno> NegociosExternos { get; set; }
         public virtual DbSet<MotivoCancelacion> MotivosCancelacion { get; set; }
+        public virtual DbSet<TicketMsj> TicketMsjs { get; set; }
     }
 }

@@ -44,7 +44,7 @@ namespace SirCoPOS.Win.ViewModels
             {
                 this.User = "user";
                 this.Version = "1.0.0.0";
-                this.Sucursal = "06";                
+                this.Sucursal = "01";                
             }
             else
             {

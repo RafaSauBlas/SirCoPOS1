@@ -1,9 +1,8 @@
-﻿<UserControl x:Class="SirCoPOS.Client.Views.Tabs.CajaView4"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d"              
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              xmlns:c="clr-namespace:SirCoPOS.Client.Converters"
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
              xmlns:vmd="clr-namespace:SirCoPOS.Client.DesignMode.ViewModels"
@@ -13,17 +12,19 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:m="clr-namespace:SirCoPOS.Client.Models"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             d:DataContext="{d:DesignInstance Type=vmd:CajaViewModel, IsDesignTimeCreatable=True}"
+             xmlns:local="clr-namespace:SirCoPOS.Client.Views.Tabs" x:Class="SirCoPOS.Client.Views.Tabs.CajaView4" 
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vmd:CajaViewModel}}"
              d:DesignHeight="600" d:DesignWidth="1100">
-    <UserControl.DataContext>
-        <vm:CajaViewModel></vm:CajaViewModel>
-    </UserControl.DataContext>
     <UserControl.Resources>
-        <c:WindowStateConverter x:Key="windowState"></c:WindowStateConverter>
+        <c:WindowStateConverter x:Key="windowState"/>
         <c:ImageUrlConverter x:Key="imageUrl" />
-        <BooleanToVisibilityConverter x:Key="boolConv"></BooleanToVisibilityConverter>
-        <c:ValueVisibilityConverter x:Key="valvis"></c:ValueVisibilityConverter>
+        <BooleanToVisibilityConverter x:Key="boolConv"/>
+        <c:ValueVisibilityConverter x:Key="valvis"/>
     </UserControl.Resources>
+    <UserControl.DataContext>
+        <vm:CajaViewModel/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="293*"/>
@@ -31,7 +32,7 @@
         </Grid.RowDefinitions>
         <FrameworkElement x:Name="dummyElement" Grid.RowSpan="2"/>
         <tk:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}" Grid.RowSpan="2">
-            <Grid Background="{x:Null}">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="499*"/>
                     <ColumnDefinition Width="601*"/>
@@ -43,25 +44,22 @@
                     </Grid.ColumnDefinitions>
                     <!--Data Grid de Articulos-->
                     <DataGrid AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserAddRows="False" ItemsSource="{Binding Productos}" SelectedItem="{Binding SelectedItem}" Margin="0,0,29,0.06" Grid.ColumnSpan="2">
-                        <DataGrid.InputBindings>
-                            <!--<KeyBinding Key="Delete" Command="{Binding RemoveCommand}"></KeyBinding>-->
-                        </DataGrid.InputBindings>
                         <DataGrid.RowStyle>
-                            <Style TargetType="DataGridRow">
+                            <Style TargetType="{x:Type DataGridRow}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Pagado}" Value="True">
-                                        <Setter Property="Background" Value="LightGreen"></Setter>
-                                        <Setter Property="Foreground" Value="Black"></Setter>
+                                        <Setter Property="Background" Value="LightGreen"/>
+                                        <Setter Property="Foreground" Value="Black"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </DataGrid.RowStyle>
                         <DataGrid.CellStyle>
-                            <Style TargetType="DataGridCell">
+                            <Style TargetType="{x:Type DataGridCell}">
                                 <Style.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Background" Value="#FF061753"></Setter>
-                                        <Setter Property="Foreground" Value="White"></Setter>
+                                        <Setter Property="Background" Value="#FF061753"/>
+                                        <Setter Property="Foreground" Value="White"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -70,7 +68,7 @@
                             <DataGridTemplateColumn Header="Plazos">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding HasPlazos}"></TextBlock>
+                                        <TextBlock Text="{Binding HasPlazos}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
@@ -78,7 +76,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Grid>
-                                            <fa:ImageAwesome Height="20" Icon="Mobile" Visibility="{Binding Electronica, Converter={StaticResource boolConv}}"></fa:ImageAwesome>
+                                            <fa:ImageAwesome Height="20" Icon="Mobile" Visibility="{Binding Electronica, Converter={StaticResource boolConv}}"/>
                                         </Grid>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -104,8 +102,8 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Precio, StringFormat=\{0:C\}}"></TextBlock>
-                                            <fa:ImageAwesome Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=DataGridCell}}" Height="15" Icon="Pencil" Visibility="{Binding IsPrecioEdited, Converter={StaticResource boolConv}}"></fa:ImageAwesome>
+                                            <TextBlock Text="{Binding Precio, StringFormat=\{0:C\}}"/>
+                                            <fa:ImageAwesome Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Height="15" Icon="Pencil" Visibility="{Binding IsPrecioEdited, Converter={StaticResource boolConv}}"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
@@ -121,8 +119,8 @@
                                         <TextBlock Visibility="{Binding PromocionId, Converter={StaticResource valvis}}">
                                             <TextBlock.Text>
                                                 <MultiBinding StringFormat="{}{0}({1})">
-                                                    <Binding Path="PromocionId"></Binding>
-                                                    <Binding Path="Index"></Binding>
+                                                    <Binding Path="PromocionId"/>
+                                                    <Binding Path="Index"/>
                                                 </MultiBinding>
                                             </TextBlock.Text>
                                         </TextBlock>
@@ -139,7 +137,7 @@
                                         <ListView ItemsSource="{Binding FormasPago}">
                                             <ListView.ItemsPanel>
                                                 <ItemsPanelTemplate>
-                                                    <StackPanel Orientation="Horizontal"></StackPanel>
+                                                    <StackPanel Orientation="Horizontal"/>
                                                 </ItemsPanelTemplate>
                                             </ListView.ItemsPanel>
                                             <ListView.ItemTemplate>
@@ -302,7 +300,7 @@
                 </Grid>
                 <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
                     <TextBlock.Text>
-                        <MultiBinding StringFormat="{}Vendedor: {1} {2} {3}">
+                        <MultiBinding StringFormat="Vendedor: {1} {2} {3}">
                             <Binding Path="Vendedor.Clave" />
                             <Binding Path="Vendedor.Nombre" />
                             <Binding Path="Vendedor.ApellidoPaterno" />
@@ -316,7 +314,7 @@
                         <ListBox.Resources>
                             <DataTemplate x:Key="promo">
                                 <StackPanel Orientation="Horizontal">
-                                    <CheckBox IsChecked="{Binding Enabled}" Padding="5,0,0,0"></CheckBox>
+                                    <CheckBox IsChecked="{Binding Enabled}" Padding="5,0,0,0"/>
                                     <fa:ImageAwesome Visibility="{Binding HasCliente, Converter={StaticResource boolConv}}" Icon="User" Height="10" Margin="0,0,5,0" />
                                     <TextBlock>
                                         <TextBlock.Text>
@@ -349,10 +347,10 @@
                             </DataTemplate>
                         </ListBox.Resources>
                         <ListBox.ItemContainerStyle>
-                            <Style TargetType="ListBoxItem">
+                            <Style TargetType="{x:Type ListBoxItem}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Used}" Value="True">
-                                        <Setter Property="Background" Value="LightGreen"></Setter>
+                                        <Setter Property="Background" Value="LightGreen"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -418,10 +416,10 @@
                 </Grid>
                 <!--Boton de pagar-->
                 <Button Command="{Binding PagarCommand}" HorizontalAlignment="Right" Margin="0,0,13,204" VerticalAlignment="Bottom" Grid.Column="1">
-                    <fa:ImageAwesome Icon="Dollar" Height="22" Width="44"/>
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
+                    <fa:ImageAwesome Icon="Dollar" Height="22" Width="44"/>
                 </Button>
                 <!-- Textbox de scan serie  -->
                 <TextBox x:Name="scanTextBox" HorizontalAlignment="Right" Height="27" Margin="0,7,302,0" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140" IsEnabled="False" Grid.Column="1">
@@ -434,7 +432,7 @@
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
-                    <Image x:Name="adddesc" Source="/SirCoPOS.Win;component/Images/descuento.png" />
+                    <Image x:Name="adddesc" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\descuento.png" />
                 </Button>
                 <Grid Margin="0,0,228,74" HorizontalAlignment="Right" Width="138" Height="157"  VerticalAlignment="Bottom" Grid.Column="1">
                     <Rectangle Stroke="Black" Margin="0,31,0,-31"/>
@@ -446,11 +444,11 @@
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
-                    <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
+                    <Image x:Name="image5" Height="23" Width="25" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\ok.png" />
                 </Button>
                 <TextBlock HorizontalAlignment="Right" Margin="0,0,493,206" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
                     <TextBlock.Text>
-                        <MultiBinding StringFormat="{}Cliente: {0} {1} {2}">
+                        <MultiBinding StringFormat="Cliente: {0} {1} {2}">
                             <Binding Path="NuevoCliente.Nombre" />
                             <Binding Path="NuevoCliente.ApPaterno" />
                             <Binding Path="NuevoCliente.ApMaterno" />
@@ -473,13 +471,13 @@
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
-                    <Image x:Name="addclient" Source="/SirCoPOS.Win;component/Images/cliente.png" Height="23" Width="23" />
+                    <Image x:Name="addclient" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\cliente.png" Height="23" Width="23" />
                 </Button>
                 <Button Command="{Binding ClearClienteCommand}" Margin="0,0,459,204" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="29" Grid.Column="1">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
-                    <Image x:Name="quitcliente" Source="/SirCoPOS.Win;component/Images/Close.png" />
+                    <Image x:Name="quitcliente" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\Close.png" />
                 </Button>
                 <CheckBox IsChecked="{Binding ClientConfirmed}" HorizontalAlignment="Right" Margin="0,0,282,208" VerticalAlignment="Bottom" Grid.Column="1"/>
                 <Button Command="{Binding TestCommand}" CommandParameter="start" x:Name="button" Content="Iniciar" HorizontalAlignment="Left" Margin="360,0,0,42" VerticalAlignment="Bottom" Width="62" Visibility="Hidden">
@@ -497,7 +495,7 @@
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
-                    <Image x:Name="añadirnota" Source="/SirCoPOS.Win;component/Images/documento.png" />
+                    <Image x:Name="añadirnota" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\documento.png" />
                 </Button>
                 <Button Content="v" Command="{Binding LoadVendedorCommand}" HorizontalAlignment="Left" Margin="402,6,0,0" VerticalAlignment="Top" Width="20">
                     <Button.Background>
@@ -508,29 +506,38 @@
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
-                    <Image x:Name="quitvendedor" Source="/SirCoPOS.Win;component/Images/Close.png" />
+                    <Image x:Name="quitvendedor" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\Close.png" />
                 </Button>
             </Grid>
         </tk:BusyIndicator>
 
-        <tk:ChildWindow DesignerWindowState="Open" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="172" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-9,0,0,0">
+        <tk:ChildWindow DesignerWindowState="Open" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="197" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-38,0,0,0">
             <tk:ChildWindow.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
             </tk:ChildWindow.Background>
-            <Grid Margin="0,0,0,45">
+            <Grid Margin="0,10,4,89">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0*"/>
                     <ColumnDefinition Width="0*"/>
                     <ColumnDefinition Width="0*"/>
                     <ColumnDefinition Width="0*"/>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="0*"/>
+
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="11,17,11,0" TextWrapping="Wrap" Text="La venta se ha concretado exitosamente!!" VerticalAlignment="Top" Height="65" Grid.Column="4" TextAlignment="Center"/>
-                <Button Content="Aceptar" Command="{Binding PrintCommand}" Margin="92,0,92,-31" VerticalAlignment="Bottom" Grid.Column="4" Height="30">
-                    <Button.Background>
+                <TextBlock Margin="11,9,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Grid.Column="4" TextAlignment="Center" FontFamily="Trebuchet MS" FontSize="14" Text="Se generó la Venta"/>
+
+                <TextBlock HorizontalAlignment="Left" Margin="70,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="5" Height="25" Width="60" FontFamily="Arial Narrow"><Run Text="Sucursal"/><Run Text="  :"/></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Margin="0,45,79,-10" TextWrapping="Wrap" Text="{Binding Sucursal.Descripcion}" VerticalAlignment="Top" Grid.ColumnSpan="5" Width="81" FontFamily="Arial" Height="23" />
+                <TextBlock HorizontalAlignment="Left" Margin="62,73,0,-29" TextWrapping="Wrap" Text="Total Venta :" Grid.ColumnSpan="5" Height="25" Width="70" FontFamily="Arial Narrow"/>
+                <TextBlock Margin="0,73,98.333,-31" TextWrapping="Wrap" Text="{Binding Total, StringFormat='{}{0:C2}'}" Grid.ColumnSpan="5" Width="68.667" FontSize="10" HorizontalAlignment="Right" UseLayoutRounding="False" FontWeight="Bold" TextAlignment="Right"/>
+
+                <Button Command="{Binding PrintCommand}" Margin="98,107,107,-85" Grid.Column="4">
+                    <Button.Content>
+                        <fa:ImageAwesome Icon="Print" Height="24"></fa:ImageAwesome>
+                    </Button.Content>
+                    <!--<Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
-                    </Button.Background>
+                    </Button.Background>-->
                 </Button>
             </Grid>
         </tk:ChildWindow>
@@ -549,7 +556,7 @@
                                 <Button Width="60" Height="60" Margin="0,0,10,10" IsEnabled="{Binding Value.Enabled}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
-                                            <i:InvokeCommandAction CommandParameter="{Binding Key}" Command="{Binding DataContext.AddFormaCommand, ElementName=dummyElement}"></i:InvokeCommandAction>
+                                            <i:InvokeCommandAction CommandParameter="{Binding Key}" Command="{Binding DataContext.AddFormaCommand, ElementName=dummyElement}"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                     <TextBlock><Run Text="{Binding Key, Mode=OneWay}"/><Run Text=" "/><Run Text="("/><Run Text="{Binding Value.KeyStr, Mode=OneWay}"/><Run Text=")"/></TextBlock>

@@ -10,11 +10,14 @@ namespace SirCoPOS.Common.Entities.Reports
     { 
         public ReciboDevolucion Recibo { get; set; }
         public IEnumerable<Producto> Productos { get; set; }
+        public IEnumerable<Pago> Pagos { get; set; }
     }
     public class ReciboDevolucion
     {
         public string SucursalId { get; set; }
         public string SucursalNombre { get; set; }
+        public string Direccion { get; set; }
+        public string Colonia { get; set; }
         public string Folio { get; set; }
         public DateTime Fecha { get; set; }
         public DateTime FechaVenta { get; set; }
@@ -26,4 +29,5 @@ namespace SirCoPOS.Common.Entities.Reports
         public string VendedorNombre { get; set; }
         public string Observaciones { get; set; }        
     }
+
 }

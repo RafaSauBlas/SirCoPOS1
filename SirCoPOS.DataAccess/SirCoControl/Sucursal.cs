@@ -20,6 +20,9 @@ namespace SirCoPOS.DataAccess.SirCoControl
         public string descrip { get; set; }
         public string calle { get; set; }
         public string colonia { get; set; }
+        public string ciudad { get; set; }
+        public string estado { get; set; }
+        public string codpostal { get; set; }
         public string visible { get; set; }
         public int? cajas { get; set; }
         public int? devolvta { get; set; }

@@ -10,6 +10,8 @@ namespace SirCoPOS.Reports.Entities
     {
         public string SucursalId { get; set; }
         public string SucursalNombre { get; set; }
+        public string Direccion { get; set; }
+        public string Colonia { get; set; }
         public string Folio { get; set; }
         public DateTime Fecha { get; set; }
         public DateTime FechaVenta { get; set; }
