@@ -432,7 +432,7 @@
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
-                    <Image x:Name="adddesc" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\descuento.png" />
+                    <Image x:Name="adddesc" Source="..\..\..\SirCoPOS.Win\Images\descuento.png" />
                 </Button>
                 <Grid Margin="0,0,228,74" HorizontalAlignment="Right" Width="138" Height="157"  VerticalAlignment="Bottom" Grid.Column="1">
                     <Rectangle Stroke="Black" Margin="0,31,0,-31"/>
@@ -444,7 +444,7 @@
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
-                    <Image x:Name="image5" Height="23" Width="25" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\ok.png" />
+                    <Image x:Name="image5" Height="23" Width="25" Source="..\..\..\SirCoPOS.Win\Images\ok.png" />
                 </Button>
                 <TextBlock HorizontalAlignment="Right" Margin="0,0,493,206" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
                     <TextBlock.Text>
@@ -471,13 +471,13 @@
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
-                    <Image x:Name="addclient" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\cliente.png" Height="23" Width="23" />
+                    <Image x:Name="addclient" Source="..\..\..\SirCoPOS.Win\Images\cliente.png" Height="23" Width="23" />
                 </Button>
                 <Button Command="{Binding ClearClienteCommand}" Margin="0,0,459,204" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="29" Grid.Column="1">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
-                    <Image x:Name="quitcliente" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\Close.png" />
+                    <Image x:Name="quitcliente" Source="..\..\..\SirCoPOS.Win\Images\Close.png" />
                 </Button>
                 <CheckBox IsChecked="{Binding ClientConfirmed}" HorizontalAlignment="Right" Margin="0,0,282,208" VerticalAlignment="Bottom" Grid.Column="1"/>
                 <Button Command="{Binding TestCommand}" CommandParameter="start" x:Name="button" Content="Iniciar" HorizontalAlignment="Left" Margin="360,0,0,42" VerticalAlignment="Bottom" Width="62" Visibility="Hidden">
@@ -495,7 +495,7 @@
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
-                    <Image x:Name="añadirnota" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\documento.png" />
+                    <Image x:Name="añadirnota" Source="..\..\..\SirCoPOS.Win\Images\documento.png" />
                 </Button>
                 <Button Content="v" Command="{Binding LoadVendedorCommand}" HorizontalAlignment="Left" Margin="402,6,0,0" VerticalAlignment="Top" Width="20">
                     <Button.Background>
@@ -506,7 +506,7 @@
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
-                    <Image x:Name="quitvendedor" Source="C:\Users\ZTMTPC01\Desktop\SirCoPOS\SirCoPOS\SirCoPOS.Win\Images\Close.png" />
+                    <Image x:Name="quitvendedor" Source="..\..\..\SirCoPOS.Win\Images\Close.png" />
                 </Button>
             </Grid>
         </tk:BusyIndicator>
