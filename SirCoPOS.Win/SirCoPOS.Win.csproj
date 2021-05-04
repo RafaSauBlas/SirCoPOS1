@@ -648,6 +648,22 @@
     </Content>
     <Resource Include="Pages\Back.png" />
     <Resource Include="Pages\Desert.jpg" />
+    <Resource Include="Images\documento.png" />
+    <Resource Include="Images\OK.png" />
+    <Resource Include="Images\accept.png" />
+    <Resource Include="Images\cancel1.png" />
+    <Resource Include="Images\cancel.png" />
+    <Resource Include="Images\cliente.png" />
+    <Resource Include="Images\Close.png" />
+    <Resource Include="Images\Credito.png" />
+    <Resource Include="Images\document-new.png" />
+    <Resource Include="Images\door_out.png" />
+    <Resource Include="Images\Editar.png" />
+    <Resource Include="Images\Limpiar.png" />
+    <Resource Include="Images\lupa.png" />
+    <Resource Include="Images\nuev.png" />
+    <Resource Include="Images\descuento.png" />
+    <Resource Include="Images\database_refresh.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
