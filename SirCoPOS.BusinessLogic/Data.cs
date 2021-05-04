@@ -256,7 +256,7 @@ namespace SirCoPOS.BusinessLogic
             return res;
         }
         public int tipo;
-        public Empleado Login(string user, string pass)
+        public Empleado Login(string sucursal,string user, string pass)
         {
             var puestos = new int[] {
                 (int)Common.Constants.Puesto.CJA,
@@ -268,7 +268,8 @@ namespace SirCoPOS.BusinessLogic
                 i.password.Trim() == pass
                 && i.iddepto == (int)Common.Constants.Departamento.TDA
                 && puestos.Contains(i.idpuesto)
-                && i.estatus == "A").SingleOrDefault();
+                && i.estatus == "A"
+                && i.clave.Substring(0, 2) == sucursal).SingleOrDefault();
             //if (!int.TryParse(user, out id))
             //    return null;
             //if (pass != "123")
