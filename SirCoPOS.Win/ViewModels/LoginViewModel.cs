@@ -22,7 +22,7 @@ namespace SirCoPOS.Win.ViewModels
                     this.IsBusy = true;
                     var pass = this.PasswordHandler();
                     var item = await _proxy.LoginAsync(
-                        sucursal: Properties.Settings.Default.Sucursal,
+                        sucursal: "08",
                         user: this.UserName,
                         pass: pass);
                     GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(

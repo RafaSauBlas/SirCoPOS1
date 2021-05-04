@@ -16,7 +16,7 @@ namespace SirCoPOS.Win
         }
         public Empleado Login(string sucursal, string user, string pass)
         {
-            return _helpers.Login(user, pass);
+            return _helpers.Login(sucursal, user, pass);
         }
         public Empleado FindVendedor(int id)
         {
