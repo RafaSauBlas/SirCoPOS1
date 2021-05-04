@@ -202,7 +202,13 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
             short? contravale = 0;
             if (distrib != "")
             {
-                contravale = ctxcr.Distribuidores.Where(i => i.distrib == distrib).SingleOrDefault().contravale;
+
+                //contravale = ctxcr.Distribuidores.Where(i => i.distrib == distrib).SingleOrDefault().contravale;
+                var cvale = ctxcr.ContraVales.Where(i => (i.referenc == venta.venta) && (i.sucursal == sucursal));
+                if (cvale.Any())
+                {
+                    contravale = 1;
+                }
             }
 
             ReciboCompraReport item = new ReciboCompraReport
