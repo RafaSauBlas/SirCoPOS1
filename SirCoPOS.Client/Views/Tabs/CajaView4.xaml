@@ -525,7 +525,7 @@
 
                 </Grid.ColumnDefinitions>
                 <TextBlock Margin="22,9,38,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Grid.Column="4" TextAlignment="Left" FontFamily="Trebuchet MS" FontSize="14"><Run Text="Se generó la Venta"/><Run Text=" con folio :"/><Run Text="   "/></TextBlock>
-                <TextBlock HorizontalAlignment="Right" Margin="0,8,27,0" TextWrapping="Wrap" Text="{Binding SaleResponse.Folio}" Height="24" Grid.ColumnSpan="5"  Width="64" FontFamily="Arial" FontSize="14"/>
+                <TextBlock HorizontalAlignment="Right" Margin="0,10,27,34" TextWrapping="Wrap" Text="{Binding SaleResponse.Folio}" Grid.ColumnSpan="5"  Width="64" FontFamily="Arial" FontSize="14"/>
                 <TextBlock HorizontalAlignment="Left" Margin="62,44,0,-5" TextWrapping="Wrap" Height="25" Width="68" FontFamily="Arial Narrow" Grid.ColumnSpan="5" ><Run Text="Sucursal"/><Run Text="  :"/></TextBlock>
                 <TextBlock HorizontalAlignment="Right" Margin="0,44,79,-4" TextWrapping="Wrap" Text="{Binding Sucursal.Descripcion}" VerticalAlignment="Top" Grid.ColumnSpan="5" Width="81" FontFamily="Arial" Height="24" />
                 <TextBlock HorizontalAlignment="Left" Margin="62,73,0,-29" TextWrapping="Wrap" Text="Total Venta :" Grid.ColumnSpan="5" Height="25" Width="70" FontFamily="Arial Narrow"/>
@@ -539,7 +539,7 @@
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>-->
                 </Button>
-                
+
             </Grid>
         </tk:ChildWindow>
 
