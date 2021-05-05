@@ -27,7 +27,7 @@ namespace SirCoPOS.Win.Pages
         public DemoMenuPage()
         {
             InitializeComponent();
-            this.sucursalTextBox.Text = "08";
+            //this.sucursalTextBox.Text = "01";
             _loginPage = new Lazy<LoginPage>();
 
             GalaSoft.MvvmLight.Messaging.Messenger.Default.Register<Messages.LoginResponse>(this, lr => {
@@ -36,7 +36,7 @@ namespace SirCoPOS.Win.Pages
                     var cajero = lr.Empleado;
                     this.cajeroTextBox.Text = $"{cajero.Nombre} {cajero.ApellidoPaterno} {cajero.ApellidoMaterno}";
                     this.sucursalTextBox.IsReadOnly = true;
-                    Properties.Settings.Default.Sucursal = this.sucursalTextBox.Text;
+                    //Properties.Settings.Default.Sucursal = this.sucursalTextBox.Text;
                     Properties.Settings.Default.Cajero = cajero.Usuario;
                     Properties.Settings.Default.Save();
                 }

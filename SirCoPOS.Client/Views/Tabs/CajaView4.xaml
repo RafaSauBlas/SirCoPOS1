@@ -524,12 +524,12 @@
                     <ColumnDefinition/>
 
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="11,9,11,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Grid.Column="4" TextAlignment="Center" FontFamily="Trebuchet MS" FontSize="14" Text="Se generó la Venta"/>
-
-                <TextBlock HorizontalAlignment="Left" Margin="70,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="5" Height="25" Width="60" FontFamily="Arial Narrow"><Run Text="Sucursal"/><Run Text="  :"/></TextBlock>
-                <TextBlock HorizontalAlignment="Right" Margin="0,45,79,-10" TextWrapping="Wrap" Text="{Binding Sucursal.Descripcion}" VerticalAlignment="Top" Grid.ColumnSpan="5" Width="81" FontFamily="Arial" Height="23" />
+                <TextBlock Margin="22,9,38,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Grid.Column="4" TextAlignment="Left" FontFamily="Trebuchet MS" FontSize="14"><Run Text="Se generó la Venta"/><Run Text=" con folio :"/><Run Text="   "/></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Margin="0,10,27,34" TextWrapping="Wrap" Text="{Binding SaleResponse.Folio}" Grid.ColumnSpan="5"  Width="64" FontFamily="Arial" FontSize="14"/>
+                <TextBlock HorizontalAlignment="Left" Margin="62,44,0,-5" TextWrapping="Wrap" Height="25" Width="68" FontFamily="Arial Narrow" Grid.ColumnSpan="5" ><Run Text="Sucursal"/><Run Text="  :"/></TextBlock>
+                <TextBlock HorizontalAlignment="Right" Margin="0,44,79,-4" TextWrapping="Wrap" Text="{Binding Sucursal.Descripcion}" VerticalAlignment="Top" Grid.ColumnSpan="5" Width="81" FontFamily="Arial" Height="24" />
                 <TextBlock HorizontalAlignment="Left" Margin="62,73,0,-29" TextWrapping="Wrap" Text="Total Venta :" Grid.ColumnSpan="5" Height="25" Width="70" FontFamily="Arial Narrow"/>
-                <TextBlock Margin="0,73,98.333,-31" TextWrapping="Wrap" Text="{Binding Total, StringFormat='{}{0:C2}'}" Grid.ColumnSpan="5" Width="68.667" FontSize="10" HorizontalAlignment="Right" UseLayoutRounding="False" FontWeight="Bold" TextAlignment="Right"/>
+                <TextBlock Margin="0,73,79,-31" TextWrapping="Wrap" Text="{Binding Total, StringFormat='{}{0:C2}'}" Grid.ColumnSpan="5" Width="88" HorizontalAlignment="Right" UseLayoutRounding="False" FontWeight="Bold" TextAlignment="Right" FontFamily="Arial"/>
 
                 <Button Command="{Binding PrintCommand}" Margin="98,107,107,-85" Grid.Column="4">
                     <Button.Content>
@@ -539,6 +539,7 @@
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>-->
                 </Button>
+
             </Grid>
         </tk:ChildWindow>
 
