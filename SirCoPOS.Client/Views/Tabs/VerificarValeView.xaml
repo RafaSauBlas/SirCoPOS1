@@ -25,17 +25,17 @@
             <Grid.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Grid.Background>
-            <TextBlock x:Name="tbk_vale" HorizontalAlignment="Left" Margin="10,13,0,0" TextWrapping="Wrap" Text="Vale" VerticalAlignment="Top"/>
-            <TextBox x:Name="txt_buscar" HorizontalAlignment="Left" Height="27" Margin="60,10,0,0" TextWrapping="Wrap" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyboardNavigation.TabIndex ="0">
+            <TextBlock x:Name="tbk_vale" HorizontalAlignment="Left" Margin="10,47,0,0" TextWrapping="Wrap" Text="Vale" VerticalAlignment="Top"/>
+            <TextBox x:Name="txt_buscar" HorizontalAlignment="Left" Height="27" Margin="60,44,0,0" TextWrapping="Wrap" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyboardNavigation.TabIndex ="0">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding FindValeCommand}"></KeyBinding>
                 </TextBox.InputBindings>
             </TextBox>
-            <TextBlock x:Name="tbk_ctd" HorizontalAlignment="Left" Margin="70,48,0,0" TextWrapping="Wrap" Text="{Binding Vale.Vale}" VerticalAlignment="Top"/>
-            <TextBlock x:Name="tbk_disponibilidad" HorizontalAlignment="Left" Margin="109,87,0,0" TextWrapping="Wrap" Text="{Binding Vale.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,48,0,0" TextWrapping="Wrap" Text="#Vale:" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,87,0,0" TextWrapping="Wrap" Text="Disponible:" VerticalAlignment="Top"/>
-            <TextBlock Text="{Binding Vale.CanceladoMotivo, StringFormat={}Cancelado - {0}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="tbk_cancel" HorizontalAlignment="Left" Margin="10,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock x:Name="tbk_ctd" HorizontalAlignment="Left" Margin="70,82,0,0" TextWrapping="Wrap" Text="{Binding Vale.Vale}" VerticalAlignment="Top"/>
+            <TextBlock x:Name="tbk_disponibilidad" HorizontalAlignment="Left" Margin="109,121,0,0" TextWrapping="Wrap" Text="{Binding Vale.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,82,0,0" TextWrapping="Wrap" Text="#Vale:" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,121,0,0" TextWrapping="Wrap" Text="Disponible:" VerticalAlignment="Top"/>
+            <TextBlock Text="{Binding Vale.CanceladoMotivo, StringFormat={}Cancelado - {0}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="tbk_cancel" HorizontalAlignment="Left" Margin="10,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock2_Copy" HorizontalAlignment="Left" Margin="371,24,0,0" TextWrapping="Wrap" Text="Distribuidor" VerticalAlignment="Top"/>
             <TextBlock x:Name="tbk_distrib" Margin="359,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" HorizontalAlignment="Left" Width="398">
                 <TextBlock.Text>
@@ -49,14 +49,14 @@
             <TextBlock x:Name="textBlock2_Copy3" HorizontalAlignment="Left" Margin="359,88,0,0" TextWrapping="Wrap" Text="Estatus:" VerticalAlignment="Top"/>
             <TextBlock x:Name="tbk_estatus" Margin="430,88,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Status}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
-            <TextBlock x:Name="txt_observaciones" HorizontalAlignment="Left" Margin="630,91,0,0" TextWrapping="Wrap" Text="Observaciones:" VerticalAlignment="Top"/>
+            <TextBlock x:Name="txt_observaciones" HorizontalAlignment="Left" Margin="359,311,0,0" TextWrapping="Wrap" Text="Observaciones:" VerticalAlignment="Top"/>
 
 
-            <TextBlock x:Name="txt_VVE" HorizontalAlignment="Left" Margin="630,132,0,0" TextWrapping="Wrap" Text="ValeExterno:" VerticalAlignment="Top"/>
-            <TextBlock x:Name="txt_VE" HorizontalAlignment="Left" Margin="741,132,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Electronica2, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
+            <TextBlock x:Name="txt_VVE" HorizontalAlignment="Left" Margin="628,76,0,0" TextWrapping="Wrap" Text="ValeExterno:" VerticalAlignment="Top"/>
+            <TextBlock x:Name="txt_VE" HorizontalAlignment="Left" Margin="740,76,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Electronica2, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
 
-            <TextBlock x:Name="txt_promos" HorizontalAlignment="Left" Margin="630,185,0,0" TextWrapping="Wrap" Text="Promociones:" VerticalAlignment="Top"/>
-            <TextBlock x:Name="txt_promosV" HorizontalAlignment="Left" Margin="741,185,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Promocion, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
+            <TextBlock x:Name="txt_promos" HorizontalAlignment="Left" Margin="628,129,0,0" TextWrapping="Wrap" Text="Promociones:" VerticalAlignment="Top"/>
+            <TextBlock x:Name="txt_promosV" HorizontalAlignment="Left" Margin="740,129,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Promocion, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
 
             <!--<ItemsControl Margin="10,231,910,10" ItemsSource="{Binding Vale.Distribuidor.Firmas}" Grid.Row="1">
                 <ItemsControl.ItemsPanel>
@@ -159,29 +159,32 @@
             </Button>
             <TextBlock HorizontalAlignment="Left" Margin="874,66,0,0" TextWrapping="Wrap" Text="#Cliente:" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="944,66,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Id}" VerticalAlignment="Top"/>
-            <TextBlock x:Name="tbk_totvale" HorizontalAlignment="Left" Margin="10,154,0,0" TextWrapping="Wrap" Text="Total Vale" VerticalAlignment="Top"/>
-            <TextBox IsEnabled="{Binding Vale.WithLimite, Converter={StaticResource inv}}" HorizontalAlignment="Left" Height="27" Margin="109,151,0,0" TextWrapping="Wrap" Text="{Binding TotalVale, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyboardNavigation.TabIndex ="7"/>
-            <Button HorizontalAlignment="Right" Margin="0,0,518,20" VerticalAlignment="Bottom" Width="75" Command="{Binding RegistrarValeCommand, Mode=OneWay}" KeyboardNavigation.TabIndex ="6" Grid.Row="0" Height="28">
+            <TextBlock Visibility="Hidden" x:Name="tbk_totvale" HorizontalAlignment="Left" Margin="10,154,0,0" TextWrapping="Wrap" Text="Total Vale" VerticalAlignment="Top"/>
+            <TextBox Visibility="Hidden" IsEnabled="{Binding Vale.WithLimite, Converter={StaticResource inv}}" HorizontalAlignment="Left" Height="27" Margin="109,151,0,0" TextWrapping="Wrap" Text="{Binding TotalVale, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyboardNavigation.TabIndex ="7"/>
+            <Button Visibility="Hidden" HorizontalAlignment="Right" Margin="0,0,518,20" VerticalAlignment="Bottom" Width="75" Command="{Binding RegistrarValeCommand, Mode=OneWay}" KeyboardNavigation.TabIndex ="6" Grid.Row="0" Height="28">
                 <Image x:Name="image5" Height="22" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                 </Button.Background>
             </Button>
-            <Button Content="Solicitar" Margin="0,0,616,20" HorizontalAlignment="Right" Width="74" Command="{Binding SolicitarCreditoCommand, Mode=OneWay}" KeyboardNavigation.TabIndex ="3" Height="28" VerticalAlignment="Bottom">
+            <Button Visibility="Hidden" Content="Solicitar" Margin="0,0,616,20" HorizontalAlignment="Right" Width="74" Command="{Binding SolicitarCreditoCommand, Mode=OneWay}" KeyboardNavigation.TabIndex ="3" Height="28" VerticalAlignment="Bottom">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                 </Button.Background>
             </Button>
-            <TextBox Height="27" Margin="0,282,1073,0" TextWrapping="Wrap" Text="{Binding Solicitud, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" KeyboardNavigation.TabIndex ="1"/>
-            <CheckBox IsChecked="{Binding SolicitudElectronica}" Content="Electronica" Margin="0,362,1158,0" VerticalAlignment="Top" KeyboardNavigation.TabIndex ="2" HorizontalAlignment="Right" Width="106"/>
-            <TextBlock Margin="0,285,1198,0" TextWrapping="Wrap" Text="Solicitar" VerticalAlignment="Top" HorizontalAlignment="Right" Width="66"/>
+            <TextBox Visibility="Hidden" Height="27" Margin="0,282,1073,0" TextWrapping="Wrap" Text="{Binding Solicitud, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" KeyboardNavigation.TabIndex ="1"/>
+            <CheckBox Visibility="Hidden" IsChecked="{Binding SolicitudElectronica}" Content="Electronica" Margin="0,362,1158,0" VerticalAlignment="Top" KeyboardNavigation.TabIndex ="2" HorizontalAlignment="Right" Width="106"/>
+            <TextBlock Visibility="Hidden" Margin="0,285,1198,0" TextWrapping="Wrap" Text="Solicitar" VerticalAlignment="Top" HorizontalAlignment="Right" Width="66"/>
             <!--<TextBlock Margin="0,99,4,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" HorizontalAlignment="Right" Width="80"/>-->
-            <Button Content="Crédito" HorizontalAlignment="Left" Margin="109,201,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CreditoCommand, Mode=OneWay}" KeyboardNavigation.TabIndex ="8">
+            <Button Visibility="Hidden" Content="Crédito" HorizontalAlignment="Left" Margin="109,201,0,0" VerticalAlignment="Top" Width="75" Command="{Binding CreditoCommand, Mode=OneWay}" KeyboardNavigation.TabIndex ="8">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                 </Button.Background>
             </Button>
-            <TextBlock Margin="0,324,1073,0" TextWrapping="Wrap" Text="{Binding FaltanteSolicitud, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
+            <TextBlock Visibility="Hidden" Margin="0,324,1073,0" TextWrapping="Wrap" Text="{Binding FaltanteSolicitud, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
+            <TextBlock x:Name="txt_contravale" HorizontalAlignment="Left" Margin="629,183,0,0" TextWrapping="Wrap" Text="Contravale:" VerticalAlignment="Top"/>
+            <TextBlock x:Name="txt_contravaleV" HorizontalAlignment="Left" Margin="741,183,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.ContraVale, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
+            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="2" Margin="324,270,0,0" VerticalAlignment="Top" Width="490"/>
         </Grid>
     </tk:BusyIndicator>
 </UserControl>

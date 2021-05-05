@@ -16,6 +16,9 @@
         <BooleanToVisibilityConverter x:Key="bolvis"/>
     </UserControl.Resources>
     <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+        </Grid.Background>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="108.866,97,0,0" TextWrapping="Wrap" Text="{Binding Vale.Vale}" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="108.866,125.94,0,0" TextWrapping="Wrap" Text="{Binding Vale.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,97,0,0" TextWrapping="Wrap" Text="#" VerticalAlignment="Top"/>
@@ -33,7 +36,7 @@
         </TextBlock>
         <TextBlock x:Name="textBlock2_Copy2" Margin="500.74,69,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Status}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <TextBlock x:Name="textBlock2_Copy3" Margin="402.24,68.88,0,0" TextWrapping="Wrap" Text="Estatus" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <ItemsControl Margin="10,164,10,10" ItemsSource="{Binding Vale.Distribuidor.Firmas}">
+        <ItemsControl Margin="10,216,10,10" ItemsSource="{Binding Vale.Distribuidor.Firmas}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal"></StackPanel>
@@ -95,5 +98,7 @@
             </TextBox.InputBindings>
         </TextBox>
         <TextBlock x:Name="textBlock4_Copy" Margin="501.108,97.94,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Electronica, Converter={StaticResource boolText}}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="txt_promocion" Margin="403,168,0,0" TextWrapping="Wrap" Text="Electrónica" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="txt_promocionV" Margin="501,168,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Promocion, Converter={StaticResource boolText}}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
     </Grid>
 </UserControl>
