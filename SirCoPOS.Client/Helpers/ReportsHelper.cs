@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Reporting.WinForms;
 
+
 namespace SirCoPOS.Client.Helpers
 {
     class ReportsHelper
@@ -187,12 +188,21 @@ namespace SirCoPOS.Client.Helpers
                 { "planPagosDetDataSet", planPagosDet },
                 { "mensajesDataSet", mensajes }
             };
-
-            var pd = new Helpers.PrintFile(
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                _viewer.OpenViewer(
+                        fullname: "SirCoPOS.Reports.ReciboVenta.rdlc",
+                        library: "SirCoPOS.Reports",
+                        datasources: dic);
+            }
+            else
+            {
+                var pd = new Helpers.PrintFile(
                 fullname: "SirCoPOS.Reports.ReciboVenta.rdlc",
                 library: "SirCoPOS.Reports",
                 datasources: dic);
-            pd.Print();
+                pd.Print();
+            }
 
             if (item.ContraVale == 1)
             {
@@ -203,17 +213,23 @@ namespace SirCoPOS.Client.Helpers
                     { "ContraValeDataSet", listc },
                 };
 
-                var pdc = new Helpers.PrintFile(
+                if (System.Diagnostics.Debugger.IsAttached) { 
+                    _viewer.OpenViewer(
+                        fullname: "SirCoPOS.Reports.ContraVale.rdlc",
+                        library: "SirCoPOS.Reports",
+                        datasources: dictc);
+                }
+                else { 
+
+                    var pdc = new Helpers.PrintFile(
                     fullname: "SirCoPOS.Reports.ContraVale.rdlc",
                     library: "SirCoPOS.Reports",
                     datasources: dictc);
-                pdc.Print();
+                    pdc.Print();
+                }
             }
 
-            //_viewer.OpenViewer(
-            //    fullname: "SirCoPOS.Reports.ReciboVenta.rdlc",
-            //    library: "SirCoPOS.Reports",
-            //    datasources: dic);
+            
 
         }
 

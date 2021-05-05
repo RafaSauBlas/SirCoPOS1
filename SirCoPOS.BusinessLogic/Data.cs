@@ -36,7 +36,7 @@ namespace SirCoPOS.BusinessLogic
         public Sucursal FindSucursal(string sucursal)
         {
             var ctx = new DataAccess.SirCoControlDataContext();
-            var item = ctx.Sucursales.Where(i => i.sucursal == "06").Single();
+            var item = ctx.Sucursales.Where(i => i.sucursal == "01").Single();
             var res = new Common.Entities.Sucursal
             {
                 Id = item.idsucursal,
