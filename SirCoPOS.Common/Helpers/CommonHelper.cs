@@ -8,13 +8,24 @@ namespace SirCoPOS.Common.Helpers
 {
     public class CommonHelper
     {
-        public Tuple<decimal, decimal> GetPlazos(decimal importe, int plazos)
+        public Tuple<decimal, decimal, int> GetPlazos(decimal importe, int plazos)
         {
+            var plazoent = plazos;
             var part = importe / plazos;
             var pagos = Math.Ceiling(part);
             var restante = pagos * (plazos - 1);
             var faltante = importe - restante;
-            return new Tuple<decimal, decimal>(pagos, faltante);
+            int j = 2;
+
+            while (faltante < 0)
+            {
+                restante = pagos * (plazos - j);
+                faltante = importe - restante;
+                plazoent = plazos - (j - 1);
+                j++;
+            }
+
+            return new Tuple<decimal, decimal, int>(pagos, faltante, plazoent);
         }
 
         public IDictionary<DateTime, decimal> GetPlazos(DateTime[] fechas, params Tuple<int, decimal>[] ip)
@@ -34,11 +45,16 @@ namespace SirCoPOS.Common.Helpers
                 var pagos = new decimal[item.Key];
                 for (int i = 0; i < item.Key; i++)
                 {
-                    pagos[i] = (i + 1) == item.Key ? plazos.Item2 : plazos.Item1;
+                    if (item.Key == plazos.Item3 || (i + 1) < plazos.Item3) { 
+                        pagos[i] = (i + 1) == item.Key ? plazos.Item2 : plazos.Item1;
+                    } else
+                    {
+                        pagos[i] = (i + 1) > plazos.Item3 ?  0 : plazos.Item2;
+                    }
                 }
                 exp.Add(pagos);
             }
-
+             
             var res = new decimal[max];
             for (int i = 0; i < max; i++)
             {

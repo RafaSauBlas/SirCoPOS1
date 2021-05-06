@@ -175,14 +175,13 @@
                 <TextBlock Margin="0,39,10,0" TextWrapping="Wrap" Text="{Binding Result.Venta}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                 <TextBlock HorizontalAlignment="Left" Margin="10,68,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top"/>
                 <TextBlock Margin="0,68,10,0" TextWrapping="Wrap" Text="{Binding Result.Cliente}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-                <Button Command="{Binding CloseCommand}" Content="Aceptar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
-                <Button Command="{Binding PrintCommand}" CommandParameter="venta" Margin="10,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="45">
+                <Button Margin="91,0,0,27" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="72" Height="34" Click="Button_Click" >
+                    <fa:ImageAwesome Icon="Print" Height="24"></fa:ImageAwesome>
+                </Button>
+                <Button Command="{Binding PrintCommand}" Margin="193,0,0,27" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="31" Height="34" Click="Button_Click_1" Visibility="Hidden">
                     <Button.Content>
                         <fa:ImageAwesome Icon="Print" Height="24"></fa:ImageAwesome>
                     </Button.Content>
-                </Button>
-                <Button Command="{Binding PrintCommand}" CommandParameter="devolucion" Margin="60,0,0,10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="45">
-                    <fa:ImageAwesome Icon="Print" Height="24"/>
                 </Button>
             </Grid>
         </xt:ChildWindow>

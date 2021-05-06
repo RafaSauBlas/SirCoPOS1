@@ -248,16 +248,22 @@ namespace SirCoPOS.Client.Helpers
                 { "pagoDataSet", pagos }
             };
 
-            var pd = new Helpers.PrintFile(
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                _viewer.OpenViewer(
+                    fullname: "SirCoPOS.Reports.ReciboDevolucion.rdlc",
+                    library: "SirCoPOS.Reports",
+                    datasources: dic);
+            }
+            else
+            {
+                var pd = new Helpers.PrintFile(
                 fullname: "SirCoPOS.Reports.ReciboDevolucion.rdlc",
                 library: "SirCoPOS.Reports",
                 datasources: dic);
-            pd.Print();
-
-            //_viewer.OpenViewer(
-            //    fullname: "SirCoPOS.Reports.ReciboDevolucion.rdlc",
-            //    library: "SirCoPOS.Reports",
-            //    datasources: dic);
+                pd.Print();
+            }
+            
         }
 
 

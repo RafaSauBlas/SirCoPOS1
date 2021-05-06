@@ -1635,7 +1635,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!NumPagos.Value, "reciboDataSet")</Value>
+                    <Value>=Sum(Fields!NumPagos.Value, "reciboDataSet")-1</Value>
                     <Style>
                       <FontSize>9pt</FontSize>
                     </Style>
