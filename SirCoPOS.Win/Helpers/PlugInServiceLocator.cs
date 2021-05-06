@@ -27,7 +27,7 @@ namespace SirCoPOS.Win.Helpers
         public void Export(string assembly)
         {
             var path = String.Format(@"{1}.dll", AppDomain.CurrentDomain.RelativeSearchPath ?? ".", "SirCoPOS.Client");
-            var ac = new AssemblyCatalog(path); 
+            var ac = new AssemblyCatalog(path);
             _catalog.Catalogs.Add(ac);
         }
         public void Export(Assembly assembly)

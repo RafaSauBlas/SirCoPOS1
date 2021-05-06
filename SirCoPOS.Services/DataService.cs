@@ -144,7 +144,7 @@ namespace SirCoPOS.Services
                 ApPaterno = item.apmaterno,
                 Status = item.idestatus.Value,
                 Electronica = item.solocalzado == 0,
-                Electronica2 = item.negext == 0,
+                ValeExterno = item.negext == 0,
                 Plazos = item.idperiodicidad.Value,
                 Promocion = item.promocion == 1,
                 Number = item.distrib,
@@ -275,7 +275,7 @@ namespace SirCoPOS.Services
                 Nombre = item.nombrecompleto,
                 Status = item.idestatus.Value,
                 Electronica = item.solocalzado == 0,
-                Electronica2 = item.negext == 0,
+                ValeExterno = item.negext == 0,
                 Plazos = item.idperiodicidad.Value,
                 Promocion = item.promocion == 1
                 , Number = item.distrib
@@ -612,7 +612,7 @@ namespace SirCoPOS.Services
                 Nombre = item.nombrecompleto,
                 Status = item.idestatus.Value,
                 Electronica = item.solocalzado == 0,
-                Electronica2 = item.negext == 0,
+                ValeExterno = item.negext == 1,
                 ContraVale = item.contravale == 1,
                 Promocion = item.promocion == 1
             };
@@ -624,6 +624,10 @@ namespace SirCoPOS.Services
                 Cancelado = false,
                 Distribuidor = dis
             };
+
+            var q = ctx.DistribuidorFirmas.Where(i => i.distrib == item.distrib);
+            model.Distribuidor.Firmas = q.Select(i => i.numfirma).ToArray();
+
             return model;
         }
         public IEnumerable<Common.Entities.DescuentoAdicional> GetDescuentoAdicionals()

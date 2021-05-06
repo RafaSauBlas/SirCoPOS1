@@ -41,5 +41,16 @@ namespace SirCoPOS.Client.Views.Tabs
             if (tc.Items.Count > 0)
                 tc.SelectedIndex = 0;
         }
+
+        private void PreviewTextInputOnlyNumbers(object sender, TextCompositionEventArgs e)
+
+        {
+            int ascci = Convert.ToInt32(Convert.ToChar(e.Text));
+
+            if (ascci >= 48 && ascci <= 57) e.Handled = false;
+
+            else e.Handled = true;
+
+        }
     }
 }

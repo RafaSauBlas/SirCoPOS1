@@ -1999,7 +1999,7 @@ namespace SirCoPOS.BusinessLogic
                 Nombre = item.nombrecompleto,
                 Status = item.idestatus.Value,
                 Electronica = item.solocalzado == 0,
-                Electronica2 = item.negext == 1,
+                ValeExterno = item.negext == 1,
                 ContraVale = item.contravale == 1,
                 Promocion = item.promocion == 1,
                 LimiteVale = item.limitevale

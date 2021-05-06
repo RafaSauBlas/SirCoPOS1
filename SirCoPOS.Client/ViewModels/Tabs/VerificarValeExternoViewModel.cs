@@ -1,11 +1,12 @@
-﻿using GalaSoft.MvvmLight.Command;
-using SirCoPOS.Common.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using SirCoPOS.Common.Entities;
 
 namespace SirCoPOS.Client.ViewModels.Tabs
 {
