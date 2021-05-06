@@ -130,12 +130,14 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 this.FormasPago.Refresh();                
             });
 
-            this.PrintCommand = new RelayCommand<string>(rpt => {
-                if(rpt == "venta")
-                    _reports.Compra(this.Sucursal.Clave, this.Result.Venta);
-                if (rpt == "devolucion")
-                    _reports.Devolucion(this.Sucursal.Clave, this.Result.Devolucion);
-            }, rpt => this.IsComplete);
+            this.PrintCommand = new RelayCommand(() => {
+                
+                _reports.Compra(this.Sucursal.Clave, this.Result.Venta);
+                _reports.Devolucion(this.Sucursal.Clave, this.Result.Devolucion);
+
+                this.CloseCommand.Execute(null);
+
+            }, () => this.IsComplete);
 
             if (this.IsInDesignMode)
             {
@@ -626,7 +628,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         public RelayCommand LoadClienteCommand { get; private set; }
         public RelayCommand LoadVendedorCommand { get; private set; }
         public RelayCommand ClearClienteCommand { get; private set; }
-        public RelayCommand<string> PrintCommand { get; private set; }
+        public RelayCommand PrintCommand { get; private set; }
         #endregion
     }
 }
