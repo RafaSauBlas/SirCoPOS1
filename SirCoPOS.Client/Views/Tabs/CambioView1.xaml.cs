@@ -31,6 +31,8 @@ namespace SirCoPOS.Client.Views.Tabs
 
         public void Init()
         {
+
+            
             var depto = (int)Common.Constants.Departamento.TDA;
             if (depto <= 2)
             {
@@ -38,6 +40,22 @@ namespace SirCoPOS.Client.Views.Tabs
                 this.scanTextBox.Focus();
             }
             var vm = (ViewModels.Tabs.CambioViewModel)this.DataContext;
+
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (ViewModels.Tabs.CambioViewModel)DataContext;
+            if (viewModel.PrintCommand.CanExecute(null))
+                viewModel.PrintCommand.Execute(null);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (ViewModels.Tabs.CambioViewModel)DataContext;
+            if (viewModel.PrintCommand.CanExecute(null))
+                viewModel.PrintCommand.Execute(null);
         }
     }
 }
