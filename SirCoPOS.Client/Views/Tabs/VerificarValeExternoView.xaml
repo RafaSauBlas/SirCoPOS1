@@ -78,7 +78,7 @@
         <TextBlock x:Name="textBlock_Copy4" Margin="660,26,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Cuenta}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
         <TextBlock x:Name="textBlock4" Margin="506,108,0,0" TextWrapping="Wrap" Text="Electrónica:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Vale" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbVale" HorizontalAlignment="Left" PreviewTextInput="PreviewTextInputOnlyNumbers" Height="27" Margin="82,9,0,0" TextWrapping="Wrap" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+        <TextBox x:Name="tbVale" HorizontalAlignment="Left" Height="27" Margin="82,9,0,0" TextWrapping="Wrap" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </TextBox.InputBindings>
@@ -100,7 +100,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" Text="Cuenta" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" PreviewTextInput="PreviewTextInputOnlyNumbers" Height="27" Margin="82,82,0,0" TextWrapping="Wrap" Text="{Binding Cuenta, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="82,82,0,0" TextWrapping="Wrap" Text="{Binding Cuenta, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </TextBox.InputBindings>
