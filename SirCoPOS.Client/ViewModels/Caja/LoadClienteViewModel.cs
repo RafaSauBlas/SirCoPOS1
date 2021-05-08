@@ -29,26 +29,30 @@ namespace SirCoPOS.Client.ViewModels.Caja
             this.PropertyChanged += LoadClienteViewModel_PropertyChanged;
 
             this.SearchCommand = new RelayCommand(() => {
-                if (!this.ClienteSearch.HasValue && string.IsNullOrWhiteSpace(this.ClienteTelefonoSearch))
+                if (this.ClienteNombreSearch == null && string.IsNullOrWhiteSpace(this.ClienteTelefonoSearch))
                 {
                     if (this.Cliente != null)
                     {
                         Messenger.Default.Send(new Messages.ClienteMessage
                         {
-                            Cliente = this.Cliente 
+                            Cliente = this.Cliente
                         }, this.GID);
                     }
                 }
                 else
                 {
+                    var nombre = _common.PrepareNombre(this.ClienteNombreSearch);
                     var phone = _common.PreparePhone(this.ClienteTelefonoSearch);
-                    this.Cliente = _proxy.FindCliente(this.ClienteSearch, phone);
+
+                    this.Cliente = _proxy.FindCliente(this.ClienteSearch, phone, nombre);
                     if (this.Cliente != null)
                     {
                         this.ClienteSearch = null;
                         this.ClienteTelefonoSearch = null;
+                        this.ClienteNombreSearch = null;
                     }
                     else
+                        this.ClienteNombreSearch = null;
                         MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
@@ -58,6 +62,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             {
                 this.ClienteSearch = 123;
                 this.ClienteTelefonoSearch = "1234567890";
+                this.ClienteNombreSearch = "Rafael Saucedo Blas";
                 this.NuevoCliente = new Models.NuevoCliente
                 {
                     Nombre = "nombre",
@@ -204,6 +209,12 @@ namespace SirCoPOS.Client.ViewModels.Caja
         {
             get => _ClienteTelefonoSearch;
             set => this.Set(nameof(ClienteTelefonoSearch), ref _ClienteTelefonoSearch, value);
+        }
+        private string _ClienteNombreSearch;
+        public string ClienteNombreSearch
+        {
+            get => _ClienteNombreSearch;
+            set => this.Set(nameof(ClienteNombreSearch), ref _ClienteNombreSearch, value);
         }
         #endregion
         #region commands

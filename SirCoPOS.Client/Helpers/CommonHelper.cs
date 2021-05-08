@@ -56,5 +56,10 @@ namespace SirCoPOS.Client.Helpers
                 return null;
             return Regex.Replace(phone, @"^(\+)|\D", "");
         }
+
+        public string PrepareNombre(string nombre)
+        {
+            return nombre;
+        }
     }
 }

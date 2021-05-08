@@ -56,7 +56,7 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Common.Entities.Cupon FindCupon(string folio);
         [OperationContract]
-        Common.Entities.Cliente FindCliente(int? id, string telefono = null);
+        Common.Entities.Cliente FindCliente(int? id, string telefono = null, string nombre = null);
         [OperationContract]
         Common.Entities.Cliente FindClienteByCode(Guid code);
         [OperationContract]

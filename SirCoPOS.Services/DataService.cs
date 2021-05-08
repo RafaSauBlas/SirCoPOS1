@@ -486,7 +486,7 @@ namespace SirCoPOS.Services
             }
             return null;
         }
-        public Common.Entities.Cliente FindCliente(int? id, string telefono = null)
+        public Common.Entities.Cliente FindCliente(int? id, string telefono = null, string nombre = null)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
             DataAccess.SirCoCredito.Cliente item = null;
@@ -494,6 +494,8 @@ namespace SirCoPOS.Services
                 item = ctx.Clientes.Where(i => i.idcliente == id).SingleOrDefault();
             else if (!string.IsNullOrWhiteSpace(telefono))
                 item = ctx.Clientes.Where(i => i.celular == telefono).SingleOrDefault();
+            else if (!string.IsNullOrWhiteSpace(nombre))
+                item = ctx.Clientes.Where(i => i.nombrecompleto == nombre).SingleOrDefault();
             if (item == null)
                 return null;
 
