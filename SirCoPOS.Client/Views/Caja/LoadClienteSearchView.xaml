@@ -8,7 +8,7 @@
              xmlns:s="clr-namespace:Microsoft.CSharp;assembly=System"
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance Type={x:Type vm:LoadClienteViewModel}}"
-             Height="255.719" Width="400" Loaded="UserControl_Loaded">
+             Height="403.719" Width="400" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <c:ImageUrlConverter x:Key="imageUrl"></c:ImageUrlConverter>
     </UserControl.Resources>
@@ -17,7 +17,7 @@
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
         </Grid.Background>
         <!--Boton genera Nuevo Cliente-->
-        <Button Command="{Binding ChangeViewCommand}" CommandParameter="new" x:Name="button"  Margin="0,217,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75">
+        <Button Command="{Binding ChangeViewCommand}" CommandParameter="new" x:Name="button"  Margin="0,365,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75">
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Button.Background>
@@ -31,21 +31,21 @@
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="124,88,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Id}" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="124,205,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Id}" VerticalAlignment="Top" FontWeight="Bold"/>
         <!--Etiqueta Id-->
-        <TextBlock HorizontalAlignment="Left" Margin="10,88,0,0" TextWrapping="Wrap" Text="Id:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,205,0,0" TextWrapping="Wrap" Text="Id:" VerticalAlignment="Top"/>
         <!--Nombre Cliente-->
-        <TextBlock HorizontalAlignment="Left" Margin="124,117,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Nombre}" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="124,234,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Nombre}" VerticalAlignment="Top" FontWeight="Bold"/>
         <!--Apellido Paterno-->
-        <TextBlock HorizontalAlignment="Left" Margin="124,152,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApPaterno}" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="124,269,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApPaterno}" VerticalAlignment="Top" FontWeight="Bold"/>
         <!--Apellido Materno-->
-        <TextBlock Margin="124,185,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApMaterno}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
+        <TextBlock Margin="124,302,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApMaterno}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
         <!--Eiqueta Nombre-->
-        <TextBlock HorizontalAlignment="Left" Margin="10,117,0,0" TextWrapping="Wrap" Text="Nombre:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,234,0,0" TextWrapping="Wrap" Text="Nombre:" VerticalAlignment="Top"/>
         <!--Etiqueta Apellido Paterno-->
-        <TextBlock HorizontalAlignment="Left" Margin="10,152,0,0" TextWrapping="Wrap" Text="Ap. Paterno:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,269,0,0" TextWrapping="Wrap" Text="Ap. Paterno:" VerticalAlignment="Top"/>
         <!--Etiqueta apellido paterno-->
-        <TextBlock HorizontalAlignment="Left" Margin="10,185,0,0" TextWrapping="Wrap" Text="Ap. Materno:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,302,0,0" TextWrapping="Wrap" Text="Ap. Materno:" VerticalAlignment="Top"/>
         <!--Etiqueta telefono-->
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="Telefono" VerticalAlignment="Top"/>
         <!--Captura de telefono para busqueda-->
@@ -54,8 +54,20 @@
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </TextBox.InputBindings>
         </xt:MaskedTextBox>
-        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,55,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox x:Name="txt_Nombre"  HorizontalAlignment="Left" Height="25" Margin="114,52,0,0" TextWrapping="Wrap" Text="{Binding ClienteNombreSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="265" KeyboardNavigation.TabIndex ="1">
+        <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="10,53,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
+        <xt:MaskedTextBox x:Name="txt_Nombre_Copy"  HorizontalAlignment="Left" Height="25" Margin="114,50,0,0" TextWrapping="Wrap" Text="{Binding ClienteNombreSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
+            <xt:MaskedTextBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
+            </xt:MaskedTextBox.InputBindings>
+        </xt:MaskedTextBox>
+        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,83,0,0" TextWrapping="Wrap" Text="Appa" VerticalAlignment="Top"/>
+        <xt:MaskedTextBox x:Name="txt_ApPa"  HorizontalAlignment="Left" Height="25" Margin="114,80,0,0" TextWrapping="Wrap" Text="{Binding ClienteNombreSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
+            <xt:MaskedTextBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
+            </xt:MaskedTextBox.InputBindings>
+        </xt:MaskedTextBox>
+        <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,115,0,0" TextWrapping="Wrap" Text="Apma" VerticalAlignment="Top"/>
+        <xt:MaskedTextBox x:Name="txt_ApMa"  HorizontalAlignment="Left" Height="25" Margin="114,112,0,0" TextWrapping="Wrap" Text="{Binding ClienteNombreSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </xt:MaskedTextBox.InputBindings>

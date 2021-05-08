@@ -563,12 +563,12 @@ namespace SirCoPOS.BusinessLogic
                             
                             disponible = disponible < 0 ? 0 : disponible;
 
-                            var vf = ctxcr.ValeFisicos.Where(i => i.vale == item.Vale && i.iddistrib == valera.iddistrib).Single();
+                            //var vf = ctxcr.ValeFisicos.Where(i => i.vale == item.Vale && i.iddistrib == valera.iddistrib).Single();
 
                             if (item.Importe > disponible)
                                 throw new NotSupportedException();
 
-                            vf.disponible -= item.Importe;
+                            //vf.disponible -= item.Importe;
                             dist.disponible -= item.Importe;
                             dist.saldo += item.Importe;
 
