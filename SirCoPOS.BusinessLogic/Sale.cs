@@ -2026,9 +2026,9 @@ namespace SirCoPOS.BusinessLogic
             }
 
             var qpp = ctx.PlanPagos.Where(i => i.vale.Trim() == vale && i.status == "AP" && i.negocio == "TO");
-            //var qp = qpp.Where(i => i.pagado == "0");
-            //var usado = qp.Any() ? qp.Sum(i => i.saldo) : 0;
-            model.Disponible = Math.Min(item.limitevale.Value, item.disponible.Value) /*- usado*/;
+            var qp = qpp.Where(i => i.pagado == "0");
+            var usado = qp.Any() ? qp.Sum(i => i.saldo) : 0;
+            model.Disponible = Math.Min(item.limitevale.Value, item.disponible.Value) - usado;
             model.Disponible = model.Disponible < 0 ? 0 : model.Disponible;
 
             var q = ctx.DistribuidorFirmas.Where(i => i.distrib == item.distrib);

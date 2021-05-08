@@ -29,5 +29,6 @@ namespace SirCoPOS.DataAccess
         public virtual DbSet<ContraVale> ContraVales { get; set; }
         public virtual DbSet<DescuentoAdicional> DescuentosAdicionales { get; set; }
         public virtual DbSet<DistribuidorComercial> DistribuidorComerciales { get; set; }
+        public virtual DbSet<ValeFisico> ValeFisicos { get; set; }
     }
 }

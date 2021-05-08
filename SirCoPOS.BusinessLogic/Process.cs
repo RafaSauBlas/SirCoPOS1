@@ -560,11 +560,15 @@ namespace SirCoPOS.BusinessLogic
                             //qplans = qplans.Where(i => i.pagado == "0");
                             //var usado = qplans.Any() ? qplans.Sum(i => i.saldo) : 0;
                             var disponible = Math.Min(dist.limitevale.Value, dist.disponible.Value) /*- usado*/;
+                            
                             disponible = disponible < 0 ? 0 : disponible;
+
+                            var vf = ctxcr.ValeFisicos.Where(i => i.vale == item.Vale && i.iddistrib == valera.iddistrib).Single();
 
                             if (item.Importe > disponible)
                                 throw new NotSupportedException();
 
+                            vf.disponible -= item.Importe;
                             dist.disponible -= item.Importe;
                             dist.saldo += item.Importe;
 
