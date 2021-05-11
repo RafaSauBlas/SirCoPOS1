@@ -167,6 +167,25 @@ namespace SirCoPOS.Client.Helpers
             int num = (int)numero;
             return num > 99 ? "00/100" : num.ToString("00") + "/100";
         }
+
+        public void Cancelacion (string sucursal, string folio)
+        {
+            var cancela = _proxy.GetReciboCancelacion(sucursal, folio);
+            var item = _mapper.Map<SirCoPOS.Reports.Entities.ReciboCancelacion>(cancela.Recibo);
+            var productos = _mapper.Map<IEnumerable<SirCoPOS.Reports.Entities.Producto>>(cancela.Productos);
+
+            var list = new List<SirCoPOS.Reports.Entities.ReciboCancelacion>() { item };
+            var dic = new Dictionary<string, IEnumerable<object>>() {
+                { "reciboDataSet", list },
+                { "productosDataSet", productos },
+            };
+            _viewer.OpenViewer(
+                fullname: "SirCoPOS.Reports.ReciboVenta.rdlc",
+                library: "SirCoPOS.Reports",
+                datasources: dic);
+        }
+
+
         public void Compra(string sucursal, string folio)
         {
             var venta = _proxy.GetReciboCompra(sucursal, folio);

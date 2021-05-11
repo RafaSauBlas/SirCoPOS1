@@ -148,6 +148,7 @@
     <Compile Include="Entities\RegisterValeRequest.cs" />
     <Compile Include="Entities\RegisterValeResponse.cs" />
     <Compile Include="Entities\ReplyCreditoRequest.cs" />
+    <Compile Include="Entities\Reports\ReciboCancelacion.cs" />
     <Compile Include="Entities\Reports\TicketMensaje.cs" />
     <Compile Include="Entities\Reports\ReciboContraVale.cs" />
     <Compile Include="Entities\Reports\Producto.cs" />

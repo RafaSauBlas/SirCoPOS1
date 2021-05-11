@@ -10,6 +10,52 @@ namespace SirCoPOS.Services
 {
     public class PrintService : Common.ServiceContracts.IPrintService
     {
+        public ReciboCancelacionReport GetReciboCancelacion(string sucursal, string folio)
+        {
+            var ctxpv = new DataAccess.SirCoPVDataContext();
+            var ctxco = new DataAccess.SirCoControlDataContext();
+            var ctx = new DataAccess.SirCoDataContext();
+
+            DataAccess.SirCoPV.Venta venta = ctxpv.Ventas.Where(i => i.sucursal == sucursal && i.venta == folio).Single();
+            DataAccess.SirCoControl.Sucursal suc = ctxco.Sucursales.Where(i => i.sucursal == venta.sucursal).Single();
+
+            string vendedor = this.GetEmpleado(venta.idvendedor);
+            string cajero = this.GetUsuario(venta.idusuariocancela);
+            var item = new ReciboCancelacionReport
+            {
+                Recibo = new ReciboCancelacion
+                {
+                    SucursalId = venta.sucursal,
+                    SucursalNombre = suc.descrip,
+                    Direccion = suc.calle,
+                    Colonia = suc.colonia,
+                    Folio = venta.sucursal + "-" + venta.venta,
+                    Fecha = venta.fumcancela.Value,
+                    FechaVenta = venta.fecha.Value,
+                    SucursalVenta = venta.sucursal,
+                    FolioVenta = venta.sucursal + "-" + venta.venta,
+                }
+            };
+
+            var plist = new List<Producto>();
+            foreach (var det in venta.Detalles)
+            {
+                var serie = ctx.Series.Where(i => i.serie == det.serie).Single();
+
+                plist.Add(
+                    new Producto
+                    {
+                        Serie = det.serie,
+                        Precio = det.precio.Value,
+                        Importe = det.precdesc.Value,
+                        Marca = det.marca,
+                        Descripcion = serie.Articulo.Descripcion
+                    });
+            }
+            item.Productos = plist;
+
+            return item;
+        }
 
         public ReciboContraValeReport GetContraVale(string sucursal, string folio)
         {
@@ -94,7 +140,7 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
             var suc = ctxc.Sucursales.Where(i => i.sucursal == devolucion.sucursal).Single();
             var ventaSucursal = devolucion.referencia.Substring(0, 2);
             var ventaFolio = devolucion.referencia.Substring(2);
-            DataAccess.SirCoPV.Venta venta = ctxpv.Ventas.Where(i => i.sucursal == sucursal && i.venta == ventaFolio).Single();
+            DataAccess.SirCoPV.Venta venta = ctxpv.Ventas.Where(i => i.sucursal == ventaSucursal && i.venta == ventaFolio).Single();
 
             var item = new ReciboDevolucionReport
             { 

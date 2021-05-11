@@ -16,5 +16,7 @@ namespace SirCoPOS.Common.ServiceContracts
         Common.Entities.Reports.ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio);
         [OperationContract]
         Common.Entities.Reports.ReciboContraValeReport GetContraVale(string sucursal, string folio);
+        [OperationContract]
+        Common.Entities.Reports.ReciboCancelacionReport GetReciboCancelacion(string sucursal, string folio);
     }
 }
