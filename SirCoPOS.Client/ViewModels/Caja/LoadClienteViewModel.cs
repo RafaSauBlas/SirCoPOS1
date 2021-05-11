@@ -52,7 +52,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         this.ClienteNombreSearch = null;
                     }
                     else
-                        this.ClienteNombreSearch = null;
                         MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 }
@@ -62,7 +61,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             {
                 this.ClienteSearch = 123;
                 this.ClienteTelefonoSearch = "1234567890";
-                this.ClienteNombreSearch = "Rafael Saucedo Blas";
+                this.ClienteNombreSearch = "Ricardo Milos Galvan";
                 this.NuevoCliente = new Models.NuevoCliente
                 {
                     Nombre = "nombre",

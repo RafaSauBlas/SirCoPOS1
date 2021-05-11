@@ -31,6 +31,7 @@ namespace SirCoPOS.Win.Helpers
             _catalog.Catalogs.Add(ac);
         }
         public void Export(Assembly assembly)
+
         {
             var ac = new AssemblyCatalog(assembly);
             _catalog.Catalogs.Add(ac);
