@@ -27,7 +27,7 @@
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Button.Background>
-            <Image x:Name="agregarcliente" Height="23" Width="25"/>
+            <Image x:Name="addclient" Source="/SirCoPOS.Win;component/Images/nuev.png" Height="23" Width="23" />
         </Button>
         <!--Etiqueta cliente-->
         <TextBlock Visibility="Hidden" x:Name="textBlock" HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top"/>
@@ -66,18 +66,22 @@
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
-        <TextBlock Visibility="Hidden" x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,83,0,0" TextWrapping="Wrap" Text="Appa" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox Visibility="Hidden" x:Name="txt_ApPa"  HorizontalAlignment="Left" Height="25" Margin="114,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
+        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,83,0,0" TextWrapping="Wrap" Text="Appa" VerticalAlignment="Top"/>
+        <xt:MaskedTextBox x:Name="txt_ApPa"  HorizontalAlignment="Left" Height="25" Margin="114,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
-        <TextBlock Visibility="Hidden" x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,115,0,0" TextWrapping="Wrap" Text="Apma" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox Visibility="Hidden" x:Name="txt_ApMa"  HorizontalAlignment="Left" Height="25" Margin="114,112,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
+        <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,115,0,0" TextWrapping="Wrap" Text="Apma" VerticalAlignment="Top"/>
+        <xt:MaskedTextBox x:Name="txt_ApMa"  HorizontalAlignment="Left" Height="25" Margin="114,112,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
+
+        <xt:ChildWindow DesignerWindowState="Open" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="197" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
+            
+        </xt:ChildWindow>
 
     </Grid>
 </UserControl>
