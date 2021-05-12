@@ -76,6 +76,7 @@
     <Compile Include="Entities\Pago.cs" />
     <Compile Include="Entities\PlanPago.cs" />
     <Compile Include="Entities\PlanPagoDetalle.cs" />
+    <Compile Include="Entities\ReciboCancelacion.cs" />
     <Compile Include="Entities\TicketMensaje.cs" />
     <Compile Include="Entities\Producto.cs" />
     <Compile Include="Entities\ReciboCompra.cs" />
@@ -104,6 +105,7 @@
     <None Include="Properties\DataSources\SirCoPOS.Reports.Entities.Producto2.datasource" />
     <None Include="Properties\DataSources\SirCoPOS.Reports.Entities.Producto3.datasource" />
     <None Include="Properties\DataSources\SirCoPOS.Reports.Entities.Producto4.datasource" />
+    <None Include="Properties\DataSources\SirCoPOS.Reports.Entities.ReciboCancelacion1.datasource" />
     <None Include="Properties\DataSources\SirCoPOS.Reports.Entities.ReciboCompra.datasource" />
     <None Include="Properties\DataSources\SirCoPOS.Reports.Entities.ReciboCompra1.datasource" />
     <None Include="Properties\DataSources\SirCoPOS.Reports.Entities.ReciboCompra2.datasource" />
@@ -128,6 +130,7 @@
     <EmbeddedResource Include="ReciboAbono.rdlc" />
     <EmbeddedResource Include="ReciboCambio.rdlc" />
     <EmbeddedResource Include="ContraVale.rdlc" />
+    <EmbeddedResource Include="ReciboCancelacion.rdlc" />
     <EmbeddedResource Include="ReciboVenta.rdlc" />
     <EmbeddedResource Include="ReciboCorte.rdlc" />
     <EmbeddedResource Include="ReciboDevolucion.rdlc" />

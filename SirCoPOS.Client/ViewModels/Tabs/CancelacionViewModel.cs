@@ -1,4 +1,6 @@
-﻿using SirCoPOS.Common.Entities;
+﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using SirCoPOS.Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,28 +13,29 @@ namespace SirCoPOS.Client.ViewModels.Tabs
 {
     class CancelacionViewModel : Helpers.TabViewModelBase
     {
-        private Common.ServiceContracts.IDataServiceAsync _proxy;
-        private Helpers.CommonHelper _common;
-        private Helpers.ServiceClient _client;
+        private readonly Common.ServiceContracts.IDataServiceAsync _proxy;
+        private readonly Helpers.CommonHelper _common;
+        private readonly Helpers.ServiceClient _client;
+        private Helpers.ReportsHelper _reports;
         public CancelacionViewModel()
         {
-            if (!IsInDesignMode)
-            {
-                _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
-                _client = new Helpers.ServiceClient();
-            }            
             _common = new Helpers.CommonHelper();
             this.PropertyChanged += CancelacionViewModel_PropertyChanged;
             this.Productos = new ObservableCollection<Models.CancelProducto>();
             this.Productos.CollectionChanged += Productos_CollectionChanged;
-
-            this.ScanCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () => {
+            if (!IsInDesignMode)
+            {
+                _reports = new Helpers.ReportsHelper();
+                _client = new Helpers.ServiceClient();
+                _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
+            }            
+            this.ScanCommand = new RelayCommand(async () => {
                 this.IsBusy = true;
                 await Scan();
                 this.IsBusy = false;
             }, () => !string.IsNullOrWhiteSpace(this.SerieSearch));
 
-            this.CancelCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () => {
+            this.CancelCommand = new RelayCommand(async () => {
                 this.IsBusy = true;
 
                 var request = new Common.Entities.CancelSaleRequest
@@ -44,8 +47,20 @@ namespace SirCoPOS.Client.ViewModels.Tabs
 
                 this.Complete();
 
+                _reports.Cancelacion(this.Sucursal.Clave, this.Venta.Folio);
+
+                this.CloseCommand.Execute(null);
+
                 this.IsBusy = false;
             }, () => this.Productos.Any() && !this.Productos.Where(i => !i.Scanned).Any());
+
+            this.PrintCommand = new RelayCommand(() => {
+
+                _reports.Cancelacion(this.Sucursal.Clave, this.Folio);
+                
+                this.CloseCommand.Execute(null);
+
+            }, () => this.IsComplete);
 
             if (this.IsInDesignMode)
             {
@@ -135,8 +150,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             this.CancelCommand.RaiseCanExecuteChanged();
         }
         #region commands
-        public GalaSoft.MvvmLight.Command.RelayCommand CancelCommand { get; private set; }
-        public GalaSoft.MvvmLight.Command.RelayCommand ScanCommand { get; private set; }
+        public RelayCommand CancelCommand { get; private set; }
+        public RelayCommand ScanCommand { get; private set; }
+        public RelayCommand PrintCommand { get; private set; }
         #endregion
         #region computed
         public decimal SubTotal

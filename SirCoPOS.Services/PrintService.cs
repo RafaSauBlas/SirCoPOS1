@@ -16,29 +16,33 @@ namespace SirCoPOS.Services
             var ctxco = new DataAccess.SirCoControlDataContext();
             var ctx = new DataAccess.SirCoDataContext();
 
-            DataAccess.SirCoPV.Venta venta = ctxpv.Ventas.Where(i => i.sucursal == sucursal && i.venta == folio).Single();
-            DataAccess.SirCoControl.Sucursal suc = ctxco.Sucursales.Where(i => i.sucursal == venta.sucursal).Single();
+            DataAccess.SirCoPV.Venta cancela = ctxpv.Ventas.Where(i => i.sucursal == sucursal && i.venta == folio).Single();
+            DataAccess.SirCoControl.Sucursal suc = ctxco.Sucursales.Where(i => i.sucursal == cancela.sucursal).Single();
 
-            string vendedor = this.GetEmpleado(venta.idvendedor);
-            string cajero = this.GetUsuario(venta.idusuariocancela);
+            string vendedor = this.GetEmpleado(cancela.idvendedor);
+            string cajero = this.GetUsuario(cancela.idusuariocancela);
             var item = new ReciboCancelacionReport
             {
                 Recibo = new ReciboCancelacion
                 {
-                    SucursalId = venta.sucursal,
+                    SucursalId = cancela.sucursal,
                     SucursalNombre = suc.descrip,
                     Direccion = suc.calle,
                     Colonia = suc.colonia,
-                    Folio = venta.sucursal + "-" + venta.venta,
-                    Fecha = venta.fumcancela.Value,
-                    FechaVenta = venta.fecha.Value,
-                    SucursalVenta = venta.sucursal,
-                    FolioVenta = venta.sucursal + "-" + venta.venta,
+                    Folio = cancela.sucursal + "-" + cancela.venta,
+                    Fecha = cancela.fumcancela.Value,
+                    FechaVenta = cancela.fecha.Value,
+                    SucursalVenta = cancela.sucursal,
+                    FolioVenta = cancela.sucursal + "-" + cancela.venta,
+                    VendedorId = $"{cancela.idvendedor}",
+                    VendedorNombre = vendedor,
+                    CajeroId = $"{cancela.idcajero}",
+                    CajeroNombre = cajero,
                 }
             };
 
             var plist = new List<Producto>();
-            foreach (var det in venta.Detalles)
+            foreach (var det in cancela.Detalles)
             {
                 var serie = ctx.Series.Where(i => i.serie == det.serie).Single();
 

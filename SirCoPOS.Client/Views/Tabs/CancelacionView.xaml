@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:c="clr-namespace:SirCoPOS.Client.Converters"
              xmlns:c1="clr-namespace:SirCoPOS.Client.Converters"
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
@@ -88,10 +89,15 @@
                 <TextBlock Foreground="Red" HorizontalAlignment="Left" Margin="148.667,0,0,0" TextWrapping="Wrap" Text="{Binding ErrorMessage}" d:LayoutOverrides="Height" VerticalAlignment="Center"/>
             </Grid>
         </xt:BusyIndicator>
-
-        <xt:ChildWindow DesignerWindowState="Closed" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="180" Width="250" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top">
+            
+            <xt:ChildWindow DesignerWindowState="Closed" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="180" Width="250" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden" IsEnabled="False">
             <Grid>
-                <Button Command="{Binding CloseCommand}" Content="Aceptar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
+                <Button Command="{Binding PrintCommand}" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75">
+                    <Button.Content>
+                        <fa:ImageAwesome Icon="Print" Height="24"></fa:ImageAwesome>
+                    </Button.Content>
+                </Button>
+
                 <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Sucursal" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding Venta.Sucursal}" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Margin="10,33.62,0,0" TextWrapping="Wrap" Text="Folio" VerticalAlignment="Top"/>
