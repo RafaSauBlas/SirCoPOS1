@@ -4,13 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
+             xmlns:vz="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
+             xmlns:vmd="clr-namespace:SirCoPOS.Client.DesignMode.ViewModels"
              xmlns:c="clr-namespace:SirCoPOS.Client.Converters"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:s="clr-namespace:Microsoft.CSharp;assembly=System"
+             xmlns:m="clr-namespace:SirCoPOS.Client.Models"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance Type={x:Type vm:LoadClienteViewModel}}"
              Height="403.719" Width="400" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <c:ImageUrlConverter x:Key="imageUrl"></c:ImageUrlConverter>
+        <c:WindowStateConverter x:Key="windowState"/>
     </UserControl.Resources>
     <Grid>
         <Grid.Background>
@@ -21,12 +27,12 @@
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Button.Background>
-            <Image x:Name="agregarcliente" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/nuev.png" />
+            <Image x:Name="addclient" Source="/SirCoPOS.Win;component/Images/nuev.png" Height="23" Width="23" />
         </Button>
         <!--Etiqueta cliente-->
         <TextBlock Visibility="Hidden" x:Name="textBlock" HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top"/>
         <!--Captura del idcliente para busqueda-->
-        <TextBox Visibility="Hidden" x:Name="tbSearch" HorizontalAlignment="Left" Height="25" Margin="113.85,14.94,0,0" TextWrapping="Wrap" Text="{Binding ClienteSearch, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" VerticalAlignment="Top" Width="120">
+        <TextBox Visibility="Hidden" x:Name="tbSearch" HorizontalAlignment="Left" Height="25" Margin="113.85,14.94,0,0" TextWrapping="Wrap" Text="{Binding ClienteSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
             </TextBox.InputBindings>
@@ -61,16 +67,21 @@
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,83,0,0" TextWrapping="Wrap" Text="Appa" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox x:Name="txt_ApPa"  HorizontalAlignment="Left" Height="25" Margin="114,80,0,0" TextWrapping="Wrap" Text="{Binding ClienteNombreSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
+        <xt:MaskedTextBox x:Name="txt_ApPa"  HorizontalAlignment="Left" Height="25" Margin="114,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,115,0,0" TextWrapping="Wrap" Text="Apma" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox x:Name="txt_ApMa"  HorizontalAlignment="Left" Height="25" Margin="114,112,0,0" TextWrapping="Wrap" Text="{Binding ClienteNombreSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
+        <xt:MaskedTextBox x:Name="txt_ApMa"  HorizontalAlignment="Left" Height="25" Margin="114,112,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
+
+        <xt:ChildWindow DesignerWindowState="Open" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="197" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
+            
+        </xt:ChildWindow>
+
     </Grid>
 </UserControl>

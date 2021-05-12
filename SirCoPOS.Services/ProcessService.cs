@@ -128,7 +128,7 @@ namespace SirCoPOS.Services
                     try
                     {
                         action();
-                        tran.Complete();
+                        tran.Dispose();
                         res.Success = true;
                     }
                     catch (BusinessLogic.CustomException ex)
@@ -150,7 +150,7 @@ namespace SirCoPOS.Services
                     try
                     {
                         res.Item = func();
-                        tran.Complete();
+                        tran.Dispose();
                         res.Success = true;
                     }
                     catch (BusinessLogic.CustomException ex)
