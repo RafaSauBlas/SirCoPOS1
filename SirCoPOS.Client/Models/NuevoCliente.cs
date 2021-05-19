@@ -50,9 +50,9 @@ namespace SirCoPOS.Client.Models
             get { return this.GetValue<string>(nameof(this.Calle)); }
             set { this.SetValue(nameof(this.Calle), value); }
         }
-        public short? Numero
+        public short Numero
         {
-            get { return this.GetValue<short?>(nameof(this.Numero)); }
+            get { return this.GetValue<short>(nameof(this.Numero)); }
             set { this.SetValue(nameof(this.Numero), value); }
         }
         public string Referencia

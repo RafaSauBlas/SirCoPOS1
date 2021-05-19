@@ -82,10 +82,6 @@
     <Reference Include="SirCoPOS.Services">
       <HintPath>..\SirCoPOS.Services\bin\Debug\SirCoPOS.Services.dll</HintPath>
     </Reference>
-    <Reference Include="SirCoPOS.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\SirCoPOS.Utilities.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -675,13 +671,25 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SirCoPOS.BusinessLogic\SirCoPOS.BusinessLogic.csproj">
+      <Project>{b34987ad-f9ca-40bd-8b45-13e62ea4aaad}</Project>
+      <Name>SirCoPOS.BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SirCoPOS.Common\SirCoPOS.Common.csproj">
       <Project>{e84851fe-a33d-477f-8a55-4233f134446c}</Project>
       <Name>SirCoPOS.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SirCoPOS.DataAccess\SirCoPOS.DataAccess.csproj">
+      <Project>{51734512-d5f3-4aa8-ad42-968e67858741}</Project>
+      <Name>SirCoPOS.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SirCoPOS.Reports\SirCoPOS.Reports.csproj">
       <Project>{a075f0ab-a4e6-497d-b282-081e9cbbcee4}</Project>
       <Name>SirCoPOS.Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SirCoPOS.Utilities\SirCoPOS.Utilities.csproj">
+      <Project>{27545e34-b7c2-4cae-a038-1697a8964894}</Project>
+      <Name>SirCoPOS.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

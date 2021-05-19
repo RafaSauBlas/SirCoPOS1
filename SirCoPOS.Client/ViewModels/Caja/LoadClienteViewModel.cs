@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using SirCoPOS.Common.Constants;
+using SirCoPOS.Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,14 @@ using System.Windows;
 
 namespace SirCoPOS.Client.ViewModels.Caja
 {
-    class LoadClienteViewModel : Helpers.ModalViewModelBase, Utilities.Interfaces.IModal
+    public class LoadClienteViewModel : Helpers.ModalViewModelBase, Utilities.Interfaces.IModal
     {
         public string Title => "Cargar Cliente";
         private Common.ServiceContracts.IDataServiceAsync _proxy;
         private Helpers.CommonHelper _common;
+        private Utilities.Interfaces.IClienteView _Client;
+
+        
         public LoadClienteViewModel()
         {
             if (!this.IsInDesignMode)
@@ -57,40 +62,75 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 }
             });
 
-            if (this.IsInDesignMode)
-            {
-                this.ClienteSearch = 123;
-                this.ClienteTelefonoSearch = "1234567890";
-                this.ClienteNombreSearch = "Ricardo Milos Galvan";
-                this.NuevoCliente = new Models.NuevoCliente
-                {
-                    Nombre = "nombre",
-                    ApPaterno = "ap paterno",
-                    ApMaterno = "ap materno",
-                    Calle = "calle",
-                    Celular = "1234567890",
-                    CodigoPostal = "cp",
-                    Colonia = null,
-                    Email = "email",
-                    Referencia = "entre calles",
-                    Numero = 123,
-                };
+            //Los comandos funcionan como metodos que realizan alguna accion predeterminada
+            this.PopUpCommand = new RelayCommand(async () => {
+                var nombre = _common.PrepareNombre(this.ClienteNombreSearch);
+                var ApPa = _common.PrepareApPa(this.ClienteApPaSearch);
+                var ApMa = _common.PrepareApMa(this.ClienteApMaSearch);
 
-                this.Colonias = new Common.Entities.Colonia[] {
-                    new Common.Entities.Colonia
+                if (nombre == "")
+                    nombre = null;
+                if (ApPa == "")
+                    ApPa = null;
+                if (ApMa == "")
+                    ApMa = null;
+                List<Cliente> lista = new List<Cliente>();
+
+                    lista = _proxy.FindCliente2(null, nombre, ApPa, ApMa);
+                    if (this.Cliente != null)
                     {
-                        Id = 1,
-                        Nombre  = "colonia",
-                        CodigoPostal  = "cp",
-                        CiudadId = 2,
-                        CiudadNombre = "ciudad",
-                        EstadoId = 3,
-                        EstadoNombre = "estado"
-                    }
-                };
-                this.NuevoCliente.Colonia = this.Colonias.First();
-            }
+                        this.ClienteTelefonoSearch = null;
+                        this.ClienteNombreSearch = null;
+                        this.ClienteApPaSearch = null;
+                        this.ClienteApMaSearch = null;
+                }
+
+                _Client = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Interfaces.IClienteView>();
+
+                _Client.OpenCliente(lista);
+
+                this.ClienteTelefonoSearch = "";
+                this.ClienteNombreSearch = "";
+                this.ClienteApPaSearch = "";
+                this.ClienteApMaSearch = "";
+            });
+
+            //if (this.IsInDesignMode)
+            //{
+            //    this.ClienteSearch = 123;
+            //    this.ClienteTelefonoSearch = "1234567890";
+            //    this.ClienteNombreSearch = "Ricardo Milos Galvan";
+            //    this.NuevoCliente = new Models.NuevoCliente
+            //    {
+            //        Nombre = "nombre",
+            //        ApPaterno = "ap paterno",
+            //        ApMaterno = "ap materno",
+            //        Calle = "calle",
+            //        Celular = "1234567890",
+            //        CodigoPostal = "cp",
+            //        Colonia = null,
+            //        Email = "email",
+            //        Referencia = "entre calles",
+            //        Numero = 123,
+            //    };
+
+            //    this.Colonias = new Common.Entities.Colonia[] {
+            //        new Common.Entities.Colonia
+            //        {
+            //            Id = 1,
+            //            Nombre  = "colonia",
+            //            CodigoPostal  = "cp",
+            //            CiudadId = 2,
+            //            CiudadNombre = "ciudad",
+            //            EstadoId = 3,
+            //            EstadoNombre = "estado"
+            //        }
+            //    };
+            //    this.NuevoCliente.Colonia = this.Colonias.First();
+            //}
         }
+
+
 
         private void LoadClienteViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -203,6 +243,15 @@ namespace SirCoPOS.Client.ViewModels.Caja
             get { return _clienteSearch; }
             set { this.Set(nameof(this.ClienteSearch), ref _clienteSearch, value); }
         }
+        private string _search;
+        public string Search
+        {
+            get { return _search; }
+            set
+            {
+                this.Set(nameof(this.Search), ref _search, value);
+            }
+        }
         private string _ClienteTelefonoSearch;
         public string ClienteTelefonoSearch
         {
@@ -215,10 +264,23 @@ namespace SirCoPOS.Client.ViewModels.Caja
             get => _ClienteNombreSearch;
             set => this.Set(nameof(ClienteNombreSearch), ref _ClienteNombreSearch, value);
         }
+        private string _ClienteApPaSearch;
+        public string ClienteApPaSearch
+        {
+            get => _ClienteApPaSearch;
+            set => this.Set(nameof(ClienteApPaSearch), ref _ClienteApPaSearch, value);
+        }
+        private string _ClienteApMaSearch;
+        public string ClienteApMaSearch
+        {
+            get => _ClienteApMaSearch;
+            set => this.Set(nameof(ClienteApMaSearch), ref _ClienteApMaSearch, value);
+        }
         #endregion
         #region commands
         public RelayCommand<string> ChangeViewCommand { get; private set; }
         public RelayCommand SearchCommand { get; private set; }
+        public RelayCommand PopUpCommand { get; private set; }
         #endregion
     }
 }

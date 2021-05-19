@@ -22,7 +22,7 @@ namespace SirCoPOS.Services
         public ProcessService()
         {
             _process = new BusinessLogic.Process();
-        }        
+        }
         public Response ReleaseProducto(string serie)
         {
             var uid = this.GetUserIdOrDefault() ?? 0;
@@ -62,8 +62,8 @@ namespace SirCoPOS.Services
                     var ctx = new DataAccess.SirCoPOSDataContext();
                     var eitem = new DataAccess.SirCoPOS.Nota
                     {
-                        Date = DateTime.Now, 
-                        CajeroId = uid, 
+                        Date = DateTime.Now,
+                        CajeroId = uid,
                         Sucursal = item.Sucursal,
                         Data = xml,
                         Multiple = multiple
@@ -100,7 +100,7 @@ namespace SirCoPOS.Services
         {
             var uid = this.GetUserId();
             return this.Reply(() => _process.CancelSale(item, uid));
-        }        
+        }
         public Response<ChangeResponse> Change(Common.Entities.ChangeRequest model)
         {
             var uid = this.GetUserId();
@@ -128,7 +128,7 @@ namespace SirCoPOS.Services
                     try
                     {
                         action();
-                        tran.Dispose();
+                        tran.Complete();
                         res.Success = true;
                     }
                     catch (BusinessLogic.CustomException ex)
@@ -150,7 +150,7 @@ namespace SirCoPOS.Services
                     try
                     {
                         res.Item = func();
-                        tran.Dispose();
+                        tran.Complete();
                         res.Success = true;
                     }
                     catch (BusinessLogic.CustomException ex)

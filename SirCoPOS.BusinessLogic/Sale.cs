@@ -18,7 +18,7 @@ namespace SirCoPOS.BusinessLogic
     {
         public Sale()
         {
-            
+
         }
         public ScanDevolucionResponse ScanProductoDevolucion(string serie, bool cancelacion = false)
         {
@@ -45,12 +45,13 @@ namespace SirCoPOS.BusinessLogic
                 if (cancelacion)
                 {
                     if (vitem.Header.fecha != today)
-                        return new ScanDevolucionResponse { Success = false };                    
+                        return new ScanDevolucionResponse { Success = false };
                 }
                 else
                 {
                     if (vitem.Header.fecha < max)
-                        return new ScanDevolucionResponse { 
+                        return new ScanDevolucionResponse
+                        {
                             Success = false,
                             Status = (Status)Enum.Parse(typeof(Status), item.status)
                         };
@@ -296,7 +297,7 @@ namespace SirCoPOS.BusinessLogic
             }
             return model;
         }
-       
+
         //========================= CREO QUE SE TENDRÁ QUE CAMBIAR EL METODO ENTERO ===================================================================
         //ALGO ESTA MAL AQUI, PORQUE EN LA CLASE DE "Process.cs"  SI HACE EL PROCESO (LITERALMENTE ES EL MISMO CODIGO)
         private IEnumerable<Entities.ProductoPromocion> ParseProductos(IEnumerable<Common.Entities.SerieFormasPago> series)
@@ -305,7 +306,7 @@ namespace SirCoPOS.BusinessLogic
             var items = new List<Entities.ProductoPromocion>();
             var count = 0;
             foreach (var sf in series)
-            {       
+            {
                 if (sf.Serie != null)
                 {
                     //AQUI ES DONDE SURGE EL ERROR DE ACCESO REMOTO
@@ -365,7 +366,7 @@ namespace SirCoPOS.BusinessLogic
 
             var items = ParseProductos(request.Productos);
 
-            var suc = ctxc.Sucursales.Where(i => i.sucursal == request.Sucursal).Single();            
+            var suc = ctxc.Sucursales.Where(i => i.sucursal == request.Sucursal).Single();
             var q = ctxpv.Promociones.Where(i => i.estatus == "ACTIVO"
                     && today >= i.iniciopromo
                     && today <= i.finpromo
@@ -391,8 +392,9 @@ namespace SirCoPOS.BusinessLogic
             {
                 var valid = IsValidPromocion(item.promo, suc, items, any: true);
                 if (valid.IsValid)
-                    res.Add(new Promocion { 
-                        PromocionId = item.promo.idpromocion, 
+                    res.Add(new Promocion
+                    {
+                        PromocionId = item.promo.idpromocion,
                         Nombre = item.promo.nombre,
                         HasCliente = item.promo.clienterequerido ?? false
                     });
@@ -400,7 +402,7 @@ namespace SirCoPOS.BusinessLogic
             return res;
         }
 
-        private Entities.ValidPromocionResponse IsValidPromocion(Promociones promocion, DataAccess.SirCoControl.Sucursal suc, 
+        private Entities.ValidPromocionResponse IsValidPromocion(Promociones promocion, DataAccess.SirCoControl.Sucursal suc,
             IEnumerable<Entities.ProductoPromocion> items, IDictionary<string, Common.Entities.ProductoPromocion> dic = null, bool any = false)
         {
             var today = Helpers.Common.GetToday();
@@ -480,7 +482,7 @@ namespace SirCoPOS.BusinessLogic
                         return new Entities.ValidPromocionResponse { IsValid = true };
                 }
                 return new Entities.ValidPromocionResponse { IsValid = false };
-            }            
+            }
 
             if (promocion.tipo == Common.Constants.TipoPromocion.DIRECTA)
             {
@@ -509,7 +511,8 @@ namespace SirCoPOS.BusinessLogic
                 }
             }
 
-            return new Entities.ValidPromocionResponse {
+            return new Entities.ValidPromocionResponse
+            {
                 IsValid = true,
                 ValidPromo = validPromo,
                 ValidCompra = validCompra
@@ -534,13 +537,13 @@ namespace SirCoPOS.BusinessLogic
             var dcupones = new Dictionary<int, DataAccess.SirCoPV.Cupones>();
             foreach (var sf in request.Productos)
             {
-            //    var serie = ctx.Series.Where(i => i.serie == sf.Serie).Single();
-            //    var corrida = ctx.Corridas.Where(i => i.marca == serie.marca && i.estilon == serie.estilon && i.proveedor == serie.proveedors
-            //        && String.Compare(serie.medida, i.medini) >= 0 && String.Compare(serie.medida, i.medfin) <= 0).SingleOrDefault();
+                //    var serie = ctx.Series.Where(i => i.serie == sf.Serie).Single();
+                //    var corrida = ctx.Corridas.Where(i => i.marca == serie.marca && i.estilon == serie.estilon && i.proveedor == serie.proveedors
+                //        && String.Compare(serie.medida, i.medini) >= 0 && String.Compare(serie.medida, i.medfin) <= 0).SingleOrDefault();
 
                 dic.Add(sf.Serie, new Common.Entities.ProductoPromocion { Serie = sf.Serie });
-            //    dser.Add(sf.Serie, serie);
-            //    dcor.Add(sf.Serie, corrida);
+                //    dser.Add(sf.Serie, serie);
+                //    dcor.Add(sf.Serie, corrida);
             }
 
             var suc = ctxc.Sucursales.Where(i => i.sucursal == request.Sucursal).Single();
@@ -586,7 +589,7 @@ namespace SirCoPOS.BusinessLogic
                 }
                 else
                     dpromos.Add(promocion.idpromocion, promocion);
-                
+
                 var duplicados = promocion.duplicados;
 
                 if ((promocion.clienterequerido ?? false)
@@ -619,7 +622,7 @@ namespace SirCoPOS.BusinessLogic
                             continue;
                     }
                     if (duplicados.HasValue)
-                    {                        
+                    {
                         DateTime? fecha = null;
                         switch (promocion.empleadocantidadtipo)
                         {
@@ -648,7 +651,7 @@ namespace SirCoPOS.BusinessLogic
                         var dup = duplicados.Value - usados;
                         if (dup <= 0)
                             continue;
-                        duplicados = (byte)dup;                        
+                        duplicados = (byte)dup;
                     }
                 }
 
@@ -667,8 +670,8 @@ namespace SirCoPOS.BusinessLogic
                         index++;
 
                     if (duplicados.HasValue && duplicados == index)
-                        break;                    
-                } while (used && !(promocion.importeticket ?? false));                
+                        break;
+                } while (used && !(promocion.importeticket ?? false));
 
                 if (index > 1 && promocion.tipo == Common.Constants.TipoPromocion.AxB)
                 {
@@ -700,7 +703,7 @@ namespace SirCoPOS.BusinessLogic
             //    && today >= i.iniciopromo
             //    && today <= i.finpromo
             //    && !i.Cupones.Any());
-            
+
 
             //Assert.IsNotNull(cupon);
             //Assert.AreEqual("ACTIVO", cupon.estatus);
@@ -744,14 +747,14 @@ namespace SirCoPOS.BusinessLogic
             //    }
             //}
 
-            return new CheckPromocionesCuponesResponse 
+            return new CheckPromocionesCuponesResponse
             {
                 Monedero = monedero,
                 Promociones = dic.Select(i => i.Value)
             };
         }
 
-        private decimal? getAmount(Entities.ProductoPromocion pp, string[] tipos, 
+        private decimal? getAmount(Entities.ProductoPromocion pp, string[] tipos,
             IDictionary<Common.Constants.FormaPago, string> mapping)
         {
             if (pp.SerieFormaPago.Pagos == null)
@@ -764,7 +767,7 @@ namespace SirCoPOS.BusinessLogic
             return qtmp.Sum(i => i.Value);
         }
 
-        private decimal? GetTotalValido(Promociones promocion, string tipo, 
+        private decimal? GetTotalValido(Promociones promocion, string tipo,
             IDictionary<Common.Constants.FormaPago, string> mapping,
             out string[] tipos,
             List<Entities.ProductoPromocion> validItems)
@@ -801,7 +804,7 @@ namespace SirCoPOS.BusinessLogic
             var valid = IsValidPromocion(promocion, suc, items, dic);
             if (!valid.IsValid)
                 return false;
-            
+
             //var qdic = items.Where(i => !dic[i.SerieFormaPago.Serie].PromocionId.HasValue);
             //var itemsPromo = qdic.ToList();
             //var itemsCompra = qdic.ToList();
@@ -849,7 +852,7 @@ namespace SirCoPOS.BusinessLogic
                 if (valid.ValidPromo.Where(i => i.CustomOrder.HasValue).Any())
                 {
                     var remove = valid.ValidPromo.Where(i => !i.Group.HasValue).ToList();
-                    remove.ForEach(i => valid.ValidPromo.Remove(i));                    
+                    remove.ForEach(i => valid.ValidPromo.Remove(i));
                 }
                 var isValid = AplicaPromocionDirecta(promocion, dic, maxItems, valid.ValidPromo, index, mapping: mapping);
 
@@ -957,7 +960,7 @@ namespace SirCoPOS.BusinessLogic
                 int mul;
                 var lindex = 0;
                 if ((count ?? 0) > 0)
-                {                    
+                {
                     AplicaPromocionAxB_Promo(promocion, dic, valid.ValidCompra, valid.ValidPromo, index: null, count: count.Value, mapping: mapping);
                     for (int i = 0; i < count; i++)
                     {
@@ -1023,12 +1026,12 @@ namespace SirCoPOS.BusinessLogic
                             dic[key].Monedero = null;
                             dic[key].Index = null;
                         }
-                    }                    
+                    }
                 }
                 return isValid;
             }
 
-            return false;                        
+            return false;
 
             //if (promocion.tipo == Common.Constants.TipoPromocion.AxB)
             //{
@@ -1285,7 +1288,7 @@ namespace SirCoPOS.BusinessLogic
                 var sum = item.Sum(i => i.SerieFormaPago.Precio ?? i.Corrida.precio);
                 if (sum < importe)
                     res.Remove(item);
-                var aid = item.Select(i => i.Serie.serie).ToList();                
+                var aid = item.Select(i => i.Serie.serie).ToList();
                 aid.Sort();
                 var id = String.Join("-", aid);
                 if (!hash.Add(id))
@@ -1325,7 +1328,7 @@ namespace SirCoPOS.BusinessLogic
                     valid.Remove(item);
                     items.Add(item);
                 }
-            }            
+            }
         }
 
         public Distribuidor FindTarjetahabiente(string distrib)
@@ -1335,7 +1338,7 @@ namespace SirCoPOS.BusinessLogic
             if (item == null)
                 return null;
 
-            var model = new Distribuidor 
+            var model = new Distribuidor
             {
                 Nombre = item.nombrecompleto,
                 //ApMaterno, ApPaterno,
@@ -1374,7 +1377,7 @@ namespace SirCoPOS.BusinessLogic
             }
             return dic;
         }
-        private Entities.PromocionValores CheckFormasPago(SerieFormasPago item, Promociones promocion, string tipo, 
+        private Entities.PromocionValores CheckFormasPago(SerieFormasPago item, Promociones promocion, string tipo,
             IDictionary<Common.Constants.FormaPago, string> mapping, int? num = null)
         {
             decimal? descFijo = null;
@@ -1424,7 +1427,7 @@ namespace SirCoPOS.BusinessLogic
             //    //public const string VS = "VS";no se usa
             //    //VD - vale digital
             //};            
-                
+
             foreach (var sfpt in item.FormasPago.Distinct())
             {
                 var sfp = sfpt;
@@ -1433,7 +1436,7 @@ namespace SirCoPOS.BusinessLogic
                     && item.Promociones.ContainsKey(sfp)
                     && !item.Promociones[sfp])
                 {
-                  
+
                 }
                 if (!mapping.ContainsKey(sfp))
                     continue;
@@ -1450,7 +1453,7 @@ namespace SirCoPOS.BusinessLogic
                     }
                 }
             }
-            
+
             var pdet = dic
                 .OrderBy(i => i.Value.descdirecto)
                 .ThenByDescending(i => i.Value.impfijo)
@@ -1460,7 +1463,7 @@ namespace SirCoPOS.BusinessLogic
                 .Select(i => i.Value)
                 .FirstOrDefault();
 
-            if (pdet == null 
+            if (pdet == null
                 && !item.FormasPago.Any()
                 && detalle.ContainsKey(FormaPagoPromocion.TO))
                 pdet = detalle[FormaPagoPromocion.TO];
@@ -1483,7 +1486,8 @@ namespace SirCoPOS.BusinessLogic
                     descImpFijo = pdet.descfijo;
             }
 
-            return new Entities.PromocionValores {
+            return new Entities.PromocionValores
+            {
                 Success = success,
                 DescuentoPorcentaje = descPorcentaje,
                 DescuentoFijo = descFijo,
@@ -1493,7 +1497,7 @@ namespace SirCoPOS.BusinessLogic
             };
         }
 
-        private void ChecarExclusion(PromocionesExclusiones item, 
+        private void ChecarExclusion(PromocionesExclusiones item,
             ICollection<Entities.ProductoPromocion> items,
             ICollection<Entities.ProductoPromocion> valid)
         {
@@ -1509,7 +1513,7 @@ namespace SirCoPOS.BusinessLogic
             }
         }
 
-        private void ChecarAgrupacion(Agrupaciones item, 
+        private void ChecarAgrupacion(Agrupaciones item,
             ICollection<Entities.ProductoPromocion> items,
             ICollection<Entities.ProductoPromocion> valid,
             IDictionary<string, Common.Entities.ProductoPromocion> dic = null)
@@ -1664,7 +1668,7 @@ namespace SirCoPOS.BusinessLogic
                         break;
                     case "Modelo":
                         {
-                            var q = items.Where(i => 
+                            var q = items.Where(i =>
                                 i.Corrida.marca == adet.marca
                                 && i.Corrida.estilon == adet.estilon);
                             updateItems(q);
@@ -1705,7 +1709,7 @@ namespace SirCoPOS.BusinessLogic
 
 
                 if (promPromo.Success /*(promPromo.DescuentoPorcentaje ?? 0) > 0 || (promPromo.DescuentoFijo ?? 0) > 0*/)
-                {                    
+                {
                     if (!dic[pitem.Key].PromocionId.HasValue)
                     {
                         currentCount++;
@@ -1727,7 +1731,7 @@ namespace SirCoPOS.BusinessLogic
             if (!maxItems.HasValue && currentCount > 0)
                 return true;
 
-            foreach (var key in dic.Where(i => i.Value.PromocionId == promocion.idpromocion 
+            foreach (var key in dic.Where(i => i.Value.PromocionId == promocion.idpromocion
                 && i.Value.Index == index)
                 .Select(i => i.Key))
             {
@@ -1740,9 +1744,9 @@ namespace SirCoPOS.BusinessLogic
             return false;
         }
 
-        private static void AsignarPromocion(Promociones promocion, 
-            Dictionary<string, Common.Entities.ProductoPromocion> dic, int? index, 
-            Entities.ProductoPromocion pitem, 
+        private static void AsignarPromocion(Promociones promocion,
+            Dictionary<string, Common.Entities.ProductoPromocion> dic, int? index,
+            Entities.ProductoPromocion pitem,
             PromocionValores promPromo,
             bool promo)
         {
@@ -1795,8 +1799,8 @@ namespace SirCoPOS.BusinessLogic
                         valid = true;
                         AsignarPromocion(promocion, dic, index, pitem, promCompra, promo: false);
 
-                        var q = dic.Where(i => i.Value.PromocionId == promocion.idpromocion 
-                            && i.Value.Index == index 
+                        var q = dic.Where(i => i.Value.PromocionId == promocion.idpromocion
+                            && i.Value.Index == index
                             && !i.Value.Promo.Value);
                         decimal sum = 0;
                         foreach (var prod in q)
@@ -1812,7 +1816,7 @@ namespace SirCoPOS.BusinessLogic
                 }
                 if (!valid)
                 {
-                    applied = false;                    
+                    applied = false;
                 }
             }
             else
@@ -1875,7 +1879,7 @@ namespace SirCoPOS.BusinessLogic
         {
 
             var applied = true;
-            
+
             var nums = promocion.Detalle.Where(i => i.tipo == "PROMO")
                 .OrderBy(i => i.numunidad).Select(i => i.numunidad).Distinct();
 
@@ -1910,7 +1914,7 @@ namespace SirCoPOS.BusinessLogic
                                 rapproved[k][num] = true;
                                 valid = true;
                                 //currentCount++;
-                                AsignarPromocion(promocion, dic, index ?? (cindex++), pitem, promPromo, promo: true);                                    
+                                AsignarPromocion(promocion, dic, index ?? (cindex++), pitem, promPromo, promo: true);
 
                                 //if (maxItems.HasValue && maxItems == currentCount)
                                 //{
@@ -1963,7 +1967,7 @@ namespace SirCoPOS.BusinessLogic
                 dic[key].PromocionId = null;
                 dic[key].Monedero = null;
                 dic[key].Index = null;
-            }                            
+            }
         }
         public ValeResponse FindVale(string vale)
         {
@@ -1971,7 +1975,7 @@ namespace SirCoPOS.BusinessLogic
             var ctxc = new DataAccess.SirCoControlDataContext();
             var ctxp = new DataAccess.SirCoPOSDataContext();
 
-            var valera = ctx.Valeras.Where(i =>                
+            var valera = ctx.Valeras.Where(i =>
                 String.Compare(vale, i.valeini) >= 0 && String.Compare(vale, i.valefin) <= 0
                 && vale.Length == i.valeini.Length).SingleOrDefault();
             if (valera == null)
@@ -1999,7 +2003,6 @@ namespace SirCoPOS.BusinessLogic
                 Nombre = item.nombrecompleto,
                 Status = item.idestatus.Value,
                 Electronica = item.solocalzado == 0,
-                ValeExterno = item.negext == 1,
                 ContraVale = item.contravale == 1,
                 Promocion = item.promocion == 1,
                 LimiteVale = item.limitevale
@@ -2026,9 +2029,9 @@ namespace SirCoPOS.BusinessLogic
             }
 
             var qpp = ctx.PlanPagos.Where(i => i.vale.Trim() == vale && i.status == "AP" && i.negocio == "TO");
-            var qp = qpp.Where(i => i.pagado == "0");
-            var usado = qp.Any() ? qp.Sum(i => i.importe) : 0;
-            model.Disponible = Math.Min(item.limitevale.Value, item.disponible.Value) - usado;
+            //var qp = qpp.Where(i => i.pagado == "0");
+            //var usado = qp.Any() ? qp.Sum(i => i.saldo) : 0;
+            model.Disponible = Math.Min(item.limitevale.Value, item.disponible.Value) /*- usado*/;
             model.Disponible = model.Disponible < 0 ? 0 : model.Disponible;
 
             var q = ctx.DistribuidorFirmas.Where(i => i.distrib == item.distrib);
@@ -2052,7 +2055,7 @@ namespace SirCoPOS.BusinessLogic
                     var cli = ctx.Clientes.Where(i => i.cliente == last.cliente && i.idsucursal == suc.idsucursal).Single();
                     model.ClienteId = cli.idcliente;
                 }
-            }            
+            }
 
             return model;
         }
@@ -2085,7 +2088,7 @@ namespace SirCoPOS.BusinessLogic
                 //ApPaterno = item.appaterno,
                 //ApMaterno = item.apmaterno,
                 Nombre = item.nombrecompleto,
-                Status = item.idestatus.Value,                
+                Status = item.idestatus.Value,
                 ContraVale = item.contravale == 1,
                 //SoloCalzado = item.solocalzado == 1,
                 Electronica = (vitem.electronica ?? false),
@@ -2140,7 +2143,7 @@ namespace SirCoPOS.BusinessLogic
             var vitem = ctxa.ValesDigital.Where(i => i.idcliente == id
                 && (!i.vigencia.HasValue || i.vigencia >= DateTime.Today)
                 && i.disponible > 0)
-                
+
                 .FirstOrDefault();
             if (vitem == null)
                 return null;
@@ -2249,7 +2252,7 @@ namespace SirCoPOS.BusinessLogic
                 Vale = vale,
                 Vigencia = cvale.caduca,
                 Cancelado = false,
-                Distribuidor = dis, 
+                Distribuidor = dis,
                 Sucursal = sucursal
             };
 

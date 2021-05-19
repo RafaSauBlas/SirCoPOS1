@@ -20,7 +20,7 @@ namespace SirCoPOS.Common.Entities
         public int? Ciudad { get; set; }
         public int? Estado { get; set; }
         public string Calle { get; set; }
-        public short? Numero { get; set; }
+        public short Numero { get; set; }
         public string Referencia { get; set; }
         public string Email { get; set; }
         public string Sexo { get; set; }

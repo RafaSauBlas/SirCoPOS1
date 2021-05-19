@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using cmd = GalaSoft.MvvmLight.Command;
+using SirCoPOS.Utilities.Interfaces;
+using SirCoPOS.Utilities.Models;
 
 namespace SirCoPOS.Client.Helpers
 {

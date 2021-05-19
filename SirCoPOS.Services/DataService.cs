@@ -9,6 +9,7 @@ using System.Data.Entity;
 using SirCoPOS.Common.Helpers;
 using SirCoPOS.BusinessLogic;
 using System.ServiceModel.Configuration;
+using System.Windows;
 
 namespace SirCoPOS.Services
 {
@@ -19,6 +20,7 @@ namespace SirCoPOS.Services
         private readonly BusinessLogic.Return _return;
         private readonly BusinessLogic.Admin _admin;
         private readonly BusinessLogic.Data _helpers;
+        public DataAccess.SirCoControlDataContext dem = new DataAccess.SirCoControlDataContext();
         public DataService()
         {
             _sale = new BusinessLogic.Sale();
@@ -517,6 +519,69 @@ namespace SirCoPOS.Services
                 Email = item.email,
                 Sexo = item.sexo
             };
+        }
+
+        public List<Cliente> FindCliente2( string telefono = null, string nombre = null, string appa = null, string apma = null)
+        {
+            var ctx = new DataAccess.SirCoCreditoDataContext();
+            var ctxc = new DataAccess.SirCoControlDataContext();
+            
+            DataAccess.SirCoCredito.Cliente item = null;
+            DataAccess.SirCoCredito.Cliente[] itemm = null;
+            System.Collections.Generic.IEnumerable<SirCoPOS.DataAccess.SirCoCredito.Cliente> atala = null;
+            //if (id.HasValue)
+            //    item = ctx.Clientes.Where(i => i.idcliente == id).SingleOrDefault();
+            if (!string.IsNullOrWhiteSpace(telefono))
+                item = ctx.Clientes.Where(i => i.celular == telefono).SingleOrDefault();
+            // Busquedas por nombre 
+            else if (!string.IsNullOrWhiteSpace(nombre) && appa == null && apma == null)
+                itemm = ctx.Clientes.Where(i => i.nombre == nombre).ToArray();
+            // Busqueda por nombre y apellido paterno
+            else if (!string.IsNullOrWhiteSpace(nombre) && appa != null && apma == null)
+                itemm = ctx.Clientes.Where(i => i.nombre == nombre && i.appaterno == appa).ToArray();
+            // Busqueda por nombre, apellido paterno y apellido materno
+            else if (!string.IsNullOrWhiteSpace(nombre) && appa != null && apma != null)
+                itemm = ctx.Clientes.Where(i => i.nombre == nombre && i.appaterno == appa && i.apmaterno == apma).ToArray();
+            //( Busqueda por nombre y apellido materno
+            else if (!string.IsNullOrWhiteSpace(nombre) && appa == null && apma != null)
+                itemm = ctx.Clientes.Where(i => i.nombre == nombre && i.apmaterno == apma).ToArray();
+            // Busqueda por apellido paterno y apellido materno
+            else if (nombre == null && appa != null && apma != null)
+                itemm = ctx.Clientes.Where(i => i.appaterno == appa && i.apmaterno == apma).ToArray();
+            // Busqueda por apellido paterno
+            else if (nombre == null && appa != null && apma == null)
+                itemm = ctx.Clientes.Where(i =>  i.appaterno == appa).ToArray();
+            // Busqueda por apellido materno
+            else if (nombre == null && appa == null && apma != null)
+                itemm = ctx.Clientes.Where(i => i.apmaterno == apma).ToArray();
+
+            if (itemm == null)
+                return null;
+         
+            //variable que limita la cantidad de registros que trae la consulta (con el fin de que no marque error de sobrecarga)
+            atala = itemm.OrderByDescending(i => i.idcliente).Take(120);
+
+            List<Cliente> liscliente = new List<Cliente>();
+
+            foreach(var nic in atala)
+            {
+                var cliente = new Cliente
+                {
+                    Nombre = nic.nombre,
+                    ApPaterno = nic.appaterno,
+                    ApMaterno = nic.apmaterno,
+                    Celular = nic.celular1,
+                    CodigoPostal = nic.codigopostal,
+                    Colonia = nic.idcolonia,
+                    Ciudad = nic.idciudad,
+                    Estado = nic.idestado,
+                    Calle = nic.calle,
+                    Numero = nic.numero
+                };
+
+                liscliente.Add(cliente);
+            };
+            return liscliente;
         }
 
         public IEnumerable<Common.Entities.Promocion> GetPromociones(CheckPromocionesRequest request)

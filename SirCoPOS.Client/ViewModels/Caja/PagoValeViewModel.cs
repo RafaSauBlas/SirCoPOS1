@@ -24,6 +24,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
         public override FormaPago FormaPago => FormaPago.VA;
         private Common.ServiceContracts.IDataServiceAsync _proxy;
         private Utilities.Interfaces.IImageView _image;
+
         public PagoValeViewModel()
         {            
             this.Productos = new ObservableCollection<Utilities.Models.ProductoPlazoOpciones>();

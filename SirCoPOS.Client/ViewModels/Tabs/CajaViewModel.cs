@@ -822,7 +822,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     var res = MessageBox.Show($"La serie '{ser}' ya está registrada en la ventan\nDesea removerla?", "Confirmar", MessageBoxButton.YesNo, MessageBoxImage.Question);
                     if (res == MessageBoxResult.Yes)
                     {
-                        await RemoveItem(q);                        
+                        await RemoveItem(q);
                     }
                     this.SerieSearch = null;
                     return;
@@ -843,7 +843,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                         Common.Constants.Status.IF,
                         Common.Constants.Status.AB
                     };
-                if (valid.Contains(item.Status) 
+                if (valid.Contains(item.Status)
                     || (item.Status == Common.Constants.Status.CA && item.UsuarioCajaId == this.Cajero.Id))
                 {
                     if (await _client.RequestProductoAsync(item.Producto.Serie))
@@ -853,7 +853,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                         this.SelectedItem = prod;
 
                         if (!prod.Electronica && this.Vendedor == null)
-                        {                            
+                        {
                             Messenger.Default.Send(
                                     new Utilities.Messages.OpenModal
                                     {
@@ -861,7 +861,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                                         GID = this.GID
                                     });
                         }
-                    }                    
+                    }
                 }
                 else
                     MessageBox.Show($"{item.Producto.Serie} - {item.Status}");

@@ -32,6 +32,6 @@ WHERE [serie] = @serie AND [status] = @statusCurrent";
         public string ValorMedida(
             [Parameter(DbType = "varchar")]
             string medida
-        ) => Function.CallNotSupported<string>();        
+        ) => Function.CallNotSupported<string>();
     }
 }

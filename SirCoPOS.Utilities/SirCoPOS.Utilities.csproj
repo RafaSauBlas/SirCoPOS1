@@ -86,6 +86,7 @@
     <Compile Include="Extensions\MetadataTabAttribute.cs" />
     <Compile Include="Helpers\EntityBase.cs" />
     <Compile Include="Interfaces\ICaja.cs" />
+    <Compile Include="Interfaces\IClienteView.cs" />
     <Compile Include="Interfaces\IEntity.cs" />
     <Compile Include="Interfaces\IImageView.cs" />
     <Compile Include="Interfaces\ILocalStorage.cs" />

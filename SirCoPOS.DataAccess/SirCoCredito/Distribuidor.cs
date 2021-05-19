@@ -58,7 +58,7 @@ namespace SirCoPOS.DataAccess.SirCoCredito
 	    public int? idcolonia { get; set; }
 	    public int? codigopostal { get; set; }
 	    public string calle { get; set; }
-	    public short? numero { get; set; }
+	    public short numero { get; set; }
         public string email { get; set; }
         public DateTime? fum { get; set; }
     }

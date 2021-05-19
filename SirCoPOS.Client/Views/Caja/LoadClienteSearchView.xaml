@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
-             xmlns:vz="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
              xmlns:vmd="clr-namespace:SirCoPOS.Client.DesignMode.ViewModels"
              xmlns:c="clr-namespace:SirCoPOS.Client.Converters"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
@@ -13,22 +12,23 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance Type={x:Type vm:LoadClienteViewModel}}"
-             Height="403.719" Width="400" Loaded="UserControl_Loaded">
+             Height="223.719" Width="400" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <c:ImageUrlConverter x:Key="imageUrl"></c:ImageUrlConverter>
         <c:WindowStateConverter x:Key="windowState"/>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="0" Height="222" VerticalAlignment="Top">
         <Grid.Background>
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
         </Grid.Background>
         <!--Boton genera Nuevo Cliente-->
-        <Button Command="{Binding ChangeViewCommand}" CommandParameter="new" x:Name="button"  Margin="0,365,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75">
+        <Button Command="{Binding ChangeViewCommand}" CommandParameter="new" x:Name="button"  Margin="0,183,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75">
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Button.Background>
             <Image x:Name="addclient" Source="/SirCoPOS.Win;component/Images/nuev.png" Height="23" Width="23" />
         </Button>
+        <!--Boton prueba-->
         <!--Etiqueta cliente-->
         <TextBlock Visibility="Hidden" x:Name="textBlock" HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top"/>
         <!--Captura del idcliente para busqueda-->
@@ -37,21 +37,24 @@
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="124,205,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Id}" VerticalAlignment="Top" FontWeight="Bold"/>
+
+
+
+        <TextBlock Visibility="Hidden" HorizontalAlignment="Left" Margin="124,205,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Id}" VerticalAlignment="Top" FontWeight="Bold"/>
         <!--Etiqueta Id-->
-        <TextBlock HorizontalAlignment="Left" Margin="10,205,0,0" TextWrapping="Wrap" Text="Id:" VerticalAlignment="Top"/>
+        <TextBlock Visibility="Hidden" HorizontalAlignment="Left" Margin="10,205,0,0" TextWrapping="Wrap" Text="Id:" VerticalAlignment="Top"/>
         <!--Nombre Cliente-->
-        <TextBlock HorizontalAlignment="Left" Margin="124,234,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Nombre}" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock Visibility="Hidden" x:Name="lbl_nombre" HorizontalAlignment="Left" Margin="124,234,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Nombre}" VerticalAlignment="Top" FontWeight="Bold"/>
         <!--Apellido Paterno-->
-        <TextBlock HorizontalAlignment="Left" Margin="124,269,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApPaterno}" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock Visibility="Hidden" x:Name="lbl_ApPa" HorizontalAlignment="Left" Margin="124,269,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApPaterno}" VerticalAlignment="Top" FontWeight="Bold"/>
         <!--Apellido Materno-->
-        <TextBlock Margin="124,302,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApMaterno}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
+        <TextBlock Visibility="Hidden" x:Name="lbl_ApMa" Margin="124,302,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApMaterno}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
         <!--Eiqueta Nombre-->
-        <TextBlock HorizontalAlignment="Left" Margin="10,234,0,0" TextWrapping="Wrap" Text="Nombre:" VerticalAlignment="Top"/>
+        <TextBlock Visibility="Hidden" HorizontalAlignment="Left" Margin="10,234,0,0" TextWrapping="Wrap" Text="Nombre:" VerticalAlignment="Top"/>
         <!--Etiqueta Apellido Paterno-->
-        <TextBlock HorizontalAlignment="Left" Margin="10,269,0,0" TextWrapping="Wrap" Text="Ap. Paterno:" VerticalAlignment="Top"/>
+        <TextBlock Visibility="Hidden" HorizontalAlignment="Left" Margin="10,269,0,0" TextWrapping="Wrap" Text="Ap. Paterno:" VerticalAlignment="Top"/>
         <!--Etiqueta apellido paterno-->
-        <TextBlock HorizontalAlignment="Left" Margin="10,302,0,0" TextWrapping="Wrap" Text="Ap. Materno:" VerticalAlignment="Top"/>
+        <TextBlock Visibility="Hidden" HorizontalAlignment="Left" Margin="10,302,0,0" TextWrapping="Wrap" Text="Ap. Materno:" VerticalAlignment="Top"/>
         <!--Etiqueta telefono-->
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="Telefono" VerticalAlignment="Top"/>
         <!--Captura de telefono para busqueda-->
@@ -63,25 +66,25 @@
         <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="10,53,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
         <xt:MaskedTextBox x:Name="txt_Nombre_Copy"  HorizontalAlignment="Left" Height="25" Margin="114,50,0,0" TextWrapping="Wrap" Text="{Binding ClienteNombreSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
             <xt:MaskedTextBox.InputBindings>
-                <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
+                <KeyBinding Key="Return" Command="{Binding PopUpCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,83,0,0" TextWrapping="Wrap" Text="Appa" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox x:Name="txt_ApPa"  HorizontalAlignment="Left" Height="25" Margin="114,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
+        <xt:MaskedTextBox x:Name="txt_ApPa"  HorizontalAlignment="Left" Height="25" Text="{Binding ClienteApPaSearch, UpdateSourceTrigger=PropertyChanged}" Margin="114,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
             <xt:MaskedTextBox.InputBindings>
-                <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
+                <KeyBinding Key="Return" Command="{Binding PopUpCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,115,0,0" TextWrapping="Wrap" Text="Apma" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox x:Name="txt_ApMa"  HorizontalAlignment="Left" Height="25" Margin="114,112,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
+        <xt:MaskedTextBox x:Name="txt_ApMa"  HorizontalAlignment="Left" Height="25" Text="{Binding ClienteApMaSearch, UpdateSourceTrigger=PropertyChanged}" Margin="114,112,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
             <xt:MaskedTextBox.InputBindings>
-                <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
+                <KeyBinding Key="Return" Command="{Binding PopUpCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
 
-        <xt:ChildWindow DesignerWindowState="Open" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="197" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
-            
-        </xt:ChildWindow>
+
+
+
 
     </Grid>
 </UserControl>

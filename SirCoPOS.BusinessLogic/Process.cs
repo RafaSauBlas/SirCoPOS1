@@ -214,18 +214,18 @@ namespace SirCoPOS.BusinessLogic
             ctxpv.Ventas.Add(header);
             ctxpv.Pagos.Add(pago);
             //ctxpv.SaveChanges();
-            
+
 
             return new SaleResponse
             {
                 Folio = header.venta,
                 Cliente = header.idcliente,
                 ContraVales = cvales,
-               // Monedero = promos.Monedero
+                // Monedero = promos.Monedero
             };
         }
         //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-            public SaleResponse Sale(SaleRequest model, int idcajero, IEnumerable<ChangeItem> change = null)
+        public SaleResponse Sale(SaleRequest model, int idcajero, IEnumerable<ChangeItem> change = null)
         {
             if (model.Pagos == null)
                 throw new NotSupportedException();
@@ -238,10 +238,10 @@ namespace SirCoPOS.BusinessLogic
             var ctxcr = new DataAccess.SirCoCreditoDataContext();
             var ctx = new DataAccess.SirCoDataContext();
 
-           
+
             var ctxap = new DataAccess.SirCoAPPDataContext();
             var helper = new BusinessLogic.Data();
-            
+
             var suc = ctxc.Sucursales.Where(i => i.sucursal == model.Sucursal).Single();
             var folio = suc.cajas + 1;
             suc.cajas = folio;
@@ -258,7 +258,7 @@ namespace SirCoPOS.BusinessLogic
                 idusuariocancela = 0,
                 fum = now
             };
-            
+
             header.Detalles = new HashSet<DataAccess.SirCoPV.VentaDetalle>();
             short count = 0;
             var valid = new string[] {
@@ -271,9 +271,10 @@ namespace SirCoPOS.BusinessLogic
             var request = new Common.Entities.CheckPromocionesCuponesRequest
             {
                 PromocionesCupones = model.PromocionesCupones,
-                Productos = model.Productos.Select(i => 
-                    new SerieFormasPago { 
-                        Serie = i.Serie, 
+                Productos = model.Productos.Select(i =>
+                    new SerieFormasPago
+                    {
+                        Serie = i.Serie,
                         Precio = i.Precio,
                         FormasPago = i.FormasPago,
                         Pagos = i.Pagos,
@@ -326,7 +327,7 @@ namespace SirCoPOS.BusinessLogic
 
                 if (det.sucursal != request.Sucursal)
                 {
-                    header.multiple = true;                    
+                    header.multiple = true;
                 }
 
                 if (!valid.Contains(det.status))
@@ -369,7 +370,7 @@ namespace SirCoPOS.BusinessLogic
                     });
                 }
                 else
-                {                    
+                {
                     var vdet = new DataAccess.SirCoPV.VentaDetalle
                     {
                         sucursal = header.sucursal,
@@ -454,7 +455,7 @@ namespace SirCoPOS.BusinessLogic
                 header.idcliente = this.AddClienteFromModel(model.Cliente, suc.idsucursal);
                 cliente = ctxcr.Clientes.Where(i => i.idcliente == header.idcliente).Single();
                 succli = ctxc.Sucursales.Where(i => i.idsucursal == cliente.idsucursal).Single();
-            }            
+            }
 
             foreach (var item in model.Pagos)
             {
@@ -469,7 +470,7 @@ namespace SirCoPOS.BusinessLogic
                     observaciones = "",//??
                     iva = iva,
                     idusuario = idcajero,
-                    fum = now, 
+                    fum = now,
                 };
                 pago.Detalle.Add(detalle);
                 if (!(suc.web ?? false) && idcajero > 0)
@@ -481,7 +482,7 @@ namespace SirCoPOS.BusinessLogic
                 {
                     case FormaPago.CI:
                         break;
-                    case FormaPago.EF:                        
+                    case FormaPago.EF:
                         break;
                     case FormaPago.TC:
                     case FormaPago.TD:
@@ -516,7 +517,7 @@ namespace SirCoPOS.BusinessLogic
                                     start += m.saldo.Value;
                                     porAsignar -= m.saldo.Value;
                                     mheader.saldo -= m.saldo.Value;
-                                    m.saldo = 0;                                    
+                                    m.saldo = 0;
                                 }
                                 else if (porAsignar < m.saldo)
                                 {
@@ -560,15 +561,11 @@ namespace SirCoPOS.BusinessLogic
                             //qplans = qplans.Where(i => i.pagado == "0");
                             //var usado = qplans.Any() ? qplans.Sum(i => i.saldo) : 0;
                             var disponible = Math.Min(dist.limitevale.Value, dist.disponible.Value) /*- usado*/;
-                            
                             disponible = disponible < 0 ? 0 : disponible;
-
-                            //var vf = ctxcr.ValeFisicos.Where(i => i.vale == item.Vale && i.iddistrib == valera.iddistrib).Single();
 
                             if (item.Importe > disponible)
                                 throw new NotSupportedException();
 
-                            //vf.disponible -= item.Importe;
                             dist.disponible -= item.Importe;
                             dist.saldo += item.Importe;
 
@@ -692,7 +689,7 @@ namespace SirCoPOS.BusinessLogic
                         }
                         break;
                     case FormaPago.CP:
-                        {                            
+                        {
                             var dist = ctxcr.Distribuidores.Where(i => i.distrib == item.Distribuidor
                                 && i.tipodistrib == Common.Constants.TipoDistribuidor.NORMAL
                                 && i.clasificacion == Common.Constants.TipoCredito.TARJETAHABIENTE
@@ -705,7 +702,7 @@ namespace SirCoPOS.BusinessLogic
 
                             if (item.Importe > disponible)
                                 throw new NotSupportedException();
-                            
+
                             if (dist.clientedi == null)
                             {
                                 dist.succtedi = succli.sucursal;
@@ -880,7 +877,7 @@ namespace SirCoPOS.BusinessLogic
                             detalle.vale = item.Vale;
 
                             var cdis = ctxcr.DistribuidorComerciales.Where(i => i.idnegexterno == item.Negocio && i.nocuenta == item.NoCuenta).Single();
-                            
+
                             //var valera = ctxcr.Valeras.Where(i =>
                             //    String.Compare(item.Vale, i.valeini) >= 0 && String.Compare(item.Vale, i.valefin) <= 0).SingleOrDefault();
                             //if (valera == null)
@@ -1038,7 +1035,7 @@ namespace SirCoPOS.BusinessLogic
                             var dist = ctxcr.Distribuidores.Where(i => i.distrib == cvale.distrib).Single();
 
                             var disponible = cvale.saldo ?? 0;
-                            disponible = Math.Min(cvale.saldo.Value,  dist.disponible.Value);
+                            disponible = Math.Min(cvale.saldo.Value, dist.disponible.Value);
 
                             if (item.Importe > disponible)
                                 throw new NotSupportedException();
@@ -1220,7 +1217,7 @@ namespace SirCoPOS.BusinessLogic
                         saldo = 0,
                         idusuario = idcajero,
                         fum = now
-                    };                    
+                    };
                     ctxap.Dineros.Add(md);
                 }
                 if (!md.saldo.HasValue)
@@ -1241,7 +1238,7 @@ namespace SirCoPOS.BusinessLogic
                     idusuario = idcajero,
                     fum = now
                 };
-                ctxap.DinerosDetalle.Add(mdet);                
+                ctxap.DinerosDetalle.Add(mdet);
                 ctxap.SaveChanges();
             }
 
@@ -1408,7 +1405,7 @@ namespace SirCoPOS.BusinessLogic
 
             var index = 0;
             foreach (var dp in detallePagos)
-            {                
+            {
                 var fecha = fechas.Where(i => i.fechaaplicar == dp.Key).Single();
                 if (index == 0)
                 {
@@ -1587,7 +1584,7 @@ namespace SirCoPOS.BusinessLogic
         {
             var ctx = new DataAccess.SirCoDataContext();
             var ctxpv = new DataAccess.SirCoPVDataContext();
-            var ctxc = new DataAccess.SirCoControlDataContext();            
+            var ctxc = new DataAccess.SirCoControlDataContext();
             var sale = ctxpv.Ventas.Where(i => i.sucursal == model.Sucursal && i.venta == model.Folio).SingleOrDefault();
             if (sale == null)
                 throw new NotSupportedException();
@@ -1596,7 +1593,7 @@ namespace SirCoPOS.BusinessLogic
             var suc = ctxc.Sucursales.Where(i => i.sucursal == sucursal).Single();
             var folio = suc.devolvta + 1;
             suc.devolvta = folio;
-            ctxc.SaveChanges();            
+            ctxc.SaveChanges();
 
             var devolucion = new DataAccess.SirCoPV.Devolucion
             {
@@ -1615,7 +1612,7 @@ namespace SirCoPOS.BusinessLogic
                 //fumcancela = null ??
                 //disponible                 
             };
-            if(model.Cliente != null)
+            if (model.Cliente != null)
                 devolucion.idcliente = this.AddClienteFromModel(model.Cliente, suc.idsucursal);
             devolucion.Detalles = new HashSet<DataAccess.SirCoPV.DevolucionDetalle>();
 
@@ -1756,7 +1753,7 @@ namespace SirCoPOS.BusinessLogic
                                 throw new NotSupportedException();
                             foreach (var det in plan.Detalle)
                             {
-                                if(det.pagado == "1" || det.abono > 0)
+                                if (det.pagado == "1" || det.abono > 0)
                                     throw new NotSupportedException();
                             }
                             plan.status = "ZC";
@@ -1861,7 +1858,8 @@ namespace SirCoPOS.BusinessLogic
                                     item.saldo += rem.Value;
                                     count += rem.Value;
                                 }
-                                else {
+                                else
+                                {
                                     item.saldo += mis;
                                     count += mis;
                                 }
@@ -1878,11 +1876,11 @@ namespace SirCoPOS.BusinessLogic
             var dif = venta.fumcancela - venta.fum;
             foreach (var d in venta.Detalles)
             {
-                if(dif.Value.TotalMinutes > 15)
+                if (dif.Value.TotalMinutes > 15)
                     ctx.UpdateSerieStatus(d.serie, Status.AC, Status.BA, idusuario: idcajero);
                 else
                     ctx.UpdateSerieStatus(d.serie, Status.AB, Status.BA, idusuario: idcajero);
-            }            
+            }
             ctxpv.SaveChanges();
             ctxc.SaveChanges();
         }
@@ -2031,16 +2029,16 @@ namespace SirCoPOS.BusinessLogic
                 Folio = request.Folio,
                 Comments = "CAMBIO TALLA",
                 Items = request.Items.Select(i => i.OldItem),
-                Cliente = request.Cliente,                
+                Cliente = request.Cliente,
                 Razones = request.Razones
             };
             var rid = this.Return(ret, idcajero, sucursal);
 
             var dev = ctxpv.Devoluciones.Where(i => i.devolvta == rid && i.sucursal == sucursal).Single();
-            
+
             decimal pagoDev = 0;
             if (dev.disponible < desc)
-                pagoDev = dev.disponible.Value; 
+                pagoDev = dev.disponible.Value;
             else
                 pagoDev = desc;
             var pagos = new List<Common.Entities.Pago>();
@@ -2062,11 +2060,12 @@ namespace SirCoPOS.BusinessLogic
             //        Importe = desc - pagoDev
             //    });
             //}
-            
+
             var sal = new Common.Entities.SaleRequest
             {
-                Productos = request.Items.Select(i => new SerieFormasPago { 
-                    Serie = i.NewItem, 
+                Productos = request.Items.Select(i => new SerieFormasPago
+                {
+                    Serie = i.NewItem,
                     Precio = i.Precio
                 }).ToArray(),
                 VendedorId = sale.idvendedor,//?
@@ -2075,8 +2074,9 @@ namespace SirCoPOS.BusinessLogic
                 Pagos = pagos
             };
             var sid = this.Sale(sal, idcajero, request.Items);
-            return new ChangeResponse { 
-                Devolucion = rid, 
+            return new ChangeResponse
+            {
+                Devolucion = rid,
                 Venta = sid.Folio,
                 Cliente = sid.Cliente
             };
@@ -2086,9 +2086,9 @@ namespace SirCoPOS.BusinessLogic
             var ctxp = new DataAccess.SirCoPOSDataContext();
             var ctx = new DataAccess.SirCoDataContext();
             var item = ctxp.Notas.Where(i => i.Id == id).Single();
-            var items = item.Items.Select(i => new Common.Entities.SerieFormasPago 
+            var items = item.Items.Select(i => new Common.Entities.SerieFormasPago
             {
-                Serie = i.Serie, 
+                Serie = i.Serie,
                 FormasPago = new Common.Constants.FormaPago[] { FormaPago.EF }
             });
             var total = 0m;
@@ -2101,8 +2101,8 @@ namespace SirCoPOS.BusinessLogic
             var request = new Common.Entities.SaleRequest
             {
                 VendedorId = item.VendedorId,
-                Sucursal = item.Sucursal, 
-                Productos = items, 
+                Sucursal = item.Sucursal,
+                Productos = items,
                 Pagos = new Common.Entities.Pago[] {
                     new Pago { FormaPago = FormaPago.EF, Importe = total }
                 }
@@ -2163,7 +2163,7 @@ namespace SirCoPOS.BusinessLogic
                 fumcancela = null,
                 idusuarioautoriza = null,
                 fumautoriza = null
-            };            
+            };
             pago.Detalle = new HashSet<DataAccess.SirCoCredito.PagosDetalle>();
             ctx.Pagos.Add(pago);
 
@@ -2215,13 +2215,13 @@ namespace SirCoPOS.BusinessLogic
                     break;
             }
 
-            pago.importe = pago.Detalle.Sum(i => i.subtotal) 
-                - pago.Detalle.Sum(i => i.descuento) 
+            pago.importe = pago.Detalle.Sum(i => i.subtotal)
+                - pago.Detalle.Sum(i => i.descuento)
                 - pago.Detalle.Sum(i => i.descuentoadicional);
             ctx.SaveChanges();
 
             var qcheck = p.Select(i => i.PlanPago).Distinct();
-            foreach (var plan  in qcheck)
+            foreach (var plan in qcheck)
             {
                 if (!plan.Detalle.Where(i => i.pagado == "0").Any())
                     plan.pagado = "1";

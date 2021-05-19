@@ -86,6 +86,7 @@ namespace SirCoPOS.Win.Helpers
                 //});
             }
             kernel.Bind<Utilities.Interfaces.IImageView>().To<Helpers.ImageView>();
+            kernel.Bind<Utilities.Interfaces.IClienteView>().To<Helpers.ClienteView>();
             kernel.Bind<Utilities.Interfaces.ILocalStorage>().To<Helpers.LocalStorage>();
             kernel.Bind<Utilities.Interfaces.IScanner>().To<Helpers.ScannerHelper>();
             kernel.Bind<Utilities.Interfaces.IReportViewer>().To<Helpers.ReportViewer>();

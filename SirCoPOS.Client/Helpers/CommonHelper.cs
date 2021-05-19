@@ -61,5 +61,13 @@ namespace SirCoPOS.Client.Helpers
         {
             return nombre;
         }
+        public string PrepareApPa(string ApPa)
+        {
+            return ApPa;
+        }
+        public string PrepareApMa(string ApMa)
+        {
+            return ApMa;
+        }
     }
 }
