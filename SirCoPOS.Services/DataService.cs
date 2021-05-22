@@ -168,6 +168,43 @@ namespace SirCoPOS.Services
             };
         }
 
+        public ValeResponse FindDistribuidorId(int? id)
+        {
+            var ctx = new DataAccess.SirCoCreditoDataContext();
+            var ct = new SirCoPOS.DataAccess.SirCoCredito.Distribuidor();
+
+            var item = ctx.Distribuidores.Where(i => i.iddistrib == id
+                && i.clasificacion == Common.Constants.TipoCredito.DISTRIBUIDOR
+                ).SingleOrDefault();
+            if (item == null)
+                return null;
+
+            var model = new Common.Entities.Distribuidor
+            {
+                Id = item.iddistrib,
+                Cuenta = item.distrib,
+                Nombre = item.nombre,
+                ApMaterno = item.appaterno,
+                ApPaterno = item.apmaterno,
+                Status = item.idestatus.Value,
+                Electronica = item.solocalzado == 0,
+                ValeExterno = item.negext == 0,
+                Plazos = item.idperiodicidad.Value,
+                Promocion = item.promocion == 1,
+                Number = item.distrib,
+                Disponible = item.disponible,
+                Date = item.fum
+            };
+            var q = ctx.DistribuidorFirmas.Where(i => i.distrib == item.distrib);
+            model.Firmas = q.Select(i => i.numfirma).ToArray();
+            return new ValeResponse
+            {
+                Distribuidor = model,
+                Disponible = model.Disponible ?? 0,
+                ClienteId = model.ClienteId,
+            };
+        }
+
         public PromocionesValeResponse FindPromocionesVale(string sucursal)
         {
             var now = BusinessLogic.Helpers.Common.GetNow();

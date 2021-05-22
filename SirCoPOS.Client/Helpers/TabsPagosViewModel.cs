@@ -314,7 +314,8 @@ namespace SirCoPOS.Client.Helpers
                             Promociones = o.Promociones,
                             SelectedPlazo = o.SelectedPlazo,
                             SelectedPromocion = o.SelectedPromocion,
-                            ClientId = o.Cliente
+                            ClientId = o.Cliente,
+                            ProductosPlazos = o.PlazosProductos
                         };
 
                         if (!this.IsInDesignMode)
@@ -323,6 +324,13 @@ namespace SirCoPOS.Client.Helpers
                             //pv.Plazos = promos.Plazos;
                             pv.Promociones = promos.Promociones;
 
+                            var vale = await _proxy.FindDistribuidorIdAsync(o.DistribuidorId);
+                            pv.Info = new Models.Pagos.PagoValeInfo
+                            {
+                                Distribuidor = vale.Distribuidor.Nombre,
+                                Promocion = vale.Distribuidor.Promocion,
+                                Electronica = vale.Distribuidor.Electronica
+                            };
                             //var vale = await _proxy.FindValeDigitalAsync(o.Vale);
                             //pv.Info = new Models.Pagos.PagoValeInfo
                             //{

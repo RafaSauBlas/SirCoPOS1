@@ -282,6 +282,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             {
                                 Plazos = i.SelectedPlazo,
                                 //Importe = i.Item.Precio
+                                Serie = i.Item.Serie,
                                 Importe = i.Item.FormasPago.Where(k => k.FormaPago == this.FormaPago)
                                     .Single().Importe
                             });

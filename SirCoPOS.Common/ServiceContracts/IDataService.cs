@@ -32,6 +32,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Common.Entities.ValeResponse FindDistribuidor(string id);
         [OperationContract]
+        Common.Entities.ValeResponse FindDistribuidorId(int? id);
+        [OperationContract]
         IEnumerable<Common.Entities.Colonia> FindColonias(string cp);
         //[OperationContract]
         //int AddCliente(Common.Entities.Cliente model);

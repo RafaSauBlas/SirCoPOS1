@@ -52,6 +52,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Task<Common.Entities.ValeResponse> FindDistribuidorAsync(string id);
         [OperationContract]
+        Task<Common.Entities.ValeResponse> FindDistribuidorIdAsync(int? id);
+        [OperationContract]
         Task<decimal?> FindMonederoAsync(int cliente);
         [OperationContract]
         Task<Common.Entities.MedidasCorridas> GetPreciosAsync(int id);

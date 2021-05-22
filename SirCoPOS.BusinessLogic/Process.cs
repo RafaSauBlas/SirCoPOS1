@@ -1492,7 +1492,7 @@ namespace SirCoPOS.BusinessLogic
             var h = new Common.Helpers.CommonHelper();
             var dps = new List<Tuple<int, decimal>>();
             var quitar = item.ProductosPlazos?.Sum(i => i.Importe.Value);
-
+            
             DataAccess.SirCoCredito.Calendario[] fechasPromocion = null;
             IDictionary<DateTime, decimal> detallePagosPromocion = null;
             if (item.Plazos.HasValue)
@@ -1516,7 +1516,7 @@ namespace SirCoPOS.BusinessLogic
             }
             IDictionary<DateTime, decimal> detallePagos = new Dictionary<DateTime, decimal>();
             //var fechas = new HashSet<DataAccess.SirCoCredito.Calendario>();
-            if (item.ProductosPlazos?.Any() ?? false)
+            if (item.ProductosPlazos?.Where(i=>i.Plazos!=null).Any() ?? false)
             {
                 var plazosNoPromocion = item.ProductosPlazos.Max(i => i.Plazos.Value);
                 var fechasNoPromocion = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == dist.clasificacion
