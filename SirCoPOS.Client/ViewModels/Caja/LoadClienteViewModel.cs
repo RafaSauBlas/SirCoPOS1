@@ -150,7 +150,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
 
 
-        private void LoadClienteViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        public void LoadClienteViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
