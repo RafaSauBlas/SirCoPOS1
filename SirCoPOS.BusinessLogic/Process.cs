@@ -557,10 +557,10 @@ namespace SirCoPOS.BusinessLogic
                             if (dist == null)
                                 throw new NotSupportedException();
 
-                            //var qplans = ctxcr.PlanPagos.Where(i => i.vale.Trim() == item.Vale && i.status == "AP");
-                            //qplans = qplans.Where(i => i.pagado == "0");
-                            //var usado = qplans.Any() ? qplans.Sum(i => i.saldo) : 0;
-                            var disponible = Math.Min(dist.limitevale.Value, dist.disponible.Value) /*- usado*/;
+                            var qplans = ctxcr.PlanPagos.Where(i => i.vale.Trim() == item.Vale && i.status == "AP");
+                            qplans = qplans.Where(i => i.pagado == "0");
+                            var usado = qplans.Any() ? qplans.Sum(i => i.saldo) : 0;
+                            var disponible = Math.Min(dist.limitevale.Value, dist.disponible.Value) - usado;
                             disponible = disponible < 0 ? 0 : disponible;
 
                             if (item.Importe > disponible)
