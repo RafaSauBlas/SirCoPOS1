@@ -18,6 +18,7 @@ namespace SirCoPOS.Win.Windows
     /// </summary>
     public partial class ClienteWindow : Window
     {
+
         public ClienteWindow(List<Cliente> lista)
         {
             InitializeComponent();
@@ -49,12 +50,9 @@ namespace SirCoPOS.Win.Windows
 
         private void dgv_ClientesInfo_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            SirCoPOS.Client.ViewModels.Caja.LoadClienteViewModel cliente = new SirCoPOS.Client.ViewModels.Caja.LoadClienteViewModel();
-            SirCoPOS.Client.Views.Caja.LoadClienteSearchView clientote = new SirCoPOS.Client.Views.Caja.LoadClienteSearchView();
-
+            Filas datos = (Filas)dgv_ClientesInfo.SelectedItem;
+            var nombre = datos.Nombre + " " + datos.ApPaterno + " " + datos.ApMaterno;
             this.Close();
-
-
         }
     }
 }

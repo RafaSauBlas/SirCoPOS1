@@ -17,7 +17,7 @@
         <c:ImageUrlConverter x:Key="imageUrl"></c:ImageUrlConverter>
         <c:WindowStateConverter x:Key="windowState"/>
     </UserControl.Resources>
-    <Grid x:Name="Pruebin" Margin="0" Height="222" VerticalAlignment="Top">
+    <Grid Margin="0" Height="222" VerticalAlignment="Top">
         <Grid.Background>
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
         </Grid.Background>
@@ -64,7 +64,7 @@
             </TextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="10,53,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox x:Name="txt_Nombre_Copy"   HorizontalAlignment="Left" Height="25" Margin="114,50,0,0" TextWrapping="Wrap" Text="{Binding ClienteNombreSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
+        <xt:MaskedTextBox x:Name="txt_Nombre_Copy"  HorizontalAlignment="Left" Height="25" Margin="114,50,0,0" TextWrapping="Wrap" Text="{Binding ClienteNombreSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding PopUpCommand}"/>
             </xt:MaskedTextBox.InputBindings>

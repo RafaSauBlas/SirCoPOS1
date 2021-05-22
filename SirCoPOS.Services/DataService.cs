@@ -373,8 +373,8 @@ namespace SirCoPOS.Services
         }
         public ValeResponse FindValeDigitalByClient(int id)
         {
-            //var res = _sale.FindValeDigitalByClient(id);
-            return null;
+            var res = _sale.FindValeDigitalByClient(id);
+            return res;
         }
         public CValeResponse FindContraVale(string sucursal, string vale)
         {
