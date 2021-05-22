@@ -29,5 +29,15 @@ namespace SirCoPOS.Client.Views.Caja
         {
             this.txt_Telefono.Focus();
         }
+
+        public void PRODUCCION()
+        {
+           
+        }
+
+        private void txt_Nombre_Copy_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

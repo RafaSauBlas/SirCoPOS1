@@ -19,7 +19,25 @@ namespace SirCoPOS.Client.ViewModels.Caja
         private Helpers.CommonHelper _common;
         private Utilities.Interfaces.IClienteView _Client;
 
-        
+        public void cambio()
+        {
+            this.Screen = "new";
+                switch (this.Screen)
+                {
+                    case "new":
+                        this.NuevoCliente = new Models.NuevoCliente();
+                        this.NuevoCliente.IsValid();
+                        this.NuevoCliente.PropertyChanged += Cliente_PropertyChanged;
+                        break;
+                    case "search":
+                        if (this.NuevoCliente != null)
+                            this.NuevoCliente.PropertyChanged -= Cliente_PropertyChanged;
+                        this.NuevoCliente = null;
+                        break;
+                }
+                    this.AcceptCommand.RaiseCanExecuteChanged();
+
+        }
         public LoadClienteViewModel()
         {
             if (!this.IsInDesignMode)
@@ -132,7 +150,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
 
 
-        private void LoadClienteViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        public void LoadClienteViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
