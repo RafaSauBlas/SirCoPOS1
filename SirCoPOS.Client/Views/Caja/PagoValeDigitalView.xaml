@@ -23,7 +23,7 @@
     </UserControl.Resources>
     <xt:BusyIndicator IsBusy="{Binding IsBusy}">
         <Grid>
-            <TextBox Visibility="{Binding NoClient, Converter={StaticResource bolvis}}" x:Name="tbSearch" HorizontalAlignment="Left" Height="23" Margin="119,10,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+            <TextBox Visibility="{Binding NoClient, Converter={StaticResource bolvis}}" x:Name="tbSearch" HorizontalAlignment="Left" Height="23" Margin="119,10,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="99">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
                 </TextBox.InputBindings>
@@ -84,7 +84,7 @@
 
             <TextBlock x:Name="textBlock2_Copy" HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="#" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock2_Copy1" HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="Disponible" VerticalAlignment="Top"/>
-            <TextBlock Text="{Binding Vale.CanceladoMotivo, StringFormat=Cancelado - \{0\}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="textBlock2_Copy2" HorizontalAlignment="Left" Margin="10,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock Text="{Binding Vale.CanceladoMotivo, StringFormat=Cancelado - \{0\}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="textBlock2_Copy2" HorizontalAlignment="Left" Margin="229,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="144"/>
             <TextBlock x:Name="textBlock2_Copy3" HorizontalAlignment="Left" Margin="10,101,0,0" TextWrapping="Wrap" Text="Distribuidor" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock2_Copy4" HorizontalAlignment="Left" Margin="10,122,0,0" TextWrapping="Wrap" Text="Estatus" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="119,41,0,0" TextWrapping="Wrap" Text="{Binding Vale.Vale}" VerticalAlignment="Top"/>

@@ -30,6 +30,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 {
                     this.SucursalSearch = null;
                     this.Search = null;
+                    if (!this.HasPromocion)
+                        this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
                     if (!this.Vale.Distribuidor.Promocion)
                         this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
                 }
