@@ -551,7 +551,7 @@ namespace SirCoPOS.BusinessLogic
                                 throw new NotSupportedException();
 
                             var dist = ctxcr.Distribuidores.Where(i => i.iddistrib == valera.iddistrib
-                                && i.tipodistrib == Common.Constants.TipoDistribuidor.NORMAL
+                                //&& i.tipodistrib == Common.Constants.TipoDistribuidor.NORMAL
                                 && i.clasificacion == Common.Constants.TipoCredito.DISTRIBUIDOR
                             ).SingleOrDefault();
                             if (dist == null)
@@ -691,7 +691,7 @@ namespace SirCoPOS.BusinessLogic
                     case FormaPago.CP:
                         {
                             var dist = ctxcr.Distribuidores.Where(i => i.distrib == item.Distribuidor
-                                && i.tipodistrib == Common.Constants.TipoDistribuidor.NORMAL
+                                //&& i.tipodistrib == Common.Constants.TipoDistribuidor.NORMAL
                                 && i.clasificacion == Common.Constants.TipoCredito.TARJETAHABIENTE
                             ).SingleOrDefault();
                             if (dist == null)
@@ -889,7 +889,7 @@ namespace SirCoPOS.BusinessLogic
                             //    throw new NotSupportedException();
 
                             var dist = ctxcr.Distribuidores.Where(i => i.iddistrib == cdis.iddistrib
-                                && i.tipodistrib == Common.Constants.TipoDistribuidor.NORMAL
+                                //&& i.tipodistrib == Common.Constants.TipoDistribuidor.NORMAL
                                 && i.clasificacion == Common.Constants.TipoCredito.DISTRIBUIDOR
                             ).SingleOrDefault();
                             if (dist == null)
