@@ -11,10 +11,10 @@ namespace SirCoPOS.BusinessLogic
         public static DataAccess.SirCo.Corrida GetCorrida(this DataAccess.SirCoDataContext ctx, DataAccess.SirCo.Serie item)
         {
             var corrida = ctx.Corridas.Where(i => i.marca == item.marca
-                && i.estilon == item.estilon
+                && i.estilon.Trim() == item.estilon.Trim()
                 && i.proveedor == item.proveedors
-                && String.Compare(item.medida, i.medini) >= 0
-                && String.Compare(item.medida, i.medfin) <= 0
+                && String.Compare(ctx.ValorMedida(item.medida), ctx.ValorMedida(i.medini)) >= 0
+                && String.Compare(ctx.ValorMedida(item.medida), ctx.ValorMedida(i.medfin)) <= 0
             ).SingleOrDefault();
             return corrida;
         }
