@@ -88,7 +88,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         public bool HasCalzado
         {
             get {
-                return this.Productos.Where(i => !i.Electronica).Any();
+                return this.Productos.Where(i => !i.Electronica && !i.Accesorio).Any();
             }
         }
         #endregion
