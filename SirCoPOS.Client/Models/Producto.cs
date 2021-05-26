@@ -166,6 +166,7 @@ namespace SirCoPOS.Client.Models
         }
         public ObservableCollection<Common.Entities.FormaPagoImporte> FormasPago { get; set; }
         public bool Electronica { get; set; }
+        public bool Accesorio { get; set; }
         public bool ParUnico { get; set; }
         public byte? MaxPlazos { get; set; }
         public bool HasPlazos => this.MaxPlazos.HasValue;                

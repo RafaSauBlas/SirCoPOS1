@@ -168,6 +168,7 @@ namespace SirCoPOS.BusinessLogic
                 if (item.ArticuloId > 0)
                 {
                     var isElectronica = item.Articulo.iddivisiones == (int)Divisiones.Electronica;
+                    var isAccesorio   = item.Articulo.iddivisiones == (int)Divisiones.Accesorio;
                     var isParUnico = this.IsParUnico(item.Articulo.idagrupacion);
                     var corrida = ctx.GetCorrida(item);
                     if (corrida == null)
@@ -201,6 +202,7 @@ namespace SirCoPOS.BusinessLogic
                             Total = corrida.precio,
                             HasImage = qimg.Any(),
                             Electronica = isElectronica,
+                            Accesorio = isAccesorio,
                             ParUnico = isParUnico,
                             MaxPlazos = maxPlazos,
                             Sucursal = item.sucursal

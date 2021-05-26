@@ -22,6 +22,7 @@ namespace SirCoPOS.Common.Entities
         
         public bool HasImage { get; set; }
         public bool Electronica { get; set; }
+        public bool Accesorio { get; set; }
         public bool ParUnico { get; set; }
         public byte? MaxPlazos { get; set; }        
         public string Sucursal { get; set; }

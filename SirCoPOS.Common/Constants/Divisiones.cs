@@ -8,6 +8,8 @@ namespace SirCoPOS.Common.Constants
 {
     public enum Divisiones : int
     {
-        Electronica = 3
+        Calzado = 1,
+        Accesorio = 2,
+        Electronica = 3,
     }
 }

@@ -25,7 +25,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         private readonly Common.ServiceContracts.IDataServiceAsync _proxy;
         private readonly Common.ServiceContracts.ICommonServiceAsync _pproxy;
         private Helpers.ServiceClient _client;
-        private Helpers.CommonHelper _common;        
+        private Helpers.CommonHelper _common;
         private Utilities.Interfaces.ILocalStorage _ls;
         private AutoMapper.IMapper _mapper;
         private bool _skipPromociones;
@@ -96,7 +96,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 await this.RemoveItem(this.SelectedItem);
             }, () => this.SelectedItem != null);
             this.AddCommand = new RelayCommand(async () => {
-                //this.IsBusy = true;
+                this.IsBusy = true;
                 await Add();
                 this.IsBusy = false;
             }, () => !string.IsNullOrWhiteSpace(this.SerieSearch));
@@ -836,39 +836,55 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             }
             //A PARTIR DE ESTA LINEA SE ESTÁ GENERANDO EL ERROR EN EL EJECUTABLE ¿POR QUÉ? QUIEN SABE xd
             var item = await _proxy.ScanProductoAsync(ser, this.Sucursal.Clave);
-            if (item != null)
+            if (item == null)
             {
-                var valid = new Common.Constants.Status[] {
+                MessageBox.Show($"El numero de serie: {ser} no existe.");
+            } else
+            {
+                var com = new BusinessLogic.Data();
+                //bool mismaSerieSuc = com.GetParam(Common.Constants.Parametros.MISMASUC) ;
+                
+                if (item.Producto.Sucursal != this.Sucursal.Clave //&& mismaSerieSuc
+                ){
+                    string message = "El Producto NO existe en la Sucursal " + this.Sucursal.Descripcion;
+                    string caption = "Serie Invalida";
+                    MessageBoxButton button = MessageBoxButton.OK;
+                    System.Windows.MessageBoxResult result;
+
+                    result = MessageBox.Show(message, caption, button, MessageBoxImage.Error );
+                } else 
+                {
+                    var valid = new Common.Constants.Status[] {
                         Common.Constants.Status.AC,
                         Common.Constants.Status.IF,
                         Common.Constants.Status.AB
                     };
-                if (valid.Contains(item.Status)
-                    || (item.Status == Common.Constants.Status.CA && item.UsuarioCajaId == this.Cajero.Id))
-                {
-                    if (await _client.RequestProductoAsync(item.Producto.Serie))
+                    if (valid.Contains(item.Status)
+                        || (item.Status == Common.Constants.Status.CA && item.UsuarioCajaId == this.Cajero.Id))
                     {
-                        var prod = _mapper.Map<Models.Producto>(item.Producto);
-                        AddItem(prod);
-                        this.SelectedItem = prod;
-
-                        if (!prod.Electronica && this.Vendedor == null)
+                        if (await _client.RequestProductoAsync(item.Producto.Serie))
                         {
-                            Messenger.Default.Send(
+                            var prod = _mapper.Map<Models.Producto>(item.Producto);
+                            AddItem(prod);
+                            this.SelectedItem = prod;
+
+                            if (!prod.Electronica && !prod.Accesorio && this.Vendedor == null)
+                            {
+                                Messenger.Default.Send(
                                     new Utilities.Messages.OpenModal
                                     {
                                         Name = Utilities.Constants.Modals.vendedor,
                                         GID = this.GID
                                     });
+                            }
                         }
                     }
-                }
-                else
+                    else
                     MessageBox.Show($"{item.Producto.Serie} - {item.Status}");
+                }
                 this.SerieSearch = null;
             }
-            else
-                MessageBox.Show($"El numero de serie: {ser} no existe.");
+            
         }
 
         private void Prod_PropertyChanged(object sender, PropertyChangedEventArgs e)
