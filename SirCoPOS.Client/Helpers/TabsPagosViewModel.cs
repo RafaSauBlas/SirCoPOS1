@@ -275,7 +275,8 @@ namespace SirCoPOS.Client.Helpers
                             Promociones = o.Promociones,
                             SelectedPlazo = o.SelectedPlazo,
                             SelectedPromocion = o.SelectedPromocion,
-                            ClientId = o.Cliente
+                            ClientId = o.Cliente,
+                            ProductosPlazos = o.PlazosProductos,
                         };
 
                         if (!this.IsInDesignMode)
@@ -361,7 +362,8 @@ namespace SirCoPOS.Client.Helpers
                             SelectedPromocion = o.SelectedPromocion,
                             ContraVale = o.ContraVale,
                             Limite = o.Limite,
-                            ClientId = o.Cliente
+                            ClientId = o.Cliente,
+                            ProductosPlazos = o.PlazosProductos,
                         };
 
                         if (!this.IsInDesignMode)
@@ -404,7 +406,8 @@ namespace SirCoPOS.Client.Helpers
                             SelectedPromocion = o.SelectedPromocion,
                             ContraVale = o.ContraVale,
                             Limite = o.Limite,
-                            ClientId = o.Cliente
+                            ClientId = o.Cliente,
+                            ProductosPlazos = o.PlazosProductos,
                         };
 
                         if (!this.IsInDesignMode)
@@ -545,6 +548,7 @@ namespace SirCoPOS.Client.Helpers
                         FechaAplicar = i.SelectedPromocion,
                         //ContraVale = i.ContraVale,
                         //Limite = i.Limite
+                        ProductosPlazos = i.ProductosPlazos,
                     });
                 }
                 else if (item is Models.Pagos.PagoVale)
