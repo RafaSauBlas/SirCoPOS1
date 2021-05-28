@@ -295,7 +295,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     this.PlanPago.Add(new Models.PlanPagoItem
                     {
                         Number = ++count, 
-                        Date = item.Key, 
+                        Date = item.Key.AddDays(-2), 
                         Amount = item.Value
                     });
                 }

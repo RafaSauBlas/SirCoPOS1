@@ -2008,7 +2008,8 @@ namespace SirCoPOS.BusinessLogic
                 Electronica = item.solocalzado == 0,
                 ContraVale = item.contravale == 1,
                 Promocion = item.promocion == 1,
-                LimiteVale = item.limitevale
+                LimiteVale = item.limitevale,
+                ValeExterno = item.negext == 1,
             };
 
             var model = new ValeResponse
