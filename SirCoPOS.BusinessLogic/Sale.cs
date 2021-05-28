@@ -260,7 +260,7 @@ namespace SirCoPOS.BusinessLogic
             var item = ctxpv.Ventas.Where(i => i.sucursal == sucursal && i.venta == folio).SingleOrDefault();
             if (item == null)
                 return null;
-
+            
             var model = new DevolucionResponse
             {
                 Sucursal = item.sucursal,
@@ -296,6 +296,7 @@ namespace SirCoPOS.BusinessLogic
                 var qimg = ctxi.Imagenes.Where(i => i.Marca == p.Marca && i.Estilon == p.Modelo);
                 p.Id = corrida?.ArticuloId;
                 p.HasImage = qimg.Any();
+                p.status = ser.status;
             }
             return model;
         }

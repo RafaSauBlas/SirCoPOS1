@@ -77,9 +77,27 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         private async Task Scan()
         {
             var ser = _common.PrepareSerie(this.SerieSearch);
+            string message = "El Producto NO existe para Cancelacion ";
+            string caption = "Serie Invalida";
+            MessageBoxButton button = MessageBoxButton.OK;
 
             if (this.Productos.Any())
             {
+                var prod = await _proxy.ScanProductoDevolucionAsync(ser, cancelacion: true);
+                if (prod != null && prod.Success)
+                {
+                    this.SerieSearch = null;
+                    if (prod.Status != Common.Constants.Status.BA)
+                    {
+                        MessageBox.Show(message, caption, button, MessageBoxImage.Error);
+                        return;
+                    }
+                }else
+                {
+                    MessageBox.Show(message, caption, button, MessageBoxImage.Error);
+                    return;
+                }
+
                 var item = this.Productos.Where(i => i.Producto.Serie == ser).SingleOrDefault();
                 if (item != null)
                 {
@@ -95,6 +113,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 if (item != null && item.Success)
                 {
                     this.SerieSearch = null;
+                    if (item.Status != Common.Constants.Status.BA)
+                    {
+                        MessageBox.Show(message, caption, button, MessageBoxImage.Error);
+                        return;
+                    }
                     var res = await _proxy.FindSaleAsync(item.Producto.Sucursal, item.Producto.Folio);
                     if (res != null)
                     {

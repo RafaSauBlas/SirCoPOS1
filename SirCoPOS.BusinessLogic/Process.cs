@@ -1746,6 +1746,7 @@ namespace SirCoPOS.BusinessLogic
             venta.estatus = Common.Constants.StatusVenta.Cancelada;
             venta.fumcancela = now;
             venta.idusuariocancela = idcajero;
+            var cvale = ctxc.ContraVales.Where(i => i.sucursal == venta.sucursal && i.referenc == venta.venta).SingleOrDefault();
             var pago = ctxpv.Pagos.Where(i => i.sucursal == model.Sucursal && i.pago == model.Folio).Single();
             pago.estatus = Common.Constants.StatusPago.Cancelada;
             foreach (var d in pago.Detalle)
@@ -1891,8 +1892,14 @@ namespace SirCoPOS.BusinessLogic
                 else
                     ctx.UpdateSerieStatus(d.serie, Status.AB, Status.BA, idusuario: idcajero);
             }
+            if (cvale !=null)
+            {
+                cvale.status = "ZC";
+            }
+            
             ctxpv.SaveChanges();
             ctxc.SaveChanges();
+
         }
         public void CancelReturn(string sucursal, string folio, int idusuario)
         {
