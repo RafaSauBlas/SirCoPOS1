@@ -869,7 +869,7 @@ namespace SirCoPOS.Services
             var ctxn = new DataAccess.SirCoNominaDataContext();
 
             var aud = ctxn.Empleados.Where(i => i.idempleado == idauditor).Single();
-            var last = ctxn.Repetitivos.OrderByDescending(i => i.fum).FirstOrDefault();
+            var last = ctxn.Repetitivos.OrderByDescending(i => i.idrepetitivo).FirstOrDefault();
 
             //var ctxc = new DataAccess.SirCoCreditoDataContext();
             //var cal = ctxc.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == "TARJETAHABIENTE"
