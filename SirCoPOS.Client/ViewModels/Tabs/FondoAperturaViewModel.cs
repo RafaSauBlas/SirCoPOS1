@@ -16,6 +16,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         private readonly Common.ServiceContracts.IDataServiceAsync _data;
         public FondoAperturaViewModel()
         {
+            this.UserOK = false;
             this.PropertyChanged += FondoAperturaViewModel_PropertyChanged;
             this.LoadAuditorCommand = new RelayCommand(() =>
             {
@@ -29,6 +30,19 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     MessageBox.Show("Auditor no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }, () => this.SearchAuditor.HasValue);
+            this.LoadUserCommand = new RelayCommand(() =>
+            {
+                this.User = _data.AuditorPassword(this.Auditor.Id, this.Password);
+                if (this.User != null )
+                {
+                    this.SearchUser = null;
+                    this.UserOK = true;
+                } else
+                {
+                    MessageBox.Show("Password Invalido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    this.UserOK = false;
+                }
+            }, () => this.Password !=null && this.Auditor != null);
             this.SaveCommand = new RelayCommand(() => {
                 //var code = Microsoft.VisualBasic.Interaction.InputBox("Codigo Auditor:");
                 //var isValid = _proxy.ValidarCodigo(this.Auditor.Id, code);
@@ -52,7 +66,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
 
                 this.CloseCommand.Execute(null);
 
-            }, () => this.Auditor != null && this.Importe.HasValue && this.SelectedCaja != null
+            }, () => this.Auditor != null && this.Importe.HasValue && this.SelectedCaja != null && this.User != null
                 && this.IsValid());
             if (this.IsInDesignMode)
             {
@@ -84,13 +98,14 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         }
         private void FondoAperturaViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            switch (e.PropertyName)
+           switch (e.PropertyName)
             {
                 case nameof(this.Auditor):
                 case nameof(this.SelectedCaja):
                 case nameof(this.Importe):
-                    this.SaveCommand.RaiseCanExecuteChanged();
-                    break;
+                case nameof(this.User):
+                this.SaveCommand.RaiseCanExecuteChanged();
+                break;
             }
         }
 
@@ -104,7 +119,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 yield return new ValidationResult("Sin Fondos", new string[] { "Importe" });
             }
         }
-
+        
         private int? _SearchAuditor;
         public int? SearchAuditor
         {
@@ -117,7 +132,27 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             get { return _Auditor; }
             set { Set(nameof(this.Auditor), ref _Auditor, value); }
         }
-
+        private string _SearchUser;
+        public string SearchUser
+        {
+            get { return _SearchUser; }
+            set { Set(nameof(this.SearchUser), ref _SearchUser, value); }
+        }
+        public string Password { private get; set; }
+        private Common.Entities.Empleado _User;
+        public Common.Entities.Empleado User
+        {
+            get { return _User; }
+            set { Set(nameof(this.User), ref _User, value); }
+        }
+        private bool _UserOK;
+        public bool UserOK
+        {
+            get { return _UserOK; }
+            private set { 
+                Set(nameof(this.UserOK), ref _UserOK, value);
+            }
+        }
 
         private decimal? _importe;
         public decimal? Importe
@@ -142,6 +177,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         #endregion
         #region commands
         public RelayCommand LoadAuditorCommand { get; private set; }
+        public RelayCommand LoadUserCommand { get; private set; }
         #endregion
     }
 }

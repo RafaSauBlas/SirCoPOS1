@@ -939,6 +939,11 @@ namespace SirCoPOS.Services
             var _data = new BusinessLogic.Data();
             return _data.FindAuditorApertura(id, idcajero);
         }
+        public Empleado AuditorPassword(int id, string pwd)
+        {
+            var _data = new BusinessLogic.Data();
+            return _data.AuditorPassword(id, pwd);
+        }
         public Empleado FindAuditorEntrega(int id, int idcajero)
         {
             var _data = new BusinessLogic.Data();

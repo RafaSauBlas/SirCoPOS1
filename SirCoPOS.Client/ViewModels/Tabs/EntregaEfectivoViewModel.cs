@@ -64,9 +64,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                         })
                 };
                 _proxy.Entrega(request);
-                MessageBox.Show("ready");
+                string msg = "Entrega se realizó correctamente";
+                string info = "Entrega de Efectivo";
+                MessageBox.Show(msg, info, MessageBoxButton.OK, MessageBoxImage.Information);
                 this.CloseCommand.Execute(null);
-            }, () => this.Auditor != null && this.Entrega.HasValue
+            }, () => this.Auditor != null && this.Entrega.HasValue && this.User != null
                 && this.FormasPago.All(i => i.Entregar.HasValue && i.EntregarMonto.HasValue));
             this.LoadAuditorCommand = new RelayCommand(() => {
                 this.Auditor = _pdata.FindAuditorEntrega(this.SearchAuditor.Value, this.Cajero.Id);
@@ -75,7 +77,18 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     this.SearchAuditor = null;
                 }
             }, () => this.SearchAuditor.HasValue);
-
+            this.LoadUserCommand = new RelayCommand(() =>
+            {
+                this.User = _pdata.AuditorPassword(this.Auditor.Id, this.Password);
+                if (this.User != null)
+                {
+                    this.SearchUser = null;
+                }
+                else
+                {
+                    MessageBox.Show("Password Invalido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }, () => this.Password != null && this.Auditor != null);
             if (this.IsInDesignMode)
             {
                 this.SearchAuditor = 100;
@@ -113,6 +126,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             switch (e.PropertyName)
             {
                 case nameof(this.Auditor):
+                case nameof(this.User):
                     this.SaveCommand.RaiseCanExecuteChanged();
                     break;
                 case nameof(this.Entrega):
@@ -148,6 +162,28 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             get { return _Auditor; }
             set { Set(nameof(this.Auditor), ref _Auditor, value); }
         }
+        private string _SearchUser;
+        public string SearchUser
+        {
+            get { return _SearchUser; }
+            set { Set(nameof(this.SearchUser), ref _SearchUser, value); }
+        }
+        public string Password { private get; set; }
+        private Common.Entities.Empleado _User;
+        public Common.Entities.Empleado User
+        {
+            get { return _User; }
+            set { Set(nameof(this.User), ref _User, value); }
+        }
+        private bool _UserOK;
+        public bool UserOK
+        {
+            get { return _UserOK; }
+            private set
+            {
+                Set(nameof(this.UserOK), ref _UserOK, value);
+            }
+        }
         #endregion
         #region computed      
         public decimal? EfectivoFaltante
@@ -164,6 +200,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         #region commands
         public RelayCommand SaveCommand { get; protected set; }
         public RelayCommand LoadAuditorCommand { get; protected set; }
+        public RelayCommand LoadUserCommand { get; private set; }
         #endregion
     }
 }

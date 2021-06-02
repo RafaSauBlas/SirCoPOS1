@@ -16,6 +16,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Empleado FindAuditorApertura(int id, int idcajero);
         [OperationContract]
+        Empleado AuditorPassword(int id, string pwd);
+        [OperationContract]
         Empleado FindAuditorEntrega(int id, int idcajero);
         [OperationContract]
         Empleado FindAuditorTransferir(int id, int idcajero);

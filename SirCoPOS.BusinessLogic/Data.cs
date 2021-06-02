@@ -295,5 +295,25 @@ namespace SirCoPOS.BusinessLogic
             }
             return null;
         }
+        public Empleado AuditorPassword(int id, string pass)
+        {
+            var ctx = new DataAccess.SirCoNominaDataContext();
+            var emp = ctx.Empleados.Where(i => i.idempleado == id && i.password == pass && i.estatus == "A").SingleOrDefault();
+            if ( emp != null )
+            {
+                return new Empleado
+                {
+                    Id = emp.idempleado,
+                    ApellidoMaterno = emp.apmaterno,
+                    ApellidoPaterno = emp.appaterno,
+                    Nombre = emp.nombre,
+                    Usuario = emp.usuariosistema,
+                    Clave = emp.clave,
+                    Puesto = emp.idpuesto,
+                    Depto = emp.iddepto,
+                };
+            }
+            return null;
+        }
     }
 }

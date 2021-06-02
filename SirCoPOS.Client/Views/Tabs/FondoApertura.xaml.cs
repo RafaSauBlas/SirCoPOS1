@@ -34,9 +34,10 @@ namespace SirCoPOS.Client.Views.Tabs
             
         }
 
-        private void cb_NumCaja_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-           
+            if (this.DataContext != null)
+            { ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password; }
         }
     }
 }
