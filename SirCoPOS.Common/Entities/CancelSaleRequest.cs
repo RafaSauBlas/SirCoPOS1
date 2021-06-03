@@ -10,5 +10,6 @@ namespace SirCoPOS.Common.Entities
     {
         public string Sucursal { get; set; }
         public string Folio { get; set; }
+        public string Motivo { get; set; }
     }
 }
