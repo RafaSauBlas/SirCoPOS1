@@ -41,7 +41,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 var request = new Common.Entities.CancelSaleRequest
                 {
                     Sucursal = this.Venta.Sucursal,
-                    Folio = this.Venta.Folio
+                    Folio = this.Venta.Folio,
+                    Motivo = this.MotivoCancel
                 };
                 await _client.CancelSaleAsync(request);
 
@@ -52,7 +53,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 this.CloseCommand.Execute(null);
 
                 this.IsBusy = false;
-            }, () => this.Productos.Any() && !this.Productos.Where(i => !i.Scanned).Any());
+            }, () => this.Productos.Any() && 
+            this.MotivoCancel != null &&
+            !this.Productos.Where(i => !i.Scanned).Any())  ;
 
             this.PrintCommand = new RelayCommand(() => {
 
@@ -170,6 +173,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         {
             RaisePropertyChanged(nameof(this.SubTotal));
             RaisePropertyChanged(nameof(this.Descuento));
+            RaisePropertyChanged(nameof(this.MotivoCancel));
             this.CancelCommand.RaiseCanExecuteChanged();
         }
         #region commands
@@ -200,6 +204,12 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         }
 
         public ObservableCollection<Models.CancelProducto> Productos { get; set; }
+        private string _motivocancel;
+        public string MotivoCancel
+        {
+            get { return _motivocancel; }
+            set { Set(nameof(this.MotivoCancel), ref _motivocancel, value); }
+        }
         private string _serieSearch;
         public string SerieSearch
         {
