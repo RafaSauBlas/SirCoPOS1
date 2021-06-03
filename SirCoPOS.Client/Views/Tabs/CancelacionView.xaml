@@ -46,7 +46,7 @@
                         <KeyBinding Key="Return" Command="{Binding ScanCommand}"></KeyBinding>
                     </TextBox.InputBindings>
                 </TextBox>
-                <DataGrid RowStyle="{StaticResource dgrColor}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Grid.Row="1" ItemsSource="{Binding Productos}">
+                <DataGrid RowStyle="{StaticResource dgrColor}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Margin="0" Grid.Row="1" ItemsSource="{Binding Productos}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Serie" Binding="{Binding Producto.Serie}" ></DataGridTextColumn>
                         <DataGridTemplateColumn>
@@ -85,15 +85,12 @@
                         </TextBlock.Text>
                     </TextBlock>
                 </Grid>
-                <Button x:Name="button" Content="Cancelar" Grid.Column="1" Margin="0,0,10,10" Grid.Row="2" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" Width="125" VerticalAlignment="Bottom" Click="button_Click"/>
-                <TextBlock Foreground="Red" HorizontalAlignment="Left" Margin="148.667,0,0,0" TextWrapping="Wrap" Text="{Binding ErrorMessage}" d:LayoutOverrides="Height" VerticalAlignment="Center" Visibility="Visible"/>
-                <TextBox  HorizontalAlignment="Right" Height="26" Margin="0,14,10,10" TextWrapping="Wrap" Text="{Binding MotivoCancel}" VerticalAlignment="Center" Width="336" IsEnabled="True" Grid.Row="2">
-                </TextBox>
-                <TextBlock HorizontalAlignment="Right" Height="26" Margin="0,14,346,0" Grid.Row="2" TextWrapping="Wrap" Text="Motivo de Cancelación" VerticalAlignment="Top" Width="244"/>
+                <Button x:Name="button" Content="Cancelar" Grid.Column="1" Margin="0,0,10,10" Grid.Row="2" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" Width="125" VerticalAlignment="Bottom"/>
+                <TextBlock Foreground="Red" HorizontalAlignment="Left" Margin="148.667,0,0,0" TextWrapping="Wrap" Text="{Binding ErrorMessage}" d:LayoutOverrides="Height" VerticalAlignment="Center"/>
             </Grid>
         </xt:BusyIndicator>
-
-        <xt:ChildWindow DesignerWindowState="Closed" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="180" Width="250" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden" IsEnabled="False">
+            
+            <xt:ChildWindow DesignerWindowState="Closed" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="180" Width="250" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Visibility="Hidden" IsEnabled="False">
             <Grid>
                 <Button Command="{Binding PrintCommand}" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75">
                     <Button.Content>

@@ -1746,7 +1746,6 @@ namespace SirCoPOS.BusinessLogic
             venta.estatus = Common.Constants.StatusVenta.Cancelada;
             venta.fumcancela = now;
             venta.idusuariocancela = idcajero;
-            venta.motivocancela = model.Motivo;
             var cvale = ctxc.ContraVales.Where(i => i.sucursal == venta.sucursal && i.referenc == venta.venta).SingleOrDefault();
             var pago = ctxpv.Pagos.Where(i => i.sucursal == model.Sucursal && i.pago == model.Folio).Single();
             pago.estatus = Common.Constants.StatusPago.Cancelada;
