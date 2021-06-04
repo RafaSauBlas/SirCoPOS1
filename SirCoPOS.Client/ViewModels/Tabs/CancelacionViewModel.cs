@@ -19,6 +19,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         private Helpers.ReportsHelper _reports;
         public CancelacionViewModel()
         {
+            this.MotivoCancel = "";
             _common = new Helpers.CommonHelper();
             this.PropertyChanged += CancelacionViewModel_PropertyChanged;
             this.Productos = new ObservableCollection<Models.CancelProducto>();
@@ -41,7 +42,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 var request = new Common.Entities.CancelSaleRequest
                 {
                     Sucursal = this.Venta.Sucursal,
-                    Folio = this.Venta.Folio
+                    Folio = this.Venta.Folio,
+                    Motivo = this.MotivoCancel
                 };
                 await _client.CancelSaleAsync(request);
 
@@ -52,7 +54,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 this.CloseCommand.Execute(null);
 
                 this.IsBusy = false;
-            }, () => this.Productos.Any() && !this.Productos.Where(i => !i.Scanned).Any());
+            }, () => this.Productos.Any() && !this.Productos.Where(i => !i.Scanned).Any() && this.MotivoCancel.Length > 10) ;
 
             this.PrintCommand = new RelayCommand(() => {
 
@@ -160,6 +162,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 case nameof(this.Descuento):
                     this.RaisePropertyChanged(nameof(this.Total));
                     break;
+                case nameof(this.MotivoCancel):
+                   this.CancelCommand.RaiseCanExecuteChanged();
+                    break;
                 case nameof(this.SerieSearch):
                     this.ErrorMessage = null;
                     break;
@@ -217,6 +222,12 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         {
             get { return _folio; }
             set { Set(nameof(this.Folio), ref _folio, value); }
+        }
+        private string _motivocancel;
+        public string MotivoCancel
+        {
+            get { return _motivocancel; }
+            set { Set(nameof(this.MotivoCancel), ref _motivocancel, value); }
         }
         #endregion        
     }
