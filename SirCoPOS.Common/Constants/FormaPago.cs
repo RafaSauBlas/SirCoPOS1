@@ -17,9 +17,9 @@ namespace SirCoPOS.Common.Constants
         TC = 18, //T. CREDITO
         TD = 19, //T. DEBITO
         VA = 21, //VALE        
-        VE = 97, //VALE EXTERNO - ID???
-        CD = 98, //C. DISTRIBUIDOR - ID???
-        VD = 99, //VALE DIGITAL - ID???
+        VE = 25, //VALE EXTERNO 
+        CD = 24, //C. DISTRIBUIDOR 
+        VD = 23, //VALE DIGITAL 
         VS = 100, //VA - sin promocion
         CS = 101
     }
