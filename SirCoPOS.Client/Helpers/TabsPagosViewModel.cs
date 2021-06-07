@@ -450,7 +450,8 @@ namespace SirCoPOS.Client.Helpers
                         ContraVale = o.ContraVale,
                         Limite = o.Limite,
                         Sucursal = o.Sucursal,
-                        ClientId = o.Cliente
+                        ClientId = o.Cliente,
+                        ProductosPlazos = o.PlazosProductos
                     };
 
                     if (!this.IsInDesignMode)
@@ -532,7 +533,8 @@ namespace SirCoPOS.Client.Helpers
                         Vale = i.Vale,
                         Plazos = i.SelectedPlazo,
                         FechaAplicar = i.SelectedPromocion,
-                        Sucursal = i.Sucursal
+                        Sucursal = i.Sucursal,
+                        ProductosPlazos = i.ProductosPlazos,
                     });
                 }
                 else if (item is Models.Pagos.PagoCredito)
