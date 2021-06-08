@@ -1523,14 +1523,15 @@ namespace SirCoPOS.BusinessLogic
             // Genera Plan de Pagos NO Promocion (Parrilla Electronica)
             if (item.ProductosPlazos?.Where(i=>i.Plazos!=null).Any() ?? false)
             {
-                var plazosNoPromocion = item.ProductosPlazos.Max(i => i.Plazos.Value);
+                var plazosNoPromocion = item.ProductosPlazos.Where(i=>i.Plazos !=null).Max(i => i.Plazos.Value);
 
                 var fechasNoPromocion = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == dist.clasificacion
                     && i.fechaaplicarcorte >= now)
                     .OrderBy(i => i.fechaaplicarcorte).Take(plazosNoPromocion).ToArray();
 
                 dps.Clear();
-                foreach (var pps in item.ProductosPlazos)
+                var prods = item.ProductosPlazos.Where(i => i.Plazos != null);
+                foreach (var pps in prods)
                 {
                     dps.Add(new Tuple<int, decimal>(pps.Plazos.Value, pps.Importe.Value));
                 }
