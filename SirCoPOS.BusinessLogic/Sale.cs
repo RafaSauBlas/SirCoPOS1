@@ -2260,6 +2260,11 @@ namespace SirCoPOS.BusinessLogic
                 Sucursal = sucursal
             };
 
+            if (cvale.status.Contains(Common.Constants.Status.ZC.ToString()))
+            {
+                model.Cancelado = true;
+                return model;
+            }
             //var valCancelado = ctx.ValesCancelados.Where(i =>
             //    String.Compare(vale, i.valeini) >= 0 && String.Compare(vale, i.valefin) <= 0).SingleOrDefault();
             //if (valCancelado != null)
