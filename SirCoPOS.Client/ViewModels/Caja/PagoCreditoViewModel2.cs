@@ -39,7 +39,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 }
                 else
                 {
-                    MessageBox.Show("not found");
+                    MessageBox.Show("El vale que ingresó no existe, por favor validelo nuevamente.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.Search));
@@ -47,7 +47,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         private void PagoCreditoViewModel2_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            
+
         }
         protected override void Accept(Utilities.Messages.Pago p)
         {
