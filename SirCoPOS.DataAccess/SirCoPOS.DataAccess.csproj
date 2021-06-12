@@ -95,6 +95,7 @@
     <Compile Include="SirCoControl\Parametro.cs" />
     <Compile Include="SirCoControl\TicketMsj.cs" />
     <Compile Include="SirCoCredito\ContraVale.cs" />
+    <Compile Include="SirCoCredito\DistribuidorObserva.cs" />
     <Compile Include="SirCoCredito\DistribuidorComercial.cs" />
     <Compile Include="SirCoCredito\ValeFisico.cs" />
     <Compile Include="SirCoImgDataContext.cs" />

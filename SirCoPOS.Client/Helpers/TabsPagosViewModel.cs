@@ -43,8 +43,8 @@ namespace SirCoPOS.Client.Helpers
                 { FormaPago.CD, new Models.FormaPagoKey { Enabled = true, Key = Key.F8, Duplicate = false, WithClient = false, ClientRequired = false, Credito = true } },
                 { FormaPago.VD, new Models.FormaPagoKey { Enabled = true, Key = Key.F9, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
                 { FormaPago.VE, new Models.FormaPagoKey { Enabled = true, Key = Key.F11, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
-                { FormaPago.CI, new Models.FormaPagoKey { Enabled = true, Key = Key.F12, Duplicate = true, WithClient = false, ClientRequired = false, Credito = true } },
-                { FormaPago.VS, new Models.FormaPagoKey { Enabled = true, Key = Key.J, Duplicate = true, WithClient = false, ClientRequired = false, Credito = true } }
+                //{ FormaPago.CI, new Models.FormaPagoKey { Enabled = true, Key = Key.F12, Duplicate = true, WithClient = false, ClientRequired = false, Credito = true } },
+                //{ FormaPago.VS, new Models.FormaPagoKey { Enabled = true, Key = Key.J, Duplicate = true, WithClient = false, ClientRequired = false, Credito = true } }
             };
             this.FormasPago = CollectionViewSource.GetDefaultView(_formas);
             this.FormasPago.Filter = k => {
