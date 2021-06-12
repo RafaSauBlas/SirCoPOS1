@@ -38,6 +38,7 @@ namespace SirCoPOS.Services
                     VendedorNombre = vendedor,
                     CajeroId = $"{cancela.idcajero}",
                     CajeroNombre = cajero,
+                    Observaciones = cancela.motivocancela,
                 }
             };
 
