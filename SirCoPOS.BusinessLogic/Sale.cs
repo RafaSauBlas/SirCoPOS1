@@ -1972,6 +1972,27 @@ namespace SirCoPOS.BusinessLogic
                 dic[key].Index = null;
             }
         }
+
+        public DistribuidorObserva FindDistObserva(string dist)
+        {
+            var ctx = new DataAccess.SirCoCreditoDataContext();
+            var item = ctx.DistribuidorObservaciones.Where(i => i.distrib == dist).SingleOrDefault();
+            if (item == null)
+                return null;
+
+            var model = new DistribuidorObserva
+            {
+                ContVale = (item.contvale == "S"),
+                NeexVale = (item.neexvale == "S"),
+                Observa01 = item.observ01,
+                Observa02 = item.observ02,
+                Observa03 = item.observ03,
+                Observa04 = item.observ04,
+                Observa05 = item.observ05,
+            };
+            return model;
+        }
+
         public ValeResponse FindVale(string vale)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
@@ -2033,7 +2054,22 @@ namespace SirCoPOS.BusinessLogic
             }
 
             var qpp = ctx.PlanPagos.Where(i => i.vale.Trim() == vale && i.status == "AP" && i.negocio == "TO");
+
+            model.Usado = false;
+            var ultcompra = qpp.Where(x => x.fechacompra < DateTime.Now).OrderByDescending(x => x.fechacompra).FirstOrDefault();
+            if (ultcompra != null)
+            {
+                if (ultcompra.fechacompra.ToString("yyyyMMdd") != DateTime.Now.ToString("yyyyMMdd")) 
+                {
+                    model.Usado = true;
+                    model.SucursalUsado = ultcompra.sucursal;
+                    model.NotaUsado = ultcompra.nota;
+                    model.FechaUsado = ultcompra.fechacompra;
+                }
+            }
+            
             var qp = qpp.Where(i => i.pagado == "0");
+            
             var usado = qp.Any() ? qp.Sum(i => i.saldo) : 0;
             model.Disponible = Math.Min(item.limitevale.Value, item.disponible.Value) - usado;
             model.Disponible = model.Disponible < 0 ? 0 : model.Disponible;

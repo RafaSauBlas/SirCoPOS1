@@ -366,6 +366,11 @@ namespace SirCoPOS.Services
             var res = _sale.FindVale(vale);
             return res;
         }
+        public DistribuidorObserva FindDistObserva(string dist)
+        {
+            var res = _sale.FindDistObserva(dist);
+            return res;
+        }
         public ValeResponse FindValeDigital(string vale)
         {
             var res = _sale.FindValeDigital(vale);

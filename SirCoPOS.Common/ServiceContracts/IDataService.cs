@@ -44,6 +44,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Common.Entities.ValeResponse FindVale(string vale);
         [OperationContract]
+        Common.Entities.DistribuidorObserva FindDistObserva(string dist);
+        [OperationContract]
         Common.Entities.ValeResponse FindValeDigital(string vale);
         [OperationContract]
         Common.Entities.ValeResponse FindValeDigitalByClient(int id);
