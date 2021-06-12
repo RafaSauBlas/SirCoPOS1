@@ -1503,16 +1503,31 @@ namespace SirCoPOS.BusinessLogic
             // Genera Fechas Pago (Parrilla) Normal con Promocion (No Electronica)
             if (item.Plazos.HasValue)
             {
-                dps.Add(new Tuple<int, decimal>(item.Plazos.Value, item.Importe - (SumImporteSinPromo ?? 0)));
+                double plazosPromocion = item.Plazos.Value ;
+                if (item.FormaPago == FormaPago.CP)
+                {
+                   plazosPromocion = Math.Ceiling(plazosPromocion / 2);
+                }
+
+                dps.Add(new Tuple<int, decimal>((int)plazosPromocion, item.Importe - (SumImporteSinPromo ?? 0)));
 
                 var primero = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == dist.clasificacion
-                    && i.fechaaplicarcorte < item.FechaAplicar)
-                    .OrderByDescending(i => i.fechaaplicarcorte).Take(1).First();
+                    && i.fechaaplicarcorte < item.FechaAplicar && i.fechaaplicarcorte > DateTime.Now)
+                    .OrderByDescending(i => i.fechaaplicarcorte).Take(1).FirstOrDefault();
+
+                if (primero != null)
+                {
+                    plazosPromocion--;
+                }
+
                 var ultimo = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == dist.clasificacion
                     && i.fechaaplicarcorte >= item.FechaAplicar)
-                    .OrderBy(i => i.fechaaplicarcorte).Take(item.Plazos.Value - 1).ToList();
+                    .OrderBy(i => i.fechaaplicarcorte).Take((int)plazosPromocion).ToList();
 
-                ultimo.Insert(0, primero);
+                if (primero != null) {   
+                    ultimo.Insert(0, primero);
+                }
+
                 fechasPromocion = ultimo.ToArray();
 
                 detallePagosPromocion = h.GetPlazos(
@@ -1523,17 +1538,20 @@ namespace SirCoPOS.BusinessLogic
             // Genera Plan de Pagos NO Promocion (Parrilla Electronica)
             if (item.ProductosPlazos?.Where(i=>i.Plazos!=null).Any() ?? false)
             {
-                var plazosNoPromocion = item.ProductosPlazos.Where(i=>i.Plazos !=null).Max(i => i.Plazos.Value);
-
+                double plazosNoPromocion = item.ProductosPlazos.Where(i=>i.Plazos !=null).Max(i => i.Plazos.Value);
+                if (item.FormaPago == FormaPago.CP)
+                {
+                    plazosNoPromocion = Math.Ceiling(plazosNoPromocion / 2);
+                }
                 var fechasNoPromocion = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == dist.clasificacion
                     && i.fechaaplicarcorte >= now)
-                    .OrderBy(i => i.fechaaplicarcorte).Take(plazosNoPromocion).ToArray();
+                    .OrderBy(i => i.fechaaplicarcorte).Take((int)plazosNoPromocion).ToArray();
 
                 dps.Clear();
                 var prods = item.ProductosPlazos.Where(i => i.Plazos != null);
                 foreach (var pps in prods)
                 {
-                    dps.Add(new Tuple<int, decimal>(pps.Plazos.Value, pps.Importe.Value));
+                    dps.Add(new Tuple<int, decimal>((int)plazosNoPromocion, pps.Importe.Value));
                 }
 
                 detallePagosNoPromocion = h.GetPlazos(
