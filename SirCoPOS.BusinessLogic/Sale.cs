@@ -2316,6 +2316,19 @@ namespace SirCoPOS.BusinessLogic
             //model.Disponible = model.Disponible < 0 ? 0 : model.Disponible;
             model.Disponible = cvale.saldo ?? 0;
 
+            model.Usado = false;
+            var ultcompra = qpp.Where(x => x.fechacompra < DateTime.Now).OrderByDescending(x => x.fechacompra).FirstOrDefault();
+            if (ultcompra != null)
+            {
+                if (ultcompra.fechacompra.ToString("yyyyMMdd") != DateTime.Now.ToString("yyyyMMdd"))
+                {
+                    model.Usado = true;
+                    model.SucursalUsado = ultcompra.sucursal;
+                    model.NotaUsado = ultcompra.nota;
+                    model.FechaUsado = ultcompra.fechacompra;
+                }
+            }
+
             //var q = ctx.DistribuidorFirmas.Where(i => i.distrib == item.distrib);
             //model.Distribuidor.Firmas = q.Select(i => i.numfirma).ToArray();
 
