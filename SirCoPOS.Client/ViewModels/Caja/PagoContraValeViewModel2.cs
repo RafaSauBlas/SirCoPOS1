@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using SirCoPOS.Common.Constants;
+using SirCoPOS.Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,16 +29,31 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.Vale = await _proxy.FindContraValeAsync(this.SucursalSearch, cv);
                 if (this.Vale != null)
                 {
-                    this.SucursalSearch = null;
-                    this.Search = null;
-                    if (!this.HasPromocion)
-                        this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
-                    if (!this.Vale.Distribuidor.Promocion)
-                        this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
+                    if (this.Vale.Cancelado)
+                    {
+                        MessageBox.Show("ContraVale Cancelado", "Pago ContraVale", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        if (!this.Vale.Usado)
+                        {
+                            this.SucursalSearch = null;
+                            this.Search = null;
+                            if (!this.HasPromocion)
+                                this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
+                            if (!this.Vale.Distribuidor.Promocion)
+                                this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
+                        }
+                        else
+                        {
+                            MessageBox.Show("El ContraVale " + Vale.Vale + " ya ha sido utilizado con la\nnota de Venta " + Vale.SucursalUsado + "-" + Vale.NotaUsado + " el " + Vale.FechaUsado.ToString("dd-MMM-yyyy"), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            this.Search = null;
+                        }
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("not found");
+                    MessageBox.Show("ContraVale NO Encontrado", "Pago ContraVale", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.Search) && !String.IsNullOrEmpty(this.SucursalSearch));
@@ -66,20 +82,31 @@ namespace SirCoPOS.Client.ViewModels.Caja
         protected override void Accept(Utilities.Messages.Pago p)
         {
             var cvale = (Common.Entities.CValeResponse)this.Vale;
-            Messenger.Default.Send(
-                    new Utilities.Messages.Pago
-                    {
-                        FormaPago = FormaPago.CV,
-                        Importe = this.Pagar.Value,
-                        Vale = this.Vale.Vale,
-                        Cliente = this.Vale.ClienteId,
-                        Plazos = this.Plazos,
-                        SelectedPlazo = this.SelectedPlazo,
-                        Promociones = this.Promocion.Promociones,
-                        SelectedPromocion = this.SelectedPromocion,
-                        ContraVale = this.GenerateContraVale,
-                        Sucursal = cvale.Sucursal
-                    }, this.GID);
+            var msg = 
+            new Utilities.Messages.Pago
+            {
+                FormaPago = FormaPago.CV,
+                Importe = this.Pagar.Value,
+                Vale = this.Vale.Vale,
+                Cliente = this.Vale.ClienteId,
+                Plazos = this.Plazos,
+                SelectedPlazo = this.SelectedPlazo,
+                Promociones = this.Promocion.Promociones,
+                SelectedPromocion = this.SelectedPromocion,
+                ContraVale = this.GenerateContraVale,
+                Sucursal = cvale.Sucursal,
+                PlazosProductos = this.Productos
+                        .Where(i => i.SelectedPlazo.HasValue
+                            && i.Item.FormasPago.Where(k => k.FormaPago == this.FormaPago).Any())
+                        .Select(i => new ProductoPlazo
+                        {
+                            Serie = i.Item.Serie,
+                            Plazos = i.SelectedPlazo,
+                            Importe = i.Item.FormasPago.Where(k => k.FormaPago == this.FormaPago).Single().Importe
+                        }).ToArray()
+            };
+            msg.PlazosProductos = p.PlazosProductos;
+            Messenger.Default.Send(msg, this.GID);
         }
         private string _sucursalSearch;
         public string SucursalSearch

@@ -16,6 +16,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Empleado FindAuditorApertura(int id, int idcajero);
         [OperationContract]
+        Empleado AuditorPassword(int id, string pwd);
+        [OperationContract]
         Empleado FindAuditorEntrega(int id, int idcajero);
         [OperationContract]
         Empleado FindAuditorTransferir(int id, int idcajero);
@@ -41,6 +43,8 @@ namespace SirCoPOS.Common.ServiceContracts
         CheckPromocionesCuponesResponse CheckPromociones(CheckPromocionesCuponesRequest request);        
         [OperationContract]
         Common.Entities.ValeResponse FindVale(string vale);
+        [OperationContract]
+        Common.Entities.DistribuidorObserva FindDistObserva(string dist);
         [OperationContract]
         Common.Entities.ValeResponse FindValeDigital(string vale);
         [OperationContract]

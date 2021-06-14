@@ -16,7 +16,7 @@
         <cv:BoolTextConverter x:Key="boolText"></cv:BoolTextConverter>
         <BooleanToVisibilityConverter x:Key="bolvis"/>
     </UserControl.Resources>
-    <Grid>
+    <Grid Margin="0,0,0,-135">
         <Grid.Background>
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
         </Grid.Background>
@@ -24,9 +24,9 @@
         <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="109,143,0,0" TextWrapping="Wrap" Text="{Binding Vale.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,111,0,0" TextWrapping="Wrap" Text="#" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,143,0,0" TextWrapping="Wrap" Text="Disponible:" VerticalAlignment="Top"/>
-        <TextBlock Text="{Binding Vale.CanceladoMotivo, StringFormat={}Cancelado - {0}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="textBlock_Copy2" Margin="506,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <TextBlock x:Name="textBlock2_Copy" Margin="504,52,0,0" TextWrapping="Wrap" Text="Distribuidor:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <TextBlock x:Name="textBlock2_Copy1" Margin="609,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold">
+        <TextBlock Text="{Binding Vale.CanceladoMotivo, StringFormat={}Cancelado - {0}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="textBlock_Copy2" Margin="407,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="textBlock2_Copy" Margin="407,47,0,0" TextWrapping="Wrap" Text="Distribuidor:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="textBlock2_Copy1" Margin="551,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Width="622">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0} {1} {2}">
                     <Binding Path="Vale.Distribuidor.Nombre" />
@@ -35,8 +35,8 @@
                 </MultiBinding>
             </TextBlock.Text>
         </TextBlock>
-        <TextBlock x:Name="textBlock2_Copy2" Margin="604,80,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Status}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
-        <TextBlock x:Name="textBlock2_Copy3" Margin="504,80,0,0" TextWrapping="Wrap" Text="Estatus:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="textBlock2_Copy2" Margin="551,73,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Status}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
+        <TextBlock x:Name="textBlock2_Copy3" Margin="407,73,0,0" TextWrapping="Wrap" Text="Estatus:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
         <!--==========================================================================================================================-->
         <TabControl SelectedItem="{Binding SelectedFirma}" TabStripPlacement="Left" ItemsSource="{Binding Vale.Distribuidor.Firmas, NotifyOnTargetUpdated=True}" TargetUpdated="TabControl_TargetUpdated" Margin="0,41,10,41" Width="425" Height="368" HorizontalAlignment="Right">
@@ -74,9 +74,9 @@
             </TabControl.ContentTemplate>
         </TabControl>
 
-        <TextBlock x:Name="textBlock_Copy3" Margin="504,22,0,0" TextWrapping="Wrap" Text="Cuenta:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <TextBlock x:Name="textBlock_Copy4" Margin="660,26,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Cuenta}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
-        <TextBlock x:Name="textBlock4" Margin="506,108,0,0" TextWrapping="Wrap" Text="Electrónica:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="textBlock_Copy3" Margin="407,22,0,0" TextWrapping="Wrap" Text="Cuenta:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="textBlock_Copy4" Margin="553,26,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Cuenta}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Width="130"/>
+        <TextBlock x:Name="textBlock4" Margin="407,103,0,0" TextWrapping="Wrap" Text="Electrónica:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Vale" VerticalAlignment="Top"/>
         <TextBox x:Name="tbVale" HorizontalAlignment="Left" Height="27" Margin="82,9,0,0" TextWrapping="Wrap" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
             <TextBox.InputBindings>
@@ -85,7 +85,7 @@
         </TextBox>
         <TextBox x:Name="txt_negocio" Text="{Binding Negocio, UpdateSourceTrigger=PropertyChanged}" CharacterCasing="Upper" Height="27" Margin="82,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54"/>
         <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="10,50,0,0" TextWrapping="Wrap" Text="Negocio" VerticalAlignment="Top"/>
-        <ComboBox IsTextSearchEnabled="True" SelectedValue="{Binding SelectedNegocio}" SelectedValuePath="Id" HorizontalAlignment="Left" Margin="141,47,0,0" VerticalAlignment="Top" ItemsSource="{Binding Negocios}">
+        <ComboBox IsTextSearchEnabled="True" SelectedValue="{Binding SelectedNegocio}" SelectedValuePath="Id" HorizontalAlignment="Left" Margin="141,45,0,0" VerticalAlignment="Top" ItemsSource="{Binding Negocios}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>
@@ -105,14 +105,23 @@
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBlock x:Name="textBlock4_Copy" Margin="607,108,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Electronica, Converter={StaticResource boolText}}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
-        <TextBlock x:Name="txt_promos" HorizontalAlignment="Left" Margin="506,168,0,0" TextWrapping="Wrap" Text="Promociones:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="txt_promosV" HorizontalAlignment="Left" Margin="622,168,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Promocion, Converter={StaticResource boolText}}" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBlock x:Name="txt_VVE" HorizontalAlignment="Left" Margin="506,198,0,0" TextWrapping="Wrap" Text="ValeExterno:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="txt_VE" HorizontalAlignment="Left" Margin="622,198,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.ValeExterno, Converter={StaticResource boolText}}" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBlock x:Name="txt_contravale" HorizontalAlignment="Left" Margin="506,228,0,0" TextWrapping="Wrap" Text="Contravale:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="txt_contravaleV" HorizontalAlignment="Left" Margin="622,228,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.ContraVale, Converter={StaticResource boolText}}" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBlock x:Name="txt_observaciones" HorizontalAlignment="Left" Margin="10,291,0,0" TextWrapping="Wrap" Text="Observaciones:" VerticalAlignment="Top"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="2" Margin="10,265,0,0" VerticalAlignment="Top" Width="870"/>
+        <TextBlock x:Name="textBlock4_Copy" Margin="551,103,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Electronica, Converter={StaticResource boolText}}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
+        <TextBlock x:Name="txt_promos" HorizontalAlignment="Left" Margin="407,158,0,0" TextWrapping="Wrap" Text="Promociones:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txt_promosV" HorizontalAlignment="Left" Margin="551,158,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Promocion, Converter={StaticResource boolText}}" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock x:Name="txt_VVE" HorizontalAlignment="Left" Margin="407,187,0,0" TextWrapping="Wrap" Text="ValeExterno:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txt_VE" HorizontalAlignment="Left" Margin="551,187,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.ValeExterno, Converter={StaticResource boolText}}" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock x:Name="txt_contravale" HorizontalAlignment="Left" Margin="408,213,0,0" TextWrapping="Wrap" Text="Contravale:" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txt_contravaleV" HorizontalAlignment="Left" Margin="551,213,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.ContraVale, Converter={StaticResource boolText}}" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="2" Margin="10,271,0,0" VerticalAlignment="Top" Width="870"/>
+        <TextBlock x:Name="txt_observaciones" HorizontalAlignment="Left" Margin="65,372,0,0" TextWrapping="Wrap" Text="Observaciones:" VerticalAlignment="Top" Width="145" Height="20"/>
+        <Label x:Name="label" Content="Permite ContraVale" HorizontalAlignment="Left" Margin="14,297,0,0" VerticalAlignment="Top" Width="176"/>
+        <Label x:Name="label_Copy" Content="Acepta Vale Externo " HorizontalAlignment="Left" Margin="14,325,0,0" VerticalAlignment="Top" Width="176"/>
+        <TextBlock x:Name="txtObs1" Text="{Binding DistObserva.Observa01}" HorizontalAlignment="Left" Height="23" Margin="66,404,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
+        <TextBlock x:Name="txtObs2" Text="{Binding DistObserva.Observa02}" HorizontalAlignment="Left" Height="23" Margin="66,433,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
+        <TextBlock x:Name="txtObs3" Text="{Binding DistObserva.Observa03}" HorizontalAlignment="Left" Height="23" Margin="66,462,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
+        <TextBlock x:Name="txtObs4" Text="{Binding DistObserva.Observa04}" HorizontalAlignment="Left" Height="23" Margin="66,491,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
+        <TextBlock x:Name="txtObs5" Text="{Binding DistObserva.Observa05}" HorizontalAlignment="Left" Height="23" Margin="66,521,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
+        <TextBlock x:Name="txtContVale" Text="{Binding DistObserva.ContVale, Converter={StaticResource boolText}}" HorizontalAlignment="Left" Height="20" Margin="194,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" FontWeight="Bold"/>
+        <TextBlock x:Name="txtNeexvale" Text="{Binding DistObserva.NeexVale, Converter={StaticResource boolText}}" HorizontalAlignment="Left" Height="20" Margin="194,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" FontWeight="Bold"/>
     </Grid>
 </UserControl>

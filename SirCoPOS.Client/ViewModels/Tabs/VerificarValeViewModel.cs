@@ -27,7 +27,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             this.FindValeCommand = new RelayCommand(async () => {
                 this.IsBusy = true;
                 this.Vale = await _proxy.FindValeAsync(this.ValeSearch);
-                if (this.Vale != null)
+                if (this.Vale == null) 
+                {
+                    DistObserva = null;
+                    MessageBox.Show("Vale no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error); 
+                } else
                 {
                     this.TotalVale = null;
                     this.Cliente = null;
@@ -40,6 +44,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                             Id = this.Vale.ClienteId
                         };
                     }
+                    this.DistObserva = await _proxy.FindDistObservaAsync(this.Vale.Distribuidor.Cuenta);
                 }
                 this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.ValeSearch));
@@ -176,6 +181,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     this.RegistrarValeCommand.RaiseCanExecuteChanged();                    
                     break;
                 case nameof(this.Vale):
+                case nameof(this.DistObserva):
                     this.ClearClienteCommand.RaiseCanExecuteChanged();
                     this.LoadClienteCommand.RaiseCanExecuteChanged();
                     this.RegistrarValeCommand.RaiseCanExecuteChanged();
@@ -191,6 +197,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             get { return _valeSearch; }
             set { this.Set(nameof(this.ValeSearch), ref _valeSearch, value); }
         }
+
+        
         private Common.Entities.ValeResponse _vale;
         public Common.Entities.ValeResponse Vale
         {
@@ -234,6 +242,20 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         {
             get { return _Credito; }
             set { Set(nameof(this.Credito), ref _Credito, value); }
+        }
+
+        private DistribuidorObserva _distObserva;
+        public DistribuidorObserva DistObserva
+        {
+            get { return _distObserva; }
+            set { this.Set(nameof(this.DistObserva), ref _distObserva, value); }
+        }
+
+        private string _ContVale;
+        public string ContVale
+        {
+            get { return _ContVale; }
+            set { Set(nameof(this.ContVale), ref _ContVale, value); }
         }
 
         public RelayCommand RegistrarValeCommand { get; private set; }

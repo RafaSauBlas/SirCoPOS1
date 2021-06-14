@@ -260,7 +260,7 @@ namespace SirCoPOS.BusinessLogic
             var item = ctxpv.Ventas.Where(i => i.sucursal == sucursal && i.venta == folio).SingleOrDefault();
             if (item == null)
                 return null;
-
+            
             var model = new DevolucionResponse
             {
                 Sucursal = item.sucursal,
@@ -296,6 +296,7 @@ namespace SirCoPOS.BusinessLogic
                 var qimg = ctxi.Imagenes.Where(i => i.Marca == p.Marca && i.Estilon == p.Modelo);
                 p.Id = corrida?.ArticuloId;
                 p.HasImage = qimg.Any();
+                p.status = ser.status;
             }
             return model;
         }
@@ -1971,6 +1972,27 @@ namespace SirCoPOS.BusinessLogic
                 dic[key].Index = null;
             }
         }
+
+        public DistribuidorObserva FindDistObserva(string dist)
+        {
+            var ctx = new DataAccess.SirCoCreditoDataContext();
+            var item = ctx.DistribuidorObservaciones.Where(i => i.distrib == dist).SingleOrDefault();
+            if (item == null)
+                return null;
+
+            var model = new DistribuidorObserva
+            {
+                ContVale = (item.contvale == "S"),
+                NeexVale = (item.neexvale == "S"),
+                Observa01 = item.observ01,
+                Observa02 = item.observ02,
+                Observa03 = item.observ03,
+                Observa04 = item.observ04,
+                Observa05 = item.observ05,
+            };
+            return model;
+        }
+
         public ValeResponse FindVale(string vale)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
@@ -2007,7 +2029,8 @@ namespace SirCoPOS.BusinessLogic
                 Electronica = item.solocalzado == 0,
                 ContraVale = item.contravale == 1,
                 Promocion = item.promocion == 1,
-                LimiteVale = item.limitevale
+                LimiteVale = item.limitevale,
+                ValeExterno = item.negext == 1,
             };
 
             var model = new ValeResponse
@@ -2031,7 +2054,22 @@ namespace SirCoPOS.BusinessLogic
             }
 
             var qpp = ctx.PlanPagos.Where(i => i.vale.Trim() == vale && i.status == "AP" && i.negocio == "TO");
+
+            model.Usado = false;
+            var ultcompra = qpp.Where(x => x.fechacompra < DateTime.Now).OrderByDescending(x => x.fechacompra).FirstOrDefault();
+            if (ultcompra != null)
+            {
+                if (ultcompra.fechacompra.ToString("yyyyMMdd") != DateTime.Now.ToString("yyyyMMdd")) 
+                {
+                    model.Usado = true;
+                    model.SucursalUsado = ultcompra.sucursal;
+                    model.NotaUsado = ultcompra.nota;
+                    model.FechaUsado = ultcompra.fechacompra;
+                }
+            }
+            
             var qp = qpp.Where(i => i.pagado == "0");
+            
             var usado = qp.Any() ? qp.Sum(i => i.saldo) : 0;
             model.Disponible = Math.Min(item.limitevale.Value, item.disponible.Value) - usado;
             model.Disponible = model.Disponible < 0 ? 0 : model.Disponible;
@@ -2258,6 +2296,11 @@ namespace SirCoPOS.BusinessLogic
                 Sucursal = sucursal
             };
 
+            if (cvale.status.Contains(Common.Constants.Status.ZC.ToString()))
+            {
+                model.Cancelado = true;
+                return model;
+            }
             //var valCancelado = ctx.ValesCancelados.Where(i =>
             //    String.Compare(vale, i.valeini) >= 0 && String.Compare(vale, i.valefin) <= 0).SingleOrDefault();
             //if (valCancelado != null)
@@ -2272,6 +2315,19 @@ namespace SirCoPOS.BusinessLogic
             //model.Disponible = Math.Min(item.limitevale.Value, item.disponible.Value) /*- usado*/;
             //model.Disponible = model.Disponible < 0 ? 0 : model.Disponible;
             model.Disponible = cvale.saldo ?? 0;
+
+            model.Usado = false;
+            var ultcompra = qpp.Where(x => x.fechacompra < DateTime.Now).OrderByDescending(x => x.fechacompra).FirstOrDefault();
+            if (ultcompra != null)
+            {
+                if (ultcompra.fechacompra.ToString("yyyyMMdd") != DateTime.Now.ToString("yyyyMMdd"))
+                {
+                    model.Usado = true;
+                    model.SucursalUsado = ultcompra.sucursal;
+                    model.NotaUsado = ultcompra.nota;
+                    model.FechaUsado = ultcompra.fechacompra;
+                }
+            }
 
             //var q = ctx.DistribuidorFirmas.Where(i => i.distrib == item.distrib);
             //model.Distribuidor.Firmas = q.Select(i => i.numfirma).ToArray();

@@ -34,8 +34,8 @@
         <tk:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}" Grid.RowSpan="2">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="499*"/>
-                    <ColumnDefinition Width="601*"/>
+                    <ColumnDefinition Width="449*"/>
+                    <ColumnDefinition Width="651*"/>
                 </Grid.ColumnDefinitions>
                 <Grid Margin="10,39,302,237" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>

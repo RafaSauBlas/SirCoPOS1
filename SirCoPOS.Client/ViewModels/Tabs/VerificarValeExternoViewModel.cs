@@ -19,15 +19,20 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             if (!IsInDesignMode)
             {
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
-
+                
                 this.Negocios = _proxy.GetNegocios();                
             }
             this.SearchCommand = new GalaSoft.MvvmLight.Command.RelayCommand(() =>
             {
 
                 this.Vale = _proxy.FindDistribuidorExterno(this.SelectedNegocio.Value, this.Cuenta, this.ValeSearch);
-                if (this.Vale == null)
-                    MessageBox.Show("Distribuidor no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                if (this.Vale == null) {
+                    DistObserva = null;
+                    MessageBox.Show("Vale no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                    this.DistObserva = _proxy.FindDistObserva(this.Vale.Distribuidor.Cuenta);
+
             }, () => !string.IsNullOrEmpty(this.ValeSearch) && this.SelectedNegocio.HasValue && !string.IsNullOrEmpty(this.Cuenta));
 
             if (this.IsInDesignMode)
@@ -108,6 +113,20 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             get { return _vale; }
             set { this.Set(nameof(this.Vale), ref _vale, value); }
         }
+        private DistribuidorObserva _distObserva;
+        public DistribuidorObserva DistObserva
+        {
+            get { return _distObserva; }
+            set { this.Set(nameof(this.DistObserva), ref _distObserva, value); }
+        }
+
+        private string _ContVale;
+        public string ContVale
+        {
+            get { return _ContVale; }
+            set { Set(nameof(this.ContVale), ref _ContVale, value); }
+        }
+
         public RelayCommand SearchCommand { get; private set; }
 
     }

@@ -1478,7 +1478,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Vale  :       </Value>
+                    <Value>Vale  :  </Value>
                     <Style>
                       <FontSize>9pt</FontSize>
                     </Style>
@@ -1496,7 +1496,7 @@
             <rd:DefaultName>Textbox43</rd:DefaultName>
             <Top>2.17566in</Top>
             <Height>0.19811in</Height>
-            <Width>1.2436in</Width>
+            <Width>1.24571in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>

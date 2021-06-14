@@ -48,6 +48,18 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     MessageBox.Show("Auditor no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }, () => this.SearchAuditor.HasValue);
+            this.LoadUserCommand = new RelayCommand(() =>
+            {
+                this.User = _data.AuditorPassword(this.Auditor.Id, this.Password);
+                if (this.User != null)
+                {
+                    this.SearchUser = null;
+                }
+                else
+                {
+                    MessageBox.Show("Password Invalido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }, () => this.Password != null && this.Auditor != null);
             //this.RemoveMontoCommand = new RelayCommand(() =>
             //{
             //    this.SelectedItemCorte.Detalle.Remove(this.SelectedDetalle);
@@ -93,11 +105,12 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     Entregar = this.Entregar.Value                    
                 };
                 _proxy.Corte(request);
-                MessageBox.Show("Corte generado exitosamente", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Corte generado exitosamente", "Corte", MessageBoxButton.OK, MessageBoxImage.Information);
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.FondoAperturaCierre { Open = false });
                 this.CloseCommand.Execute(null);
             }, () => this.Auditor != null
                 && this.Entregar.HasValue
+                && this.User != null
                 && (!this.Items.Any() || this.Items.All(i => i.Entrega.HasValue && i.Monto.HasValue)));
 
             this.CajeroFinger = new RelayCommand(/*async*/ () => {
@@ -198,6 +211,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 //    this.SaveCommand.RaiseCanExecuteChanged();
                 //    break;
                 case nameof(this.Auditor):
+                case nameof(this.User):
                     this.SaveCommand.RaiseCanExecuteChanged();
                     break;
                 case nameof(this.Entregar):
@@ -220,6 +234,19 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         //    get => _supervisorValido;
         //    set => this.Set(nameof(this.SupervisorValido), ref _supervisorValido, value);
         //}
+        private string _SearchUser;
+        public string SearchUser
+        {
+            get { return _SearchUser; }
+            set { Set(nameof(this.SearchUser), ref _SearchUser, value); }
+        }
+        public string Password { private get; set; }
+        private Common.Entities.Empleado _User;
+        public Common.Entities.Empleado User
+        {
+            get { return _User; }
+            set { Set(nameof(this.User), ref _User, value); }
+        }
         private decimal? _entregar;
         public decimal? Entregar
         {
@@ -258,6 +285,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         public RelayCommand LoadAuditorCommand { get; private set; }
         public RelayCommand AddMontoCommand { get; private set; }
         public RelayCommand RemoveMontoCommand { get; private set; }
+        public RelayCommand LoadUserCommand { get; private set; }
         #endregion        
         public ObservableCollection<Models.ItemCorte> Items { get; private set; }
         public ObservableCollection<Models.ItemCorteSerie> Series { get; private set; }

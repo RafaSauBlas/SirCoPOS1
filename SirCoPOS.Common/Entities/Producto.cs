@@ -37,5 +37,6 @@ namespace SirCoPOS.Common.Entities
         public decimal? iva { get; set; }
         public short? ctd { get; set; }
         public int? idpromocion { get; set; }
+        public string status { get; set; }
     }
 }

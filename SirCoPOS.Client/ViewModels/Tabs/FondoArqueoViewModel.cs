@@ -27,6 +27,20 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     MessageBox.Show("Auditor no valido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }, () => this.SearchAuditor.HasValue);
+            this.LoadUserCommand = new RelayCommand(() =>
+            {
+                this.User = _data.AuditorPassword(this.Auditor.Id, this.Password);
+                if (this.User != null)
+                {
+                    this.SearchUser = null;
+                    this.UserOK = true;
+                }
+                else
+                {
+                    MessageBox.Show("Password Invalido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    this.UserOK = false;
+                }
+            }, () => this.Password != null && this.Auditor != null);
             this.SaveCommand = new RelayCommand(() => {
                 var code = Microsoft.VisualBasic.Interaction.InputBox("Codigo Auditor:");
                 var isValid = _proxy.ValidarCodigo(this.Auditor.Id, code);
@@ -43,9 +57,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     Responsable = this.Cajero.Id
                 };
                 _proxy.ArqueoFondo(request);
-                MessageBox.Show("ready");
+                MessageBox.Show("La operación se completó correctamente", "Fondo Arqueo", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.CloseCommand.Execute(null);
-            }, () => this.Auditor != null && this.Importe.HasValue && this.Effectivo.HasValue
+            }, () => this.Auditor != null && this.Importe.HasValue && this.Effectivo.HasValue && this.User != null
                 && this.Faltante >= 0);
             if (this.IsInDesignMode)
             {
@@ -74,6 +88,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             switch (e.PropertyName)
             {
                 case nameof(this.Auditor):
+                case nameof(this.User):
                     this.SaveCommand.RaiseCanExecuteChanged();
                     break;
                 case nameof(this.Importe):
@@ -82,7 +97,6 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     break;
             }
         }
-
         private Common.Entities.Empleado _Auditor;
         public Common.Entities.Empleado Auditor
         {
@@ -115,12 +129,34 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         }
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand LoadAuditorCommand { get; private set; }
+        public RelayCommand LoadUserCommand { get; private set; }
         private int? _SearchAuditor;
         public int? SearchAuditor
         {
             get { return _SearchAuditor; }
             set { Set(nameof(this.SearchAuditor), ref _SearchAuditor, value); }
         }
-
+        private string _SearchUser;
+        public string SearchUser
+        {
+            get { return _SearchUser; }
+            set { Set(nameof(this.SearchUser), ref _SearchUser, value); }
+        }
+        private Common.Entities.Empleado _User;
+        public Common.Entities.Empleado User
+        {
+            get { return _User; }
+            set { Set(nameof(this.User), ref _User, value); }
+        }
+        private bool _UserOK;
+        public bool UserOK
+        {
+            get { return _UserOK; }
+            private set
+            {
+                Set(nameof(this.UserOK), ref _UserOK, value);
+            }
+        }
+        public string Password { private get; set; }
     }
 }

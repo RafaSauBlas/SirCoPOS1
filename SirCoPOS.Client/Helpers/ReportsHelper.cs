@@ -179,16 +179,20 @@ namespace SirCoPOS.Client.Helpers
                 { "reciboDataSet", list },
                 { "productosDataSet", productos },
             };
-            //_viewer.OpenViewer(
-            //    fullname: "SirCoPOS.Reports.ReciboVenta.rdlc",
-            //    library: "SirCoPOS.Reports",
-            //    datasources: dic);
-
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                _viewer.OpenViewer(
+                fullname: "SirCoPOS.Reports.ReciboCancelacion.rdlc",
+                library: "SirCoPOS.Reports",
+                datasources: dic);
+            }
+            else { 
             var pd = new Helpers.PrintFile(
                 fullname: "SirCoPOS.Reports.ReciboCancelacion.rdlc",
                 library: "SirCoPOS.Reports",
                 datasources: dic);
             pd.Print();
+            }
         }
 
 

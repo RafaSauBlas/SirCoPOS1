@@ -17,9 +17,24 @@ namespace SirCoPOS.Common.Entities
         public DateTime? Vigencia { get; set; }
         public bool WithLimite { get; set; }
         public decimal? Limite { get; set; }
+        public bool Usado { get; set; }
+        public string SucursalUsado { get; set; }
+        public string NotaUsado { get; set; }
+        public DateTime FechaUsado { get; set; }
     }
     public class CValeResponse : ValeResponse
     { 
         public string Sucursal { get; set; }
     }
+    public class DistribuidorObserva
+    {
+        public bool ContVale { get; set; }
+        public bool NeexVale { get; set; }
+        public string Observa01 { get; set; }
+        public string Observa02 { get; set; }
+        public string Observa03 { get; set; }
+        public string Observa04 { get; set; }
+        public string Observa05 { get; set; }
+    }
+
 }

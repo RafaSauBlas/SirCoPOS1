@@ -22,6 +22,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Task<Common.Entities.ValeResponse> FindValeAsync(string vale);
         [OperationContract]
+        Task<Common.Entities.DistribuidorObserva> FindDistObservaAsync(string dist);
+        [OperationContract]
         //Task<Common.Entities.Cliente> FindClienteAsync(string nombre);
         //[OperationContract]
         Task<Common.Entities.ValeResponse> FindValeDigitalAsync(string vale);

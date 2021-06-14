@@ -26,6 +26,7 @@ namespace SirCoPOS.DataAccess.SirCoPV
 	    public DateTime? fum { get; set; }
 	    public int? idusuariocancela { get; set; }
 	    public DateTime? fumcancela { get; set; }
+        public string motivocancela { get; set; }
 
         public virtual ICollection<VentaDetalle> Detalles { get; set; }
         public virtual Pago Pago { get; set; }

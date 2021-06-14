@@ -115,6 +115,18 @@
                                                 <DataTrigger Binding="{Binding FormaPago}" Value="CV">
                                                     <Setter Property="ContentTemplate" Value="{StaticResource pagoVA}"/>
                                                 </DataTrigger>
+                                                <DataTrigger Binding="{Binding FormaPago}" Value="CP">
+                                                    <Setter Property="ContentTemplate" Value="{StaticResource pagoVA}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FormaPago}" Value="VE">
+                                                    <Setter Property="ContentTemplate" Value="{StaticResource pagoVA}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FormaPago}" Value="CD">
+                                                    <Setter Property="ContentTemplate" Value="{StaticResource pagoVA}"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding FormaPago}" Value="VD">
+                                                    <Setter Property="ContentTemplate" Value="{StaticResource pagoVA}"/>
+                                                </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
                                     </ContentControl.Style>

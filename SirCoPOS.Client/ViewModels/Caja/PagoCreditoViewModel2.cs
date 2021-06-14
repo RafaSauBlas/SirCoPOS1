@@ -39,7 +39,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 }
                 else
                 {
-                    MessageBox.Show("not found");
+                    MessageBox.Show("El vale que ingresó no existe, por favor validelo nuevamente.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.Search));
@@ -47,24 +47,29 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         private void PagoCreditoViewModel2_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            
+
         }
         protected override void Accept(Utilities.Messages.Pago p)
         {
-            Messenger.Default.Send(
-                    new Utilities.Messages.Pago
-                    {
-                        FormaPago = this.FormaPago,
-                        Importe = this.Pagar.Value,
-                        Vale = this.Vale.Vale,
-                        //Vale = this.Tarjetahabiente.Vale,
-                        Cliente = this.Vale.Distribuidor.ClienteId,
-                        Plazos = this.Plazos,
-                        SelectedPlazo = this.SelectedPlazo,
-                        Promociones = this.Promocion.Promociones,
-                        SelectedPromocion = this.SelectedPromocion,
-                        DistribuidorId = this.Vale.Distribuidor.Id
-                    }, this.GID);
+            var msg = new Utilities.Messages.Pago
+            {
+                FormaPago = this.FormaPago,
+                Importe = this.Pagar.Value,
+                Vale = this.Vale.Vale,
+                DistribuidorId = this.Vale.Distribuidor.Id,
+                Cliente = this.Vale.Distribuidor.ClienteId,
+                Plazos = this.Plazos,
+                SelectedPlazo = this.SelectedPlazo,
+                Promociones = this.Promocion.Promociones,
+                SelectedPromocion = this.SelectedPromocion,
+                PlazosProductos = this.Productos.Select(i => new  Common.Entities.ProductoPlazo
+                {
+                    Serie = i.Item.Serie,
+                    Plazos = i.SelectedPlazo,
+                    Importe = i.Item.Precio 
+                }).ToArray()
+            };
+            Messenger.Default.Send(msg, this.GID);
         }
     }
 }

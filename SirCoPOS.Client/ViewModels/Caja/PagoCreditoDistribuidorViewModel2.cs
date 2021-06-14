@@ -45,20 +45,25 @@ namespace SirCoPOS.Client.ViewModels.Caja
         }
         protected override void Accept(Utilities.Messages.Pago p)
         {
-            Messenger.Default.Send(
-                    new Utilities.Messages.Pago
-                    {
-                        FormaPago = this.FormaPago,
-                        Importe = this.Pagar.Value,
-                        Vale = this.Vale.Vale,
-                        //Vale = this.Tarjetahabiente.Vale,
-                        Cliente = this.Vale.Distribuidor.ClienteId,
-                        Plazos = this.Plazos,
-                        SelectedPlazo = this.SelectedPlazo,
-                        Promociones = this.Promocion.Promociones,
-                        SelectedPromocion = this.SelectedPromocion,
-                        DistribuidorId = this.Vale.Distribuidor.Id
-                    }, this.GID);
+            var msg = new Utilities.Messages.Pago
+            {
+                FormaPago = this.FormaPago,
+                Importe = this.Pagar.Value,
+                Vale = this.Vale.Vale,
+                Cliente = this.Vale.Distribuidor.ClienteId,
+                Plazos = this.Plazos,
+                SelectedPlazo = this.SelectedPlazo,
+                Promociones = this.Promocion.Promociones,
+                SelectedPromocion = this.SelectedPromocion,
+                DistribuidorId = this.Vale.Distribuidor.Id,
+                PlazosProductos = this.Productos.Select(i => new Common.Entities.ProductoPlazo
+                {
+                    Serie = i.Item.Serie,
+                    Plazos = i.SelectedPlazo,
+                    Importe = i.Item.Precio
+                }).ToArray()
+            };
+            Messenger.Default.Send(msg, this.GID);
         }
     }
 }

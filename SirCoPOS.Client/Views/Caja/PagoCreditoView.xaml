@@ -23,13 +23,13 @@
     <xt:BusyIndicator IsBusy="{Binding IsBusy}">
         <Grid>
             <!--Captura TarjataHabiente-->
-            <TextBox x:Name="tbSearch" HorizontalAlignment="Left" Height="23" Margin="136.253,13,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+            <TextBox x:Name="tbSearch" HorizontalAlignment="Left" Height="23" Margin="145,13,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="110">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
                 </TextBox.InputBindings>
             </TextBox>
             <!--Titulo Tarjetahabiente-->
-            <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="10,13,0,0" TextWrapping="Wrap" Text="Tarjetahabiente" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="10,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"><Run Text="Tarjet"/><Run Text="a"/><Run Text="habie"/><Run Text="n"/><Run Text="te"/></TextBlock>
             <!--Control de firmas-->
             <TabControl SelectedItem="{Binding SelectedFirma}" TabStripPlacement="Left" ItemsSource="{Binding Vale.Distribuidor.Firmas, NotifyOnTargetUpdated=True}" TargetUpdated="TabControl_TargetUpdated" Margin="10,0,0,10" Height="202.24" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="309.716">
                 <TabControl.ItemTemplate>
@@ -79,15 +79,15 @@
 
             <TextBlock x:Name="textBlock2_Copy" HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="#" VerticalAlignment="Top"/>
             <!--Titulo Disponible-->
-            <TextBlock x:Name="textBlock2_Copy1" HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="Disponible" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock2_Copy1" HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="Disponible" VerticalAlignment="Top" Width="90"/>
             <!--Titulo de Cancelado-->
-            <TextBlock Text="{Binding Vale.CanceladoMotivo, StringFormat=Cancelado - \{0\}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="textBlock2_Copy2" HorizontalAlignment="Left" Margin="10,143,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock2_Copy3" HorizontalAlignment="Left" Margin="10,101,0,0" TextWrapping="Wrap" Text="Distribuidor" VerticalAlignment="Top"/>
+            <TextBlock Text="{Binding Vale.CanceladoMotivo, StringFormat=Cancelado - \{0\}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="textBlock2_Copy2" HorizontalAlignment="Left" Margin="10,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+            <TextBlock x:Name="textBlock2_Copy3" HorizontalAlignment="Left" Margin="10,101,0,0" TextWrapping="Wrap" Text="Distribuidor" VerticalAlignment="Top" Width="100"/>
             <!--Titulo Estatus-->
-            <TextBlock x:Name="textBlock2_Copy4" HorizontalAlignment="Left" Margin="10,122,0,0" TextWrapping="Wrap" Text="Estatus" VerticalAlignment="Top"/>
-             <!--No Tarjetahabiente-->
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="119,41,0,0" TextWrapping="Wrap" Text="{Binding Vale.Vale}" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="119,64,0,0" TextWrapping="Wrap" Text="{Binding Vale.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top">
+            <TextBlock x:Name="textBlock2_Copy4" HorizontalAlignment="Left" Margin="10,152,0,0" TextWrapping="Wrap" Text="Estatus" VerticalAlignment="Top" Width="63"/>
+            <!--No Tarjetahabiente-->
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="30,39,0,0" TextWrapping="Wrap" Text="{Binding Vale.Vale}" VerticalAlignment="Top" Width="125" FontSize="10"/>
+            <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="133,61,0,0" TextWrapping="Wrap" Text="{Binding Vale.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top" Width="122" TextAlignment="Right" Height="18">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <Style.Triggers>
@@ -99,7 +99,7 @@
                 </TextBlock.Style>
             </TextBlock>
             <!--Nombre Tarjatahabiente-->
-            <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="119,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="133,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="227">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0} {1} {2}">
                         <Binding Path="Vale.Distribuidor.Nombre" />
@@ -109,18 +109,18 @@
                 </TextBlock.Text>
             </TextBlock>
             <!--Estatus Tarjetahabiente-->
-            <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="119,122,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Status}" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="133,153,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Status}" VerticalAlignment="Top" Width="179"/>
             <!--Total VEnta-->
             <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="384,52,0,0" TextWrapping="Wrap" Text="Total" VerticalAlignment="Top"/>
             <!--Importe Total-->
             <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="502.167,51.796,0,0" TextWrapping="Wrap" Text="{Binding Total, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
             <!--Importe a pagar-->
-            <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="502.167,80.736,0,0" TextWrapping="Wrap" Text="{Binding Pagar, Delay=1000, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="113.333"/>
-            <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Margin="384,82,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
+            <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="502,76,0,0" TextWrapping="Wrap" Text="{Binding Pagar, Delay=1000, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="114"/>
+            <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Margin="384,77,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock1_Copy2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Promoción" VerticalAlignment="Top" Margin="385,185,0,0"/>
             <TextBlock x:Name="textBlock1_Copy3" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Plazos" VerticalAlignment="Top" Margin="386,215,0,0"/>
-            <ComboBox IsEnabled="{Binding HasPromocion}" ItemStringFormat="M" SelectedValue="{Binding SelectedPromocion}" ItemsSource="{Binding Promocion.Promociones}" x:Name="comboBox" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,184.736,234.5,0"/>
-            <ComboBox IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" Margin="0,220,234,0" HorizontalAlignment="Right" Width="38" Height="30" VerticalAlignment="Top"/>
+            <ComboBox IsEnabled="{Binding HasPromocion}" ItemStringFormat="M" SelectedValue="{Binding SelectedPromocion}" ItemsSource="{Binding Promocion.Promociones}" x:Name="comboBox" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,184,234,0" Width="124" />
+            <ComboBox IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" Margin="0,220,234,0" HorizontalAlignment="Right" Width="124" Height="30" VerticalAlignment="Top"/>
             <!--Titulo de plazo primero y ultimo-->
             <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="323.216,243.296,0,222.763" TextWrapping="Wrap" Width="315.284" d:LayoutOverrides="Height">
                 <TextBlock.Text>
@@ -131,27 +131,27 @@
                 </TextBlock.Text>
             </TextBlock>
             <!--Titulo Electronica-->
-            <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="217,38,0,0" TextWrapping="Wrap" Text="Electronica" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock5" HorizontalAlignment="Left" Margin="10,151,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock6" HorizontalAlignment="Left" Margin="119,151,0,0" TextWrapping="Wrap" Text="{Binding Vale.ClienteId}" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="217,42,0,0" TextWrapping="Wrap" Text="Electronica" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock5" HorizontalAlignment="Left" Margin="10,194,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top" Width="81"/>
+            <TextBlock x:Name="textBlock6" HorizontalAlignment="Left" Margin="133,194,0,0" TextWrapping="Wrap" Text="{Binding Vale.ClienteId}" VerticalAlignment="Top" Width="92"/>
             <!--Titulo Limite-->
-            <TextBlock x:Name="textBlock1_Copy4" HorizontalAlignment="Left" Margin="384,111,0,0" TextWrapping="Wrap" Text="Limite" VerticalAlignment="Top"/>
-             <!--Limite Vale-->   
-            <TextBox IsEnabled="{Binding Vale.WithLimite, Converter={StaticResource inv}}" x:Name="textBox1_Copy" HorizontalAlignment="Left" Margin="502.167,111.676,0,0" TextWrapping="Wrap" Text="{Binding Limite, StringFormat=\{0:C\}, TargetNullValue='', UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="113.333"/>
+            <TextBlock x:Name="textBlock1_Copy4" HorizontalAlignment="Left" Margin="384,103,0,0" TextWrapping="Wrap" Text="Limite" VerticalAlignment="Top"/>
+            <!--Limite Vale-->
+            <TextBox IsEnabled="{Binding Vale.WithLimite, Converter={StaticResource inv}}" x:Name="textBox1_Copy" HorizontalAlignment="Left" Margin="502,104,0,0" TextWrapping="Wrap" Text="{Binding Limite, StringFormat=\{0:C\}, TargetNullValue='', UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="114"/>
             <!--Titulo Contravale-->
-            <TextBlock x:Name="textBlock1_Copy5" HorizontalAlignment="Left" Margin="384,140,0,0" TextWrapping="Wrap" Text="Contra Vale" VerticalAlignment="Top"/>
-            <!--Cantidad de Contavale--> 
-            <TextBlock x:Name="textBlock1_Copy6" HorizontalAlignment="Left" Margin="502.167,142.616,0,0" TextWrapping="Wrap" Text="{Binding ContraVale, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock1_Copy5" HorizontalAlignment="Left" Margin="384,127,0,0" TextWrapping="Wrap" Text="Contra Vale" VerticalAlignment="Top"/>
+            <!--Cantidad de Contavale-->
+            <TextBlock x:Name="textBlock1_Copy6" HorizontalAlignment="Left" Margin="502,128,0,0" TextWrapping="Wrap" Text="{Binding ContraVale, StringFormat=\{0:C\}}" VerticalAlignment="Top" Width="114" TextAlignment="Right"/>
             <!--Titulo Promocion-->
-            <TextBlock x:Name="textBlock5_Copy" HorizontalAlignment="Left" Margin="10,180,0,0" TextWrapping="Wrap" Text="Promoción" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock5_Copy" HorizontalAlignment="Left" Margin="10,223,0,0" TextWrapping="Wrap" Text="Promoción" VerticalAlignment="Top" Width="100"/>
             <!--Promocion si o No-->
-            <TextBlock x:Name="textBlock5_Copy2" HorizontalAlignment="Left" Margin="119,180,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Promocion, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock5_Copy2" HorizontalAlignment="Left" Margin="133,223,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Promocion, Converter={StaticResource boolText}}" VerticalAlignment="Top" Width="122"/>
             <!--<Grid Margin="10,272,676,224">
             <TextBlock x:Name="textBlock5_Copy1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Contra Vale" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock5_Copy3" HorizontalAlignment="Left" Margin="109,0,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.ContraVale, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
             <CheckBox IsChecked="{Binding GenerateContraVale}" Visibility="{Binding Vale.Distribuidor.ContraVale, Converter={StaticResource bolvis}}" x:Name="checkBox" HorizontalAlignment="Left" Margin="148,1,0,0" VerticalAlignment="Top"/>
         </Grid>-->
-            
+
             <!--Lista de electronica-->
             <DataGrid IsEnabled="{Binding Vale.Distribuidor.Electronica}" SelectionUnit="FullRow" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding ProductosView}" x:Name="dataGrid" Grid.Row="0" Grid.Column="0" Margin="325,0,0,10" HorizontalAlignment="Left" Width="315" Height="202" VerticalAlignment="Bottom">
                 <DataGrid.Columns>
@@ -227,21 +227,21 @@
                 </DataGrid.Columns>
             </DataGrid>
             <!--Lista de plan pagos-->
-            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding PlanPago}" x:Name="dataGrid1" Margin="0,13,10,10" HorizontalAlignment="Right" Width="195">
+            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding PlanPago}" x:Name="dataGrid1" Margin="0,13,10,10" HorizontalAlignment="Right" Width="206">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="#" Binding="{Binding Number}"/>
                     <DataGridTextColumn Header="Fecha" Binding="{Binding Date, StringFormat=d}"/>
                     <DataGridTextColumn Header="Pago" Binding="{Binding Amount, StringFormat=c}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <TextBlock x:Name="textBlock1_Copy7" HorizontalAlignment="Left" Margin="384,164,0,0" TextWrapping="Wrap" Text="Blindaje" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock1_Copy8" HorizontalAlignment="Left" Margin="553.376,160.456,0,0" TextWrapping="Wrap" Text="{Binding Promocion.Blindaje, StringFormat=c}" VerticalAlignment="Top"/>
-             <!--Titulo Cuenta--> 
-            <TextBlock x:Name="textBlock2_Copy5" HorizontalAlignment="Left" Margin="181,82,0,0" TextWrapping="Wrap" Text="Cuenta" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock1_Copy7" HorizontalAlignment="Left" Margin="384,153,0,0" TextWrapping="Wrap" Text="Blindaje" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock1_Copy8" HorizontalAlignment="Left" Margin="553,153,0,0" TextWrapping="Wrap" Text="{Binding Promocion.Blindaje, StringFormat=c}" VerticalAlignment="Top" Width="63" TextAlignment="Right"/>
+            <!--Titulo Cuenta-->
+            <TextBlock x:Name="textBlock2_Copy5" HorizontalAlignment="Left" Margin="145,82,0,0" TextWrapping="Wrap" Text="Cuenta" VerticalAlignment="Top" Width="74"/>
             <!--Cuenta Tarjetahabiente-->
-            <TextBlock x:Name="textBlock2_Copy6" HorizontalAlignment="Left" Margin="242,82,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Cuenta}" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock2_Copy6" HorizontalAlignment="Left" Margin="230,82,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Cuenta}" VerticalAlignment="Top" Width="95"/>
             <!--Electronica Si o No-->
-            <TextBlock x:Name="textBlock4_Copy" HorizontalAlignment="Left" Margin="308,40,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Electronica, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock4_Copy" HorizontalAlignment="Left" Margin="312,42,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Electronica, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="244,11,0,0" TextWrapping="Wrap" Text="{Binding SelectedFirma}" VerticalAlignment="Top"/>
             <!--Total Electronica-->
             <TextBlock x:Name="textBlock1_Copy9" HorizontalAlignment="Left" Margin="502.167,27.856,0,0" TextWrapping="Wrap" Text="{Binding TotalElectronica, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>

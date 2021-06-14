@@ -28,9 +28,16 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.Vale = await _proxy.FindContraValeAsync(this.SucursalSearch, cv);
                 if (this.Vale != null)
                 {
-                    this.Search = null;
-                    if (!this.Vale.Distribuidor.Promocion)
-                        this.SelectedPromocion = this.Promociones.FirstOrDefault();
+                    if (this.Vale.Cancelado)
+                    {
+                        MessageBox.Show("ContraVale Cancelado", "Pago ContraVale", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    { 
+                        this.Search = null;
+                        if (!this.Vale.Distribuidor.Promocion)
+                            this.SelectedPromocion = this.Promociones.FirstOrDefault();
+                        }
                 }
                 else
                 {

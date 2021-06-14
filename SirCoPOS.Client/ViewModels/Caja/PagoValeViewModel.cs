@@ -56,18 +56,26 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 pago.Info.Electronica = true;
                 if (this.Vale != null)
                 {
-                    pago.Info.Electronica = this.Vale.Distribuidor.Electronica;                    
-                    this.Limite = this.Vale.Limite;
-                    this.Search = null;
-                    if (!this.HasPromocion)
-                        this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
-                    if (this.Vale.Distribuidor.Firmas != null && this.Vale.Distribuidor.Firmas.Any())
-                    {                        
-                        this.SelectedFirma = this.Vale.Distribuidor.Firmas.First();
+                    if (!this.Vale.Usado) { 
+                        pago.Info.Electronica = this.Vale.Distribuidor.Electronica;                    
+                        this.Limite = this.Vale.Limite;
+                        this.Search = null;
+                        if (!this.HasPromocion)
+                            this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
+                        if (this.Vale.Distribuidor.Firmas != null && this.Vale.Distribuidor.Firmas.Any())
+                        {                        
+                            this.SelectedFirma = this.Vale.Distribuidor.Firmas.First();
+                        }
+                        else
+                            this.SelectedFirma = null;
+                        this.Caja.UpdatePagos();
                     }
                     else
-                        this.SelectedFirma = null;
-                    this.Caja.UpdatePagos();
+                    {
+                        MessageBox.Show("El vale " + Vale.Vale + " ya ha sido utilizado con la\nnota de Venta " + Vale.SucursalUsado+"-"+Vale.NotaUsado+ " el " + Vale.FechaUsado.ToString("dd-MMM-yyyy"), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        this.Search = null;
+                    }
+
                 }
                 else
                 {
@@ -264,7 +272,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
                 var request = new Common.Entities.Pago
                 {
-                    FormaPago = FormaPago.VA,
+                    //FormaPago = FormaPago.VA,
+                    FormaPago = this.FormaPago,
                     Importe = this.Pagar.Value,
                     //Vale = i.Vale,
                     Plazos = this.SelectedPlazo,
@@ -289,13 +298,20 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 }
                 this.IsBusy = true;
                 var detalle = _proxy.GenerarPlanPagosFechas(this.Vale.Distribuidor.Id, request);
+                int days;
+                if (request.FormaPago == FormaPago.CP)
+                {
+                    days = -1;
+                }
+                else { days = -2; }
+
                 var count = 0;
                 foreach (var item in detalle)
                 {
                     this.PlanPago.Add(new Models.PlanPagoItem
                     {
                         Number = ++count, 
-                        Date = item.Key, 
+                        Date = item.Key.AddDays(days), 
                         Amount = item.Value
                     });
                 }

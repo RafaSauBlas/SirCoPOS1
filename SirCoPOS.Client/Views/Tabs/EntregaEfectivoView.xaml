@@ -16,7 +16,7 @@
     </UserControl.DataContext>
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Efectivo" VerticalAlignment="Top"/>
-        <Button Command="{Binding SaveCommand}" Content="Guardar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
+        <Button Command="{Binding SaveCommand}" Content="Guardar" HorizontalAlignment="Left" Margin="130,0,0,114" VerticalAlignment="Bottom" Width="75"/>
         <TextBlock HorizontalAlignment="Left" Margin="77.096,10,0,0" TextWrapping="Wrap" Text="{Binding Data.Efectivo, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
         <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="10,67.88,436,225.12" ItemsSource="{Binding FormasPago}">
             <DataGrid.Columns>
@@ -29,12 +29,12 @@
         </DataGrid>
         <TextBlock HorizontalAlignment="Left" Margin="10,38.94,0,0" TextWrapping="Wrap" Text="Entregar" VerticalAlignment="Top"/>
         <TextBox x:Name="tbEntrega" HorizontalAlignment="Left" Height="27" Margin="79,37,0,0" TextWrapping="Wrap" Text="{Binding Entrega, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, Delay=500}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="27" Margin="65,0,0,194" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="77">
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="128,0,0,194" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="77">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="149,0,0,196" TextWrapping="Wrap" VerticalAlignment="Bottom">
+        <TextBlock HorizontalAlignment="Left" Margin="217,0,0,196" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="315" Height="24">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0} {1} {2}">
                     <Binding Path="Auditor.Nombre" />
@@ -46,5 +46,11 @@
         <TextBlock HorizontalAlignment="Left" Margin="202,40,0,0" TextWrapping="Wrap" Text="Sobrante" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="279,39,0,0" TextWrapping="Wrap" Text="{Binding EfectivoFaltante, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,0,0,196" TextWrapping="Wrap" Text="Recibe" VerticalAlignment="Bottom"/>
+        <PasswordBox x:Name="txtB_Contra"  HorizontalAlignment="Left" Height="27" Margin="128,0,0,154" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Bottom" Width="120" KeyboardNavigation.TabIndex = "2">
+            <PasswordBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>
+            </PasswordBox.InputBindings>
+        </PasswordBox>
+        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,160" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>

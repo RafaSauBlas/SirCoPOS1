@@ -24,9 +24,15 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.Vale = await _proxy.FindValeDigitalAsync(this.Search);
                 if (this.Vale != null)
                 {
+                    if (this.Vale.Vigencia > DateTime.Now)
+                    {
+                        MessageBox.Show("Vale Expirado", "Pago Vale Digital", MessageBoxButton.OK, MessageBoxImage.Error);
+                    } else 
+                    { 
                     this.Search = null;
                     if (!this.Vale.Distribuidor.Promocion)
                         this.SelectedPromocion = this.Promociones.FirstOrDefault();
+                    }
                 }
                 else
                 {

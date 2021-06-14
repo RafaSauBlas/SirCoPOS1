@@ -1495,82 +1495,111 @@ namespace SirCoPOS.BusinessLogic
             HashSet<DataAccess.SirCoCredito.Calendario> fechas,
             decimal? blindaje)
         {
+            IDictionary<DateTime, decimal> detallePagosTotal = new Dictionary<DateTime, decimal>();
+            IDictionary<DateTime, decimal> detallePagosPromocion = null;
+            IDictionary<DateTime, decimal> detallePagosNoPromocion = null;
+
             var ctxcr = new DataAccess.SirCoCreditoDataContext();
             var h = new Common.Helpers.CommonHelper();
             var dps = new List<Tuple<int, decimal>>();
-            var quitar = item.ProductosPlazos?.Sum(i => i.Importe.Value);
-            
+
+            var SumImporteSinPromo = item.ProductosPlazos?.Sum(i => i.Importe.Value);
+
             DataAccess.SirCoCredito.Calendario[] fechasPromocion = null;
-            IDictionary<DateTime, decimal> detallePagosPromocion = null;
+
+            // Genera Fechas Pago (Parrilla) Normal con Promocion (No Electronica)
             if (item.Plazos.HasValue)
             {
-                dps.Add(new Tuple<int, decimal>(item.Plazos.Value, item.Importe - (quitar ?? 0)));
+                double plazosPromocion = item.Plazos.Value ;
+                if (item.FormaPago == FormaPago.CP)
+                {
+                   plazosPromocion = Math.Ceiling(plazosPromocion / 2);
+                }
+
+                dps.Add(new Tuple<int, decimal>((int)plazosPromocion, item.Importe - (SumImporteSinPromo ?? 0)));
 
                 var primero = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == dist.clasificacion
-                    && i.fechaaplicarcorte < item.FechaAplicar)
-                    .OrderByDescending(i => i.fechaaplicarcorte).Take(1).First();
+                    && i.fechaaplicarcorte < item.FechaAplicar && i.fechaaplicarcorte > DateTime.Now)
+                    .OrderByDescending(i => i.fechaaplicarcorte).Take(1).FirstOrDefault();
 
-                var list = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == dist.clasificacion
+                if (primero != null)
+                {
+                    plazosPromocion--;
+                }
+
+                var ultimo = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == dist.clasificacion
                     && i.fechaaplicarcorte >= item.FechaAplicar)
-                    .OrderBy(i => i.fechaaplicarcorte).Take(item.Plazos.Value - 1).ToList();
+                    .OrderBy(i => i.fechaaplicarcorte).Take((int)plazosPromocion).ToList();
 
-                list.Insert(0, primero);
-                fechasPromocion = list.ToArray();
+                if (primero != null) {   
+                    ultimo.Insert(0, primero);
+                }
+
+                fechasPromocion = ultimo.ToArray();
 
                 detallePagosPromocion = h.GetPlazos(
                     fechas: fechasPromocion.Select(i => i.fechaaplicar.Value).ToArray(),
                     ip: dps.ToArray());
             }
-            IDictionary<DateTime, decimal> detallePagos = new Dictionary<DateTime, decimal>();
-            //var fechas = new HashSet<DataAccess.SirCoCredito.Calendario>();
+
+            // Genera Plan de Pagos NO Promocion (Parrilla Electronica)
             if (item.ProductosPlazos?.Where(i=>i.Plazos!=null).Any() ?? false)
             {
-                var plazosNoPromocion = item.ProductosPlazos.Max(i => i.Plazos.Value);
+                double plazosNoPromocion = item.ProductosPlazos.Where(i=>i.Plazos !=null).Max(i => i.Plazos.Value);
+                if (item.FormaPago == FormaPago.CP)
+                {
+                    plazosNoPromocion = Math.Ceiling(plazosNoPromocion / 2);
+                }
                 var fechasNoPromocion = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == dist.clasificacion
                     && i.fechaaplicarcorte >= now)
-                    .OrderBy(i => i.fechaaplicarcorte).Take(plazosNoPromocion).ToArray();
+                    .OrderBy(i => i.fechaaplicarcorte).Take((int)plazosNoPromocion).ToArray();
+
                 dps.Clear();
-                foreach (var pps in item.ProductosPlazos)
+                var prods = item.ProductosPlazos.Where(i => i.Plazos != null);
+                foreach (var pps in prods)
                 {
-                    dps.Add(new Tuple<int, decimal>(pps.Plazos.Value, pps.Importe.Value));
+                    dps.Add(new Tuple<int, decimal>((int)plazosNoPromocion, pps.Importe.Value));
                 }
 
-                var detallePagosNoPromocion = h.GetPlazos(
+                detallePagosNoPromocion = h.GetPlazos(
                     fechas: fechasNoPromocion.Select(i => i.fechaaplicar.Value).ToArray(),
                     ip: dps.ToArray());
 
-
                 foreach (var dp in detallePagosNoPromocion)
                 {
-                    if (!detallePagos.ContainsKey(dp.Key))
-                        detallePagos.Add(dp.Key, 0);
-                    detallePagos[dp.Key] += dp.Value;
+                    if (!detallePagosTotal.ContainsKey(dp.Key))
+                        detallePagosTotal.Add(dp.Key, 0);
+                    detallePagosTotal[dp.Key] += dp.Value;
                 }
                 foreach (var f in fechasNoPromocion)
                 {
                     fechas.Add(f);
                 }
             }
+
+            // Genera Parrilla NO Electronica y los acumula en la Parrilla Electronica
             if (item.Plazos.HasValue)
             {
                 foreach (var dp in detallePagosPromocion)
                 {
-                    if (!detallePagos.ContainsKey(dp.Key))
-                        detallePagos.Add(dp.Key, 0);
-                    detallePagos[dp.Key] += dp.Value;
+                    if (!detallePagosTotal.ContainsKey(dp.Key))
+                        detallePagosTotal.Add(dp.Key, 0);
+                    detallePagosTotal[dp.Key] += dp.Value;
                 }
                 foreach (var f in fechasPromocion)
                 {
                     fechas.Add(f);
                 }
             }
-            if (blindaje.HasValue && detallePagos.Any())
+
+            if (blindaje.HasValue && detallePagosTotal.Any())
             {
-                var first = detallePagos.First();
-                detallePagos[first.Key] += blindaje.Value;
+                var first = detallePagosTotal.First();
+                detallePagosTotal[first.Key] += blindaje.Value;
             }
-            return detallePagos;
+            return detallePagosTotal;
         }
+
         private DateTime GetFechaVencimiento(DateTime current)
         {
             int find = 0;
@@ -1587,7 +1616,7 @@ namespace SirCoPOS.BusinessLogic
             while (current.Day == find);
             return current;
         }
-        public string Return(ReturnRequest model, int idcajero, string sucursal)
+       public string Return(ReturnRequest model, int idcajero, string sucursal)
         {
             var ctx = new DataAccess.SirCoDataContext();
             var ctxpv = new DataAccess.SirCoPVDataContext();
@@ -1743,6 +1772,8 @@ namespace SirCoPOS.BusinessLogic
             venta.estatus = Common.Constants.StatusVenta.Cancelada;
             venta.fumcancela = now;
             venta.idusuariocancela = idcajero;
+            venta.motivocancela = model.Motivo;
+            var cvale = ctxc.ContraVales.Where(i => i.sucursal == venta.sucursal && i.referenc == venta.venta).SingleOrDefault();
             var pago = ctxpv.Pagos.Where(i => i.sucursal == model.Sucursal && i.pago == model.Folio).Single();
             pago.estatus = Common.Constants.StatusPago.Cancelada;
             foreach (var d in pago.Detalle)
@@ -1888,8 +1919,14 @@ namespace SirCoPOS.BusinessLogic
                 else
                     ctx.UpdateSerieStatus(d.serie, Status.AB, Status.BA, idusuario: idcajero);
             }
+            if (cvale !=null)
+            {
+                cvale.status = "ZC";
+            }
+            
             ctxpv.SaveChanges();
             ctxc.SaveChanges();
+
         }
         public void CancelReturn(string sucursal, string folio, int idusuario)
         {

@@ -366,6 +366,11 @@ namespace SirCoPOS.Services
             var res = _sale.FindVale(vale);
             return res;
         }
+        public DistribuidorObserva FindDistObserva(string dist)
+        {
+            var res = _sale.FindDistObserva(dist);
+            return res;
+        }
         public ValeResponse FindValeDigital(string vale)
         {
             var res = _sale.FindValeDigital(vale);
@@ -998,6 +1003,11 @@ namespace SirCoPOS.Services
         {
             var _data = new BusinessLogic.Data();
             return _data.FindAuditorApertura(id, idcajero);
+        }
+        public Empleado AuditorPassword(int id, string pwd)
+        {
+            var _data = new BusinessLogic.Data();
+            return _data.AuditorPassword(id, pwd);
         }
         public Empleado FindAuditorEntrega(int id, int idcajero)
         {

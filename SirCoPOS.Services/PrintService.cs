@@ -38,6 +38,7 @@ namespace SirCoPOS.Services
                     VendedorNombre = vendedor,
                     CajeroId = $"{cancela.idcajero}",
                     CajeroNombre = cajero,
+                    Observaciones = cancela.motivocancela,
                 }
             };
 
@@ -161,7 +162,8 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
                     CajeroNombre = cajero,
                     Folio = devolucion.devolvta,
                     SucursalVenta = ventaSucursal,
-                    FolioVenta = ventaFolio
+                    FolioVenta = ventaFolio,
+                    Disponible = devolucion.disponible,
                 }
             };
             var plist = new List<Producto>();
