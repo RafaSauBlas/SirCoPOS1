@@ -22,7 +22,7 @@
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
         </Grid.Background>
         <!--Boton genera Nuevo Cliente-->
-        <Button Command="{Binding ChangeViewCommand}" CommandParameter="new" x:Name="button"  Margin="0,183,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75">
+        <Button x:Name="CambioVentana" Command="{Binding ChangeViewCommand}" CommandParameter="new"  Margin="0,183,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="CambioVentana_Click">
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Button.Background>
@@ -64,18 +64,18 @@
             </TextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="10,53,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox x:Name="txt_Nombre_Copy"   HorizontalAlignment="Left" Height="25" Margin="114,50,0,0" TextWrapping="Wrap" Text="{Binding ClienteNombreSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
+        <xt:MaskedTextBox x:Name="txt_Nombre"   HorizontalAlignment="Left" Height="25" Margin="114,50,0,0" TextWrapping="Wrap" Text="{Binding ClienteNombreSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1" TextChanged="txt_Nombre_Copy_TextChanged">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding PopUpCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
-        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,83,0,0" TextWrapping="Wrap" Text="Appa" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,83,0,0" TextWrapping="Wrap" Text="Ap Paterno" VerticalAlignment="Top"/>
         <xt:MaskedTextBox x:Name="txt_ApPa"  HorizontalAlignment="Left" Height="25" Text="{Binding ClienteApPaSearch, UpdateSourceTrigger=PropertyChanged}" Margin="114,80,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding PopUpCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
-        <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,115,0,0" TextWrapping="Wrap" Text="Apma" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,115,0,0" TextWrapping="Wrap" Text="Ap Materno" VerticalAlignment="Top"/>
         <xt:MaskedTextBox x:Name="txt_ApMa"  HorizontalAlignment="Left" Height="25" Text="{Binding ClienteApMaSearch, UpdateSourceTrigger=PropertyChanged}" Margin="114,112,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding PopUpCommand}"/>

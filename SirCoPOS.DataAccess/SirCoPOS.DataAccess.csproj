@@ -97,6 +97,7 @@
     <Compile Include="SirCoCredito\ContraVale.cs" />
     <Compile Include="SirCoCredito\DistribuidorComercial.cs" />
     <Compile Include="SirCoCredito\ValeFisico.cs" />
+    <Compile Include="SirCoDataContext.Procedimientos.cs" />
     <Compile Include="SirCoImgDataContext.cs" />
     <Compile Include="SirCoControlDataContext.cs" />
     <Compile Include="SirCoControl\Ciudad.cs" />

@@ -69,5 +69,6 @@ namespace SirCoPOS.Client.Views.Tabs
         {
 
         }
+
     }
 }

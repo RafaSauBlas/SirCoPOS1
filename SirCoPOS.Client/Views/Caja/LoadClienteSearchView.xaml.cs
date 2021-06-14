@@ -20,6 +20,7 @@ namespace SirCoPOS.Client.Views.Caja
     /// </summary>
     public partial class LoadClienteSearchView : UserControl
     {
+
         public LoadClienteSearchView()
         {
             InitializeComponent();
@@ -30,12 +31,18 @@ namespace SirCoPOS.Client.Views.Caja
             this.txt_Telefono.Focus();
         }
 
-        public void PRODUCCION()
-        {
-           
-        }
 
         private void txt_Nombre_Copy_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void txt_Nombre_Copy_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void CambioVentana_Click(object sender, RoutedEventArgs e)
         {
 
         }

@@ -62,6 +62,12 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         List<Cliente> FindCliente2(string telefono = null, string nombre = null, string appa = null, string apma = null);
         [OperationContract]
+        string FindColonia(int id);
+        [OperationContract]
+        string FindCiudad(int id);
+        [OperationContract]
+        string FindEstado(int id);
+        [OperationContract]
         Common.Entities.Cliente FindClienteByCode(Guid code);
         [OperationContract]
         IEnumerable<Common.Entities.PromocionCupon> FindCuponesByCliente(int clienteId);

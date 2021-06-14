@@ -28,11 +28,10 @@ namespace SirCoPOS.DataAccess
             var res = sb.ToString();
             return res;
         }
-        protected int ExecuteCommand(string cmd, params SqlParameter[] param)
+        public int ExecuteCommand(string cmd, params SqlParameter[] param)
         {
             var res = this.Database.ExecuteSqlCommand(cmd, param);
             return res;
-
         }
         protected int ExecuteStoreCommand(string spname, params SqlParameter[] param)
         {

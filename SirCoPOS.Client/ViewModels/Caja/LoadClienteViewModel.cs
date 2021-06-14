@@ -19,25 +19,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
         private Helpers.CommonHelper _common;
         private Utilities.Interfaces.IClienteView _Client;
 
-        public void cambio()
-        {
-            this.Screen = "new";
-                switch (this.Screen)
-                {
-                    case "new":
-                        this.NuevoCliente = new Models.NuevoCliente();
-                        this.NuevoCliente.IsValid();
-                        this.NuevoCliente.PropertyChanged += Cliente_PropertyChanged;
-                        break;
-                    case "search":
-                        if (this.NuevoCliente != null)
-                            this.NuevoCliente.PropertyChanged -= Cliente_PropertyChanged;
-                        this.NuevoCliente = null;
-                        break;
-                }
-                    this.AcceptCommand.RaiseCanExecuteChanged();
-
-        }
         public LoadClienteViewModel()
         {
             if (!this.IsInDesignMode)
@@ -101,7 +82,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         this.ClienteNombreSearch = null;
                         this.ClienteApPaSearch = null;
                         this.ClienteApMaSearch = null;
-                }
+                    }
 
                 _Client = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Interfaces.IClienteView>();
 
@@ -112,43 +93,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.ClienteApPaSearch = "";
                 this.ClienteApMaSearch = "";
             });
-
-            //if (this.IsInDesignMode)
-            //{
-            //    this.ClienteSearch = 123;
-            //    this.ClienteTelefonoSearch = "1234567890";
-            //    this.ClienteNombreSearch = "Ricardo Milos Galvan";
-            //    this.NuevoCliente = new Models.NuevoCliente
-            //    {
-            //        Nombre = "nombre",
-            //        ApPaterno = "ap paterno",
-            //        ApMaterno = "ap materno",
-            //        Calle = "calle",
-            //        Celular = "1234567890",
-            //        CodigoPostal = "cp",
-            //        Colonia = null,
-            //        Email = "email",
-            //        Referencia = "entre calles",
-            //        Numero = 123,
-            //    };
-
-            //    this.Colonias = new Common.Entities.Colonia[] {
-            //        new Common.Entities.Colonia
-            //        {
-            //            Id = 1,
-            //            Nombre  = "colonia",
-            //            CodigoPostal  = "cp",
-            //            CiudadId = 2,
-            //            CiudadNombre = "ciudad",
-            //            EstadoId = 3,
-            //            EstadoNombre = "estado"
-            //        }
-            //    };
-            //    this.NuevoCliente.Colonia = this.Colonias.First();
-            //}
         }
-
-
 
         public void LoadClienteViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -178,7 +123,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             }
         }
 
-        private async void Cliente_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        public async void Cliente_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
@@ -195,6 +140,26 @@ namespace SirCoPOS.Client.ViewModels.Caja
             }
             this.AcceptCommand.RaiseCanExecuteChanged();
         }
+
+        public void TraerColonias()
+        {
+                this.Colonias =  _proxy.FindColonias(SirCoPOS.Common.Constants.ClienteInfo.cp);
+                SirCoPOS.Common.Constants.ClienteInfo.Colonias = this.Colonias;
+        }
+
+        public void RefrescarColonias(string cp)
+        {
+            SirCoPOS.Services.DataService DS = new SirCoPOS.Services.DataService();
+            this.Colonias = _proxy.FindColonias(cp.ToString());
+            foreach (var ci in Colonias)
+            {
+                SirCoPOS.Common.Constants.ClienteInfo.ciudad = _proxy.FindCiudad(ci.CiudadId);
+                SirCoPOS.Common.Constants.ClienteInfo.estado = _proxy.FindEstado(ci.EstadoId);
+            }
+
+            SirCoPOS.Common.Constants.ClienteInfo.Colonias = this.Colonias;
+        }
+
 
         public bool CloseTab { get { return false; } }
         protected override void Accept()
@@ -219,6 +184,11 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     Cliente = this.Cliente
                 }, this.GID);
             }
+            if (this.Screen == "")
+            {
+                MessageBox.Show("El telefono esta duplicado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         protected override bool CanAccept()
