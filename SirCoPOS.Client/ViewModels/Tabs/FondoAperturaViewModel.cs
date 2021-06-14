@@ -61,7 +61,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     Tipo = (Common.Constants.TipoFondo)this.SelectedCaja.Tipo
                 };
                 _proxy.AbrirFondo(request);
-                MessageBox.Show("La operación se completó correctamente", "Aviso", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("La operación se completó correctamente", "Fondo Apertura", MessageBoxButton.OK, MessageBoxImage.Information);
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.FondoAperturaCierre { Open = true });
 
                 this.CloseCommand.Execute(null);
