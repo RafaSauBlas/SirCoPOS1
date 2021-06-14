@@ -162,7 +162,8 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
                     CajeroNombre = cajero,
                     Folio = devolucion.devolvta,
                     SucursalVenta = ventaSucursal,
-                    FolioVenta = ventaFolio
+                    FolioVenta = ventaFolio,
+                    Disponible = devolucion.disponible,
                 }
             };
             var plist = new List<Producto>();

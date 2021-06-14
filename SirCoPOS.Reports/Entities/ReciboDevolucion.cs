@@ -21,6 +21,7 @@ namespace SirCoPOS.Reports.Entities
         public string CajeroNombre { get; set; }
         public string VendedorId { get; set; }
         public string VendedorNombre { get; set; }
+        public decimal? Disponible { get; set; }
         public string Observaciones { get; set; }
 
     }
