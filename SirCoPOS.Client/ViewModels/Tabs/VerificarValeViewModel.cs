@@ -27,7 +27,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             this.FindValeCommand = new RelayCommand(async () => {
                 this.IsBusy = true;
                 this.Vale = await _proxy.FindValeAsync(this.ValeSearch);
-                if (this.Vale != null)
+                if (this.Vale == null) 
+                {
+                    DistObserva = null;
+                    MessageBox.Show("Vale no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error); 
+                } else
                 {
                     this.TotalVale = null;
                     this.Cliente = null;
