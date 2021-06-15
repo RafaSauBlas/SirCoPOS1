@@ -28,7 +28,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 this.Vale = _proxy.FindDistribuidorExterno(this.SelectedNegocio.Value, this.Cuenta, this.ValeSearch);
                 if (this.Vale == null) {
                     DistObserva = null;
-                    MessageBox.Show("Vale no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Cuenta no encontrada.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                     this.DistObserva = _proxy.FindDistObserva(this.Vale.Distribuidor.Cuenta);
