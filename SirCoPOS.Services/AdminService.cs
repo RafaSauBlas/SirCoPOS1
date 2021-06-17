@@ -156,8 +156,8 @@ namespace SirCoPOS.Services
                     (int)Common.Constants.Puesto.SUP
                 };
 
-                //var ctxn = new SirCoNominaDataContext();
-                //var auditor = ctxn.Empleados.Where(i => i.idempleado == request.Auditor).Single();
+                var ctxn = new SirCoNominaDataContext();
+                var auditor = ctxn.Empleados.Where(i => i.idempleado == request.Auditor).Single();
 
                 var isGerente = gerentes.Contains(request.Auditor);
 
@@ -173,6 +173,10 @@ namespace SirCoPOS.Services
                         Referencia = Guid.NewGuid(),
                         Tipo = "Apertura"
                     });
+                    var fondo = ctx.Fondos.Where(i => i.ResponsableId == request.Auditor && !i.FechaCierre.HasValue).Single();
+                    fondo.Disponible -= request.Importe;
+                    if (fondo.CajaNumero.HasValue)
+                        fondo.Caja.Disponible -= request.Importe;
                 }
                 else
                 {
@@ -202,7 +206,6 @@ namespace SirCoPOS.Services
                         fondo.Caja.Disponible -= request.Importe;
                 }
             }
-
             ctx.SaveChanges();
         }
         public void TransferirFondo(FondoTransferRequest request)

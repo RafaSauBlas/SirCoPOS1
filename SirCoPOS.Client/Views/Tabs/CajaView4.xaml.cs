@@ -65,10 +65,5 @@ namespace SirCoPOS.Client.Views.Tabs
             //this.test.Show();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
 }

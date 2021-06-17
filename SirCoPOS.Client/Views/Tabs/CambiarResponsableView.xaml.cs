@@ -33,5 +33,6 @@ namespace SirCoPOS.Client.Views.Tabs
             if (this.DataContext != null)
             { ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password; }
         }
+
     }
 }

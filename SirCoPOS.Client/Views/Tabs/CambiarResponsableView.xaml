@@ -15,7 +15,7 @@
     </UserControl.Resources>
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Efectivo:" VerticalAlignment="Top"/>
-        <Button Command="{Binding SaveCommand}" TabIndex="4" Content="Guardar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
+        <Button x:Name="btn_accept" Command="{Binding SaveCommand}" TabIndex="4" Content="Guardar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
         <TextBlock HorizontalAlignment="Left" Margin="89,10,0,0" TextWrapping="Wrap" Text="{Binding Data.Efectivo, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
         <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="10,76,436,217" ItemsSource="{Binding FormasPago}">
             <DataGrid.Columns>
@@ -35,7 +35,7 @@
             </TextBox.InputBindings>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="10,0,0,144" TextWrapping="Wrap" Text="Contraseña" Height="24" VerticalAlignment="Bottom"/>
-        <PasswordBox x:Name="txtB_Contra"  HorizontalAlignment="Left" TabIndex="3" Height="27" Margin="156,0,0,145" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Bottom" Width="120" KeyboardNavigation.TabIndex = "2">
+        <PasswordBox x:Name="txtB_Contra"  HorizontalAlignment="Left" TabIndex="3" Height="27" Margin="156,0,0,145" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Bottom" Width="120">
             <PasswordBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>
             </PasswordBox.InputBindings>
