@@ -1531,7 +1531,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>2.37377in</Top>
+            <Top>2.38627in</Top>
             <Left>0.00536cm</Left>
             <Height>0.19811in</Height>
             <Width>1.2436in</Width>
@@ -1580,132 +1580,6 @@
             <Height>0.19811in</Height>
             <Width>1.39495in</Width>
             <ZIndex>8</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox52">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>1er pago de :  </Value>
-                    <Style>
-                      <FontSize>9pt</FontSize>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=First(Fields!ImportePrimerPago.Value, "reciboDataSet")</Value>
-                    <Style>
-                      <FontSize>9pt</FontSize>
-                      <Format>#,0.00;(#,0.00)</Format>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>2.58021in</Top>
-            <Height>0.19811in</Height>
-            <Width>1.50418in</Width>
-            <ZIndex>9</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox53">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Sum(Fields!NumPagos.Value, "reciboDataSet")-1</Value>
-                    <Style>
-                      <FontSize>9pt</FontSize>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value> pagos de aprox. </Value>
-                    <Style>
-                      <FontSize>9pt</FontSize>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=First(Fields!ImporteSigPagos.Value, "reciboDataSet")</Value>
-                    <Style>
-                      <FontSize>9pt</FontSize>
-                      <Format>#,0.00;(#,0.00)</Format>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>  c/u</Value>
-                    <Style>
-                      <FontSize>9pt</FontSize>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>2.78357in</Top>
-            <Height>0.19811in</Height>
-            <Width>2.65104in</Width>
-            <ZIndex>10</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox55">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>1er pago a partir del </Value>
-                    <Style>
-                      <FontSize>9pt</FontSize>
-                    </Style>
-                  </TextRun>
-                  <TextRun>
-                    <Value>=First(Fields!Fecha1erPago.Value, "reciboDataSet")</Value>
-                    <Style>
-                      <FontSize>9pt</FontSize>
-                      <Format>dd/MMM/yyyy</Format>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>2.98554in</Top>
-            <Height>0.19811in</Height>
-            <Width>2.64894in</Width>
-            <ZIndex>11</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2004,10 +1878,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox57</rd:DefaultName>
-            <Top>3.22253in</Top>
+            <Top>2.59753in</Top>
             <Height>3.70506in</Height>
             <Width>2.64894in</Width>
-            <ZIndex>12</ZIndex>
+            <ZIndex>9</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2019,11 +1893,11 @@
             </Style>
           </Textbox>
           <Line Name="Line8">
-            <Top>7.17204in</Top>
+            <Top>6.54704in</Top>
             <Left>0.5715cm</Left>
             <Height>0in</Height>
             <Width>2.18434in</Width>
-            <ZIndex>13</ZIndex>
+            <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2049,11 +1923,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>7.19704in</Top>
+            <Top>6.57204in</Top>
             <Left>0.225in</Left>
             <Height>0.2in</Height>
             <Width>2.18434in</Width>
-            <ZIndex>14</ZIndex>
+            <ZIndex>11</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2092,7 +1966,7 @@
             <Left>0.40295in</Left>
             <Height>0.21061in</Height>
             <Width>2.24809in</Width>
-            <ZIndex>15</ZIndex>
+            <ZIndex>12</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2125,7 +1999,7 @@
             <Left>0.40295in</Left>
             <Height>0.19811in</Height>
             <Width>2.2481in</Width>
-            <ZIndex>16</ZIndex>
+            <ZIndex>13</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2156,7 +2030,7 @@
             <Left>0.41684in</Left>
             <Height>0.19811in</Height>
             <Width>2.23421in</Width>
-            <ZIndex>17</ZIndex>
+            <ZIndex>14</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2189,7 +2063,7 @@
             <Left>0.40295in</Left>
             <Height>0.19749in</Height>
             <Width>2.2481in</Width>
-            <ZIndex>18</ZIndex>
+            <ZIndex>15</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2222,7 +2096,7 @@
             <Left>0.0021in</Left>
             <Height>0.19811in</Height>
             <Width>2.64895in</Width>
-            <ZIndex>19</ZIndex>
+            <ZIndex>16</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2255,7 +2129,7 @@
             <Left>0.0021in</Left>
             <Height>0.19811in</Height>
             <Width>2.64895in</Width>
-            <ZIndex>20</ZIndex>
+            <ZIndex>17</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2531,7 +2405,7 @@
             <Left>0.03253cm</Left>
             <Height>0.5in</Height>
             <Width>2.63402in</Width>
-            <ZIndex>21</ZIndex>
+            <ZIndex>18</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2542,7 +2416,7 @@
         <KeepTogether>true</KeepTogether>
         <Top>4.44901in</Top>
         <Left>0.05292cm</Left>
-        <Height>7.44704in</Height>
+        <Height>6.79079in</Height>
         <Width>2.65105in</Width>
         <ZIndex>7</ZIndex>
         <Visibility>
@@ -2555,7 +2429,7 @@
         </Style>
       </Rectangle>
       <Line Name="Line7">
-        <Top>12.40995in</Top>
+        <Top>11.78495in</Top>
         <Left>0.03108cm</Left>
         <Height>0in</Height>
         <Width>2.64474in</Width>
@@ -2766,7 +2640,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox16</rd:DefaultName>
-        <Top>13.03634in</Top>
+        <Top>12.41134in</Top>
         <Left>0.05292cm</Left>
         <Height>0.42431in</Height>
         <Width>2.63614in</Width>
@@ -2782,7 +2656,7 @@
         </Style>
       </Textbox>
       <Line Name="Line5">
-        <Top>13.54259in</Top>
+        <Top>12.88009in</Top>
         <Left>0.05291cm</Left>
         <Height>0in</Height>
         <Width>2.63614in</Width>
@@ -2829,7 +2703,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox16</rd:DefaultName>
-        <Top>11.9544in</Top>
+        <Top>11.3294in</Top>
         <Left>0.05825cm</Left>
         <Height>0.41528in</Height>
         <Width>2.64894in</Width>
@@ -3187,7 +3061,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>mensajesDataSet</DataSetName>
-        <Top>12.44616in</Top>
+        <Top>11.83366in</Top>
         <Left>0.00864in</Left>
         <Height>0.5in</Height>
         <Width>2.65504in</Width>
@@ -3199,7 +3073,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>13.74462in</Height>
+    <Height>13.01545in</Height>
     <Style />
   </Body>
   <Width>6.88197cm</Width>
