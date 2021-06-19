@@ -44,8 +44,9 @@ namespace SirCoPOS.DataAccess
         }
         protected IEnumerable<T> ExecuteStoreQuery<T>(string spname, params SqlParameter[] param)
         {
-            var cmd = CreateCommand(spname, param);
-            var res = this.Database.SqlQuery<T>(cmd, param);
+            //var cmd = CreateCommand(spname, param);
+            //var res = this.Database.SqlQuery<T>(cmd, param);
+            var res = this.Database.SqlQuery<T>(spname, param).ToList();
             return res;
         }
         protected IEnumerable<T> ExecuteQuery<T>(string query, params SqlParameter[] param)

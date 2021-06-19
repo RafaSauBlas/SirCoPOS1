@@ -43,6 +43,11 @@ namespace SirCoPOS.DataAccess.SirCoCredito
         public decimal? limitevale { get; set; }
         public string clasificacion { get; set; }
         public int desctoori { get; set; }
+        public string observ01 { get; set; }
+        public string observ02 { get; set; }
+        public string observ03 { get; set; }
+        public string observ04 { get; set; }
+        public string observ05 { get; set; }
         public short? solocalzado { get; set; }
         public short? idperiodicidad { get; set; }
         public short? contravale { get; set; }

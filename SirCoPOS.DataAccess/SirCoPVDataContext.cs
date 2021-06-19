@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SirCoPOS.DataAccess
 {
-    public class SirCoPVDataContext : DbContext
+    public partial class SirCoPVDataContext : BaseDataContext
     {
         public SirCoPVDataContext()
             : base("SirCoPV")

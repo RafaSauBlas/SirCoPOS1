@@ -113,15 +113,11 @@
         <TextBlock x:Name="txt_contravale" HorizontalAlignment="Left" Margin="408,213,0,0" TextWrapping="Wrap" Text="Contravale:" VerticalAlignment="Top"/>
         <TextBlock x:Name="txt_contravaleV" HorizontalAlignment="Left" Margin="551,213,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.ContraVale, Converter={StaticResource boolText}}" VerticalAlignment="Top" FontWeight="Bold"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="2" Margin="10,271,0,0" VerticalAlignment="Top" Width="870"/>
-        <TextBlock x:Name="txt_observaciones" HorizontalAlignment="Left" Margin="65,372,0,0" TextWrapping="Wrap" Text="Observaciones:" VerticalAlignment="Top" Width="145" Height="20"/>
-        <Label x:Name="label" Content="Permite ContraVale" HorizontalAlignment="Left" Margin="14,297,0,0" VerticalAlignment="Top" Width="176"/>
-        <Label x:Name="label_Copy" Content="Acepta Vale Externo " HorizontalAlignment="Left" Margin="14,325,0,0" VerticalAlignment="Top" Width="176"/>
-        <TextBlock x:Name="txtObs1" Text="{Binding DistObserva.Observa01}" HorizontalAlignment="Left" Height="23" Margin="66,404,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
-        <TextBlock x:Name="txtObs2" Text="{Binding DistObserva.Observa02}" HorizontalAlignment="Left" Height="23" Margin="66,433,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
-        <TextBlock x:Name="txtObs3" Text="{Binding DistObserva.Observa03}" HorizontalAlignment="Left" Height="23" Margin="66,462,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
-        <TextBlock x:Name="txtObs4" Text="{Binding DistObserva.Observa04}" HorizontalAlignment="Left" Height="23" Margin="66,491,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
-        <TextBlock x:Name="txtObs5" Text="{Binding DistObserva.Observa05}" HorizontalAlignment="Left" Height="23" Margin="66,521,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
-        <TextBlock x:Name="txtContVale" Text="{Binding DistObserva.ContVale, Converter={StaticResource boolText}}" HorizontalAlignment="Left" Height="20" Margin="194,301,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" FontWeight="Bold"/>
-        <TextBlock x:Name="txtNeexvale" Text="{Binding DistObserva.NeexVale, Converter={StaticResource boolText}}" HorizontalAlignment="Left" Height="20" Margin="194,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" FontWeight="Bold"/>
+        <TextBlock x:Name="txt_observaciones" HorizontalAlignment="Left" Margin="65,323,0,0" TextWrapping="Wrap" Text="Observaciones:" VerticalAlignment="Top" Width="145" Height="20"/>
+        <TextBlock x:Name="txtObs1" Text="{Binding DistObserva.Observa01}" HorizontalAlignment="Left" Height="23" Margin="66,355,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
+        <TextBlock x:Name="txtObs2" Text="{Binding DistObserva.Observa02}" HorizontalAlignment="Left" Height="23" Margin="66,384,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
+        <TextBlock x:Name="txtObs3" Text="{Binding DistObserva.Observa03}" HorizontalAlignment="Left" Height="23" Margin="66,413,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
+        <TextBlock x:Name="txtObs4" Text="{Binding DistObserva.Observa04}" HorizontalAlignment="Left" Height="23" Margin="66,442,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
+        <TextBlock x:Name="txtObs5" Text="{Binding DistObserva.Observa05}" HorizontalAlignment="Left" Height="23" Margin="66,472,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
     </Grid>
 </UserControl>

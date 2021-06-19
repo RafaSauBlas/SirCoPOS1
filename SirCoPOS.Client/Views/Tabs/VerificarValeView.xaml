@@ -50,7 +50,7 @@
             <TextBlock x:Name="textBlock2_Copy3" HorizontalAlignment="Left" Margin="359,94,0,0" TextWrapping="Wrap" Text="Estatus:" VerticalAlignment="Top"/>
             <TextBlock x:Name="tbk_estatus" Margin="430,94,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Status}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
 
-            <TextBlock x:Name="txt_observaciones" HorizontalAlignment="Left" Margin="65,370,0,0" TextWrapping="Wrap" Text="Observaciones:" VerticalAlignment="Top" Width="145" Height="20"/>
+            <TextBlock x:Name="txt_observaciones" HorizontalAlignment="Left" Margin="65,333,0,0" TextWrapping="Wrap" Text="Observaciones:" VerticalAlignment="Top" Width="145" Height="20"/>
 
 
             <TextBlock x:Name="txt_VVE" HorizontalAlignment="Left" Margin="628,82,0,0" TextWrapping="Wrap" Text="ValeExterno:" VerticalAlignment="Top"/>
@@ -186,15 +186,11 @@
             <TextBlock x:Name="txt_contravale" HorizontalAlignment="Left" Margin="629,189,0,0" TextWrapping="Wrap" Text="Contravale:" VerticalAlignment="Top"/>
             <TextBlock x:Name="txt_contravaleV" HorizontalAlignment="Left" Margin="741,189,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.ContraVale, Converter={StaticResource boolText}}" VerticalAlignment="Top" FontWeight="Bold"/>
             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="2" Margin="14,270,0,0" VerticalAlignment="Top" Width="800"/>
-            <Label x:Name="label" Content="Permite ContraVale" HorizontalAlignment="Left" Margin="14,294,0,0" VerticalAlignment="Top" Width="176"/>
-            <Label x:Name="label_Copy" Content="Acepta Vale Externo " HorizontalAlignment="Left" Margin="14,321,0,0" VerticalAlignment="Top" Width="176"/>
-            <TextBlock x:Name="txtObs1" Text="{Binding DistObserva.Observa01}" HorizontalAlignment="Left" Height="23" Margin="66,402,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
-            <TextBlock x:Name="txtObs2" Text="{Binding DistObserva.Observa02}" HorizontalAlignment="Left" Height="23" Margin="66,431,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
-            <TextBlock x:Name="txtObs3" Text="{Binding DistObserva.Observa03}" HorizontalAlignment="Left" Height="23" Margin="66,460,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
-            <TextBlock x:Name="txtObs4" Text="{Binding DistObserva.Observa04}" HorizontalAlignment="Left" Height="23" Margin="66,489,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
-            <TextBlock x:Name="txtObs5" Text="{Binding DistObserva.Observa05}" HorizontalAlignment="Left" Height="23" Margin="66,519,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
-            <TextBlock x:Name="txtContVale" Text="{Binding DistObserva.ContVale, Converter={StaticResource boolText}}" HorizontalAlignment="Left" Height="20" Margin="194,300,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" FontWeight="Bold"/>
-            <TextBlock x:Name="txtNeexvale" Text="{Binding DistObserva.NeexVale, Converter={StaticResource boolText}}" HorizontalAlignment="Left" Height="20" Margin="194,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" FontWeight="Bold"/>
+            <TextBlock x:Name="txtObs1" Text="{Binding DistObserva.Observa01}" HorizontalAlignment="Left" Height="23" Margin="66,365,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
+            <TextBlock x:Name="txtObs2" Text="{Binding DistObserva.Observa02}" HorizontalAlignment="Left" Height="23" Margin="66,394,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
+            <TextBlock x:Name="txtObs3" Text="{Binding DistObserva.Observa03}" HorizontalAlignment="Left" Height="23" Margin="66,423,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
+            <TextBlock x:Name="txtObs4" Text="{Binding DistObserva.Observa04}" HorizontalAlignment="Left" Height="23" Margin="66,452,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
+            <TextBlock x:Name="txtObs5" Text="{Binding DistObserva.Observa05}" HorizontalAlignment="Left" Height="23" Margin="66,482,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="614" Background="White"/>
         </Grid>
     </tk:BusyIndicator>
 </UserControl>

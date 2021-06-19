@@ -34,6 +34,10 @@ namespace SirCoPOS.Services
             var uid = this.GetUserIdOrDefault() ?? 0;
             return this.Reply(() => _process.RequestProducto(serie, uid));
         }
+        public Response<IEnumerable<Common.Entities.Agrupacion>> GetAgrupacionesPorSerie(string serie)
+        {
+            return this.Reply(() => _process.GetAgrupacionesPorSerie(serie));
+        }
         public Response<string> Return(ReturnRequest item)
         {
             var uid = this.GetUserId();
@@ -162,5 +166,7 @@ namespace SirCoPOS.Services
                 }
             }
         }
+
+
     }
 }

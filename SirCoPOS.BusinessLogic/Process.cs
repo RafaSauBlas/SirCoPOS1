@@ -27,6 +27,14 @@ namespace SirCoPOS.BusinessLogic
             var ctx = new DataAccess.SirCoDataContext();
             ctx.UpdateSerieStatus(serie, Status.AC, Status.CA, idusuario: idusuario);
         }
+        public IEnumerable<Common.Entities.Agrupacion> GetAgrupacionesPorSerie(string serie)
+        {
+            DataAccess.SirCoPVDataContext ctxpv = new DataAccess.SirCoPVDataContext();
+
+            IEnumerable<Common.Entities.Agrupacion> agrupaciones = ctxpv.GetAgrupacionesPorSerie(serie);
+
+            return agrupaciones;
+        }
         //============================================================================================================================================
         public bool RequestProducto(string serie, int idusuario)
         {
@@ -1609,7 +1617,8 @@ namespace SirCoPOS.BusinessLogic
             while (current.Day == find);
             return current;
         }
-       public string Return(ReturnRequest model, int idcajero, string sucursal)
+
+         public string Return(ReturnRequest model, int idcajero, string sucursal)
         {
             var ctx = new DataAccess.SirCoDataContext();
             var ctxpv = new DataAccess.SirCoPVDataContext();
@@ -2294,4 +2303,5 @@ namespace SirCoPOS.BusinessLogic
             return new RegisterValeResponse { Success = true };
         }
     }
+ 
 }

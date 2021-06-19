@@ -28,8 +28,6 @@ namespace SirCoPOS.Common.Entities
     }
     public class DistribuidorObserva
     {
-        public bool ContVale { get; set; }
-        public bool NeexVale { get; set; }
         public string Observa01 { get; set; }
         public string Observa02 { get; set; }
         public string Observa03 { get; set; }

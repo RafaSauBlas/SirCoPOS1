@@ -20,7 +20,6 @@ namespace SirCoPOS.DataAccess
         public virtual DbSet<Valeras> Valeras { get; set; }
         public virtual DbSet<ValesCancelados> ValesCancelados { get; set; }
         public virtual DbSet<DistribuidorFirma> DistribuidorFirmas { get; set; }
-        public virtual DbSet<DistribuidorObserva> DistribuidorObservaciones { get; set; }
         public virtual DbSet<PlanPagos> PlanPagos { get; set; }
         public virtual DbSet<PlanPagosDetalle> PlanPagosDetalle { get; set; }
         public virtual DbSet<PromocionCredito> PromocionesCredito { get; set; }

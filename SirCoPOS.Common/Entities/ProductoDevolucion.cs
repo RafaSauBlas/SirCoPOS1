@@ -18,6 +18,8 @@ namespace SirCoPOS.Common.Entities
         public string Corrida { get; set; }
         public decimal? Precio { get; set; }
         public decimal? Pago { get; set; }
+        public int? IdPromocion { get; set; }
+        public int? IdAgrupacion { get; set; }
         public decimal? DescuentoPorcentaje
         {
             get {

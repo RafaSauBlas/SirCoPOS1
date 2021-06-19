@@ -38,5 +38,6 @@ namespace SirCoPOS.Common.Entities
         public short? ctd { get; set; }
         public int? idpromocion { get; set; }
         public string status { get; set; }
+        public int? idagrupacion { get; set; }
     }
 }

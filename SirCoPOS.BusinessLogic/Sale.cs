@@ -57,6 +57,7 @@ namespace SirCoPOS.BusinessLogic
                         };
                 }
 
+                var IdAgrupa = ctxpv.PromocionesAgrupaciones.Where(i => i.idpromocion == vitem.idpromocion).Select(i => i.idagrupacionpromo).SingleOrDefault();
                 return new ScanDevolucionResponse
                 {
                     Success = true,
@@ -75,7 +76,9 @@ namespace SirCoPOS.BusinessLogic
                         Talla = item.medida,
                         //Total = corrida.precio,
                         //HasImage = qimg.Any()
-                        Corrida = corrida.corrida
+                        Corrida = corrida.corrida,
+                        IdPromocion = vitem.idpromocion,
+                        IdAgrupacion = IdAgrupa
                     }
                 };
             }
@@ -297,6 +300,7 @@ namespace SirCoPOS.BusinessLogic
                 p.Id = corrida?.ArticuloId;
                 p.HasImage = qimg.Any();
                 p.status = ser.status;
+                p.idagrupacion = ctxpv.PromocionesAgrupaciones.Where(i => i.idpromocion == p.idpromocion).Select(i=>i.idagrupacionpromo).SingleOrDefault();
             }
             return model;
         }
@@ -1976,14 +1980,12 @@ namespace SirCoPOS.BusinessLogic
         public DistribuidorObserva FindDistObserva(string dist)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
-            var item = ctx.DistribuidorObservaciones.Where(i => i.distrib == dist).SingleOrDefault();
+            var item = ctx.Distribuidores.Where(i => i.distrib == dist).SingleOrDefault();
             if (item == null)
                 return null;
 
             var model = new DistribuidorObserva
             {
-                ContVale = (item.contvale == "S"),
-                NeexVale = (item.neexvale == "S"),
                 Observa01 = item.observ01,
                 Observa02 = item.observ02,
                 Observa03 = item.observ03,

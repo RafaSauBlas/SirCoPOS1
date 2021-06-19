@@ -133,6 +133,7 @@
     <Compile Include="Entities\NotePago.cs" />
     <Compile Include="Entities\NoteDetalle.cs" />
     <Compile Include="Entities\NoteRequest.cs" />
+    <Compile Include="Entities\Agrupacion.cs" />
     <Compile Include="Entities\Option.cs" />
     <Compile Include="Entities\PagoRequest.cs" />
     <Compile Include="Entities\Producto.cs" />
