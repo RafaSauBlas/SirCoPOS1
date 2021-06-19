@@ -9,6 +9,7 @@ namespace SirCoPOS.Utilities.Messages
     public class OpenModal
     {
         public Utilities.Constants.Modals Name { get; set; }
+        public int opcion { get; set; }
         public Guid GID { get; set; }
         public bool Close { get; set; }
     }

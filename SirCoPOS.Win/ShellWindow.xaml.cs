@@ -23,6 +23,7 @@ namespace SirCoPOS.Win
     /// </summary>
     public partial class ShellWindow : Window
     {
+        public int opcion = 0;
         public ShellWindow()
         {
             InitializeComponent();
@@ -70,22 +71,35 @@ namespace SirCoPOS.Win
                 }
             });
 
-            Messenger.Default.Register<Utilities.Messages.OpenModal>(this, true, m => {
+            //ESTA ES LA FUNCION QUE HACE EL CAMBIO DE VENTANA (CARGAR CLIENTE)
+            Messenger.Default.Register<Utilities.Messages.OpenModal>(this, true, m =>
+            {
                 var win = new Windows.ModalWindow(m.GID);
                 win.Owner = this;
                 UserControl uc = null;
+                UserControl au = null;
                 var plugins = Utilities.Helpers.Singleton<Helpers.PlugInServiceLocator>.Instance;
                 switch (m.Name)
                 {
                     default:
                         uc = plugins.GetModalView(m.Name);
+
+                        if (m.opcion == 1)
+                        {
+                            au = new SirCoPOS.Client.Views.Caja.LoadClienteInfo();
+                        }
+                        else
+                        {
+                            au = uc;
+                        }
                         break;
                 }
                 var vm = (Utilities.Interfaces.IModal)uc.DataContext;
                 vm.GID = m.GID;
-                win.DataContext = uc.DataContext;
-                win.mainContent.Content = uc;
+                win.DataContext = au.DataContext;
+                win.mainContent.Content = au;
                 win.Title = vm.Title;
+
                 if (m is Utilities.Messages.OpenModalItem)
                 {
                     var mi = (Utilities.Messages.OpenModalItem)m;
@@ -100,11 +114,14 @@ namespace SirCoPOS.Win
                     var vmi = (Utilities.Interfaces.IModalDevolucionItem)vm;
                     vmi.Item = mi.Item;
                 }
+                
+
                 var res = win.ShowDialog();
+  
                 if (!(res ?? false) && vm.CloseTab && m.Close)
                 {
                     Messenger.Default.Send(new Utilities.Messages.CloseTab { GID = vm.GID });
-                }
+                }                
             });
 
             Messenger.Default.Register<Utilities.Messages.OpenPago>(this, p => {

@@ -31,7 +31,7 @@
                 <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}"/>
                 <DataGridTextColumn Header="ApPaterno" Binding="{Binding ApPaterno}"/>
                 <DataGridTextColumn Header="ApMaterno" Binding="{Binding ApMaterno}"/>
-                <DataGridTextColumn Header="Direccion" Binding="{Binding Direccion}"/>
+                <DataGridTextColumn Header="Calle" Binding="{Binding Direccion}"/>
                 <DataGridTextColumn Header="Celular" Binding="{Binding Celular}"/>
             </DataGrid.Columns>
         </DataGrid>

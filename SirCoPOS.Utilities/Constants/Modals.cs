@@ -10,6 +10,7 @@ namespace SirCoPOS.Utilities.Constants
     {
         descuento,
         cliente,
+        cliente2,
         vendedor,
         nota,
         devolucion

@@ -135,6 +135,7 @@ namespace SirCoPOS.Win
         private void LogError(string msg, Exception ex)
         {
             var log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
+            
             log.Fatal(ex, msg);
         }
     }

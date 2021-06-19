@@ -219,6 +219,7 @@ namespace SirCoPOS.BusinessLogic
         }
         public IEnumerable<Colonia> FindColonias(string cp)
         {
+            
             var ctx = new DataAccess.SirCoControlDataContext();
             var q = ctx.Colonias.Where(i => i.codigopostal == cp);
             var res = q.Select(i => new Common.Entities.Colonia
@@ -233,6 +234,40 @@ namespace SirCoPOS.BusinessLogic
             }).ToArray();
             return res;
         }
+
+        public string FindCiudad(int id)
+        {
+            var ctxc = new DataAccess.SirCoControlDataContext();
+            var nombre = "";
+            System.Collections.Generic.IEnumerable<SirCoPOS.DataAccess.SirCoControl.Ciudad> ciu = null;
+            ciu = ctxc.Ciudades.Where(i => i.idciudad == id);
+
+            foreach (var ci in ciu)
+            {
+                nombre = ci.ciudad;
+                return nombre;
+            }
+
+            return "";
+        }
+
+        public string FindEstado(int id)
+        {
+            var ctxe = new DataAccess.SirCoControlDataContext();
+            var nombre = "";
+            System.Collections.Generic.IEnumerable<SirCoPOS.DataAccess.SirCoControl.Estado> est = null;
+
+            est = ctxe.Estados.Where(i => i.idestado == id);
+
+            foreach (var es in est)
+            {
+                nombre = es.estado;
+                return nombre;
+            }
+
+            return "";
+        }
+
         public IDictionary<int, ICollection<byte[]>> Approve(string sucursal)
         {
             var ctx = new DataAccess.SirCoNominaDataContext();

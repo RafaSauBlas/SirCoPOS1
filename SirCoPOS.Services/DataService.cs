@@ -563,14 +563,69 @@ namespace SirCoPOS.Services
             };
         }
 
-        public List<Cliente> FindCliente2( string telefono = null, string nombre = null, string appa = null, string apma = null)
+        public string FindColonia(int id)
+        {
+            var ctxco = new DataAccess.SirCoControlDataContext();
+            var nombre = "";
+            System.Collections.Generic.IEnumerable<SirCoPOS.DataAccess.SirCoControl.Colonia> colon = null;
+
+            colon = ctxco.Colonias.Where(i => i.idcolonia == id);
+
+            foreach (var co in colon)
+            {
+                nombre = co.colonia;
+                return nombre;
+            }
+            return "";
+        }
+
+
+
+        public string FindCiudad(int id)
+        {
+            var ctxc = new DataAccess.SirCoControlDataContext();
+            var nombre = "";
+            System.Collections.Generic.IEnumerable<SirCoPOS.DataAccess.SirCoControl.Ciudad> ciu = null;
+            ciu = ctxc.Ciudades.Where(i => i.idciudad == id);
+
+            foreach (var ci in ciu)
+            {
+                nombre = ci.ciudad;
+                return nombre;
+            }
+
+            return "";
+        }
+
+        public string FindEstado(int id)
+        {
+            var ctxe = new DataAccess.SirCoControlDataContext();
+            var nombre = "";
+            System.Collections.Generic.IEnumerable<SirCoPOS.DataAccess.SirCoControl.Estado> est = null;
+
+            est = ctxe.Estados.Where(i => i.idestado == id);
+
+            foreach (var es in est)
+            {
+                nombre = es.estado;
+                return nombre;
+            }
+
+            return "";
+        }
+
+        public List<Cliente> FindCliente2(string telefono = null, string nombre = null, string appa = null, string apma = null)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
             var ctxc = new DataAccess.SirCoControlDataContext();
             
+            List<Colonia> coloni = new List<Colonia>();
+
             DataAccess.SirCoCredito.Cliente item = null;
             DataAccess.SirCoCredito.Cliente[] itemm = null;
+
             System.Collections.Generic.IEnumerable<SirCoPOS.DataAccess.SirCoCredito.Cliente> atala = null;
+            
             //if (id.HasValue)
             //    item = ctx.Clientes.Where(i => i.idcliente == id).SingleOrDefault();
             if (!string.IsNullOrWhiteSpace(telefono))
@@ -592,21 +647,25 @@ namespace SirCoPOS.Services
                 itemm = ctx.Clientes.Where(i => i.appaterno == appa && i.apmaterno == apma).ToArray();
             // Busqueda por apellido paterno
             else if (nombre == null && appa != null && apma == null)
-                itemm = ctx.Clientes.Where(i =>  i.appaterno == appa).ToArray();
+                itemm = ctx.Clientes.Where(i => i.appaterno == appa).ToArray();
             // Busqueda por apellido materno
             else if (nombre == null && appa == null && apma != null)
                 itemm = ctx.Clientes.Where(i => i.apmaterno == apma).ToArray();
+
 
             if (itemm == null)
                 return null;
          
             //variable que limita la cantidad de registros que trae la consulta (con el fin de que no marque error de sobrecarga)
-            atala = itemm.OrderByDescending(i => i.idcliente).Take(120);
+            atala = itemm.OrderByDescending(i => i.idcliente).Take(127);
+
+            
 
             List<Cliente> liscliente = new List<Cliente>();
 
             foreach(var nic in atala)
             {
+                
                 var cliente = new Cliente
                 {
                     Nombre = nic.nombre,
@@ -618,9 +677,10 @@ namespace SirCoPOS.Services
                     Ciudad = nic.idciudad,
                     Estado = nic.idestado,
                     Calle = nic.calle,
-                    Numero = nic.numero
+                    Numero = nic.numero,
+                    Email = nic.email,
+                    Sexo = nic.sexo
                 };
-
                 liscliente.Add(cliente);
             };
             return liscliente;

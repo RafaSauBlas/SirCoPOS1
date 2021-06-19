@@ -156,8 +156,8 @@ namespace SirCoPOS.Services
                     (int)Common.Constants.Puesto.SUP
                 };
 
-                //var ctxn = new SirCoNominaDataContext();
-                //var auditor = ctxn.Empleados.Where(i => i.idempleado == request.Auditor).Single();
+                var ctxn = new SirCoNominaDataContext();
+                var auditor = ctxn.Empleados.Where(i => i.idempleado == request.Auditor).Single();
 
                 var isGerente = gerentes.Contains(request.Auditor);
 
@@ -173,6 +173,10 @@ namespace SirCoPOS.Services
                         Referencia = Guid.NewGuid(),
                         Tipo = "Apertura"
                     });
+                    var fondo = ctx.Fondos.Where(i => i.ResponsableId == request.Auditor && !i.FechaCierre.HasValue).Single();
+                    fondo.Disponible -= request.Importe;
+                    if (fondo.CajaNumero.HasValue)
+                        fondo.Caja.Disponible -= request.Importe;
                 }
                 else
                 {
@@ -202,7 +206,6 @@ namespace SirCoPOS.Services
                         fondo.Caja.Disponible -= request.Importe;
                 }
             }
-
             ctx.SaveChanges();
         }
         public void TransferirFondo(FondoTransferRequest request)
@@ -790,7 +793,7 @@ namespace SirCoPOS.Services
                 CorteHelper(request);
                 tran.Complete();
             }
-        }
+         }
         public void CorteTransferir(EntregaRequest request)
         {
             using (var tran = new System.Transactions.TransactionScope())
@@ -1200,15 +1203,17 @@ namespace SirCoPOS.Services
                 cfp.Unidades = 0;
                 cfp.Monto = 0;
             }
+
+            if (fondo.Disponible > 0)
+            {
+                this.GenerarRepetitivo(fondo.Disponible, fondo.CajaSucursal, idcajero: request.CajeroId, idauditor: request.AuditorId, now: now);
+            }
+
             fondo.Disponible = 0;
             fondo.Caja.Disponible = 0;
             fondo.Caja.ResponsableId = null;
             fondo.FechaCierre = now;
             fondo.AuditorCierreId = request.AuditorId;
-
-
-
-
 
             var afondo = new DataAccess.SirCoPOS.Fondo
             {
@@ -1300,10 +1305,7 @@ namespace SirCoPOS.Services
             //    Responsable = request.CajeroId
             //}, now);
 
-            if (fondo.Disponible > 0)
-            {
-                //this.GenerarRepetitivo(fondo.Disponible, fondo.CajaSucursal, request, now);
-            }
+            
 
 
             //ctxn.SaveChanges();

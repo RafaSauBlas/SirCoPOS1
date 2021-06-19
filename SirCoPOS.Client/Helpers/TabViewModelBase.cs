@@ -50,7 +50,7 @@ namespace SirCoPOS.Client.Helpers
                         Debugger.Break();
                     _guid = value;
                 }
-            } 
+            }
         }
         public Utilities.Constants.TabType TabType { get; set; }
 

@@ -22,13 +22,13 @@ namespace SirCoPOS.Client.ViewModels.Tabs
 
             this.SaveCommand = new RelayCommand(() => {
 
-                var code = Microsoft.VisualBasic.Interaction.InputBox("Codigo Auditor:");
-                var isValid = _proxy.ValidarCodigo(this.Auditor.Id, code);
-                if (!isValid)
-                {
-                   MessageBox.Show("Código no valido.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
-                    return;
-                }
+                //var code = Microsoft.VisualBasic.Interaction.InputBox("Codigo Auditor:");
+                //var isValid = _proxy.ValidarCodigo(this.Auditor.Id, code);
+                //if (!isValid)
+                //{
+                //   MessageBox.Show("Código no valido.","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                //    return;
+                //}
 
                 var request = new Common.Entities.EntregaRequest
                 {
@@ -45,7 +45,10 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                         })
                 };
                 _proxy.CorteTransferir(request);
-                MessageBox.Show("ready");
+                string msg = "El cambio se ha realizado correctamente";
+                string info = "Cambio Responsable";
+                MessageBox.Show(msg, info, MessageBoxButton.OK, MessageBoxImage.Information);
+                this.CloseCommand.Execute(null);
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.FondoAperturaCierre { Open = false });
             }, () => this.Auditor != null && this.Entrega.HasValue
                 && this.FormasPago.All(i => i.Entregar.HasValue && i.EntregarMonto.HasValue));

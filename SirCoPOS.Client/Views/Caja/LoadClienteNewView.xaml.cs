@@ -27,7 +27,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            this.tbNombre.Focus();            
+            this.tbNombre.Focus();
         }
     }
 }

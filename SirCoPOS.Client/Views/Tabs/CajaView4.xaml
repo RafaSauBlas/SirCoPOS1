@@ -467,7 +467,7 @@
                 </TextBox>
                 <TextBlock Foreground="Red" Text="{Binding Error}" HorizontalAlignment="Left" Margin="10,0,0,46" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
                 <!--<Button Content="Validate" HorizontalAlignment="Right" Margin="0,0,302,204.06" VerticalAlignment="Bottom" Width="77"/>-->
-                <Button Command="{Binding LoadClienteCommand}" HorizontalAlignment="Right" Margin="0,0,403,204" VerticalAlignment="Bottom" Width="51" Grid.Column="1" Click="Button_Click">
+                <Button Command="{Binding LoadClienteCommand}" HorizontalAlignment="Right" Margin="0,0,403,204" VerticalAlignment="Bottom" Width="51" Grid.Column="1">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>

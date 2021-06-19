@@ -54,9 +54,16 @@ namespace SirCoPOS.BusinessLogic
             {
                 var current = (Status)Enum.Parse(typeof(Status), item.status);
                 var count = ctx.UpdateSerieStatus(serie, Status.CA, current, idusuario: idusuario);
+                
                 return count == 1;
             }
             return false;
+        }
+        public bool UpdClienteInfo()
+        {
+            var ctx = new DataAccess.Procedimientos();
+            var count = ctx.UpdateCliInfo();
+            return count == 1;
         }
         //============================================================================================================================================
         public int AddCliente(Common.Entities.Cliente model)

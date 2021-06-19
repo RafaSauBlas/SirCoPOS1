@@ -10,7 +10,7 @@ using SirCoPOS.Common.Entities;
 
 namespace SirCoPOS.Client.ViewModels.Tabs
 {
-    class VerificarValeViewModel : Helpers.TabViewModelBase
+    public class VerificarValeViewModel : Helpers.TabViewModelBase
     {
         private readonly Common.ServiceContracts.IDataServiceAsync _proxy;
         private readonly Common.ServiceContracts.ICreditoValeServiceAsync _pcredito;
