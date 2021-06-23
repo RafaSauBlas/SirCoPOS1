@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SirCoPOS.DataAccess.SirCoAPP
+namespace SirCoPOS.DataAccess.SirCoCredito
 {
     [Table("valedigital", Schema = "dbo")]
     public class ValeDigital
@@ -27,10 +27,10 @@ namespace SirCoPOS.DataAccess.SirCoAPP
         [Column(Order = 4)]
         public int idvale { get; set; }
         public string codigoqr { get; set; }
-	    public DateTime? vigencia { get; set; }
-	    public string estatus { get; set; }
-	    public decimal? disponible { get; set; }
-	    public bool? electronica { get; set; }
-	    public bool? promocion { get; set; }
+        public DateTime? vigencia { get; set; }
+        public string estatus { get; set; }
+        public decimal? disponible { get; set; }
+        public bool? electronica { get; set; }
+        public bool? promocion { get; set; }
     }
 }

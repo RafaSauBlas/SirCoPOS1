@@ -30,5 +30,6 @@ namespace SirCoPOS.DataAccess
         public virtual DbSet<DescuentoAdicional> DescuentosAdicionales { get; set; }
         public virtual DbSet<DistribuidorComercial> DistribuidorComerciales { get; set; }
         public virtual DbSet<ValeFisico> ValeFisicos { get; set; }
+        public virtual DbSet<ValeDigital> ValesDigital { get; set; }
     }
 }

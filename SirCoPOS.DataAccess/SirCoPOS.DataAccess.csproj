@@ -86,17 +86,15 @@
   <ItemGroup>
     <Compile Include="BaseDataContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SirCoAPP\ArticulosImg.cs" />
-    <Compile Include="SirCoAPP\Dinero.cs" />
-    <Compile Include="SirCoAPP\DineroDetalle.cs" />
-    <Compile Include="SirCoAPP\ValeDigital.cs" />
     <Compile Include="SirCoControl\MotivoCancelacion.cs" />
     <Compile Include="SirCoControl\NegocioExterno.cs" />
     <Compile Include="SirCoControl\Parametro.cs" />
     <Compile Include="SirCoControl\TicketMsj.cs" />
     <Compile Include="SirCoCredito\ContraVale.cs" />
     <Compile Include="SirCoCredito\DistribuidorComercial.cs" />
+    <Compile Include="SirCoCredito\ValeDigital.cs" />
     <Compile Include="SirCoCredito\ValeFisico.cs" />
+    <Compile Include="SirCoNomina\EmpleadosImg.cs" />
     <Compile Include="SirCoPVDataContext.Procedures.cs" />
     <Compile Include="SirCoImgDataContext.cs" />
     <Compile Include="SirCoControlDataContext.cs" />
@@ -120,7 +118,6 @@
     <Compile Include="SirCoCredito\ValesCancelados.cs" />
     <Compile Include="SirCoDataContext.cs" />
     <Compile Include="SirCoDataContext.Procedures.cs" />
-    <Compile Include="SirCoAPPDataContext.cs" />
     <Compile Include="SirCoImg\ArticuloImg.cs" />
     <Compile Include="SirCoLogsDataContext.cs" />
     <Compile Include="SirCoLogs\FaultMessage.cs" />
@@ -130,7 +127,6 @@
     <Compile Include="SirCoNomina\HuellasPOS.cs" />
     <Compile Include="SirCoNomina\Nomina.cs" />
     <Compile Include="SirCoNomina\Empleado.cs" />
-    <Compile Include="SirCoAPP\EmpleadosImg.cs" />
     <Compile Include="SirCoNomina\Huellas.cs" />
     <Compile Include="SirCoNomina\NominaDetalle.cs" />
     <Compile Include="SirCoNomina\PercepcionDeduccion.cs" />
@@ -181,6 +177,9 @@
     <Compile Include="SirCo\Articulo.cs" />
     <Compile Include="SirCo\Corrida.cs" />
     <Compile Include="SirCo\DetalleGasto.cs" />
+    <Compile Include="SirCo\ArticulosImg.cs" />
+    <Compile Include="SirCo\DineroDetalle.cs" />
+    <Compile Include="SirCo\Dinero.cs" />
     <Compile Include="SirCo\Gasto.cs" />
     <Compile Include="SirCo\Medida.cs" />
     <Compile Include="SirCo\Serie.cs" />

@@ -731,7 +731,7 @@ namespace SirCoPOS.Services
         {
             var now = BusinessLogic.Helpers.Common.GetNow();
             var ctxc = new DataAccess.SirCoCreditoDataContext();
-            var ctxa = new DataAccess.SirCoAPPDataContext();
+            var ctxa = new DataAccess.SirCoDataContext();
 
             var cli = ctxc.Clientes.Where(i => i.idcliente == cliente).SingleOrDefault();
             if (cli == null)

@@ -61,9 +61,9 @@ namespace SirCoPOS.BusinessLogic
         }
         public bool UpdClienteInfo()
         {
-            var ctx = new DataAccess.Procedimientos();
-            var count = ctx.UpdateCliInfo();
-            return count == 1;
+            //var ctx = new DataAccess.Procedimientos();
+            //var count = ctx.UpdateCliInfo();
+            //return count == 1;
         }
         //============================================================================================================================================
         public int AddCliente(Common.Entities.Cliente model)
@@ -254,7 +254,6 @@ namespace SirCoPOS.BusinessLogic
             var ctx = new DataAccess.SirCoDataContext();
 
 
-            var ctxap = new DataAccess.SirCoAPPDataContext();
             var helper = new BusinessLogic.Data();
 
             var suc = ctxc.Sucursales.Where(i => i.sucursal == model.Sucursal).Single();
@@ -521,7 +520,7 @@ namespace SirCoPOS.BusinessLogic
                         break;
                     case FormaPago.MD:
                         {
-                            var mheader = ctxap.Dineros.Where(i => i.idsucursal == cliente.idsucursal && i.cliente == cliente.cliente && i.saldo > 0)
+                            var mheader = ctx.Dineros.Where(i => i.idsucursal == cliente.idsucursal && i.cliente == cliente.cliente && i.saldo > 0)
                                 .Single();
                             decimal start = 0;
                             decimal porAsignar = item.Importe;
@@ -797,7 +796,7 @@ namespace SirCoPOS.BusinessLogic
                     case FormaPago.VD:
                         {
                             item.FormaPago = FormaPago.VA;
-                            var vd = ctxap.ValesDigital.Where(i => i.codigoqr == item.Vale).SingleOrDefault();
+                            var vd = ctxcr.ValesDigital.Where(i => i.codigoqr == item.Vale).SingleOrDefault();
                             if (vd == null)
                                 throw new NotSupportedException();
 
@@ -1216,14 +1215,14 @@ namespace SirCoPOS.BusinessLogic
             ctxc.SaveChanges();
             ctxpv.SaveChanges();
             ctxcr.SaveChanges();
-            ctxap.SaveChanges();
-
+            ctx.SaveChanges();
+            
             if ((promos.Monedero ?? 0) > 0 && cliente != null)
             {
-                var md = ctxap.Dineros.Where(i => i.idsucursal == cliente.idsucursal && i.cliente == cliente.cliente).SingleOrDefault();
+                var md = ctx.Dineros.Where(i => i.idsucursal == cliente.idsucursal && i.cliente == cliente.cliente).SingleOrDefault();
                 if (md == null)
                 {
-                    md = new DataAccess.SirCoAPP.Dinero
+                    md = new DataAccess.SirCo.Dinero
                     {
                         idsucursal = cliente.idsucursal.Value,
                         cliente = cliente.cliente,
@@ -1233,12 +1232,12 @@ namespace SirCoPOS.BusinessLogic
                         idusuario = idcajero,
                         fum = now
                     };
-                    ctxap.Dineros.Add(md);
+                    ctx.Dineros.Add(md);
                 }
                 if (!md.saldo.HasValue)
                     md.saldo = 0;
                 md.saldo += promos.Monedero;
-                var mdet = new DataAccess.SirCoAPP.DineroDetalle
+                var mdet = new DataAccess.SirCo.DineroDetalle
                 {
                     idsucursal = md.idsucursal,
                     cliente = md.cliente,
@@ -1253,8 +1252,8 @@ namespace SirCoPOS.BusinessLogic
                     idusuario = idcajero,
                     fum = now
                 };
-                ctxap.DinerosDetalle.Add(mdet);
-                ctxap.SaveChanges();
+                ctx.DinerosDetalle.Add(mdet);
+                ctx.SaveChanges();
             }
 
             return new SaleResponse
@@ -1811,7 +1810,7 @@ namespace SirCoPOS.BusinessLogic
                         break;
                     case (int)Common.Constants.FormaPago.VD:
                         {
-                            var ctxa = new SirCoPOS.DataAccess.SirCoAPPDataContext();
+                            var ctxa = new SirCoPOS.DataAccess.SirCoCreditoDataContext();
                             var dev = ctxa.ValesDigital.Where(i => i.idvaledigital == d.idvaledigital).Single();
                             dev.disponible += d.importe;
                             ctxa.SaveChanges();
@@ -1891,7 +1890,7 @@ namespace SirCoPOS.BusinessLogic
                             var ctxcc = new DataAccess.SirCoControlDataContext();
                             //var suc = ctxcc.Sucursales.Where(i => i.sucursal == model.Sucursal).Single();
                             var cli = ctxc.Clientes.Where(i => i.idcliente == venta.idcliente).Single();
-                            var ctxa = new DataAccess.SirCoAPPDataContext();
+                            var ctxa = new DataAccess.SirCoDataContext();
                             var dinero = ctxa.Dineros.Where(i => i.idsucursal == cli.idsucursal && i.cliente == cli.cliente).Single();
                             dinero.saldo += d.importe;
                             var qdet = dinero.Detalles.Where(i => i.importe > i.saldo).OrderByDescending(i => i.vigencia);

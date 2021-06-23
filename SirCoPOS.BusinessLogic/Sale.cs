@@ -2105,9 +2105,8 @@ namespace SirCoPOS.BusinessLogic
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
             var ctxc = new DataAccess.SirCoControlDataContext();
-            var ctxa = new DataAccess.SirCoAPPDataContext();
 
-            var vitem = ctxa.ValesDigital.Where(i => i.codigoqr == vale).SingleOrDefault();
+            var vitem = ctx.ValesDigital.Where(i => i.codigoqr == vale).SingleOrDefault();
             if (vitem == null)
                 return null;
 

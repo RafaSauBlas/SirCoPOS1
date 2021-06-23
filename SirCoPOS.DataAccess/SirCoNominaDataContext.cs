@@ -25,5 +25,6 @@ namespace SirCoPOS.DataAccess
         public virtual DbSet<Repetitivo> Repetitivos { get; set; }
         public virtual DbSet<RepetitivoDetalle> RepetitivosDetalles { get; set; }
         public virtual DbSet<HuellasPOS> HuellasPOS { get; set; }
+        public virtual DbSet<EmpleadosImg> EmpleadosImgs { get; set; }
     }
 }

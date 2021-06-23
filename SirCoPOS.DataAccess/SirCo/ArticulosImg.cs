@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SirCoPOS.DataAccess.SirCoAPP
+namespace SirCoPOS.DataAccess.SirCo
 {
     [Table("articulosimg", Schema = "dbo")]
     public class ArticulosImg

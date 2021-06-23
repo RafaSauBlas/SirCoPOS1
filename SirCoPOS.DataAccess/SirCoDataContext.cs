@@ -26,5 +26,8 @@ namespace SirCoPOS.DataAccess
         public virtual DbSet<Medida> Medida { get; set; }
         public virtual DbSet<DetalleGasto> DetalleGastos { get; set; }
         public virtual DbSet<Gasto> Gastos { get; set; }
+        public virtual DbSet<Dinero> Dineros { get; set; }
+        public virtual DbSet<DineroDetalle> DinerosDetalle { get; set; }
+        public virtual DbSet<ArticulosImg> ArticulosImgs { get; set; }
     }
 }

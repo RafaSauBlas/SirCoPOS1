@@ -77,7 +77,7 @@ namespace SirCoPOS.Web.Controllers
 
         public ActionResult Empleado(int id, int w = 100, int h = 100)
         {
-            var ctx = new DataAccess.SirCoAPPDataContext();
+            var ctx = new DataAccess.SirCoNominaDataContext();
             var img = ctx.EmpleadosImgs.Where(i => i.idempleado == id).SingleOrDefault();
             if (img == null || img.foto == null)
                 return HttpNotFound();

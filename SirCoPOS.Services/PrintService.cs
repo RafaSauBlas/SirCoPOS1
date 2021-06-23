@@ -206,10 +206,10 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
             var ctxc = new DataAccess.SirCoControlDataContext();
             var ctxn = new DataAccess.SirCoNominaDataContext();
             var ctx = new DataAccess.SirCoDataContext();
-            var ctxa = new DataAccess.SirCoAPPDataContext();
+            var ctxa = new DataAccess.SirCoDataContext();
 
             DataAccess.SirCoPV.Venta venta = ctxpv.Ventas.Where(i => i.sucursal == sucursal && i.venta == folio).Single();
-            DataAccess.SirCoAPP.DineroDetalle dinero = ctxa.DinerosDetalle.Where(i => i.sucnota == sucursal && i.nota == folio).SingleOrDefault();
+            DataAccess.SirCo.DineroDetalle dinero = ctxa.DinerosDetalle.Where(i => i.sucnota == sucursal && i.nota == folio).SingleOrDefault();
 
             string vendedor = this.GetEmpleado(venta.idvendedor);
             string cajero = this.GetUsuario(venta.idcajero);
