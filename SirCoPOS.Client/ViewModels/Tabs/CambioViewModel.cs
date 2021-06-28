@@ -363,7 +363,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
 
                 var scan = await _proxy.ScanProductoAsync(ser, this.Sucursal.Clave);
                 if (scan != null)
-                {
+                {   //La serie escaneada es item nuevo (nuevo producto)
                     var svalid = new Common.Constants.Status[] {
                         Common.Constants.Status.AC,
                         Common.Constants.Status.IF,
@@ -372,7 +372,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     if (!svalid.Contains(scan.Status)
                         && !(scan.Status == Status.CA && scan.UsuarioCajaId == this.Cajero.Id))
                     {
-                        MessageBox.Show($"{scan.Producto.Serie} - {scan.Status}");
+                        MessageBox.Show($"La serie '{ser}' con estatus {scan.Status} no permite su venta", "Estatus Inválido", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
 
@@ -403,43 +403,21 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                             && i.OldItem.Precio == scan.Producto.Precio
                             && i.NewItem == null).FirstOrDefault();                        
                     }
-
-                    if (cur != null)
+                    if (cur == null)
+                    {
+                        MessageBox.Show($"La serie '{ser}' No coincide con Marca, Modelo, Corrida\nPor favor genere una Devolución", "Cambio NO procede", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                    var empty = this.Productos.Where(i => i.OldItem != null && i.NewItem == null).FirstOrDefault();
+                    if (empty != null)
                     {
                         await _client.RequestProductoAsync(scan.Producto.Serie);
-                        cur.NewItem = _mapper.Map<Models.Producto>(scan.Producto);
+                        empty.NewItem = _mapper.Map<Models.Producto>(scan.Producto);
                         this.SerieSearch = null;
                     }
                     else
-                    {
-                        var series = this.Productos.Where(i => i.OldItem != null).Select(i => i.OldItem.Serie).ToArray();
-                        //var valid = _sale.Productos.Where(i => //i.Corrida == scan.Producto.Corrida && 
-                        //    i.Marca == scan.Producto.Marca
-                        //    && i.Modelo == scan.Producto.Modelo
-                        //    && !series.Contains(i.Serie)).Any();
-                        //if (valid)
-                        //{
-                        //    await _client.RequestProductoAsync(scan.Producto.Serie);
-                        //    this.Productos.Add(new Models.ProductoCambio { NewItem = scan.Producto });
-                        //    this.SerieSearch = null;
-                        //}
-                        //else
-                        {
-                            var empty = this.Productos.Where(i => i.OldItem != null && i.NewItem == null).FirstOrDefault();
-                            if (empty != null)
-                            {
-                                await _client.RequestProductoAsync(scan.Producto.Serie);
-                                empty.NewItem = _mapper.Map<Models.Producto>(scan.Producto);
-                                this.SerieSearch = null;
-                            }
-                            else
-                                MessageBox.Show($"Producto {ser} no valido");
-                        }
-                    }
-                    return;
+                        MessageBox.Show($"Producto {ser} no valido", "Cambio no procede", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-
-                //var current = _sale.Productos.Where(i => i.Serie == ser).SingleOrDefault();
             }
             else
             {
