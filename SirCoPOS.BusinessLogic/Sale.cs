@@ -2318,7 +2318,7 @@ namespace SirCoPOS.BusinessLogic
             model.Disponible = cvale.saldo ?? 0;
 
             model.Usado = false;
-            var ultcompra = qpp.Where(x => x.fechacompra < DateTime.Now).OrderByDescending(x => x.fechacompra).FirstOrDefault();
+            var ultcompra = qpp.Where(x => x.fechacompra < DateTime.Now && x.sucursal == sucursal).OrderByDescending(x => x.fechacompra).FirstOrDefault();
             if (ultcompra != null)
             {
                 if (ultcompra.fechacompra.ToString("yyyyMMdd") != DateTime.Now.ToString("yyyyMMdd"))
