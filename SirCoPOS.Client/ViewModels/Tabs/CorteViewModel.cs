@@ -38,13 +38,19 @@ namespace SirCoPOS.Client.ViewModels.Tabs
 
             this.LoadAuditorCommand = new RelayCommand(() =>
             {
-                this.Auditor = _data.FindAuditorApertura(this.SearchAuditor.Value, this.Cajero.Id);
-                if (this.Auditor != null)
+                if (SearchAuditor.Value != Cajero.Id)
                 {
-                    this.SearchAuditor = null;
-                }
-                else
-                {
+                    this.Auditor = _data.FindAuditorApertura(this.SearchAuditor.Value, this.Cajero.Id);
+                    if (this.Auditor != null)
+                    {
+                        this.SearchAuditor = null;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Auditor no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                } else 
+                {   
                     MessageBox.Show("Auditor no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }, () => this.SearchAuditor.HasValue);
