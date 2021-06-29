@@ -1212,6 +1212,9 @@
         <Height>0.20153in</Height>
         <Width>0.88298in</Width>
         <ZIndex>5</ZIndex>
+        <Visibility>
+          <Hidden>=First(Fields!Descuento.Value, "reciboDataSet")=0</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2530,6 +2533,9 @@
         <Height>0.20153in</Height>
         <Width>0.86909in</Width>
         <ZIndex>11</ZIndex>
+        <Visibility>
+          <Hidden>=First(Fields!Descuento.Value, "reciboDataSet")=0</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
@@ -3108,6 +3114,9 @@
         <Height>0.25in</Height>
         <Width>2.65105in</Width>
         <ZIndex>24</ZIndex>
+        <Visibility>
+          <Hidden>=First(Fields!Descuento.Value, "reciboDataSet")=0</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
