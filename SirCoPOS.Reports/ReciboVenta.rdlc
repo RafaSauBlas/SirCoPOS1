@@ -1279,7 +1279,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox42</rd:DefaultName>
-            <Top>1.35467cm</Top>
+            <Top>1.2753cm</Top>
             <Left>0.225in</Left>
             <Height>0.19612in</Height>
             <Width>2.18434in</Width>
@@ -1310,7 +1310,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>0.74665in</Top>
+            <Top>0.7154in</Top>
             <Height>0.19811in</Height>
             <Width>0.40295in</Width>
             <ZIndex>1</ZIndex>
@@ -1341,7 +1341,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>0.94476in</Top>
+            <Top>0.91351in</Top>
             <Height>0.21061in</Height>
             <Width>0.40295in</Width>
             <ZIndex>2</ZIndex>
@@ -1372,7 +1372,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>1.15537in</Top>
+            <Top>1.12412in</Top>
             <Height>0.19811in</Height>
             <Width>0.40295in</Width>
             <ZIndex>3</ZIndex>
@@ -1402,7 +1402,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>1.76694in</Top>
+            <Top>1.73569in</Top>
             <Height>0.19811in</Height>
             <Width>0.40295in</Width>
             <ZIndex>4</ZIndex>
@@ -1457,7 +1457,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>1.97199in</Top>
+            <Top>1.94074in</Top>
             <Height>0.19811in</Height>
             <Width>2.64894in</Width>
             <ZIndex>5</ZIndex>
@@ -1494,7 +1494,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>2.17566in</Top>
+            <Top>2.14441in</Top>
             <Height>0.19811in</Height>
             <Width>1.24571in</Width>
             <ZIndex>6</ZIndex>
@@ -1531,7 +1531,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>2.38627in</Top>
+            <Top>2.35502in</Top>
             <Left>0.00536cm</Left>
             <Height>0.19811in</Height>
             <Width>1.2436in</Width>
@@ -1575,7 +1575,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>2.37932in</Top>
+            <Top>2.34807in</Top>
             <Left>1.2561in</Left>
             <Height>0.19811in</Height>
             <Width>1.39495in</Width>
@@ -1878,7 +1878,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox57</rd:DefaultName>
-            <Top>2.59753in</Top>
+            <Top>2.56628in</Top>
             <Height>3.70506in</Height>
             <Width>2.64894in</Width>
             <ZIndex>9</ZIndex>
@@ -1893,7 +1893,7 @@
             </Style>
           </Textbox>
           <Line Name="Line8">
-            <Top>6.54704in</Top>
+            <Top>6.39079in</Top>
             <Left>0.5715cm</Left>
             <Height>0in</Height>
             <Width>2.18434in</Width>
@@ -1923,7 +1923,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>6.57204in</Top>
+            <Top>6.41579in</Top>
             <Left>0.225in</Left>
             <Height>0.2in</Height>
             <Width>2.18434in</Width>
@@ -1962,7 +1962,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ClienteId</rd:DefaultName>
-            <Top>0.94476in</Top>
+            <Top>0.91351in</Top>
             <Left>0.40295in</Left>
             <Height>0.21061in</Height>
             <Width>2.24809in</Width>
@@ -1995,7 +1995,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox11</rd:DefaultName>
-            <Top>0.74665in</Top>
+            <Top>0.7154in</Top>
             <Left>0.40295in</Left>
             <Height>0.19811in</Height>
             <Width>2.2481in</Width>
@@ -2026,7 +2026,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ClienteTelefono</rd:DefaultName>
-            <Top>1.76694in</Top>
+            <Top>1.73569in</Top>
             <Left>0.41684in</Left>
             <Height>0.19811in</Height>
             <Width>2.23421in</Width>
@@ -2059,7 +2059,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ClienteCalle</rd:DefaultName>
-            <Top>1.15599in</Top>
+            <Top>1.12474in</Top>
             <Left>0.40295in</Left>
             <Height>0.19749in</Height>
             <Width>2.2481in</Width>
@@ -2092,7 +2092,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ClienteColonia</rd:DefaultName>
-            <Top>1.35348in</Top>
+            <Top>1.32223in</Top>
             <Left>0.0021in</Left>
             <Height>0.19811in</Height>
             <Width>2.64895in</Width>
@@ -2125,7 +2125,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ClienteCiudad</rd:DefaultName>
-            <Top>1.56081in</Top>
+            <Top>1.52956in</Top>
             <Left>0.0021in</Left>
             <Height>0.19811in</Height>
             <Width>2.64895in</Width>
@@ -2401,7 +2401,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>planPagosDetDataSet</DataSetName>
-            <Top>0.03195in</Top>
+            <Top>0.0007in</Top>
             <Left>0.03253cm</Left>
             <Height>0.5in</Height>
             <Width>2.63402in</Width>
@@ -2414,9 +2414,9 @@
           </Tablix>
         </ReportItems>
         <KeepTogether>true</KeepTogether>
-        <Top>4.44901in</Top>
+        <Top>4.85526in</Top>
         <Left>0.05292cm</Left>
-        <Height>6.79079in</Height>
+        <Height>6.61579in</Height>
         <Width>2.65105in</Width>
         <ZIndex>7</ZIndex>
         <Visibility>
@@ -2429,7 +2429,7 @@
         </Style>
       </Rectangle>
       <Line Name="Line7">
-        <Top>11.78495in</Top>
+        <Top>12.03495in</Top>
         <Left>0.03108cm</Left>
         <Height>0in</Height>
         <Width>2.64474in</Width>
@@ -2640,7 +2640,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox16</rd:DefaultName>
-        <Top>12.41134in</Top>
+        <Top>12.66134in</Top>
         <Left>0.05292cm</Left>
         <Height>0.42431in</Height>
         <Width>2.63614in</Width>
@@ -2656,7 +2656,7 @@
         </Style>
       </Textbox>
       <Line Name="Line5">
-        <Top>12.88009in</Top>
+        <Top>13.13009in</Top>
         <Left>0.05291cm</Left>
         <Height>0in</Height>
         <Width>2.63614in</Width>
@@ -2703,7 +2703,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox16</rd:DefaultName>
-        <Top>11.3294in</Top>
+        <Top>11.5794in</Top>
         <Left>0.05825cm</Left>
         <Height>0.41528in</Height>
         <Width>2.64894in</Width>
@@ -2835,6 +2835,9 @@
         <Height>0.20153in</Height>
         <Width>0.88298in</Width>
         <ZIndex>20</ZIndex>
+        <Visibility>
+          <Hidden>=First(Fields!Blindaje.Value, "reciboDataSet")= 0</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2868,6 +2871,9 @@
         <Height>0.20153in</Height>
         <Width>0.86909in</Width>
         <ZIndex>21</ZIndex>
+        <Visibility>
+          <Hidden>=First(Fields!Blindaje.Value, "reciboDataSet")=0</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
@@ -3061,7 +3067,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>mensajesDataSet</DataSetName>
-        <Top>11.83366in</Top>
+        <Top>12.08366in</Top>
         <Left>0.00864in</Left>
         <Height>0.5in</Height>
         <Width>2.65504in</Width>
@@ -3072,11 +3078,51 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox13">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>FELICIDADES !! AHORRASTE  </Value>
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!Descuento.Value, "reciboDataSet")</Value>
+                <Style>
+                  <FontSize>9pt</FontSize>
+                  <Format>'$'#,0.00;('$'#,0.00)</Format>
+                  <rd:FormatSymbolCulture>es-MX</rd:FormatSymbolCulture>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox13</rd:DefaultName>
+        <Top>4.48855in</Top>
+        <Left>0.02083in</Left>
+        <Height>0.25in</Height>
+        <Width>2.65105in</Width>
+        <ZIndex>24</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>13.01545in</Height>
+    <Height>13.19253in</Height>
     <Style />
   </Body>
-  <Width>6.88197cm</Width>
+  <Width>6.8932cm</Width>
   <Page>
     <PageHeight>8in</PageHeight>
     <PageWidth>2.75591in</PageWidth>
