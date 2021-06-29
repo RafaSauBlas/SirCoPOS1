@@ -197,11 +197,11 @@
                             <m:TabType>FondoArqueo</m:TabType>
                         </MenuItem.CommandParameter>
                     </MenuItem>
-                    <MenuItem Header="Transferir Fondo" Command="{Binding OpenCommand}">
+                    <!--<MenuItem Header="Transferir Fondo" Command="{Binding OpenCommand}">
                         <MenuItem.CommandParameter>
                             <m:TabType>FondoTransferir</m:TabType>
                         </MenuItem.CommandParameter>
-                    </MenuItem>
+                    </MenuItem>-->
                     <MenuItem Header="Cambiar Responsable" Command="{Binding OpenCommand}">
                         <MenuItem.CommandParameter>
                             <m:TabType>CambiarResponsable</m:TabType>
