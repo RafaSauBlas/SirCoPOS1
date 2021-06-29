@@ -23,7 +23,7 @@
     </UserControl.Resources>
     <xt:BusyIndicator IsBusy="{Binding IsBusy}">
         <Grid>
-            <TextBox Visibility="{Binding NoClient, Converter={StaticResource bolvis}}" x:Name="tbSearch" HorizontalAlignment="Left" Height="23" Margin="119,10,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="105">
+            <TextBox x:Name="tbSearch" HorizontalAlignment="Left" Height="23" Margin="119,10,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="105">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
                 </TextBox.InputBindings>

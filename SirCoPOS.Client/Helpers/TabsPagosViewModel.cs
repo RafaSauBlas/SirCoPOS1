@@ -35,7 +35,7 @@ namespace SirCoPOS.Client.Helpers
                 { FormaPago.TC, new Models.FormaPagoKey { Enabled = true, Key = Key.F2, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
                 { FormaPago.TD, new Models.FormaPagoKey { Enabled = true, Key = Key.F3, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
                 { FormaPago.DV, new Models.FormaPagoKey { Enabled = true, Key = Key.F4, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
-                //{ FormaPago.MD, new Models.FormaPagoKey { Enabled = true, Key = Key.F10, Duplicate = false, WithClient = true, ClientRequired = false, Credito = false } },
+                { FormaPago.MD, new Models.FormaPagoKey { Enabled = true, Key = Key.F10, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
 
                 { FormaPago.VA, new Models.FormaPagoKey { Enabled = true, Key = Key.F5, Duplicate = true, WithClient = false, ClientRequired = false, Credito = true } },
                 { FormaPago.CV, new Models.FormaPagoKey { Enabled = true, Key = Key.F6, Duplicate = true, WithClient = false, ClientRequired = false, Credito = true } },
@@ -57,6 +57,7 @@ namespace SirCoPOS.Client.Helpers
                 }
                 if (!item.Value.Duplicate)
                 {
+                    //Filtrar que no aparezca una forma de pago que ya exista.
                     if (this.Pagos.Where(i => i.FormaPago == item.Key).Any())
                         return false;
                 }
