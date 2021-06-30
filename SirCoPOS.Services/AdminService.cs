@@ -173,14 +173,17 @@ namespace SirCoPOS.Services
                         Referencia = Guid.NewGuid(),
                         Tipo = "Apertura"
                     });
-                    var fondo = ctx.Fondos.Where(i => i.ResponsableId == request.Auditor && !i.FechaCierre.HasValue).Single();
-                    fondo.Disponible -= request.Importe;
-                    if (fondo.CajaNumero.HasValue)
-                        fondo.Caja.Disponible -= request.Importe;
+                    var fondo = ctx.Fondos.Where(i => i.ResponsableId == request.Auditor && !i.FechaCierre.HasValue).SingleOrDefault();
+                    // Si existe un fondo asignado al auditor disminuir el disponible que se está entregando
+                    if (fondo !=null) { 
+                        fondo.Disponible -= request.Importe;
+                        if (fondo.CajaNumero.HasValue)
+                            fondo.Caja.Disponible -= request.Importe;
+                    }
                 }
                 else
                 {
-                    var fondo = ctx.Fondos.Where(i => i.ResponsableId == request.Auditor && !i.FechaCierre.HasValue).Single();
+                    var fondo = ctx.Fondos.Where(i => i.ResponsableId == request.Auditor && !i.FechaCierre.HasValue).SingleOrDefault();
                     item.Movimientos = new HashSet<DataAccess.SirCoPOS.FondoMovimiento>();
                     var gid = Guid.NewGuid();
                     item.Movimientos.Add(new DataAccess.SirCoPOS.FondoMovimiento
@@ -192,18 +195,22 @@ namespace SirCoPOS.Services
                         Referencia = gid,
                         Tipo = "Apertura"
                     });
-                    fondo.Movimientos.Add(new DataAccess.SirCoPOS.FondoMovimiento
-                    {
-                        Importe = request.Importe,
-                        UsuarioId = request.Responsable,
-                        Entrada = false,
-                        Fecha = now,
-                        Referencia = gid,
-                        Tipo = "Apertura"
-                    });
-                    fondo.Disponible -= request.Importe;
-                    if (fondo.CajaNumero.HasValue)
-                        fondo.Caja.Disponible -= request.Importe;
+                    // Si existe un fondo asignado al Gerente disminuir el disponible que se está entregando
+                    // Y agregar un movimiento de apertura de disminucion
+                    if (fondo !=null) {  
+                        fondo.Movimientos.Add(new DataAccess.SirCoPOS.FondoMovimiento
+                        {
+                            Importe = request.Importe,
+                            UsuarioId = request.Responsable,
+                            Entrada = false,
+                            Fecha = now,
+                            Referencia = gid,
+                            Tipo = "Apertura"
+                        });
+                        fondo.Disponible -= request.Importe;
+                        if (fondo.CajaNumero.HasValue)
+                            fondo.Caja.Disponible -= request.Importe;
+                    }
                 }
             }
             ctx.SaveChanges();
