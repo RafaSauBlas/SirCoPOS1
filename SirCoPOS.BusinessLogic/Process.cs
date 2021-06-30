@@ -59,12 +59,12 @@ namespace SirCoPOS.BusinessLogic
             }
             return false;
         }
-        public bool UpdClienteInfo()
-        {
+        //public bool UpdClienteInfo()
+        //{
             //var ctx = new DataAccess.Procedimientos();
             //var count = ctx.UpdateCliInfo();
             //return count == 1;
-        }
+        //}
         //============================================================================================================================================
         public int AddCliente(Common.Entities.Cliente model)
         {
@@ -424,10 +424,10 @@ namespace SirCoPOS.BusinessLogic
                         var pro = ctxpv.Promociones.Where(i => i.idpromocion == promo.PromocionId).Single();
                         switch (pro.clasificacion)
                         {
-                            case "REBAJA":
+                            case "GASTO":
                                 vdet.rebaja = vdet.costomargen;
                                 break;
-                            case "GASTO":
+                            case "REBAJA":
                                 vdet.rebaja = vdet.precio - vdet.precdesc;
                                 break;
                         }
