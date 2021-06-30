@@ -1620,7 +1620,7 @@ namespace SirCoPOS.BusinessLogic
             {
                 current = current.AddDays(1);
             }
-            while (current.Day == find);
+            while (current.Day != find);
             return current;
         }
 
