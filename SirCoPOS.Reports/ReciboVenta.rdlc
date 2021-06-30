@@ -2697,7 +2697,7 @@
                 <Style />
               </TextRun>
               <TextRun>
-                <Value>=DateAdd("d",15, Today())</Value>
+                <Value>=DateAdd("d",15, First(Fields!Fecha.Value, "reciboDataSet"))</Value>
                 <Style>
                   <Format>dd/MMM/yyyy</Format>
                 </Style>
