@@ -206,7 +206,7 @@ namespace SirCoPOS.Client.Helpers
             var planPagos = _mapper.Map<IEnumerable<SirCoPOS.Reports.Entities.PlanPago>>(venta.PlanPagos);
             var planPagosDet = _mapper.Map<IEnumerable<SirCoPOS.Reports.Entities.PlanPagoDetalle>>(venta.PlanPagosDetalle);
             var mensajes = _mapper.Map<IEnumerable<SirCoPOS.Reports.Entities.TicketMensaje>>(venta.TicketMensajes);
-            item.CantidadLetra = EnLetras(item.Efectivo).ToUpper();
+            item.CantidadLetra = EnLetras(item.Efectivo + item.Blindaje).ToUpper();
             
             var list = new List<SirCoPOS.Reports.Entities.ReciboCompra>() { item };
             var dic = new Dictionary<string, IEnumerable<object>>() {

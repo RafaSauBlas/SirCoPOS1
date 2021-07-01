@@ -1046,7 +1046,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Importe.Value</Value>
+                              <Value>=IIF(Fields!FormaPago.Value="VA" OR Fields!FormaPago.Value="CV" OR Fields!FormaPago.Value="CP" OR Fields!FormaPago.Value="VD" OR Fields!FormaPago.Value="CD",Fields!Importe.Value + First(Fields!Blindaje.Value, "reciboDataSet"), Fields!Importe.Value)</Value>
                               <Style>
                                 <FontSize>9pt</FontSize>
                                 <Format>#,0.00;(#,0.00)</Format>
@@ -1189,7 +1189,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Descuento </Value>
+                <Value>- Descuento </Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -2553,7 +2553,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Sum(Fields!Importe.Value, "productosDataSet")</Value>
+                <Value>=Sum(Fields!Importe.Value, "productosDataSet")+First(Fields!Blindaje.Value, "reciboDataSet")</Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                   <Format>#,0.00;(#,0.00)</Format>
@@ -2783,7 +2783,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Sum(Fields!Importe.Value, "productosDataSet")</Value>
+                <Value>=Sum(Fields!Importe.Value, "productosDataSet")+First(Fields!Blindaje.Value, "reciboDataSet")</Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                   <Format>#,0.00;(#,0.00)</Format>
@@ -2818,7 +2818,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Blindaje      </Value>
+                <Value>+ Blindaje      </Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
