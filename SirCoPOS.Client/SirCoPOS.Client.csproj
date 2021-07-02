@@ -145,6 +145,7 @@
     <Compile Include="Helpers\CommonHelper.cs" />
     <Compile Include="Helpers\ModalViewModelBase.cs" />
     <Compile Include="Helpers\PagoViewModel.cs" />
+    <Compile Include="Helpers\Navigation.cs" />
     <Compile Include="Helpers\Parsers.cs" />
     <Compile Include="Helpers\PrintFile.cs" />
     <Compile Include="Helpers\ReportsHelper.cs" />

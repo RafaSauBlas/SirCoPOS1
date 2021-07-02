@@ -67,7 +67,7 @@ namespace SirCoPOS.Win.Windows
             if (opcion == 1)
             {
                 SirCoPOS.BusinessLogic.Process PR = new SirCoPOS.BusinessLogic.Process();
-                PR.UpdClienteInfo();
+                //PR.UpdClienteInfo();
 
                 MessageBox.Show("La información del cliente se actualizó correctamente", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             }

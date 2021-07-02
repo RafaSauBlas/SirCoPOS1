@@ -37,7 +37,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 await _client.CancelReturnAsync(request.Sucursal, request.Folio);
 
                 this.Complete();
-                MessageBox.Show("ready");
+                MessageBox.Show("Cancelación realizada exitosamente", "Cancelación Devolución", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.CloseCommand.Execute(null);
                 this.IsBusy = false;
             }, () => this.Productos.Any() && !this.Productos.Where(i => !i.Scanned).Any());

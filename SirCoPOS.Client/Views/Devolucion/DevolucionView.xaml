@@ -12,7 +12,7 @@
     <Grid>
         <v:ProductoItemView DataContext="{Binding Item}" VerticalAlignment="Top" Margin="10,10,10,0"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,105,0,0" TextWrapping="Wrap" Text="Razón" VerticalAlignment="Top"/>
-        <TextBox IsEnabled="{Binding SelectedOpcion.Comentarios}" Height="23" Margin="107.793,139.94,10,0" TextWrapping="Wrap" Text="{Binding Razon, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+        <TextBox IsEnabled="{Binding SelectedOpcion.Comentarios}" CharacterCasing="Upper" Height="23" Margin="107.793,139.94,10,0" TextWrapping="Wrap" Text="{Binding Razon, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
         <ComboBox DisplayMemberPath="Descripcion" SelectedItem="{Binding SelectedOpcion}" ItemsSource="{Binding Options}" HorizontalAlignment="Left" Margin="107.589,105,0,0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,139.94,0,0" TextWrapping="Wrap" Text="Descripción" VerticalAlignment="Top"/>
     </Grid>
