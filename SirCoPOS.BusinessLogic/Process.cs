@@ -1650,7 +1650,7 @@ namespace SirCoPOS.BusinessLogic
                 comentarios = model.Comments,
                 idcajero = idcajero,
                 idvendedor = sale.idvendedor,
-                idusuario = 0,
+                idusuario = idcajero,
                 fum = now,
                 idusuariocancela = 0,
                 //fumcancela = null ??
@@ -1687,7 +1687,7 @@ namespace SirCoPOS.BusinessLogic
                     precdesc = prod.precdesc,
                     costomargen = prod.costomargen,
                     iva = prod.iva,
-                    idusuario = 0,
+                    idusuario = idcajero,
                     fum = now
                 };
 
@@ -1942,6 +1942,8 @@ namespace SirCoPOS.BusinessLogic
             var ctxpv = new DataAccess.SirCoPVDataContext();
             var devol = ctxpv.Devoluciones.Where(i => i.sucursal == sucursal && i.devolvta == folio).Single();
             devol.estatus = "ZC";
+            devol.idusuariocancela = idusuario;
+            devol.fumcancela = DateTime.Now;
             foreach (var item in devol.Detalles)
             {
                 ctx.UpdateSerieStatus(item.serie, Status.BA, Status.AC, idusuario: idusuario);
