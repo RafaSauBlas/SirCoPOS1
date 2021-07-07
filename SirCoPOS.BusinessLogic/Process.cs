@@ -35,6 +35,15 @@ namespace SirCoPOS.BusinessLogic
 
             return agrupaciones;
         }
+
+        public IEnumerable<Common.Entities.PorcentajeFormaPago> GetPorcentajePorFpago(string sucursal, string devolucion)
+        {
+            DataAccess.SirCoPVDataContext ctxpv = new DataAccess.SirCoPVDataContext();
+
+            IEnumerable<Common.Entities.PorcentajeFormaPago> porcentajes = ctxpv.GetPorcentajePorFPago(sucursal, devolucion);
+
+            return porcentajes;
+        }
         //============================================================================================================================================
         public bool RequestProducto(string serie, int idusuario)
         {
@@ -1565,7 +1574,11 @@ namespace SirCoPOS.BusinessLogic
                 var prods = item.ProductosPlazos.Where(i => i.Plazos != null);
                 foreach (var pps in prods)
                 {
-                    dps.Add(new Tuple<int, decimal>((int)plazosNoPromocion, pps.Importe.Value));
+                    double plazosElectronica = pps.Plazos.Value;
+                    if (item.FormaPago == FormaPago.CP)
+                        plazosElectronica = Math.Ceiling(plazosElectronica / 2);
+
+                    dps.Add(new Tuple<int, decimal>((int)plazosElectronica, pps.Importe.Value));
                 }
 
                 detallePagosNoPromocion = h.GetPlazos(

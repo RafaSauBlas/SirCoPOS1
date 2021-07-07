@@ -25,6 +25,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Entities.Response<IEnumerable<Entities.Agrupacion>> GetAgrupacionesPorSerie(string serie);
         [OperationContract]
+        Entities.Response<IEnumerable<Entities.PorcentajeFormaPago>> GetPorcentajePorFormaPago(string sucursal, string devolucion);
+        [OperationContract]
         Entities.Response ReleaseProducto(string serie);
         [OperationContract]
         Entities.Response<string> RegisterNote(int id);

@@ -38,6 +38,10 @@ namespace SirCoPOS.Services
         {
             return this.Reply(() => _process.GetAgrupacionesPorSerie(serie));
         }
+        public Response<IEnumerable<Common.Entities.PorcentajeFormaPago>> GetPorcentajePorFormaPago(string sucursal, string devolucion)
+        {
+            return this.Reply(() => _process.GetPorcentajePorFpago(sucursal, devolucion));
+        }
         public Response<string> Return(ReturnRequest item)
         {
             var uid = this.GetUserId();

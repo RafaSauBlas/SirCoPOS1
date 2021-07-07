@@ -23,5 +23,18 @@ namespace SirCoPOS.DataAccess
 
             return this.ExecuteStoreQuery<Common.Entities.Agrupacion>(cmdText, param);
         }
+
+        public IEnumerable<Common.Entities.PorcentajeFormaPago> GetPorcentajePorFPago(string sucursal, string devolucion)
+        {
+            string cmdText = "usp_TraerPorcentajePorFPago @sucursal @devolucion";
+
+            SqlParameter[] param = {
+                new SqlParameter("@sucursal",   sucursal),
+                new SqlParameter("@devolucion", devolucion)
+            };
+
+            return this.ExecuteStoreQuery<Common.Entities.PorcentajeFormaPago>(cmdText, param);
+        }
+
     }
 }

@@ -99,6 +99,7 @@
     <Compile Include="Constants\TipoFondo.cs" />
     <Compile Include="Constants\TipoMovimiento.cs" />
     <Compile Include="Constants\TipoPromocion.cs" />
+    <Compile Include="Entities\PorcentajeFormaPago.cs" />
     <Compile Include="Entities\Bonos.cs" />
     <Compile Include="Entities\Caja.cs" />
     <Compile Include="Entities\CajaFormas.cs" />
