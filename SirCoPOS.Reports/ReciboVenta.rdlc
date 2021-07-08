@@ -1130,7 +1130,7 @@
         <Top>2.28951in</Top>
         <Left>0.05292cm</Left>
         <Height>0.20153in</Height>
-        <Width>0.88298in</Width>
+        <Width>1.02187in</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -1167,10 +1167,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>2.49382in</Top>
-        <Left>0.05292cm</Left>
+        <Top>2.70389in</Top>
+        <Left>0.05828cm</Left>
         <Height>0.20153in</Height>
-        <Width>0.88298in</Width>
+        <Width>1.01976in</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -1207,10 +1207,10 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>2.70236in</Top>
+        <Top>2.48986in</Top>
         <Left>0.05292cm</Left>
         <Height>0.20153in</Height>
-        <Width>0.88298in</Width>
+        <Width>1.02187in</Width>
         <ZIndex>5</ZIndex>
         <Visibility>
           <Hidden>=First(Fields!Descuento.Value, "reciboDataSet")=0</Hidden>
@@ -1248,7 +1248,7 @@
         <Top>3.13729in</Top>
         <Left>0.05292cm</Left>
         <Height>0.20153in</Height>
-        <Width>1.04347in</Width>
+        <Width>1.02187in</Width>
         <ZIndex>6</ZIndex>
         <Style>
           <Border>
@@ -1578,7 +1578,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox43</rd:DefaultName>
-            <Top>2.34807in</Top>
+            <Top>2.35502in</Top>
             <Left>1.2561in</Left>
             <Height>0.19811in</Height>
             <Width>1.39495in</Width>
@@ -2404,7 +2404,6 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>planPagosDetDataSet</DataSetName>
-            <Top>0.0007in</Top>
             <Left>0.03253cm</Left>
             <Height>0.5in</Height>
             <Width>2.63402in</Width>
@@ -2452,7 +2451,7 @@
               <TextRun>
                 <Value>=Count(Fields!Serie.Value, "productosDataSet")</Value>
                 <Style>
-                  <FontSize>9pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -2461,7 +2460,7 @@
         </Paragraphs>
         <rd:DefaultName>Serie1</rd:DefaultName>
         <Top>2.28951in</Top>
-        <Left>0.9177in</Left>
+        <Left>1.0427in</Left>
         <Height>0.20153in</Height>
         <Width>0.86909in</Width>
         <ZIndex>9</ZIndex>
@@ -2483,9 +2482,9 @@
             <TextRuns>
               <TextRun>
                 <Label>SubTotal</Label>
-                <Value>=Sum(Fields!Precio.Value, "productosDataSet")</Value>
+                <Value>=Sum(Fields!Precio.Value, "productosDataSet")- First(Fields!Descuento.Value, "reciboDataSet")</Value>
                 <Style>
-                  <FontSize>9pt</FontSize>
+                  <FontSize>8pt</FontSize>
                   <Format>#,0.00;(#,0.00)</Format>
                 </Style>
               </TextRun>
@@ -2494,8 +2493,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Precio1</rd:DefaultName>
-        <Top>2.49382in</Top>
-        <Left>0.9177in</Left>
+        <Top>2.70389in</Top>
+        <Left>1.0427in</Left>
         <Height>0.20153in</Height>
         <Width>0.86909in</Width>
         <ZIndex>10</ZIndex>
@@ -2519,7 +2518,7 @@
                 <Label>Descuento</Label>
                 <Value>=First(Fields!Descuento.Value, "reciboDataSet")</Value>
                 <Style>
-                  <FontSize>9pt</FontSize>
+                  <FontSize>8pt</FontSize>
                   <Format>#,0.00;(#,0.00)</Format>
                 </Style>
               </TextRun>
@@ -2528,8 +2527,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Descuento</rd:DefaultName>
-        <Top>2.70236in</Top>
-        <Left>0.9177in</Left>
+        <Top>2.48986in</Top>
+        <Left>1.0427in</Left>
         <Height>0.20153in</Height>
         <Width>0.86909in</Width>
         <ZIndex>11</ZIndex>
@@ -2567,9 +2566,9 @@
         </Paragraphs>
         <rd:DefaultName>Importe2</rd:DefaultName>
         <Top>3.13729in</Top>
-        <Left>1.06431in</Left>
+        <Left>1.0427in</Left>
         <Height>0.20153in</Height>
-        <Width>1.60547in</Width>
+        <Width>1.62708in</Width>
         <ZIndex>12</ZIndex>
         <Style>
           <Border>
@@ -2818,7 +2817,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>+ Blindaje      </Value>
+                <Value>+ Cargo Admón.      </Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -2839,7 +2838,7 @@
         <Top>2.92056in</Top>
         <Left>0.05825cm</Left>
         <Height>0.20153in</Height>
-        <Width>0.88298in</Width>
+        <Width>1.01977in</Width>
         <ZIndex>20</ZIndex>
         <Visibility>
           <Hidden>=First(Fields!Blindaje.Value, "reciboDataSet")= 0</Hidden>
@@ -2864,7 +2863,7 @@
                 <Label>Blindaje</Label>
                 <Value>=First(Fields!Blindaje.Value, "reciboDataSet")</Value>
                 <Style>
-                  <FontSize>9pt</FontSize>
+                  <FontSize>8pt</FontSize>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -2873,7 +2872,7 @@
         </Paragraphs>
         <rd:DefaultName>Blindaje</rd:DefaultName>
         <Top>2.92056in</Top>
-        <Left>0.9177in</Left>
+        <Left>1.0427in</Left>
         <Height>0.20153in</Height>
         <Width>0.86909in</Width>
         <ZIndex>21</ZIndex>
@@ -3131,7 +3130,7 @@
     <Height>13.19253in</Height>
     <Style />
   </Body>
-  <Width>6.8932cm</Width>
+  <Width>6.94612cm</Width>
   <Page>
     <PageHeight>8in</PageHeight>
     <PageWidth>2.75591in</PageWidth>
