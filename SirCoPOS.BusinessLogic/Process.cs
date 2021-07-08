@@ -1147,7 +1147,7 @@ namespace SirCoPOS.BusinessLogic
                             }
 
                             item.Vale = int.Parse(item.Distribuidor).ToString();
-                            item.FechaAplicar = now;
+                            //item.FechaAplicar = now;
                             dist.saldo += item.Importe;
                             dist.disponible -= item.Importe;
                             this.GenerarPlanPagos(now, model, idcajero, item, header, cvales, cliente, succli, dist);
