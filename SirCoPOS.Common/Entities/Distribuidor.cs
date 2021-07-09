@@ -9,6 +9,7 @@ namespace SirCoPOS.Common.Entities
     public class Distribuidor
     {
         public int Id { get; set; }
+        public string Distrib { get; set;}
         public string Cuenta { get; set; }
         public string Nombre { get; set; }
         public string ApPaterno { get; set; }

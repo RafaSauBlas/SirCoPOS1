@@ -21,6 +21,7 @@ namespace SirCoPOS.DataAccess.SirCoCredito
         [Column(Order = 2)]
         public string valeini { get; set; }
         public string valefin { get; set; }
+        public string distrib { get; set; }
         public int? idmotivo { get; set; }
     }
 }

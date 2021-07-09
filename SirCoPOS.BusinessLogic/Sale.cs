@@ -1285,6 +1285,57 @@ namespace SirCoPOS.BusinessLogic
             //return monedero;
         }
 
+        public string FormaPagoVenta(string sucursal, string devolvta)
+        {
+
+            var ctxPV = new DataAccess.SirCoPVDataContext();
+            var formasPago = ctxPV.FormasPago.Where(i => i.pos).Select(i => new { i.idformapago, i.formapago, i.promocion });
+            var itemVta = ctxPV.Devoluciones.Where(i => i.sucursal == sucursal && i.devolvta == devolvta && i.estatus !=  Common.Constants.Status.ZC.ToString()).SingleOrDefault();
+
+
+            //Monto de la venta
+            //select @precdesc = sum(d.precdesc) from SircoPV.dbo.ventadet d WHERE sucursal = @sucursal AND venta = @venta GROUP BY sucursal, venta
+
+            var result = ctxPV.VentasDetalle
+                .Where(i => i.sucursal == itemVta.referencia.Substring(1, 2).ToString() && i.venta == itemVta.referencia.Substring(3).ToString())
+                .GroupBy(x => new { x.sucursal, x.venta })
+                .Select(g => new {
+                    PrecioTotal = g.Sum(x => x.precdesc > 0 ? x.precdesc : 0)
+                });
+
+            var result3 =
+                from o in ctxPV.VentasDetalle
+                where (o.sucursal == itemVta.referencia.Substring(1, 2).ToString() && o.venta == itemVta.referencia.Substring(3).ToString())
+                group o by new {o.sucursal, o.venta} into g
+                select new
+                {
+                    Total = g.Sum(o => o.precdesc)
+                };
+
+
+            //join y in db.catagories.AsEnumerable()
+            //on x.catagory_id equals y.id
+
+            //select f.formapago, importe ,  importe / @precdesc * 100 as porc
+            //from pagodet p inner
+            //join SIrCoPV.dbo.formaspago f on f.idformapago = p.idformapago
+            //where sucursal = @sucursal and pago = @venta
+            //order by porc desc
+
+            //var result4 =
+            //from o in ctxPV.PagosDetalle
+            //join y in ctxPV.FormasPago on o.idformapago == y.idformapago
+            //where (o.sucursal == itemVta.referencia.Substring(1, 2).ToString() && o.venta == itemVta.referencia.Substring(3).ToString())
+            //group o by new { o.sucursal, o.venta } into g
+            //select new
+            //{
+            //    Total = g.Sum(o => o.precdesc)
+            //};
+
+
+            return "VA";
+        }
+
         private void AgruparUnidadesImporte(List<Entities.ProductoPromocion> items, decimal importe, int count, string tipo)
         {
             var h = new Helpers.Combinations<Entities.ProductoPromocion>();
@@ -1350,6 +1401,7 @@ namespace SirCoPOS.BusinessLogic
                 Nombre = item.nombrecompleto,
                 //ApMaterno, ApPaterno,
                 Id = item.iddistrib,
+                Distrib = item.distrib,
                 Electronica = item.solocalzado == 0,
                 Status = item.idestatus.Value
             };
@@ -2012,7 +2064,7 @@ namespace SirCoPOS.BusinessLogic
             //if (valCancelado != null)
             //    return null;
 
-            var item = ctx.Distribuidores.Where(i => i.iddistrib == valera.iddistrib
+            var item = ctx.Distribuidores.Where(i => i.distrib == valera.distrib
                 //&& i.tipodistrib == Common.Constants.TipoDistribuidor.NORMAL
                 && i.clasificacion == Common.Constants.TipoCredito.DISTRIBUIDOR
                 ).SingleOrDefault();
@@ -2023,6 +2075,7 @@ namespace SirCoPOS.BusinessLogic
             {
                 Id = item.iddistrib,
                 Cuenta = item.distrib,
+                Distrib = item.distrib,
                 //Nombre = item.nombre,
                 //ApPaterno = item.appaterno,
                 //ApMaterno = item.apmaterno,
@@ -2125,6 +2178,8 @@ namespace SirCoPOS.BusinessLogic
             var dis = new Common.Entities.Distribuidor
             {
                 Id = item.iddistrib,
+                Cuenta = item.distrib,
+                Distrib = item.distrib,
                 //Nombre = item.nombre,
                 //ApPaterno = item.appaterno,
                 //ApMaterno = item.apmaterno,
@@ -2278,6 +2333,7 @@ namespace SirCoPOS.BusinessLogic
             var dis = new Common.Entities.Distribuidor
             {
                 Id = item.iddistrib,
+                Distrib = item.distrib,
                 //Nombre = item.nombre,
                 //ApPaterno = item.appaterno,
                 //ApMaterno = item.apmaterno,

@@ -10,6 +10,7 @@ namespace SirCoPOS.Common.Entities
     {
         public int? Id { get; set; }
         public int? DistribuidorId { get; set; }
+        public string Distrib { get; set; }
         public int? SucursalId { get; set; }
         public string Nombre { get; set; }
         public string ApPaterno { get; set; }

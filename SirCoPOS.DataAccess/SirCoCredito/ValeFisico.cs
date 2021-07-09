@@ -20,6 +20,7 @@ namespace SirCoPOS.DataAccess.SirCoCredito
         public decimal limite { get; set; }
         public decimal disponible { get; set; }
         public int iddistrib { get; set; }
+        public string distrib { get; set; }
         public DateTime fecha { get; set; }
     }
 }

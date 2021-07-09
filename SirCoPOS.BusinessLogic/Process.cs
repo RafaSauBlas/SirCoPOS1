@@ -573,7 +573,7 @@ namespace SirCoPOS.BusinessLogic
                             if (valCancelado != null)
                                 throw new NotSupportedException();
 
-                            var dist = ctxcr.Distribuidores.Where(i => i.iddistrib == valera.iddistrib
+                            var dist = ctxcr.Distribuidores.Where(i => i.distrib == valera.distrib
                                 //&& i.tipodistrib == Common.Constants.TipoDistribuidor.NORMAL
                                 && i.clasificacion == Common.Constants.TipoCredito.DISTRIBUIDOR
                             ).SingleOrDefault();
@@ -911,7 +911,7 @@ namespace SirCoPOS.BusinessLogic
                             //if (valCancelado != null)
                             //    throw new NotSupportedException();
 
-                            var dist = ctxcr.Distribuidores.Where(i => i.iddistrib == cdis.iddistrib
+                            var dist = ctxcr.Distribuidores.Where(i => i.distrib == cdis.distrib
                                 //&& i.tipodistrib == Common.Constants.TipoDistribuidor.NORMAL
                                 && i.clasificacion == Common.Constants.TipoCredito.DISTRIBUIDOR
                             ).SingleOrDefault();

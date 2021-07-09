@@ -23,5 +23,6 @@ namespace SirCoPOS.DataAccess.SirCoCredito
         [Key]
         [Column(Order = 3)]
         public string nocuenta { get; set; }
+        public string distrib { get; set; }
     }
 }
