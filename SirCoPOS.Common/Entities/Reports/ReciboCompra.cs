@@ -55,12 +55,14 @@ namespace SirCoPOS.Common.Entities.Reports
         public decimal? ImporteSigPagos { get; set; }
         public DateTime Fecha1erPago { get; set; }
         public short? ContraVale { get; set; }
+        public decimal? PagarCon { get; set; }
 
     }
     public class Pago
     {
         public string FormaPago { get; set; }
         public decimal Importe { get; set; }
+        public decimal Efectivo { get; set; }
         public string Referencia { get; set; }
         public string Folio { get; set; }
     }

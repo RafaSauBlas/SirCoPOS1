@@ -195,7 +195,8 @@ namespace SirCoPOS.Client.Helpers
                     p = new Models.Pagos.Pago
                     {
                         FormaPago = o.FormaPago,
-                        Importe = o.Importe
+                        Importe = o.Importe,
+                        Efectivo = o.Efectivo,
                     };
                     break;
                 case FormaPago.MD:
@@ -577,7 +578,8 @@ namespace SirCoPOS.Client.Helpers
                     pagos.Add(new Common.Entities.Pago
                     {
                         FormaPago = item.FormaPago,
-                        Importe = item.Importe.Value
+                        Importe = item.Importe.Value,
+                        Efectivo = (decimal) item.Efectivo,
                     });
                 }
             }

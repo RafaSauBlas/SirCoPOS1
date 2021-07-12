@@ -23,6 +23,7 @@ namespace SirCoPOS.DataAccess.SirCoPV
 	    public int idvaledigital { get; set; }
 	    public decimal? importe { get; set; }
 	    public decimal? comision { get; set; }
+        public decimal? efectivo { get; set; }
         [Key]
         [Column(Order = 3)]
         public string observaciones { get; set; }

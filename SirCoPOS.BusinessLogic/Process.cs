@@ -489,6 +489,7 @@ namespace SirCoPOS.BusinessLogic
                     idformapago = (int)item.FormaPago,
                     idvaledigital = 0,
                     importe = item.Importe,
+                    efectivo = item.Efectivo,
                     comision = 0,//??
                     observaciones = "",//??
                     iva = iva,
@@ -2115,7 +2116,8 @@ namespace SirCoPOS.BusinessLogic
                 Sucursal = sucursal,
                 Devolucion = rid,
                 //Importe = dev.disponible ?? 0 // para dejarlo siempre en 0
-                Importe = pagoDev
+                Importe = pagoDev,
+                Efectivo = 0,
             });
             if (request.Pagos != null && request.Pagos.Any())
                 pagos.AddRange(request.Pagos);

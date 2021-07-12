@@ -305,7 +305,7 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
             };
 
             decimal desc = 0;
-            decimal importe = 0;
+            
             var plist = new List<Common.Entities.Reports.Producto>();
             foreach (var det in venta.Detalles)
             {
@@ -320,27 +320,37 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
                         Descripcion = serie.Articulo.Descripcion
                     });
                 desc += det.precio.Value - det.precdesc.Value;
-                importe += det.precdesc.Value;
+                //importe += det.precdesc.Value;
             }                        
             item.Productos = plist;
             item.Recibo.Descuento = desc;
-            item.Recibo.Efectivo = importe;
 
+            decimal importe = 0;
             List<Pago> pdlist = new List<Common.Entities.Reports.Pago>();
             var pagos = venta.Pago.Detalle;
+            decimal? PagarCon = 0;
             foreach (var det in pagos)
             {
                 Pago pa = new Pago
                 {
                     FormaPago = ((Common.Constants.FormaPago)det.idformapago).ToString(),
                     Importe = det.importe.Value, 
+                    Efectivo = (decimal)det.efectivo,
                     Referencia = null,
                     Folio = null
                 };
                 pdlist.Add(pa);
+
+                if (((Common.Constants.FormaPago)det.idformapago) == Common.Constants.FormaPago.EF) {
+                    PagarCon = det.efectivo;
+                    importe = (decimal)det.efectivo - (decimal)det.importe;
+                }
+                
             }
             item.Pagos = pdlist;
-
+            item.Recibo.PagarCon = PagarCon;
+            item.Recibo.Efectivo = importe;
+            
             //var ctxcr = new DataAccess.SirCoCreditoDataContext();
             //var plan = ctxcr.PlanPagos.Where(i => i.sucursal == venta.sucursal && i.nota == venta.venta);
 

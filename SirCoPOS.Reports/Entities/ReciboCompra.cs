@@ -46,6 +46,7 @@ namespace SirCoPOS.Reports.Entities
         public decimal? ImporteSigPagos { get; set; }
         public DateTime Fecha1erPago { get; set; }
         public short? ContraVale { get; set; }
+        public decimal? PagarCon { get; set; }
 
     }
 }

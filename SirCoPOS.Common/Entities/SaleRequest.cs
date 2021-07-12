@@ -26,6 +26,7 @@ namespace SirCoPOS.Common.Entities
     {
         public FormaPago FormaPago { get; set; }
         public decimal Importe { get; set; }
+        public decimal Efectivo { get; set; }
         //tarjeta
         public string Terminacion { get; set; }
         public string Referencia { get; set; }

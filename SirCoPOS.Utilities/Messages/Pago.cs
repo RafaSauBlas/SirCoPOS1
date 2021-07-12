@@ -13,6 +13,7 @@ namespace SirCoPOS.Utilities.Messages
     {
         public FormaPago FormaPago { get; set; }
         public decimal Importe { get; set; }
+        public decimal Efectivo { get; set; }
         public string Sucursal { get; set; }
         public string Folio { get; set; }
         public string Terminacion { get; set; }

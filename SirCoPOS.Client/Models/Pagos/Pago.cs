@@ -25,6 +25,12 @@ namespace SirCoPOS.Client.Models.Pagos
             get { return _importe; }
             set { this.Set(() => this.Importe, ref _importe, value); }
         }
+        private decimal? _efectivo;
+        public decimal? Efectivo
+        {
+            get { return _efectivo; }
+            set { this.Set(() => this.Efectivo, ref _efectivo, value); }
+        }
         public int? ClientId { get; set; }
         private bool _HasPromocion;
         public bool HasPromocion

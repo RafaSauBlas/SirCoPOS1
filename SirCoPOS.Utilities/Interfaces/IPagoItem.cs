@@ -12,6 +12,7 @@ namespace SirCoPOS.Utilities.Interfaces
         FormaPago FormaPago { get; }
         int? ClientId { get; }
         decimal? Importe { get; }
+        decimal? Efectivo { get; }
         Guid Id { get; }
         bool HasPromocion { get; set; }
     }

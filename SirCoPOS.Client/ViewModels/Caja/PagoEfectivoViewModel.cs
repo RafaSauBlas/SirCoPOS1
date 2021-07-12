@@ -49,9 +49,10 @@ namespace SirCoPOS.Client.ViewModels.Caja
         {
             Messenger.Default.Send(
                     new Utilities.Messages.Pago
-                    {
+                    {  
                         FormaPago = FormaPago.EF,
-                        Importe = this.Pagar.Value
+                        Importe = this.Pagar.Value,
+                        Efectivo = this.PagaCon.Value
                     }, this.GID);
         }
         private void PagoEfectivoViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
