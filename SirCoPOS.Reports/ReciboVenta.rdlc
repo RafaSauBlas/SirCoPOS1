@@ -1115,7 +1115,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Artículos     :</Value>
+                <Value>Artículos :</Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -1130,7 +1130,7 @@
         <Top>2.28951in</Top>
         <Left>0.05292cm</Left>
         <Height>0.20153in</Height>
-        <Width>1.02187in</Width>
+        <Width>1.08298in</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -1149,7 +1149,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Subtotal      </Value>
+                <Value>Subtotal </Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -1170,7 +1170,7 @@
         <Top>2.70389in</Top>
         <Left>0.05828cm</Left>
         <Height>0.20153in</Height>
-        <Width>1.01976in</Width>
+        <Width>1.08087in</Width>
         <ZIndex>4</ZIndex>
         <Style>
           <Border>
@@ -1189,7 +1189,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>- Descuento </Value>
+                <Value>- Descuento  </Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -1210,7 +1210,7 @@
         <Top>2.48986in</Top>
         <Left>0.05292cm</Left>
         <Height>0.20153in</Height>
-        <Width>1.02187in</Width>
+        <Width>1.08298in</Width>
         <ZIndex>5</ZIndex>
         <Visibility>
           <Hidden>=First(Fields!Descuento.Value, "reciboDataSet")=0</Hidden>
@@ -2084,7 +2084,6 @@
             </Style>
           </Textbox>
           <Textbox Name="ClienteColonia">
-            <CanGrow>true</CanGrow>
             <CanShrink>true</CanShrink>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
@@ -2096,33 +2095,12 @@
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>ClienteColonia</rd:DefaultName>
-            <Top>1.32223in</Top>
-            <Left>0.01281in</Left>
-            <Height>0.19811in</Height>
-            <Width>2.62333in</Width>
-            <ZIndex>16</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="ClienteCiudad">
-            <CanGrow>true</CanGrow>
-            <CanShrink>true</CanShrink>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
                   <TextRun>
                     <Value>=First(Fields!ClienteCiudad.Value, "reciboDataSet")</Value>
                     <Style>
@@ -2133,12 +2111,15 @@
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>ClienteCiudad</rd:DefaultName>
-            <Top>1.52956in</Top>
+            <rd:DefaultName>ClienteColonia</rd:DefaultName>
+            <Top>1.32223in</Top>
             <Left>0.01906in</Left>
-            <Height>0.19811in</Height>
-            <Width>2.61708in</Width>
-            <ZIndex>17</ZIndex>
+            <Height>0.39957in</Height>
+            <Width>2.62333in</Width>
+            <ZIndex>16</ZIndex>
+            <Visibility>
+              <Hidden>=Len( First(Fields!ClienteColonia.Value, "reciboDataSet"))=0</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2413,7 +2394,7 @@
             <Left>0.03253cm</Left>
             <Height>0.5in</Height>
             <Width>2.63402in</Width>
-            <ZIndex>18</ZIndex>
+            <ZIndex>17</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2466,7 +2447,7 @@
         </Paragraphs>
         <rd:DefaultName>Serie1</rd:DefaultName>
         <Top>2.28951in</Top>
-        <Left>1.0427in</Left>
+        <Left>1.1177in</Left>
         <Height>0.20153in</Height>
         <Width>0.86909in</Width>
         <ZIndex>9</ZIndex>
@@ -2500,7 +2481,7 @@
         </Paragraphs>
         <rd:DefaultName>Precio1</rd:DefaultName>
         <Top>2.70389in</Top>
-        <Left>1.0427in</Left>
+        <Left>1.1177in</Left>
         <Height>0.20153in</Height>
         <Width>0.86909in</Width>
         <ZIndex>10</ZIndex>
@@ -2534,7 +2515,7 @@
         </Paragraphs>
         <rd:DefaultName>Descuento</rd:DefaultName>
         <Top>2.48986in</Top>
-        <Left>1.0427in</Left>
+        <Left>1.1177in</Left>
         <Height>0.20153in</Height>
         <Width>0.86909in</Width>
         <ZIndex>11</ZIndex>
@@ -2759,6 +2740,9 @@
         <Height>0.20153in</Height>
         <Width>1.93713in</Width>
         <ZIndex>17</ZIndex>
+        <Visibility>
+          <Hidden>=First(Fields!PagarCon.Value, "reciboDataSet")=0</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2806,6 +2790,9 @@
         <Height>0.20153in</Height>
         <Width>0.71391in</Width>
         <ZIndex>19</ZIndex>
+        <Visibility>
+          <Hidden>=First(Fields!PagarCon.Value, "reciboDataSet")=0</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2823,7 +2810,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>+ Cargo Admón.      </Value>
+                <Value>+ Cargo Admón </Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -2844,7 +2831,7 @@
         <Top>2.92056in</Top>
         <Left>0.05825cm</Left>
         <Height>0.20153in</Height>
-        <Width>1.01977in</Width>
+        <Width>1.08088in</Width>
         <ZIndex>20</ZIndex>
         <Visibility>
           <Hidden>=First(Fields!Blindaje.Value, "reciboDataSet")= 0</Hidden>
@@ -2878,7 +2865,7 @@
         </Paragraphs>
         <rd:DefaultName>Blindaje</rd:DefaultName>
         <Top>2.92056in</Top>
-        <Left>1.0427in</Left>
+        <Left>1.1177in</Left>
         <Height>0.20153in</Height>
         <Width>0.86909in</Width>
         <ZIndex>21</ZIndex>
@@ -3162,6 +3149,9 @@
         <Height>0.20153in</Height>
         <Width>1.93502in</Width>
         <ZIndex>25</ZIndex>
+        <Visibility>
+          <Hidden>=First(Fields!PagarCon.Value, "reciboDataSet")=0</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
@@ -3197,6 +3187,9 @@
         <Height>0.20153in</Height>
         <Width>0.71391in</Width>
         <ZIndex>26</ZIndex>
+        <Visibility>
+          <Hidden>=First(Fields!PagarCon.Value, "reciboDataSet")=0</Hidden>
+        </Visibility>
         <Style>
           <Border>
             <Style>None</Style>
