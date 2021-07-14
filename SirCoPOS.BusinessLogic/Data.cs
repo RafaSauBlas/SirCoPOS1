@@ -299,21 +299,26 @@ namespace SirCoPOS.BusinessLogic
                 (int)Common.Constants.Puesto.SUP
             };
             var ctx = new DataAccess.SirCoNominaDataContext();
-            var item = ctx.Empleados.Where(i => i.usuariosistema.Trim() == user &&
-                i.password.Trim() == pass
+
+            int? Depto = ctx.Empleados.Where(i => i.usuariosistema.Trim() == user &&
+                i.password.Trim() == pass && i.estatus == "A").Select(i=>i.iddepto).SingleOrDefault();
+            if (Depto == null)
+            {
+                return null;
+            }
+            DataAccess.SirCoNomina.Empleado item;
+            if (Depto == (int)Common.Constants.Departamento.SIS)
+            {
+                item = ctx.Empleados.Where(i => i.usuariosistema.Trim() == user && i.password.Trim() == pass).SingleOrDefault();
+            } 
+            else 
+            { 
+                item = ctx.Empleados.Where(i => i.usuariosistema == user
                 && i.iddepto == (int)Common.Constants.Departamento.TDA
                 && puestos.Contains(i.idpuesto)
                 && i.estatus == "A"
-                && i.clave.Substring(0,2) == sucursal).SingleOrDefault();
-            //if (!int.TryParse(user, out id))
-            //    return null;
-            //if (pass != "123")
-            //    return null;
-            //var item = ctx.Empleados.Where(i => i.idempleado == id
-            //    && i.iddepto == (int)Common.Constants.Departamento.TDA
-            //    && puestos.Contains(i.idpuesto)
-            //    && i.estatus == "A"
-            //    && i.clave.Substring(0, 2) == sucursal).SingleOrDefault();
+                && i.clave.Substring(0, 2) == sucursal).SingleOrDefault();
+            }
             if (item != null)
             {
                 return new Empleado
