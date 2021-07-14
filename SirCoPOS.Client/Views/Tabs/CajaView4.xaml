@@ -422,7 +422,7 @@
                     <fa:ImageAwesome Icon="Dollar" Height="22" Width="44"/>
                 </Button>
                 <!-- Textbox de scan serie  -->
-                <TextBox x:Name="scanTextBox" HorizontalAlignment="Right" Height="27" Margin="0,7,302,0" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140" IsEnabled="False" Grid.Column="1">
+                <TextBox x:Name="scanTextBox" HorizontalAlignment="Right" Height="27" Margin="0,7,302,0" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140" IsEnabled="False" Grid.Column="1" PreviewKeyDown="scanTextBox_PreviewKeyDown" >
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding AddCommand}"/>
                     </TextBox.InputBindings>

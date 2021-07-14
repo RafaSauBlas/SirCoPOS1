@@ -37,5 +37,15 @@ namespace SirCoPOS.Client.Views.Tabs
                 this.scanTextBox.Focus();
             }
         }
+
+        private void scanTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var vm = (ViewModels.Tabs.CancelacionViewModel)this.DataContext;
+            if (vm.Cajero.Depto == 3)
+            {
+                System.Windows.Clipboard.Clear();
+            }
+        }
+
     }
 }

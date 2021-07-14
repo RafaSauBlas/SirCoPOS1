@@ -36,17 +36,26 @@ namespace SirCoPOS.Client.Views.Tabs
 
         public void Init()
         {
-        
-            var dato = new SirCoPOS.Common.Entities.Empleado();
-            int depto = dato.Depto;
-
-            if ( depto <= 2)
-            {
-                this.scanTextBox.IsEnabled = true;
-                this.scanTextBox.Focus();
-            }
+            this.scanTextBox.IsEnabled = true;
+            this.scanTextBox.Focus();
+            //var dato = new SirCoPOS.Common.Entities.Empleado();
+            //int depto = dato.Depto;
             var vm = (ViewModels.Tabs.CajaViewModel)this.DataContext;
+            
+            
+
+            
         }
+
+        private void scanTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            var vm = (ViewModels.Tabs.CajaViewModel)this.DataContext;
+            if (vm.Cajero.Depto == 3)
+            {
+                System.Windows.Clipboard.Clear();
+            }
+        }
+
         private void DualButton_Click(object sender, RoutedEventArgs e)
         {
             var win = new Windows.DualWindow();
