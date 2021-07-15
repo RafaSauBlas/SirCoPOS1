@@ -1342,7 +1342,7 @@ namespace SirCoPOS.BusinessLogic
                 cliente = cliente.cliente,
                 idcliente = cliente.idcliente,
                 //fechaaplicarcorte = item.FechaAplicar,
-                fechacompra = now,
+                fechacompra = now.Date.Add(new TimeSpan(00, 00, 00)),
                 status = "AP",
                 importe = item.Importe,
                 saldo = item.Importe + (blindaje ?? 0),
