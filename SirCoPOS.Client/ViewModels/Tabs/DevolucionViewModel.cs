@@ -261,7 +261,18 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         public string SerieSearch
         {
             get { return _serieSearch; }
-            set { Set(nameof(this.SerieSearch), ref _serieSearch, value); }
+            set
+            {
+                if (Helpers.ScanSerie.PorScanner(value, Cajero.Depto))
+                {
+                    Set(nameof(this.SerieSearch), ref _serieSearch, value);
+                }
+                else
+                {
+                    Set(nameof(this.SerieSearch), ref _serieSearch, "");
+                }
+            }
+
         }
         public decimal Total
         {
