@@ -152,7 +152,7 @@
                             <m:TabType>CancelacionDevolucion</m:TabType>
                         </MenuItem.CommandParameter>
                     </MenuItem>
-                    <MenuItem Header="Cancelar Cambio" Command="{Binding OpenCommand}">
+                    <MenuItem Header="Cancelar Cambio" Command="{Binding OpenCommand}" IsEnabled="False">
                         <MenuItem.CommandParameter>
                             <m:TabType>CancelacionCambio</m:TabType>
                         </MenuItem.CommandParameter>
@@ -176,7 +176,7 @@
                         </MenuItem.CommandParameter>
                     </MenuItem>
                     <Separator></Separator>
-                    <MenuItem Header="Revision Notas" Command="{Binding OpenCommand}" >
+                    <MenuItem Header="Revision Notas" Command="{Binding OpenCommand}" IsEnabled="False" >
                         <MenuItem.CommandParameter>
                             <m:TabType>NotaRevision</m:TabType>
                         </MenuItem.CommandParameter>
