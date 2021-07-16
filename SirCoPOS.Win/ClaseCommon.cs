@@ -44,6 +44,10 @@ namespace SirCoPOS.Win
         {
             return _helpers.FindCajero(user);
         }
+        public Empleado FindEmpleado(string user)
+        {
+            return _helpers.FindEmpleado(user);
+        }
         public Sucursal FindSucursal(string sucursal)
         {
             return _helpers.FindSucursal(sucursal);

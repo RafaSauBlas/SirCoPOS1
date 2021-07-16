@@ -44,7 +44,11 @@ namespace SirCoPOS.Services
         {
             return _helpers.FindCajero(user);
         }
-//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+        public Empleado FindEmpleado(string user)
+        {
+            return _helpers.FindEmpleado(user);
+        }
+        //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         //El error se genera aqui, "sucursal" no tiene ningun valor
         //Cambia "_helpers.FindSucursal(sucursal); por _helpers.FindSucursal("01"); para que funcione"
         public Sucursal FindSucursal(string sucursal)

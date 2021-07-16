@@ -137,8 +137,8 @@ namespace SirCoPOS.Win.Pages
                 MessageBox.Show("No se ha especificado la sucursal.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            Properties.Settings.Default.Sucursal = this.sucursalTextBox.Text;
-            Properties.Settings.Default.Save();
+            //Properties.Settings.Default.Sucursal = this.sucursalTextBox.Text;
+            //Properties.Settings.Default.Save();
             this.NavigationService.Navigate(_loginPage.Value);
         }
         private void Button7_Click(object sender, RoutedEventArgs e)

@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+//using System.Windows.Forms;
+using GalaSoft.MvvmLight.Command;
+using System.Windows;
 
 namespace SirCoPOS.Win.ViewModels
 {
     class LoginViewModel : Utilities.Helpers.ViewModelBase
     {
-        private Common.ServiceContracts.ICommonServiceAsync _proxy;        
+        private Common.ServiceContracts.ICommonServiceAsync _proxy;
         public LoginViewModel()
         {
+
             try
             {
                 if (!IsInDesignMode)
@@ -22,22 +25,30 @@ namespace SirCoPOS.Win.ViewModels
                     this.IsBusy = true;
                     var pass = this.PasswordHandler();
                     var item = await _proxy.LoginAsync(
-                        sucursal: Properties.Settings.Default.Sucursal,
+                        sucursal: this.Sucursal,
                         user: this.UserName,
                         pass: pass);
+                    if (item != null)
+                    {
+                        Properties.Settings.Default.Sucursal = this.Sucursal;
+                        Properties.Settings.Default.Save();
+                    }
                     GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
                         new Messages.LoginResponse { Success = item != null, Empleado = item });
+                    
+                    
                     this.Password = null;
                     this.UserName = null;
+                    this.Sucursal = null;
                     this.IsBusy = false;
                 }, () =>
                 {
-                    return !string.IsNullOrEmpty(this.UserName) &&
-                    !string.IsNullOrEmpty(this.Password);
+                    return !string.IsNullOrEmpty(this.UserName)
+                    && !string.IsNullOrEmpty(this.Password)
+                    && !string.IsNullOrEmpty(this.Sucursal);
                 });
 
                 this.PropertyChanged += Login_PropertyChanged;
-
                 this.ScanCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
                 {
                     this.Scanning = true;
@@ -80,6 +91,7 @@ namespace SirCoPOS.Win.ViewModels
             {
                 case "UserName":
                 case "Password":
+                case "Sucursal":
                     this.LoginCommand.RaiseCanExecuteChanged();
                     break;
                 case nameof(Scanning):
@@ -93,8 +105,75 @@ namespace SirCoPOS.Win.ViewModels
         private string _pass;
         public string UserName
         {
+            
             get { return _user; }
-            set { this.Set(nameof(this.UserName), ref _user, value); }
+            set {
+                if (Helpers.Usuario.Completar(value,8))
+                {
+                   SirCoPOS.Common.Entities.Empleado item = _proxy.FindEmpleado(value);
+                   if (item != null)
+                   {
+                        if (item.Depto == (int)Common.Constants.Departamento.TDA)
+                        {
+                            Sucursal = item.Clave.Substring(0, 2);
+                            NombreSucursal = item.Sucursal;
+                            PedirSucursal = false;
+                        }
+                        else
+                        {
+                            Sucursal = "";
+                            NombreSucursal = "";
+                            PedirSucursal = true;
+                        }
+                    }
+                   else
+                    {
+                        MessageBox.Show("Usuario NO existe ", "Acceso", MessageBoxButton.OK, MessageBoxImage.Information);
+                        value = "";
+                    }
+                }
+                else
+                {
+                    Sucursal = "";
+                    NombreSucursal = "";
+                    PedirSucursal = true;
+                }
+                this.Set(nameof(this.UserName), ref _user, value); 
+            }
+        }
+        private string _suc;
+        public string Sucursal
+        {
+            get { return _suc; }
+            set {
+                if (Helpers.Usuario.Completar(value, 2))
+                {
+                    var item = _proxy.FindSucursal(value);
+                    if (item != null)
+                    {
+                        NombreSucursal = item.Descripcion;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sucursal NO existe ", "Acceso", MessageBoxButton.OK, MessageBoxImage.Information);
+                        value = "";
+                        NombreSucursal = "";
+                    }
+                }
+                this.Set(nameof(this.Sucursal), ref _suc, value); 
+            }
+        }
+        private bool _pedirsucursal;
+        public bool PedirSucursal
+        {
+            get { return _pedirsucursal; }
+            set { this.Set(nameof(this.PedirSucursal), ref _pedirsucursal, value); }
+        }
+        private string _nomsucursal;
+        public string NombreSucursal
+        {
+            get { return _nomsucursal; }
+            set { this.Set(nameof(this.NombreSucursal), ref _nomsucursal, value); }
         }
         public string Password
         {

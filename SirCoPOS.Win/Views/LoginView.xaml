@@ -21,11 +21,11 @@
     <tk:BusyIndicator IsBusy="{Binding IsBusy}">
 
         <Grid>
-            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="171" >
-                <Grid HorizontalAlignment="Left" Height="80" VerticalAlignment="Bottom" Width="250">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="250" >
+                <Grid HorizontalAlignment="Left" Height="115" VerticalAlignment="Bottom" Width="250">
                     <Rectangle Fill="#FF8A95B3" Stroke="Black" RadiusY="13.5" RadiusX="13.5" />
                     <!--Campo de usuario-->
-                    <xt:WatermarkTextBox x:Name="userTextBox" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Watermark="Usuario" HorizontalAlignment="Left" Height="28" Margin="28,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185">
+                    <xt:WatermarkTextBox x:Name="userTextBox" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}" Watermark="Usuario" HorizontalAlignment="Left" Height="28" Margin="28,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185" MaxLength="8">
                         <xt:WatermarkTextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding LoginCommand}" />
                         </xt:WatermarkTextBox.InputBindings>
@@ -36,6 +36,13 @@
                             <KeyBinding Key="Return" Command="{Binding LoginCommand}" />
                         </xt:WatermarkPasswordBox.InputBindings>
                     </xt:WatermarkPasswordBox>
+                    <xt:WatermarkTextBox x:Name="sucursalTextBox" Text="{Binding Sucursal, UpdateSourceTrigger=PropertyChanged}" Watermark="Suc" HorizontalAlignment="Left" Height="28" Margin="28,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40"  IsEnabled="{Binding PedirSucursal}" MaxLength="2" >
+                        <xt:WatermarkTextBox.InputBindings>
+                            <KeyBinding Key="Return" Command="{Binding LoginCommand}" />
+                        </xt:WatermarkTextBox.InputBindings>
+                    </xt:WatermarkTextBox>
+                    <xt:WatermarkTextBox x:Name="nomSucTextBox" Text="{Binding NombreSucursal, UpdateSourceTrigger=PropertyChanged}" Watermark="Nombre Suc" HorizontalAlignment="Left" Height="28" Margin="72,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="141"  IsEnabled="False" >
+                    </xt:WatermarkTextBox>
                 </Grid>
                 <Image x:Name="image" HorizontalAlignment="Left" Height="89" Margin="19,0,0,0" VerticalAlignment="Top" Width="210" Source="/SirCoPOS.Win;component/Images/Logo Zapaterias.png"/>
 
