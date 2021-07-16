@@ -1695,16 +1695,6 @@ namespace SirCoPOS.BusinessLogic
                             updateItems(q);
                         }
                         break;
-                    case "Familia":
-                        {
-                            var q = items.Where(i =>
-                                i.Corrida.idfamilia == adet.idfamilia
-                                && i.Corrida.iddivisiones == adet.iddivisiones);
-                            if (!String.IsNullOrEmpty(adet.marca))
-                                q = q.Where(i => i.Corrida.marca == adet.marca);
-                            updateItems(q);
-                        }
-                        break;
                     case "Departamento":
                         {
                             var q = items.Where(i =>
