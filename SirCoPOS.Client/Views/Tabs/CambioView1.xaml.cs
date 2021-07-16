@@ -57,14 +57,5 @@ namespace SirCoPOS.Client.Views.Tabs
             if (viewModel.PrintCommand.CanExecute(null))
                 viewModel.PrintCommand.Execute(null);
         }
-
-        private void scanTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            var vm = (ViewModels.Tabs.CambioViewModel)this.DataContext;
-            if (vm.Cajero.Depto == 3)
-            {
-                System.Windows.Clipboard.Clear();
-            }
-        }
     }
 }

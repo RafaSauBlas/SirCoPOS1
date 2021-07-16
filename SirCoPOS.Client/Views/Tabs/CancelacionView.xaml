@@ -41,7 +41,7 @@
                     <RowDefinition/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                <TextBox x:Name="scanTextBox" HorizontalAlignment="Left" Height="26" Margin="10,12,0,12" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="140" IsEnabled="True" PreviewKeyDown="scanTextBox_PreviewKeyDown">
+                <TextBox x:Name="scanTextBox" HorizontalAlignment="Left" Height="26" Margin="10,12,0,12" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="140" IsEnabled="True">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding ScanCommand}"></KeyBinding>
                     </TextBox.InputBindings>

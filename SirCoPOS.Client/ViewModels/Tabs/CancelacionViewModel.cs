@@ -209,18 +209,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         public string SerieSearch
         {
             get { return _serieSearch; }
-            set
-            {
-                if (Helpers.ScanSerie.PorScanner(value, Cajero.Depto))
-                {
-                    Set(nameof(this.SerieSearch), ref _serieSearch, value);
-                }
-                else
-                {
-                    Set(nameof(this.SerieSearch), ref _serieSearch, "");
-                }
-            }
-        }
+            set { Set(nameof(this.SerieSearch), ref _serieSearch, value); }
+        }        
         private Models.SucursalFolio _venta;
         public Models.SucursalFolio Venta
         {

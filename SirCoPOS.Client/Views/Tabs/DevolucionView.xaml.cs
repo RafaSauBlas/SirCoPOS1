@@ -33,14 +33,5 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             this.searchTextBox.Focus();
         }
-
-        private void searchTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            var vm = (ViewModels.Tabs.DevolucionViewModel)this.DataContext;
-            if (vm.Cajero.Depto == 3)
-            {
-                System.Windows.Clipboard.Clear();
-            }
-        }
     }
 }

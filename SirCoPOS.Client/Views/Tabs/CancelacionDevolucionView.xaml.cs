@@ -28,14 +28,5 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             InitializeComponent();
         }
-
-        private void scanTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            var vm = (ViewModels.Tabs.CancelacionDevolucionViewModel)this.DataContext;
-            if (vm.Cajero.Depto == 3)
-            {
-                System.Windows.Clipboard.Clear();
-            }
-        }
     }
 }
