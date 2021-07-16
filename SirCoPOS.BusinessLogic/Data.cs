@@ -36,7 +36,11 @@ namespace SirCoPOS.BusinessLogic
         public Sucursal FindSucursal(string sucursal)
         {
             var ctx = new DataAccess.SirCoControlDataContext();
-            var item = ctx.Sucursales.Where(i => i.sucursal == sucursal).Single();
+            var item = ctx.Sucursales.Where(i => i.sucursal == sucursal).SingleOrDefault();
+            if (item == null)
+            {
+                return null;
+            }
             var res = new Common.Entities.Sucursal
             {
                 Id = item.idsucursal,
@@ -44,6 +48,29 @@ namespace SirCoPOS.BusinessLogic
                 Descripcion = item.descrip
             };
             return res;
+        }
+        public Empleado FindEmpleado(string user)
+        {
+            var ctx  = new DataAccess.SirCoNominaDataContext();
+            var ctxC = new DataAccess.SirCoControlDataContext();
+            DataAccess.SirCoNomina.Empleado emp = ctx.Empleados.Where(i => i.usuariosistema.Trim() == user && i.estatus == "A").SingleOrDefault();
+            if (emp != null)
+            {
+                var suc = ctxC.Sucursales.Where(i => i.sucursal == emp.clave.Substring(0, 2)).SingleOrDefault();
+                return new Empleado
+                {
+                    Id = emp.idempleado,
+                    ApellidoMaterno = emp.apmaterno,
+                    ApellidoPaterno = emp.appaterno,
+                    Nombre = emp.nombre,
+                    Usuario = emp.usuariosistema,
+                    Clave = emp.clave,
+                    Puesto = emp.idpuesto,
+                    Depto = emp.iddepto,
+                    Sucursal = suc.descrip
+                };
+            }
+            return null;
         }
         public Empleado FindCajero(string user)
         {
@@ -300,18 +327,13 @@ namespace SirCoPOS.BusinessLogic
             };
             var ctx = new DataAccess.SirCoNominaDataContext();
 
-            int? Depto = ctx.Empleados.Where(i => i.usuariosistema.Trim() == user &&
-                i.password.Trim() == pass && i.estatus == "A").Select(i=>i.iddepto).SingleOrDefault();
-            if (Depto == null)
+            //Busqueda del Usuario
+            DataAccess.SirCoNomina.Empleado item = ctx.Empleados.Where(i => i.usuariosistema == user && i.password.Trim() == pass && i.estatus == "A").SingleOrDefault();
+            if (item == null)
             {
                 return null;
             }
-            DataAccess.SirCoNomina.Empleado item;
-            if (Depto == (int)Common.Constants.Departamento.SIS)
-            {
-                item = ctx.Empleados.Where(i => i.usuariosistema.Trim() == user && i.password.Trim() == pass).SingleOrDefault();
-            } 
-            else 
+            if (item.iddepto != (int)Common.Constants.Departamento.SIS)
             { 
                 item = ctx.Empleados.Where(i => i.usuariosistema == user
                 && i.iddepto == (int)Common.Constants.Departamento.TDA
