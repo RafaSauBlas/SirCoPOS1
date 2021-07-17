@@ -291,6 +291,7 @@
     <Compile Include="Helpers\ScannerHelper.cs" />
     <Compile Include="Helpers\Usuario.cs" />
     <Compile Include="Helpers\SyncAgent.cs" />
+    <Compile Include="Helpers\Usuario.cs" />
     <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Messages\CloseMenu.cs" />
     <Compile Include="Messages\LoginResponse.cs" />
