@@ -232,7 +232,7 @@
                 </DataGrid.Columns>
             </DataGrid>
             <!--Titulo Blindaje-->
-            <TextBlock x:Name="textBlock1_Copy7" HorizontalAlignment="Left" Margin="384,164,0,0" TextWrapping="Wrap" Text="Blindaje" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock1_Copy7" HorizontalAlignment="Left" Margin="384,164,0,0" TextWrapping="Wrap" Text="Cargo Admon" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock1_Copy8" HorizontalAlignment="Left" Margin="553.376,160.456,0,0" TextWrapping="Wrap" Text="{Binding Promocion.Blindaje, StringFormat=c}" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock2_Copy5" HorizontalAlignment="Left" Margin="181,82,0,0" TextWrapping="Wrap" Text="Cuenta" VerticalAlignment="Top"/>
              <!--Cuenta Distribuidor-->

@@ -234,7 +234,7 @@
                     <DataGridTextColumn Header="Pago" Binding="{Binding Amount, StringFormat=c}"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <TextBlock x:Name="textBlock1_Copy7" HorizontalAlignment="Left" Margin="367,153,0,0" TextWrapping="Wrap" Text="Blindaje" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock1_Copy7" HorizontalAlignment="Left" Margin="367,153,0,0" TextWrapping="Wrap" Text="Cargo Admon" VerticalAlignment="Top"/>
             <TextBlock x:Name="textBlock1_Copy8" HorizontalAlignment="Left" Margin="553,153,0,0" TextWrapping="Wrap" Text="{Binding Promocion.Blindaje, StringFormat=c}" VerticalAlignment="Top" Width="63" TextAlignment="Right"/>
             <!--Titulo Cuenta-->
             <TextBlock x:Name="textBlock2_Copy5" HorizontalAlignment="Left" Margin="145,82,0,0" TextWrapping="Wrap" Text="Cuenta" VerticalAlignment="Top" Width="74"/>
