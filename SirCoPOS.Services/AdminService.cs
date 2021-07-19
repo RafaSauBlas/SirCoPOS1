@@ -1333,15 +1333,19 @@ namespace SirCoPOS.Services
             var emp = ctxn.Empleados.Where(i => i.idempleado == idempleado).Single();
             var q = ctx.Cajas.Where(i => i.Sucursal == sucursal
                 && i.Disponible == 0 && !i.ResponsableId.HasValue
-                && !i.Fondos.Where(f => !f.FechaCierre.HasValue).Any());
-            if (emp.idpuesto == (int)Common.Constants.Puesto.CJA)
+                && !i.Fondos.Where(f => !f.FechaCierre.HasValue).Any()); //al buscar fondo con suc,numero no exista alguno abierto
+            if (emp.idpuesto == (int)Common.Constants.Puesto.CJA) // el empleado es cajero?
             {
-                q = q.Where(i => i.Tipo == Common.Constants.TipoFondo.Cajon);
+                q = q.Where(i => i.Tipo == Common.Constants.TipoFondo.Cajon); 
             }
             else if (emp.idpuesto == (int)Common.Constants.Puesto.ENC
                 || emp.idpuesto == (int)Common.Constants.Puesto.SUP)
             {
-                q = q.Where(i => i.Tipo == Common.Constants.TipoFondo.CajaFuerte);
+                q = q.Where(i => i.Tipo == Common.Constants.TipoFondo.CajaFuerte );
+            }
+            else if (emp.iddepto == (int)Common.Constants.Departamento.SIS)
+            {
+                q = q.Where(i => i.Tipo == Common.Constants.TipoFondo.CajaFuerte || i.Tipo == Common.Constants.TipoFondo.Cajon);
             }
             else
                 return null;

@@ -107,10 +107,13 @@ namespace SirCoPOS.BusinessLogic
                 var asuc = auditor.clave.Substring(0, 2);
                 var suc = cajero.clave.Substring(0, 2);
 
-                if (!(cajero.idpuesto == (int)Common.Constants.Puesto.CJA 
-                    || Common.Constants.Puestos.Gerentes.Contains(cajero.idpuesto)))
+                if (cajero.iddepto != (int)Common.Constants.Departamento.SIS)
                 {
-                    return null;
+                    // Si el cajero no es de SISTEMAS validar tenga puesto Cajero o sea SUP o ENC
+                    if (!(cajero.idpuesto == (int)Common.Constants.Puesto.CJA || Common.Constants.Puestos.Gerentes.Contains(cajero.idpuesto)))
+                    {
+                        return null;
+                    }
                 }
 
 
