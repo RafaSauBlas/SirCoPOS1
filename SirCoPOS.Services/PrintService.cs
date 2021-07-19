@@ -233,7 +233,7 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
             DataAccess.SirCoControl.Sucursal suc = ctxc.Sucursales.Where(i => i.sucursal == venta.sucursal).Single();
 
             var ctxcr = new DataAccess.SirCoCreditoDataContext();
-            var plan = ctxcr.PlanPagos.Where(i => i.sucursal == venta.sucursal && i.nota == venta.venta);
+            var plan = ctxcr.PlanPagos.Where(i => i.sucursal == sucursal && i.nota == venta.venta).SingleOrDefault();
 
             string cli_plan = "";
             string distrib = "";
@@ -244,15 +244,15 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
             decimal? blindaje = 0;
             decimal? saldo = 0;
 
-            if (plan.Any() ){  
-                cli_plan = plan.Single().sucursal + "-" + plan.SingleOrDefault().cliente;
-                distrib = plan.Single().distrib;
-                distribuidor = this.GetDistrib(distrib);
-                nota = plan.Single().sucursal + "-" + plan.Single().nota;
-                vale = plan.Single().negocio + "-" + plan.Single().vale;
-                numpagos = (int)plan.Single().pagos;
-                blindaje = (decimal)plan.Single().blindaje;
-                saldo = plan.Single().saldo;
+            if (plan != null ){  
+                cli_plan = plan.sucursal + "-" + plan.cliente;
+                distrib = plan.distrib;
+                distribuidor = GetDistrib(distrib);
+                nota = plan.sucursal + "-" + plan.nota;
+                vale = plan.negocio + "-" + plan.vale;
+                numpagos = (int)plan.pagos;
+                blindaje = (decimal)plan.blindaje;
+                saldo = plan.saldo;
             }
             short? contravale = 0;
             if (distrib != "")
@@ -362,11 +362,10 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
             decimal pago2 = 0;
             DateTime fecha1 = default(DateTime);
 
-            DataAccess.SirCoCredito.PlanPagos planp = ctxcr.PlanPagos.Where(i => i.sucursal == sucursal && i.nota == venta.venta).SingleOrDefault();
+            var planpagosDet = ctxcr.PlanPagosDetalle.Where(i => i.sucursal == venta.sucursal && i.nota == venta.venta).Select(i => new { i.pago, i.fechaaplicar, i.importe });
             List<PlanPagoDetalle> pplist = new List<Common.Entities.Reports.PlanPagoDetalle>();
-            if (planp != null ) { 
-                foreach (var det in planp.Detalle)
-                {
+            if (planpagosDet  != null) {
+                foreach (var det in planpagosDet){ 
                     pplist.Add(
                         new Common.Entities.Reports.PlanPagoDetalle
                         {
