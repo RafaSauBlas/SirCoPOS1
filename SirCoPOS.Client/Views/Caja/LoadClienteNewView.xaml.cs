@@ -29,5 +29,20 @@ namespace SirCoPOS.Client.Views.Caja
         {
             this.tbNombre.Focus();
         }
+
+        private void tbNombre_KeyDown(object sender, KeyEventArgs e)
+        {
+            tbNombre.CharacterCasing = CharacterCasing.Upper;
+        }
+
+        private void tbApPa_KeyDown(object sender, KeyEventArgs e)
+        {
+            tbApPa.CharacterCasing = CharacterCasing.Upper;
+        }
+
+        private void tbApMa_KeyDown(object sender, KeyEventArgs e)
+        {
+            tbApMa.CharacterCasing = CharacterCasing.Upper;
+        }
     }
 }

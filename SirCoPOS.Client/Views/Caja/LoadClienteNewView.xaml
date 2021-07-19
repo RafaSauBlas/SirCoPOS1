@@ -21,11 +21,11 @@
         <!--Etiqueta Nombre-->
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="30,9,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
         <!--TextBox Nombre Cliente-->
-        <TextBox x:Name="tbNombre" HorizontalAlignment="Left" Height="28" Margin="10,35,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Nombre}" VerticalAlignment="Top" Width="120" TabIndex="1"/>
+        <TextBox x:Name="tbNombre" HorizontalAlignment="Left" Height="28" Margin="10,35,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Nombre}" VerticalAlignment="Top" Width="120" TabIndex="1" KeyDown="tbNombre_KeyDown"/>
         <!--TextBox ApPAterno-->
-        <TextBox x:Name="tbApPa" HorizontalAlignment="Left" Height="28" Margin="135,35,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.ApPaterno}" VerticalAlignment="Top" Width="120" TabIndex="2"/>
+        <TextBox x:Name="tbApPa" HorizontalAlignment="Left" Height="28" Margin="135,35,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.ApPaterno}" VerticalAlignment="Top" Width="120" TabIndex="2" KeyDown="tbApPa_KeyDown"/>
         <!--TextBox Apellido Materno-->
-        <TextBox x:Name="tbApMa" HorizontalAlignment="Left" Height="28" Margin="260,35,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.ApMaterno}" VerticalAlignment="Top" Width="120" TabIndex="3"/>
+        <TextBox x:Name="tbApMa" HorizontalAlignment="Left" Height="28" Margin="260,35,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.ApMaterno}" VerticalAlignment="Top" Width="120" TabIndex="3" KeyDown="tbApMa_KeyDown"/>
         <!--TextBox con Mascara Telefono-->
         <xt:MaskedTextBox x:Name="tbCelular" HorizontalAlignment="Left" Height="28" Margin="80,307,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Celular}" VerticalAlignment="Top" Width="100" Mask="(000) 000-0000" TabIndex="9" />
         <!--TextBox Codigo postal-->
