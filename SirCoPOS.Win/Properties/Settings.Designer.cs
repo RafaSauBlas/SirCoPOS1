@@ -78,6 +78,10 @@ namespace SirCoPOS.Win.Properties {
             get {
                 return ((global::System.TimeSpan)(this["Timeout"]));
             }
+            set
+            {
+                this["Timeout"] = value;
+            }
         }
     }
 }

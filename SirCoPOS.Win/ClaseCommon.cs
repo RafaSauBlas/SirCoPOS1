@@ -18,6 +18,10 @@ namespace SirCoPOS.Win
         {
             return _helpers.Login(sucursal, user, pass);
         }
+        public int TimeOut()
+        {
+            return _helpers.TimeOut();
+        }
         public Empleado FindVendedor(int id)
         {
             var ctx = new SirCoPOS.DataAccess.SirCoNominaDataContext();

@@ -31,6 +31,9 @@ namespace SirCoPOS.Win.ViewModels
                     if (item != null)
                     {
                         Properties.Settings.Default.Sucursal = this.Sucursal;
+                        int secs = await _proxy.TimeOutAsync();
+                        TimeSpan TimeOut = new TimeSpan(0, 0, secs);
+                        Properties.Settings.Default.Timeout =TimeOut;
                         Properties.Settings.Default.Save();
                     }
                     GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
