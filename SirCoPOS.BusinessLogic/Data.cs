@@ -321,6 +321,16 @@ namespace SirCoPOS.BusinessLogic
             return res;
         }
         public int tipo;
+        public int TimeOut()
+        {
+            DataAccess.SirCoControlDataContext ctx = new DataAccess.SirCoControlDataContext();
+            DataAccess.SirCoControl.Parametro item = ctx.Parametros.Where(i => i.sucursal == "99" && i.clave == "TIMEOUT").SingleOrDefault();
+            if (item != null)
+            {
+                return Int32.Parse(item.valor);
+            }
+            return 60; // 60 segundos si el parámetro no existe
+        }
         public Empleado Login(string sucursal, string user, string pass)
         {
             var puestos = new int[] {

@@ -13,6 +13,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Entities.Empleado Login(string sucursal, string user, string pass);
         [OperationContract]
+        int TimeOut();
+        [OperationContract]
         Entities.Empleado FindVendedor(int id);
         [OperationContract]
         Entities.Empleado FindCajero(string user);

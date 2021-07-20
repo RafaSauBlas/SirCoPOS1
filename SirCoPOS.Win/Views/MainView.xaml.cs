@@ -56,7 +56,7 @@ namespace SirCoPOS.Win.Views
             this.RegisterMessages();
 
             _dt = new System.Windows.Threading.DispatcherTimer();
-            _dt.Tick += Dt_Tick;            
+            _dt.Tick += Dt_Tick;
             _dt.Interval = Properties.Settings.Default.Timeout;
         }
 
@@ -84,7 +84,7 @@ namespace SirCoPOS.Win.Views
 
                     if (!_tabs.Any())
                     {
-                        //_dt.Start();
+                        _dt.Start();
                         this.menuView.Visibility = Visibility.Visible;
                     }
                 });
