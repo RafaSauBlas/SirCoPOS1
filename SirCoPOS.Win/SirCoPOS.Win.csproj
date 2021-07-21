@@ -668,6 +668,17 @@
     <Resource Include="Images\nuev.png" />
     <Resource Include="Images\descuento.png" />
     <Resource Include="Images\database_refresh.png" />
+    <Resource Include="Images\CD.png" />
+    <Resource Include="Images\CP.png" />
+    <Resource Include="Images\CV.png" />
+    <Resource Include="Images\DV.png" />
+    <Resource Include="Images\EF.png" />
+    <Resource Include="Images\TC.png" />
+    <Resource Include="Images\TD.png" />
+    <Resource Include="Images\VA.png" />
+    <Resource Include="Images\VD.png" />
+    <Resource Include="Images\MD.png" />
+    <Resource Include="Images\VE.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
