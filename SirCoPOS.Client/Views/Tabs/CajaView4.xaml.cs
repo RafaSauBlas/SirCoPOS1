@@ -41,10 +41,6 @@ namespace SirCoPOS.Client.Views.Tabs
             //var dato = new SirCoPOS.Common.Entities.Empleado();
             //int depto = dato.Depto;
             var vm = (ViewModels.Tabs.CajaViewModel)this.DataContext;
-            
-            
-
-            
         }
 
         private void scanTextBox_PreviewKeyDown(object sender, KeyEventArgs e)

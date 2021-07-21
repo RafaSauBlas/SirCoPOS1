@@ -48,7 +48,7 @@
         <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="260,114,0,0" TextWrapping="Wrap" Text="Ciudad" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="60,114,0,0" TextWrapping="Wrap" Text="Estado" VerticalAlignment="Top"/>
         <!--TextBox Calle-->
-        <TextBox x:Name="tbCalle" HorizontalAlignment="Left" Margin="55,225,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Calle}" Width="185" Height="28" VerticalAlignment="Top" TabIndex="6"/>
+        <TextBox x:Name="tbCalle" HorizontalAlignment="Left" Margin="55,225,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Calle}" Width="185" Height="28" VerticalAlignment="Top" TabIndex="6" KeyDown="tbCalle_KeyDown"/>
         <!--TextBox Numero-->
         <TextBox x:Name="tbNumero" HorizontalAlignment="Left" Margin="320,225,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Numero}" Width="60" Height="28" VerticalAlignment="Top" TabIndex="7"/>
         <!--TextBox referenca-->

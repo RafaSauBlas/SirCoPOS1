@@ -44,5 +44,10 @@ namespace SirCoPOS.Client.Views.Caja
         {
             tbApMa.CharacterCasing = CharacterCasing.Upper;
         }
+
+        private void tbCalle_KeyDown(object sender, KeyEventArgs e)
+        {
+            tbCalle.CharacterCasing = CharacterCasing.Upper;
+        }
     }
 }
