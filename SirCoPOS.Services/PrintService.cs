@@ -482,12 +482,58 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
                 return Cliente;
                 
             Cliente.Add($"{cli.nombrecompleto.ToUpper()}");
-            Cliente.Add($"{cli.calle.ToUpper()}");
-            Cliente.Add(GetColonia(cli.idcolonia));
-            Cliente.Add(GetCiudad(cli.idciudad));
-            Cliente.Add(GetEstado(cli.idestado));
-            Cliente.Add(cli.codigopostal);
-            Cliente.Add($"{cli.celular1}");
+            if (cli.calle != null)
+            {
+                Cliente.Add($"{cli.calle.ToUpper()}");
+            }
+            else
+            {
+                Cliente.Add("");
+            }
+            var Colonia = GetColonia(cli.idcolonia);
+            if (Colonia != null)
+            {
+                Cliente.Add(Colonia);
+            }
+            else
+            {
+                Cliente.Add("");
+            }
+            var Ciudad = GetCiudad(cli.idciudad);
+            if (Ciudad != null)
+            {
+                Cliente.Add(Ciudad);
+            }
+            else
+            {
+                Cliente.Add("");
+            }
+            var Estado = GetCiudad(cli.idestado);
+            if (Estado != null)
+            {
+                Cliente.Add(Estado);
+            }
+            else
+            {
+                Cliente.Add("");
+            }
+
+            if (cli.codigopostal != null)
+            {
+                Cliente.Add(cli.celular1);
+            }
+            else
+            {
+                Cliente.Add("");
+            }
+            if (cli.celular != null )
+            {
+                Cliente.Add($"{cli.celular1}");
+            }
+            else
+            {
+                Cliente.Add("");
+            }
 
             return Cliente;
         }
