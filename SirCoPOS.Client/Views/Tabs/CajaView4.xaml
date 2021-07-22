@@ -18,7 +18,9 @@
              d:DesignHeight="600" d:DesignWidth="1100">
     <UserControl.Resources>
         <c:WindowStateConverter x:Key="windowState"/>
+        <c:ImageToSourceConverter x:Key="ImgSource"/>
         <c:ImageUrlConverter x:Key="imageUrl" />
+        <c:FPagoToTextConverter x:Key="FPagoText" />
         <BooleanToVisibilityConverter x:Key="boolConv"/>
         <c:ValueVisibilityConverter x:Key="valvis"/>
     </UserControl.Resources>
@@ -543,7 +545,7 @@
             </Grid>
         </tk:ChildWindow>
 
-        <tk:ChildWindow DesignerWindowState="Closed" WindowState="{Binding ShowPagos, Converter={StaticResource windowState}, Mode=TwoWay}" Height="260" Width="310" WindowStartupLocation="Center" IsModal="True" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <tk:ChildWindow  Caption="Formas de Pago"  DesignerWindowState="Closed" WindowState="{Binding ShowPagos, Converter={StaticResource windowState}, Mode=TwoWay}" Height="510" Width="668" WindowStartupLocation="Center" IsModal="True" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid>
                 <ItemsControl ItemsSource="{Binding FormasPago}" Padding="10">
                     <ItemsControl.ItemsPanel>
@@ -554,13 +556,16 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Button Width="60" Height="60" Margin="0,0,10,10" IsEnabled="{Binding Value.Enabled}">
+                                <Button Width="150" Height="150" Margin="0,0,10,10" IsEnabled="{Binding Value.Enabled}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
                                             <i:InvokeCommandAction CommandParameter="{Binding Key}" Command="{Binding DataContext.AddFormaCommand, ElementName=dummyElement}"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
-                                    <TextBlock><Run Text="{Binding Key, Mode=OneWay}"/><Run Text=" "/><Run Text="("/><Run Text="{Binding Value.KeyStr, Mode=OneWay}"/><Run Text=")"/></TextBlock>
+                                    <Image Source="{Binding Key, Mode=OneWay, Converter={StaticResource ImgSource}}" />
+                                    <Button.ToolTip>
+                                        <TextBlock Text="{Binding Key, Mode=OneWay, Converter={StaticResource FPagoText}}" />
+                                    </Button.ToolTip>
                                 </Button>
                             </StackPanel>
                         </DataTemplate>
