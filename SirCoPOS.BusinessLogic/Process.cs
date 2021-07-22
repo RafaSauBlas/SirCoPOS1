@@ -1811,10 +1811,15 @@ namespace SirCoPOS.BusinessLogic
                             var plan = ctxc.PlanPagos.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Single();
                             if (plan.pagado == "1")
                                 throw new NotSupportedException();
-                            foreach (var det in plan.Detalle)
+
+                            var planDet = ctxc.PlanPagosDetalle.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Select(i => new { i.pagado, i.abono });
+                            if (planDet != null)
                             {
-                                if (det.pagado == "1" || det.abono > 0)
-                                    throw new NotSupportedException();
+                                foreach (var det in planDet)
+                                {
+                                    if (det.pagado == "1" || det.abono > 0)
+                                        throw new NotSupportedException();
+                                }
                             }
                             plan.status = "ZC";
                             var cliente = ctxc.Distribuidores.Where(i => i.distrib == plan.distrib).Single();
@@ -1832,10 +1837,14 @@ namespace SirCoPOS.BusinessLogic
                             var plan = ctxc.PlanPagos.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Single();
                             if (plan.pagado == "1")
                                 throw new NotSupportedException();
-                            foreach (var det in plan.Detalle)
+                            var planDet = ctxc.PlanPagosDetalle.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Select(i => new { i.pagado, i.abono });
+                            if (planDet != null)
                             {
+                                foreach (var det in planDet)
+                                {
                                 if (det.pagado == "1" || det.abono > 0)
                                     throw new NotSupportedException();
+                                }
                             }
                             plan.status = "ZC";
                             var cliente = ctxc.Distribuidores.Where(i => i.distrib == plan.distrib).Single();
@@ -1849,10 +1858,14 @@ namespace SirCoPOS.BusinessLogic
                             var plan = ctxc.PlanPagos.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Single();
                             if (plan.pagado == "1")
                                 throw new NotSupportedException();
-                            foreach (var det in plan.Detalle)
+                            var planDet = ctxc.PlanPagosDetalle.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Select(i => new { i.pagado, i.abono });
+                            if (planDet != null)
                             {
+                                foreach (var det in planDet)
+                                {
                                 if (det.pagado == "1" || det.abono > 0)
                                     throw new NotSupportedException();
+                                }
                             }
                             plan.status = "ZC";
                             var cliente = ctxc.Distribuidores.Where(i => i.distrib == plan.distrib).Single();
@@ -1871,10 +1884,14 @@ namespace SirCoPOS.BusinessLogic
                             var plan = ctxc.PlanPagos.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Single();
                             if (plan.pagado == "1")
                                 throw new NotSupportedException();
-                            foreach (var det in plan.Detalle)
+                            var planDet = ctxc.PlanPagosDetalle.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Select(i => new { i.pagado, i.abono });
+                            if (planDet != null)
                             {
+                                foreach (var det in planDet)
+                                {
                                 if (det.pagado == "1" || det.abono > 0)
                                     throw new NotSupportedException();
+                                }
                             }
                             plan.status = "ZC";
                             var cliente = ctxc.Distribuidores.Where(i => i.distrib == plan.distrib).Single();

@@ -133,6 +133,8 @@
   <ItemGroup>
     <Compile Include="Converters\ArrayMultiConverter.cs" />
     <Compile Include="Converters\BoolTextConverter.cs" />
+    <Compile Include="Converters\FPagoToTextConverter.cs" />
+    <Compile Include="Converters\ImageToSourceConverter.cs" />
     <Compile Include="Converters\ImageUrlConverter.cs" />
     <Compile Include="Converters\ImageUrlMultiConverter.cs" />
     <Compile Include="Converters\InverseBoolConverter.cs" />

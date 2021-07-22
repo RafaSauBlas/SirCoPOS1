@@ -35,20 +35,12 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     }
                     else
                     {
-                        if (!this.Vale.Usado)
-                        {
-                            this.SucursalSearch = null;
-                            this.Search = null;
-                            if (!this.HasPromocion)
-                                this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
-                            if (!this.Vale.Distribuidor.Promocion)
-                                this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
-                        }
-                        else
-                        {
-                            MessageBox.Show("El ContraVale " + Vale.Vale + " ya ha sido utilizado con la\nnota de Venta " + Vale.SucursalUsado + "-" + Vale.NotaUsado + " el " + Vale.FechaUsado.ToString("dd-MMM-yyyy"), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                            this.Search = null;
-                        }
+                        this.SucursalSearch = null;
+                        this.Search = null;
+                        if (!this.HasPromocion)
+                            this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
+                        if (!this.Vale.Distribuidor.Promocion)
+                            this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
                     }
                 }
                 else
