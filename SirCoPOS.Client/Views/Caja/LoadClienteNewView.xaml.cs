@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace SirCoPOS.Client.Views.Caja
 {
@@ -32,6 +33,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void tbNombre_KeyDown(object sender, KeyEventArgs e)
         {
+            
             tbNombre.CharacterCasing = CharacterCasing.Upper;
         }
 
@@ -48,6 +50,79 @@ namespace SirCoPOS.Client.Views.Caja
         private void tbCalle_KeyDown(object sender, KeyEventArgs e)
         {
             tbCalle.CharacterCasing = CharacterCasing.Upper;
+        }
+
+        private void tbCP_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            int character = Convert.ToInt32(Convert.ToChar(e.Text));
+            if (character >= 48 && character <= 57)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void tbNumero_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            int character = Convert.ToInt32(Convert.ToChar(e.Text));
+            if (character >= 48 && character <= 57)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void tbCelular_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            int character = Convert.ToInt32(Convert.ToChar(e.Text));
+            if (character >= 48 && character <= 57)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void tbCelular2_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            int character = Convert.ToInt32(Convert.ToChar(e.Text));
+            if (character >= 48 && character <= 57)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void tbNombre_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textboxSender = (TextBox)sender;
+            var cursorPosition = tbNombre.SelectionStart;
+            tbNombre.Text = Regex.Replace(textboxSender.Text, "[^a-zA-Z ]", "");
+            tbNombre.SelectionStart = cursorPosition;
+        }
+
+        private void tbApPa_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textboxSender = (TextBox)sender;
+            var cursorPosition = tbApPa.SelectionStart;
+            tbApPa.Text = Regex.Replace(textboxSender.Text, "[^a-zA-Z ]", "");
+            tbApPa.SelectionStart = cursorPosition;
+        }
+
+        private void tbApMa_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textboxSender = (TextBox)sender;
+            var cursorPosition = tbApMa.SelectionStart;
+            tbApMa.Text = Regex.Replace(textboxSender.Text, "[^a-zA-Z ]", "");
+            tbApMa.SelectionStart = cursorPosition;
+        }
+
+        private void tbCalle_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textboxSender = (TextBox)sender;
+            var cursorPosition = tbCalle.SelectionStart;
+            tbCalle.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z ]", "");
+            tbCalle.SelectionStart = cursorPosition;
+        }
+
+        private void tbNumero_GotFocus(object sender, RoutedEventArgs e)
+        {
+            tbNumero.SelectAll();
         }
     }
 }

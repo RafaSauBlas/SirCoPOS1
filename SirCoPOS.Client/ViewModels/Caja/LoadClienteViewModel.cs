@@ -166,7 +166,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
         {
             if (this.Screen == "new")
             {
-                var exists = _proxy.CheckCelular(this.NuevoCliente.Celular);
+                var celular = _common.PreparePhone(this.NuevoCliente.Celular1);
+                var exists = _proxy.CheckCelular(celular);
                 if(!exists)
                 {
                     Messenger.Default.Send(new Messages.NuevoClienteMessage
@@ -175,7 +176,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     }, this.GID);
                 }
                 else
-                    MessageBox.Show("El telefono esta duplicado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("YA EXISTE UN CLIENTE REGISTRADO CON EL MISMO NÚMERO CELULAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             if (this.Screen == "search")
             {
@@ -186,7 +187,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             }
             if (this.Screen == "")
             {
-                MessageBox.Show("El telefono esta duplicado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("YA EXISTE UN CLIENTE REGISTRADO CON EL MISMO NÚMERO CELULAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }

@@ -14,6 +14,7 @@ namespace SirCoPOS.Utilities.Entities
         public string CodigoPostal { get; set; }
         public Common.Entities.Colonia Colonia { get; set; }
         public string Celular { get; set; }
+        public string Celular1 { get; set; }
         public string Calle { get; set; }
         public short? Numero { get; set; }
         public string Referencia { get; set; }

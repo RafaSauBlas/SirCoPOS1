@@ -45,6 +45,11 @@ namespace SirCoPOS.Client.Models
             get { return this.GetValue<string>(nameof(this.Celular)); }
             set { this.SetValue(nameof(this.Celular), value); }
         }
+        public string Celular1
+        {
+            get { return this.GetValue<string>(nameof(this.Celular1)); }
+            set { this.SetValue(nameof(this.Celular1), value); }
+        }
         public string Calle
         {
             get { return this.GetValue<string>(nameof(this.Calle)); }
