@@ -26,40 +26,28 @@ namespace SirCoPOS.Client.Converters
                 {
                     case SirCoPOS.Common.Constants.FormaPago.CD:
                         return "CREDITO DISTRIBUIDOR";
-                        break;
                     case SirCoPOS.Common.Constants.FormaPago.CP:
                         return "CREDITO PERSONAL";
-                        break;
                     case SirCoPOS.Common.Constants.FormaPago.CV:
                         return "CONTRAVALE";
-                        break;
                     case SirCoPOS.Common.Constants.FormaPago.DV:
                         return "DEVOLUCION";
-                        break;
                     case SirCoPOS.Common.Constants.FormaPago.EF:
                         return "EFECTIVO";
-                        break;
                     case SirCoPOS.Common.Constants.FormaPago.TC:
                         return "TARJETA DE CREDITO";
-                        break;
                     case SirCoPOS.Common.Constants.FormaPago.TD:
                         return "TARJETA DE DEBITO";
-                        break;
                     case SirCoPOS.Common.Constants.FormaPago.VA:
                         return "VALE";
-                        break;
                     case SirCoPOS.Common.Constants.FormaPago.VD:
                         return "VALE DIGITAL";
-                        break;
                     case SirCoPOS.Common.Constants.FormaPago.MD:
                         return "MONEDERO ELECTRONICO";
-                        break;
                     case SirCoPOS.Common.Constants.FormaPago.VE:
                         return "VALE EXTERNO";
-                        break;
                     default:
                         return "";
-                        break;
                 }
 
             }
