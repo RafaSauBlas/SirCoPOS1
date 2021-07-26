@@ -541,9 +541,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             this.Clear(false);
             this.IsBusy = false;
             //MessageBox.Show($"ID: {this.Folio}");
+            _reports.Compra(this.Sucursal.Clave, this.SaleResponse.Folio);
+            this.CloseCommand.Execute(null);
         }
 
-        
+
         private async void Clear(bool release)
         {
             _ls.Clear();

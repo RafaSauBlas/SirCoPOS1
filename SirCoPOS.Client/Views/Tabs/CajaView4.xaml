@@ -1,4 +1,4 @@
-﻿<UserControl
+﻿<UserControl 
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -513,7 +513,7 @@
             </Grid>
         </tk:BusyIndicator>
 
-        <tk:ChildWindow DesignerWindowState="Open" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="197" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
+        <tk:ChildWindow DesignerWindowState="Open" WindowState="Closed" Height="197" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
             <tk:ChildWindow.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
             </tk:ChildWindow.Background>
@@ -545,7 +545,7 @@
             </Grid>
         </tk:ChildWindow>
 
-        <tk:ChildWindow  Caption="Formas de Pago"  DesignerWindowState="Closed" WindowState="{Binding ShowPagos, Converter={StaticResource windowState}, Mode=TwoWay}" Height="510" Width="668" WindowStartupLocation="Center" IsModal="True" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <tk:ChildWindow  Caption="Formas de Pago"  DesignerWindowState="Closed" WindowState="{Binding ShowPagos, Converter={StaticResource windowState}, Mode=TwoWay}" Height="540" Width="723" WindowStartupLocation="Center" IsModal="True" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid>
                 <ItemsControl ItemsSource="{Binding FormasPago}" Padding="10">
                     <ItemsControl.ItemsPanel>
@@ -556,13 +556,13 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Button Width="150" Height="150" Margin="0,0,10,10" IsEnabled="{Binding Value.Enabled}">
+                                <Button Width="164" Height="160" Margin="0,0,10,10" IsEnabled="{Binding Value.Enabled}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
                                             <i:InvokeCommandAction CommandParameter="{Binding Key}" Command="{Binding DataContext.AddFormaCommand, ElementName=dummyElement}"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
-                                    <Image Source="{Binding Key, Mode=OneWay, Converter={StaticResource ImgSource}}" />
+                                    <Image Source="{Binding Key, Mode=OneWay, Converter={StaticResource ImgSource}}"  RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill"/>
                                     <Button.ToolTip>
                                         <TextBlock Text="{Binding Key, Mode=OneWay, Converter={StaticResource FPagoText}}" />
                                     </Button.ToolTip>
