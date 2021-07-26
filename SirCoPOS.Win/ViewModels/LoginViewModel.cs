@@ -48,7 +48,8 @@ namespace SirCoPOS.Win.ViewModels
                 {
                     return !string.IsNullOrEmpty(this.UserName)
                     && !string.IsNullOrEmpty(this.Password)
-                    && !string.IsNullOrEmpty(this.Sucursal);
+                    && !string.IsNullOrEmpty(this.Sucursal)
+                    && this.Sucursal.Length ==2;
                 });
 
                 this.PropertyChanged += Login_PropertyChanged;

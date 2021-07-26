@@ -520,7 +520,7 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
 
             if (cli.codigopostal != null)
             {
-                Cliente.Add(cli.celular1);
+                Cliente.Add(cli.codigopostal);
             }
             else
             {
@@ -528,7 +528,7 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
             }
             if (cli.celular != null )
             {
-                Cliente.Add($"{cli.celular1}");
+                Cliente.Add($"{cli.celular}");
             }
             else
             {

@@ -83,7 +83,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 {                    
                     if (this.IsValid())
                     {
-                        var pagado = this.Productos.All(i => i.Pagado);
+                        var pagado = this.Productos.Where(i=>i.Precio > 0).All(i => i.Pagado);
                         if(pagado)
                             return true;
                     }
@@ -541,9 +541,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             this.Clear(false);
             this.IsBusy = false;
             //MessageBox.Show($"ID: {this.Folio}");
+            _reports.Compra(this.Sucursal.Clave, this.SaleResponse.Folio);
+            this.CloseCommand.Execute(null);
         }
 
-        
+
         private async void Clear(bool release)
         {
             _ls.Clear();
