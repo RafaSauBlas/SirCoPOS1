@@ -96,12 +96,13 @@
                     <m:TabType>CancelacionDevolucion</m:TabType>
                 </Button.CommandParameter>
                 <Grid>
-                    <TextBlock Text="Cancelar Devolución&#10;              (F5)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,-2,0,-26" FontSize="16"/>
+                    <Image Source="/SirCoPOS.Win;component/Images/cancel-devol.png" Margin="22,0,1,22"/>
+                    <TextBlock Text="Cancela Devol (F5)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="-7,0,-9,0" FontSize="16" Height="22" Width="140"/>
                 </Grid>
             </Button>
-            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}" CommandParameter="pagos">
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}" CommandParameter="FondoArqueo">
                 <Grid>
-                    <TextBlock Text="Pagos" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                    <TextBlock Text="Arqueo Efectivo" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
             <!--Boton Entrega de Efectivo-->
@@ -110,8 +111,10 @@
                     <m:TabType>Efectivo</m:TabType>
                 </Button.CommandParameter>
                 <Grid>
-                    <TextBlock Text="Entrega Efectivo" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                    <Image Source="/SirCoPOS.Win;component/Images/entrega_efectivo.png" Height="101" Width="101"/>
+                    <TextBlock Text="Entrega Efectivo" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="7,0,-6,-10" FontSize="16" Height="21" Width="123"/>
                 </Grid>
+
             </Button>
             <!--Boton Corte Caja-->
             <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
@@ -119,7 +122,7 @@
                     <m:TabType>Corte</m:TabType>
                 </Button.CommandParameter>
                 <Grid>
-                    <TextBlock Text="Corte Caja" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                    <TextBlock Text="Entrega Caja" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
 

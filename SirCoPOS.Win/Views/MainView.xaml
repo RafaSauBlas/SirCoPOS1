@@ -130,7 +130,7 @@
                         </MenuItem.CommandParameter>
                     </MenuItem>
                     <MenuItem Header="Dinero Electrónico" Command="{Binding OpenCommand}" CommandParameter="dineroElectronico"/>
-                    <MenuItem Header="Administración" Command="{Binding OpenCommand}" CommandParameter="administracion"/>
+                    <MenuItem Header="Administración" Command="{Binding OpenCommand}" CommandParameter="administracion" IsEnabled="False"/>
                     <MenuItem Header="Cambio" Command="{Binding OpenCommand}">
                         <MenuItem.CommandParameter>
                             <m:TabType>Cambio</m:TabType>
@@ -157,8 +157,6 @@
                             <m:TabType>CancelacionCambio</m:TabType>
                         </MenuItem.CommandParameter>
                     </MenuItem>
-                    <Separator/>
-                    <MenuItem Header="Pagos" Command="{Binding OpenCommand}" CommandParameter="pagos"/>
                     <Separator/>
                     <MenuItem Header="Consulta Venta" Command="{Binding OpenCommand}">
                         <MenuItem.CommandParameter>
@@ -187,11 +185,11 @@
                             <m:TabType>FondoApertura</m:TabType>
                         </MenuItem.CommandParameter>
                     </MenuItem>
-                    <MenuItem Header="Cerrar Fondo" Command="{Binding OpenCommand}">
+                    <!--<MenuItem Header="Cerrar Fondo" Command="{Binding OpenCommand}">
                         <MenuItem.CommandParameter>
                             <m:TabType>FondoCierre</m:TabType>
                         </MenuItem.CommandParameter>
-                    </MenuItem>
+                    </MenuItem>-->
                     <MenuItem Header="Arqueo de Efectivo" Command="{Binding OpenCommand}">
                         <MenuItem.CommandParameter>
                             <m:TabType>FondoArqueo</m:TabType>
@@ -218,9 +216,6 @@
                             <m:TabType>Bonos</m:TabType>
                         </MenuItem.CommandParameter>
                     </MenuItem>
-                    <Separator/>
-                    <MenuItem Header="Corte" Command="{Binding OpenCommand}" CommandParameter="pagos"/>
-                    <MenuItem Header="Arqueo" Command="{Binding OpenCommand}" CommandParameter="pagos"/>
                     <Separator/>
                     <MenuItem Header="Cerrar Sesión" Command="{Binding LogoutCommand}"/>
                     <MenuItem Header="Salir" Command="{Binding CloseCommand}" Click="MenuItem_Click_1"/>
