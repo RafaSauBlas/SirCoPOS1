@@ -12,17 +12,17 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance Type={x:Type vm:LoadClienteViewModel}}"
-             Height="223.719" Width="400" Loaded="UserControl_Loaded">
+             Height="224.879" Width="317.598" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <c:ImageUrlConverter x:Key="imageUrl"></c:ImageUrlConverter>
         <c:WindowStateConverter x:Key="windowState"/>
     </UserControl.Resources>
-    <Grid x:Name="Pruebin" Margin="0" Height="222" VerticalAlignment="Top">
+    <Grid x:Name="Pruebin" Margin="0,0,0,-26" Height="224" VerticalAlignment="Top">
         <Grid.Background>
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
         </Grid.Background>
         <!--Boton genera Nuevo Cliente-->
-        <Button x:Name="CambioVentana" Command="{Binding ChangeViewCommand}" CommandParameter="new"  Margin="0,183,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="CambioVentana_Click">
+        <Button x:Name="CambioVentana" Command="{Binding ChangeViewCommand}" CommandParameter="new"  Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="CambioVentana_Click" Height="29">
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Button.Background>
@@ -44,11 +44,11 @@
         <!--Etiqueta Id-->
         <TextBlock Visibility="Hidden" HorizontalAlignment="Left" Margin="10,205,0,0" TextWrapping="Wrap" Text="Id:" VerticalAlignment="Top"/>
         <!--Nombre Cliente-->
-        <TextBlock Visibility="Hidden" x:Name="lbl_nombre" HorizontalAlignment="Left" Margin="124,234,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Nombre}" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock  x:Name="lbl_nombre" HorizontalAlignment="Left" Margin="10,150,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Nombre}" VerticalAlignment="Top" FontWeight="Bold"/>
         <!--Apellido Paterno-->
-        <TextBlock Visibility="Hidden" x:Name="lbl_ApPa" HorizontalAlignment="Left" Margin="124,269,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApPaterno}" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock  x:Name="lbl_ApPa" HorizontalAlignment="Left" Margin="9,171,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApPaterno}" VerticalAlignment="Top" FontWeight="Bold"/>
         <!--Apellido Materno-->
-        <TextBlock Visibility="Hidden" x:Name="lbl_ApMa" Margin="124,302,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApMaterno}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
+        <TextBlock  x:Name="lbl_ApMa" Margin="10,192,0,0" TextWrapping="Wrap" Text="{Binding Cliente.ApMaterno}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
         <!--Eiqueta Nombre-->
         <TextBlock Visibility="Hidden" HorizontalAlignment="Left" Margin="10,234,0,0" TextWrapping="Wrap" Text="Nombre:" VerticalAlignment="Top"/>
         <!--Etiqueta Apellido Paterno-->
@@ -58,7 +58,7 @@
         <!--Etiqueta telefono-->
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,20,0,0" TextWrapping="Wrap" Text="Telefono" VerticalAlignment="Top"/>
         <!--Captura de telefono para busqueda-->
-        <xt:MaskedTextBox x:Name="txt_Telefono" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="114,17,0,0" TextWrapping="Wrap" Text="{Binding ClienteTelefonoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyboardNavigation.TabIndex ="1">
+        <xt:MaskedTextBox x:Name="txt_Telefono" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="114,17,0,0" TextWrapping="Wrap" Text="{Binding ClienteTelefonoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1" FontSize="15">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </TextBox.InputBindings>

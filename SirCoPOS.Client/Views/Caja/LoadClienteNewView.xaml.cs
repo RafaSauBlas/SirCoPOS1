@@ -21,6 +21,7 @@ namespace SirCoPOS.Client.Views.Caja
     /// </summary>
     public partial class LoadClienteNewView : UserControl
     {
+        private Common.ServiceContracts.IDataServiceAsync _proxy;
         public LoadClienteNewView()
         {
             InitializeComponent();
@@ -123,6 +124,25 @@ namespace SirCoPOS.Client.Views.Caja
         private void tbNumero_GotFocus(object sender, RoutedEventArgs e)
         {
             tbNumero.SelectAll();
+        }
+
+        private void tbApMa_LostFocus(object sender, RoutedEventArgs e)
+        {
+            _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
+            var name = tbNombre.Text + " " + tbApPa.Text + " " + tbApMa.Text;
+            var exists = _proxy.CheckNombreC(name);
+            if (!exists)
+            {
+                
+            }
+            else
+            {
+                MessageBox.Show("YA HAY UN CLIENTE LLAMADO \"" + name + "\"", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                tbApPa.Text = "";
+                tbApMa.Text = "";
+            }
+                
+
         }
     }
 }

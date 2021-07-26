@@ -166,9 +166,9 @@ namespace SirCoPOS.Client.ViewModels.Caja
         {
             if (this.Screen == "new")
             {
-                var celular = _common.PreparePhone(this.NuevoCliente.Celular1);
+                var celular = _common.PreparePhone(this.NuevoCliente.Celular);
                 var exists = _proxy.CheckCelular(celular);
-                if(!exists)
+                if (!exists)
                 {
                     Messenger.Default.Send(new Messages.NuevoClienteMessage
                     {

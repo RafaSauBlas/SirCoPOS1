@@ -104,6 +104,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         bool CheckCelular(string celular);
         [OperationContract]
+        bool CheckNombreC(string nombrec);
+        [OperationContract]
         Common.Entities.MedidasCorridas GetPrecios(int id);
         [OperationContract]
         IEnumerable<Common.Entities.SucursalExistencia> GetExistencias(int id, string medida);

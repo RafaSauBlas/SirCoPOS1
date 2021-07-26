@@ -16,6 +16,7 @@ namespace SirCoPOS.Common.Entities
         public string ApPaterno { get; set; }
         public string ApMaterno { get; set;  }
         public string Celular { get; set; }
+        public string Celular1 { get; set; }
         public string CodigoPostal { get; set; }
         public int? Colonia { get; set; }
         public int? Ciudad { get; set; }

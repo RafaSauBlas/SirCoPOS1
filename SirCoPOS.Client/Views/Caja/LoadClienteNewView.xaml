@@ -6,7 +6,7 @@
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance Type={x:Type vm:LoadClienteViewModel}}"
-             Height="448.175" Width="391" Loaded="UserControl_Loaded">
+             Height="476.675" Width="506" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.Background>
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
@@ -19,23 +19,23 @@
             <Image x:Name="cancel" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/lupa.png" />
         </Button>
         <!--Etiqueta Nombre-->
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="30,9,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="78,9,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
         <!--TextBox Nombre Cliente-->
-        <TextBox x:Name="tbNombre" HorizontalAlignment="Left" Height="28" Margin="10,35,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Nombre}" VerticalAlignment="Top" Width="120" TabIndex="1" KeyDown="tbNombre_KeyDown" TextChanged="tbNombre_TextChanged"/>
+        <TextBox x:Name="tbNombre" HorizontalAlignment="Left" Height="28" Margin="10,35,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Nombre}" VerticalAlignment="Top" Width="149" TabIndex="1" KeyDown="tbNombre_KeyDown" TextChanged="tbNombre_TextChanged"/>
         <!--TextBox ApPAterno-->
-        <TextBox x:Name="tbApPa" HorizontalAlignment="Left" Height="28" Margin="135,35,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.ApPaterno}" VerticalAlignment="Top" Width="120" TabIndex="2" KeyDown="tbApPa_KeyDown" TextChanged="tbApPa_TextChanged"/>
+        <TextBox x:Name="tbApPa" HorizontalAlignment="Left" Height="28" Margin="179,35,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.ApPaterno}" VerticalAlignment="Top" Width="149" TabIndex="2" KeyDown="tbApPa_KeyDown" TextChanged="tbApPa_TextChanged"/>
         <!--TextBox Apellido Materno-->
-        <TextBox x:Name="tbApMa" HorizontalAlignment="Left" Height="28" Margin="260,35,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.ApMaterno}" VerticalAlignment="Top" Width="120" TabIndex="3" KeyDown="tbApMa_KeyDown" TextChanged="tbApMa_TextChanged"/>
+        <TextBox x:Name="tbApMa" Height="28" Margin="345,35,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.ApMaterno}" VerticalAlignment="Top" TabIndex="3" KeyDown="tbApMa_KeyDown" TextChanged="tbApMa_TextChanged" HorizontalAlignment="Left" Width="149" LostFocus="tbApMa_LostFocus"/>
         <!--TextBox con Mascara Telefono-->
-        <xt:MaskedTextBox x:Name="tbCelular" HorizontalAlignment="Left" Height="28" Margin="80,307,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Celular}" VerticalAlignment="Top" Width="100" Mask="(000) 000-0000" TabIndex="9" PreviewTextInput="tbCelular_PreviewTextInput" />
+        <xt:MaskedTextBox x:Name="tbCelular" HorizontalAlignment="Left" Height="28" Margin="80,307,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Celular}" VerticalAlignment="Top" Width="119" Mask="(000) 000-0000" TabIndex="9" PreviewTextInput="tbCelular_PreviewTextInput" FontSize="15" />
         <!--TextBox con Mascara Telefono2-->
-        <xt:MaskedTextBox x:Name="tbCelular2" HorizontalAlignment="Left" Height="28" Margin="279,307,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Celular1}" VerticalAlignment="Top" Width="100" Mask="(000) 000-0000" TabIndex="10" PreviewTextInput="tbCelular2_PreviewTextInput" />
+        <xt:MaskedTextBox x:Name="tbCelular2" HorizontalAlignment="Left" Height="28" Margin="324,307,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Celular1}" VerticalAlignment="Top" Width="100" Mask="(000) 000-0000" TabIndex="10" PreviewTextInput="tbCelular2_PreviewTextInput" />
         <!--TextBox Codigo postal-->
         <TextBox x:Name="tbCP" MaxLength="5" HorizontalAlignment="Left" Height="28" Margin="130,78,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.CodigoPostal}" VerticalAlignment="Top" Width="90" TabIndex="4" PreviewTextInput="tbCP_PreviewTextInput"/>
-        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="145,9,0,0" TextWrapping="Wrap" Text="Ap. Paterno" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="270,9,0,0" TextWrapping="Wrap" Text="Ap. Materno" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="197,9,0,0" TextWrapping="Wrap" Text="Ap. Paterno" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="378,12,0,0" TextWrapping="Wrap" Text="Ap. Materno" VerticalAlignment="Top"/>
         <TextBlock x:Name="lbl_cel" HorizontalAlignment="Left" Margin="10,310,0,0" TextWrapping="Wrap" Text="Celular" VerticalAlignment="Top"/>
-        <TextBlock x:Name="lbl_cel2" HorizontalAlignment="Left" Margin="200,310,0,0" TextWrapping="Wrap" Text="Celular 2" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lbl_cel2" HorizontalAlignment="Left" Margin="245,310,0,0" TextWrapping="Wrap" Text="Celular 2" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,81,0,0" TextWrapping="Wrap" Text="Código Postal" VerticalAlignment="Top"/>
         <!--ComboBox  Codigo postal-->
         <ComboBox x:Name="cbColonia" HorizontalAlignment="Left" Margin="80,190,0,0" ItemsSource="{Binding Colonias}" DisplayMemberPath="Nombre" SelectedItem="{Binding NuevoCliente.Colonia}" VerticalAlignment="Top" Height="25" TabIndex="5" >
@@ -45,31 +45,31 @@
         </ComboBox>
         <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,193,0,0" TextWrapping="Wrap" Text="Colonia" VerticalAlignment="Top"/>
         <!--Despliegue ciudad.-->
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="245,140,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Colonia.CiudadNombre}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="340,140,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Colonia.CiudadNombre}" VerticalAlignment="Top"/>
         <!--Despliegue nombre-->
-        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Right" Margin="0,140,255,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Colonia.EstadoNombre}" VerticalAlignment="Top" TextAlignment="Center"/>
-        <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="260,114,0,0" TextWrapping="Wrap" Text="Ciudad" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="60,114,0,0" TextWrapping="Wrap" Text="Estado" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="74,140,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Colonia.EstadoNombre}" VerticalAlignment="Top" TextAlignment="Center"/>
+        <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="355,114,0,0" TextWrapping="Wrap" Text="Ciudad" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="88,114,0,0" TextWrapping="Wrap" Text="Estado" VerticalAlignment="Top"/>
         <!--TextBox Calle-->
-        <TextBox x:Name="tbCalle" HorizontalAlignment="Left" Margin="55,225,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Calle}" Width="185" Height="28" VerticalAlignment="Top" TabIndex="6" KeyDown="tbCalle_KeyDown" TextChanged="tbCalle_TextChanged"/>
+        <TextBox x:Name="tbCalle" HorizontalAlignment="Left" Margin="55,225,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Calle}" Width="223" Height="28" VerticalAlignment="Top" TabIndex="6" KeyDown="tbCalle_KeyDown" TextChanged="tbCalle_TextChanged"/>
         <!--TextBox Numero-->
-        <TextBox x:Name="tbNumero" HorizontalAlignment="Left" Margin="320,225,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Numero}" Width="60" Height="28" VerticalAlignment="Top" TabIndex="7" PreviewTextInput="tbNumero_PreviewTextInput" GotFocus="tbNumero_GotFocus"/>
+        <TextBox x:Name="tbNumero" HorizontalAlignment="Left" Margin="366,225,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Numero}" Width="60" Height="28" VerticalAlignment="Top" TabIndex="7" PreviewTextInput="tbNumero_PreviewTextInput" GotFocus="tbNumero_GotFocus"/>
         <!--TextBox referenca-->
-        <TextBox x:Name="tbIdenti" HorizontalAlignment="Left" Margin="140,268,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Referencia}" Width="220" Height="28" VerticalAlignment="Top" TabIndex="8"/>
+        <TextBox x:Name="tbIdenti" HorizontalAlignment="Left" Margin="140,268,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Referencia}" Width="286" Height="28" VerticalAlignment="Top" TabIndex="8"/>
         <!--TextBox correo-->
         <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Margin="64,353,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Email}" Width="135" Height="28" VerticalAlignment="Top" TabIndex="11"/>
         <TextBlock x:Name="textBlock_Copy7" HorizontalAlignment="Left" Margin="10,228,0,0" TextWrapping="Wrap" Text="Calle" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy8" HorizontalAlignment="Left" Margin="246,228,0,0" TextWrapping="Wrap" Text="Número" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy8" HorizontalAlignment="Left" Margin="292,228,0,0" TextWrapping="Wrap" Text="Número" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy9" HorizontalAlignment="Left" Margin="10,271,0,0" TextWrapping="Wrap" Text="Identificación:" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy10" HorizontalAlignment="Left" Margin="9,356,0,0" TextWrapping="Wrap" Text="E-mail" VerticalAlignment="Top"/>
         <!--ComboBox Sexo-->
-        <ComboBox SelectedValuePath="Content" SelectedValue="{Binding NuevoCliente.Sexo}" x:Name="cbSexo" HorizontalAlignment="Left" Margin="311,353,0,0" VerticalAlignment="Top" Width="50" TabIndex="12">
+        <ComboBox SelectedValuePath="Content" SelectedValue="{Binding NuevoCliente.Sexo}" x:Name="cbSexo" HorizontalAlignment="Left" Margin="327,353,0,0" VerticalAlignment="Top" Width="50" TabIndex="12">
             <ComboBox.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </ComboBox.Background>
             <ComboBoxItem>M</ComboBoxItem>
             <ComboBoxItem>F</ComboBoxItem>
         </ComboBox>
-        <TextBlock x:Name="textBlock_Copy11" HorizontalAlignment="Left" Margin="241,356,0,0" TextWrapping="Wrap" Text="Sexo" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock_Copy11" HorizontalAlignment="Left" Margin="257,356,0,0" TextWrapping="Wrap" Text="Sexo" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

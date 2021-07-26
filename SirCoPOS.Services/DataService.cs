@@ -535,11 +535,11 @@ namespace SirCoPOS.Services
             var ctx = new DataAccess.SirCoCreditoDataContext();
             DataAccess.SirCoCredito.Cliente item = null;
             if (id.HasValue)
-                item = ctx.Clientes.Where(i => i.idcliente == id).SingleOrDefault();
+                item = ctx.Clientes.Where(i => i.idcliente == id).FirstOrDefault();
             else if (!string.IsNullOrWhiteSpace(telefono))
-                item = ctx.Clientes.Where(i => i.celular == telefono).SingleOrDefault();
+                item = ctx.Clientes.Where(i => i.celular1 == telefono).FirstOrDefault();
             else if (!string.IsNullOrWhiteSpace(nombre))
-                item = ctx.Clientes.Where(i => i.nombrecompleto == nombre).SingleOrDefault();
+                item = ctx.Clientes.Where(i => i.nombrecompleto == nombre).FirstOrDefault();
             if (item == null)
                 return null;
 
@@ -629,7 +629,7 @@ namespace SirCoPOS.Services
             //if (id.HasValue)
             //    item = ctx.Clientes.Where(i => i.idcliente == id).SingleOrDefault();
             if (!string.IsNullOrWhiteSpace(telefono))
-                item = ctx.Clientes.Where(i => i.celular == telefono).SingleOrDefault();
+                item = ctx.Clientes.Where(i => i.celular1 == telefono).SingleOrDefault();
             // Busquedas por nombre 
             else if (!string.IsNullOrWhiteSpace(nombre) && appa == null && apma == null)
                 itemm = ctx.Clientes.Where(i => i.nombre == nombre).ToArray();
@@ -932,6 +932,12 @@ namespace SirCoPOS.Services
         {
             var ctxc = new DataAccess.SirCoCreditoDataContext();
             var q = ctxc.Clientes.Where(i => i.celular == celular);
+            return q.Any();
+        }
+        public bool CheckNombreC(string nombrec)
+        {
+            var ctxc = new DataAccess.SirCoCreditoDataContext();
+            var q = ctxc.Clientes.Where(i => i.nombrecompleto == nombrec);
             return q.Any();
         }
         public Common.Entities.MedidasCorridas GetPrecios(int id)

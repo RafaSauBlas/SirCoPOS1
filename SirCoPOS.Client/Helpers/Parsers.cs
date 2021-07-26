@@ -35,7 +35,7 @@ namespace SirCoPOS.Client.Helpers
                     Nombre = ncliente.Nombre,
                     ApPaterno = ncliente.ApPaterno,
                     ApMaterno = ncliente.ApMaterno,
-                    Celular = _common.PreparePhone(ncliente.Celular),
+                    Celular1 = ncliente.Celular,
                     CodigoPostal = ncliente.CodigoPostal,
                     Colonia = ncliente.Colonia.Id,
                     Ciudad = ncliente.Colonia.CiudadId,
@@ -44,7 +44,8 @@ namespace SirCoPOS.Client.Helpers
                     Numero = ncliente.Numero,
                     Referencia = ncliente.Referencia,
                     Email = ncliente.Email,
-                    Sexo = ncliente.Sexo
+                    Sexo = ncliente.Sexo,
+                    Celular = ncliente.Celular
                 };
             }
             return null;
