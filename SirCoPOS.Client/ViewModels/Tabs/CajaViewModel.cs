@@ -83,7 +83,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 {                    
                     if (this.IsValid())
                     {
-                        var pagado = this.Productos.All(i => i.Pagado);
+                        var pagado = this.Productos.Where(i=>i.Precio > 0).All(i => i.Pagado);
                         if(pagado)
                             return true;
                     }
