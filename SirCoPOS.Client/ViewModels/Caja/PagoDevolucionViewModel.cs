@@ -12,11 +12,12 @@ namespace SirCoPOS.Client.ViewModels.Caja
     {
         public override string Title => "Pago Devolucion";
         private Common.ServiceContracts.IDataServiceAsync _proxy;
+        //private Common.ServiceContracts.IProcessServiceAsync _proc;
         public PagoDevolucionViewModel()
         {
             if (!this.IsInDesignMode)
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
-
+                //_proc = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IProcessServiceAsync>();
             this.PropertyChanged += PagoDevolucionViewModel_PropertyChanged;
 
             this.FindCommand = new RelayCommand(async () => {
@@ -28,6 +29,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         this.Pagar = this.Total;
                     else if (this.Devolucion.Disponible > 0)
                         this.Pagar = this.Devolucion.Disponible;
+                    //var tipoPago = _proc.GetPorcentajePorFPagoAsync(this.Sucursal, this.Folio);
                 }
                 this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.Sucursal) && !String.IsNullOrEmpty(this.Folio));

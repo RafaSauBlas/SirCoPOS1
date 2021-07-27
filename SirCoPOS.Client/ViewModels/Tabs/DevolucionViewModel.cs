@@ -113,6 +113,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 this.Folio = await _client.ReturnAsync(request);                
                 this.IsBusy = false;
 
+                _reports.Devolucion(this.Sucursal.Clave, this.Folio);
+                this.CloseCommand.Execute(null);
             }, () => this.Total > 0);
             
             this.PrintCommand = new RelayCommand(() => {

@@ -592,6 +592,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icon.ico" />
+    <Resource Include="Images\arqueo.png" />
     <Resource Include="Images\fondo 25%25.png" />
     <Resource Include="Images\Administracion.png" />
     <Resource Include="Images\caja.png" />
@@ -683,6 +684,8 @@
     <Resource Include="Images\VE.png" />
     <Resource Include="Images\cancel-devol.png" />
     <Resource Include="Images\entrega_efectivo.png" />
+    <Resource Include="Images\entrega.png" />
+    <Resource Include="Images\entrega_ef.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
