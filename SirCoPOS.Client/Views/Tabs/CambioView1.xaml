@@ -179,7 +179,7 @@
             </Grid>
         </xt:BusyIndicator>
 
-        <xt:ChildWindow DesignerWindowState="Open" WindowState="{Binding IsComplete, Converter={StaticResource windowState}, Mode=OneWay}" Height="200" Width="250" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <xt:ChildWindow DesignerWindowState="Open" WindowState="Closed" Height="200" Width="250" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid>
                 <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Devolucion" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Margin="10,39,0,0" TextWrapping="Wrap" Text="Venta" VerticalAlignment="Top"/>

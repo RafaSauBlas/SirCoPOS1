@@ -545,7 +545,7 @@
             </Grid>
         </tk:ChildWindow>
 
-        <tk:ChildWindow  Caption="Formas de Pago"  DesignerWindowState="Closed" WindowState="{Binding ShowPagos, Converter={StaticResource windowState}, Mode=TwoWay}" Height="540" Width="723" WindowStartupLocation="Center" IsModal="True" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <tk:ChildWindow  Caption="Formas de Pago"  DesignerWindowState="Closed" WindowState="{Binding ShowPagos, Converter={StaticResource windowState}, Mode=TwoWay}" Height="570" Width="740" WindowStartupLocation="Center" IsModal="True" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid>
                 <ItemsControl ItemsSource="{Binding FormasPago}" Padding="10">
                     <ItemsControl.ItemsPanel>
@@ -556,7 +556,7 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Button Width="164" Height="160" Margin="0,0,10,10" IsEnabled="{Binding Value.Enabled}">
+                                <Button Width="160" Height="140" Margin="0,0,10,10" IsEnabled="{Binding Value.Enabled}">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
                                             <i:InvokeCommandAction CommandParameter="{Binding Key}" Command="{Binding DataContext.AddFormaCommand, ElementName=dummyElement}"/>
