@@ -96,6 +96,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 request.Cliente = Helpers.Parsers.PaseCliente(this.NuevoCliente, this.Cliente, this.Sucursal);
                 this.Result = await _client.ChangeAsync(request);
                 this.IsBusy = false;
+
+                _reports.Compra(this.Sucursal.Clave, this.Result.Venta);
+                _reports.Devolucion(this.Sucursal.Clave, this.Result.Devolucion);
+
+                this.CloseCommand.Execute(null);
             }, () => this.Productos.Any() 
                 && !this.Productos.Where(i => !i.Complete).Any()
                 && this.Remaining <= 0);
