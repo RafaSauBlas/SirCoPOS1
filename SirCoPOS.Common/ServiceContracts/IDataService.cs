@@ -64,6 +64,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Common.Entities.Cliente FindCliente(int? id, string telefono = null, string nombre = null);
         [OperationContract]
+        Common.Entities.Cliente FinClienteName(string name);
+        [OperationContract]
         List<Cliente> FindCliente2(string telefono = null, string nombre = null, string appa = null, string apma = null);
         [OperationContract]
         string FindColonia(int id);

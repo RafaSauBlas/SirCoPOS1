@@ -530,6 +530,37 @@ namespace SirCoPOS.Services
             }
             return null;
         }
+        public Common.Entities.Cliente FinClienteName(string name = null)
+        {
+            var ctx = new DataAccess.SirCoCreditoDataContext();
+            DataAccess.SirCoCredito.Cliente item = null;
+            if(name != null)
+            {
+                item = ctx.Clientes.Where(i => i.nombrecompleto == name).FirstOrDefault();
+                if (item == null)
+                    return null;
+            }
+
+            return new Cliente
+            {
+                Id = item.idcliente,
+                SucursalId = item.idsucursal,
+                Nombre = item.nombre,
+                ApPaterno = item.appaterno,
+                ApMaterno = item.apmaterno,
+                Celular = item.celular1,
+                CodigoPostal = item.codigopostal,
+                Colonia = item.idcolonia,
+                Ciudad = item.idciudad,
+                Estado = item.idestado,
+                Calle = item.calle,
+                Numero = item.numero,
+                //public string Referencia { get; set; }
+                Email = item.email,
+                Sexo = item.sexo
+            };
+
+        }
         public Common.Entities.Cliente FindCliente(int? id, string telefono = null, string nombre = null)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();

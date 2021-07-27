@@ -163,6 +163,7 @@
     <Compile Include="Messages\Vendedor.cs" />
     <Compile Include="Models\CajaFormaPagoEntrega.cs" />
     <Compile Include="Models\CancelProducto.cs" />
+    <Compile Include="Models\ClienteInfo.cs" />
     <Compile Include="Models\FirmaIndex.cs" />
     <Compile Include="Models\FormaPagoKey.cs" />
     <Compile Include="Models\ItemCorte.cs" />

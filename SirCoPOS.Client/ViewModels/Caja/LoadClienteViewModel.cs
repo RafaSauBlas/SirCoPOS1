@@ -24,6 +24,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             if (!this.IsInDesignMode)
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
 
+
             _common = new Helpers.CommonHelper();
             this.Screen = "search";
             this.ChangeViewCommand = new RelayCommand<string>(v => {
@@ -61,6 +62,33 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 }
             });
 
+            this.searchnameCommand = new RelayCommand(() => {
+                if (this.ClienteNombreSearch == null && string.IsNullOrWhiteSpace(this.ClienteTelefonoSearch))
+                {
+                    if (this.Cliente != null)
+                    {
+                        Messenger.Default.Send(new Messages.ClienteMessage
+                        {
+                            Cliente = this.Cliente
+                        }, this.GID);
+                    }
+                }
+                else
+                {
+
+                    this.Cliente = _proxy.FinClienteName(this.ClienteNombreSearch);
+                    if (this.Cliente != null)
+                    {
+                        this.ClienteSearch = null;
+                        this.ClienteTelefonoSearch = null;
+                        this.ClienteNombreSearch = null;
+                    }
+                    else
+                        MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    this.ClienteNombreSearch = null;
+                }
+            });
+
             //Los comandos funcionan como metodos que realizan alguna accion predeterminada
             this.PopUpCommand = new RelayCommand(async () => {
                 var nombre = _common.PrepareNombre(this.ClienteNombreSearch);
@@ -93,6 +121,24 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.ClienteApPaSearch = "";
                 this.ClienteApMaSearch = "";
             });
+        }
+
+        public void Busca(string celular)
+        {
+
+            var nombre = "";
+            var phone = _common.PreparePhone(celular);
+            
+
+            this.Cliente = _proxy.FindCliente(this.ClienteSearch, phone, nombre);
+                if (this.Cliente != null)
+                {
+                    this.ClienteSearch = null;
+                    this.ClienteTelefonoSearch = null;
+                    this.ClienteNombreSearch = null;
+                }
+                else
+                    MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);            
         }
 
         public void LoadClienteViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -269,6 +315,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
         #region commands
         public RelayCommand<string> ChangeViewCommand { get; private set; }
         public RelayCommand SearchCommand { get; private set; }
+        public RelayCommand searchnameCommand { get; private set; }
         public RelayCommand PopUpCommand { get; private set; }
         #endregion
     }

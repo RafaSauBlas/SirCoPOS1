@@ -113,16 +113,17 @@ namespace SirCoPOS.Win.Windows
             SirCoPOS.Common.Constants.ClienteInfo.sexo = sexo;
             SirCoPOS.Common.Constants.ClienteInfo.email = email;
 
-            Messenger.Default.Send(
-                           new Utilities.Messages.OpenModal
-                           {
-                               Name = Utilities.Constants.Modals.cliente,
-                               GID = GID,
-                               opcion = 1
-                           }
-                           );
-
-            
+            SirCoPOS.Client.ViewModels.Caja.LoadClienteViewModel CL = new SirCoPOS.Client.ViewModels.Caja.LoadClienteViewModel();
+            CL.Busca(celular);
+            //Messenger.Default.Send(
+            //               new Utilities.Messages.OpenModal
+            //               {
+            //                   Name = Utilities.Constants.Modals.cliente,
+            //                   GID = GID,
+            //                   opcion = 1
+            //               }
+            //               );
+           
         }
     }
 }

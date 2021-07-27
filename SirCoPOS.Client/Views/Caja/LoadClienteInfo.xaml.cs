@@ -46,6 +46,7 @@ namespace SirCoPOS.Client.Views.Caja
             this.lblCiudad.Text = SirCoPOS.Common.Constants.ClienteInfo.ciudad;
             this.lblEstado.Text = SirCoPOS.Common.Constants.ClienteInfo.estado;
             this.tbEmail.Text = SirCoPOS.Common.Constants.ClienteInfo.email;
+
             CLI.TraerColonias();
 
             foreach (var col in SirCoPOS.Common.Constants.ClienteInfo.Colonias)

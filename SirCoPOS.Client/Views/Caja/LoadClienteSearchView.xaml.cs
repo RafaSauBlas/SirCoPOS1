@@ -46,5 +46,10 @@ namespace SirCoPOS.Client.Views.Caja
         {
 
         }
+
+        private void txt_Nombre_KeyDown(object sender, KeyEventArgs e)
+        {
+            txt_Nombre.CharacterCasing = CharacterCasing.Upper;
+        }
     }
 }
