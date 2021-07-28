@@ -18,7 +18,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
         private Common.ServiceContracts.IDataServiceAsync _proxy;
         private Helpers.CommonHelper _common;
         private Utilities.Interfaces.IClienteView _Client;
-
+        public int coloniaid;
         public LoadClienteViewModel()
         {
             if (!this.IsInDesignMode)
@@ -63,7 +63,12 @@ namespace SirCoPOS.Client.ViewModels.Caja
             });
 
             this.searchnameCommand = new RelayCommand(() => {
-                if (this.ClienteNombreSearch == null && string.IsNullOrWhiteSpace(this.ClienteTelefonoSearch))
+                var nombre = _common.PrepareNombre(this.ClienteNombreSearch);
+                var appa = _common.PrepareApPa(this.ClienteApPaSearch);
+                var apma = _common.PrepareApMa(this.ClienteApMaSearch);
+                var nc = nombre + " " + appa + " " + apma;
+
+            if (this.ClienteNombreSearch == null && this.ClienteApPaSearch == null && this.ClienteApMaSearch == null)
                 {
                     if (this.Cliente != null)
                     {
@@ -75,17 +80,29 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 }
                 else
                 {
+                    SirCoPOS.Client.Views.Caja.LoadClienteSearchView LC = new SirCoPOS.Client.Views.Caja.LoadClienteSearchView();
+                    this.Cliente = _proxy.FinClienteName(nc);
 
-                    this.Cliente = _proxy.FinClienteName(this.ClienteNombreSearch);
                     if (this.Cliente != null)
                     {
+                        coloniaid = this.Cliente.Colonia ?? default(int);
+                        this.Colonias = _proxy.FindColonias(this.Cliente.CodigoPostal);
+                        if (this.Cliente.Colonia != 0)
+                        {
+                            var col = _proxy.findcol(this.Cliente.Colonia);
+                        }
+
                         this.ClienteSearch = null;
                         this.ClienteTelefonoSearch = null;
-                        this.ClienteNombreSearch = null;
                     }
                     else
-                        MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    { 
                     this.ClienteNombreSearch = null;
+                    this.ClienteApMaSearch = null;
+                    this.ClienteApPaSearch = null;
+                    MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
                 }
             });
 

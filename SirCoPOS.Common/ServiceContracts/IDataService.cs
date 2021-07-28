@@ -70,6 +70,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         string FindColonia(int id);
         [OperationContract]
+        string findcol(int? col);
+        [OperationContract]
         string FindCiudad(int id);
         [OperationContract]
         string FindEstado(int id);

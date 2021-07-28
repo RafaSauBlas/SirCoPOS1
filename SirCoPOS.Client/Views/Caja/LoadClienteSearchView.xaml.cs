@@ -51,5 +51,35 @@ namespace SirCoPOS.Client.Views.Caja
         {
             txt_Nombre.CharacterCasing = CharacterCasing.Upper;
         }
+
+        private void txtAppa_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtAppa.CharacterCasing = CharacterCasing.Upper;
+        }
+
+        private void txtApma_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtApma.CharacterCasing = CharacterCasing.Upper;
+        }
+
+        private void txt_ciudad_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtCalle.CharacterCasing = CharacterCasing.Upper;
+        }
+
+        private void txt_cp_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            int character = Convert.ToInt32(Convert.ToChar(e.Text));
+            if (character >= 48 && character <= 57)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void txt_cp_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SirCoPOS.Client.ViewModels.Caja.LoadClienteViewModel Cl = new SirCoPOS.Client.ViewModels.Caja.LoadClienteViewModel();
+            cbColonia.SelectedIndex = cbColonia.Items.IndexOf(Cl.coloniaid);
+        }
     }
 }

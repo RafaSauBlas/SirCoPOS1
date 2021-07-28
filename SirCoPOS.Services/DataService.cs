@@ -644,6 +644,12 @@ namespace SirCoPOS.Services
 
             return "";
         }
+        public string findcol(int? col)
+        {
+            var ctxc = new DataAccess.SirCoControlDataContext();
+            var colonias = ctxc.Colonias.Where(i => i.idcolonia == col).SingleOrDefault();
+            return colonias.colonia;
+        }
 
         public List<Cliente> FindCliente2(string telefono = null, string nombre = null, string appa = null, string apma = null)
         {
