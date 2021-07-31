@@ -85,10 +85,6 @@ namespace SirCoPOS.Client.Helpers
         {
             return await this.Reply(() => this.Channel.GetAgrupacionesPorSerieAsync(serie));
         }
-        public async Task<IEnumerable<Common.Entities.PorcentajeFormaPago>> GetPorcentajePorFPagoAsync(string sucursal, string devolucion)
-        {
-            return await this.Reply(() => this.Channel.GetPorcentajePorFPagoAsync(sucursal, devolucion));
-        }
         public async Task ReleaseProductoAsync(string serie)
         {
             await this.Reply(() => this.Channel.ReleaseProductoAsync(serie));

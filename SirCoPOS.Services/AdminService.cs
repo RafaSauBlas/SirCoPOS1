@@ -23,7 +23,7 @@ namespace SirCoPOS.Services
         {
             var ctx = new DataAccess.SirCoPOSDataContext();
             var fondo = ctx.Fondos.Where(i => i.ResponsableId == id && !i.FechaCierre.HasValue).SingleOrDefault();
-            if (fondo == null)
+            if (fondo == null) 
                 return null;
             return fondo.Disponible;
         }
@@ -118,9 +118,11 @@ namespace SirCoPOS.Services
 
             var qc = ctx.Fondos.Where(i => i.CajaSucursal == request.Sucursal && i.CajaNumero == request.Numero && !i.FechaCierre.HasValue);
             var qr = ctx.Fondos.Where(i => i.ResponsableId == request.Responsable && !i.FechaCierre.HasValue);
-            if (qc.Any() || qr.Any())
-                throw new NotSupportedException();
-
+            if (qc.Any())
+                throw new CajaNoDisponibleExcepcion();
+            if (qr.Any())
+                throw new FondoAbiertoExcepcion();
+            
             var item = new DataAccess.SirCoPOS.Fondo
             {
                 ResponsableId = request.Responsable,
@@ -805,7 +807,15 @@ namespace SirCoPOS.Services
         {
             using (var tran = new System.Transactions.TransactionScope())
             {
-                this.CorteTransferirHelper(request);
+
+                try
+                {
+                    this.CorteTransferirHelper(request);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
                 tran.Complete();
             }
         }

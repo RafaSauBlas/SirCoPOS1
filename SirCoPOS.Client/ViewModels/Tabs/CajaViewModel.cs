@@ -252,31 +252,36 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             else
             {
                 var rcup = _proxy.FindCupon(cupon);
-                if (rcup.Status != CuponStatus.Activo)
-                {
-                    MessageBox.Show($"cupon {cupon} {rcup.Status}");
-                    return;
-                }
-                var cps = rcup?.Promociones;
-                if (cps != null && cps.Any())
-                {
-                    this.Cupones.Add(rcup);
+                if (rcup != null) { 
+                    if (rcup.Status != CuponStatus.Activo)
+                    {
+                        MessageBox.Show($"cupon {cupon} {rcup.Status}", "Agregar Cupón", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+                    var cps = rcup?.Promociones;
+                    if (cps != null && cps.Any())
+                    {
+                        this.Cupones.Add(rcup);
 
-                    var added = false;
-                    foreach (var cup in cps)
-                    {
-                        if (!cup.Cliente.HasValue || (cup.Cliente.HasValue && cup.Cliente == this.Cliente?.Id))
+                        var added = false;
+                        foreach (var cup in cps)
                         {
-                            added = true;
-                            cup.Enabled = true;
-                            this.PromocionesCupones.Add(cup);
+                            if (!cup.Cliente.HasValue || (cup.Cliente.HasValue && cup.Cliente == this.Cliente?.Id))
+                            {
+                                added = true;
+                                cup.Enabled = true;
+                                this.PromocionesCupones.Add(cup);
+                            }
                         }
+                        if (added)
+                        {
+                            //_ls.AddCupon(cupon);
+                        }
+                        this.CuponSearch = null;
                     }
-                    if (added)
-                    {
-                        //_ls.AddCupon(cupon);
-                    }
-                    this.CuponSearch = null;
+                } else
+                {
+                    MessageBox.Show("Cupon no existe", "Agregar Cupón",MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }
@@ -536,13 +541,26 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             };
             sale.Cliente = Helpers.Parsers.PaseCliente(this.NuevoCliente, this.Cliente, this.Sucursal);
             //AQUI SALTA EL ERROR EN EL EJECUTABLE
+
             sale.Pagos = this.PreparePagos();
-            this.SaleResponse = await _client.SaleAsync(sale);
-            this.Clear(false);
-            this.IsBusy = false;
-            //MessageBox.Show($"ID: {this.Folio}");
-            _reports.Compra(this.Sucursal.Clave, this.SaleResponse.Folio);
-            this.CloseCommand.Execute(null);
+
+            try
+            {
+                this.SaleResponse = await _client.SaleAsync(sale);
+
+                _reports.Compra(this.Sucursal.Clave, this.SaleResponse.Folio);
+                this.CloseCommand.Execute(null);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Venta", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                this.Clear(false);
+                this.IsBusy = false;
+            }
         }
 
 

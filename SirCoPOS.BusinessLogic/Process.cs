@@ -36,14 +36,14 @@ namespace SirCoPOS.BusinessLogic
             return agrupaciones;
         }
 
-        public IEnumerable<Common.Entities.PorcentajeFormaPago> GetPorcentajePorFpago(string sucursal, string devolucion)
-        {
-            DataAccess.SirCoPVDataContext ctxpv = new DataAccess.SirCoPVDataContext();
+        //public IEnumerable<Common.Entities.PorcentajeFormaPago> GetPorcentajePorFpago(string sucursal, string devolucion)
+        //{
+        //    DataAccess.SirCoPVDataContext ctxpv = new DataAccess.SirCoPVDataContext();
 
-            IEnumerable<Common.Entities.PorcentajeFormaPago> porcentajes = ctxpv.GetPorcentajePorFPago(sucursal, devolucion);
+        //    IEnumerable<Common.Entities.PorcentajeFormaPago> porcentajes = ctxpv.GetPorcentajeFPago(sucursal, devolucion);
 
-            return porcentajes;
-        }
+        //    return porcentajes;
+        //}
         //============================================================================================================================================
         public bool RequestProducto(string serie, int idusuario)
         {
@@ -108,7 +108,15 @@ namespace SirCoPOS.BusinessLogic
                 celular = model.Celular
             };
             ctx.Clientes.Add(item);
-            ctx.SaveChanges();
+
+            try
+            {
+                ctx.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new AltaClienteExcepcion();
+            }
             return item.idcliente;
         }
 
@@ -252,7 +260,7 @@ namespace SirCoPOS.BusinessLogic
         public SaleResponse Sale(SaleRequest model, int idcajero, IEnumerable<ChangeItem> change = null)
         {
             if (model.Pagos == null)
-                throw new NotSupportedException();
+                throw new ModeloPagosExcepcion();
             var gid = Guid.NewGuid();
             var iva = 16;
             var now = Helpers.Common.GetNow();
@@ -354,10 +362,10 @@ namespace SirCoPOS.BusinessLogic
                 }
 
                 if (!valid.Contains(det.status))
-                    throw new NotSupportedException();
+                    throw new StatusSerieExcepcion();
                 var modified = ctx.UpdateSerieStatus(sf.Serie, Status.BA, Status.CA, idusuario: idcajero);
                 if (modified != 1)
-                    throw new NotSupportedException();
+                    throw new StatusSerieNoActualizadoExcepcion();
                 var cor = ctx.GetCorrida(det);
                 cor.ult_vta = now;
 
@@ -448,7 +456,7 @@ namespace SirCoPOS.BusinessLogic
             ctxpv.Ventas.Add(header);
             var total = header.Detalles.ToArray().Sum(i => (i.precdesc ?? 0));
             if (model.Pagos == null || !model.Pagos.Any())
-                throw new NotSupportedException();
+                throw new ModeloPagosExcepcion();
 
             var pago = new DataAccess.SirCoPV.Pago
             {
@@ -469,7 +477,7 @@ namespace SirCoPOS.BusinessLogic
 
             var importe = model.Pagos.Sum(i => i.Importe);
             if (total != importe)
-                throw new NotSupportedException();
+                throw new TotalNoCoincideExcepcion();
 
             DataAccess.SirCoCredito.Cliente cliente = null;
             DataAccess.SirCoControl.Sucursal succli = null;
@@ -520,7 +528,7 @@ namespace SirCoPOS.BusinessLogic
                         {
                             var dev = ctxpv.Devoluciones.Where(i => i.sucursal == item.Sucursal && i.devolvta == item.Devolucion).Single();
                             if (dev.disponible < item.Importe)
-                                throw new NotSupportedException();
+                                throw new DisponibleDevNoSuficienteExcepcion();
                             dev.disponible -= item.Importe;
                             if (dev.disponible == 0)
                                 dev.estatus = "YA";
@@ -554,7 +562,7 @@ namespace SirCoPOS.BusinessLogic
                                     break;
                             }
                             if (porAsignar != 0)
-                                throw new NotSupportedException();
+                                throw new SaldoPendienteExcepcion();
                         }
                         break;
                     case FormaPago.VA:
@@ -566,20 +574,20 @@ namespace SirCoPOS.BusinessLogic
                                 String.Compare(item.Vale, i.valeini) >= 0 && String.Compare(item.Vale, i.valefin) <= 0
                                 && i.valeini.Length == item.Vale.Length).SingleOrDefault();
                             if (valera == null)
-                                throw new NotSupportedException();
+                                throw new NoExisteValeExcepcion();
 
                             var valCancelado = ctxcr.ValesCancelados.Where(i =>
                                 String.Compare(item.Vale, i.valeini) >= 0 && String.Compare(item.Vale, i.valefin) <= 0
                                 && i.valeini.Length == item.Vale.Length).SingleOrDefault();
                             if (valCancelado != null)
-                                throw new NotSupportedException();
+                                throw new ValeCanceladoExcepcion();
 
                             var dist = ctxcr.Distribuidores.Where(i => i.distrib == valera.distrib
                                 //&& i.tipodistrib == Common.Constants.TipoDistribuidor.NORMAL
                                 && i.clasificacion == Common.Constants.TipoCredito.DISTRIBUIDOR
                             ).SingleOrDefault();
                             if (dist == null)
-                                throw new NotSupportedException();
+                                throw new NoExisteDistibuidorExcepcion();
 
                             var qplans = ctxcr.PlanPagos.Where(i => i.vale.Trim() == item.Vale && i.status == "AP");
                             qplans = qplans.Where(i => i.pagado == "0");
@@ -588,7 +596,7 @@ namespace SirCoPOS.BusinessLogic
                             disponible = disponible < 0 ? 0 : disponible;
 
                             if (item.Importe > disponible)
-                                throw new NotSupportedException();
+                                throw new NoDisponibleExcepcion();
 
                             dist.disponible -= item.Importe;
                             dist.saldo += item.Importe;
@@ -719,13 +727,13 @@ namespace SirCoPOS.BusinessLogic
                                 && i.clasificacion == Common.Constants.TipoCredito.TARJETAHABIENTE
                             ).SingleOrDefault();
                             if (dist == null)
-                                throw new NotSupportedException();
+                                throw new NoExisteDistibuidorExcepcion();
 
                             var disponible = dist.disponible ?? 0;
                             disponible = disponible < 0 ? 0 : disponible;
 
                             if (item.Importe > disponible)
-                                throw new NotSupportedException();
+                                throw new NoDisponibleExcepcion();
 
                             if (dist.clientedi == null)
                             {
@@ -808,20 +816,20 @@ namespace SirCoPOS.BusinessLogic
                             item.FormaPago = FormaPago.VA;
                             var vd = ctxcr.ValesDigital.Where(i => i.codigoqr == item.Vale).SingleOrDefault();
                             if (vd == null)
-                                throw new NotSupportedException();
+                                throw new NoExisteValeExcepcion();
 
                             if (header.idcliente != vd.idcliente)
-                                throw new NotSupportedException();
+                                throw new ClienteNOCoincideExcepcion();
 
                             if (vd.vigencia.HasValue && now > vd.vigencia)
-                                throw new NotSupportedException();
+                                throw new VigenciaVencidaExcepcion();
 
                             var dist = ctxcr.Distribuidores.Where(i => i.distrib == vd.distrib).Single();
 
                             var disponible = Math.Min(vd.disponible.Value, dist.disponible.Value);
 
                             if (item.Importe > disponible)
-                                throw new NotSupportedException();
+                                throw new NoDisponibleExcepcion();
 
                             detalle.idvaledigital = vd.idvaledigital;
                             vd.disponible -= item.Importe;
@@ -917,7 +925,7 @@ namespace SirCoPOS.BusinessLogic
                                 && i.clasificacion == Common.Constants.TipoCredito.DISTRIBUIDOR
                             ).SingleOrDefault();
                             if (dist == null)
-                                throw new NotSupportedException();
+                                throw new NoExisteDistibuidorExcepcion();
 
                             //var qplans = ctxcr.PlanPagos.Where(i => i.vale.Trim() == item.Vale && i.status == "AP");
                             //qplans = qplans.Where(i => i.pagado == "0");
@@ -926,7 +934,7 @@ namespace SirCoPOS.BusinessLogic
                             disponible = disponible < 0 ? 0 : disponible;
 
                             if (item.Importe > disponible)
-                                throw new NotSupportedException();
+                                throw new NoDisponibleExcepcion();
                             dist.saldo += item.Importe;
                             dist.disponible -= item.Importe;
                             this.GenerarPlanPagos(now, model, idcajero, item, header, cvales, cliente, succli, dist);
@@ -1054,15 +1062,15 @@ namespace SirCoPOS.BusinessLogic
                             detalle.cvale = $"{cvale.sucursal}{cvale.cvale}";
 
                             if (now > cvale.caduca)
-                                throw new NotSupportedException();
-
+                                throw new VigenciaVencidaExcepcion();
+                            
                             var dist = ctxcr.Distribuidores.Where(i => i.distrib == cvale.distrib).Single();
 
                             var disponible = cvale.saldo ?? 0;
                             disponible = Math.Min(cvale.saldo.Value, dist.disponible.Value);
 
                             if (item.Importe > disponible)
-                                throw new NotSupportedException();
+                                throw new  NoDisponibleExcepcion();
 
                             cvale.saldo -= item.Importe;
                             dist.saldo += item.Importe;
@@ -1139,7 +1147,7 @@ namespace SirCoPOS.BusinessLogic
                             var dist = ctxcr.Distribuidores.Where(i => i.distrib == item.Distribuidor).Single();
 
                             if (item.Importe > dist.disponible)
-                                throw new NotSupportedException();
+                                throw new NoDisponibleExcepcion();
 
                             if (dist.clientedi == null)
                             {
@@ -1218,14 +1226,43 @@ namespace SirCoPOS.BusinessLogic
                         }
                         break;
                     default:
-                        throw new NotImplementedException();
+                        throw new FormaPagoNoSoportadaExcepcion();
                 }
             }
 
-            ctxc.SaveChanges();
-            ctxpv.SaveChanges();
-            ctxcr.SaveChanges();
-            ctx.SaveChanges();
+            try
+            {
+                ctxc.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new ActualizaFolioSucExcepcion();
+            }
+            try
+            {
+                ctxpv.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new ActualizaVentaExcepcion();
+            }
+            try
+            {
+                ctxcr.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw new ActualizaCreditoExcepcion();
+            }
+            try
+            {
+                ctx.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new ActualizaSerieExcepcion();
+            }
             
             if ((promos.Monedero ?? 0) > 0 && cliente != null)
             {
@@ -1505,7 +1542,15 @@ namespace SirCoPOS.BusinessLogic
                 });
             }
             ctxc.SaveChanges();
-            ctxcr.SaveChanges();
+
+            try
+            {
+                ctxcr.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw new AgregandoPlanPagosExcepcion();
+            }
         }
         public IDictionary<DateTime, decimal> GenerarPlanPagosFechas(DateTime now, Pago item,
             DataAccess.SirCoCredito.Distribuidor dist,
@@ -1645,7 +1690,7 @@ namespace SirCoPOS.BusinessLogic
             var ctxc = new DataAccess.SirCoControlDataContext();
             var sale = ctxpv.Ventas.Where(i => i.sucursal == model.Sucursal && i.venta == model.Folio).SingleOrDefault();
             if (sale == null)
-                throw new NotSupportedException();
+                throw new VentaNoExisteExcepcion();
             var now = Helpers.Common.GetNow();
 
             var suc = ctxc.Sucursales.Where(i => i.sucursal == sucursal).Single();
@@ -1682,7 +1727,7 @@ namespace SirCoPOS.BusinessLogic
                 //TODO se quita restriccion de sucursal para permitir cambiar un producto del cual aun no se hace traspaso
                 var pitem = ctx.Series.Where(i => /*i.sucursal == sale.sucursal &&*/ i.serie == prod.serie).Single();
                 if (pitem.status != Status.BA.ToString())
-                    throw new NotSupportedException();
+                    throw new StatusSerieExcepcion();
 
                 ctx.UpdateSerieStatus(prod.serie, Status.AC, Status.BA, idusuario: idcajero);
                 var dd = new DataAccess.SirCoPV.DevolucionDetalle
@@ -1790,7 +1835,7 @@ namespace SirCoPOS.BusinessLogic
             var ctxc = new DataAccess.SirCoCreditoDataContext();
             var venta = ctxpv.Ventas.Where(i => i.sucursal == model.Sucursal && i.venta == model.Folio).Single();
             if (venta.estatus != Common.Constants.StatusVenta.Aplicada || venta.fecha.Value != today)
-                throw new NotSupportedException();
+                throw new CancelacionNoValidaExcepcion();
             venta.estatus = Common.Constants.StatusVenta.Cancelada;
             venta.fumcancela = now;
             venta.idusuariocancela = idcajero;
@@ -1810,7 +1855,7 @@ namespace SirCoPOS.BusinessLogic
                         {
                             var plan = ctxc.PlanPagos.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Single();
                             if (plan.pagado == "1")
-                                throw new NotSupportedException();
+                                throw new VentaConPagosExcepcion();
 
                             var planDet = ctxc.PlanPagosDetalle.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Select(i => new { i.pagado, i.abono });
                             if (planDet != null)
@@ -1818,7 +1863,7 @@ namespace SirCoPOS.BusinessLogic
                                 foreach (var det in planDet)
                                 {
                                     if (det.pagado == "1" || det.abono > 0)
-                                        throw new NotSupportedException();
+                                        throw new VentaConPagosExcepcion();
                                 }
                             }
                             plan.status = "ZC";
@@ -1836,14 +1881,14 @@ namespace SirCoPOS.BusinessLogic
 
                             var plan = ctxc.PlanPagos.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Single();
                             if (plan.pagado == "1")
-                                throw new NotSupportedException();
+                                throw new VentaConPagosExcepcion();
                             var planDet = ctxc.PlanPagosDetalle.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Select(i => new { i.pagado, i.abono });
                             if (planDet != null)
                             {
                                 foreach (var det in planDet)
                                 {
                                 if (det.pagado == "1" || det.abono > 0)
-                                    throw new NotSupportedException();
+                                    throw new VentaConPagosExcepcion();
                                 }
                             }
                             plan.status = "ZC";
@@ -1857,14 +1902,14 @@ namespace SirCoPOS.BusinessLogic
                         {
                             var plan = ctxc.PlanPagos.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Single();
                             if (plan.pagado == "1")
-                                throw new NotSupportedException();
+                                throw new VentaConPagosExcepcion();
                             var planDet = ctxc.PlanPagosDetalle.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Select(i => new { i.pagado, i.abono });
                             if (planDet != null)
                             {
                                 foreach (var det in planDet)
                                 {
                                 if (det.pagado == "1" || det.abono > 0)
-                                    throw new NotSupportedException();
+                                    throw new VentaConPagosExcepcion();
                                 }
                             }
                             plan.status = "ZC";
@@ -1883,14 +1928,14 @@ namespace SirCoPOS.BusinessLogic
 
                             var plan = ctxc.PlanPagos.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Single();
                             if (plan.pagado == "1")
-                                throw new NotSupportedException();
+                                throw new VentaConPagosExcepcion();
                             var planDet = ctxc.PlanPagosDetalle.Where(i => i.sucursal == model.Sucursal && i.nota == model.Folio).Select(i => new { i.pagado, i.abono });
                             if (planDet != null)
                             {
                                 foreach (var det in planDet)
                                 {
                                 if (det.pagado == "1" || det.abono > 0)
-                                    throw new NotSupportedException();
+                                    throw new VentaConPagosExcepcion();
                                 }
                             }
                             plan.status = "ZC";
@@ -1947,7 +1992,7 @@ namespace SirCoPOS.BusinessLogic
                         }
                         break;
                     default:
-                        throw new NotImplementedException();
+                        throw new FormaPagoNoSoportadaExcepcion();
                 }
             }
             var dif = venta.fumcancela - venta.fum;

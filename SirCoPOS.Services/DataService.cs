@@ -86,6 +86,14 @@ namespace SirCoPOS.Services
 
             return res;
         }
+        public IEnumerable<PorcentajeFormaPago> GetPorcentajeFPago(string sucursal, string devolucion)
+        {
+            DataAccess.SirCoPVDataContext ctxpv = new DataAccess.SirCoPVDataContext();
+            var res = ctxpv.GetPorcentajeFPago(sucursal, devolucion);
+
+            return res;
+        }
+
         public IEnumerable<Common.Entities.PromocionCupon> FindCuponesByCliente(int clienteId)
         {
             var ctxpv = new DataAccess.SirCoPVDataContext();

@@ -114,6 +114,7 @@
     <Compile Include="AdminService.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="CommonService.cs" />
+    <Compile Include="Excepcion.cs" />
     <Compile Include="NoteService.cs" />
     <Compile Include="PrintService.cs" />
     <Compile Include="ProcessService.cs" />

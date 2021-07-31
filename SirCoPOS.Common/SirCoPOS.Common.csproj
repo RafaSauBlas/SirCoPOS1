@@ -177,6 +177,7 @@
     <Compile Include="Entities\ValeResponse.cs" />
     <Compile Include="Entities\VentaView.cs" />
     <Compile Include="Extensions\NinjectServiceLocator.cs" />
+    <Compile Include="Helpers\BaseExcepcion.cs" />
     <Compile Include="Helpers\CommonHelper.cs" />
     <Compile Include="Helpers\TypeHelper.cs" />
     <Compile Include="Logger.cs" />

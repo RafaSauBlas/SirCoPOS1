@@ -115,5 +115,7 @@ namespace SirCoPOS.Common.ServiceContracts
         IEnumerable<Common.Entities.SucursalExistencia> GetExistencias(int id, string medida);
         [OperationContract]
         IDictionary<DateTime, decimal> GenerarPlanPagosFechas(int iddist, Pago item);
+        [OperationContract]
+        IEnumerable<Entities.PorcentajeFormaPago> GetPorcentajeFPago(string sucursal, string devolucion);
     }
 }

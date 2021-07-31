@@ -76,10 +76,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.cs" />
+    <Compile Include="CustomException.cs" />
+    <Compile Include="Excepcion.cs" />
     <Compile Include="Helpers\Common.cs" />
     <Compile Include="Helpers\Serializer.cs" />
     <Compile Include="Shared.cs" />
-    <Compile Include="CustomException.cs" />
     <Compile Include="Entities\ProductoPromocion.cs" />
     <Compile Include="Entities\PromocionValores.cs" />
     <Compile Include="Entities\ValidPromocionResponse.cs" />
