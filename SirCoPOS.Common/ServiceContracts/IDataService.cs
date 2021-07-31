@@ -66,6 +66,10 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Common.Entities.Cliente FinClienteName(string name);
         [OperationContract]
+        int Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular1, string email, string colonia);
+        [OperationContract]
+        int FindColidByName(string name, string cp);
+        [OperationContract]
         List<Cliente> FindCliente2(string telefono = null, string nombre = null, string appa = null, string apma = null);
         [OperationContract]
         string FindColonia(int id);

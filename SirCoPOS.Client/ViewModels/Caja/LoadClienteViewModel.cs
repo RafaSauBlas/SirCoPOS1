@@ -15,15 +15,26 @@ namespace SirCoPOS.Client.ViewModels.Caja
     public class LoadClienteViewModel : Helpers.ModalViewModelBase, Utilities.Interfaces.IModal
     {
         public string Title => "Cargar Cliente";
+        Common.Constants.ClienteDato CD = new Common.Constants.ClienteDato();
         private Common.ServiceContracts.IDataServiceAsync _proxy;
         private Helpers.CommonHelper _common;
         private Utilities.Interfaces.IClienteView _Client;
         public int coloniaid;
+
+        public string name;
+        public string appa;
+        public string apma;
+        public string codigopostal;
+        public string calle;
+        public short numero;
+        public string celular;
+        public string email;
+        public string colonia;
+
         public LoadClienteViewModel()
         {
             if (!this.IsInDesignMode)
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
-
 
             _common = new Helpers.CommonHelper();
             this.Screen = "search";
@@ -52,13 +63,14 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     this.Cliente = _proxy.FindCliente(this.ClienteSearch, phone, nombre);
                     if (this.Cliente != null)
                     {
+                        this.ClienteNombreSearch = this.Cliente.Nombre;
+                        this.ClienteApPaSearch = this.Cliente.ApPaterno;
+                        this.ClienteApMaSearch = this.Cliente.ApMaterno;
                         this.ClienteSearch = null;
                         this.ClienteTelefonoSearch = null;
-                        this.ClienteNombreSearch = null;
                     }
                     else
                         MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
                 }
             });
 
@@ -67,8 +79,9 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 var appa = _common.PrepareApPa(this.ClienteApPaSearch);
                 var apma = _common.PrepareApMa(this.ClienteApMaSearch);
                 var nc = nombre + " " + appa + " " + apma;
+                SirCoPOS.Client.Views.Caja.LoadClienteSearchView LC = new SirCoPOS.Client.Views.Caja.LoadClienteSearchView();
 
-            if (this.ClienteNombreSearch == null && this.ClienteApPaSearch == null && this.ClienteApMaSearch == null)
+                if (this.ClienteNombreSearch == null && this.ClienteApPaSearch == null && this.ClienteApMaSearch == null)
                 {
                     if (this.Cliente != null)
                     {
@@ -80,20 +93,32 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 }
                 else
                 {
-                    SirCoPOS.Client.Views.Caja.LoadClienteSearchView LC = new SirCoPOS.Client.Views.Caja.LoadClienteSearchView();
+                    
                     this.Cliente = _proxy.FinClienteName(nc);
 
                     if (this.Cliente != null)
                     {
                         coloniaid = this.Cliente.Colonia ?? default(int);
+                        Common.Constants.ClienteInfo.colonia = coloniaid;
                         this.Colonias = _proxy.FindColonias(this.Cliente.CodigoPostal);
+                        
                         if (this.Cliente.Colonia != 0)
                         {
                             var col = _proxy.findcol(this.Cliente.Colonia);
                         }
-
                         this.ClienteSearch = null;
                         this.ClienteTelefonoSearch = null;
+                        
+                        CD.Nombre = this.Cliente.Nombre;
+                        CD.ApPaterno = this.Cliente.ApPaterno;
+                        CD.ApMaterno = this.Cliente.ApMaterno;
+                        CD.Celular1 = this.Cliente.Celular1;
+                        CD.Calle = this.Cliente.Calle;
+                        CD.Ciudad = this.Cliente.Ciudad;
+                        CD.Estado = this.Cliente.Estado;
+                        CD.Colonia = this.Cliente.Colonia;
+                        CD.CodigoPostal = this.Cliente.CodigoPostal;
+                        CD.Email = this.Cliente.Email;
                     }
                     else
                     { 
@@ -102,10 +127,9 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     this.ClienteApPaSearch = null;
                     MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-
                 }
+                //LC.accion();
             });
-
             //Los comandos funcionan como metodos que realizan alguna accion predeterminada
             this.PopUpCommand = new RelayCommand(async () => {
                 var nombre = _common.PrepareNombre(this.ClienteNombreSearch);
@@ -139,7 +163,18 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.ClienteApMaSearch = "";
             });
         }
-
+        public void Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular, string email, string colonia)
+        {
+            var colid = _proxy.FindColidByName(colonia, codigopostal);
+            if (name != CD.Nombre || appaterno != CD.ApPaterno || apmaterno != CD.ApMaterno
+                || codigopostal != CD.CodigoPostal || calle != CD.Calle || numero != CD.Numero
+                || email != CD.Email || colid != CD.Colonia)
+            {
+                var celular1 = _common.PreparePhone(celular);
+                var datos = Convert.ToInt32(_proxy.Clientexd(name, appaterno, apmaterno, codigopostal, calle, numero, celular1, email, colonia));
+                Common.Constants.ClienteInfo.colonia = datos;
+            }
+        }
         public void Busca(string celular)
         {
 
@@ -156,6 +191,11 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 }
                 else
                     MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);            
+        }
+
+        public void cambio()
+        {
+            var co = this.Colonias;
         }
 
         public void LoadClienteViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -212,15 +252,14 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         public void RefrescarColonias(string cp)
         {
-            SirCoPOS.Services.DataService DS = new SirCoPOS.Services.DataService();
+            this.Colonias = null;
             this.Colonias = _proxy.FindColonias(cp.ToString());
-            foreach (var ci in Colonias)
-            {
-                SirCoPOS.Common.Constants.ClienteInfo.ciudad = _proxy.FindCiudad(ci.CiudadId);
-                SirCoPOS.Common.Constants.ClienteInfo.estado = _proxy.FindEstado(ci.EstadoId);
-            }
-
-            SirCoPOS.Common.Constants.ClienteInfo.Colonias = this.Colonias;
+        }
+        public string FindColonia()
+        {
+            var coloniaid = Common.Constants.ClienteInfo.colonia;
+            var ret = _proxy.FindColonia(coloniaid);
+            return ret;
         }
 
 

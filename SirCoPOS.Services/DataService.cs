@@ -86,6 +86,9 @@ namespace SirCoPOS.Services
 
             return res;
         }
+        public void actualizacliente()
+        {
+        }
         public IEnumerable<Common.Entities.PromocionCupon> FindCuponesByCliente(int clienteId)
         {
             var ctxpv = new DataAccess.SirCoPVDataContext();
@@ -530,6 +533,57 @@ namespace SirCoPOS.Services
             }
             return null;
         }
+        public int Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular1, string email, string colonia)
+        {
+            var ctx = new DataAccess.SirCoCreditoDataContext();
+            var ctxc = new DataAccess.SirCoControlDataContext();
+            var nc = name + " " + appaterno + " " + apmaterno;
+            var item = ctx.Clientes.Where(i => i.nombrecompleto == nc).FirstOrDefault();
+            var datcol = ctxc.Colonias.Where(i => i.colonia == colonia && i.codigopostal == codigopostal).SingleOrDefault();
+            
+            if(name != "")
+            {
+                item.nombre = name;
+            }
+            if(appaterno != "")
+            {
+                item.appaterno = appaterno;
+            }
+            if(apmaterno != "")
+            {
+                item.apmaterno = apmaterno;
+            }
+            if(codigopostal != "")
+            {
+                item.codigopostal = codigopostal;
+            }
+            if(calle != "")
+            {
+                item.calle = calle;
+            }
+            if(numero != 0)
+            {
+                item.numero = Convert.ToInt16(numero);
+            }
+            if (celular1 != "")
+            {
+                item.celular1 = celular1;
+            }
+            if(email != "")
+            {
+                item.email = email;
+            }
+            if(datcol != null)
+            {
+                item.idciudad = datcol.idciudad;
+                item.idestado = datcol.idestado;
+                item.idcolonia = datcol.idcolonia;
+            }
+            item.fummodif = DateTime.Now;
+
+            ctx.SaveChanges();
+            return Convert.ToInt16(item.idcolonia);
+        }
         public Common.Entities.Cliente FinClienteName(string name = null)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
@@ -560,6 +614,12 @@ namespace SirCoPOS.Services
                 Sexo = item.sexo
             };
 
+        }
+        public int FindColidByName(string name, string cp)
+        {
+            var ctx = new DataAccess.SirCoControlDataContext();
+            var colonias = ctx.Colonias.Where(i => i.colonia == name && i.codigopostal == cp).SingleOrDefault();
+            return colonias.idcolonia;
         }
         public Common.Entities.Cliente FindCliente(int? id, string telefono = null, string nombre = null)
         {
@@ -1008,6 +1068,7 @@ namespace SirCoPOS.Services
             };
             return res;
         }
+
         public IEnumerable<Common.Entities.SucursalExistencia> GetExistencias(int id, string medida)
         {
             var ctx = new DataAccess.SirCoDataContext();

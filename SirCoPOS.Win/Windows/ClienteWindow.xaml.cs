@@ -105,7 +105,7 @@ namespace SirCoPOS.Win.Windows
             SirCoPOS.Common.Constants.ClienteInfo.apma = apma;
             SirCoPOS.Common.Constants.ClienteInfo.celular = celular;
             SirCoPOS.Common.Constants.ClienteInfo.calle = calle;
-            SirCoPOS.Common.Constants.ClienteInfo.colonia = co;
+            SirCoPOS.Common.Constants.ClienteInfo.colonia = Convert.ToInt32(co);
             SirCoPOS.Common.Constants.ClienteInfo.numero = numero;
             SirCoPOS.Common.Constants.ClienteInfo.cp = cp;
             SirCoPOS.Common.Constants.ClienteInfo.ciudad = ciu;

@@ -30,7 +30,7 @@ namespace SirCoPOS.Client.Helpers
                     OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = requestMessage;
                 }
                 requestMessage.Headers["UserId"] = _settings.Cajero.Id.ToString();
-                requestMessage.Headers["Sucursal"] = _settings.Sucursal.Clave;                
+                requestMessage.Headers["Sucursal"] = _settings.Sucursal.Clave;
                 return action();
             }
         }

@@ -88,6 +88,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\ClienteDato.cs" />
     <Compile Include="Constants\ClienteInfo.cs" />
     <Compile Include="Constants\Divisiones.cs" />
     <Compile Include="Constants\FormaPagoPromocion.cs" />

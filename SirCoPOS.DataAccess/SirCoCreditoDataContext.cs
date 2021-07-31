@@ -8,12 +8,17 @@ using System.Threading.Tasks;
 
 namespace SirCoPOS.DataAccess
 {
-    public class SirCoCreditoDataContext : DbContext
+    public partial class SirCoCreditoDataContext : BaseDataContext
     {
         public SirCoCreditoDataContext()
             : base("SirCoCredito")
         {
 
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Add(new EntityFramework.Functions.FunctionConvention<SirCoCreditoDataContext>());
+            //modelBuilder.DbFunction(typeof(MyContext), nameof(MyContext.Foo));
         }
         public virtual DbSet<Cliente> Clientes { get; set; }
         public virtual DbSet<Distribuidor> Distribuidores { get; set; }
