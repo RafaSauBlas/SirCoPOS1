@@ -187,4 +187,11 @@ namespace SirCoPOS.BusinessLogic
         {
         }
     }
+    public class FondoAbiertoExcepcion : Common.Helpers.BaseExcepcion
+    {
+        public FondoAbiertoExcepcion()
+            : base("Existe un Fondo previo sin cerrar")
+        {
+        }
+    }
 }
