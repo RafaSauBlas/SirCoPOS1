@@ -61,5 +61,7 @@ namespace SirCoPOS.Common.ServiceContracts
         Task<Common.Entities.MedidasCorridas> GetPreciosAsync(int id);
         [OperationContract]
         Task<IEnumerable<Common.Entities.SucursalExistencia>> GetExistenciasAsync(int id, string medida);
+        [OperationContract]
+        Task<IEnumerable<Entities.PorcentajeFormaPago>> GetPorcentajeFPagoAsync(string sucursal, string devolucion);
     }
 }

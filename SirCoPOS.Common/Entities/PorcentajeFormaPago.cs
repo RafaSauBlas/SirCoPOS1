@@ -9,6 +9,6 @@ namespace SirCoPOS.Common.Entities
     public class PorcentajeFormaPago
     {
         public string FormaPago { get; set; }
-        public string Porcentaje { get; set; }
+        public double Porcentaje { get; set; }
     }
 }

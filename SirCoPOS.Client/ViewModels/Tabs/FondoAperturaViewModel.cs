@@ -60,7 +60,18 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     Numero = this.SelectedCaja.Numero,
                     Tipo = (Common.Constants.TipoFondo)this.SelectedCaja.Tipo
                 };
-                _proxy.AbrirFondo(request);
+                try 
+                { 
+                    _proxy.AbrirFondo(request);
+                }
+                catch (System.Exception e)
+                {
+                    MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    this.UserOK = false;
+                    this.SearchUser = null;
+                    this.SearchUser = null;
+                    return;
+                }
                 MessageBox.Show("La operación se completó correctamente", "Fondo Apertura", MessageBoxButton.OK, MessageBoxImage.Information);
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.FondoAperturaCierre { Open = true });
 

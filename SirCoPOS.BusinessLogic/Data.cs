@@ -125,7 +125,7 @@ namespace SirCoPOS.BusinessLogic
                                     && !i.FechaCierre.HasValue)
                                     .SingleOrDefault();
                     if (fondo == null)
-                        return null;
+                        throw new FondoAbiertoExcepcion();
                     else
                         disponible = fondo.Disponible;
                 }
@@ -219,7 +219,7 @@ namespace SirCoPOS.BusinessLogic
                     {
                         var fondo = ctxpos.Fondos.Where(i => i.ResponsableId == auditor.idempleado && !i.FechaCierre.HasValue).SingleOrDefault();
                         if (fondo != null)
-                            return null;
+                            throw new FondoAbiertoExcepcion();
                     }
                     else if (auditor.idpuesto == (int)Common.Constants.Puesto.MEN)
                     {

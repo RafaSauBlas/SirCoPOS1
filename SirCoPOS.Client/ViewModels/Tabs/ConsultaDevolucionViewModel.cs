@@ -24,9 +24,13 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             this.SearchCommand = new RelayCommand(() => {
                 var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
                 var folio = _common.PrepareVentaDevolucion(this.Search);
-                this.Devolucion = _proxy.FindDevolucionView(settings.Sucursal.Clave, folio, this.Cajero.Id);
-                if (this.Devolucion != null)
+                var dev = this.Devolucion = _proxy.FindDevolucionView(settings.Sucursal.Clave, folio, this.Cajero.Id);
+                if (dev != null)
+                {
+                    this.Devolucion = dev;
                     this.Search = null;
+                }
+                    
             });
 
             if (this.IsInDesignMode)

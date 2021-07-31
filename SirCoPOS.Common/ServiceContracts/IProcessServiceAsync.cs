@@ -25,8 +25,6 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Task<Entities.Response<IEnumerable<Entities.Agrupacion>>> GetAgrupacionesPorSerieAsync(string serie);
         [OperationContract]
-        Task<Entities.Response<IEnumerable<Entities.PorcentajeFormaPago>>> GetPorcentajePorFPagoAsync(string sucursal, string devolucion);
-        [OperationContract]
         Task<Entities.Response> ReleaseProductoAsync(string serie);
         [OperationContract]
         Task<Entities.Response<string>> RegisterNoteAsync(int id);

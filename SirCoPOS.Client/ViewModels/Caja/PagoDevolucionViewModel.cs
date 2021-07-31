@@ -17,7 +17,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
         {
             if (!this.IsInDesignMode)
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
-                //_proc = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IProcessServiceAsync>();
+            //_proc = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IProcessServiceAsync>();
             this.PropertyChanged += PagoDevolucionViewModel_PropertyChanged;
 
             this.FindCommand = new RelayCommand(async () => {
@@ -29,7 +29,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         this.Pagar = this.Total;
                     else if (this.Devolucion.Disponible > 0)
                         this.Pagar = this.Devolucion.Disponible;
-                    //var tipoPago = _proc.GetPorcentajePorFPagoAsync(this.Sucursal, this.Folio);
+                    //var tipoPago = await _proxy.GetPorcentajeFPagoAsync(this.Sucursal, this.Folio);
                 }
                 this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.Sucursal) && !String.IsNullOrEmpty(this.Folio));
