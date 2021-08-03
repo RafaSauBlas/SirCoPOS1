@@ -159,16 +159,23 @@ namespace SirCoPOS.Services
             //var dist = String.Format("{0:000000}", id);
             var q = ctx.DistribuidorFirmas.Where(i => i.distrib == item.distrib);
             model.Firmas = q.Select(i => i.numfirma).ToArray();
-            return new ValeResponse {
+            int? cliente = null;
+            if (item.clientedi != null)
+            {
+                cliente = ctx.Clientes.Where(i => i.cliente == item.clientedi).Select(i => i.idcliente).SingleOrDefault();
+            }
+            if (cliente != null)
+            {
+                model.ClienteId = cliente;
+            }
+            var Vale = new ValeResponse
+            {
                 Distribuidor = model,
                 Vale = id,
                 Disponible = model.Disponible ?? 0,
-                //public bool Cancelado { get; set; }
-                //public string CanceladoMotivo { get; set; }
-                ClienteId = model.ClienteId,
-                //public bool WithLimite { get; set; }
-                //public decimal? Limite { get; set; }
+                ClienteId = model.ClienteId
             };
+            return Vale;
         }
 
         public ValeResponse FindDistribuidorId(int? id)
@@ -533,10 +540,11 @@ namespace SirCoPOS.Services
             }
             return null;
         }
-        public int Clientexd(string nc, string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular1, string email, string colonia)
+        public int Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular1, string email, string colonia)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
             var ctxc = new DataAccess.SirCoControlDataContext();
+            var nc = name + " " + appaterno + " " + apmaterno;
             var item = ctx.Clientes.Where(i => i.nombrecompleto == nc).FirstOrDefault();
             var datcol = ctxc.Colonias.Where(i => i.colonia == colonia && i.codigopostal == codigopostal).SingleOrDefault();
             
@@ -552,8 +560,6 @@ namespace SirCoPOS.Services
             {
                 item.apmaterno = apmaterno;
             }
-            var nombrec = name + " " + appaterno + " " + apmaterno;
-            item.nombrecompleto = nombrec;
             if(codigopostal != "")
             {
                 item.codigopostal = codigopostal;
