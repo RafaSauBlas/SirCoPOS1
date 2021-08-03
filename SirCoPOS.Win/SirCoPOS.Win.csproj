@@ -681,6 +681,10 @@
     <Resource Include="Images\VD.png" />
     <Resource Include="Images\MD.png" />
     <Resource Include="Images\VE.png" />
+    <Resource Include="Images\cancel-devol.png" />
+    <Resource Include="Images\arqueo.png" />
+    <Resource Include="Images\entrega_ef.png" />
+    <Resource Include="Images\entrega.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
