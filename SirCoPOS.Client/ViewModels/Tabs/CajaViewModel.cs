@@ -584,20 +584,20 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             _skipPromociones = true;
             _ls = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Interfaces.ILocalStorage>();
             _ls.SetGID(this.GID);
-            var venta = _ls.LoadVenta(this.Cajero.Id);            
-            if (!venta.VendedorId.HasValue)
+            var venta = _ls.LoadVenta(this.Cajero.Id);
+            if (venta != null)
             {
-                //Messenger.Default.Send(
-                //        new Messages.OpenModal
-                //        {
-                //            Name = Constants.Modals.vendedor,
-                //            GID = this.GID,
-                //            Close = true
-                //        });
-            }
-            else
-            {
-                this.Vendedor = await _pproxy.FindVendedorAsync(venta.VendedorId.Value);
+                if (venta.VendedorId.HasValue)
+                {
+                    this.Vendedor = await _pproxy.FindVendedorAsync(venta.VendedorId.Value);
+                    //Messenger.Default.Send(
+                    //        new Messages.OpenModal
+                    //        {
+                    //            Name = Constants.Modals.vendedor,
+                    //            GID = this.GID,
+                    //            Close = true
+                    //        });
+                }
                 foreach (var item in venta.Articulos)
                 {
                     var res = await _proxy.ScanProductoAsync(item.Serie, this.Sucursal.Clave);
