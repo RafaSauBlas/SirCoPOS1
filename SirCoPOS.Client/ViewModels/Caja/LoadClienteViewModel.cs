@@ -209,7 +209,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             {
             var celular1 = _common.PreparePhone(celular);
                 string nc = name1 + " " + appa1 + " " + apma1;
-            var datos = Convert.ToInt32(_proxy.Clientexd(nc,name, appaterno, apmaterno, codigopostal, calle, numero, celular1, email, colonia));
+            var datos = Convert.ToInt32(_proxy.Clientexd(name, appaterno, apmaterno, codigopostal, calle, numero, celular1, email, colonia));
             Common.Constants.ClienteInfo.colonia = datos;
             }
         }
