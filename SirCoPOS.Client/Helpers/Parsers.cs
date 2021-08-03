@@ -35,7 +35,7 @@ namespace SirCoPOS.Client.Helpers
                     Nombre = ncliente.Nombre,
                     ApPaterno = ncliente.ApPaterno,
                     ApMaterno = ncliente.ApMaterno,
-                    Celular1 = ncliente.Celular,
+                    Celular1 = ncliente.Celular1,
                     CodigoPostal = ncliente.CodigoPostal,
                     Colonia = ncliente.Colonia.Id,
                     Ciudad = ncliente.Colonia.CiudadId,

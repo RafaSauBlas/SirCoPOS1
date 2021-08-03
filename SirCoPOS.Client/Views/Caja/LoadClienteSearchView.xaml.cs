@@ -21,10 +21,10 @@ namespace SirCoPOS.Client.Views.Caja
     public partial class LoadClienteSearchView : UserControl
     {
         public Client.ViewModels.Caja.LoadClienteViewModel CL;
+        public string nm;
 
         public LoadClienteSearchView()
         {
-            
             InitializeComponent();
         }
 
@@ -110,7 +110,7 @@ namespace SirCoPOS.Client.Views.Caja
                 {
                     cbColonia.Items.Add(col.Nombre.ToString());
                 }
-                cbColonia.SelectedIndex = cbColonia.Items.IndexOf(CL.FindColonia());
+                cbColonia.SelectedIndex = cbColonia.Items.IndexOf(CL.FindColonia(SirCoPOS.Common.Constants.ClienteInfo.colonia));
             }
         }
         public void SeleccionarColonia()
@@ -118,22 +118,41 @@ namespace SirCoPOS.Client.Views.Caja
             CL = new Client.ViewModels.Caja.LoadClienteViewModel();
             if (txt_cp.Text.Length == 5)
             {
-                cbColonia.SelectedIndex = cbColonia.Items.IndexOf(CL.FindColonia());
+                cbColonia.SelectedIndex = cbColonia.Items.IndexOf(CL.FindColonia(SirCoPOS.Common.Constants.ClienteInfo.colonia));
             }
         }
         public void ActualizarCliente()
         {
             CL = new Client.ViewModels.Caja.LoadClienteViewModel();
+
          string name = txt_Nombre.Text;
          string appa = txtAppa.Text;
          string apma = txtApma.Text;
          string codigopostal = txt_cp.Text;
          string calle = txtCalle.Text;
-         short numero = Convert.ToInt16(txtNumero.Text);
+            short numero;
+            if (txtNumero.Text == "")
+            {
+             numero = 0;
+            }
+            else
+            {
+                numero = Convert.ToInt16(txtNumero.Text);
+            }
+         
          string celular = txttel.Text; 
          string email = txtemail.Text;
          string colonia = cbColonia.Text;
-            CL.Clientexd(name, appa, apma, codigopostal, calle, numero, celular, email, colonia);
+
+            Common.Constants.ClienteDato.nombre = name;
+            Common.Constants.ClienteDato.appa = appa;
+            Common.Constants.ClienteDato.apma = apma;
+            Common.Constants.ClienteDato.cp = codigopostal;
+            Common.Constants.ClienteDato.calle = calle;
+            Common.Constants.ClienteDato.numero = numero;
+            Common.Constants.ClienteDato.celular = celular;
+            Common.Constants.ClienteDato.email = email;
+            Common.Constants.ClienteDato.colonia = colonia;    
         }
 
         private void txt_Nombre_LostFocus(object sender, RoutedEventArgs e)
@@ -174,6 +193,10 @@ namespace SirCoPOS.Client.Views.Caja
         private void txttel_LostFocus(object sender, RoutedEventArgs e)
         {
             ActualizarCliente();
+        }
+
+        private void txt_Nombre_TextChanged(object sender, TextChangedEventArgs e)
+        {
         }
     }
 }

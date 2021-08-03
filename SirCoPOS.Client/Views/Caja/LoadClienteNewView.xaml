@@ -27,9 +27,9 @@
         <!--TextBox Apellido Materno-->
         <TextBox x:Name="tbApMa" Height="28" Margin="345,35,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.ApMaterno}" VerticalAlignment="Top" TabIndex="3" KeyDown="tbApMa_KeyDown" TextChanged="tbApMa_TextChanged" HorizontalAlignment="Left" Width="149" LostFocus="tbApMa_LostFocus"/>
         <!--TextBox con Mascara Telefono-->
-        <xt:MaskedTextBox x:Name="tbCelular" HorizontalAlignment="Left" Height="28" Margin="80,307,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Celular}" VerticalAlignment="Top" Width="119" Mask="(000) 000-0000" TabIndex="9" PreviewTextInput="tbCelular_PreviewTextInput" FontSize="15" />
+        <xt:MaskedTextBox x:Name="tbCelular" HorizontalAlignment="Left" Height="28" Margin="80,307,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Celular1}" VerticalAlignment="Top" Width="119" Mask="(000) 000-0000" TabIndex="9" PreviewTextInput="tbCelular_PreviewTextInput" FontSize="15" />
         <!--TextBox con Mascara Telefono2-->
-        <xt:MaskedTextBox x:Name="tbCelular2" HorizontalAlignment="Left" Height="28" Margin="324,307,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Celular1}" VerticalAlignment="Top" Width="100" Mask="(000) 000-0000" TabIndex="10" PreviewTextInput="tbCelular2_PreviewTextInput" />
+        <xt:MaskedTextBox x:Name="tbCelular2" HorizontalAlignment="Left" Height="28" Margin="324,307,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Celular}" VerticalAlignment="Top" Width="100" Mask="(000) 000-0000" TabIndex="10" PreviewTextInput="tbCelular2_PreviewTextInput" FontSize="15" />
         <!--TextBox Codigo postal-->
         <TextBox x:Name="tbCP" MaxLength="5" HorizontalAlignment="Left" Height="28" Margin="130,78,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.CodigoPostal}" VerticalAlignment="Top" Width="90" TabIndex="4" PreviewTextInput="tbCP_PreviewTextInput"/>
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="197,9,0,0" TextWrapping="Wrap" Text="Ap. Paterno" VerticalAlignment="Top"/>

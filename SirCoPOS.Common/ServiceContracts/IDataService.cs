@@ -66,7 +66,7 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Common.Entities.Cliente FinClienteName(string name);
         [OperationContract]
-        int Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular1, string email, string colonia);
+        int Clientexd(string nc,string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular1, string email, string colonia);
         [OperationContract]
         int FindColidByName(string name, string cp);
         [OperationContract]
@@ -119,7 +119,7 @@ namespace SirCoPOS.Common.ServiceContracts
         IEnumerable<Common.Entities.SucursalExistencia> GetExistencias(int id, string medida);
         [OperationContract]
         IDictionary<DateTime, decimal> GenerarPlanPagosFechas(int iddist, Pago item);
-        [OperationContract]
-        IEnumerable<Entities.PorcentajeFormaPago> GetPorcentajeFPago(string sucursal, string devolucion);
+        //[OperationContract]
+        //IEnumerable<Entities.PorcentajeFormaPago> GetPorcentajeFPago(string sucursal, string devolucion);
     }
 }

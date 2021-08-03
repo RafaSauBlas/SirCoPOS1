@@ -38,13 +38,13 @@ namespace SirCoPOS.Client.Models
         {
             get { return this.GetValue<Common.Entities.Colonia>(nameof(this.Colonia)); }
             set { this.SetValue(nameof(this.Colonia), value); }
-        }
-        [Required]
+        } 
         public string Celular
         {
             get { return this.GetValue<string>(nameof(this.Celular)); }
             set { this.SetValue(nameof(this.Celular), value); }
         }
+        [Required]
         public string Celular1
         {
             get { return this.GetValue<string>(nameof(this.Celular1)); }

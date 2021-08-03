@@ -533,11 +533,10 @@ namespace SirCoPOS.Services
             }
             return null;
         }
-        public int Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular1, string email, string colonia)
+        public int Clientexd(string nc, string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular1, string email, string colonia)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
             var ctxc = new DataAccess.SirCoControlDataContext();
-            var nc = name + " " + appaterno + " " + apmaterno;
             var item = ctx.Clientes.Where(i => i.nombrecompleto == nc).FirstOrDefault();
             var datcol = ctxc.Colonias.Where(i => i.colonia == colonia && i.codigopostal == codigopostal).SingleOrDefault();
             
@@ -553,6 +552,8 @@ namespace SirCoPOS.Services
             {
                 item.apmaterno = apmaterno;
             }
+            var nombrec = name + " " + appaterno + " " + apmaterno;
+            item.nombrecompleto = nombrec;
             if(codigopostal != "")
             {
                 item.codigopostal = codigopostal;

@@ -15,6 +15,7 @@ namespace SirCoPOS.Common.Constants
         public static string estado { get; set; } = string.Empty;
         public static string ciudad { get; set; } = string.Empty;
         public static int colonia { get; set; } = 0;
+        public static string colonianame { get; set; } = string.Empty;
         public static string calle { get; set; } = string.Empty;
         public static string numero { get; set; } = string.Empty;
         public static string referencia { get; set; } = string.Empty;

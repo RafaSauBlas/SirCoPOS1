@@ -96,7 +96,7 @@ namespace SirCoPOS.BusinessLogic
                 codigopostal = model.CodigoPostal,
                 calle = model.Calle,
                 numero = model.Numero,
-                celular1 = model.Celular,
+                celular1 = model.Celular1,
                 email = model.Email,
                 fecalta = now,
                 //public int? idusuario { get; set; }
