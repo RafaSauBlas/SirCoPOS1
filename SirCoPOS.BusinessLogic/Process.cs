@@ -1242,9 +1242,9 @@ namespace SirCoPOS.BusinessLogic
             {
                 ctxpv.SaveChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new ActualizaVentaExcepcion();
+                throw new ActualizaVentaExcepcion(ex.Message);
             }
             try
             {

@@ -164,6 +164,10 @@ namespace SirCoPOS.BusinessLogic
             : base("Error Actualizando la Venta")
         {
         }
+        public ActualizaVentaExcepcion(string msg)
+            : base( "Error Actualizando SirCoPV " + msg)
+        {
+        }
     }
     public class ActualizaSerieExcepcion : Common.Helpers.BaseExcepcion
     {
