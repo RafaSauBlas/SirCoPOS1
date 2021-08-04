@@ -22,6 +22,7 @@ namespace SirCoPOS.Client.Models
             get { return this.GetValue<string>(nameof(this.ApPaterno)); }
             set { this.SetValue(nameof(this.ApPaterno), value); }
         }
+        [Required]
         public string ApMaterno
         {
             get { return this.GetValue<string>(nameof(this.ApMaterno)); }
@@ -50,6 +51,7 @@ namespace SirCoPOS.Client.Models
             get { return this.GetValue<string>(nameof(this.Celular1)); }
             set { this.SetValue(nameof(this.Celular1), value); }
         }
+        [Required]
         public string Calle
         {
             get { return this.GetValue<string>(nameof(this.Calle)); }
