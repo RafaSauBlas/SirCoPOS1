@@ -524,7 +524,8 @@ namespace SirCoPOS.Services
                     Sucursal = item.sucursal,
                     Folio = item.devolvta,
                     Disponible = item.disponible ?? 0,
-                    ClientId = item.idcliente
+                    ClientId = item.idcliente,
+                    Estatus = item.estatus
                 };
             }
             return null;

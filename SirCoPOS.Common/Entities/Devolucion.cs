@@ -12,5 +12,6 @@ namespace SirCoPOS.Common.Entities
         public string Folio { get; set; }
         public decimal Disponible { get; set; }
         public int? ClientId { get; set; }
+        public string Estatus { get; set; }
     }
 }
