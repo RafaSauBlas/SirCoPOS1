@@ -1035,7 +1035,7 @@ namespace SirCoPOS.Services
         public bool CheckCelular(string celular)
         {
             var ctxc = new DataAccess.SirCoCreditoDataContext();
-            var q = ctxc.Clientes.Where(i => i.celular == celular);
+            var q = ctxc.Clientes.Where(i => i.celular1 == celular);
             return q.Any();
         }
         public bool CheckNombreC(string nombrec)

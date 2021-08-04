@@ -350,7 +350,12 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     }, this.GID) ;
                 }
                 else
+                {
                     MessageBox.Show("YA EXISTE UN CLIENTE REGISTRADO CON EL MISMO NÚMERO CELULAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    //Client.Views.Caja.LoadClienteNewView CN = new Client.Views.Caja.LoadClienteNewView();
+                    //CN.enfoca();
+                }
+                    
             }
             if (this.Screen == "search")
             {

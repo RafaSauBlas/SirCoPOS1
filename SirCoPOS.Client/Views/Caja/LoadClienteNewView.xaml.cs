@@ -22,6 +22,7 @@ namespace SirCoPOS.Client.Views.Caja
     public partial class LoadClienteNewView : UserControl
     {
         private Common.ServiceContracts.IDataServiceAsync _proxy;
+        private Helpers.CommonHelper _common;
         public LoadClienteNewView()
         {
             InitializeComponent();
@@ -141,8 +142,11 @@ namespace SirCoPOS.Client.Views.Caja
                 tbApPa.Text = "";
                 tbApMa.Text = "";
             }
-                
-
+        }
+        public void enfoca()
+        {
+            this.tbCelular.Text = "";
+            this.tbCelular.Focus();
         }
     }
 }
