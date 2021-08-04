@@ -125,6 +125,8 @@ namespace SirCoPOS.Client.Views.Caja
         private void tbNumero_GotFocus(object sender, RoutedEventArgs e)
         {
             tbNumero.SelectAll();
+
+
         }
 
         private void tbApMa_LostFocus(object sender, RoutedEventArgs e)
@@ -147,6 +149,11 @@ namespace SirCoPOS.Client.Views.Caja
         {
             this.tbCelular.Text = "";
             this.tbCelular.Focus();
+        }
+
+        private void tbIdenti_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

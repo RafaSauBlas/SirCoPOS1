@@ -39,7 +39,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 case nameof(this.Descripcion):
                     this.AcceptCommand.RaiseCanExecuteChanged();
                     break;
-            }            
+            }
         }
 
         protected override bool CanAccept()
