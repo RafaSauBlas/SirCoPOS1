@@ -192,6 +192,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void txttel_LostFocus(object sender, RoutedEventArgs e)
         {
+
             ActualizarCliente();
         }
 

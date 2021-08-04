@@ -189,6 +189,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
         }
         public void Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular, string email, string colonia)
         {
+            try
+            { 
             int colid;
             if (codigopostal != "" && colonia != "")
             {
@@ -212,11 +214,19 @@ namespace SirCoPOS.Client.ViewModels.Caja
             var datos = Convert.ToInt32(_proxy.Clientexd(name, appaterno, apmaterno, codigopostal, calle, numero, celular1, email, colonia));
             Common.Constants.ClienteInfo.colonia = datos;
             }
+
         }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine("Error: {0}", e);
+                throw;
+            }
+}
         public void Busca(string celular)
         {
-
-            var nombre = "";
+            try
+            {
+                var nombre = "";
             var phone = _common.PreparePhone(celular);
             
 
@@ -228,7 +238,13 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     this.ClienteNombreSearch = null;
                 }
                 else
-                    MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);            
+                    MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine("Error: {0}", e);
+                throw;
+            }
         }
 
         public void cambio()
@@ -238,6 +254,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         public void LoadClienteViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+
             switch (e.PropertyName)
             {
                 case nameof(this.Screen):
@@ -266,6 +283,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         public async void Cliente_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+
             switch (e.PropertyName)
             {
                 case nameof(this.NuevoCliente.CodigoPostal):
@@ -284,23 +302,50 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         public void TraerColonias()
         {
+            try
+            { 
                 this.Colonias =  _proxy.FindColonias(SirCoPOS.Common.Constants.ClienteInfo.cp);
                 SirCoPOS.Common.Constants.ClienteInfo.Colonias = this.Colonias;
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine("Error: {0}", e);
+                throw;
+            }
+
         }
 
         public void RefrescarColonias(string cp)
         {
+            try
+            { 
             this.Colonias = null;
             this.Colonias = _proxy.FindColonias(cp.ToString());
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine("Error: {0}", e);
+                throw;
+            }
         }
         public string FindColonia(int coloniaid)
         {
+            try
+            { 
             var ret = _proxy.FindColonia(coloniaid);
             return ret;
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine("Error: {0}", e);
+                throw;
+            }
         }
 
         public void actualizainfo()
         {
+            try 
+            { 
            name2 = Common.Constants.ClienteDato.nombre;
            appa2 =Common.Constants.ClienteDato.appa;
            apma2 = Common.Constants.ClienteDato.apma;
@@ -320,12 +365,20 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 colonia2 = 0;
             }
             Clientexd(name2, appa2, apma2, codigopostal2, calle2, numero2, celular2, email2, colname);
+
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine("Error: {0}", e);
+                throw;
+            }
         }
 
         public bool CloseTab { get { return false; } }
 
         protected override void Accept()
         {
+
             if (this.Screen == "new")
             {
                 string celular;
@@ -374,11 +427,19 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         protected override bool CanAccept()
         {
+            try
+            {
             if(this.Screen == "new")
                 return this.NuevoCliente.IsValid();
             if(this.Screen == "search")
                 return this.Cliente != null;
             return false;
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine("Error: {0}", e);
+                throw;
+            }
         }
 
         #region properties

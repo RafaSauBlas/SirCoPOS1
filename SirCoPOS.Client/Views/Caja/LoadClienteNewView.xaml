@@ -55,7 +55,7 @@
         <!--TextBox Numero-->
         <TextBox x:Name="tbNumero" HorizontalAlignment="Left" Margin="366,225,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Numero}" Width="60" Height="28" VerticalAlignment="Top" TabIndex="7" PreviewTextInput="tbNumero_PreviewTextInput" GotFocus="tbNumero_GotFocus"/>
         <!--TextBox referenca-->
-        <TextBox x:Name="tbIdenti" HorizontalAlignment="Left" Margin="140,268,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Referencia}" Width="286" Height="28" VerticalAlignment="Top" TabIndex="8"/>
+        <TextBox x:Name="tbIdenti" HorizontalAlignment="Left" Margin="140,268,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Referencia}" Width="286" Height="28" VerticalAlignment="Top" TabIndex="8" TextChanged="tbIdenti_TextChanged"/>
         <!--TextBox correo-->
         <TextBox x:Name="tbEmail" HorizontalAlignment="Left" Margin="64,353,0,0" TextWrapping="Wrap" Text="{Binding NuevoCliente.Email}" Width="135" Height="28" VerticalAlignment="Top" TabIndex="11"/>
         <TextBlock x:Name="textBlock_Copy7" HorizontalAlignment="Left" Margin="10,228,0,0" TextWrapping="Wrap" Text="Calle" VerticalAlignment="Top"/>
