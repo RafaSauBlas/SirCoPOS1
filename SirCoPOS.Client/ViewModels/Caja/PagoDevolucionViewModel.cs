@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SirCoPOS.Client.ViewModels.Caja
 {
@@ -25,11 +26,19 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.Devolucion = await _proxy.FindDevolucionAsync(this.Sucursal, this.Folio);
                 if (this.Devolucion != null)
                 {
-                    if (this.Devolucion.Disponible >= this.Total)
-                        this.Pagar = this.Total;
-                    else if (this.Devolucion.Disponible > 0)
-                        this.Pagar = this.Devolucion.Disponible;
-                    //var tipoPago = await _proxy.GetPorcentajeFPagoAsync(this.Sucursal, this.Folio);
+                    if (this.Devolucion.Estatus != Common.Constants.Status.ZC.ToString())
+                    {
+                        if (this.Devolucion.Disponible >= this.Total)
+                            this.Pagar = this.Total;
+                        else if (this.Devolucion.Disponible > 0)
+                            this.Pagar = this.Devolucion.Disponible;
+
+                        //var tipoPago = await _proxy.GetPorcentajeFPagoAsync(this.Sucursal, this.Folio);
+                    }
+                    else {
+                        MessageBox.Show("La devolución está cancelada", "Forma de Pago Devolución", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
+                    
                 }
                 this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.Sucursal) && !String.IsNullOrEmpty(this.Folio));

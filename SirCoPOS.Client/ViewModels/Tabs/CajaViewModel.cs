@@ -114,7 +114,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                                 Name = Utilities.Constants.Modals.cliente,
                                 GID = this.GID
                             });
-            });
+            }, () => !this.Pagos.Where(i=>i.ClientId != null &&
+                                      (i.FormaPago == Common.Constants.FormaPago.CD || i.FormaPago == Common.Constants.FormaPago.CP) ).Any() );
             this.LoadVendedorCommand = new RelayCommand(() => {
                 Messenger.Default.Send(
                             new Utilities.Messages.OpenModal
