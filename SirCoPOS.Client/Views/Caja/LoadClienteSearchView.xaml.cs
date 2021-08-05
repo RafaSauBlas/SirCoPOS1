@@ -175,5 +175,10 @@ namespace SirCoPOS.Client.Views.Caja
         {
             ActualizarCliente();
         }
+
+        private void cbSexo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ActualizarCliente();
+        }
     }
 }

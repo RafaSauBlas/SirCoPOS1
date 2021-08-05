@@ -96,6 +96,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         celular1 = this.Cliente.Celular1;
                         celular = this.Cliente.Celular;
                         email1 = this.Cliente.Email;
+                        sexo1 = this.Cliente.Sexo;
                         colonia1 = Convert.ToInt16(this.Cliente.Colonia);
 
                         this.Colonias = _proxy.FindColonias(this.Cliente.CodigoPostal);
@@ -193,6 +194,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     celular1 = this.Cliente.Celular1;
                     celular = this.Cliente.Celular;
                     email1 = this.Cliente.Email;
+                    sexo1 = this.Cliente.Sexo;
                     colonia1 = Convert.ToInt16(this.Cliente.Colonia);
 
                     this.Colonias = _proxy.FindColonias(this.Cliente.CodigoPostal);
@@ -220,7 +222,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         }
         public void Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular, string cel, string email, string colonia, string sexo)
-        {
+         {
             try
             {
                 _CV.ActualizarCliente();
@@ -240,7 +242,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
             if (name != name1 || appaterno != appa1 || apmaterno != apma1
                 || codigopostal != codigopostal1 || calle != calle1 || numero != numero1
-                || email != email1 || colonia1 != colonia2)
+                || email != email1 || colonia1 != colonia2 || sexo1 != sexo2 || celular1 != celular12 || celular != celular2)
             {
             var celular1 = _common.PreparePhone(celular);
             var celu = _common.PreparePhone(cel);
