@@ -81,7 +81,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     _PrintCommand = new RelayCommand(
                         () =>
                         {
-                            _reports.Compra(this.Venta.Sucursal, this.Venta.Folio);
+                            _reports.Compra(this.Venta.Sucursal, this.Venta.Folio, true);
                         }, () => this.Venta != null
                     );
                 }

@@ -6,7 +6,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.64894in</Width>
+              <Width>2.7175in</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -182,7 +182,7 @@
                           <rd:DefaultName>Textbox5</rd:DefaultName>
                           <Top>0.72224in</Top>
                           <Height>0.18056in</Height>
-                          <Width>2.64894in</Width>
+                          <Width>1.3125in</Width>
                           <ZIndex>4</ZIndex>
                           <Style>
                             <Border>
@@ -473,6 +473,41 @@
                             </Border>
                           </Style>
                         </Line>
+                        <Textbox Name="Leyenda">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Leyenda.Value</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Leyenda</rd:DefaultName>
+                          <Top>0.72224in</Top>
+                          <Left>1.32639in</Left>
+                          <Height>0.18056in</Height>
+                          <Width>1.32466in</Width>
+                          <ZIndex>13</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
                       </ReportItems>
                       <KeepTogether>true</KeepTogether>
                       <Style>
@@ -502,7 +537,7 @@
         <DataSetName>reciboDataSet</DataSetName>
         <Left>0.05292cm</Left>
         <Height>1.61448in</Height>
-        <Width>2.64894in</Width>
+        <Width>2.7175in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -3204,7 +3239,7 @@
     <Height>13.07749in</Height>
     <Style />
   </Body>
-  <Width>6.88224cm</Width>
+  <Width>6.95537cm</Width>
   <Page>
     <PageHeight>8in</PageHeight>
     <PageWidth>2.75591in</PageWidth>
@@ -3395,6 +3430,10 @@
         <Field Name="ImporteSigPagos">
           <DataField>ImporteSigPagos</DataField>
           <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="Leyenda">
+          <DataField>Leyenda</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Nota">
           <DataField>Nota</DataField>

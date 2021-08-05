@@ -200,7 +200,7 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
         }
 
         
-        public ReciboCompraReport GetReciboCompra(string sucursal, string folio)
+        public ReciboCompraReport GetReciboCompra(string sucursal, string folio, bool reimpresion = false)
         {
             var ctxpv = new DataAccess.SirCoPVDataContext();
             var ctxc = new DataAccess.SirCoControlDataContext();
@@ -304,9 +304,13 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
                     ImporteSaldo = saldo,
                     NotaFecha = venta.fum.Value,
                     ContraVale = contravale,
+                    Leyenda = "",
                 }
             };
-
+            if (reimpresion)
+            {
+                item.Recibo.Leyenda = "** REIMPRESION **";
+            }
             decimal desc = 0;
             decimal aPagar = 0;
             var plist = new List<Common.Entities.Reports.Producto>();

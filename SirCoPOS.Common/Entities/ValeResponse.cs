@@ -25,6 +25,8 @@ namespace SirCoPOS.Common.Entities
     public class CValeResponse : ValeResponse
     { 
         public string Sucursal { get; set; }
+        public string Venta { get; set; }
+        public decimal? Saldo { get; set; }
     }
     public class DistribuidorObserva
     {

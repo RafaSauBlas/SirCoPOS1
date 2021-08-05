@@ -26,6 +26,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Producto FindProducto(string marca, string modelo, string sucursal);
         [OperationContract]
+        int PrintNumCopias();
+        [OperationContract]
         Entities.ScanDevolucionResponse ScanProductoDevolucion(string serie, bool cancelacion);
         [OperationContract]
         Entities.ScanDevolucionResponse ScanProductoFromDevolucion(string serie);

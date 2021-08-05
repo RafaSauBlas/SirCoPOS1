@@ -60,11 +60,12 @@ namespace SirCoPOS.Win.Helpers
 
         public void RemoveArticulo(string ser)
         {
-            var del = _venta.Articulos.Where(i => i.Serie == ser).Single();
-            _venta.Articulos.Remove(del);
-            _ctx.SaveChanges();
+            var del = _venta.Articulos.Where(i => i.Serie == ser).SingleOrDefault();
+            if (del != null) {  
+                _venta.Articulos.Remove(del);
+                _ctx.SaveChanges();
+            }
         }
-
         public void AddArticulo(string serie)
         {
             _venta.Articulos.Add(new Utilities.DataAccess.DataObjects.VentaArticulo { Serie = serie });

@@ -548,10 +548,6 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             try
             {
                 this.SaleResponse = await _client.SaleAsync(sale);
-
-                _reports.Compra(this.Sucursal.Clave, this.SaleResponse.Folio);
-                this.CloseCommand.Execute(null);
-
             }
             catch (Exception ex)
             {
@@ -562,6 +558,34 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 this.Clear(false);
                 this.IsBusy = false;
             }
+
+            var pagos = sale.Pagos;
+            var pagoscv = pagos.Where(i => i.FormaPago == FormaPago.CV).SingleOrDefault();
+
+            if (pagoscv != null)
+            {
+                var cvale = await _proxy.FindContraValeAsync(pagoscv.Sucursal, pagoscv.Vale);
+                if (cvale.Saldo > 0 && cvale.Vigencia >= DateTime.Today.AddDays(2))
+                {
+                    string disponible = string.Format(new System.Globalization.CultureInfo("es-MX"), "{0:C2}", cvale.Saldo);
+                    
+                    DateTime Vigencia = (DateTime)cvale.Vigencia;
+                    string fechaformat = Vigencia.ToString("dd-MMM-yyyy");
+
+                    string msg = "El Contravale " + cvale.Sucursal + "-" + cvale.Vale + 
+                                 " tiene disponible " + disponible + 
+                                 "\ny tiene vigencia del " + fechaformat + 
+                                 " desea Imprimirlo ?";
+                    var resp = MessageBox.Show(msg, "Pago ContraVale", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (resp == MessageBoxResult.Yes)
+                    {
+                        _reports.ContraVale(cvale.Sucursal, cvale.Venta);
+                    }
+                }
+            }
+            _reports.Compra(this.Sucursal.Clave, this.SaleResponse.Folio);
+            this.CloseCommand.Execute(null);
+
         }
 
 

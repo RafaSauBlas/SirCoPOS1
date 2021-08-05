@@ -10,5 +10,6 @@ namespace SirCoPOS.Common.Constants
     {
         public const string BLINDAJE = "BLINIMP";
         public const string ELECTRONICA = "ELECTRONICAPLAZOS";
+        public const string NUMCOPIAS = "NUMCOPIAS";
     }
 }
