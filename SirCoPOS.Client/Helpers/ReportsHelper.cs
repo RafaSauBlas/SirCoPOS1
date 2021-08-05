@@ -91,7 +91,7 @@ namespace SirCoPOS.Client.Helpers
                 fullname: "SirCoPOS.Reports.ReciboVenta.rdlc",
                 library: "SirCoPOS.Reports",
                 datasources: dic);
-                for (var i=1; i <= numcopias; i++) {  
+                for (var i=1; i <= numcopias; i++) {
                     pd.Print();
                 }
             }
@@ -105,13 +105,13 @@ namespace SirCoPOS.Client.Helpers
                     { "ContraValeDataSet", listc },
                 };
 
-                if (System.Diagnostics.Debugger.IsAttached) { 
+                if (System.Diagnostics.Debugger.IsAttached) {
                     _viewer.OpenViewer(
                         fullname: "SirCoPOS.Reports.ContraVale.rdlc",
                         library: "SirCoPOS.Reports",
                         datasources: dictc);
                 }
-                else { 
+                else {
 
                     var pdc = new Helpers.PrintFile(
                     fullname: "SirCoPOS.Reports.ContraVale.rdlc",
@@ -121,10 +121,32 @@ namespace SirCoPOS.Client.Helpers
                 }
             }
 
-            
+
 
         }
+    public void ContraVale(string sucursal, string folio, bool reimpresion = false)
+        {
+            var CVale = _proxy.GetContraVale(sucursal, folio);
+            var item = _mapper.Map<SirCoPOS.Reports.Entities.ContraVale>(CVale.Recibo);
+            var list = new List<SirCoPOS.Reports.Entities.ContraVale>() { item };
+            var dictc = new Dictionary<string, IEnumerable<object>>() {
+                { "ContraValeDataSet", list },
+            };
 
+            if (System.Diagnostics.Debugger.IsAttached) { 
+                _viewer.OpenViewer(
+                    fullname: "SirCoPOS.Reports.ContraVale.rdlc",
+                    library: "SirCoPOS.Reports",
+                    datasources: dictc);
+            }
+            else { 
+                var pdc = new Helpers.PrintFile(
+                fullname: "SirCoPOS.Reports.ContraVale.rdlc",
+                library: "SirCoPOS.Reports",
+                datasources: dictc);
+                pdc.Print();
+            }
+        }
         public void Devolucion(string sucursal, string folio)
         {
             var devolucion = _proxy.GetReciboDevolucion(sucursal, folio);

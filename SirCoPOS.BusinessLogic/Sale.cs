@@ -2361,7 +2361,9 @@ namespace SirCoPOS.BusinessLogic
                 Vigencia = cvale.caduca,
                 Cancelado = false,
                 Distribuidor = dis,
-                Sucursal = sucursal
+                Sucursal = sucursal,
+                Saldo = cvale.saldo,
+                Venta = cvale.referenc
             };
 
             if (cvale.status.Contains(Common.Constants.Status.ZC.ToString()))
