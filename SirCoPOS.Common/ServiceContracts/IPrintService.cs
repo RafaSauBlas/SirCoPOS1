@@ -11,7 +11,7 @@ namespace SirCoPOS.Common.ServiceContracts
     public interface IPrintService
     {
         [OperationContract]
-        Common.Entities.Reports.ReciboCompraReport GetReciboCompra(string sucursal, string folio);
+        Common.Entities.Reports.ReciboCompraReport GetReciboCompra(string sucursal, string folio, bool reimpresion);
         [OperationContract]
         Common.Entities.Reports.ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio);
         [OperationContract]

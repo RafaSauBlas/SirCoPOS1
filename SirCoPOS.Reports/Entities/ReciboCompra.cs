@@ -47,6 +47,6 @@ namespace SirCoPOS.Reports.Entities
         public DateTime Fecha1erPago { get; set; }
         public short? ContraVale { get; set; }
         public decimal? PagarCon { get; set; }
-
+        public string Leyenda { get; set; }
     }
 }

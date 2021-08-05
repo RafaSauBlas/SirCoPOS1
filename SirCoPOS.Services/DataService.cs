@@ -413,6 +413,17 @@ namespace SirCoPOS.Services
             //}
             //return res;
         }
+        public int PrintNumCopias()
+        {
+            int Valor = 1;
+            var ctx = new DataAccess.SirCoControlDataContext();
+            var copias = ctx.Parametros.Where(i => i.clave == "NUMCOPIAS" && i.sucursal == "99").SingleOrDefault();
+            if (copias != null)
+            {
+                Valor = Int32.Parse(copias.valor);
+            }
+            return Valor;
+        }
         public Producto FindProducto(string marca, string modelo, string sucursal)
         {
             var ctx = new DataAccess.SirCoDataContext();
@@ -549,6 +560,10 @@ namespace SirCoPOS.Services
             var item = ctx.Clientes.Where(i => i.nombrecompleto == nc).FirstOrDefault();
             var datcol = ctxc.Colonias.Where(i => i.colonia == colonia && i.codigopostal == codigopostal).SingleOrDefault();
             
+            if (item == null)
+            {
+                return 0;
+            }
             if(name != "")
             {
                 item.nombre = name;
@@ -573,11 +588,11 @@ namespace SirCoPOS.Services
             {
                 item.numero = Convert.ToInt16(numero);
             }
-            if (celular1 != "")
+            if (celular1 != "" && celular1 != null) 
             {
                 item.celular1 = celular1;
             }
-            if(email != "")
+            if(email != "" && email != null)
             {
                 item.email = email;
             }

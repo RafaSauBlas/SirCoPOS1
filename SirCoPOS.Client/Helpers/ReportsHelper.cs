@@ -13,12 +13,13 @@ namespace SirCoPOS.Client.Helpers
         private Common.ServiceContracts.IPrintServiceAsync _proxy;
         private AutoMapper.IMapper _mapper;
         private Utilities.Interfaces.IReportViewer _viewer;
-
+        private readonly Common.ServiceContracts.IDataServiceAsync _data;
         public ReportsHelper()
         {
             _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IPrintServiceAsync>();
             _mapper = CommonServiceLocator.ServiceLocator.Current.GetInstance<AutoMapper.IMapper>();
             _viewer = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Interfaces.IReportViewer>();
+            _data = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
         }
 
 
@@ -50,9 +51,9 @@ namespace SirCoPOS.Client.Helpers
         }
 
 
-        public void Compra(string sucursal, string folio)
+        public void Compra(string sucursal, string folio, bool reimpresion = false)
         {
-            var venta = _proxy.GetReciboCompra(sucursal, folio);
+            var venta = _proxy.GetReciboCompra(sucursal, folio, reimpresion);
 
             var item = _mapper.Map<SirCoPOS.Reports.Entities.ReciboCompra>(venta.Recibo);
             var productos = _mapper.Map<IEnumerable<SirCoPOS.Reports.Entities.Producto>>(venta.Productos);
@@ -60,8 +61,11 @@ namespace SirCoPOS.Client.Helpers
             var planPagos = _mapper.Map<IEnumerable<SirCoPOS.Reports.Entities.PlanPago>>(venta.PlanPagos);
             var planPagosDet = _mapper.Map<IEnumerable<SirCoPOS.Reports.Entities.PlanPagoDetalle>>(venta.PlanPagosDetalle);
             var mensajes = _mapper.Map<IEnumerable<SirCoPOS.Reports.Entities.TicketMensaje>>(venta.TicketMensajes);
-            
-            
+
+            var numcopias = 1;
+            if (!reimpresion) {
+                numcopias = _data.PrintNumCopias();
+            }
             var list = new List<SirCoPOS.Reports.Entities.ReciboCompra>() { item };
             var dic = new Dictionary<string, IEnumerable<object>>() {
                 { "reciboDataSet", list },
@@ -73,10 +77,13 @@ namespace SirCoPOS.Client.Helpers
             };
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                _viewer.OpenViewer(
+                for (var i = 1; i <= numcopias; i++)
+                {
+                    _viewer.OpenViewer(
                         fullname: "SirCoPOS.Reports.ReciboVenta.rdlc",
                         library: "SirCoPOS.Reports",
                         datasources: dic);
+                }
             }
             else
             {
@@ -84,7 +91,9 @@ namespace SirCoPOS.Client.Helpers
                 fullname: "SirCoPOS.Reports.ReciboVenta.rdlc",
                 library: "SirCoPOS.Reports",
                 datasources: dic);
-                pd.Print();
+                for (var i=1; i <= numcopias; i++) {  
+                    pd.Print();
+                }
             }
 
             if (item.ContraVale == 1)
