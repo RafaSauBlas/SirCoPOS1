@@ -91,6 +91,8 @@ namespace SirCoPOS.Win.ViewModels
 
         private void Login_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+            try
+            { 
             switch (e.PropertyName)
             {
                 case "UserName":
@@ -101,6 +103,11 @@ namespace SirCoPOS.Win.ViewModels
                 case nameof(Scanning):
                     this.ScanCommand.RaiseCanExecuteChanged();
                     break;
+            }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("A handled exception just occurred: " + ex.Message, "Exception Sample");
             }
         }
         public Func<string> PasswordHandler;

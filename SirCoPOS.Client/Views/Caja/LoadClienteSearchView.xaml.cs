@@ -21,7 +21,6 @@ namespace SirCoPOS.Client.Views.Caja
     public partial class LoadClienteSearchView : UserControl
     {
         public Client.ViewModels.Caja.LoadClienteViewModel CL;
-        public string nm;
 
         public LoadClienteSearchView()
         {
@@ -31,22 +30,6 @@ namespace SirCoPOS.Client.Views.Caja
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.txt_Telefono.Focus();
-        }
-
-
-        private void txt_Nombre_Copy_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void txt_Nombre_Copy_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
-
-        private void CambioVentana_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void txt_Nombre_KeyDown(object sender, KeyEventArgs e)
@@ -71,7 +54,6 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void txt_cp_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            
             int character = Convert.ToInt32(Convert.ToChar(e.Text));
             if (character >= 48 && character <= 57)
                 e.Handled = false;
@@ -82,21 +64,6 @@ namespace SirCoPOS.Client.Views.Caja
         private void txtemail_LostFocus(object sender, RoutedEventArgs e)
         {
             ActualizarCliente();
-        }
-
-        private void txt_Telefono_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
-        }
-
-        private void txt_cp_LostFocus(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void txtemail_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            
         }
 
         private void txt_cp_TextChanged(object sender, TextChangedEventArgs e)
@@ -121,6 +88,7 @@ namespace SirCoPOS.Client.Views.Caja
                 cbColonia.SelectedIndex = cbColonia.Items.IndexOf(CL.FindColonia(SirCoPOS.Common.Constants.ClienteInfo.colonia));
             }
         }
+
         public void ActualizarCliente()
         {
             CL = new Client.ViewModels.Caja.LoadClienteViewModel();
@@ -130,7 +98,7 @@ namespace SirCoPOS.Client.Views.Caja
          string apma = txtApma.Text;
          string codigopostal = txt_cp.Text;
          string calle = txtCalle.Text;
-            short numero;
+         short numero;
             if (txtNumero.Text == "")
             {
              numero = 0;
@@ -139,10 +107,11 @@ namespace SirCoPOS.Client.Views.Caja
             {
                 numero = Convert.ToInt16(txtNumero.Text);
             }
-         
-         string celular = txttel.Text; 
+         string celular = txttel.Text;
+         string celular1 = txttel2.Text;
          string email = txtemail.Text;
          string colonia = cbColonia.Text;
+         string sexo = cbSexo.Text;
 
             Common.Constants.ClienteDato.nombre = name;
             Common.Constants.ClienteDato.appa = appa;
@@ -152,7 +121,9 @@ namespace SirCoPOS.Client.Views.Caja
             Common.Constants.ClienteDato.numero = numero;
             Common.Constants.ClienteDato.celular = celular;
             Common.Constants.ClienteDato.email = email;
-            Common.Constants.ClienteDato.colonia = colonia;    
+            Common.Constants.ClienteDato.colonia = colonia;
+            Common.Constants.ClienteDato.sexo = sexo;
+            Common.Constants.ClienteDato.celular1 = celular1;
         }
 
         private void txt_Nombre_LostFocus(object sender, RoutedEventArgs e)
@@ -185,19 +156,24 @@ namespace SirCoPOS.Client.Views.Caja
             ActualizarCliente();
         }
 
-        private void txttel_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void txttel_LostFocus(object sender, RoutedEventArgs e)
         {
-
             ActualizarCliente();
         }
 
-        private void txt_Nombre_TextChanged(object sender, TextChangedEventArgs e)
+        private void txt_Telefono_LostFocus(object sender, RoutedEventArgs e)
         {
+            ActualizarCliente();
+        }
+
+        private void txtNumero_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtNumero.SelectAll();
+        }
+
+        private void cbSexo_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ActualizarCliente();
         }
     }
 }

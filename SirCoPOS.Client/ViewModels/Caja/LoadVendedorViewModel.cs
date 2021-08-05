@@ -72,6 +72,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         private async Task FindVendedor()
         {
+            try
+            { 
             this.Result = false;
             this.Vendedor = await _proxy.FindVendedorAsync(this.VendedorSearch.Value);
             if (this.Vendedor != null)
@@ -79,6 +81,11 @@ namespace SirCoPOS.Client.ViewModels.Caja
             else
                 MessageBox.Show("Vendedor no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             this.Result = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("A handled exception just occurred: " + ex.Message, "Exception Sample");
+            }
         }
         public RelayCommand FindVendedorCommand { get; private set; }
         public bool CloseTab { get { return true; } }

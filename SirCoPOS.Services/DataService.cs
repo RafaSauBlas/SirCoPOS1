@@ -541,7 +541,7 @@ namespace SirCoPOS.Services
             }
             return null;
         }
-        public int Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular1, string email, string colonia)
+        public int Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular1, string celu, string email, string colonia, int usumodif, string sexo)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
             var ctxc = new DataAccess.SirCoControlDataContext();
@@ -587,7 +587,10 @@ namespace SirCoPOS.Services
                 item.idestado = datcol.idestado;
                 item.idcolonia = datcol.idcolonia;
             }
+            item.idusuariomodif = usumodif;
+            item.celular = celu;
             item.fummodif = DateTime.Now;
+            item.sexo = sexo;
 
             ctx.SaveChanges();
             return Convert.ToInt16(item.idcolonia);
@@ -617,6 +620,7 @@ namespace SirCoPOS.Services
                 Estado = item.idestado,
                 Calle = item.calle,
                 Numero = item.numero,
+                Celular1 = item.celular,
                 //public string Referencia { get; set; }
                 Email = item.email,
                 Sexo = item.sexo
@@ -656,6 +660,7 @@ namespace SirCoPOS.Services
                 Estado = item.idestado,
                 Calle = item.calle,
                 Numero = item.numero,
+                Celular1 = item.celular,
                 //public string Referencia { get; set; }
                 Email = item.email,
                 Sexo = item.sexo

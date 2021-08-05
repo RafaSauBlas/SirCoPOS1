@@ -12,17 +12,17 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance Type={x:Type vm:LoadClienteViewModel}}"
-             Height="297.379" Width="529.598" Loaded="UserControl_Loaded">
+             Height="355.379" Width="529.598" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <c:ImageUrlConverter x:Key="imageUrl"></c:ImageUrlConverter>
         <c:WindowStateConverter x:Key="windowState"/>
     </UserControl.Resources>
-    <Grid x:Name="Pruebin" Margin="0" Height="297" VerticalAlignment="Top">
+    <Grid x:Name="Pruebin" Margin="0" Height="356" VerticalAlignment="Top">
         <Grid.Background>
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
         </Grid.Background>
         <!--Boton genera Nuevo Cliente-->
-        <Button x:Name="CambioVentana" Command="{Binding ChangeViewCommand}" CommandParameter="new"  Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="CambioVentana_Click" Height="29">
+        <Button x:Name="CambioVentana" Command="{Binding ChangeViewCommand}" CommandParameter="new"  Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Height="29">
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Button.Background>
@@ -60,13 +60,16 @@
         <!--Captura de telefono para busqueda-->
 
 
-        <xt:MaskedTextBox x:Name="txt_Telefono" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="114,17,0,0" TextWrapping="Wrap" Text="{Binding ClienteTelefonoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1" FontSize="15" TextChanged="txt_Telefono_TextChanged">
+        <xt:MaskedTextBox x:Name="txt_Telefono" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="114,17,0,0" TextWrapping="Wrap" Text="{Binding ClienteTelefonoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1" FontSize="15" LostFocus="txt_Telefono_LostFocus">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </TextBox.InputBindings>
         </xt:MaskedTextBox>
-        <TextBlock x:Name="lbltele" HorizontalAlignment="Left" Margin="10,187,0,0" TextWrapping="Wrap" Text="Telefono" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox  x:Name="txttel" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="82,184,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Celular}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="7" FontSize="15" TextChanged="txttel_TextChanged" LostFocus="txttel_LostFocus">
+        <TextBlock x:Name="lbltele" HorizontalAlignment="Left" Margin="10,187,0,0" TextWrapping="Wrap" Text="Celular" VerticalAlignment="Top"/>
+        <xt:MaskedTextBox  x:Name="txttel" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="82,184,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Celular}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="7" FontSize="15" LostFocus="txttel_LostFocus">
+        </xt:MaskedTextBox>
+        <TextBlock x:Name="lbltele2" HorizontalAlignment="Left" Margin="279,187,0,0" TextWrapping="Wrap" Text="Celular2" VerticalAlignment="Top"/>
+        <xt:MaskedTextBox  x:Name="txttel2" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="351,184,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Celular1}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="7" FontSize="15" LostFocus="txttel_LostFocus">
         </xt:MaskedTextBox>
         <TextBlock x:Name="lblNombre" HorizontalAlignment="Left" Margin="46,51,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblAppa" HorizontalAlignment="Left" Margin="182,51,0,0" TextWrapping="Wrap" Text="Ap. paterno" VerticalAlignment="Top"/>
@@ -78,7 +81,7 @@
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="lblcp" HorizontalAlignment="Left" Margin="10,117,0,0" TextWrapping="Wrap" Text="Codigo postal" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox  x:Name="txt_cp"   HorizontalAlignment="Left" Height="25" Margin="131,114,0,0" TextWrapping="Wrap" Text="{Binding Cliente.CodigoPostal}" VerticalAlignment="Top" Width="72" KeyboardNavigation.TabIndex ="4" KeyDown="txt_Nombre_KeyDown" PreviewTextInput="txt_cp_PreviewTextInput" FontSize="15" LostFocus="txt_cp_LostFocus" TextChanged="txt_cp_TextChanged">
+        <xt:MaskedTextBox  x:Name="txt_cp"   HorizontalAlignment="Left" Height="25" Margin="131,114,0,0" TextWrapping="Wrap" Text="{Binding Cliente.CodigoPostal}" VerticalAlignment="Top" Width="72" KeyboardNavigation.TabIndex ="4" KeyDown="txt_Nombre_KeyDown" PreviewTextInput="txt_cp_PreviewTextInput" FontSize="15" TextChanged="txt_cp_TextChanged">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding actualizacolonias}"/>
             </xt:MaskedTextBox.InputBindings>
@@ -90,16 +93,16 @@
             </ComboBox.Background>
         </ComboBox>
         <TextBlock x:Name="lblCalle" HorizontalAlignment="Left" Margin="10,152,0,0" TextWrapping="Wrap" Text="Calle" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox  x:Name="txtCalle"   HorizontalAlignment="Left" Height="25" Margin="86,149,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Calle}" VerticalAlignment="Top" Width="270" KeyboardNavigation.TabIndex ="6" TextChanged="txt_Nombre_Copy_TextChanged" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtCalle_LostFocus">
+        <xt:MaskedTextBox  x:Name="txtCalle"   HorizontalAlignment="Left" Height="25" Margin="86,149,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Calle}" VerticalAlignment="Top" Width="306" KeyboardNavigation.TabIndex ="6" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtCalle_LostFocus">
         </xt:MaskedTextBox>
         <TextBlock x:Name="lblidentif" HorizontalAlignment="Left" Margin="10,226,0,0" TextWrapping="Wrap" Text="Identificación" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox  x:Name="txtidentif"   HorizontalAlignment="Left" Height="25" Margin="114,223,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Identificacion}" VerticalAlignment="Top" Width="270" KeyboardNavigation.TabIndex ="6" TextChanged="txt_Nombre_Copy_TextChanged" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtCalle_LostFocus">
+        <xt:MaskedTextBox  x:Name="txtidentif"   HorizontalAlignment="Left" Height="25" Margin="122,223,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="270" KeyboardNavigation.TabIndex ="6" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtCalle_LostFocus">
         </xt:MaskedTextBox>
         <TextBlock x:Name="lblnumero" HorizontalAlignment="Left" Margin="415,152,0,0" TextWrapping="Wrap" Text="#" VerticalAlignment="Top" FontSize="15"/>
-        <xt:MaskedTextBox  x:Name="txtNumero"   HorizontalAlignment="Left" Height="25" Margin="444,149,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Numero}" VerticalAlignment="Top" Width="64" KeyboardNavigation.TabIndex ="6" TextChanged="txt_Nombre_Copy_TextChanged" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtNumero_LostFocus">
+        <xt:MaskedTextBox  x:Name="txtNumero"   HorizontalAlignment="Left" Height="25" Margin="433,149,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Numero}" VerticalAlignment="Top" Width="64" KeyboardNavigation.TabIndex ="6" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtNumero_LostFocus" GotFocus="txtNumero_GotFocus">
         </xt:MaskedTextBox>
-        <TextBlock x:Name="lblemail" HorizontalAlignment="Left" Margin="259,187,0,0" TextWrapping="Wrap" Text="E-Mail" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox  x:Name="txtemail"   HorizontalAlignment="Left" Height="25" Margin="323,184,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Email}" VerticalAlignment="Top" Width="158" KeyboardNavigation.TabIndex ="8" TextChanged="txtemail_TextChanged" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtemail_LostFocus">
+        <TextBlock x:Name="lblemail" HorizontalAlignment="Left" Margin="10,266,0,0" TextWrapping="Wrap" Text="E-Mail" VerticalAlignment="Top"/>
+        <xt:MaskedTextBox  x:Name="txtemail"   HorizontalAlignment="Left" Height="25" Margin="74,263,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Email}" VerticalAlignment="Top" Width="208" KeyboardNavigation.TabIndex ="8" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtemail_LostFocus">
         </xt:MaskedTextBox>
         <xt:MaskedTextBox x:Name="txtAppa"   HorizontalAlignment="Left" Height="25" Margin="165,74,0,0" TextWrapping="Wrap" Text="{Binding ClienteApPaSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140" KeyboardNavigation.TabIndex ="2" KeyDown="txtAppa_KeyDown" FontSize="15" LostFocus="txtAppa_LostFocus">
             <xt:MaskedTextBox.InputBindings>
@@ -123,7 +126,14 @@
                 <KeyBinding Key="Return" Command="{Binding PopUpCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
-
+        <ComboBox SelectedValuePath="Content" SelectedValue="{Binding Cliente.Sexo}" x:Name="cbSexo" HorizontalAlignment="Left" Margin="415,263,0,0" VerticalAlignment="Top" Width="50" TabIndex="12" LostFocus="cbSexo_LostFocus">
+            <ComboBox.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </ComboBox.Background>
+            <ComboBoxItem>M</ComboBoxItem>
+            <ComboBoxItem>F</ComboBoxItem>
+        </ComboBox>
+        <TextBlock x:Name="textBlock_Copy11" HorizontalAlignment="Left" Margin="345,266,0,0" TextWrapping="Wrap" Text="Sexo" VerticalAlignment="Top"/>
 
 
 

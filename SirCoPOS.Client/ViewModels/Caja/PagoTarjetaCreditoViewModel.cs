@@ -13,6 +13,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
         public override string Title => "Pago Tarjeta Crédito";
         public PagoTarjetaCreditoViewModel()
         {
+            try 
+            { 
             this.PropertyChanged += PagoTarjetaCreditoViewModel_PropertyChanged;
             
             if (this.IsInDesignMode)
@@ -22,10 +24,18 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.Terminacion = "123";
                 this.Referencia = "112233";
             }
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine("Error: {0}", e);
+                throw;
+            }
         }
         public override FormaPago FormaPago => FormaPago.TC;
         protected override void Accept(Utilities.Messages.Pago p)
         {
+            try
+            { 
             GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
                     new Utilities.Messages.Pago
                     {
@@ -34,9 +44,17 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         Terminacion = this.Terminacion,
                         Referencia = this.Referencia
                     }, this.GID);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine("Error: {0}", e);
+                throw;
+            }
         }
         protected override bool CanAccept()
         {
+            try
+            { 
             if (!this.IsValid())
                 return false;
 
@@ -49,9 +67,16 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     return true;
             }
             return false;
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine("Error: {0}", e);
+                throw;
+            }
         }
         private void PagoTarjetaCreditoViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
+
             switch (e.PropertyName)
             {
                 case nameof(this.Total):

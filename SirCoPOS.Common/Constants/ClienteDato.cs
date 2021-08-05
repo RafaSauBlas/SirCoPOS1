@@ -37,6 +37,7 @@ namespace SirCoPOS.Common.Constants
         public static short numero { get; set; } = 0;
         public static string referencia { get; set; } = string.Empty;
         public static string celular { get; set; } = string.Empty;
+        public static string celular1 { get; set; } = string.Empty;
         public static string email { get; set; } = string.Empty;
         public static string sexo { get; set; } = string.Empty;
         public static int opcion = 0;

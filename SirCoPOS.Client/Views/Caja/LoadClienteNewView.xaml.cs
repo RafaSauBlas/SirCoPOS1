@@ -94,7 +94,7 @@ namespace SirCoPOS.Client.Views.Caja
         {
             var textboxSender = (TextBox)sender;
             var cursorPosition = tbNombre.SelectionStart;
-            tbNombre.Text = Regex.Replace(textboxSender.Text, "[^a-zA-Z ]", "");
+            tbNombre.Text = Regex.Replace(textboxSender.Text, "[^a-zA-ZÑñ ]", "");
             tbNombre.SelectionStart = cursorPosition;
         }
 
@@ -102,7 +102,7 @@ namespace SirCoPOS.Client.Views.Caja
         {
             var textboxSender = (TextBox)sender;
             var cursorPosition = tbApPa.SelectionStart;
-            tbApPa.Text = Regex.Replace(textboxSender.Text, "[^a-zA-Z ]", "");
+            tbApPa.Text = Regex.Replace(textboxSender.Text, "[^a-zA-ZÑñ ]", "");
             tbApPa.SelectionStart = cursorPosition;
         }
 
@@ -110,7 +110,7 @@ namespace SirCoPOS.Client.Views.Caja
         {
             var textboxSender = (TextBox)sender;
             var cursorPosition = tbApMa.SelectionStart;
-            tbApMa.Text = Regex.Replace(textboxSender.Text, "[^a-zA-Z ]", "");
+            tbApMa.Text = Regex.Replace(textboxSender.Text, "[^a-zA-ZÑñ ]", "");
             tbApMa.SelectionStart = cursorPosition;
         }
 
@@ -118,7 +118,7 @@ namespace SirCoPOS.Client.Views.Caja
         {
             var textboxSender = (TextBox)sender;
             var cursorPosition = tbCalle.SelectionStart;
-            tbCalle.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-Z ]", "");
+            tbCalle.Text = Regex.Replace(textboxSender.Text, "[^0-9a-zA-ZñÑ ]", "");
             tbCalle.SelectionStart = cursorPosition;
         }
 
