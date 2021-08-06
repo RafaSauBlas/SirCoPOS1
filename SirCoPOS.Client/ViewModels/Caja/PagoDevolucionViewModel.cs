@@ -84,7 +84,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
         {
             return this.Devolucion != null
                 && (this.Pagar ?? 0) > 0
-                && this.Pagar <= this.Devolucion.Disponible;
+                && this.Pagar <= this.Devolucion.Disponible
+                && this.Devolucion.Estatus != Common.Constants.Status.ZC.ToString();
         }
         #region properties
         private string _sucursal;
