@@ -112,7 +112,12 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         this.ClienteTelefonoSearch = null;
                     }
                     else
+                    {
                         MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        this.ClienteNombreSearch = null;
+                        this.ClienteApPaSearch = null;
+                        this.ClienteApMaSearch = null;
+                    }
                 }
             });
 
