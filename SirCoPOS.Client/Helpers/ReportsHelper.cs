@@ -87,11 +87,11 @@ namespace SirCoPOS.Client.Helpers
             }
             else
             {
-                var pd = new Helpers.PrintFile(
-                fullname: "SirCoPOS.Reports.ReciboVenta.rdlc",
-                library: "SirCoPOS.Reports",
-                datasources: dic);
                 for (var i=1; i <= numcopias; i++) {
+                    var pd = new Helpers.PrintFile(
+                    fullname: "SirCoPOS.Reports.ReciboVenta.rdlc",
+                    library: "SirCoPOS.Reports",
+                    datasources: dic);
                     pd.Print();
                 }
             }

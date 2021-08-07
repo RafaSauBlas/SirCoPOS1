@@ -512,7 +512,7 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
             {
                 Cliente.Add("");
             }
-            var Estado = GetCiudad(cli.idestado);
+            var Estado = GetEstado(cli.idestado);
             if (Estado != null)
             {
                 Cliente.Add(Estado);
