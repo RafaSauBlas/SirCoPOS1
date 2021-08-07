@@ -22,6 +22,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
         private Utilities.Interfaces.IClienteView _Client;
         private Utilities.Models.Settings _settings;
         public int coloniaid;
+        public int accion;
         // DATOS ACTUALES
         public string name1;
         public string appa1;
@@ -226,6 +227,33 @@ namespace SirCoPOS.Client.ViewModels.Caja
             }
 
         }
+        //===========================================================================================================================================================================================================
+        public void AgregarCliente(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular, string cel, string email, string colonia, string sexo)
+        {
+            try
+            {
+                var nombrecomp = name + " " + appaterno + " " + apmaterno;
+                var celverif = _proxy.CheckCelular(celular);
+                var existname = _proxy.CheckNombreC(nombrecomp); 
+
+
+
+
+
+
+                Messenger.Default.Send(new Messages.NuevoClienteMessage
+                {
+                    Cliente = this.NuevoCliente
+                }, this.GID);
+
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine("Error: {0}", e);
+                throw;
+            }
+        }
+        //===========================================================================================================================================================================================================
         public void Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular, string cel, string email, string colonia, string sexo)
          {
             try

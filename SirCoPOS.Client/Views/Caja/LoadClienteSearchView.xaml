@@ -74,7 +74,7 @@
         <TextBlock x:Name="lblNombre" HorizontalAlignment="Left" Margin="46,51,0,0" TextWrapping="Wrap" Text="Nombre" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblAppa" HorizontalAlignment="Left" Margin="182,51,0,0" TextWrapping="Wrap" Text="Ap. paterno" VerticalAlignment="Top"/>
         <TextBlock x:Name="lblApma" HorizontalAlignment="Left" Margin="331,51,0,0" TextWrapping="Wrap" Text="Ap. materno" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox x:Name="txt_Nombre"   HorizontalAlignment="Left" Height="25" Margin="10,74,0,0" TextWrapping="Wrap" Text="{Binding ClienteNombreSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140" KeyboardNavigation.TabIndex ="2" KeyDown="txt_Nombre_KeyDown" FontSize="15" LostFocus="txt_Nombre_LostFocus">
+        <xt:MaskedTextBox x:Name="txt_Nombre"   HorizontalAlignment="Left" Height="25" Margin="10,74,0,0" TextWrapping="Wrap" Text="{Binding ClienteNombreSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140" KeyboardNavigation.TabIndex ="2" KeyDown="txt_Nombre_KeyDown" FontSize="15" LostFocus="txt_Nombre_LostFocus" >
 
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding searchnameCommand}"/>
@@ -112,6 +112,7 @@
         <xt:MaskedTextBox x:Name="txtApma"   HorizontalAlignment="Left" Height="25" Margin="323,74,0,0" TextWrapping="Wrap" Text="{Binding ClienteApMaSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="132" KeyboardNavigation.TabIndex ="4" KeyDown="txtApma_KeyDown" FontSize="15" LostFocus="txtApma_LostFocus">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding searchnameCommand}"/>
+                <!--<KeyBinding Key="Tab" Command="{Binding searchnameCommand}" />-->
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock Visibility="Hidden" x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,83,0,0" TextWrapping="Wrap" Text="Ap Paterno" VerticalAlignment="Top"/>
