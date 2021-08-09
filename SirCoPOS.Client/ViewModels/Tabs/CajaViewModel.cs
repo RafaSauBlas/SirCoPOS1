@@ -469,6 +469,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 {
                     _ls.UpdateVendedor(this.Vendedor.Id);                    
                 }
+                Messenger.Default.Send<string>("focus", "DoFocus");
             });
 
             Messenger.Default.Register<Utilities.Messages.ShortcutMessage>(this, this.GID, m => {

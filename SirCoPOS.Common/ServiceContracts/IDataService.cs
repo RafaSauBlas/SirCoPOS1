@@ -123,5 +123,7 @@ namespace SirCoPOS.Common.ServiceContracts
         IDictionary<DateTime, decimal> GenerarPlanPagosFechas(int iddist, Pago item);
         //[OperationContract]
         //IEnumerable<Entities.PorcentajeFormaPago> GetPorcentajeFPago(string sucursal, string devolucion);
+        [OperationContract]
+        int ContabilizaReimpresion(string Operacion, string Sucursal, string Venta);
     }
 }
