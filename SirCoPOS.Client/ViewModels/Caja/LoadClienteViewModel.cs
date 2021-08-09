@@ -23,6 +23,9 @@ namespace SirCoPOS.Client.ViewModels.Caja
         private Utilities.Models.Settings _settings;
         public int coloniaid;
         public int accion;
+        //accion 0 => Buscar
+        //accion 1 => Editar
+        //accion 2 => Agregar
         // DATOS ACTUALES
         public string name1;
         public string appa1;
@@ -54,21 +57,150 @@ namespace SirCoPOS.Client.ViewModels.Caja
         public LoadClienteViewModel()
         {
             try
-            { 
-            if (!this.IsInDesignMode)
-                _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
-            _settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
-            _CV = new Client.Views.Caja.LoadClienteSearchView();
-            _common = new Helpers.CommonHelper();
-            this.Screen = "search";
-            this.ChangeViewCommand = new RelayCommand<string>(v => {
-                this.Screen = v;
-            });
+            {
+                if (!this.IsInDesignMode)
+                    _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
+                _settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
+                _CV = new Client.Views.Caja.LoadClienteSearchView();
+                _common = new Helpers.CommonHelper();
+                this.Screen = "search";
+                this.ChangeViewCommand = new RelayCommand<string>(v => {
+                    this.Screen = v;
+                });
 
-            this.PropertyChanged += LoadClienteViewModel_PropertyChanged;
+                this.PropertyChanged += LoadClienteViewModel_PropertyChanged;
 
-            this.SearchCommand = new RelayCommand(() => {
-                if (this.ClienteNombreSearch == null && string.IsNullOrWhiteSpace(this.ClienteTelefonoSearch))
+                this.SearchCommand = new RelayCommand(() => {
+                    if (this.ClienteNombreSearch == null && string.IsNullOrWhiteSpace(this.ClienteTelefonoSearch))
+                    {
+                        if (this.Cliente != null)
+                        {
+                            Messenger.Default.Send(new Messages.ClienteMessage
+                            {
+                                Cliente = this.Cliente
+                            }, this.GID);
+                        }
+                    }
+                    else
+                    {
+                        var nombre = _common.PrepareNombre(this.ClienteNombreSearch);
+                        var phone = _common.PreparePhone(this.ClienteTelefonoSearch);
+
+                        this.Cliente = _proxy.FindCliente(this.ClienteSearch, phone, nombre);
+                        if (this.Cliente != null)
+                        {
+                            accion = 0;
+                            Common.Constants.ClienteInfo.colonia = this.Cliente.Colonia ?? default(int); ;
+                            name1 = this.Cliente.Nombre;
+                            appa1 = this.Cliente.ApPaterno;
+                            apma1 = this.Cliente.ApMaterno;
+                            codigopostal1 = this.Cliente.CodigoPostal;
+                            calle1 = this.Cliente.Calle;
+                            numero1 = this.Cliente.Numero;
+                            celular1 = this.Cliente.Celular1;
+                            celular = this.Cliente.Celular;
+                            email1 = this.Cliente.Email;
+                            sexo1 = this.Cliente.Sexo;
+                            colonia1 = Convert.ToInt16(this.Cliente.Colonia);
+
+                            this.Colonias = _proxy.FindColonias(this.Cliente.CodigoPostal);
+                            if (this.Cliente.Colonia != 0)
+                            {
+                                var col = _proxy.findcol(this.Cliente.Colonia);
+                            }
+
+                            this.ClienteNombreSearch = this.Cliente.Nombre;
+                            this.ClienteApPaSearch = this.Cliente.ApPaterno;
+                            this.ClienteApMaSearch = this.Cliente.ApMaterno;
+                            this.ClienteCP = this.Cliente.CodigoPostal;
+                            this.ClienteCelular = this.Cliente.Celular;
+                            this.ClienteCelular1 = this.Cliente.Celular1;
+                            this.ClienteCalle = this.Cliente.Calle;
+                            this.ClienteSexo = this.Cliente.Sexo;
+                            this.ClienteNumero = this.Cliente.Numero.ToString();
+                            this.ClienteEmail = this.Cliente.Email;
+
+                            this.ClienteSearch = null;
+                            this.ClienteTelefonoSearch = null;
+                        }
+                        else
+                        {
+                            accion = 2;
+
+                        }
+                    }
+                });
+
+                this.searchnameCommand = new RelayCommand(() => {
+                    //var nombre = _common.PrepareNombre(this.ClienteNombreSearch);
+                    //var appa = _common.PrepareApPa(this.ClienteApPaSearch);
+                    //var apma = _common.PrepareApMa(this.ClienteApMaSearch);
+                    //var nc = nombre + " " + appa + " " + apma;
+                    //var nexist = _proxy.CheckNombreC(nc);
+
+                    //if (!nexist)
+                    //{
+
+                    //}
+                    //else
+                    //{
+                    BusquedaName();
+                    //}
+                });
+                this.agregarclientecommand = new RelayCommand(() =>
+                {
+                    AgregarCliente();
+                });
+                //Los comandos funcionan como metodos que realizan alguna accion predeterminada
+                this.PopUpCommand = new RelayCommand(async () => {
+                    var nombre = _common.PrepareNombre(this.ClienteNombreSearch);
+                    var ApPa = _common.PrepareApPa(this.ClienteApPaSearch);
+                    var ApMa = _common.PrepareApMa(this.ClienteApMaSearch);
+
+                    if (nombre == "")
+                        nombre = null;
+                    if (ApPa == "")
+                        ApPa = null;
+                    if (ApMa == "")
+                        ApMa = null;
+                    List<Cliente> lista = new List<Cliente>();
+
+                    lista = _proxy.FindCliente2(null, nombre, ApPa, ApMa);
+                    if (this.Cliente != null)
+                    {
+                        this.ClienteTelefonoSearch = null;
+                        this.ClienteNombreSearch = null;
+                        this.ClienteApPaSearch = null;
+                        this.ClienteApMaSearch = null;
+                    }
+
+                    _Client = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Interfaces.IClienteView>();
+
+                    _Client.OpenCliente(lista);
+
+                    this.ClienteTelefonoSearch = "";
+                    this.ClienteNombreSearch = "";
+                    this.ClienteApPaSearch = "";
+                    this.ClienteApMaSearch = "";
+                });
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                Console.WriteLine("Error: {0}", e);
+                throw;
+            }
+
+        }
+        public void BusquedaName()
+        {
+            try
+            {
+                var nombre = _common.PrepareNombre(this.ClienteNombreSearch);
+                var appa = _common.PrepareApPa(this.ClienteApPaSearch);
+                var apma = _common.PrepareApMa(this.ClienteApMaSearch);
+                var nc = nombre + " " + appa + " " + apma;
+
+                if (this.ClienteNombreSearch == null && this.ClienteApPaSearch == null && this.ClienteApMaSearch == null)
                 {
                     if (this.Cliente != null)
                     {
@@ -80,13 +212,11 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 }
                 else
                 {
-                    var nombre = _common.PrepareNombre(this.ClienteNombreSearch);
-                    var phone = _common.PreparePhone(this.ClienteTelefonoSearch);
+                    this.Cliente = _proxy.FinClienteName(nc);
 
-                    this.Cliente = _proxy.FindCliente(this.ClienteSearch, phone, nombre);
                     if (this.Cliente != null)
                     {
-
+                        accion = 0;
                         Common.Constants.ClienteInfo.colonia = this.Cliente.Colonia ?? default(int); ;
                         name1 = this.Cliente.Nombre;
                         appa1 = this.Cliente.ApPaterno;
@@ -106,119 +236,22 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             var col = _proxy.findcol(this.Cliente.Colonia);
                         }
 
-                        this.ClienteNombreSearch = this.Cliente.Nombre;
-                        this.ClienteApPaSearch = this.Cliente.ApPaterno;
-                        this.ClienteApMaSearch = this.Cliente.ApMaterno;
+                        this.ClienteCP = this.Cliente.CodigoPostal;
+                        this.ClienteCelular = this.Cliente.Celular;
+                        this.ClienteCelular1 = this.Cliente.Celular1;
+                        this.ClienteCalle = this.Cliente.Calle;
+                        this.ClienteSexo = this.Cliente.Sexo;
+                        this.ClienteNumero = this.Cliente.Numero.ToString();
+                        this.ClienteEmail = this.Cliente.Email;
+
                         this.ClienteSearch = null;
                         this.ClienteTelefonoSearch = null;
                     }
                     else
                     {
-                        MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                        this.ClienteNombreSearch = null;
-                        this.ClienteApPaSearch = null;
-                        this.ClienteApMaSearch = null;
+                        accion = 2;
                     }
                 }
-            });
-
-            this.searchnameCommand = new RelayCommand(() => {
-                BusquedaName();
-            });
-            //Los comandos funcionan como metodos que realizan alguna accion predeterminada
-            this.PopUpCommand = new RelayCommand(async () => {
-                var nombre = _common.PrepareNombre(this.ClienteNombreSearch);
-                var ApPa = _common.PrepareApPa(this.ClienteApPaSearch);
-                var ApMa = _common.PrepareApMa(this.ClienteApMaSearch);
-
-                if (nombre == "")
-                    nombre = null;
-                if (ApPa == "")
-                    ApPa = null;
-                if (ApMa == "")
-                    ApMa = null;
-                List<Cliente> lista = new List<Cliente>();
-
-                    lista = _proxy.FindCliente2(null, nombre, ApPa, ApMa);
-                    if (this.Cliente != null)
-                    {
-                        this.ClienteTelefonoSearch = null;
-                        this.ClienteNombreSearch = null;
-                        this.ClienteApPaSearch = null;
-                        this.ClienteApMaSearch = null;
-                    }
-
-                _Client = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Interfaces.IClienteView>();
-
-                _Client.OpenCliente(lista);
-
-                this.ClienteTelefonoSearch = "";
-                this.ClienteNombreSearch = "";
-                this.ClienteApPaSearch = "";
-                this.ClienteApMaSearch = "";
-            });
-            }
-            catch (ArgumentOutOfRangeException e)
-            {
-                Console.WriteLine("Error: {0}", e);
-                throw;
-            }
-
-        }
-        public void BusquedaName()
-        {
-            try
-            { 
-            var nombre = _common.PrepareNombre(this.ClienteNombreSearch);
-            var appa = _common.PrepareApPa(this.ClienteApPaSearch);
-            var apma = _common.PrepareApMa(this.ClienteApMaSearch);
-            var nc = nombre + " " + appa + " " + apma;
-
-            if (this.ClienteNombreSearch == null && this.ClienteApPaSearch == null && this.ClienteApMaSearch == null)
-            {
-                if (this.Cliente != null)
-                {
-                    Messenger.Default.Send(new Messages.ClienteMessage
-                    {
-                        Cliente = this.Cliente
-                    }, this.GID);
-                }
-            }
-            else
-            {
-                this.Cliente = _proxy.FinClienteName(nc);
-
-                if (this.Cliente != null)
-                {
-                    Common.Constants.ClienteInfo.colonia = this.Cliente.Colonia ?? default(int); ;
-                    name1 = this.Cliente.Nombre;
-                    appa1 = this.Cliente.ApPaterno;
-                    apma1 = this.Cliente.ApMaterno;
-                    codigopostal1 = this.Cliente.CodigoPostal;
-                    calle1 = this.Cliente.Calle;
-                    numero1 = this.Cliente.Numero;
-                    celular1 = this.Cliente.Celular1;
-                    celular = this.Cliente.Celular;
-                    email1 = this.Cliente.Email;
-                    sexo1 = this.Cliente.Sexo;
-                    colonia1 = Convert.ToInt16(this.Cliente.Colonia);
-
-                    this.Colonias = _proxy.FindColonias(this.Cliente.CodigoPostal);
-                    if (this.Cliente.Colonia != 0)
-                    {
-                        var col = _proxy.findcol(this.Cliente.Colonia);
-                    }
-                    this.ClienteSearch = null;
-                    this.ClienteTelefonoSearch = null;
-                }
-                else
-                {
-                    this.ClienteNombreSearch = null;
-                    this.ClienteApMaSearch = null;
-                    this.ClienteApPaSearch = null;
-                    MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -228,24 +261,64 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         }
         //===========================================================================================================================================================================================================
-        public void AgregarCliente(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular, string cel, string email, string colonia, string sexo)
+        public void AgregarCliente()
         {
             try
             {
-                var nombrecomp = name + " " + appaterno + " " + apmaterno;
-                var celverif = _proxy.CheckCelular(celular);
-                var existname = _proxy.CheckNombreC(nombrecomp); 
+                Models.NuevoCliente NC = new Models.NuevoCliente();
+                var nombrecomp = this.ClienteNombreSearch + " " + this.ClienteApPaSearch + " " + this.ClienteApMaSearch;
+                var celverif = _proxy.CheckCelular(_common.PreparePhone(this.ClienteCelular1));
+                var existname = _proxy.CheckNombreC(nombrecomp);
+                this.Colonias = _proxy.FindColonias(this.ClienteCP);
+                var cajero = _settings.Cajero.Id;
 
-
-
-
-
-
-                Messenger.Default.Send(new Messages.NuevoClienteMessage
+                if (!existname)
                 {
-                    Cliente = this.NuevoCliente
-                }, this.GID);
+                    if (!celverif)
+                    {
+                        NC.Nombre = this.ClienteNombreSearch;
+                        NC.ApPaterno = this.ClienteApPaSearch;
+                        NC.ApMaterno = this.ClienteApMaSearch;
+                        NC.CodigoPostal = this.ClienteCP;
+                        NC.Calle = this.ClienteCalle;
+                        NC.Numero = Convert.ToInt16(this.ClienteNumero);
+                        NC.Celular1 = _common.PreparePhone(this.ClienteCelular1);
+                        NC.Celular = _common.PreparePhone(this.ClienteCelular);
+                        NC.Email = this.ClienteEmail;
+                        NC.Colonia = this.Colonias.Where(i => i.Nombre == this.ClienteColonia && i.CodigoPostal == this.ClienteCP).Single();
+                        NC.Sexo = this.ClienteSexo;
+                        NC.Idusuario = cajero;
 
+                        //this.Cliente = new Common.Entities.Cliente
+                        //{
+                        //    Nombre = this.ClienteNombreSearch,
+                        //    ApPaterno = this.ClienteApPaSearch,
+                        //    ApMaterno = this.ClienteApMaSearch,
+                        //    CodigoPostal = this.ClienteCP,
+                        //    Calle = this.ClienteCalle,
+                        //    Numero = Convert.ToInt16(this.ClienteNumero),
+                        //    Celular1 = _common.PreparePhone(this.ClienteCelular1),
+                        //    Celular = _common.PreparePhone(this.ClienteCelular),
+                        //    Email = this.ClienteEmail,
+                        //    Colonia = this.Colonias.Where(i => i.Nombre == this.ClienteColonia && i.CodigoPostal == this.ClienteCP).Single().Id,
+                        //    Sexo = this.ClienteSexo,
+                        //    Idusuario = cajero
+                        //};
+
+                        Messenger.Default.Send(new Messages.NuevoClienteMessage
+                        {
+                            Cliente = NC
+                        }, this.GID);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ya existe un cliente registrado con el mismo número de celular.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                        MessageBox.Show("Ya existe un cliente registrado con el mismo nombre.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);                 
+                }
             }
             catch (ArgumentOutOfRangeException e)
             {
@@ -324,7 +397,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         public void LoadClienteViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-
             switch (e.PropertyName)
             {
                 case nameof(this.Screen):
@@ -367,7 +439,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         this.Colonias = null;
                     break;
             }
-            this.AcceptCommand.RaiseCanExecuteChanged();
+                this.AcceptCommand.RaiseCanExecuteChanged();
         }
 
         public void TraerColonias()
@@ -477,8 +549,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 else
                 {
                     MessageBox.Show("YA EXISTE UN CLIENTE REGISTRADO CON EL MISMO NÚMERO CELULAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    //Client.Views.Caja.LoadClienteNewView CN = new Client.Views.Caja.LoadClienteNewView();
-                    //CN.enfoca();
                 }
                     
             }
@@ -578,11 +648,78 @@ namespace SirCoPOS.Client.ViewModels.Caja
             get => _ClienteApMaSearch;
             set => this.Set(nameof(ClienteApMaSearch), ref _ClienteApMaSearch, value);
         }
+        //DATOS CLIENTE NUEVO
+        public string _ClienteNombre;
+        public string ClienteNombre
+        {
+            get => _ClienteNombre;
+            set => this.Set(nameof(ClienteNombre), ref _ClienteNombre, value);
+        }
+        public string _ClienteApPaterno;
+        public string ClienteApPaterno {
+            get => _ClienteApPaterno;
+            set => this.Set(nameof(ClienteApPaterno), ref _ClienteApPaterno, value);
+        }
+        public string _ClienteApMaterno;
+        public string ClienteApMaterno
+        {
+            get => _ClienteApMaterno;
+            set => this.Set(nameof(ClienteApMaterno), ref _ClienteApMaterno, value);
+        }
+        public string _ClienteCP;
+        public string ClienteCP
+        {
+            get => _ClienteCP;
+            set => this.Set(nameof(ClienteCP), ref _ClienteCP, value);
+        }
+        public string _ClienteColonia;
+        public string ClienteColonia
+        {
+            get => _ClienteColonia;
+            set => this.Set(nameof(ClienteColonia), ref _ClienteColonia, value);
+        }
+        public string _ClienteCalle;
+        public string ClienteCalle
+        {
+            get => _ClienteCalle;
+            set => this.Set(nameof(ClienteCalle), ref _ClienteCalle, value);
+        }
+        public string _ClienteNumero;
+        public string ClienteNumero
+        {
+            get => _ClienteNumero;
+            set => this.Set(nameof(ClienteNumero), ref _ClienteNumero, value);
+        }
+        public string _ClienteCelular1;
+        public string ClienteCelular1
+        {
+            get => _ClienteCelular1;
+            set => this.Set(nameof(ClienteCelular1), ref _ClienteCelular1, value);
+        }
+        public string _ClienteCelular;
+        public string ClienteCelular
+        {
+            get => _ClienteCelular;
+            set => this.Set(nameof(ClienteCelular), ref _ClienteCelular, value);
+        }
+        public string _ClienteEmail;
+        public string ClienteEmail
+        {
+            get => _ClienteEmail;
+            set => this.Set(nameof(ClienteEmail), ref _ClienteEmail, value);
+        }
+        public string _ClienteSexo;
+        public string ClienteSexo
+        {
+            get => _ClienteSexo;
+            set => this.Set(nameof(ClienteSexo), ref _ClienteSexo, value);
+        }
         #endregion
         #region commands
         public RelayCommand<string> ChangeViewCommand { get; private set; }
         public RelayCommand SearchCommand { get; private set; }
         public RelayCommand searchnameCommand { get; private set; }
+        public RelayCommand agregarclientecommand { get; private set; }
         public RelayCommand PopUpCommand { get; private set; }
         #endregion
     }
