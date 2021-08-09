@@ -34,7 +34,6 @@ namespace SirCoPOS.Client.Models
             get { return this.GetValue<string>(nameof(this.CodigoPostal)); }
             set { this.SetValue(nameof(this.CodigoPostal), value); }
         }
-        [Required]
         public Common.Entities.Colonia Colonia
         {
             get { return this.GetValue<Common.Entities.Colonia>(nameof(this.Colonia)); }
@@ -77,6 +76,11 @@ namespace SirCoPOS.Client.Models
         {
             get { return this.GetValue<string>(nameof(this.Sexo)); }
             set { this.SetValue(nameof(this.Sexo), value); }
+        }
+        public int Idusuario
+        {
+            get { return this.GetValue<int>(nameof(this.Idusuario)); }
+            set { this.SetValue(nameof(this.Idusuario), value); }
         }
     }
 }

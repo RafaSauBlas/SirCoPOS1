@@ -100,6 +100,7 @@ namespace SirCoPOS.BusinessLogic
                 email = model.Email,
                 fecalta = now,
                 //public int? idusuario { get; set; }
+                idusuario = model.Idusuario,
                 fum = now,
                 idusuariomodif = 0,
                 fummodif = DateTime.Parse(Formats.DATE_EMPTY),

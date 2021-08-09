@@ -20,5 +20,6 @@ namespace SirCoPOS.Utilities.Entities
         public string Referencia { get; set; }
         public string Email { get; set; }
         public string Sexo { get; set; }
+        public int Idusuario { get; set; }
     }
 }
