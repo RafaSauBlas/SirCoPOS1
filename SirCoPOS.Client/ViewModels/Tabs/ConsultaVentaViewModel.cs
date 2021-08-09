@@ -82,7 +82,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                         () =>
                         {
                             _reports.Compra(this.Venta.Sucursal, this.Venta.Folio, true);
-                            //var registra = _proxy.ContabilizaReimpresion(Venta.Sucursal, Venta.Folio);
+                            var registra = _proxy.ContabilizaReimpresion("VENTA", Venta.Sucursal, Venta.Folio);
                         }, () => this.Venta != null
                     );
                 }

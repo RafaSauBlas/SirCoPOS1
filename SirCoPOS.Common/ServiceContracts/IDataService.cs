@@ -124,6 +124,6 @@ namespace SirCoPOS.Common.ServiceContracts
         //[OperationContract]
         //IEnumerable<Entities.PorcentajeFormaPago> GetPorcentajeFPago(string sucursal, string devolucion);
         [OperationContract]
-        int ContabilizaReimpresion(string Sucursal, string Venta);
+        int ContabilizaReimpresion(string Operacion, string Sucursal, string Venta);
     }
 }

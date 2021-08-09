@@ -31,7 +31,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Command="{Binding UltimaVentaCommand}" Content="ultima devolucion" Margin="0,9,277,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="156"/>
-        <Button Content="Print" Command="{Binding PrintCommand}" HorizontalAlignment="Left" Margin="10,0,0,188" VerticalAlignment="Bottom" Width="75"/>
+        <Button Content="Imprimir" Command="{Binding PrintCommand}" HorizontalAlignment="Left" Margin="10,0,0,188" VerticalAlignment="Bottom" Width="75"/>
 
     </Grid>
 </UserControl>

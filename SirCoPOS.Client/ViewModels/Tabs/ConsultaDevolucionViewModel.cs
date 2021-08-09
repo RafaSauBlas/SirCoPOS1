@@ -104,6 +104,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                         () =>
                         {
                             _reports.Devolucion(this.Devolucion.Sucursal, this.Devolucion.Folio);
+                            var registra = _proxy.ContabilizaReimpresion("DEVOLUCION", Devolucion.Sucursal, Devolucion.Folio);
                         }, () => this.Devolucion != null
                     );
                 }
