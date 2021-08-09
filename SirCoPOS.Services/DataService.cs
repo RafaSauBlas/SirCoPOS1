@@ -1151,5 +1151,29 @@ namespace SirCoPOS.Services
             var _data = new BusinessLogic.Data();
             return _data.FindAuditorTransferir(id, idcajero);
         }
+        public int ContabilizaReimpresion(string Sucursal, string Venta)
+        {
+            var ctx = new DataAccess.SirCoPOSDataContext();
+            DataAccess.SirCoPOS.Reimpresion item;
+
+            item = ctx.Reimpresiones.Where(i => i.Operacion == "VENTA" && i.Sucursal == Sucursal && i.Folio == Venta).SingleOrDefault();
+
+            if (item != null)
+            {
+                item.Numero++;
+            }
+            else
+            {
+                var reimpresion = new SirCoPOS.DataAccess.SirCoPOS.Reimpresion
+                {
+                    Operacion = "VENTA",
+                    Sucursal = Sucursal,
+                    Folio = Venta,
+                    Numero = 1
+                };
+                ctx.Reimpresiones.Add(reimpresion);
+            }
+            return ctx.SaveChanges();
+        }
     }
 }

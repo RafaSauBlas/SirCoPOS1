@@ -32,5 +32,6 @@ namespace SirCoPOS.DataAccess
         public virtual DbSet<SirCoPOS.NotaPago> NotasPago { get; set; }
         public virtual DbSet<SirCoPOS.SolicitudCreditoVale> SolicitudesCreditoVales { get; set; }
         public virtual DbSet<SirCoPOS.ValeCliente> ValesCliente { get; set; }
+        public virtual DbSet<SirCoPOS.Reimpresion> Reimpresiones { get; set; }
     }
 }
