@@ -32,8 +32,13 @@ namespace SirCoPOS.Client.Views.Tabs
         public CajaView4()
         {
             InitializeComponent();
+            Messenger.Default.Register<string>(this, "DoFocus", doFocus);
         }
-
+        public void doFocus(string msg)
+        {
+            if (msg == "focus")
+                this.scanTextBox.Focus();
+        }
         public void Init()
         {
             this.scanTextBox.IsEnabled = true;
