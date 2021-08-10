@@ -105,8 +105,8 @@ namespace SirCoPOS.BusinessLogic
                 idusuariomodif = 0,
                 fummodif = DateTime.Parse(Formats.DATE_EMPTY),
                 sistema = null,
-
-                celular = model.Celular
+                celular = model.Celular,
+                identificacion = model.Identificacion
             };
             ctx.Clientes.Add(item);
 

@@ -45,7 +45,9 @@ namespace SirCoPOS.Client.Helpers
                     Referencia = ncliente.Referencia,
                     Email = ncliente.Email,
                     Sexo = ncliente.Sexo,
-                    Celular = ncliente.Celular
+                    Celular = ncliente.Celular,
+                    Idusuario = ncliente.Idusuario,
+                    Identificacion = ncliente.Identificacion
                 };
             }
             return null;

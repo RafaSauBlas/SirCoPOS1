@@ -40,6 +40,7 @@ namespace SirCoPOS.Common.Constants
         public static string celular1 { get; set; } = string.Empty;
         public static string email { get; set; } = string.Empty;
         public static string sexo { get; set; } = string.Empty;
+        public static string identificacion { get; set; } = string.Empty;
         public static int opcion = 0;
 
     }

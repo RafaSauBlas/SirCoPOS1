@@ -28,5 +28,6 @@ namespace SirCoPOS.Common.Entities
         public string Sexo { get; set; }
         public int Idusuario { get; set; }
         public string NombreCompleto { get; set; }
+        public string Identificacion { get; set; }
     }
 }

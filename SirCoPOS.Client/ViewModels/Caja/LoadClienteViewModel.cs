@@ -102,6 +102,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             email1 = this.Cliente.Email;
                             sexo1 = this.Cliente.Sexo;
                             colonia1 = Convert.ToInt16(this.Cliente.Colonia);
+                            identif1 = this.Cliente.Identificacion;
 
                             this.Colonias = _proxy.FindColonias(this.Cliente.CodigoPostal);
                             if (this.Cliente.Colonia != 0)
@@ -119,13 +120,14 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             this.ClienteSexo = this.Cliente.Sexo;
                             this.ClienteNumero = this.Cliente.Numero.ToString();
                             this.ClienteEmail = this.Cliente.Email;
+                            this.ClienteIdentificacion = this.Cliente.Identificacion;
 
                             this.ClienteSearch = null;
                             this.ClienteTelefonoSearch = null;
                         }
                         else
                         {
-                            accion = 2;
+                            MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
                         }
                     }
@@ -149,7 +151,42 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 });
                 this.agregarclientecommand = new RelayCommand(() =>
                 {
-                    AgregarCliente();
+                    if(this.ClienteNombreSearch == null)
+                    {
+                        MessageBox.Show("El campo NOMBRE no puede estar vacio.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else if (this.ClienteApPaSearch == null)
+                    {
+                        MessageBox.Show("El campo APELLIDO PATERNO no puede estar vacio.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else if (this.ClienteApMaSearch == null)
+                    {
+                            MessageBox.Show("El campo APELLIDO MATERNO no puede estar vacio.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else if (this.ClienteCP == null)
+                    {
+                            MessageBox.Show("El campo CODIGO POSTAL no puede estar vacio.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else if (this.ClienteColonia == null)
+                    {
+                            MessageBox.Show("Se debe seleccionar una COLONIA para poder continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else if (this.ClienteCalle == null)
+                    {
+                            MessageBox.Show("El campo CALLE no puede estar vacio.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else if (this.ClienteCelular1 == null)
+                    {
+                       MessageBox.Show("El campo CELULAR no puede estar vacio.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else if (this.ClienteSexo == null)
+                    {
+                            MessageBox.Show("Se debe seleccionar un SEXO para poder continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        AgregarCliente();
+                    }
                 });
                 //Los comandos funcionan como metodos que realizan alguna accion predeterminada
                 this.PopUpCommand = new RelayCommand(async () => {
@@ -229,6 +266,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         email1 = this.Cliente.Email;
                         sexo1 = this.Cliente.Sexo;
                         colonia1 = Convert.ToInt16(this.Cliente.Colonia);
+                        identif1 = this.Cliente.Identificacion;
+
 
                         this.Colonias = _proxy.FindColonias(this.Cliente.CodigoPostal);
                         if (this.Cliente.Colonia != 0)
@@ -243,13 +282,14 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         this.ClienteSexo = this.Cliente.Sexo;
                         this.ClienteNumero = this.Cliente.Numero.ToString();
                         this.ClienteEmail = this.Cliente.Email;
+                        this.ClienteIdentificacion = this.Cliente.Identificacion;
 
                         this.ClienteSearch = null;
                         this.ClienteTelefonoSearch = null;
                     }
                     else
                     {
-                        accion = 2;
+                        MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);                 
                     }
                 }
             }
@@ -287,6 +327,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         NC.Email = this.ClienteEmail;
                         NC.Colonia = this.Colonias.Where(i => i.Nombre == this.ClienteColonia && i.CodigoPostal == this.ClienteCP).Single();
                         NC.Sexo = this.ClienteSexo;
+                        NC.Identificacion = this.ClienteIdentificacion;
                         NC.Idusuario = cajero;
 
                         //this.Cliente = new Common.Entities.Cliente
@@ -327,7 +368,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             }
         }
         //===========================================================================================================================================================================================================
-        public void Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular, string cel, string email, string colonia, string sexo)
+        public void Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular, string cel, string email, string colonia, string sexo, string identificacion)
          {
             try
             {
@@ -348,13 +389,13 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
             if (name != name1 || appaterno != appa1 || apmaterno != apma1
                 || codigopostal != codigopostal1 || calle != calle1 || numero != numero1
-                || email != email1 || colonia1 != colonia2 || sexo1 != sexo2 || celular1 != celular12 || celular != celular2)
+                || email != email1 || colonia1 != colonia2 || sexo1 != sexo2 || celular1 != celular12 || celular != celular2 || identificacion != identif1)
             {
             var celular1 = _common.PreparePhone(celular);
             var celu = _common.PreparePhone(cel);
             string nc = name1 + " " + appa1 + " " + apma1;
             var cajero = _settings.Cajero.Id;
-            var datos = Convert.ToInt32(_proxy.Clientexd(name, appaterno, apmaterno, codigopostal, calle, numero, celular1, celu, email, colonia, cajero, sexo));
+            var datos = Convert.ToInt32(_proxy.Clientexd(name, appaterno, apmaterno, codigopostal, calle, numero, celular1, celu, email, colonia, cajero, sexo, identificacion));
             Common.Constants.ClienteInfo.colonia = datos;
             }
 
@@ -499,6 +540,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
            colname = Common.Constants.ClienteDato.colonia;
            sexo2 = Common.Constants.ClienteDato.sexo;
            celular12 = Common.Constants.ClienteDato.celular1;
+           identif2 = Common.Constants.ClienteDato.identificacion;
 
             if (codigopostal2 != "" && colname != "")
             {
@@ -508,7 +550,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             {
                 colonia2 = 0;
             }
-            Clientexd(name2, appa2, apma2, codigopostal2, calle2, numero2, celular2, celular12, email2, colname, sexo2);
+            Clientexd(name2, appa2, apma2, codigopostal2, calle2, numero2, celular2, celular12, email2, colname, sexo2,identif2);
 
             }
             catch (ArgumentOutOfRangeException e)
@@ -713,6 +755,12 @@ namespace SirCoPOS.Client.ViewModels.Caja
         {
             get => _ClienteSexo;
             set => this.Set(nameof(ClienteSexo), ref _ClienteSexo, value);
+        }
+        public string _ClienteIdentificacion;
+        public string ClienteIdentificacion
+        {
+            get => _ClienteIdentificacion;
+            set => this.Set(nameof(ClienteIdentificacion), ref _ClienteIdentificacion, value);
         }
         #endregion
         #region commands

@@ -112,18 +112,19 @@ namespace SirCoPOS.Client.Views.Caja
          string email = txtemail.Text;
          string colonia = cbColonia.Text;
          string sexo = cbSexo.Text;
-
-            Common.Constants.ClienteDato.nombre = name;
-            Common.Constants.ClienteDato.appa = appa;
-            Common.Constants.ClienteDato.apma = apma;
-            Common.Constants.ClienteDato.cp = codigopostal;
-            Common.Constants.ClienteDato.calle = calle;
-            Common.Constants.ClienteDato.numero = numero;
-            Common.Constants.ClienteDato.celular = celular;
-            Common.Constants.ClienteDato.email = email;
-            Common.Constants.ClienteDato.colonia = colonia;
-            Common.Constants.ClienteDato.sexo = sexo;
-            Common.Constants.ClienteDato.celular1 = celular1;
+         string identificacion = txtidentif.Text;
+        Common.Constants.ClienteDato.nombre = name;
+        Common.Constants.ClienteDato.appa = appa;
+        Common.Constants.ClienteDato.apma = apma;
+        Common.Constants.ClienteDato.cp = codigopostal;
+        Common.Constants.ClienteDato.calle = calle;
+        Common.Constants.ClienteDato.numero = numero;
+        Common.Constants.ClienteDato.celular = celular;
+        Common.Constants.ClienteDato.email = email;
+        Common.Constants.ClienteDato.colonia = colonia;
+        Common.Constants.ClienteDato.sexo = sexo;
+        Common.Constants.ClienteDato.celular1 = celular1;
+        Common.Constants.ClienteDato.identificacion = identificacion;
         }
 
         private void txt_Nombre_LostFocus(object sender, RoutedEventArgs e)
@@ -138,7 +139,8 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void txtApma_LostFocus(object sender, RoutedEventArgs e)
         {
-            ActualizarCliente();
+            this.txt_Nombre.Focus();
+            //ActualizarCliente();
         }
 
         private void cbColonia_LostFocus(object sender, RoutedEventArgs e)
@@ -179,6 +181,11 @@ namespace SirCoPOS.Client.Views.Caja
         private void cbSexo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ActualizarCliente();
+        }
+
+        public void CambioVentana_Click(object sender, RoutedEventArgs e)
+        {
+            this.txttel.Focus();
         }
     }
 }

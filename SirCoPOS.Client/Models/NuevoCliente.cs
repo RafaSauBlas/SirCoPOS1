@@ -77,6 +77,11 @@ namespace SirCoPOS.Client.Models
             get { return this.GetValue<string>(nameof(this.Sexo)); }
             set { this.SetValue(nameof(this.Sexo), value); }
         }
+        public string Identificacion
+        {
+            get { return this.GetValue<string>(nameof(this.Identificacion)); }
+            set { this.SetValue(nameof(this.Identificacion), value); }
+        }
         public int Idusuario
         {
             get { return this.GetValue<int>(nameof(this.Idusuario)); }
