@@ -62,6 +62,13 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             
             this.RemovePagoCommand = new RelayCommand(/*async */() => {
                 //_ls.RemovePago(this.SelectedPago.Id);
+                if (SelectedPago.FormaPago == Common.Constants.FormaPago.CD || SelectedPago.FormaPago == Common.Constants.FormaPago.CP)
+                {
+                    Cliente = null;
+                    NuevoCliente = null;
+                    _ls.ClearCliente();
+                    ClientConfirmed = false;
+                }
                 this.Pagos.Remove(this.SelectedPago);
                 //await this.UpdatePromociones();
             }, () => this.SelectedPago != null);
