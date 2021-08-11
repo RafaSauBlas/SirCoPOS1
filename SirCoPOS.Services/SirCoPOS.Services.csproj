@@ -83,6 +83,7 @@
     <Reference Include="OtpSharp, Version=1.3.0.4, Culture=neutral, PublicKeyToken=1ec2a4a54aeffc1e, processorArchitecture=MSIL">
       <HintPath>..\packages\OtpSharp.1.3.0.4\lib\net40\OtpSharp.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="SirCoPOS.BusinessLogic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\SirCoPOS.BusinessLogic\bin\Debug\SirCoPOS.BusinessLogic.dll</HintPath>

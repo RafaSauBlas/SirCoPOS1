@@ -102,7 +102,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             email1 = this.Cliente.Email;
                             sexo1 = this.Cliente.Sexo;
                             colonia1 = Convert.ToInt16(this.Cliente.Colonia);
-                            identif1 = this.Cliente.Identificacion;
 
                             this.Colonias = _proxy.FindColonias(this.Cliente.CodigoPostal);
                             if (this.Cliente.Colonia != 0)
@@ -120,7 +119,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             this.ClienteSexo = this.Cliente.Sexo;
                             this.ClienteNumero = this.Cliente.Numero.ToString();
                             this.ClienteEmail = this.Cliente.Email;
-                            this.ClienteIdentificacion = this.Cliente.Identificacion;
 
                             this.ClienteSearch = null;
                             this.ClienteTelefonoSearch = null;
@@ -177,7 +175,9 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     }
                     else if (this.ClienteCelular1 == null)
                     {
-                       MessageBox.Show("El campo CELULAR no puede estar vacio.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        Views.Caja.LoadClienteSearchView LCSV = new Views.Caja.LoadClienteSearchView();
+                        LCSV.focusear();
+                       //MessageBox.Show("El campo CELULAR no puede estar vacio.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else if (this.ClienteSexo == null)
                     {
@@ -266,7 +266,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         email1 = this.Cliente.Email;
                         sexo1 = this.Cliente.Sexo;
                         colonia1 = Convert.ToInt16(this.Cliente.Colonia);
-                        identif1 = this.Cliente.Identificacion;
 
 
                         this.Colonias = _proxy.FindColonias(this.Cliente.CodigoPostal);
@@ -282,7 +281,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         this.ClienteSexo = this.Cliente.Sexo;
                         this.ClienteNumero = this.Cliente.Numero.ToString();
                         this.ClienteEmail = this.Cliente.Email;
-                        this.ClienteIdentificacion = this.Cliente.Identificacion;
 
                         this.ClienteSearch = null;
                         this.ClienteTelefonoSearch = null;
@@ -540,7 +538,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
            colname = Common.Constants.ClienteDato.colonia;
            sexo2 = Common.Constants.ClienteDato.sexo;
            celular12 = Common.Constants.ClienteDato.celular1;
-           identif2 = Common.Constants.ClienteDato.identificacion;
 
             if (codigopostal2 != "" && colname != "")
             {

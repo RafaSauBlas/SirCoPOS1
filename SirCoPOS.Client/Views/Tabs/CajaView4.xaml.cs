@@ -29,10 +29,13 @@ namespace SirCoPOS.Client.Views.Tabs
     [Utilities.Extensions.MetadataTab(Utilities.Constants.TabType.Caja)]
     public partial class CajaView4 : UserControl, Utilities.Interfaces.ITabView
     {
+        public string FTP = "http://201.148.82.174/FOTOS/";
+        public string IPP = @"\\10.10.1.1\Sistema\ZT\Fotos\";
         public CajaView4()
         {
             InitializeComponent();
             Messenger.Default.Register<string>(this, "DoFocus", doFocus);
+
         }
         public void doFocus(string msg)
         {
@@ -75,5 +78,23 @@ namespace SirCoPOS.Client.Views.Tabs
             //this.test.Show();
         }
 
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+                var Marca = ((Client.Models.Producto)dgView.SelectedItem).Marca;
+                var Modelo = ((Client.Models.Producto)dgView.SelectedItem).Modelo;
+                var Modelo2 = Modelo.Replace(" ", "_");
+
+                var imagen = new BitmapImage(new Uri(FTP + Marca + Modelo2 + "F3.png"));
+                if (imagen == null)
+                {
+                    imagen = new BitmapImage(new Uri(IPP + Marca + Modelo2 + "F1.jpg"));
+                }
+                //MessageBox.Show(Marca + " " + Modelo2, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                //"http://201.148.82.174/FOTOS/CHY___2996F4.png"
+                PB.Source = imagen;
+
+                PB.StretchDirection = StretchDirection.Both;
+        }
     }
 }

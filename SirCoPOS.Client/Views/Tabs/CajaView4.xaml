@@ -45,7 +45,7 @@
                         <ColumnDefinition Width="112*"/>
                     </Grid.ColumnDefinitions>
                     <!--Data Grid de Articulos-->
-                    <DataGrid AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserAddRows="False" ItemsSource="{Binding Productos}" SelectedItem="{Binding SelectedItem}" Margin="0,0,29,0.06" Grid.ColumnSpan="2">
+                    <DataGrid Name="dgView" AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserAddRows="False" ItemsSource="{Binding Productos}" SelectedItem="{Binding SelectedItem}" Margin="0,0,29,0.06" Grid.ColumnSpan="2" SelectionChanged="DataGrid_SelectionChanged">
                         <DataGrid.RowStyle>
                             <Style TargetType="{x:Type DataGridRow}">
                                 <Style.Triggers>
@@ -89,13 +89,12 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Image Width="30" Height="30" Visibility="{Binding HasImage, Converter={StaticResource boolConv}}" Source="{Binding Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}"/>
+                                            <Image Width="30" Height="30" Visibility="{Binding Foto, Converter={StaticResource boolConv}}" Source="{Binding Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}"/>
                                             <!--<Image Source="/SirCoPOS.Win;component/Images/Vendedora.png" Width="40"/>-->
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Image" Binding="{Binding HasImage}"/>
                             <DataGridTextColumn Header="Marca" Binding="{Binding Marca}"/>
                             <DataGridTextColumn Header="Modelo" Binding="{Binding Modelo}"/>
                             <DataGridTextColumn Header="Talla" Binding="{Binding Talla}"/>
@@ -438,7 +437,7 @@
                 </Button>
                 <Grid Margin="0,0,228,74" HorizontalAlignment="Right" Width="138" Height="157"  VerticalAlignment="Bottom" Grid.Column="1">
                     <Rectangle Stroke="Black" Margin="0,31,0,-31"/>
-                    <Image Height="120" Width="120" Source="{Binding SelectedItem.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}" Margin="9,50,9,-13.88" />
+                    <Image Name="PB"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="130" Height="155" RenderTransformOrigin="0.486,0.534" Margin="0,31,0,-31"/>
                 </Grid>
                 <TextBlock Margin="0,10,447,0" TextWrapping="Wrap" Text="{Binding Unidades, Mode=OneWay, StringFormat=Unidades: \{0\}}" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
                 <TextBlock Margin="0,0,67,208" TextWrapping="Wrap" Text="{Binding Monedero, Mode=OneWay, StringFormat=Dinero Electronico: \{0:C\}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1"/>
@@ -513,7 +512,7 @@
             </Grid>
         </tk:BusyIndicator>
 
-        <tk:ChildWindow DesignerWindowState="Open" WindowState="Closed" Height="197" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0">
+        <tk:ChildWindow DesignerWindowState="Open" WindowState="Closed" Height="197" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,403,0,0" Grid.RowSpan="2">
             <tk:ChildWindow.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
             </tk:ChildWindow.Background>
