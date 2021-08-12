@@ -38,5 +38,6 @@ namespace SirCoPOS.DataAccess.SirCoCredito
         public byte[] foto { get; set; } //TODO foto - nuevo campo
         public string celular { get; set; } //TODO celular - nuevo campo
         //public int? idempleado { get; set; } // idempleado - nuevo campo
+        public string identificacion { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Media.Imaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -56,6 +57,7 @@ namespace SirCoPOS.Client.Models
         public string Modelo { get; set; }
         public string Talla { get; set; }
         public string Corrida { get; set; }
+        public BitmapImage Foto = new BitmapImage(new Uri("https://www.gravatar.com/avatar/1c32fe01c48edccb228f69feb0377b7a?s=64&d=identicon&r=PG"));
         public decimal? PrecioOriginal { get; set; }
         private decimal? _Precio;
         public decimal? Precio

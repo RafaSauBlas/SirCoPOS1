@@ -69,6 +69,7 @@ namespace SirCoPOS.Client.Views.Caja
         private void txt_cp_TextChanged(object sender, TextChangedEventArgs e)
         {
             CL = new Client.ViewModels.Caja.LoadClienteViewModel();
+            this.txt_cp.BorderBrush = Brushes.LightGray;
             if (txt_cp.Text.Length == 5)
             {
                 cbColonia.Items.Clear();
@@ -112,18 +113,17 @@ namespace SirCoPOS.Client.Views.Caja
          string email = txtemail.Text;
          string colonia = cbColonia.Text;
          string sexo = cbSexo.Text;
-
-            Common.Constants.ClienteDato.nombre = name;
-            Common.Constants.ClienteDato.appa = appa;
-            Common.Constants.ClienteDato.apma = apma;
-            Common.Constants.ClienteDato.cp = codigopostal;
-            Common.Constants.ClienteDato.calle = calle;
-            Common.Constants.ClienteDato.numero = numero;
-            Common.Constants.ClienteDato.celular = celular;
-            Common.Constants.ClienteDato.email = email;
-            Common.Constants.ClienteDato.colonia = colonia;
-            Common.Constants.ClienteDato.sexo = sexo;
-            Common.Constants.ClienteDato.celular1 = celular1;
+        Common.Constants.ClienteDato.nombre = name;
+        Common.Constants.ClienteDato.appa = appa;
+        Common.Constants.ClienteDato.apma = apma;
+        Common.Constants.ClienteDato.cp = codigopostal;
+        Common.Constants.ClienteDato.calle = calle;
+        Common.Constants.ClienteDato.numero = numero;
+        Common.Constants.ClienteDato.celular = celular;
+        Common.Constants.ClienteDato.email = email;
+        Common.Constants.ClienteDato.colonia = colonia;
+        Common.Constants.ClienteDato.sexo = sexo;
+        Common.Constants.ClienteDato.celular1 = celular1;
         }
 
         private void txt_Nombre_LostFocus(object sender, RoutedEventArgs e)
@@ -138,7 +138,8 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void txtApma_LostFocus(object sender, RoutedEventArgs e)
         {
-            ActualizarCliente();
+            this.txt_Nombre.Focus();
+            //ActualizarCliente();
         }
 
         private void cbColonia_LostFocus(object sender, RoutedEventArgs e)
@@ -179,6 +180,72 @@ namespace SirCoPOS.Client.Views.Caja
         private void cbSexo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ActualizarCliente();
+        }
+
+        public void CambioVentana_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        public void focusear()
+        {
+            this.txttel.Focus();
+        }
+
+        private void txt_Nombre_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(this.txt_Nombre.Text != "")
+            {
+                this.txt_Nombre.BorderBrush = Brushes.LightGray;
+            }
+        }
+
+        private void txtAppa_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.txtAppa.Text != "")
+            {
+                this.txtAppa.BorderBrush = Brushes.LightGray;
+            }
+        }
+
+        private void txtApma_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.txtApma.Text != "")
+            {
+                this.txtApma.BorderBrush = Brushes.LightGray;
+            }
+        }
+
+        private void cbColonia_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.cbColonia.Text != "")
+            {
+                this.cbColonia.BorderBrush = Brushes.Gray;
+            }
+        }
+
+        private void txtCalle_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.txtCalle.Text != "")
+            {
+                this.txtCalle.BorderBrush = Brushes.LightGray;
+            }
+        }
+
+        private void txttel_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.txttel.Text != "(___) ___-____")
+            {
+                this.txttel.BorderBrush = Brushes.LightGray;
+            }
+        }
+
+        private void cbSexo_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (this.cbSexo.Text != "")
+            {
+                this.cbSexo.BorderBrush = Brushes.Gray;
+            }
         }
     }
 }
