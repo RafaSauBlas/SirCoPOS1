@@ -204,7 +204,7 @@
                 </Grid>
                 <Grid Margin="0,10,10,237" HorizontalAlignment="Right" Width="287" Grid.Column="1">
                     <!--ListBox de  Formas de Pago-->
-                    <ListBox SelectedItem="{Binding SelectedPago}" ItemsSource="{Binding Pagos}" Margin="0,0,29,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                    <ListBox SelectedItem="{Binding SelectedPago}" ItemsSource="{Binding Pagos}" Margin="0,0,29,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" PreviewKeyDown="ListBox_PreviewKeyDown">
                         <ListBox.Resources>
                             <DataTemplate x:Key="pagoEF">
                                 <vp:PagoEfectivoView/>

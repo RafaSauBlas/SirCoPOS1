@@ -96,5 +96,13 @@ namespace SirCoPOS.Client.Views.Tabs
 
                 PB.StretchDirection = StretchDirection.Both;
         }
+
+        private void ListBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                Common.Constants.ClienteDato.opcion = 0;
+            }
+        }
     }
 }

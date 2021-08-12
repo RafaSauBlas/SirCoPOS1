@@ -142,7 +142,7 @@
                 <KeyBinding Key="Return" Command="{Binding PopUpCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
-        <ComboBox SelectedValuePath="Content" SelectedValue="{Binding ClienteSexo, UpdateSourceTrigger=PropertyChanged}" x:Name="cbSexo" HorizontalAlignment="Left" Margin="415,263,0,0" VerticalAlignment="Top" Width="50" TabIndex="13" LostFocus="cbSexo_LostFocus" SelectionChanged="cbSexo_SelectionChanged" BorderBrush="Red" SizeChanged="cbSexo_SizeChanged">
+        <ComboBox SelectedValuePath="Content" SelectedValue="{Binding ClienteSexo, UpdateSourceTrigger=PropertyChanged}" x:Name="cbSexo" HorizontalAlignment="Left" Margin="415,263,0,0" VerticalAlignment="Top" Width="50" TabIndex="13" LostFocus="cbSexo_LostFocus" SelectionChanged="cbSexo_SelectionChanged" SizeChanged="cbSexo_SizeChanged">
             <ComboBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding agregarclientecommand}"/>
             </ComboBox.InputBindings>

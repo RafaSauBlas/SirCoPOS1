@@ -189,6 +189,14 @@ namespace SirCoPOS.Client.Helpers
         protected async Task<Models.Pagos.Pago> ParsePago(Utilities.Messages.Pago o, Guid? id = null)
         {
             Models.Pagos.Pago p = null;
+            if(o.FormaPago.ToString() == "CD")
+            {
+                Common.Constants.ClienteDato.opcion = 1;
+            }
+            else
+            {
+                Common.Constants.ClienteDato.opcion = 0;
+            }
             switch (o.FormaPago)
             {
                 case FormaPago.EF:

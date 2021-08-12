@@ -112,7 +112,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 //    this.FormasPago.Refresh();
                 //}
                 //_ls.RemovePago(this.SelectedPago.Id);
-                this.Pagos.Remove(this.SelectedPago);                
+                this.Pagos.Remove(this.SelectedPago);
+                Common.Constants.ClienteDato.opcion = 0;
             }, () => this.SelectedPago != null);
 
             this.LoadClienteCommand = new RelayCommand(() => {

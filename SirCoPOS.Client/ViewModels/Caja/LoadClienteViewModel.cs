@@ -89,7 +89,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         this.Cliente = _proxy.FindCliente(this.ClienteSearch, phone, nombre);
                         if (this.Cliente != null)
                         {
-                            accion = 0;
                             Common.Constants.ClienteInfo.colonia = this.Cliente.Colonia ?? default(int); ;
                             name1 = this.Cliente.Nombre;
                             appa1 = this.Cliente.ApPaterno;
@@ -113,12 +112,13 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             this.ClienteApPaSearch = this.Cliente.ApPaterno;
                             this.ClienteApMaSearch = this.Cliente.ApMaterno;
                             this.ClienteCP = this.Cliente.CodigoPostal;
-                            this.ClienteCelular = this.Cliente.Celular;
-                            this.ClienteCelular1 = this.Cliente.Celular1;
+                            this.ClienteCelular = this.Cliente.Celular1;
+                            this.ClienteCelular1 = this.Cliente.Celular;
                             this.ClienteCalle = this.Cliente.Calle;
                             this.ClienteSexo = this.Cliente.Sexo;
                             this.ClienteNumero = this.Cliente.Numero.ToString();
                             this.ClienteEmail = this.Cliente.Email;
+
 
                             this.ClienteSearch = null;
                             this.ClienteTelefonoSearch = null;
@@ -126,7 +126,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         else
                         {
                             MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
                         }
                     }
                 });
@@ -175,9 +174,9 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     }
                     else if (this.ClienteCelular1 == null)
                     {
-                        Views.Caja.LoadClienteSearchView LCSV = new Views.Caja.LoadClienteSearchView();
-                        LCSV.focusear();
-                       //MessageBox.Show("El campo CELULAR no puede estar vacio.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        //Views.Caja.LoadClienteSearchView LCSV = new Views.Caja.LoadClienteSearchView();
+                        //LCSV.focusear();
+                       MessageBox.Show("El campo CELULAR no puede estar vacio.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else if (this.ClienteSexo == null)
                     {
@@ -253,7 +252,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
                     if (this.Cliente != null)
                     {
-                        accion = 0;
                         Common.Constants.ClienteInfo.colonia = this.Cliente.Colonia ?? default(int); ;
                         name1 = this.Cliente.Nombre;
                         appa1 = this.Cliente.ApPaterno;
@@ -275,8 +273,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         }
 
                         this.ClienteCP = this.Cliente.CodigoPostal;
-                        this.ClienteCelular = this.Cliente.Celular;
-                        this.ClienteCelular1 = this.Cliente.Celular1;
+                        this.ClienteCelular = this.Cliente.Celular1;
+                        this.ClienteCelular1 = this.Cliente.Celular;
                         this.ClienteCalle = this.Cliente.Calle;
                         this.ClienteSexo = this.Cliente.Sexo;
                         this.ClienteNumero = this.Cliente.Numero.ToString();

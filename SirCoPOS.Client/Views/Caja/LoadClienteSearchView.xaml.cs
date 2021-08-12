@@ -22,9 +22,23 @@ namespace SirCoPOS.Client.Views.Caja
     {
         public Client.ViewModels.Caja.LoadClienteViewModel CL;
 
+
         public LoadClienteSearchView()
         {
             InitializeComponent();
+            var opcion = Common.Constants.ClienteDato.opcion;
+            if(opcion == 1)
+            {
+                txt_cp.IsEnabled = false;
+                cbColonia.IsEnabled = false;
+                txtCalle.IsEnabled = false;
+                txtNumero.IsEnabled = false;
+                txttel.IsEnabled = false;
+                txttel2.IsEnabled = false;
+                txtidentif.IsEnabled = false;
+                txtemail.IsEnabled = false;
+                cbSexo.IsEnabled = false;
+            }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
