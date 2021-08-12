@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace SirCoPOS.Client.ViewModels.Caja
 {
@@ -16,6 +17,12 @@ namespace SirCoPOS.Client.ViewModels.Caja
         //private Common.ServiceContracts.IProcessServiceAsync _proc;
         public PagoDevolucionViewModel()
         {
+            Messenger.Default.Register<decimal?>(this, "pagoDV", m => {
+                if (m != null)
+                {
+                    this.Pagar = m;
+                }
+            });
             if (!this.IsInDesignMode)
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
             //_proc = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IProcessServiceAsync>();
@@ -28,17 +35,39 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 {
                     if (this.Devolucion.Estatus != Common.Constants.Status.ZC.ToString())
                     {
-                        if (this.Devolucion.Disponible >= this.Total)
-                            this.Pagar = this.Total;
-                        else if (this.Devolucion.Disponible > 0)
-                            this.Pagar = this.Devolucion.Disponible;
 
-                        //var tipoPago = await _proxy.GetPorcentajeFPagoAsync(this.Sucursal, this.Folio);
+                        var tipoPago = await _proxy.GetPorcentajeFPagoAsync(this.Sucursal, this.Folio);
+                        if (tipoPago != null ) 
+                        {   
+                            if (tipoPago.Where(i => i.FormaPago == Common.Constants.FormaPago.VA.ToString()).Any())
+                            {
+                                this.Tipo = "VA";
+                            }
+                            else
+                            {
+                                this.Tipo = "EF";
+                            }
+                            GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
+                               new Messages.ProrrateoFP
+                               {
+                                    Tipo = this.Tipo,
+                                    Success = true,
+                               }, this.GID);
+                        }
+
+                        //if (this.Devolucion.Disponible >= this.Total)
+                        //    this.Pagar = this.Total;
+                        //else if (this.Devolucion.Disponible > 0)
+                        //    this.Pagar = this.Devolucion.Disponible;
                     }
-                    else {
+                    else 
+                    {
                         MessageBox.Show("La devolución está cancelada", "Forma de Pago Devolución", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     }
-                    
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró la Devolución", "Forma de Pago Devolución", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
                 this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.Sucursal) && !String.IsNullOrEmpty(this.Folio));
@@ -77,7 +106,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         FormaPago = FormaPago.DV,
                         Importe = this.Pagar.Value,
                         Sucursal = this.Devolucion.Sucursal,
-                        Folio = this.Devolucion.Folio
+                        Folio = this.Devolucion.Folio,
                     }, this.GID);
         }
         protected override bool CanAccept()
@@ -99,6 +128,12 @@ namespace SirCoPOS.Client.ViewModels.Caja
         {
             get { return _folio; }
             set { this.Set(nameof(this.Folio), ref _folio, value); }
+        }
+        private string _tipo;
+        public string Tipo
+        {
+            get { return _tipo; }
+            set { this.Set(nameof(this.Tipo), ref _tipo, value); }
         }
         private Common.Entities.Devolucion _devolucion;
         public Common.Entities.Devolucion Devolucion

@@ -613,10 +613,11 @@ namespace SirCoPOS.Client.Helpers
         public RelayCommand<FormaPago> AddFormaCommand { get; private set; }
 
         public virtual decimal Total { get; set; }
-
+        private decimal _totalpayment;
         public decimal TotalPayment
         {
             get { return this.Pagos.Where(i => i.Importe.HasValue).Sum(i => i.Importe.Value); }
+            set { this.Set(nameof(this.TotalPayment), ref _totalpayment, value); }
         }
         public decimal Remaining
         {

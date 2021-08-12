@@ -69,6 +69,10 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     _ls.ClearCliente();
                     ClientConfirmed = false;
                 }
+                if (SelectedPago.FormaPago == Common.Constants.FormaPago.DV )
+                {
+                    this.TipoFPVta = null;
+                }
                 this.Pagos.Remove(this.SelectedPago);
                 //await this.UpdatePromociones();
             }, () => this.SelectedPago != null);
@@ -418,8 +422,20 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             Messenger.Default.Register<Utilities.Messages.LogoutTimeout>(this, m =>
             {
                 this.Clear(true);
-            });            
+            });
+            Messenger.Default.Register<Messages.ProrrateoFP>(this, this.GID, async m =>
+            {
+                {
+                    this.TipoFPVta = m.Tipo;
+                    await this.RefreshPromociones();
 
+                    this.SaleCommand.RaiseCanExecuteChanged();
+                    this.FormasPago.Refresh();
+
+                    Messenger.Default.Send<decimal?>(this.TotalPayment, "pagoDV");
+
+                }
+            });
             Messenger.Default.Register<Messages.DescuentoEspecial>(this, this.GID, m =>
             {
                 if (m.Descuento != null)
@@ -772,15 +788,16 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     PromocionId = i.PromocionId,
                     Cupon = i.IsCupon ? ((PromocionCupon)i).Cupon : null
                 }),
-                Productos = this.Productos.Select(i => new SerieFormasPago { 
+                Productos = this.Productos.Select(i => new SerieFormasPago {
                     Serie = i.Serie,
-                    Precio = i.PrecioOriginal != i .Precio ? i.Precio : null,
+                    Precio = i.PrecioOriginal != i.Precio ? i.Precio : null,
                     //FormasPago = (i.Pagado || i.PagadoInit) && i.FormasPago.Count == 1 ? 
                     //    i.FormasPago.Select(k => k.FormaPago) : (IEnumerable<FormaPago>)new FormaPago[] { }
                     FormasPago = i.FormasPago.Select(k => k.FormaPago),
                     Pagos = i.FormasPago.GroupBy(k => k.FormaPago).ToDictionary(k => k.Key, k => k.Sum(kk => kk.Importe)),
                     Promociones = i.FormasPago.GroupBy(k => k.FormaPago).ToDictionary(k => k.Key, k => k.First().HasPromocion),
                 }),
+                TipoFPago = this.TipoFPVta
             };
             if (this.NuevoCliente != null)
             {

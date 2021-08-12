@@ -18,6 +18,7 @@ namespace SirCoPOS.Common.Entities
         public IEnumerable<PromocionCuponItem> PromocionesCupones { get; set; }
         public bool HasCliente { get; set; }
         public int? ClienteId { get; set; }
+        public string TipoFPago { get; set; }
     }
 
     public class CheckPromocionesCuponesResponse

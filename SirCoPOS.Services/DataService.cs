@@ -1175,5 +1175,10 @@ namespace SirCoPOS.Services
             }
             return ctx.SaveChanges();
         }
+        public IEnumerable<Common.Entities.PorcentajeFormaPago> GetPorcentajeFPago(string sucursal, string devolucion)
+        {
+            var _data = new BusinessLogic.Data();
+            return _data.GetPorcentajeFPago(sucursal, devolucion);
+        }
     }
 }

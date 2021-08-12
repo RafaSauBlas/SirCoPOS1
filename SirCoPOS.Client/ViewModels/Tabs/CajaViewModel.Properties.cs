@@ -106,7 +106,12 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         //    get { return _clienteId; }
         //    set { this.Set(nameof(this.ClienteId), ref _clienteId, value); }
         //}
-
+        private string _tipofpvta;
+        public string TipoFPVta
+        {
+            get { return _tipofpvta; }
+            set { this.Set(nameof(this.TipoFPVta), ref _tipofpvta, value); }
+        }
         public ObservableCollection<Models.Producto> Productos { get; set; }
         
         private CollectionViewSource _promocionesCuponesUsadas;
