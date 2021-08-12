@@ -157,6 +157,7 @@
     <Compile Include="Helpers\TabViewModelBase.cs" />
     <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Messages\ClienteMessage.cs" />
+    <Compile Include="Messages\ProrrateoFP.cs" />
     <Compile Include="Messages\DescuentoEspecial.cs" />
     <Compile Include="Messages\NotaItem.cs" />
     <Compile Include="Messages\ProductoDevolucionMessage.cs" />
@@ -302,8 +303,8 @@
     <Compile Include="Views\Caja\PagoValeExternoView.xaml.cs">
       <DependentUpon>PagoValeExternoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Caja\PagoValeView.xaml.cs">
-      <DependentUpon>PagoValeView.xaml</DependentUpon>
+    <Compile Include="Views\Caja\PagoValeView2.xaml.cs">
+      <DependentUpon>PagoValeView2.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Caja\ProductoItemView.xaml.cs">
       <DependentUpon>ProductoItemView.xaml</DependentUpon>
@@ -519,7 +520,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Caja\PagoValeView.xaml">
+    <Page Include="Views\Caja\PagoValeView2.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

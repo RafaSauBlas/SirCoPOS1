@@ -535,7 +535,7 @@ namespace SirCoPOS.BusinessLogic
 
             //var ite = prueba(request.Productos);
             var items = ParseProductos(request.Productos);
-            var mapping = this.GetFormaPagoMapping();
+            var mapping = this.GetFormaPagoMapping(request.TipoFPago);
 
             var dic = new Dictionary<string, Common.Entities.ProductoPromocion>();
             //var dser = new Dictionary<string, DataAccess.SirCo.Serie>();
@@ -1424,7 +1424,7 @@ namespace SirCoPOS.BusinessLogic
             }
             return model;
         }
-        private IDictionary<Common.Constants.FormaPago, string> GetFormaPagoMapping()
+        private IDictionary<Common.Constants.FormaPago, string> GetFormaPagoMapping(string tipo = null)
         {
             var ctx = new DataAccess.SirCoPVDataContext();
             var q = ctx.FormasPago.Where(i => i.pos).Select(i => new { i.idformapago, i.formapago, i.promocion });
@@ -1433,6 +1433,9 @@ namespace SirCoPOS.BusinessLogic
             {
                 var fp = (Common.Constants.FormaPago)Enum.Parse(typeof(Common.Constants.FormaPago), item.formapago);
                 dic.Add(fp, item.promocion ?? fp.ToString());
+            }
+            if (tipo != null) {   
+                dic[Common.Constants.FormaPago.DV] = tipo;
             }
             return dic;
         }

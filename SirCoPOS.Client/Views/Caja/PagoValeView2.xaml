@@ -1,0 +1,232 @@
+﻿<UserControl x:Class="SirCoPOS.Client.Views.Caja.PagoValeView2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
+             mc:Ignorable="d" 
+             xmlns:cv="clr-namespace:SirCoPOS.Client.Converters"             
+             xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
+             xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             Height="490" Width="850" Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <vm:PagoValeViewModel></vm:PagoValeViewModel>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <cv:ArrayMultiConverter x:Key="arr"></cv:ArrayMultiConverter>
+        <cv:InverseBoolConverter x:Key="inv"></cv:InverseBoolConverter>
+        <BooleanToVisibilityConverter x:Key="bolvis"></BooleanToVisibilityConverter>
+        <cv:ImageUrlMultiConverter x:Key="imageUrl"></cv:ImageUrlMultiConverter>
+        <cv:ImageUrlConverter x:Key="imageUrl2" />
+        <cv:BoolTextConverter x:Key="boolText"></cv:BoolTextConverter>
+    </UserControl.Resources>
+    <xt:BusyIndicator IsBusy="{Binding IsBusy}">
+
+        <Grid Name ="PagoVale">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="lblVale" TextWrapping="Wrap" Text="Vale" Grid.Column="0" Grid.Row="0" Height="20"/>
+            <TextBox x:Name="tbVale" Grid.Column="1" Grid.Row="0" Height="20" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
+                </TextBox.InputBindings>
+            </TextBox>
+
+            <TextBlock x:Name="textBlock2_Copy" Grid.Row="1" Text="#" />
+            <TextBlock x:Name="textBlock2_Copy1" Grid.Row="2" Text="Disponible" />
+            <TextBlock Text="{Binding Vale.CanceladoMotivo, StringFormat={}Cancelado - {0}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="textBlock2_Copy2" HorizontalAlignment="Left" Margin="10,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock2_Copy3" Grid.Row="4" Text="Distribuidor" />
+            <TextBlock x:Name="textBlock2_Copy4" Grid.Row="5" Text="Estatus"/>
+            <TextBlock x:Name="textBlock" Grid.Row="1" Grid.Column="1" Text="{Binding Vale.Vale}"/>
+            <TextBlock x:Name="textBlock_Copy" Grid.Row="2" Grid.Column="1" Text="{Binding Vale.Disponible, StringFormat=\{0:C\}}">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding MayorDisponible}" Value="True">
+                                <Setter Property="Foreground" Value="Red"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            <TextBlock x:Name="textBlock_Copy2" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} {1} {2}">
+                        <Binding Path="Vale.Distribuidor.Nombre" />
+                        <Binding Path="Vale.Distribuidor.ApPaterno" />
+                        <Binding Path="Vale.Distribuidor.ApMaterno" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <TextBlock x:Name="textBlock_Copy3" Grid.Row="5" Grid.Column="1" Text="{Binding Vale.Distribuidor.Status}"/>
+            <TextBlock x:Name="textBlock1" Grid.Row="2" Grid.Column="4" Text="Total" />
+            <TextBlock x:Name="textBlock1_Copy" Grid.Row="2" Grid.Column="5" Text="{Binding Total, StringFormat=\{0:C\}}"/>
+            <TextBox x:Name="textBox1" Grid.Row="3" Grid.Column="5" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, Delay=1000}"/>
+            <TextBlock x:Name="textBlock1_Copy1" Grid.Row="3" Grid.Column="4" Text="Pagar"/>
+            <TextBlock x:Name="textBlock1_Copy2" Grid.Column="4" Grid.Row="9" Text="Promoción" />
+            <TextBlock x:Name="textBlock1_Copy3" Grid.Column="4" Grid.Row="10" Text="Plazos" />
+            <ComboBox IsEnabled="{Binding HasPromocion}" Grid.Column="5" Grid.Row="9" ItemStringFormat="M" SelectedValue="{Binding SelectedPromocion}" ItemsSource="{Binding Promocion.Promociones}" x:Name="comboBox"/>
+            <ComboBox IsEnabled="{Binding HasPromocionPlazos}" Grid.Column="5" Grid.Row="10" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}"/>
+            <!--<TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="323,243,0,0" TextWrapping="Wrap" Width="315" VerticalAlignment="Top">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}Primeros: {0:C} Ultimo: {1:C}">
+                        <Binding Path="Primero" />
+                        <Binding Path="Ultimo" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>-->
+            <TextBlock x:Name="textBlock4" Grid.Row="1" Grid.Column="2" Text="Electronica"/>
+            <TextBlock x:Name="textBlock5" Grid.Row="7" Text="Cliente" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock6" Grid.Row="7" Text="{Binding Vale.ClienteId}" VerticalAlignment="Bottom"/>
+            <TextBlock x:Name="textBlock1_Copy4" Grid.Row="5" Grid.Column="4"  Text="Limite" VerticalAlignment="Top"/>
+            <TextBox IsEnabled="{Binding Vale.WithLimite, Converter={StaticResource inv}}" Grid.Row="5" Grid.Column="5" x:Name="textBox1_Copy" Text="{Binding Limite, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" />
+            <TextBlock x:Name="textBlock1_Copy5" Grid.Row="6" Grid.Column="4" Text="Contra Vale" />
+            <TextBlock x:Name="textBlock1_Copy6" Grid.Row="6" Grid.Column="5" Text="{Binding ContraVale, StringFormat=\{0:C\}}"/>
+            <TextBlock x:Name="textBlock5_Copy"  Grid.Row="6" Text="Promoción" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock5_Copy1" Grid.Row="9" Text="Contra Vale" d:LayoutOverrides="Height"/>
+            <TextBlock x:Name="textBlock5_Copy2" Grid.Row="6" Grid.Column="1" Text="{Binding Vale.Distribuidor.Promocion, Converter={StaticResource boolText}}"/>
+            <TextBlock x:Name="textBlock5_Copy3" Grid.Row="9" Grid.Column="1" Text="{Binding Vale.Distribuidor.ContraVale, Converter={StaticResource boolText}}" d:LayoutOverrides="Height"/>
+            <CheckBox IsChecked="{Binding GenerateContraVale}" Grid.Row="9" Grid.Column="2" Visibility="{Binding Vale.Distribuidor.ContraVale, Converter={StaticResource bolvis}}" x:Name="checkBox" />
+            <DataGrid IsEnabled="{Binding Vale.Distribuidor.Electronica}" SelectionUnit="FullRow" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding ProductosView}" x:Name="dataGrid" Grid.Row="11" Grid.Column="3" Grid.ColumnSpan="3">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <ComboBox SelectedItem="{Binding SelectedPlazo, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Plazos}" Visibility="{Binding HasPlazos, Converter={StaticResource bolvis}}"></ComboBox>
+                                    <TextBlock Text="{Binding SelectedPlazo}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <fa:ImageAwesome Height="20" Icon="Mobile" Visibility="{Binding Item.Electronica, Converter={StaticResource bolvis}}"></fa:ImageAwesome>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Serie" Binding="{Binding Item.Serie}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Image Width="50" Height="50" Visibility="{Binding HasImage, Converter={StaticResource bolvis}}" Source="{Binding Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl2}}"/>
+                                    <!--<Image Source="/SirCoPOS.Win;component/Images/Vendedora.png" Width="40"/>-->
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Image" Binding="{Binding Item.HasImage}"/>
+                    <DataGridTextColumn Header="Marca" Binding="{Binding Item.Marca}"/>
+                    <DataGridTextColumn Header="Modelo" Binding="{Binding Item.Modelo}"/>
+                    <DataGridTextColumn Header="Precio" Binding="{Binding Item.Precio, StringFormat=\{0:C\}}"/>
+                    <DataGridTextColumn Foreground="Red" Header="Fijo" Binding="{Binding Item.Fijo, StringFormat=\{0:C\}}"/>
+                    <DataGridTextColumn Foreground="Red" Header="Desc" Binding="{Binding Item.DescuentoDirecto, StringFormat=\{0:C\}}"/>
+                    <DataGridTextColumn Foreground="Red" Header="Descuento" Binding="{Binding Item.Descuento, StringFormat=\{0:C\}}"/>
+                    <DataGridTextColumn Foreground="Red" Header="Porcentaje" Binding="{Binding Item.DescuentoPorcentaje, StringFormat=\{0:P\}}"/>
+                    <DataGridTextColumn Header="Promocion" Binding="{Binding Item.PromocionId}"/>
+                    <DataGridTextColumn Header="Total" Binding="{Binding Item.Total, StringFormat=\{0:C\}}"/>
+                    <DataGridTextColumn Header="Pago" Binding="{Binding Item.Pago, StringFormat=\{0:C\}}"/>
+                    <DataGridTextColumn Header="Saldo" Binding="{Binding Item.Saldo, StringFormat=\{0:C\}}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListView ItemsSource="{Binding Item.FormasPago}">
+                                    <ListView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"></StackPanel>
+                                        </ItemsPanelTemplate>
+                                    </ListView.ItemsPanel>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat="{}{0} ({1:C})">
+                                                            <Binding Path="FormaPago" />
+                                                            <Binding Path="Importe"/>
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding PlanPago}" x:Name="dataGrid1" Grid.Column="6"  Grid.RowSpan="12">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="#" Binding="{Binding Number}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Fecha" Binding="{Binding Date, StringFormat=d}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Pago" Binding="{Binding Amount, StringFormat=c}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBlock x:Name="textBlock2_Copy5" Grid.Row="3" Grid.Column="2" Text="Cuenta" VerticalAlignment="Top"/>
+            <TextBlock x:Name="textBlock2_Copy6" Grid.Row="3" Grid.Column="3" Text="{Binding Vale.Distribuidor.Cuenta}" />
+            <TextBlock x:Name="textBlock4_Copy" Grid.Column="3" Grid.Row="1" Text="{Binding Vale.Distribuidor.Electronica, Converter={StaticResource boolText}}" />
+            <!--<TextBlock Text="{Binding SelectedFirma}"/>-->
+            <TextBlock x:Name="textBlock1_Copy10" Grid.Column="5" Grid.Row="0" Text="{Binding TotalCalzado, StringFormat=\{0:C\}}"/>
+            <TextBlock x:Name="textBlock1_Copy9" Grid.Column="5" Grid.Row="1" Text="{Binding TotalElectronica, StringFormat=\{0:C\}}"/>
+            <TextBlock x:Name="textBlock1_Copy12" Grid.Column="4" Grid.Row="0" Text="Calzado"/>
+            <TextBlock x:Name="textBlock1_Copy11" Grid.Column="4" Grid.Row="1" Text="Electrónica"/>
+            <TextBlock x:Name="textBlock1_Copy7" Grid.Column="4" Grid.Row="8" Text="Cargo Admon"/>
+            <TextBlock x:Name="textBlock1_Copy8" Grid.Column="5" Grid.Row="8" Text="{Binding Promocion.Blindaje, StringFormat=c}" />
+            <TabControl Grid.Row="11" Grid.ColumnSpan="3" SelectedItem="{Binding SelectedFirma}" TabStripPlacement="Left" ItemsSource="{Binding Vale.Distribuidor.Firmas, NotifyOnTargetUpdated=True}" TargetUpdated="TabControl_TargetUpdated">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"></TextBlock>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <StackPanel>
+                                <TextBlock Text="{Binding }"></TextBlock>
+                                <Button Command="{Binding DataContext.OpenFirma, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}}">
+                                    <Button.CommandParameter>
+                                        <Binding Path="DataContext.Vale.Distribuidor.Id" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}" ></Binding>
+                                    </Button.CommandParameter>
+                                    <Image>
+                                        <Image.Source>
+                                            <MultiBinding Converter="{StaticResource ResourceKey=imageUrl}" ConverterParameter="FirmaUrl">
+                                                <Binding Path="DataContext.Vale.Distribuidor.Id" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}" ></Binding>
+                                                <Binding></Binding>
+                                            </MultiBinding>
+                                        </Image.Source>
+                                    </Image>
+                                </Button>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </TabControl>
+        </Grid>
+    </xt:BusyIndicator>
+</UserControl>
