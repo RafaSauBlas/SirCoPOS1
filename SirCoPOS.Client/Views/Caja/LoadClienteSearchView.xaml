@@ -22,7 +22,7 @@
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
         </Grid.Background>
         <!--Boton genera Nuevo Cliente-->
-        <Button x:Name="CambioVentana" CommandParameter="new"  Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Height="29" Click="CambioVentana_Click">
+        <Button x:Name="CambioVentana" Visibility="Hidden" CommandParameter="new"  Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Height="29" Click="CambioVentana_Click">
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Button.Background>
