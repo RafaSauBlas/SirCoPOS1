@@ -51,7 +51,13 @@ namespace SirCoPOS.Client.ViewModels.Caja
             this.SearchCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
             {
                 this.IsBusy = true;
-                this.Vale = await _proxy.FindValeAsync(this.Search);
+                try { 
+                    this.Vale = await _proxy.FindValeAsync(this.Search);
+                }
+                catch
+                {
+                    MessageBox.Show("Ocurrio un Error al buscar el Vale", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
                 var pago = (Models.Pagos.PagoVale)this.PagoIem;
                 pago.Info.Electronica = true;
                 if (this.Vale != null)
@@ -69,6 +75,10 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         else
                             this.SelectedFirma = null;
                         this.Caja.UpdatePagos();
+                        if (!Vale.Distribuidor.Electronica && this.TotalElectronica > 0)
+                        {
+                            MessageBox.Show("El vale " + Vale.Vale + " no permite compras de Electrónica" , "Pago Vale", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
                     }
                     else
                     {
