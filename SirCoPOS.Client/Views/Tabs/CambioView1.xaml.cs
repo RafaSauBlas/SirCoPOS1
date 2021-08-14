@@ -76,9 +76,7 @@ namespace SirCoPOS.Client.Views.Tabs
             var Modelo = ((Client.Models.ProductoCambio)dgv_Prod.SelectedItem).OldItem.Modelo;
             var Modelo2 = Modelo.Replace(" ", "_");
             var imagen = new BitmapImage(new Uri(FTP + Marca + Modelo2 + "F3.png"));
-            double alto = imagen.Height;
-            double ancho = imagen.Width;
-            if (alto == 1 && ancho == 1)
+            if (imagen.CanFreeze == false)
             {
                 imagen = new BitmapImage(new Uri(IPP + Marca + Modelo2 + "F1.jpg"));
             }
