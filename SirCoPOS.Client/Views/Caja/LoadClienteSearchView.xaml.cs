@@ -194,11 +194,7 @@ namespace SirCoPOS.Client.Views.Caja
         private void cbSexo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ActualizarCliente();
-        }
 
-        public void CambioVentana_Click(object sender, RoutedEventArgs e)
-        {
-           
         }
 
         public void focusear()
