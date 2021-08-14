@@ -457,7 +457,17 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     }
                     break;
                 case nameof(ClienteSexo):
-                    AgregarCliente();
+                    {
+                        var nombrecomp = this.ClienteNombreSearch + " " + this.ClienteApPaSearch + " " + this.ClienteApMaSearch;
+                        var celverif = _proxy.CheckCelular(_common.PreparePhone(this.ClienteCelular1));
+                        var existname = _proxy.CheckNombreC(nombrecomp);
+
+                        if(!existname && !celverif)
+                        {
+                            AgregarCliente();
+                        }
+                    }
+                    
                     break;
                 case nameof(this.Cliente):
                 case nameof(this.NuevoCliente):
