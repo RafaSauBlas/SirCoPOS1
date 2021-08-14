@@ -24,5 +24,6 @@ namespace SirCoPOS.Client.Views.Caja
         {
             InitializeComponent();
         }
+       
     }
 }

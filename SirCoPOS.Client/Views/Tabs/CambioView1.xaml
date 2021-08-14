@@ -22,7 +22,7 @@
         <FrameworkElement x:Name="dummyElement"/>
         <xt:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}">
             <Grid>
-                <DataGrid SelectedItem="{Binding SelectedItem}" Margin="10,38,265,237" ItemsSource="{Binding Productos}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" >
+                <DataGrid x:Name="dgv_Prod" SelectedItem="{Binding SelectedItem}" Margin="10,38,265,237" ItemsSource="{Binding Productos}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" >
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
                             <Style.Triggers>
@@ -173,7 +173,7 @@
                 <CheckBox IsChecked="{Binding ClientConfirmed}" HorizontalAlignment="Right" Margin="0,0,302,208.06" VerticalAlignment="Bottom"/>
                 <Grid HorizontalAlignment="Left" Margin="10,0,0,93" Width="130" Height="130" VerticalAlignment="Bottom">
                     <Rectangle Stroke="Black"/>
-                    <Image Height="120" Width="120" Source="{Binding SelectedItem.OldItem.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}" Margin="2" />
+                    <Image Name="PB" Height="120" Width="120" Source="{Binding SelectedItem.OldItem.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}" Margin="2" />
                 </Grid>
 
             </Grid>

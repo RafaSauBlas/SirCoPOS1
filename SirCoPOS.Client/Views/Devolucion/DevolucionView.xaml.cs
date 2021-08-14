@@ -24,9 +24,40 @@ namespace SirCoPOS.Client.Views.Devolucion
     [Utilities.Extensions.MetadataModal(Utilities.Constants.Modals.devolucion)]
     public partial class DevolucionView : UserControl
     {
+        public string FTP = "http://201.148.82.174/FOTOS/";
+        public string IPP = @"\\10.10.1.1\Sistema\ZT\Fotos\";
         public DevolucionView()
         {
             InitializeComponent();
+        }
+
+        private void txtMarca_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtModelo_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            imagen();
+        }
+
+        public void imagen()
+        {
+            var Marca = this.txtMarca.Text;
+            var Modelo = this.txtModelo.Text;
+            var Modelo2 = Modelo.Replace(" ", "_");
+
+            var imagen = new BitmapImage(new Uri(FTP + Marca + Modelo2 + "F3.png"));
+            double alto = imagen.Height;
+            double ancho = imagen.Width;
+            if (alto == 1 && ancho == 1)
+            {
+                imagen = new BitmapImage(new Uri(IPP + Marca + Modelo2 + "F1.jpg"));
+
+            }
+            PB.Source = imagen;
+            PB.Stretch = Stretch.Fill;
+
         }
     }
 }

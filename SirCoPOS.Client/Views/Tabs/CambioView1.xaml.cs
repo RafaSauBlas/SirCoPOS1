@@ -24,6 +24,9 @@ namespace SirCoPOS.Client.Views.Tabs
     [Utilities.Extensions.MetadataTab(Utilities.Constants.TabType.Cambio)]
     public partial class CambioView1 : UserControl, Utilities.Interfaces.ITabView
     {
+        public string FTP = "http://201.148.82.174/FOTOS/";
+        public string IPP = @"\\10.10.1.1\Sistema\ZT\Fotos\";
+
         public CambioView1()
         {
             InitializeComponent();
@@ -65,6 +68,25 @@ namespace SirCoPOS.Client.Views.Tabs
             {
                 System.Windows.Clipboard.Clear();
             }
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var Marca = ((Client.Models.ProductoCambio)dgv_Prod.SelectedItem).OldItem.Marca;
+            var Modelo = ((Client.Models.ProductoCambio)dgv_Prod.SelectedItem).OldItem.Modelo;
+            var Modelo2 = Modelo.Replace(" ", "_");
+            var imagen = new BitmapImage(new Uri(FTP + Marca + Modelo2 + "F3.png"));
+            double alto = imagen.Height;
+            double ancho = imagen.Width;
+            if (alto == 1 && ancho == 1)
+            {
+                imagen = new BitmapImage(new Uri(IPP + Marca + Modelo2 + "F1.jpg"));
+            }
+            //MessageBox.Show(Marca + " " + Modelo2, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //"http://201.148.82.174/FOTOS/CHY___2996F4.png"
+            PB.Source = imagen;
+
+            PB.Stretch = Stretch.Fill;
         }
     }
 }

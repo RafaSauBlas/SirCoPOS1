@@ -16,10 +16,10 @@
     <Grid>
         <Grid HorizontalAlignment="Left" Margin="5" Width="80" Height="80">
             <Rectangle Fill="#FFF4F4F5" Stroke="Black"/>
-            <Image x:Name="image" Margin="2" Source="{Binding Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}"/>
+            <Image x:Name="PB" Margin="2" Source="{Binding Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}"/>
         </Grid>
-        <TextBlock Margin="95,5,0,0" TextWrapping="Wrap" Text="{Binding Marca, StringFormat=Marca: \{0\}}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <TextBlock Margin="95,34,0,0" TextWrapping="Wrap" Text="{Binding Modelo, StringFormat=Modelo: \{0\}}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock Name="lblMarca" Margin="95,5,0,0" TextWrapping="Wrap" Text="{Binding Marca, StringFormat=Marca: \{0\}}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBlock x:Name="lblModelos" Margin="95,34,0,0" TextWrapping="Wrap" Text="{Binding Modelo, StringFormat=Modelo: \{0\}}" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="95,63,0,0" TextWrapping="Wrap" Text="{Binding Precio, Mode=OneWay, StringFormat=Precio: \{0:C\}}" Height="24" VerticalAlignment="Top"/>
 
     </Grid>

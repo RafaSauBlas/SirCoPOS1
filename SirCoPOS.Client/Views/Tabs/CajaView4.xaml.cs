@@ -86,15 +86,14 @@ namespace SirCoPOS.Client.Views.Tabs
                 var Modelo2 = Modelo.Replace(" ", "_");
 
                 var imagen = new BitmapImage(new Uri(FTP + Marca + Modelo2 + "F3.png"));
-                if (imagen == null)
-                {
-                    imagen = new BitmapImage(new Uri(IPP + Marca + Modelo2 + "F1.jpg"));
-                }
-                //MessageBox.Show(Marca + " " + Modelo2, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                //"http://201.148.82.174/FOTOS/CHY___2996F4.png"
-                PB.Source = imagen;
 
-                PB.StretchDirection = StretchDirection.Both;
+            if (imagen.CanFreeze == false)
+            {
+                imagen = new BitmapImage(new Uri(IPP + Marca + Modelo2 + "F1.jpg"));
+            }
+            PB.Source = imagen;
+
+                PB.Stretch = Stretch.Fill;
         }
 
         private void ListBox_PreviewKeyDown(object sender, KeyEventArgs e)
