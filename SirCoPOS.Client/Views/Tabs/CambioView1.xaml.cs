@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace SirCoPOS.Client.Views.Tabs
 {
@@ -78,7 +79,14 @@ namespace SirCoPOS.Client.Views.Tabs
             var imagen = new BitmapImage(new Uri(FTP + Marca + Modelo2 + "F3.png"));
             if (imagen.CanFreeze == false)
             {
-                imagen = new BitmapImage(new Uri(IPP + Marca + Modelo2 + "F1.jpg"));
+                if (!File.Exists(IPP + Marca + Modelo2 + "F1.jpg"))
+                {
+                    imagen = null;
+                }
+                else
+                {
+                    imagen = new BitmapImage(new Uri(IPP + Marca + Modelo2 + "F1.jpg"));
+                }
             }
             //MessageBox.Show(Marca + " " + Modelo2, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             //"http://201.148.82.174/FOTOS/CHY___2996F4.png"

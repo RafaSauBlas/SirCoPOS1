@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.IO;
 using System.Windows.Shapes;
 
 
@@ -89,7 +90,14 @@ namespace SirCoPOS.Client.Views.Tabs
 
             if (imagen.CanFreeze == false)
             {
-                imagen = new BitmapImage(new Uri(IPP + Marca + Modelo2 + "F1.jpg"));
+                if(!File.Exists(IPP + Marca + Modelo2 + "F1.jpg"))
+                {
+                    imagen = null;
+                }
+                else
+                {
+                    imagen = new BitmapImage(new Uri(IPP + Marca + Modelo2 + "F1.jpg"));
+                }
             }
             PB.Source = imagen;
 

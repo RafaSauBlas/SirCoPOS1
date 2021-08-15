@@ -183,6 +183,36 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void txtNumero_GotFocus(object sender, RoutedEventArgs e)
         {
+            if (txt_Nombre.Text == "")
+            {
+                txt_Nombre.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN NOMBRE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtAppa.Text == "")
+            {
+                txtAppa.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO PATERNO PARA CONTRINUAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtApma.Text == "")
+            {
+                txtApma.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO MATERNO PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txt_cp.Text == "")
+            {
+                txt_cp.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN CODIGO POSTAL PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (cbColonia.Text == null)
+            {
+                cbColonia.Focus();
+                MessageBox.Show("NECESITA SELECCIONAR UNA COLONIA PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if(txtCalle.Text == "")
+            {
+                txtCalle.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UNA CALLE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
             txtNumero.SelectAll();
         }
 
@@ -194,12 +224,14 @@ namespace SirCoPOS.Client.Views.Caja
         private void cbSexo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ActualizarCliente();
-
-        }
-
-        public void focusear()
-        {
-            this.txttel.Focus();
+            if(cbSexo.Text != null)
+            {
+                cbSexo.BorderBrush = Brushes.LightGray;
+            }
+            else
+            {
+                cbSexo.BorderBrush = Brushes.Red;
+            }
         }
 
         private void txt_Nombre_TextChanged(object sender, TextChangedEventArgs e)
@@ -207,6 +239,10 @@ namespace SirCoPOS.Client.Views.Caja
             if(this.txt_Nombre.Text != "")
             {
                 this.txt_Nombre.BorderBrush = Brushes.LightGray;
+            }
+            else
+            {
+                this.txt_Nombre.BorderBrush = Brushes.Red;
             }
         }
 
@@ -216,6 +252,10 @@ namespace SirCoPOS.Client.Views.Caja
             {
                 this.txtAppa.BorderBrush = Brushes.LightGray;
             }
+            else
+            {
+                this.txtAppa.BorderBrush = Brushes.Red;
+            }
         }
 
         private void txtApma_TextChanged(object sender, TextChangedEventArgs e)
@@ -223,6 +263,10 @@ namespace SirCoPOS.Client.Views.Caja
             if (this.txtApma.Text != "")
             {
                 this.txtApma.BorderBrush = Brushes.LightGray;
+            }
+            else
+            {
+                this.txtApma.BorderBrush = Brushes.Red;
             }
         }
 
@@ -232,6 +276,10 @@ namespace SirCoPOS.Client.Views.Caja
             {
                 this.cbColonia.BorderBrush = Brushes.Gray;
             }
+            else
+            {
+                this.cbColonia.BorderBrush = Brushes.Red;
+            }
         }
 
         private void txtCalle_TextChanged(object sender, TextChangedEventArgs e)
@@ -239,6 +287,10 @@ namespace SirCoPOS.Client.Views.Caja
             if (this.txtCalle.Text != "")
             {
                 this.txtCalle.BorderBrush = Brushes.LightGray;
+            }
+            else
+            {
+                this.txtCalle.BorderBrush = Brushes.Red;
             }
         }
 
@@ -248,6 +300,10 @@ namespace SirCoPOS.Client.Views.Caja
             {
                 this.txttel.BorderBrush = Brushes.LightGray;
             }
+            else
+            {
+                this.txttel.BorderBrush = Brushes.Red;
+            }
         }
 
         private void cbSexo_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -255,6 +311,182 @@ namespace SirCoPOS.Client.Views.Caja
             if (this.cbSexo.Text != "")
             {
                 this.cbSexo.BorderBrush = Brushes.Gray;
+            }
+        }
+
+        private void txt_cp_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txt_Nombre.Text == "")
+            {
+                txt_Nombre.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN NOMBRE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtAppa.Text == "")
+            {
+                txtAppa.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO PATERNO PARA CONTRINUAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtApma.Text == "")
+            {
+                txtApma.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO MATERNO PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void txtCalle_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txt_Nombre.Text == "")
+            {
+                txt_Nombre.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN NOMBRE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtAppa.Text == "")
+            {
+                txtAppa.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO PATERNO PARA CONTRINUAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtApma.Text == "")
+            {
+                txtApma.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO MATERNO PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txt_cp.Text == "")
+            {
+                txt_cp.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN CODIGO POSTAL PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (cbColonia.Text == null)
+            {
+                MessageBox.Show("NECESITA SELECCIONAR UNA COLONIA PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void txttel_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txt_Nombre.Text == "")
+            {
+                txt_Nombre.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN NOMBRE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtAppa.Text == "")
+            {
+                txtAppa.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO PATERNO PARA CONTRINUAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtApma.Text == "")
+            {
+                txtApma.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO MATERNO PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txt_cp.Text == "")
+            {
+                txt_cp.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN CODIGO POSTAL PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (cbColonia.Text == null)
+            {
+                cbColonia.Focus();
+                MessageBox.Show("NECESITA SELECCIONAR UNA COLONIA PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtCalle.Text == "")
+            {
+                txtCalle.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UNA CALLE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void cbSexo_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txt_Nombre.Text == "")
+            {
+                txt_Nombre.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN NOMBRE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtAppa.Text == "")
+            {
+                txtAppa.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO PATERNO PARA CONTRINUAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtApma.Text == "")
+            {
+                txtApma.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO MATERNO PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txt_cp.Text == "")
+            {
+                txt_cp.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN CODIGO POSTAL PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (cbColonia.Text == null)
+            {
+                cbColonia.Focus();
+                MessageBox.Show("NECESITA SELECCIONAR UNA COLONIA PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtCalle.Text == "")
+            {
+                txtCalle.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UNA CALLE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txttel.Text == "(___) ___-____")
+            {
+                txttel.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN NÚMERO CELULAR PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtidentif.Text == "")
+            {
+                txtidentif.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UNA IFENTIFICACIÓN PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void txtidentif_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (txt_Nombre.Text == "")
+            {
+                txt_Nombre.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN NOMBRE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtAppa.Text == "")
+            {
+                txtAppa.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO PATERNO PARA CONTRINUAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtApma.Text == "")
+            {
+                txtApma.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO MATERNO PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txt_cp.Text == "")
+            {
+                txt_cp.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN CODIGO POSTAL PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (cbColonia.Text == null)
+            {
+                cbColonia.Focus();
+                MessageBox.Show("NECESITA SELECCIONAR UNA COLONIA PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txtCalle.Text == "")
+            {
+                txtCalle.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UNA CALLE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if (txttel.Text == "(___) ___-____")
+            {
+                txttel.Focus();
+                MessageBox.Show("NECESITA INTRODUCIR UN NÚMERO CELULAR PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void txtidentif_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.txtidentif.Text != "")
+            {
+                this.txtidentif.BorderBrush = Brushes.LightGray;
+            }
+            else
+            {
+                this.txtidentif.BorderBrush = Brushes.Red;
             }
         }
     }
