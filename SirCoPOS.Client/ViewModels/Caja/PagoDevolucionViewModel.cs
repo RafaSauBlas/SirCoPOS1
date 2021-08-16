@@ -36,29 +36,29 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     if (this.Devolucion.Estatus != Common.Constants.Status.ZC.ToString())
                     {
 
-                        var tipoPago = await _proxy.GetPorcentajeFPagoAsync(this.Sucursal, this.Folio);
-                        if (tipoPago != null ) 
-                        {   
-                            if (tipoPago.Where(i => i.FormaPago == Common.Constants.FormaPago.VA.ToString()).Any())
-                            {
-                                this.Tipo = "VA";
-                            }
-                            else
-                            {
-                                this.Tipo = "EF";
-                            }
-                            GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
-                               new Messages.ProrrateoFP
-                               {
-                                    Tipo = this.Tipo,
-                                    Success = true,
-                               }, this.GID);
-                        }
+                        //var tipoPago = await _proxy.GetPorcentajeFPagoAsync(this.Sucursal, this.Folio);
+                        //if (tipoPago != null ) 
+                        //{   
+                        //    if (tipoPago.Where(i => i.FormaPago == Common.Constants.FormaPago.VA.ToString()).Any())
+                        //    {
+                        //        this.Tipo = "VA";
+                        //    }
+                        //    else
+                        //    {
+                        //        this.Tipo = "EF";
+                        //    }
+                        //    GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
+                        //       new Messages.ProrrateoFP
+                        //       {
+                        //            Tipo = this.Tipo,
+                        //            Success = true,
+                        //       }, this.GID);
+                        //}
 
-                        //if (this.Devolucion.Disponible >= this.Total)
-                        //    this.Pagar = this.Total;
-                        //else if (this.Devolucion.Disponible > 0)
-                        //    this.Pagar = this.Devolucion.Disponible;
+                        if (this.Devolucion.Disponible >= this.Total)
+                            this.Pagar = this.Total;
+                        else if (this.Devolucion.Disponible > 0)
+                            this.Pagar = this.Devolucion.Disponible;
                     }
                     else 
                     {
