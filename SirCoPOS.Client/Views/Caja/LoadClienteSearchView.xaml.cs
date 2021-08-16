@@ -152,8 +152,8 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void txtApma_LostFocus(object sender, RoutedEventArgs e)
         {
-            this.txt_Nombre.Focus();
-            //ActualizarCliente();
+            //this.txt_Nombre.Focus();
+            ActualizarCliente();
         }
 
         private void cbColonia_LostFocus(object sender, RoutedEventArgs e)
