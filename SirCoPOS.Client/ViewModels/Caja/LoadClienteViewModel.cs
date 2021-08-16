@@ -582,7 +582,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     Messenger.Default.Send(new Messages.NuevoClienteMessage
                     {
                         Cliente = NC
-                    }, this.GID) ;
+                    }, this.GID);
             }
             if (this.Screen == "search")
             {

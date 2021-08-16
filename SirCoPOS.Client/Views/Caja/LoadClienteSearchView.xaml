@@ -66,7 +66,7 @@
             </TextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="lbltele" HorizontalAlignment="Left" Margin="10,187,0,0" TextWrapping="Wrap" Text="Celular" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox  x:Name="txttel" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="82,184,0,0" TextWrapping="Wrap" Text="{Binding ClienteCelular1, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="9" FontSize="15" LostFocus="txttel_LostFocus" BorderBrush="Red" TextChanged="txttel_TextChanged">
+        <xt:MaskedTextBox  x:Name="txttel" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="82,184,0,0" TextWrapping="Wrap" Text="{Binding ClienteCelular1, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="9" FontSize="15" LostFocus="txttel_LostFocus" BorderBrush="Red" TextChanged="txttel_TextChanged" GotFocus="txttel_GotFocus">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding agregarclientecommand}"/>
             </xt:MaskedTextBox.InputBindings>
@@ -87,7 +87,7 @@
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="lblcp" HorizontalAlignment="Left" Margin="10,117,0,0" TextWrapping="Wrap" Text="Codigo postal" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox  x:Name="txt_cp"   HorizontalAlignment="Left" Height="25" Margin="131,114,0,0" TextWrapping="Wrap" Text="{Binding ClienteCP, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="72" KeyboardNavigation.TabIndex ="5" KeyDown="txt_Nombre_KeyDown" PreviewTextInput="txt_cp_PreviewTextInput" FontSize="15" TextChanged="txt_cp_TextChanged" BorderBrush="Red">
+        <xt:MaskedTextBox  x:Name="txt_cp"   HorizontalAlignment="Left" Height="25" Margin="131,114,0,0" TextWrapping="Wrap" Text="{Binding ClienteCP, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="72" KeyboardNavigation.TabIndex ="5" KeyDown="txt_Nombre_KeyDown" PreviewTextInput="txt_cp_PreviewTextInput" FontSize="15" TextChanged="txt_cp_TextChanged" BorderBrush="Red" GotFocus="txt_cp_GotFocus">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding actualizacolonias}"/>
             </xt:MaskedTextBox.InputBindings>
@@ -99,13 +99,13 @@
             </ComboBox.Background>
         </ComboBox>
         <TextBlock x:Name="lblCalle" HorizontalAlignment="Left" Margin="10,152,0,0" TextWrapping="Wrap" Text="Calle" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox  x:Name="txtCalle"   HorizontalAlignment="Left" Height="25" Margin="86,149,0,0" TextWrapping="Wrap" Text="{Binding ClienteCalle, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="306" KeyboardNavigation.TabIndex ="7" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtCalle_LostFocus" BorderBrush="Red" TextChanged="txtCalle_TextChanged">
+        <xt:MaskedTextBox  x:Name="txtCalle"   HorizontalAlignment="Left" Height="25" Margin="86,149,0,0" TextWrapping="Wrap" Text="{Binding ClienteCalle, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="306" KeyboardNavigation.TabIndex ="7" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtCalle_LostFocus" BorderBrush="Red" TextChanged="txtCalle_TextChanged" GotFocus="txtCalle_GotFocus">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding agregarclientecommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="lblidentif" HorizontalAlignment="Left" Margin="10,226,0,0" TextWrapping="Wrap" Text="Identificación" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox  x:Name="txtidentif"   HorizontalAlignment="Left" Height="25" Margin="122,223,0,0" TextWrapping="Wrap" Text="{Binding ClienteIdentificacion}" VerticalAlignment="Top" Width="270" KeyboardNavigation.TabIndex ="11" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtCalle_LostFocus">
+        <xt:MaskedTextBox  x:Name="txtidentif"   HorizontalAlignment="Left" Height="25" Margin="122,223,0,0" TextWrapping="Wrap" Text="{Binding ClienteIdentificacion}" VerticalAlignment="Top" Width="270" KeyboardNavigation.TabIndex ="11" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtCalle_LostFocus" GotFocus="txtidentif_GotFocus" BorderBrush="Red" TextChanged="txtidentif_TextChanged">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding agregarclientecommand}"/>
             </xt:MaskedTextBox.InputBindings>
@@ -142,7 +142,7 @@
                 <KeyBinding Key="Return" Command="{Binding PopUpCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
-        <ComboBox SelectedValuePath="Content" SelectedValue="{Binding ClienteSexo, UpdateSourceTrigger=PropertyChanged}" x:Name="cbSexo" HorizontalAlignment="Left" Margin="415,263,0,0" VerticalAlignment="Top" Width="50" TabIndex="13" LostFocus="cbSexo_LostFocus" SelectionChanged="cbSexo_SelectionChanged" SizeChanged="cbSexo_SizeChanged">
+        <ComboBox SelectedValuePath="Content" SelectedValue="{Binding ClienteSexo, UpdateSourceTrigger=PropertyChanged}" x:Name="cbSexo" HorizontalAlignment="Left" Margin="415,263,0,0" VerticalAlignment="Top" Width="50" TabIndex="13" LostFocus="cbSexo_LostFocus" SelectionChanged="cbSexo_SelectionChanged" SizeChanged="cbSexo_SizeChanged" GotFocus="cbSexo_GotFocus" BorderBrush="Red">
             <ComboBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding agregarclientecommand}"/>
             </ComboBox.InputBindings>
