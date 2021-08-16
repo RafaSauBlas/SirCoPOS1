@@ -16,11 +16,11 @@ namespace SirCoPOS.Win.Helpers
             {
                 var bi = new BitmapImage();
                 bi.UriSource = new Uri((string)res);
-                win.img.Source = bi;
+                win.image.Source = bi;
             }
             else
             {
-                win.img.Source = (BitmapImage)res;
+                win.image.Source = (BitmapImage)res;
             }
             win.ShowDialog();
         }
