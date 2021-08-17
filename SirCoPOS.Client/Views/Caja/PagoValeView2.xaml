@@ -46,17 +46,24 @@
         </Style>
         <Style x:Key="border_style" TargetType="{x:Type Border}">
             <Style.Resources>
-                <DropShadowEffect x:Key="dropShadowEffect" BlurRadius="3" ShadowDepth="2" Color="#FF2686AA" RenderingBias="Quality"/>
+                <DropShadowEffect x:Key="dropShadowEffect" BlurRadius="1" ShadowDepth="2" Color="#FF2686AA" RenderingBias="Quality"/>
             </Style.Resources>
             <Setter Property="CornerRadius" Value="0" />
             <Setter Property="Effect" Value="{StaticResource dropShadowEffect}"/>
             <Setter Property="BorderBrush" Value="GhostWhite"/>
             <Setter Property="BorderThickness" Value="0.5,0.5,0,0"/>
+            <Setter Property="Padding" Value="0,0,0,0"/>
         </Style>
-
+        <Style x:Key="text_style" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="AliceBlue"/>
+        </Style>
+        <Style x:Key="lbl_style" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+        </Style>
     </UserControl.Resources>
     <xt:BusyIndicator IsBusy="{Binding IsBusy}">
-
         <Grid Name ="PagoVale">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140" />
@@ -87,8 +94,8 @@
                 <RowDefinition Height="170" />
             </Grid.RowDefinitions>
 
-            <StackPanel Margin="15,5,15,0" >
-                <TextBlock x:Name="lblVale" Text="Vale" FontFamily="Segoe UI Symbol" FontSize="11"/>
+            <StackPanel Margin="15,0,15,0" >
+                <TextBlock x:Name="lblVale" Text="Vale" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border Style="{StaticResource ResourceKey=border_style}">
                     <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="15">
                         <TextBox.InputBindings>
@@ -97,19 +104,19 @@
                     </TextBox>
                 </Border>
             </StackPanel>
-            <StackPanel Margin="10,5,15,0" Grid.Column="1" VerticalAlignment="Center">
-                <TextBlock x:Name="lblNoVale" Text="#" FontFamily="Segoe UI Symbol" FontSize="10"/>
+            <StackPanel Margin="10,0,15,0" Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock x:Name="lblNoVale" HorizontalAlignment="Right" Text="#" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border BorderThickness="0.4" BorderBrush="Black">
-                    <TextBlock x:Name="txtNoVale" HorizontalAlignment="Right" Text="{Binding Vale.Vale}" FontSize="14"  Background="AliceBlue" Width="100" />
+                    <TextBlock x:Name="txtNoVale" TextAlignment="Right" Text="{Binding Vale.Vale}" Width="90" Style="{StaticResource ResourceKey=text_style}"/>
                 </Border>
             </StackPanel>
             <StackPanel Margin="15,5,15,0" Grid.Row="1">
-                <TextBlock x:Name="lblDisponible" Text="Disponible" FontFamily="Segoe UI Symbol" FontSize="12" />
+                <TextBlock x:Name="lblDisponible" Text="Disponible" Style="{StaticResource ResourceKey=lbl_style}" />
                 <Border BorderThickness="0.4" BorderBrush="Black">
-                    <TextBlock x:Name="txtDisponible" Margin="0,0,5,0" TextAlignment="Right" Text="{Binding Vale.Disponible, StringFormat=\{0:C\}}"  FontSize="14" Background="AliceBlue" >
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Style.Triggers>
+                    <TextBlock x:Name="txtDisponible" Margin="0,0,5,0" TextAlignment="Right" Text="{Binding Vale.Disponible, StringFormat=\{0:C\}}" FontSize="14" Background="AliceBlue">
+                        <TextBlock.Style >
+                            <Style TargetType="TextBlock" >
+                                <Style.Triggers >
                                     <DataTrigger Binding="{Binding MayorDisponible}" Value="True">
                                         <Setter Property="Foreground" Value="Red"></Setter>
                                     </DataTrigger>
@@ -120,16 +127,16 @@
                 </Border>
             </StackPanel>
             <StackPanel Margin="15,0,15,0" Grid.Row="2">
-                <TextBlock x:Name="lblCuenta" Text="Cuenta" FontFamily="Segoe UI Symbol" FontSize="12"/>
+                <TextBlock x:Name="lblCuenta" Text="Cuenta" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border BorderThickness="0.4" BorderBrush="Black">
-                    <TextBlock x:Name="txtCuenta" Margin="0,0,5,0"  TextAlignment="Right" Text="{Binding Vale.Distribuidor.Cuenta}" Background="AliceBlue"  FontSize="14"/>
+                    <TextBlock x:Name="txtCuenta" Margin="0,0,5,0"  TextAlignment="Right" Text="{Binding Vale.Distribuidor.Cuenta}" Style="{StaticResource ResourceKey=text_style}"/>
                 </Border>
             </StackPanel>
 
             <StackPanel Margin="15,5,15,0" Grid.Row="3" Grid.ColumnSpan="7" Grid.RowSpan="2">
-                <TextBlock x:Name="lblDistribuidor" Text="Distribuidor" FontFamily="Segoe UI Symbol" FontSize="12"/>
+                <TextBlock x:Name="lblDistribuidor" Text="Distribuidor" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border BorderThickness="0.4" BorderBrush="Black">
-                    <TextBlock x:Name="txtDistribuidor" TextWrapping="WrapWithOverflow"  TextAlignment="Left" FontSize="14"  Background="AliceBlue">
+                    <TextBlock x:Name="txtDistribuidor" TextWrapping="WrapWithOverflow"  TextAlignment="Left" Style="{StaticResource ResourceKey=text_style}">
                         <TextBlock.Text>
                             <MultiBinding StringFormat="{}{0} {1} {2}">
                                 <Binding Path="Vale.Distribuidor.Nombre" />
@@ -141,40 +148,40 @@
                 </Border>
             </StackPanel>
 
-            <StackPanel Margin="10,0,5,0" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                <TextBlock x:Name="lblEstatus" Text="Estatus" FontFamily="Segoe UI Symbol" FontSize="12"/>
+            <StackPanel Margin="10,0,5,0" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                <TextBlock x:Name="lblEstatus" Text="Estatus" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border BorderThickness="0.4" BorderBrush="Black">
-                    <TextBlock x:Name="txtEstatus" Text="{Binding Vale.Distribuidor.Status}" TextAlignment="Center" FontSize="14"   Background="AliceBlue"/>
+                    <TextBlock x:Name="txtEstatus" Text="{Binding Vale.Distribuidor.Status}" TextAlignment="Center" Style="{StaticResource ResourceKey=text_style}"/>
                 </Border>
             </StackPanel>
             <StackPanel Margin="15,5,5,0" Grid.Row="5" Grid.ColumnSpan="7" >
-                <TextBlock x:Name="lblCancela" Text="Motivo de Vale Cancelado" FontFamily="Segoe UI Symbol" FontSize="12"/>
+                <TextBlock x:Name="lblCancela" Text="Motivo de Vale Cancelado" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <!--<Border BorderThickness="0.4" BorderBrush="Black" Margin="0,0,10,0" Visibility="{Binding Vale.Cancelado}" >-->
-                    <TextBlock x:Name="txtCancela" Text="{Binding Vale.CanceladoMotivo, StringFormat={}Cancelado - {0}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" TextAlignment="Left" FontFamily="Century Gothic" FontSize="14" TextWrapping="WrapWithOverflow" Background="AliceBlue" Margin="0,0,9.6,0"/>
+                <TextBlock x:Name="txtCancela" Text="{Binding Vale.CanceladoMotivo, StringFormat={}Cancelado - {0}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" TextAlignment="Left" FontFamily="Century Gothic" TextWrapping="WrapWithOverflow"  Margin="0,0,9.6,0" Style="{StaticResource ResourceKey=text_style}"/>
                 <!--</Border>-->
             </StackPanel>
 
             <StackPanel Margin="15,0,15,0" Grid.Row="6" Grid.ColumnSpan="7">
-                <TextBlock x:Name="lblCliente" Text="Cliente" FontFamily="Segoe UI Symbol" FontSize="12" />
+                <TextBlock x:Name="lblCliente" Text="Cliente" Style="{StaticResource ResourceKey=lbl_style}" />
                 <Border BorderThickness="0.4" BorderBrush="Black">
-                    <TextBlock x:Name="txtCliente" Text="{Binding Vale.ClienteId}" TextAlignment="Right"  FontSize="14"  Background="AliceBlue"/>
+                    <TextBlock x:Name="txtCliente" Text="{Binding Vale.ClienteId}" TextAlignment="Right" Style="{StaticResource ResourceKey=text_style}" />
                 </Border>
             </StackPanel>
 
             <StackPanel Margin="15,5,15,0" Grid.Row="7" Grid.ColumnSpan="7">
-                <TextBlock x:Name="lblFirma" Text="Firma Distribuidor" FontFamily="Segoe UI Symbol" FontSize="12" />
+                <TextBlock x:Name="lblFirma" Text="Firma Distribuidor" Style="{StaticResource ResourceKey=lbl_style}" />
             </StackPanel>
             
             <StackPanel Margin="15,2,15,0" Grid.Column="8" Grid.ColumnSpan="2">
-                <TextBlock x:Name="lblCalzado" Text="Calzado" FontFamily="Segoe UI Symbol" FontSize="12" />
+                <TextBlock x:Name="lblCalzado" Text="Calzado" Style="{StaticResource ResourceKey=lbl_style}" />
                 <Border BorderThickness="0.4" BorderBrush="Black">
-                    <TextBlock x:Name="txtCalzado"  Text="{Binding TotalCalzado, StringFormat=\{0:C\}}" TextAlignment="Right"  FontSize="14" Height="20" Background="AliceBlue"/>
+                    <TextBlock x:Name="txtCalzado"  Text="{Binding TotalCalzado, StringFormat=\{0:C\}}" TextAlignment="Right" Height="20" Style="{StaticResource ResourceKey=text_style}"/>
                 </Border>
             </StackPanel>
 
             <CheckBox x:Name="chkElectronica" IsChecked="{Binding Vale.Distribuidor.Electronica}"  Grid.Row="1" Margin="0,5,0,0" Grid.Column="7" IsEnabled="False" />
             <StackPanel Margin="15,4,15,0" Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="2">
-                <TextBlock x:Name="lblElectronica" Text="Electrónica" FontFamily="Segoe UI Symbol" FontSize="12" />
+                <TextBlock x:Name="lblElectronica" Text="Electrónica" Style="{StaticResource ResourceKey=lbl_style}" />
                 <Border BorderThickness="0.4" >
                     <Border.Style>
                         <Style>
@@ -188,56 +195,56 @@
                             </Style.Triggers>
                         </Style>
                     </Border.Style>
-                    <TextBlock x:Name="txtElectronica" Text="{Binding TotalElectronica, StringFormat=\{0:C\}}" TextAlignment="Right"  FontSize="14" Background="AliceBlue"/>
+                    <TextBlock x:Name="txtElectronica" Text="{Binding TotalElectronica, StringFormat=\{0:C\}}" TextAlignment="Right" Style="{StaticResource ResourceKey=text_style}"/>
                 </Border>
             </StackPanel>
 
             <StackPanel Margin="15,0,15,0" Grid.Row="2" Grid.Column="8" Grid.ColumnSpan="2">
-                <TextBlock x:Name="lblTotal"  Text="Total" FontFamily="Segoe UI Symbol" FontSize="12"  />
+                <TextBlock x:Name="lblTotal"  Text="Total" Style="{StaticResource ResourceKey=lbl_style}"  />
                 <Border BorderThickness="0.4" BorderBrush="Black">
-                    <TextBlock x:Name="txtTotal"  Text="{Binding Total, StringFormat=\{0:C\}}" TextAlignment="Right"  FontSize="14" Height="20" Background="AliceBlue"/>
+                    <TextBlock x:Name="txtTotal"  Text="{Binding Total, StringFormat=\{0:C\}}" TextAlignment="Right" Height="20" Style="{StaticResource ResourceKey=text_style}"/>
                 </Border>
             </StackPanel>
 
             <StackPanel Margin="15,0,15,0" Grid.Row="3" Grid.Column="8" Grid.ColumnSpan="2">
-                <TextBlock x:Name="lblPagar" Text="Pagar" FontFamily="Segoe UI Symbol" FontSize="12" />
-                <Border Style="{StaticResource ResourceKey=border_style}">
+                <TextBlock x:Name="lblPagar" Text="Pagar" Style="{StaticResource ResourceKey=lbl_style}" />
+                <Border BorderThickness="0.4" BorderBrush="Black">
                     <TextBox   x:Name="txtPagar" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, Delay=1000}" Height="20" TextAlignment="Right"  FontSize="14" />
                 </Border>
             </StackPanel>
 
             <StackPanel Margin="15,0,15,0" Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="2">
-                <TextBlock x:Name="lblCargo" Text="Cargo Admon" FontFamily="Segoe UI Symbol" FontSize="12" />
+                <TextBlock x:Name="lblCargo" Text="Cargo Admon" Style="{StaticResource ResourceKey=lbl_style}" />
                 <Border BorderThickness="0.4" BorderBrush="Black">
-                    <TextBlock x:Name="txtCargo" Text="{Binding Promocion.Blindaje, StringFormat=c}" TextAlignment="Right"  FontSize="14"  Height="20" Background="AliceBlue"/>
+                    <TextBlock x:Name="txtCargo" Text="{Binding Promocion.Blindaje, StringFormat=c}" TextAlignment="Right" Height="20" Style="{StaticResource ResourceKey=text_style}"/>
                 </Border>
             </StackPanel>
 
             <StackPanel Margin="5,15,0,0" Orientation="Horizontal" Grid.Column="7" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Center">
                 <CheckBox IsChecked="{Binding GenerateContraVale}" Margin="0,0,15,0"  IsEnabled="{Binding Vale.Distribuidor.ContraVale}" x:Name="checkBox" />
-                <TextBlock x:Name="lblContraVale"  Text="Contra Vale" FontFamily="Segoe UI Symbol" FontSize="12" />
+                <TextBlock x:Name="lblContraVale"  Text="Contra Vale" Style="{StaticResource ResourceKey=lbl_style}" />
                 <TextBlock  Text="{Binding Vale.Distribuidor.ContraVale, Converter={StaticResource boolText}}" Margin="25,0,15,0" FontSize="12"></TextBlock>
             </StackPanel>
 
             <StackPanel Margin="15,0,15,0" Grid.Row="6" Grid.Column="8" Grid.ColumnSpan="2">
-                <TextBlock x:Name="lblLimite" Text="Límite ContraVale" FontFamily="Segoe UI Symbol" FontSize="12" />
-                <Border Style="{StaticResource ResourceKey=border_style}">
+                <TextBlock x:Name="lblLimite" Text="Límite ContraVale" Style="{StaticResource ResourceKey=lbl_style}" />
+                <Border BorderThickness="0.4" BorderBrush="Black">
                     <TextBox   x:Name="txtLimite" IsEnabled="{Binding ElementName=checkBox, Path=IsChecked, 
                                  TargetNullValue=false}" Height="20" Text="{Binding Limite, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" TextAlignment="Right"  FontSize="14"/>
                 </Border>
             </StackPanel>
 
             <StackPanel Margin="15,0,15,0" Grid.Row="7" Grid.Column="8" Grid.ColumnSpan="2">
-                <TextBlock x:Name="lblContravale" Text="Valor ContraVale" FontFamily="Segoe UI Symbol" FontSize="12" />
+                <TextBlock x:Name="lblContravale" Text="Valor ContraVale" Style="{StaticResource ResourceKey=lbl_style}" />
                 <Border BorderThickness="0.4" BorderBrush="Black">
-                    <TextBlock x:Name="txtContraVale" Text="{Binding ContraVale, StringFormat=\{0:C\}}" TextAlignment="Right"  FontSize="14"  Background="AliceBlue"/>
+                    <TextBlock x:Name="txtContraVale" Text="{Binding ContraVale, StringFormat=\{0:C\}}" TextAlignment="Right" Style="{StaticResource ResourceKey=text_style}"/>
                 </Border>
             </StackPanel>
 
 
             <CheckBox IsChecked="{Binding Vale.Distribuidor.Promocion}" Margin="5,0,0,5" Grid.Row="8" Grid.Column="7" IsEnabled="False" x:Name="checkBox3" />
             <StackPanel Margin="15,0,0,0" Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="2">
-                <TextBlock x:Name="lblPromocion" Text="Promoción" FontFamily="Segoe UI Symbol" FontSize="12" />
+                <TextBlock x:Name="lblPromocion" Text="Promoción" Style="{StaticResource ResourceKey=lbl_style}" />
                 <ComboBox  x:Name="comboBox" IsEnabled="{Binding HasPromocion}" ItemStringFormat="M" SelectedValue="{Binding SelectedPromocion}" ItemsSource="{Binding Promocion.Promociones}"  FontSize="7">
                     <!--<ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">
@@ -254,7 +261,7 @@
             </StackPanel>
 
             <StackPanel Margin="15,0,15,0" Grid.Row="8" Grid.Column="10" Grid.ColumnSpan="1">
-                <TextBlock x:Name="lblPlazos" Text="Plazo" FontFamily="Segoe UI Symbol" FontSize="12" />
+                <TextBlock x:Name="lblPlazos" Text="Plazo" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <ComboBox IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontSize="8" Height="30" Width="48" HorizontalAlignment="Right"  >
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">

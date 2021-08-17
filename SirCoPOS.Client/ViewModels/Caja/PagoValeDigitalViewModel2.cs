@@ -57,6 +57,11 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         this.Vale = _proxy.FindValeDigitalByClient(this.ClientId.Value);
                         if (this.Vale != null)
                         {
+                            var Cliente= _proxy.FindCliente(this.ClientId.Value);
+                            if (Cliente != null )
+                            {
+                                this.NombreCliente = Cliente.NombreCompleto;
+                            }
                             this.Search = null;
                             if (!this.Vale.Distribuidor.Promocion)
                                 this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
@@ -74,6 +79,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 Importe = this.Pagar.Value,
                 Vale = this.Vale.Vale,
                 Cliente = this.Vale.ClienteId,
+                NombreCliente = this.NombreCliente,
                 Plazos = this.Plazos,
                 SelectedPlazo = this.SelectedPlazo,
                 Promociones = this.Promocion.Promociones,
@@ -87,5 +93,28 @@ namespace SirCoPOS.Client.ViewModels.Caja
             };
             Messenger.Default.Send(msg, this.GID);
         }
+
+        private string _nombrecliente;
+        public string NombreCliente
+        {
+            get { return _nombrecliente; }
+            set
+            {
+                this.Set(nameof(this.NombreCliente), ref _nombrecliente, value);
+            }
+        }
+        public bool Expirado
+        {
+            get
+            {
+                if (this.Vale != null)
+                {
+                    if (this.Vale.Vigencia < DateTime.Now)
+                        return true;
+                }
+                return false;
+            }
+        }
     }
+
 }

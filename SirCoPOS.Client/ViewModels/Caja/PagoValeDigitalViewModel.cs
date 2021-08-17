@@ -95,6 +95,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         Firmas = new short[] { 1, 2, 3 }
                     }
                 };
+                
             }
         }
         public override FormaPago FormaPago => FormaPago.VD;
