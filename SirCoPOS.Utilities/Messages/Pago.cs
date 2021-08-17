@@ -33,5 +33,6 @@ namespace SirCoPOS.Utilities.Messages
 
         public string NoCuenta { get; set; }
         public int? Negocio { get; set; }
+        public string NombreCliente { get; set; }
     }
 }
