@@ -36,6 +36,7 @@ namespace SirCoPOS.Client.Views.Tabs
                 this.scanTextBox.IsEnabled = true;
                 this.scanTextBox.Focus();
             }
+            this.scanTextBox.Focus();
         }
 
         private void scanTextBox_PreviewKeyDown(object sender, KeyEventArgs e)

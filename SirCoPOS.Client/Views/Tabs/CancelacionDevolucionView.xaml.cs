@@ -27,6 +27,7 @@ namespace SirCoPOS.Client.Views.Tabs
         public CancelacionDevolucionView()
         {
             InitializeComponent();
+            this.scanTextBox.Focus();
         }
 
         private void scanTextBox_PreviewKeyDown(object sender, KeyEventArgs e)

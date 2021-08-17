@@ -36,7 +36,7 @@
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="scanTextBox" HorizontalAlignment="Left" Height="27" Margin="10,12,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" PreviewKeyDown="scanTextBox_PreviewKeyDown">
+        <TextBox x:Name="scanTextBox" TabIndex="0" HorizontalAlignment="Left" Height="27" Margin="10,12,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" PreviewKeyDown="scanTextBox_PreviewKeyDown">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
             </TextBox.InputBindings>
@@ -72,7 +72,7 @@
                 <DataGridTextColumn Header="Total" Binding="{Binding Producto.Total, StringFormat=\{0:C\}}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="button" Content="Cancelar" Grid.Column="1" Margin="0,0,10,10" Grid.Row="2" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" Width="125" VerticalAlignment="Bottom"/>
+        <Button x:Name="button" TabIndex="1" Content="Cancelar" Grid.Column="1" Margin="0,0,10,10" Grid.Row="2" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" Width="125" VerticalAlignment="Bottom"/>
         <TextBlock Foreground="Red" HorizontalAlignment="Left" Margin="148.667,0,0,0" TextWrapping="Wrap" Text="{Binding ErrorMessage}" d:LayoutOverrides="Height" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>
