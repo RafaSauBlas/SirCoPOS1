@@ -19,7 +19,7 @@
         <!--TextBox para asignar precio nuevo-->
         <TextBox x:Name="tbPrecio" HorizontalAlignment="Left" Height="28" Margin="99,140,0,0" TextWrapping="Wrap" Text="{Binding Precio, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191"/>
         <!--TextBox para razon de cambio precio-->
-        <TextBox HorizontalAlignment="Left" Height="28" Margin="99,171,0,0" TextWrapping="Wrap" Text="{Binding Razon, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191"/>
+        <TextBox Name="txtRazon" HorizontalAlignment="Left" Height="28" Margin="99,171,0,0" TextWrapping="Wrap" Text="{Binding Razon, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191" KeyDown="TextBox_KeyDown"/>
         <Grid Height="90" Margin="10,10,10,0" VerticalAlignment="Top">
             <v:ProductoItemView DataContext="{Binding Item}"></v:ProductoItemView>
         </Grid>

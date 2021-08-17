@@ -24,7 +24,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,55,0,0" TextWrapping="Wrap" Text="Descuento" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,96,0,0" TextWrapping="Wrap" Text="Descripción" VerticalAlignment="Top"/>
         <!--TextBox descricpcion Descuento Adicional-->
-        <TextBox Margin="108,93,0,0" TextWrapping="Wrap" Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120"/>
+        <TextBox x:Name="txtDescrip" Margin="108,93,0,0" TextWrapping="Wrap" Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" KeyDown="txtDescrip_KeyDown"/>
 
     </Grid>
 </UserControl>

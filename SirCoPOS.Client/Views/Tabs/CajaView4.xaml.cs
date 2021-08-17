@@ -82,26 +82,37 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-                var Marca = ((Client.Models.Producto)dgView.SelectedItem).Marca;
-                var Modelo = ((Client.Models.Producto)dgView.SelectedItem).Modelo;
-                var Modelo2 = Modelo.Replace(" ", "_");
+            var Marca = "";
+            var Modelo = "";
+            var Modelo2 = "";
+
+            if(dgView.SelectedItem == null)
+            {
+                PB.Source = null;
+            }
+            else
+            {
+                Marca = ((Client.Models.Producto)dgView.SelectedItem).Marca;
+                Modelo = ((Client.Models.Producto)dgView.SelectedItem).Modelo;
+                Modelo2 = Modelo.Replace(" ", "_");
 
                 var imagen = new BitmapImage(new Uri(FTP + Marca + Modelo2 + "F3.png"));
 
-            if (imagen.CanFreeze == false)
-            {
-                if(!File.Exists(IPP + Marca + Modelo2 + "F1.jpg"))
+                if (imagen.CanFreeze == false)
                 {
-                    imagen = null;
+                    if (!File.Exists(IPP + Marca + Modelo2 + "F1.jpg"))
+                    {
+                        imagen = null;
+                    }
+                    else
+                    {
+                        imagen = new BitmapImage(new Uri(IPP + Marca + Modelo2 + "F1.jpg"));
+                    }
                 }
-                else
-                {
-                    imagen = new BitmapImage(new Uri(IPP + Marca + Modelo2 + "F1.jpg"));
-                }
-            }
-            PB.Source = imagen;
+                PB.Source = imagen;
 
                 PB.Stretch = Stretch.Fill;
+            }
         }
 
         private void ListBox_PreviewKeyDown(object sender, KeyEventArgs e)

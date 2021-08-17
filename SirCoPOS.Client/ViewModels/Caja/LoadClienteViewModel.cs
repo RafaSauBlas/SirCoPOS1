@@ -596,7 +596,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
             {
                 MessageBox.Show("YA EXISTE UN CLIENTE REGISTRADO CON EL MISMO NÚMERO CELULAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         protected override bool CanAccept()

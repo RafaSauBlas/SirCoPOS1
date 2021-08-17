@@ -43,9 +43,8 @@ namespace SirCoPOS.Client.Views.Tabs
                 this.scanTextBox.IsEnabled = true;
                 this.scanTextBox.Focus();
             }
+            this.scanTextBox.Focus();
             var vm = (ViewModels.Tabs.CambioViewModel)this.DataContext;
-
-
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

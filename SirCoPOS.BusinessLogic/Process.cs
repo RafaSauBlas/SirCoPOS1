@@ -395,7 +395,7 @@ namespace SirCoPOS.BusinessLogic
                         precdesc = citem.Corrida ? citem.Pago : precio,//cor.precio,
                         costomargen = cor.costomargen,
                         iva = iva,
-                        idusuario = 0,
+                        idusuario = idcajero,
                         fum = now,
 
                     });
@@ -421,7 +421,7 @@ namespace SirCoPOS.BusinessLogic
                         precdesc = promo != null && promo.Fijo.HasValue ? promo.Fijo : precio - (promo?.Descuento ?? 0),
                         costomargen = cor.costomargen,
                         iva = iva,
-                        idusuario = 0,
+                        idusuario = idcajero,
                         fum = now,
                         notas = sf.Notas,
                         idrazon = sf.NotaRazon

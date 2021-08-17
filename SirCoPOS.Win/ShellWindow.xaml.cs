@@ -121,7 +121,7 @@ namespace SirCoPOS.Win
                 if (!(res ?? false) && vm.CloseTab && m.Close)
                 {
                     Messenger.Default.Send(new Utilities.Messages.CloseTab { GID = vm.GID });
-                }                
+                }
             });
 
             Messenger.Default.Register<Utilities.Messages.OpenPago>(this, p => {
