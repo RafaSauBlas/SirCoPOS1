@@ -118,6 +118,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             this.ClienteSexo = this.Cliente.Sexo;
                             this.ClienteNumero = this.Cliente.Numero.ToString();
                             this.ClienteEmail = this.Cliente.Email;
+                            this.ClienteIdentificacion = this.Cliente.Identificacion;
 
 
                             this.ClienteSearch = null;
@@ -279,6 +280,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         this.ClienteSexo = this.Cliente.Sexo;
                         this.ClienteNumero = this.Cliente.Numero.ToString();
                         this.ClienteEmail = this.Cliente.Email;
+                        this.ClienteIdentificacion = this.Cliente.Identificacion;
 
                         this.ClienteSearch = null;
                         this.ClienteTelefonoSearch = null;

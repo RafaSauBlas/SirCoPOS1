@@ -642,7 +642,8 @@ namespace SirCoPOS.Services
                 Celular1 = item.celular,
                 //public string Referencia { get; set; }
                 Email = item.email,
-                Sexo = item.sexo
+                Sexo = item.sexo,
+                Identificacion = item.identificacion
             };
 
         }
@@ -682,7 +683,8 @@ namespace SirCoPOS.Services
                 Celular1 = item.celular,
                 //public string Referencia { get; set; }
                 Email = item.email,
-                Sexo = item.sexo
+                Sexo = item.sexo,
+                Identificacion = item.identificacion
             };
         }
 
