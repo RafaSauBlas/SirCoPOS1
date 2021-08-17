@@ -33,5 +33,10 @@ namespace SirCoPOS.Client.Views.Caja
         {
             this.tbPrecio.Focus();
         }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+           txtRazon.CharacterCasing = CharacterCasing.Upper;
+        }
     }
 }

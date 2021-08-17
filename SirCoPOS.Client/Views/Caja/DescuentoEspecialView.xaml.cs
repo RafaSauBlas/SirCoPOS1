@@ -28,5 +28,10 @@ namespace SirCoPOS.Client.Views.Caja
         {
             InitializeComponent();
         }
+
+        private void txtDescrip_KeyDown(object sender, KeyEventArgs e)
+        {
+            txtDescrip.CharacterCasing = CharacterCasing.Upper;
+        }
     }
 }
