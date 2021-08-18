@@ -1403,7 +1403,8 @@ namespace SirCoPOS.BusinessLogic
                 Id = item.iddistrib,
                 Distrib = item.distrib,
                 Electronica = item.solocalzado == 0,
-                Status = item.idestatus.Value
+                Status = item.idestatus.Value,
+                Cuenta = item.distrib
             };
 
             var qpp = ctx.PlanPagos.Where(i => i.distrib == item.distrib);
