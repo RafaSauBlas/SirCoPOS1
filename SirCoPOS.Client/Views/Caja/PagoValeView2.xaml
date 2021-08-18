@@ -19,6 +19,16 @@
         <cv:ImageUrlMultiConverter x:Key="imageUrl"></cv:ImageUrlMultiConverter>
         <cv:ImageUrlConverter x:Key="imageUrl2" />
         <cv:BoolTextConverter x:Key="boolText"></cv:BoolTextConverter>
+        <Style x:Key="border_style" TargetType="{x:Type Border}">
+            <Style.Resources>
+                <DropShadowEffect x:Key="dropShadowEffect" BlurRadius="1" ShadowDepth="2" Color="#FF2686AA" RenderingBias="Quality"/>
+            </Style.Resources>
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Effect" Value="{StaticResource dropShadowEffect}"/>
+            <Setter Property="BorderBrush" Value="GhostWhite"/>
+            <Setter Property="BorderThickness" Value="0,0,2,2"/>
+            <Setter Property="Padding" Value="0,0,0,0"/>
+        </Style>
         <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -43,16 +53,6 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
-        <Style x:Key="border_style" TargetType="{x:Type Border}">
-            <Style.Resources>
-                <DropShadowEffect x:Key="dropShadowEffect" BlurRadius="1" ShadowDepth="2" Color="#FF2686AA" RenderingBias="Quality"/>
-            </Style.Resources>
-            <Setter Property="CornerRadius" Value="0" />
-            <Setter Property="Effect" Value="{StaticResource dropShadowEffect}"/>
-            <Setter Property="BorderBrush" Value="GhostWhite"/>
-            <Setter Property="BorderThickness" Value="0.5,0.5,0,0"/>
-            <Setter Property="Padding" Value="0,0,0,0"/>
         </Style>
         <Style x:Key="text_style" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="14"/>
@@ -208,7 +208,7 @@
 
             <StackPanel Margin="15,0,15,0" Grid.Row="3" Grid.Column="8" Grid.ColumnSpan="2">
                 <TextBlock x:Name="lblPagar" Text="Pagar" Style="{StaticResource ResourceKey=lbl_style}" />
-                <Border BorderThickness="0.4" BorderBrush="Black">
+                <Border Style="{StaticResource ResourceKey=border_style}">
                     <TextBox   x:Name="txtPagar" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, Delay=1000}" Height="20" TextAlignment="Right"  FontSize="14" />
                 </Border>
             </StackPanel>
@@ -228,7 +228,7 @@
 
             <StackPanel Margin="15,0,15,0" Grid.Row="6" Grid.Column="8" Grid.ColumnSpan="2">
                 <TextBlock x:Name="lblLimite" Text="Límite ContraVale" Style="{StaticResource ResourceKey=lbl_style}" />
-                <Border BorderThickness="0.4" BorderBrush="Black">
+                <Border Style="{StaticResource ResourceKey=border_style}">
                     <TextBox   x:Name="txtLimite" IsEnabled="{Binding ElementName=checkBox, Path=IsChecked, 
                                  TargetNullValue=false}" Height="20" Text="{Binding Limite, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" TextAlignment="Right"  FontSize="14"/>
                 </Border>

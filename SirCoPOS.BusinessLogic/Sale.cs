@@ -2355,7 +2355,8 @@ namespace SirCoPOS.BusinessLogic
                 Status = item.idestatus.Value,
                 Electronica = item.solocalzado == 0,
                 ContraVale = item.contravale == 1,
-                Promocion = item.promocion == 1
+                Promocion = item.promocion == 1,
+                Cuenta = item.distrib,
             };
 
             var model = new CValeResponse

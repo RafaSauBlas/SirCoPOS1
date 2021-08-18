@@ -28,12 +28,12 @@ namespace SirCoPOS.Client.Views.Caja
         {
             InitializeComponent();
         }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-
-            /// TarjetaHabiente
             this.tbSearch.Focus();
         }
+
         private void TabControl_TargetUpdated(object sender, DataTransferEventArgs e)
         {
             var tc = (TabControl)sender;

@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              mc:Ignorable="d" 
-             xmlns:fa="http://schemas.fontawesome.io/icons/"
-             xmlns:cv="clr-namespace:SirCoPOS.Client.Converters"             
+             xmlns:cv="clr-namespace:SirCoPOS.Client.Converters"      
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
-             Height="490" Width="850" Loaded="UserControl_Loaded">
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             Height="550" Width="900" Loaded="UserControl_Loaded">
     <UserControl.DataContext>
         <vm:PagoCreditoViewModel2></vm:PagoCreditoViewModel2>
     </UserControl.DataContext>
@@ -19,148 +19,293 @@
         <cv:ImageUrlMultiConverter x:Key="imageUrl"></cv:ImageUrlMultiConverter>
         <cv:ImageUrlConverter x:Key="imageUrl2" />
         <cv:BoolTextConverter x:Key="boolText"></cv:BoolTextConverter>
+        <Style x:Key="border_style" TargetType="{x:Type Border}">
+            <Style.Resources>
+                <DropShadowEffect x:Key="dropShadowEffect" BlurRadius="1" ShadowDepth="2" Color="#FF2686AA" RenderingBias="Quality"/>
+            </Style.Resources>
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Effect" Value="{StaticResource dropShadowEffect}"/>
+            <Setter Property="BorderBrush" Value="GhostWhite"/>
+            <Setter Property="BorderThickness" Value="0,0,2,2"/>
+            <Setter Property="Padding" Value="0,0,0,0"/>
+        </Style>
+        <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border Background="White" BorderBrush="#FF7D8683" BorderThickness="1"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0,0,0" VerticalAlignment="Center" />
+                            <Label Margin="5,0,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
+                           Visibility="Collapsed" Foreground="Gray" FontFamily="Arial"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="DimGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="text_style" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="AliceBlue"/>
+        </Style>
+        <Style x:Key="lbl_style" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+        </Style>
     </UserControl.Resources>
     <xt:BusyIndicator IsBusy="{Binding IsBusy}">
-        <Grid>
-            <!--Captura TarjataHabiente-->
-            <TextBox x:Name="tbSearch" HorizontalAlignment="Left" Height="23" Margin="145,13,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="110">
-                <TextBox.InputBindings>
-                    <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
-                </TextBox.InputBindings>
-            </TextBox>
-            <!--Titulo Tarjetahabiente-->
-            <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="10,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"><Run Text="Tarjet"/><Run Text="a"/><Run Text="habie"/><Run Text="n"/><Run Text="te"/></TextBlock>
-            <!--Control de firmas-->
-            <TabControl SelectedItem="{Binding SelectedFirma}" TabStripPlacement="Left" ItemsSource="{Binding Vale.Distribuidor.Firmas, NotifyOnTargetUpdated=True}" TargetUpdated="TabControl_TargetUpdated" Margin="10,0,0,10" Height="202.24" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="309.716">
-                <TabControl.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding}"/>
-                    </DataTemplate>
-                </TabControl.ItemTemplate>
-                <TabControl.ContentTemplate>
-                    <DataTemplate>
-                        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                            <StackPanel>
-                                <TextBlock Text="{Binding ''}"/>
-                                <Button Command="{Binding DataContext.OpenFirma, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}, Mode=FindAncestor}}">
-                                    <Button.CommandParameter>
-                                        <MultiBinding Converter="{StaticResource arr}">
-                                            <Binding Path="DataContext.Vale.Distribuidor.Id" RelativeSource="{RelativeSource AncestorType={x:Type ItemsControl}, Mode=FindAncestor}" />
-                                            <Binding/>
-                                        </MultiBinding>
-                                    </Button.CommandParameter>
-                                    <Image>
-                                        <Image.Source>
-                                            <MultiBinding Converter="{StaticResource ResourceKey=imageUrl}" ConverterParameter="FirmaUrl">
-                                                <Binding Path="DataContext.Vale.Distribuidor.Id" RelativeSource="{RelativeSource AncestorType={x:Type ItemsControl}, Mode=FindAncestor}" />
-                                                <Binding/>
-                                            </MultiBinding>
-                                        </Image.Source>
-                                    </Image>
-                                </Button>
-                                <!--<TextBlock>
-                            <TextBlock.Text>
-                                <MultiBinding Converter="{StaticResource ResourceKey=imageUrl}" ConverterParameter="FirmaUrl">
-                                    <Binding Path="DataContext.Vale.Distribuidor.Id" RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType=ItemsControl}" ></Binding>
-                                    <Binding></Binding>
-                                </MultiBinding>
-                            </TextBlock.Text>
-                        </TextBlock>-->
-                            </StackPanel>
-                        </ScrollViewer>
-                    </DataTemplate>
-                </TabControl.ContentTemplate>
-            </TabControl>
-            <!--
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>-->
+        <Grid Name ="PagoVale">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="140" />
+                <ColumnDefinition Width="110*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="70*"/>
+                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="70*" />
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="185" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="12*" />
+                <RowDefinition Height="12*" />
+                <RowDefinition Height="12*" />
+                <RowDefinition Height="12*" />
+                <RowDefinition Height="12*" />
+                <RowDefinition Height="12*" />
+                <RowDefinition Height="12*" />
+                <RowDefinition Height="12*" />
+                <RowDefinition Height="14*" />
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="170" />
+            </Grid.RowDefinitions>
 
-            <TextBlock x:Name="textBlock2_Copy" HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="#" VerticalAlignment="Top"/>
-            <!--Titulo Disponible-->
-            <TextBlock x:Name="textBlock2_Copy1" HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="Disponible" VerticalAlignment="Top" Width="90"/>
-            <!--Titulo de Cancelado-->
-            <TextBlock Text="{Binding Vale.CanceladoMotivo, StringFormat=Cancelado - \{0\}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="textBlock2_Copy2" HorizontalAlignment="Left" Margin="10,173,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
-            <TextBlock x:Name="textBlock2_Copy3" HorizontalAlignment="Left" Margin="10,101,0,0" TextWrapping="Wrap" Text="Distribuidor" VerticalAlignment="Top" Width="100"/>
-            <!--Titulo Estatus-->
-            <TextBlock x:Name="textBlock2_Copy4" HorizontalAlignment="Left" Margin="10,152,0,0" TextWrapping="Wrap" Text="Estatus" VerticalAlignment="Top" Width="63"/>
-            <!--No Tarjetahabiente-->
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="30,39,0,0" TextWrapping="Wrap" Text="{Binding Vale.Vale}" VerticalAlignment="Top" Width="125" FontSize="10"/>
-            <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="133,61,0,0" TextWrapping="Wrap" Text="{Binding Vale.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top" Width="122" TextAlignment="Right" Height="18">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding MayorDisponible}" Value="True">
-                                <Setter Property="Foreground" Value="Red"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-            <!--Nombre Tarjatahabiente-->
-            <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="133,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="227">
+            <StackPanel Margin="15,0,15,0" >
+                <TextBlock x:Name="lblVale" Text="TarjetaHabiente" Style="{StaticResource ResourceKey=lbl_style}"/>
+                <Border Style="{StaticResource ResourceKey=border_style}">
+                    <TextBox x:Name="tbSearch"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="15">
+                        <TextBox.InputBindings>
+                            <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
+                        </TextBox.InputBindings>
+                    </TextBox>
+                </Border>
+            </StackPanel>
+            <StackPanel Margin="10,0,15,0" Grid.Column="1" VerticalAlignment="Center">
+                <TextBlock x:Name="lblNoVale" HorizontalAlignment="Right" Text="#" Style="{StaticResource ResourceKey=lbl_style}"/>
+                <Border BorderThickness="0.4" BorderBrush="Black">
+                    <TextBlock x:Name="txtNoVale" TextAlignment="Right" Text="{Binding Vale.Vale}" Width="90" Style="{StaticResource ResourceKey=text_style}"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Margin="15,5,15,0" Grid.Row="1">
+                <TextBlock x:Name="lblDisponible" Text="Disponible" Style="{StaticResource ResourceKey=lbl_style}" />
+                <Border BorderThickness="0.4" BorderBrush="Black">
+                    <TextBlock x:Name="txtDisponible" Margin="0,0,5,0" TextAlignment="Right" Text="{Binding Vale.Disponible, StringFormat=\{0:C\}}" FontSize="14" Background="AliceBlue">
+                        <TextBlock.Style >
+                            <Style TargetType="TextBlock" >
+                                <Style.Triggers >
+                                    <DataTrigger Binding="{Binding MayorDisponible}" Value="True">
+                                        <Setter Property="Foreground" Value="Red"></Setter>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+            <StackPanel Margin="15,0,15,0" Grid.Row="2">
+                <TextBlock x:Name="lblCuenta" Text="Cuenta" Style="{StaticResource ResourceKey=lbl_style}"/>
+                <Border BorderThickness="0.4" BorderBrush="Black">
+                    <TextBlock x:Name="txtCuenta" Margin="0,0,5,0"  TextAlignment="Right" Text="{Binding Vale.Distribuidor.Cuenta}" Style="{StaticResource ResourceKey=text_style}"/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Margin="15,5,15,0" Grid.Row="3" Grid.ColumnSpan="7" Grid.RowSpan="2">
+                <TextBlock x:Name="lblDistribuidor" Text="Distribuidor" Style="{StaticResource ResourceKey=lbl_style}"/>
+                <Border BorderThickness="0.4" BorderBrush="Black">
+                    <TextBlock x:Name="txtDistribuidor" TextWrapping="WrapWithOverflow"  TextAlignment="Left" Style="{StaticResource ResourceKey=text_style}">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1} {2}">
+                                <Binding Path="Vale.Distribuidor.Nombre" />
+                                <Binding Path="Vale.Distribuidor.ApPaterno" />
+                                <Binding Path="Vale.Distribuidor.ApMaterno" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Margin="10,0,5,0" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
+                <TextBlock x:Name="lblEstatus" Text="Estatus" Style="{StaticResource ResourceKey=lbl_style}"/>
+                <Border BorderThickness="0.4" BorderBrush="Black">
+                    <TextBlock x:Name="txtEstatus" Text="{Binding Vale.Distribuidor.Status}" TextAlignment="Center" Style="{StaticResource ResourceKey=text_style}"/>
+                </Border>
+            </StackPanel>
+            <StackPanel Margin="15,5,5,0" Grid.Row="5" Grid.ColumnSpan="7" >
+                <TextBlock x:Name="lblCancela" Text="Motivo de Vale Cancelado" Style="{StaticResource ResourceKey=lbl_style}"/>
+                <!--<Border BorderThickness="0.4" BorderBrush="Black" Margin="0,0,10,0" Visibility="{Binding Vale.Cancelado}" >-->
+                <TextBlock x:Name="txtCancela" Text="{Binding Vale.CanceladoMotivo, StringFormat={}Cancelado - {0}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" TextAlignment="Left" FontFamily="Century Gothic" TextWrapping="WrapWithOverflow"  Margin="0,0,9.6,0" Style="{StaticResource ResourceKey=text_style}"/>
+                <!--</Border>-->
+            </StackPanel>
+
+            <StackPanel Margin="15,0,15,0" Grid.Row="6" Grid.ColumnSpan="7">
+                <TextBlock x:Name="lblCliente" Text="Cliente" Style="{StaticResource ResourceKey=lbl_style}" />
+                <Border BorderThickness="0.4" BorderBrush="Black">
+                    <TextBlock x:Name="txtCliente" Text="{Binding Vale.ClienteId}" TextAlignment="Right" Style="{StaticResource ResourceKey=text_style}" />
+                </Border>
+            </StackPanel>
+
+            <StackPanel Margin="15,5,15,0" Grid.Row="7" Grid.ColumnSpan="7">
+                <TextBlock x:Name="lblFirma" Text="Firma Distribuidor" Style="{StaticResource ResourceKey=lbl_style}" />
+            </StackPanel>
+            
+            <StackPanel Margin="15,2,15,0" Grid.Column="8" Grid.ColumnSpan="2">
+                <TextBlock x:Name="lblCalzado" Text="Calzado" Style="{StaticResource ResourceKey=lbl_style}" />
+                <Border BorderThickness="0.4" BorderBrush="Black">
+                    <TextBlock x:Name="txtCalzado"  Text="{Binding TotalCalzado, StringFormat=\{0:C\}}" TextAlignment="Right" Height="20" Style="{StaticResource ResourceKey=text_style}"/>
+                </Border>
+            </StackPanel>
+
+            <CheckBox x:Name="chkElectronica" IsChecked="{Binding Vale.Distribuidor.Electronica}"  Grid.Row="1" Margin="0,5,0,0" Grid.Column="7" IsEnabled="False" />
+            <StackPanel Margin="15,4,15,0" Grid.Row="1" Grid.Column="8" Grid.ColumnSpan="2">
+                <TextBlock x:Name="lblElectronica" Text="Electrónica" Style="{StaticResource ResourceKey=lbl_style}" />
+                <Border BorderThickness="0.4" >
+                    <Border.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName= chkElectronica, Path=IsChecked}" Value="False">
+                                    <Setter Property="Border.BorderBrush" Value="Red" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName= chkElectronica, Path=IsChecked}" Value="True">
+                                    <Setter Property="Border.Background" Value="Black" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <TextBlock x:Name="txtElectronica" Text="{Binding TotalElectronica, StringFormat=\{0:C\}}" TextAlignment="Right" Style="{StaticResource ResourceKey=text_style}"/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Margin="15,0,15,0" Grid.Row="2" Grid.Column="8" Grid.ColumnSpan="2">
+                <TextBlock x:Name="lblTotal"  Text="Total" Style="{StaticResource ResourceKey=lbl_style}"  />
+                <Border BorderThickness="0.4" BorderBrush="Black">
+                    <TextBlock x:Name="txtTotal"  Text="{Binding Total, StringFormat=\{0:C\}}" TextAlignment="Right" Height="20" Style="{StaticResource ResourceKey=text_style}"/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Margin="15,0,15,0" Grid.Row="3" Grid.Column="8" Grid.ColumnSpan="2">
+                <TextBlock x:Name="lblPagar" Text="Pagar" Style="{StaticResource ResourceKey=lbl_style}" />
+                <Border Style="{StaticResource ResourceKey=border_style}">
+                    <TextBox   x:Name="txtPagar" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, Delay=1000}" Height="20" TextAlignment="Right"  FontSize="14" />
+                </Border>
+            </StackPanel>
+
+            <StackPanel Margin="15,0,15,0" Grid.Row="4" Grid.Column="8" Grid.ColumnSpan="2">
+                <TextBlock x:Name="lblCargo" Text="Cargo Admon" Style="{StaticResource ResourceKey=lbl_style}" />
+                <Border BorderThickness="0.4" BorderBrush="Black">
+                    <TextBlock x:Name="txtCargo" Text="{Binding Promocion.Blindaje, StringFormat=c}" TextAlignment="Right" Height="20" Style="{StaticResource ResourceKey=text_style}"/>
+                </Border>
+            </StackPanel>
+
+
+
+
+            <CheckBox IsChecked="{Binding Vale.Distribuidor.Promocion}" Margin="5,0,0,5" Grid.Row="6" Grid.Column="7" IsEnabled="False" x:Name="checkBox3" />
+            <StackPanel Margin="15,0,0,-10" Grid.Row="6" Grid.Column="8" Grid.ColumnSpan="2">
+                <TextBlock x:Name="lblPromocion" Text="Promoción" Style="{StaticResource ResourceKey=lbl_style}" />
+                <ComboBox  x:Name="comboBox" IsEnabled="{Binding HasPromocion}" ItemStringFormat="M" SelectedValue="{Binding SelectedPromocion}" ItemsSource="{Binding Promocion.Promociones}"  FontSize="7">
+                    <!--<ComboBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ComboBoxItem}">
+                            <Setter Property="FontSize" Value="8" />
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                        </Style>
+                    </ComboBox.ItemContainerStyle>-->
+                    <!--<ComboBox.Items>
+                        <Style TargetType="{x:Type ComboBoxItem}">
+                            <Setter Property="FontSize" Value="8" />
+                        </Style>
+                    </ComboBox.Items>-->
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Margin="15,0,15,-10" Grid.Row="6" Grid.Column="10" Grid.ColumnSpan="1">
+                <TextBlock x:Name="lblPlazos" Text="Plazo" Style="{StaticResource ResourceKey=lbl_style}"/>
+                <ComboBox IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontSize="8" Height="30" Width="48" HorizontalAlignment="Right"  >
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ComboBoxItem}">
+                            <Setter Property="FontSize" Value="8"/>
+                            <Setter Property="HorizontalAlignment" Value="Right"/>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+            </StackPanel>
+            <!--<TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="323,243,0,0" TextWrapping="Wrap" Width="315" VerticalAlignment="Top">
                 <TextBlock.Text>
-                    <MultiBinding StringFormat="{}{0} {1} {2}">
-                        <Binding Path="Vale.Distribuidor.Nombre" />
-                        <Binding Path="Vale.Distribuidor.ApPaterno" />
-                        <Binding Path="Vale.Distribuidor.ApMaterno" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <!--Estatus Tarjetahabiente-->
-            <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="133,153,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Status}" VerticalAlignment="Top" Width="179"/>
-            <!--Total VEnta-->
-            <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="367,52,0,0" TextWrapping="Wrap" Text="Total" VerticalAlignment="Top"/>
-            <!--Importe Total-->
-            <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="502.167,51.796,0,0" TextWrapping="Wrap" Text="{Binding Total, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-            <!--Importe a pagar-->
-            <TextBox x:Name="textBox1" HorizontalAlignment="Left" Margin="502,76,0,0" TextWrapping="Wrap" Text="{Binding Pagar, Delay=1000, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="114"/>
-            <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Margin="367,77,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock1_Copy2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Promoción" VerticalAlignment="Top" Margin="367,185,0,0"/>
-            <TextBlock x:Name="textBlock1_Copy3" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="367,215,0,0" Width="186"><Run Text="Plazos"/><Run Text=" quincenales"/></TextBlock>
-            <ComboBox IsEnabled="{Binding HasPromocion}" ItemStringFormat="M" SelectedValue="{Binding SelectedPromocion}" ItemsSource="{Binding Promocion.Promociones}" x:Name="comboBox" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,184,234,0" Width="114"  />
-            <ComboBox IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" Margin="0,217,234,0" HorizontalAlignment="Right" Width="51" Height="30" VerticalAlignment="Top"/>
-            <!--Titulo de plazo primero y ultimo-->
-            <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="323.216,243.296,0,222.763" TextWrapping="Wrap" Width="315.284" d:LayoutOverrides="Height">
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="Primeros: {0:C} Ultimo: {1:C}">
+                    <MultiBinding StringFormat="{}Primeros: {0:C} Ultimo: {1:C}">
                         <Binding Path="Primero" />
                         <Binding Path="Ultimo" />
                     </MultiBinding>
                 </TextBlock.Text>
-            </TextBlock>
-            <!--Titulo Electronica-->
-            <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="217,42,0,0" TextWrapping="Wrap" Text="Electronica" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock5" HorizontalAlignment="Left" Margin="10,194,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top" Width="81"/>
-            <TextBlock x:Name="textBlock6" HorizontalAlignment="Left" Margin="133,194,0,0" TextWrapping="Wrap" Text="{Binding Vale.ClienteId}" VerticalAlignment="Top" Width="92"/>
-            <!--Titulo Limite-->
-            <TextBlock x:Name="textBlock1_Copy4" HorizontalAlignment="Left" Margin="367,103,0,0" TextWrapping="Wrap" Text="Limite" VerticalAlignment="Top"/>
-            <!--Limite Vale-->
-            <TextBox IsEnabled="{Binding Vale.WithLimite, Converter={StaticResource inv}}" x:Name="textBox1_Copy" HorizontalAlignment="Left" Margin="502,104,0,0" TextWrapping="Wrap" Text="{Binding Limite, StringFormat=\{0:C\}, TargetNullValue='', UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="114"/>
-            <!--Titulo Contravale-->
-            <TextBlock x:Name="textBlock1_Copy5" HorizontalAlignment="Left" Margin="367,127,0,0" TextWrapping="Wrap" Text="Contra Vale" VerticalAlignment="Top"/>
-            <!--Cantidad de Contavale-->
-            <TextBlock x:Name="textBlock1_Copy6" HorizontalAlignment="Left" Margin="502,128,0,0" TextWrapping="Wrap" Text="{Binding ContraVale, StringFormat=\{0:C\}}" VerticalAlignment="Top" Width="114" TextAlignment="Right"/>
-            <!--Titulo Promocion-->
-            <TextBlock x:Name="textBlock5_Copy" HorizontalAlignment="Left" Margin="10,223,0,0" TextWrapping="Wrap" Text="Promoción" VerticalAlignment="Top" Width="100"/>
-            <!--Promocion si o No-->
-            <TextBlock x:Name="textBlock5_Copy2" HorizontalAlignment="Left" Margin="133,223,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Promocion, Converter={StaticResource boolText}}" VerticalAlignment="Top" Width="122"/>
-            <!--<Grid Margin="10,272,676,224">
-            <TextBlock x:Name="textBlock5_Copy1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Contra Vale" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock5_Copy3" HorizontalAlignment="Left" Margin="109,0,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.ContraVale, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
-            <CheckBox IsChecked="{Binding GenerateContraVale}" Visibility="{Binding Vale.Distribuidor.ContraVale, Converter={StaticResource bolvis}}" x:Name="checkBox" HorizontalAlignment="Left" Margin="148,1,0,0" VerticalAlignment="Top"/>
-        </Grid>-->
+            </TextBlock>-->
 
-            <!--Lista de electronica-->
-            <DataGrid IsEnabled="{Binding Vale.Distribuidor.Electronica}" SelectionUnit="FullRow" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding ProductosView}" x:Name="dataGrid" Grid.Row="0" Grid.Column="0" Margin="325,0,0,10" HorizontalAlignment="Left" Width="315" Height="202" VerticalAlignment="Bottom">
+            <TabControl Margin="15,24.667,15,5" Grid.Row="7" Grid.ColumnSpan="7" Grid.RowSpan="4" SelectedItem="{Binding SelectedFirma}" TabStripPlacement="Left" ItemsSource="{Binding Vale.Distribuidor.Firmas, NotifyOnTargetUpdated=True}" TargetUpdated="TabControl_TargetUpdated" >
+                <TabControl.Background>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                </TabControl.Background>
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"></TextBlock>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <ScrollViewer x:Name="myScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center" VerticalAlignment="Center"
+                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding }"></TextBlock>
+                                    <Button Command="{Binding DataContext.OpenFirma, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}, Mode=FindAncestor}}">
+                                        <Button.CommandParameter>
+                                            <MultiBinding Converter="{StaticResource arr}">
+                                                <Binding Path="DataContext.Vale.Distribuidor.Id" RelativeSource="{RelativeSource AncestorType={x:Type ItemsControl}, Mode=FindAncestor}" />
+                                                <Binding/>
+                                            </MultiBinding>
+                                        </Button.CommandParameter>
+                                        <Image x:Name="ImgFirma">
+                                            <Image.Source>
+                                                <MultiBinding Converter="{StaticResource ResourceKey=imageUrl}" ConverterParameter="FirmaUrl">
+                                                    <Binding Path="DataContext.Vale.Distribuidor.Id" RelativeSource="{RelativeSource AncestorType={x:Type ItemsControl}, Mode=FindAncestor}" />
+                                                    <Binding/>
+                                                </MultiBinding>
+                                            </Image.Source>
+                                        </Image>
+                                    </Button>
+                                </StackPanel>
+                        </ScrollViewer>
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </TabControl>
+
+            <DataGrid IsEnabled="{Binding Vale.Distribuidor.Electronica}" SelectionUnit="FullRow" GridLinesVisibility="Horizontal" AutoGenerateColumns="False" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding ProductosView}" x:Name="dataGrid" Margin="5,5,5,5" Grid.Row="10" Grid.Column="7" Grid.ColumnSpan="6" Grid.RowSpan="4" >
                 <DataGrid.Columns>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <ComboBox SelectedItem="{Binding SelectedPlazo, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Plazos}" Visibility="{Binding HasPlazos, Converter={StaticResource bolvis}}"/>
-                                    <TextBlock Text="{Binding SelectedPlazo}"/>
+                                    <ComboBox SelectedItem="{Binding SelectedPlazo, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Plazos}" Visibility="{Binding HasPlazos, Converter={StaticResource bolvis}}"></ComboBox>
+                                    <TextBlock Text="{Binding SelectedPlazo}" FontSize="15"> </TextBlock>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -169,31 +314,39 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Grid>
-                                    <fa:ImageAwesome Height="20" Icon="Mobile" Visibility="{Binding Item.Electronica, Converter={StaticResource bolvis}}"/>
+                                    <fa:ImageAwesome Height="30" Icon="Mobile" Visibility="{Binding Item.Electronica, Converter={StaticResource bolvis}}"></fa:ImageAwesome>
                                 </Grid>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Serie" Binding="{Binding Item.Serie}"/>
-                    <DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Serie" Binding="{Binding Item.Serie}"  />
+                    <!--<DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <StackPanel>
+                                --><!--<StackPanel>--><!--
                                     <Image Width="50" Height="50" Visibility="{Binding HasImage, Converter={StaticResource bolvis}}" Source="{Binding Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl2}}"/>
-                                    <!--<Image Source="/SirCoPOS.Win;component/Images/Vendedora.png" Width="40"/>-->
-                                </StackPanel>
+                                    --><!--<Image Source="/SirCoPOS.Win;component/Images/Vendedora.png" Width="40"/>-->
+                                <!--</StackPanel>--><!--
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Image" Binding="{Binding Item.HasImage}"/>
-                    <DataGridTextColumn Header="Marca" Binding="{Binding Item.Marca}"/>
+                    </DataGridTemplateColumn>-->
+                    <!--<DataGridTextColumn Header="Image" Binding="{Binding Item.HasImage}"/>-->
+                    <DataGridTextColumn Header="Marca" Binding="{Binding Item.Marca}">
+                        <DataGridColumn.HeaderStyle>
+                            <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="FontSize" Value="10"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                        </DataGridColumn.HeaderStyle>
+                    </DataGridTextColumn>
                     <DataGridTextColumn Header="Modelo" Binding="{Binding Item.Modelo}"/>
                     <DataGridTextColumn Header="Precio" Binding="{Binding Item.Precio, StringFormat=\{0:C\}}"/>
-                    <DataGridTextColumn Foreground="Red" Header="Fijo" Binding="{Binding Item.Fijo, StringFormat=\{0:C\}}"/>
+                    <!--<DataGridTextColumn Foreground="Red" Header="Fijo" Binding="{Binding Item.Fijo, StringFormat=\{0:C\}}"/>
                     <DataGridTextColumn Foreground="Red" Header="Desc" Binding="{Binding Item.DescuentoDirecto, StringFormat=\{0:C\}}"/>
                     <DataGridTextColumn Foreground="Red" Header="Descuento" Binding="{Binding Item.Descuento, StringFormat=\{0:C\}}"/>
                     <DataGridTextColumn Foreground="Red" Header="Porcentaje" Binding="{Binding Item.DescuentoPorcentaje, StringFormat=\{0:P\}}"/>
-                    <DataGridTextColumn Header="Promocion" Binding="{Binding Item.PromocionId}"/>
+                    <DataGridTextColumn Header="Promocion" Binding="{Binding Item.PromocionId}"/>-->
                     <DataGridTextColumn Header="Total" Binding="{Binding Item.Total, StringFormat=\{0:C\}}"/>
                     <DataGridTextColumn Header="Pago" Binding="{Binding Item.Pago, StringFormat=\{0:C\}}"/>
                     <DataGridTextColumn Header="Saldo" Binding="{Binding Item.Saldo, StringFormat=\{0:C\}}"/>
@@ -203,7 +356,7 @@
                                 <ListView ItemsSource="{Binding Item.FormasPago}">
                                     <ListView.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal"/>
+                                            <StackPanel Orientation="Horizontal"></StackPanel>
                                         </ItemsPanelTemplate>
                                     </ListView.ItemsPanel>
                                     <ListView.ItemTemplate>
@@ -226,31 +379,24 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <!--Lista de plan pagos-->
-            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding PlanPago}" x:Name="dataGrid1" Margin="0,13,10,10" HorizontalAlignment="Right" Width="206">
+
+            <DataGrid  Margin="0,5,5,0"  AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding PlanPago}" x:Name="dataGrid1" Grid.Column="12"  Grid.RowSpan="10"  FontSize="10" TextOptions.TextFormattingMode="Display" FontFamily="Segoe UI Semilight">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="#" Binding="{Binding Number}"/>
-                    <DataGridTextColumn Header="Fecha" Binding="{Binding Date, StringFormat=d}"/>
-                    <DataGridTextColumn Header="Pago" Binding="{Binding Amount, StringFormat=c}"/>
+                    <DataGridTextColumn Header="#" Binding="{Binding Number}" FontSize="16" ></DataGridTextColumn>
+                    <DataGridTextColumn Header="Fecha" Binding="{Binding Date, StringFormat=d}" FontSize="16" Width="80"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Pago" Binding="{Binding Amount, StringFormat=c}" FontSize="16"></DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <TextBlock x:Name="textBlock1_Copy7" HorizontalAlignment="Left" Margin="367,153,0,0" TextWrapping="Wrap" Text="Cargo Admon" VerticalAlignment="Top"/>
-            <TextBlock x:Name="textBlock1_Copy8" HorizontalAlignment="Left" Margin="553,153,0,0" TextWrapping="Wrap" Text="{Binding Promocion.Blindaje, StringFormat=c}" VerticalAlignment="Top" Width="63" TextAlignment="Right"/>
-            <!--Titulo Cuenta-->
-            <TextBlock x:Name="textBlock2_Copy5" HorizontalAlignment="Left" Margin="145,82,0,0" TextWrapping="Wrap" Text="Cuenta" VerticalAlignment="Top" Width="74"/>
-            <!--Cuenta Tarjetahabiente-->
-            <TextBlock x:Name="textBlock2_Copy6" HorizontalAlignment="Left" Margin="230,82,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Cuenta}" VerticalAlignment="Top" Width="95"/>
-            <!--Electronica Si o No-->
-            <TextBlock x:Name="textBlock4_Copy" HorizontalAlignment="Left" Margin="312,42,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Electronica, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
-            <TextBlock HorizontalAlignment="Left" Margin="244,11,0,0" TextWrapping="Wrap" Text="{Binding SelectedFirma}" VerticalAlignment="Top"/>
-            <!--Total Electronica-->
-            <TextBlock x:Name="textBlock1_Copy9" HorizontalAlignment="Left" Margin="502.167,27.856,0,0" TextWrapping="Wrap" Text="{Binding TotalElectronica, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-            <!--Total Calzado-->
-            <TextBlock x:Name="textBlock1_Copy10" HorizontalAlignment="Left" Margin="502.167,3.916,0,0" TextWrapping="Wrap" Text="{Binding TotalCalzado, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-            <!--Titulo Electronica-->
-            <TextBlock x:Name="textBlock1_Copy11" HorizontalAlignment="Left" Margin="367,28,0,0" TextWrapping="Wrap" Text="Electrónica" VerticalAlignment="Top"/>
-            <!--Titulo Calzado-->
-            <TextBlock x:Name="textBlock1_Copy12" HorizontalAlignment="Left" Margin="367,4,0,0" TextWrapping="Wrap" Text="Calzado" VerticalAlignment="Top"/>
+
+
+            <!--<TextBlock x:Name="textBlock4_Copy" Margin="5" Grid.Column="4" Grid.Row="1" Text="{Binding Vale.Distribuidor.Electronica, Converter={StaticResource boolText}}" FontSize="10" />-->
+            <!--<TextBlock Text="{Binding SelectedFirma}"/>-->
+
+
+
+
+
+
 
         </Grid>
     </xt:BusyIndicator>

@@ -22,12 +22,13 @@
         <cv:BoolTextConverter x:Key="boolText"></cv:BoolTextConverter>
         <Style x:Key="border_style" TargetType="{x:Type Border}">
             <Style.Resources>
-                <DropShadowEffect x:Key="dropShadowEffect" BlurRadius="3" ShadowDepth="2" Color="#FF2686AA" RenderingBias="Quality"/>
+                <DropShadowEffect x:Key="dropShadowEffect" BlurRadius="1" ShadowDepth="2" Color="#FF2686AA" RenderingBias="Quality"/>
             </Style.Resources>
             <Setter Property="CornerRadius" Value="0" />
             <Setter Property="Effect" Value="{StaticResource dropShadowEffect}"/>
             <Setter Property="BorderBrush" Value="GhostWhite"/>
-            <Setter Property="BorderThickness" Value="0.5,0.5,0,0"/>
+            <Setter Property="BorderThickness" Value="0,0,2,2"/>
+            <Setter Property="Padding" Value="0,0,0,0"/>
         </Style>
         <Style x:Key="text_style" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="14"/>

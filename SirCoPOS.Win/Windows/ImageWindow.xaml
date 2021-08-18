@@ -12,7 +12,7 @@
             <RowDefinition Height="450*"></RowDefinition>
             <RowDefinition Height="50" ></RowDefinition>
         </Grid.RowDefinitions>
-            <Border x:Name="border" >
+            <Border x:Name="border" ClipToBounds="True" >
                 <Image x:Name="image" Margin="10,10,10,43"  >
                     <Image.RenderTransform>
                     <!-- Initial values we're going to animate -->
