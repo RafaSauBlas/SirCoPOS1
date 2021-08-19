@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.IO;
 using System.Windows.Shapes;
+using NLog;
+using System.Diagnostics;
 
 
 
@@ -32,12 +34,43 @@ namespace SirCoPOS.Client.Views.Tabs
     {
         public string FTP = "http://201.148.82.174/FOTOS/";
         public string IPP = @"\\10.10.1.1\Sistema\ZT\Fotos\";
+        private System.Windows.Threading.DispatcherTimer _dt;
+        private IDictionary<Guid, TabItem> _tabs;
+        private ILogger _log;
+
         public CajaView4()
         {
             InitializeComponent();
+            _tabs = new Dictionary<Guid, TabItem>();
             Messenger.Default.Register<string>(this, "DoFocus", doFocus);
+            _dt = new System.Windows.Threading.DispatcherTimer();
+            _dt.Tick += Dt_Tick;
+            _dt.Interval = TimeSpan.FromSeconds(120);
+            _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
+            this.RegisterMessages();
+
+            _dt.Start();
+        }
+
+        private void RegisterMessages()
+        {
+
+            Messenger.Default.Register<Utilities.Messages.CloseTab>(this,
+               m => {
+                   Messenger.Default.Send(m, m.GID);
+                   Console.WriteLine($"removing: {m.GID}");
+                   if (!_tabs.Any())
+                   {
+                       _dt.Stop();
+                   }
+               });
+
+            Messenger.Default.Register<Utilities.Messages.LogoutTimeout>(this, m => {
+                _dt.Stop();
+            });
 
         }
+
         public void doFocus(string msg)
         {
             if (msg == "focus")
@@ -50,6 +83,13 @@ namespace SirCoPOS.Client.Views.Tabs
             //var dato = new SirCoPOS.Common.Entities.Empleado();
             //int depto = dato.Depto;
             var vm = (ViewModels.Tabs.CajaViewModel)this.DataContext;
+        }
+
+        private void Dt_Tick(object sender, EventArgs e)
+        {
+            var dt = (System.Windows.Threading.DispatcherTimer)sender;
+            dt.Stop();
+            Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
         }
 
         private void scanTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -120,6 +160,44 @@ namespace SirCoPOS.Client.Views.Tabs
             if (e.Key == Key.Delete)
             {
                 Common.Constants.ClienteDato.opcion = 0;
+            }
+        }
+
+        private void UserControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Tab)
+            {
+                _dt.Stop();
+            }
+            else if(e.Key == Key.Enter)
+            {
+                _dt.Stop();
+            }
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _dt.Stop();
+        }
+
+        private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            _dt.Start();
+        }
+
+        private void UserControl_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                _dt.Stop();
+            }
+            else if (e.Key == Key.Enter)
+            {
+                _dt.Stop();
             }
         }
     }

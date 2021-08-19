@@ -15,7 +15,7 @@
              xmlns:local="clr-namespace:SirCoPOS.Client.Views.Tabs" x:Class="SirCoPOS.Client.Views.Tabs.CajaView4" 
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vmd:CajaViewModel}}"
-             d:DesignHeight="600" d:DesignWidth="1100">
+             d:DesignHeight="600" d:DesignWidth="1100" KeyDown="UserControl_KeyDown" MouseMove="UserControl_MouseMove" KeyUp="UserControl_KeyUp">
     <UserControl.Resources>
         <c:WindowStateConverter x:Key="windowState"/>
         <c:ImageToSourceConverter x:Key="ImgSource"/>
@@ -27,7 +27,7 @@
     <UserControl.DataContext>
         <vm:CajaViewModel/>
     </UserControl.DataContext>
-    <Grid>
+    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
         <Grid.RowDefinitions>
             <RowDefinition Height="293*"/>
             <RowDefinition Height="7*"/>
@@ -440,7 +440,7 @@
                     <Image Name="PB"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="130" Height="155" RenderTransformOrigin="0.486,0.534" Margin="0,31,0,-31"/>
                 </Grid>
                 <TextBlock Margin="0,10,447,0" TextWrapping="Wrap" Text="{Binding Unidades, Mode=OneWay, StringFormat=Unidades: \{0\}}" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
-                <TextBlock Margin="0,0,67,208" TextWrapping="Wrap" Text="{Binding Monedero, Mode=OneWay, StringFormat=Dinero Electronico: \{0:C\}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1"/>
+                <TextBlock x:Name="lbl" Margin="0,0,67,208" TextWrapping="Wrap" Text="{Binding Monedero, Mode=OneWay, StringFormat=Dinero Electronico: \{0:C\}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1"/>
                 <Button Command="{Binding SaleCommand}"  HorizontalAlignment="Right" Margin="0,0,10,3" VerticalAlignment="Bottom" Height="35" Width="49" Grid.Column="1">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>

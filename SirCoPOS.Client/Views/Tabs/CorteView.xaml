@@ -13,7 +13,7 @@
     <UserControl.Resources>
         <cv:ValueVisibilityConverter x:Key="cval"></cv:ValueVisibilityConverter>
     </UserControl.Resources>
-    <Grid>
+    <Grid KeyDown="Grid_KeyDown" KeyUp="Grid_KeyUp">
         <DataGrid SelectedItem="{Binding SelectedItemCorte}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Items}" HorizontalAlignment="Left" Margin="10,91,0,276" Width="553">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
