@@ -158,7 +158,7 @@
                     <TextBlock Margin="0,96.82,10,0" TextWrapping="Wrap" Text="{Binding Remaining, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                 </Grid>
                 <Button Command="{Binding SaveCommand}" Content="Cambiar" Margin="0,0,10,10" HorizontalAlignment="Right" Width="75" Height="27.94" VerticalAlignment="Bottom"/>
-                <Button Command="{Binding AddPagoCommand}" Content="Add Pago" Margin="0,0,10,204" Height="28" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="87"/>
+                <Button Command="{Binding AddPagoCommand}" Content="$" Margin="0,0,10,204" Height="28" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="87"/>
                 <TextBlock HorizontalAlignment="Right" Margin="0,0,474.353,206.06" TextWrapping="Wrap" VerticalAlignment="Bottom">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="Cliente: {0} {1} {2}">
@@ -168,9 +168,9 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <Button Content="Load" Command="{Binding LoadClienteCommand}" HorizontalAlignment="Right" Margin="0,0,384,204.06" VerticalAlignment="Bottom" Width="51"/>
+                <Button Content="Cliente" Command="{Binding LoadClienteCommand}" HorizontalAlignment="Right" Margin="0,0,375,204.06" VerticalAlignment="Bottom" Width="56"/>
                 <Button Content="x" Command="{Binding ClearClienteCommand}" Margin="0,0,440,204.06" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="29.353"/>
-                <CheckBox IsChecked="{Binding ClientConfirmed}" HorizontalAlignment="Right" Margin="0,0,302,208.06" VerticalAlignment="Bottom"/>
+                <!--<CheckBox IsChecked="{Binding ClientConfirmed}" HorizontalAlignment="Right" Margin="0,0,302,208.06" VerticalAlignment="Bottom"/>-->
                 <Grid HorizontalAlignment="Left" Margin="10,0,0,93" Width="130" Height="130" VerticalAlignment="Bottom">
                     <Rectangle Stroke="Black"/>
                     <Image Name="PB" Height="120" Width="120" Source="{Binding SelectedItem.OldItem.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}" Margin="2" />

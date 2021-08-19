@@ -387,29 +387,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                         && i.OldItem.Marca == scan.Producto.Marca
                         && i.OldItem.Modelo == scan.Producto.Modelo
                         && i.NewItem == null).FirstOrDefault();
-                    if (cur == null)
-                    {
-                        cur = this.Productos.Where(i => i.OldItem != null
-                            && i.OldItem.Marca == scan.Producto.Marca
-                            && i.OldItem.Modelo == scan.Producto.Modelo
-                            && i.OldItem.Precio == scan.Producto.Precio
-                            && i.NewItem == null).FirstOrDefault();
-                    }
-                    if (cur == null)
-                    {
-                        cur = this.Productos.Where(i => i.OldItem != null
-                            && i.OldItem.Marca == scan.Producto.Marca
-                            && i.OldItem.Modelo == scan.Producto.Modelo
-                            && i.NewItem == null).FirstOrDefault();
-                    }
-                    if (cur == null)
-                    {                        
-                        cur = this.Productos.Where(i => i.OldItem != null
-                            && i.OldItem.Precio == i.OldItem.Pago
-                            && i.OldItem.Precio == scan.Producto.Precio
-                            && i.NewItem == null).FirstOrDefault();                        
-                    }
-                    if (cur == null)
+                    
+                    if (cur != null)
                     {
                         MessageBox.Show($"La serie '{ser}' No coincide con Marca, Modelo, Corrida\nPor favor genere una Devolución", "Cambio NO procede", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
