@@ -46,7 +46,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 var ic = new Converters.ImageUrlMultiConverter();
                 var res = ic.Convert(new object[] { p.Id, p.Index }, typeof(string), "FirmaUrl", System.Globalization.CultureInfo.CurrentUICulture);
                 //MessageBox.Show($"{p.Id}x{p.Index}");
-                _image.OpenImage(res);                
+                _image.OpenImage(res, Vale);                
+                
             });
             this.SearchCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
             {

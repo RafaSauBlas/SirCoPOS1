@@ -9,9 +9,9 @@ namespace SirCoPOS.Win.Helpers
 {
     class ImageView : Utilities.Interfaces.IImageView
     {
-        public void OpenImage(object res)
+        public void OpenImage(object res, Common.Entities.ValeResponse vale)
         {
-            var win = new Windows.ImageWindow();
+            var win = new Windows.ImageWindow(vale);
             if (res is string)
             {
                 var bi = new BitmapImage();

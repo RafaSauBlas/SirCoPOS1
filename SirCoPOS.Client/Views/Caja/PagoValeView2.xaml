@@ -133,7 +133,7 @@
                 </Border>
             </StackPanel>
 
-            <StackPanel Margin="15,5,15,0" Grid.Row="3" Grid.ColumnSpan="7" Grid.RowSpan="2">
+            <StackPanel Margin="15,0,15,0" Grid.Row="3" Grid.ColumnSpan="7" Grid.RowSpan="1">
                 <TextBlock x:Name="lblDistribuidor" Text="Distribuidor" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border BorderThickness="0.4" BorderBrush="Black">
                     <TextBlock x:Name="txtDistribuidor" TextWrapping="WrapWithOverflow"  TextAlignment="Left" Style="{StaticResource ResourceKey=text_style}">
@@ -154,21 +154,21 @@
                     <TextBlock x:Name="txtEstatus" Text="{Binding Vale.Distribuidor.Status}" TextAlignment="Center" Style="{StaticResource ResourceKey=text_style}"/>
                 </Border>
             </StackPanel>
-            <StackPanel Margin="15,5,5,0" Grid.Row="5" Grid.ColumnSpan="7" >
+            <StackPanel Margin="15,5,5,0" Grid.Row="4" Grid.ColumnSpan="7" >
                 <TextBlock x:Name="lblCancela" Text="Motivo de Vale Cancelado" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <!--<Border BorderThickness="0.4" BorderBrush="Black" Margin="0,0,10,0" Visibility="{Binding Vale.Cancelado}" >-->
                 <TextBlock x:Name="txtCancela" Text="{Binding Vale.CanceladoMotivo, StringFormat={}Cancelado - {0}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" TextAlignment="Left" FontFamily="Century Gothic" TextWrapping="WrapWithOverflow"  Margin="0,0,9.6,0" Style="{StaticResource ResourceKey=text_style}"/>
                 <!--</Border>-->
             </StackPanel>
 
-            <StackPanel Margin="15,0,15,0" Grid.Row="6" Grid.ColumnSpan="7">
+            <StackPanel Margin="15,0,15,0" Grid.Row="5" Grid.ColumnSpan="7">
                 <TextBlock x:Name="lblCliente" Text="Cliente" Style="{StaticResource ResourceKey=lbl_style}" />
                 <Border BorderThickness="0.4" BorderBrush="Black">
                     <TextBlock x:Name="txtCliente" Text="{Binding Vale.ClienteId}" TextAlignment="Right" Style="{StaticResource ResourceKey=text_style}" />
                 </Border>
             </StackPanel>
 
-            <StackPanel Margin="15,5,15,0" Grid.Row="7" Grid.ColumnSpan="7">
+            <StackPanel Margin="15,5,15,0" Grid.Row="6" Grid.ColumnSpan="7">
                 <TextBlock x:Name="lblFirma" Text="Firma Distribuidor" Style="{StaticResource ResourceKey=lbl_style}" />
             </StackPanel>
             
@@ -280,7 +280,7 @@
                 </TextBlock.Text>
             </TextBlock>-->
 
-            <TabControl Margin="15,24.667,15,5" Grid.Row="7" Grid.ColumnSpan="7" Grid.RowSpan="4" SelectedItem="{Binding SelectedFirma}" TabStripPlacement="Left" ItemsSource="{Binding Vale.Distribuidor.Firmas, NotifyOnTargetUpdated=True}" TargetUpdated="TabControl_TargetUpdated" >
+            <TabControl Margin="15,24.667,15,5" Grid.Row="6" Grid.ColumnSpan="7" Grid.RowSpan="5" SelectedItem="{Binding SelectedFirma}" TabStripPlacement="Left" ItemsSource="{Binding Vale.Distribuidor.Firmas, NotifyOnTargetUpdated=True}" TargetUpdated="TabControl_TargetUpdated" >
                 <TabControl.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                 </TabControl.Background>
