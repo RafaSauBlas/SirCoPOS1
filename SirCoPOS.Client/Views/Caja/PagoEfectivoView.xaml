@@ -5,38 +5,88 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
-             Height="222.73" Width="230" Loaded="UserControl_Loaded">
+             Height="222.73" Width="280" Loaded="UserControl_Loaded">
     <UserControl.DataContext>
         <vm:PagoEfectivoViewModel></vm:PagoEfectivoViewModel>
     </UserControl.DataContext>
-    <Grid>
+    <UserControl.Resources>
+        <Style x:Key="border_style" TargetType="{x:Type Border}">
+            <Style.Resources>
+                <DropShadowEffect x:Key="dropShadowEffect" BlurRadius="1" ShadowDepth="2" Color="#FF2686AA" RenderingBias="Quality"/>
+            </Style.Resources>
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Effect" Value="{StaticResource dropShadowEffect}"/>
+            <Setter Property="BorderBrush" Value="GhostWhite"/>
+            <Setter Property="BorderThickness" Value="0,0,2,2"/>
+            <Setter Property="Padding" Value="0,0,0,0"/>
+        </Style>
+        <Style x:Key="text_style" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="AliceBlue"/>
+        </Style>
+        <Style x:Key="lbl_style" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid x:Name="PagoEfectivo">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="60*" />
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="32*" />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
         <Grid.Background>
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
         </Grid.Background>
         <!--Titulo Total-->
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Total" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblTotal" Grid.Row="2" Text="Total" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
         <!--Titulo Pagar con-->
-        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,41,0,0" TextWrapping="Wrap" Text="Pagar Con" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblPagarCon" Grid.Row="3" Text="Pagar Con" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
         <!--Titulo Pagar-->
-        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,73,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblPagar" Grid.Row="4" Text="Pagar" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
         <!--Titulo Regresar (Cambio)-->
-        <TextBlock x:Name="textBlock_Copy2" HorizontalAlignment="Left" Margin="10,106,0,0" TextWrapping="Wrap" Text="Regresar" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblCambio" Grid.Row="5" Text="Regresar" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
         <!--Saldo-->
-        <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,139,0,0" TextWrapping="Wrap" Text="Saldo" VerticalAlignment="Top"/>
+        <TextBlock x:Name="lblSaldo" Grid.Row="6" Text="Saldo" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
         <!--Importe venta-->
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtTotal" Grid.Column="3" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}"  Style="{StaticResource ResourceKey=lbl_style}" Grid.Row="2" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
         <!--Importe Regresar (Cambio)-->
-        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Right" Margin="0,106,10,0" TextWrapping="Wrap" Text="{Binding Regresar, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtCambio" Grid.Column ="3" Grid.Row="5" Text="{Binding Regresar, Mode=OneWay, StringFormat=\{0:C\}}" Style="{StaticResource ResourceKey=lbl_style}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
         <!--Importe Saldo-->
-        <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Right" Margin="0,139,10,0" TextWrapping="Wrap" Text="{Binding Pendiente, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="txtSaldo" Grid.Column ="3" Grid.Row="6" Text="{Binding Pendiente, Mode=OneWay, StringFormat=\{0:C\}}" Style="{StaticResource ResourceKey=lbl_style}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
         <!--Importe con que se paga-->
-        <TextBox x:Name="pagarConTextBox" Height="25" Margin="0,39,10,0" TextWrapping="Wrap" Text="{Binding PagaCon, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" TextAlignment="Right" />
-        <TextBox GotFocus="pagarTextBox_GotFocus" x:Name="pagarTextBox" Height="25" Margin="0,71,10,0" TextWrapping="Wrap" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Delay=500}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" TextAlignment="Right" />
+        <TextBox x:Name="pagarConTextBox"  Grid.Row="3" Grid.Column="3"  Text="{Binding PagaCon, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
+        <TextBox GotFocus="pagarTextBox_GotFocus" x:Name="pagarTextBox" Grid.Row="4" Grid.Column="3" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Delay=500}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
         <!--Boton completar-->
-        <Button Command="{Binding CompletarCommand}" x:Name="button" Content="Completar" Margin="10,0,0,23" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="98">
-            <Button.Background>
-                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
-            </Button.Background>
-        </Button>
+        <Border Margin= "0,10,-15,-5" Grid.Row="7" CornerRadius="3" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="2" >
+            <Button   Command="{Binding CompletarCommand}" x:Name="button" >
+                <Button.Background>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                </Button.Background>
+                <Button.Content>
+                    <TextBlock Text="Completar" FontSize="15" />
+
+                </Button.Content>
+
+            </Button>
+        </Border>
+        <!--<Border BorderBrush="Gray" BorderThickness="1" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="211" Margin="6,5,0,0" Grid.RowSpan="10" VerticalAlignment="Top" Width="219"/>-->
     </Grid>
 </UserControl>

@@ -33,6 +33,7 @@ namespace SirCoPOS.Client.Views.Caja
         {
             this.tbSucursal.Focus();
         }
+
         private void TabControl_TargetUpdated(object sender, DataTransferEventArgs e)
         {
             var tc = (TabControl)sender;

@@ -8,6 +8,6 @@ namespace SirCoPOS.Utilities.Interfaces
 {
     public interface IImageView
     {
-        void OpenImage(object res);
+        void OpenImage(object res, Common.Entities.ValeResponse vale);
     }
 }

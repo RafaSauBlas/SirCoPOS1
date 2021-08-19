@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,56 +15,138 @@ namespace SirCoPOS.Win.Windows
     /// </summary>
     public partial class ImageWindow : Window
     {
-        private Point origin;  // Original Offset of image
-        private Point start;   // Original Position of the mouse
+        Point? lastCenterPositionOnTarget;
+        Point? lastMousePositionOnTarget;
+        Point? lastDragPoint;
 
-        public ImageWindow()
+        public ImageWindow(Common.Entities.ValeResponse vale)
         {
+            
             InitializeComponent();
+            this.Title = "Distribuidor " + vale.Distribuidor.Distrib + " - " + vale.Distribuidor.Nombre + " " + vale.Distribuidor.ApPaterno + " " + vale.Distribuidor.ApMaterno;
 
-            MouseWheel += ImageWindow_MouseWheel;
-            image.MouseLeftButtonDown += image_MouseLeftButtonDown;
-            //image.MouseLeftButtonUp += image_MouseLeftButtonUp;
-            //image.MouseMove += image_MouseMove;
+            scrollViewer.ScrollChanged += OnScrollViewerScrollChanged;
+            scrollViewer.MouseLeftButtonUp += OnMouseLeftButtonUp;
+            scrollViewer.PreviewMouseLeftButtonUp += OnMouseLeftButtonUp;
+            scrollViewer.PreviewMouseWheel += OnPreviewMouseWheel;
+
+            scrollViewer.PreviewMouseLeftButtonDown += OnMouseLeftButtonDown;
+            scrollViewer.MouseMove += OnMouseMove;
+
+            slider.ValueChanged += OnSliderValueChanged;
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        void OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (lastDragPoint.HasValue)
+            {
+                Point posNow = e.GetPosition(scrollViewer);
+
+                double dX = posNow.X - lastDragPoint.Value.X;
+                double dY = posNow.Y - lastDragPoint.Value.Y;
+
+                lastDragPoint = posNow;
+
+                scrollViewer.ScrollToHorizontalOffset(scrollViewer.HorizontalOffset - dX);
+                scrollViewer.ScrollToVerticalOffset(scrollViewer.VerticalOffset - dY);
+            }
+        }
+
+        void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var mousePos = e.GetPosition(scrollViewer);
+            if (mousePos.X <= scrollViewer.ViewportWidth && mousePos.Y < scrollViewer.ViewportHeight) //make sure we still can use the scrollbars
+            {
+                scrollViewer.Cursor = Cursors.SizeAll;
+                lastDragPoint = mousePos;
+                Mouse.Capture(scrollViewer);
+            }
+        }
+
+        void OnPreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            lastMousePositionOnTarget = Mouse.GetPosition(grid);
+
+            if (e.Delta > 0)
+            {
+                slider.Value += 1;
+            }
+            if (e.Delta < 0)
+            {
+                slider.Value -= 1;
+            }
+
+            e.Handled = true;
+        }
+
+        void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            scrollViewer.Cursor = Cursors.Arrow;
+            scrollViewer.ReleaseMouseCapture();
+            lastDragPoint = null;
+        }
+
+        void OnSliderValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            scaleTransform.ScaleX = e.NewValue;
+            scaleTransform.ScaleY = e.NewValue;
+
+            var centerOfViewport = new Point(scrollViewer.ViewportWidth / 2, scrollViewer.ViewportHeight / 2);
+            lastCenterPositionOnTarget = scrollViewer.TranslatePoint(centerOfViewport, grid);
+        }
+
+        void OnScrollViewerScrollChanged(object sender, ScrollChangedEventArgs e)
+        {
+            if (e.ExtentHeightChange != 0 || e.ExtentWidthChange != 0)
+            {
+                Point? targetBefore = null;
+                Point? targetNow = null;
+
+                if (!lastMousePositionOnTarget.HasValue)
+                {
+                    if (lastCenterPositionOnTarget.HasValue)
+                    {
+                        var centerOfViewport = new Point(scrollViewer.ViewportWidth / 2, scrollViewer.ViewportHeight / 2);
+                        Point centerOfTargetNow = scrollViewer.TranslatePoint(centerOfViewport, grid);
+
+                        targetBefore = lastCenterPositionOnTarget;
+                        targetNow = centerOfTargetNow;
+                    }
+                }
+                else
+                {
+                    targetBefore = lastMousePositionOnTarget;
+                    targetNow = Mouse.GetPosition(grid);
+
+                    lastMousePositionOnTarget = null;
+                }
+
+                if (targetBefore.HasValue)
+                {
+                    double dXInTargetPixels = targetNow.Value.X - targetBefore.Value.X;
+                    double dYInTargetPixels = targetNow.Value.Y - targetBefore.Value.Y;
+
+                    double multiplicatorX = e.ExtentWidth / grid.Width;
+                    double multiplicatorY = e.ExtentHeight / grid.Height;
+
+                    double newOffsetX = scrollViewer.HorizontalOffset - dXInTargetPixels * multiplicatorX;
+                    double newOffsetY = scrollViewer.VerticalOffset - dYInTargetPixels * multiplicatorY;
+
+                    if (double.IsNaN(newOffsetX) || double.IsNaN(newOffsetY))
+                    {
+                        return;
+                    }
+
+                    scrollViewer.ScrollToHorizontalOffset(newOffsetX);
+                    scrollViewer.ScrollToVerticalOffset(newOffsetY);
+                }
+            }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;
-        }
-        private void image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (image.IsMouseCaptured) return;
-            image.CaptureMouse();
-
-            start = e.GetPosition(this.border);
-            origin.X = image.RenderTransform.Value.OffsetX;
-            origin.Y = image.RenderTransform.Value.OffsetY;
-        }
-        private void image_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (!image.IsMouseCaptured) return;
-            Point p = e.MouseDevice.GetPosition(image);
-
-            Matrix m = image.RenderTransform.Value;
-            m.OffsetX = origin.X + (p.X - start.X);
-            m.OffsetY = origin.Y + (p.Y - start.Y);
-
-            image.RenderTransform = new MatrixTransform(m);
-        }
-
-        private void ImageWindow_MouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            Point p = e.MouseDevice.GetPosition(border);
-
-            Matrix m = image.RenderTransform.Value;
-            if (e.Delta > 0)
-                m.ScaleAtPrepend(1.1, 1.1, p.X, p.Y);
-            else
-                m.ScaleAtPrepend(1 / 1.1, 1 / 1.1, p.X, p.Y);
-
-            image.RenderTransform = new MatrixTransform(m);
         }
     }
 }

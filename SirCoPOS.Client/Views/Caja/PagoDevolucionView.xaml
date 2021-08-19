@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
-             Height="170" Width="230" Loaded="UserControl_Loaded">
+             Height="190" Width="240" Loaded="UserControl_Loaded">
     <UserControl.DataContext>
         <vm:PagoDevolucionViewModel></vm:PagoDevolucionViewModel>
     </UserControl.DataContext>
@@ -14,36 +14,36 @@
         <Grid>
 
             <!--Titulo Sucursal-->
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Sucursal" VerticalAlignment="Top"/>
+            <TextBlock x:Name="lblSucursal" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Sucursal" VerticalAlignment="Top"/>
             <!--Captura Sucursal-->
-            <TextBox x:Name="tbSucursal" Height="27" Margin="0,5,10,0" TextWrapping="Wrap" Text="{Binding Sucursal, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120">
+            <TextBox x:Name="tbSucursal" Height="24" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding Sucursal, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="43" TextAlignment="Center">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding FindCommand}"></KeyBinding>
                 </TextBox.InputBindings>
             </TextBox>
             <!--Titulo Devolucion-->
-            <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="Devolución" VerticalAlignment="Top"/>
+            <TextBlock x:Name="lblDevolucion" HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="Devolución" VerticalAlignment="Top"/>
             <!--Titulo Disponible-->
-            <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,65,0,0" TextWrapping="Wrap" Text="Disponible" VerticalAlignment="Top"/>
+            <TextBlock x:Name="lblDisponible" HorizontalAlignment="Left" Margin="10,65,0,0" TextWrapping="Wrap" Text="Disponible" VerticalAlignment="Top"/>
             <!--Captura Folio Devolucion-->
-            <TextBox x:Name="textBox_Copy" Height="27" Margin="0,36,9,0" TextWrapping="Wrap" Text="{Binding Folio, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120">
+            <TextBox x:Name="txtDevolucion" Height="25" Margin="0,38,9,0" TextWrapping="Wrap" Text="{Binding Folio, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" TextAlignment="Right">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding FindCommand}"></KeyBinding>
                 </TextBox.InputBindings>
             </TextBox>
             <!--Disponible Distribuidor-->
-            <TextBlock x:Name="textBlock_Copy2" Margin="0,67,10,0" TextWrapping="Wrap" Text="{Binding Devolucion.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <TextBox x:Name="textBox_Copy1" Height="25" Margin="0,86,9,0" TextWrapping="Wrap" Text="{Binding Pagar, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
+            <TextBlock x:Name="txtDisponible" Margin="0,67,10,0" TextWrapping="Wrap" Text="{Binding Devolucion.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <TextBox x:Name="txtPagar" Height="24" Margin="0,93,9,0" TextWrapping="Wrap" Text="{Binding Pagar, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" TextAlignment="Right"/>
             <!--Titulo pagar-->
-            <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,89,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
+            <TextBlock x:Name="lblPagar" HorizontalAlignment="Left" Margin="10,92,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
             <!--Saldo de la Devolucion-->
-            <TextBlock x:Name="textBlock_Copy4" Margin="0,116,10,0" TextWrapping="Wrap" Text="{Binding Total, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <TextBlock x:Name="txtSaldo" Margin="0,120,10,0" TextWrapping="Wrap" Text="{Binding Total, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
             <!--Titulo Saldo-->
-            <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="10,115,0,0" TextWrapping="Wrap" Text="Saldo" VerticalAlignment="Top"/>
+            <TextBlock x:Name="lblSaldo" HorizontalAlignment="Left" Margin="10,120,0,0" TextWrapping="Wrap" Text="Saldo" VerticalAlignment="Top"/>
             <!--Importe pendiente-->
-            <TextBlock x:Name="textBlock_Copy6" Margin="0,139,10,0" TextWrapping="Wrap" Text="{Binding Pendiente, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <TextBlock x:Name="txtPendiente" Margin="0,151,10,0" TextWrapping="Wrap" Text="{Binding Pendiente, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right" FontWeight="SemiBold" Width="118" TextAlignment="Right"/>
             <!--Titulo Pendiente-->
-            <TextBlock x:Name="textBlock_Copy7" HorizontalAlignment="Left" Margin="10,139,0,0" TextWrapping="Wrap" Text="Pendiente" VerticalAlignment="Top"/>
+            <TextBlock x:Name="lblPendiente" HorizontalAlignment="Left" Margin="10,151,0,0" TextWrapping="Wrap" Text="Pendiente" VerticalAlignment="Top"/>
         </Grid>
     </xt:BusyIndicator>
 </UserControl>

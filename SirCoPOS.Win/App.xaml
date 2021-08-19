@@ -6,20 +6,27 @@
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              StartupUri="ShellWindow.xaml">
     <Application.Resources>
-        <system:Double x:Key="fontSize">18</system:Double>
-        <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>
-        </Style>
-        <Style TargetType="Control" x:Key="fs">
-            <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>
-        </Style>
-        <Style TargetType="TextBox" BasedOn="{StaticResource fs}"></Style>
-        <Style TargetType="Button" BasedOn="{StaticResource fs}"></Style>
-        <Style TargetType="CheckBox" BasedOn="{StaticResource fs}"></Style>
-        <Style TargetType="ComboBox" BasedOn="{StaticResource fs}"></Style>
-        <Style TargetType="DataGridCellsPresenter" BasedOn="{StaticResource fs}"></Style>
-        <Style TargetType="ListBox" BasedOn="{StaticResource fs}"></Style>
-        <Style TargetType="xt:WatermarkTextBox" BasedOn="{StaticResource fs}"></Style>
-        <Style TargetType="xt:WatermarkPasswordBox" BasedOn="{StaticResource fs}"></Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Dictionary.xaml"/>
+                <ResourceDictionary>
+                    <system:Double x:Key="fontSize">18</system:Double>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>
+                    </Style>
+                    <Style TargetType="Control" x:Key="fs">
+                        <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>
+                    </Style>
+                    <Style TargetType="TextBox" BasedOn="{StaticResource fs}"></Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource fs}"></Style>
+                    <Style TargetType="CheckBox" BasedOn="{StaticResource fs}"></Style>
+                    <Style TargetType="ComboBox" BasedOn="{StaticResource fs}"></Style>
+                    <Style TargetType="DataGridCellsPresenter" BasedOn="{StaticResource fs}"></Style>
+                    <Style TargetType="ListBox" BasedOn="{StaticResource fs}"></Style>
+                    <Style TargetType="xt:WatermarkTextBox" BasedOn="{StaticResource fs}"></Style>
+                    <Style TargetType="xt:WatermarkPasswordBox" BasedOn="{StaticResource fs}"></Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

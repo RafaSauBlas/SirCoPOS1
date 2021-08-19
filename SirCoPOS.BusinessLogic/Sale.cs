@@ -1403,7 +1403,8 @@ namespace SirCoPOS.BusinessLogic
                 Id = item.iddistrib,
                 Distrib = item.distrib,
                 Electronica = item.solocalzado == 0,
-                Status = item.idestatus.Value
+                Status = item.idestatus.Value,
+                Cuenta = item.distrib
             };
 
             var qpp = ctx.PlanPagos.Where(i => i.distrib == item.distrib);
@@ -2355,7 +2356,8 @@ namespace SirCoPOS.BusinessLogic
                 Status = item.idestatus.Value,
                 Electronica = item.solocalzado == 0,
                 ContraVale = item.contravale == 1,
-                Promocion = item.promocion == 1
+                Promocion = item.promocion == 1,
+                Cuenta = item.distrib,
             };
 
             var model = new CValeResponse

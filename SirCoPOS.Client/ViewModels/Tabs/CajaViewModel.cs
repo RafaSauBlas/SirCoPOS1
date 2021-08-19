@@ -607,8 +607,10 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     }
                 }
             }
-            _reports.Compra(this.Sucursal.Clave, this.SaleResponse.Folio);
-            this.CloseCommand.Execute(null);
+            if (SaleResponse != null) { 
+                _reports.Compra(this.Sucursal.Clave, this.SaleResponse.Folio);
+                this.CloseCommand.Execute(null);
+            }
 
         }
 

@@ -19,6 +19,16 @@
         <cv:ImageUrlMultiConverter x:Key="imageUrl"></cv:ImageUrlMultiConverter>
         <cv:ImageUrlConverter x:Key="imageUrl2" />
         <cv:BoolTextConverter x:Key="boolText"></cv:BoolTextConverter>
+        <Style x:Key="border_style" TargetType="{x:Type Border}">
+            <Style.Resources>
+                <DropShadowEffect x:Key="dropShadowEffect" BlurRadius="1" ShadowDepth="2" Color="#FF2686AA" RenderingBias="Quality"/>
+            </Style.Resources>
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Effect" Value="{StaticResource dropShadowEffect}"/>
+            <Setter Property="BorderBrush" Value="GhostWhite"/>
+            <Setter Property="BorderThickness" Value="0,0,2,2"/>
+            <Setter Property="Padding" Value="0,0,0,0"/>
+        </Style>
         <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -43,16 +53,6 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-        </Style>
-        <Style x:Key="border_style" TargetType="{x:Type Border}">
-            <Style.Resources>
-                <DropShadowEffect x:Key="dropShadowEffect" BlurRadius="1" ShadowDepth="2" Color="#FF2686AA" RenderingBias="Quality"/>
-            </Style.Resources>
-            <Setter Property="CornerRadius" Value="0" />
-            <Setter Property="Effect" Value="{StaticResource dropShadowEffect}"/>
-            <Setter Property="BorderBrush" Value="GhostWhite"/>
-            <Setter Property="BorderThickness" Value="0.5,0.5,0,0"/>
-            <Setter Property="Padding" Value="0,0,0,0"/>
         </Style>
         <Style x:Key="text_style" TargetType="{x:Type TextBlock}">
             <Setter Property="FontSize" Value="14"/>
@@ -133,7 +133,7 @@
                 </Border>
             </StackPanel>
 
-            <StackPanel Margin="15,5,15,0" Grid.Row="3" Grid.ColumnSpan="7" Grid.RowSpan="2">
+            <StackPanel Margin="15,0,15,0" Grid.Row="3" Grid.ColumnSpan="7" Grid.RowSpan="1">
                 <TextBlock x:Name="lblDistribuidor" Text="Distribuidor" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border BorderThickness="0.4" BorderBrush="Black">
                     <TextBlock x:Name="txtDistribuidor" TextWrapping="WrapWithOverflow"  TextAlignment="Left" Style="{StaticResource ResourceKey=text_style}">
@@ -154,21 +154,21 @@
                     <TextBlock x:Name="txtEstatus" Text="{Binding Vale.Distribuidor.Status}" TextAlignment="Center" Style="{StaticResource ResourceKey=text_style}"/>
                 </Border>
             </StackPanel>
-            <StackPanel Margin="15,5,5,0" Grid.Row="5" Grid.ColumnSpan="7" >
+            <StackPanel Margin="15,5,5,0" Grid.Row="4" Grid.ColumnSpan="7" >
                 <TextBlock x:Name="lblCancela" Text="Motivo de Vale Cancelado" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <!--<Border BorderThickness="0.4" BorderBrush="Black" Margin="0,0,10,0" Visibility="{Binding Vale.Cancelado}" >-->
                 <TextBlock x:Name="txtCancela" Text="{Binding Vale.CanceladoMotivo, StringFormat={}Cancelado - {0}, TargetNullValue=Cancelado}" Visibility="{Binding Vale.Cancelado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" TextAlignment="Left" FontFamily="Century Gothic" TextWrapping="WrapWithOverflow"  Margin="0,0,9.6,0" Style="{StaticResource ResourceKey=text_style}"/>
                 <!--</Border>-->
             </StackPanel>
 
-            <StackPanel Margin="15,0,15,0" Grid.Row="6" Grid.ColumnSpan="7">
+            <StackPanel Margin="15,0,15,0" Grid.Row="5" Grid.ColumnSpan="7">
                 <TextBlock x:Name="lblCliente" Text="Cliente" Style="{StaticResource ResourceKey=lbl_style}" />
                 <Border BorderThickness="0.4" BorderBrush="Black">
                     <TextBlock x:Name="txtCliente" Text="{Binding Vale.ClienteId}" TextAlignment="Right" Style="{StaticResource ResourceKey=text_style}" />
                 </Border>
             </StackPanel>
 
-            <StackPanel Margin="15,5,15,0" Grid.Row="7" Grid.ColumnSpan="7">
+            <StackPanel Margin="15,5,15,0" Grid.Row="6" Grid.ColumnSpan="7">
                 <TextBlock x:Name="lblFirma" Text="Firma Distribuidor" Style="{StaticResource ResourceKey=lbl_style}" />
             </StackPanel>
             
@@ -208,7 +208,7 @@
 
             <StackPanel Margin="15,0,15,0" Grid.Row="3" Grid.Column="8" Grid.ColumnSpan="2">
                 <TextBlock x:Name="lblPagar" Text="Pagar" Style="{StaticResource ResourceKey=lbl_style}" />
-                <Border BorderThickness="0.4" BorderBrush="Black">
+                <Border Style="{StaticResource ResourceKey=border_style}">
                     <TextBox   x:Name="txtPagar" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, Delay=1000}" Height="20" TextAlignment="Right"  FontSize="14" />
                 </Border>
             </StackPanel>
@@ -228,7 +228,7 @@
 
             <StackPanel Margin="15,0,15,0" Grid.Row="6" Grid.Column="8" Grid.ColumnSpan="2">
                 <TextBlock x:Name="lblLimite" Text="Límite ContraVale" Style="{StaticResource ResourceKey=lbl_style}" />
-                <Border BorderThickness="0.4" BorderBrush="Black">
+                <Border Style="{StaticResource ResourceKey=border_style}">
                     <TextBox   x:Name="txtLimite" IsEnabled="{Binding ElementName=checkBox, Path=IsChecked, 
                                  TargetNullValue=false}" Height="20" Text="{Binding Limite, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, TargetNullValue=''}" TextAlignment="Right"  FontSize="14"/>
                 </Border>
@@ -280,7 +280,7 @@
                 </TextBlock.Text>
             </TextBlock>-->
 
-            <TabControl Margin="15,24.667,15,5" Grid.Row="7" Grid.ColumnSpan="7" Grid.RowSpan="4" SelectedItem="{Binding SelectedFirma}" TabStripPlacement="Left" ItemsSource="{Binding Vale.Distribuidor.Firmas, NotifyOnTargetUpdated=True}" TargetUpdated="TabControl_TargetUpdated" >
+            <TabControl Margin="15,24.667,15,5" Grid.Row="6" Grid.ColumnSpan="7" Grid.RowSpan="5" SelectedItem="{Binding SelectedFirma}" TabStripPlacement="Left" ItemsSource="{Binding Vale.Distribuidor.Firmas, NotifyOnTargetUpdated=True}" TargetUpdated="TabControl_TargetUpdated" >
                 <TabControl.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                 </TabControl.Background>
