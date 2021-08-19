@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using GalaSoft.MvvmLight.Messaging;
+using NLog;
 
 namespace SirCoPOS.Client.Views.Tabs
 {
@@ -28,15 +30,48 @@ namespace SirCoPOS.Client.Views.Tabs
         public string FTP = "http://201.148.82.174/FOTOS/";
         public string IPP = @"\\10.10.1.1\Sistema\ZT\Fotos\";
 
+        private System.Windows.Threading.DispatcherTimer _dt;
+        private IDictionary<Guid, TabItem> _tabs;
+        private ILogger _log;
+
         public CambioView1()
         {
             InitializeComponent();
+            _tabs = new Dictionary<Guid, TabItem>();
+            _dt = new System.Windows.Threading.DispatcherTimer();
+            _dt.Tick += Dt_Tick;
+            _dt.Interval = TimeSpan.FromSeconds(240);
+            _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
+            this.RegisterMessages();
+            _dt.Start();
+        }
+
+        private void Dt_Tick(object sender, EventArgs e)
+        {
+            var dt = (System.Windows.Threading.DispatcherTimer)sender;
+            dt.Stop();
+            Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
+        }
+
+        private void RegisterMessages()
+        {
+            Messenger.Default.Register<Utilities.Messages.CloseTab>(this,
+               m => {
+                   Messenger.Default.Send(m, m.GID);
+                   Console.WriteLine($"removing: {m.GID}");
+                   if (!_tabs.Any())
+                   {
+                       _dt.Stop();
+                   }
+               });
+
+            Messenger.Default.Register<Utilities.Messages.LogoutTimeout>(this, m => {
+                _dt.Stop();
+            });
         }
 
         public void Init()
         {
-
-            
             var depto = (int)Common.Constants.Departamento.TDA;
             if (depto <= 2)
             {
@@ -92,6 +127,46 @@ namespace SirCoPOS.Client.Views.Tabs
             PB.Source = imagen;
 
             PB.Stretch = Stretch.Fill;
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            _dt.Stop();
+        }
+
+        private void Grid_KeyUp(object sender, KeyEventArgs e)
+        {
+            _dt.Start();
+        }
+
+        private void Grid_MouseLeftButtonDown_1(object sender, MouseButtonEventArgs e)
+        {
+            _dt.Stop();
+        }
+
+        private void Grid_MouseLeftButtonUp_1(object sender, MouseButtonEventArgs e)
+        {
+            _dt.Start();
+        }
+
+        private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _dt.Stop();
+        }
+
+        private void UserControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            _dt.Start();
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _dt.Stop();
+        }
+
+        private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            _dt.Start();
         }
     }
 }

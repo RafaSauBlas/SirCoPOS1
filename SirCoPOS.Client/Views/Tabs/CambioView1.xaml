@@ -10,7 +10,7 @@
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             d:DesignHeight="600" d:DesignWidth="900">
+             d:DesignHeight="600" d:DesignWidth="900" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp">
     <UserControl.DataContext>
         <vm:CambioViewModel></vm:CambioViewModel>
     </UserControl.DataContext>
@@ -18,10 +18,10 @@
         <c:ImageUrlConverter x:Key="imageUrl"></c:ImageUrlConverter>
         <c:WindowStateConverter x:Key="windowState"></c:WindowStateConverter>
     </UserControl.Resources>
-    <Grid>
+    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown_1" MouseLeftButtonUp="Grid_MouseLeftButtonUp_1">
         <FrameworkElement x:Name="dummyElement"/>
         <xt:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}">
-            <Grid>
+            <Grid KeyDown="Grid_KeyDown" KeyUp="Grid_KeyUp" MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
                 <DataGrid x:Name="dgv_Prod" SelectedItem="{Binding SelectedItem}" Margin="10,38,265,237" ItemsSource="{Binding Productos}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" >
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">

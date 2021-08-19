@@ -7,7 +7,7 @@
              mc:Ignorable="d"              
              xmlns:c="clr-namespace:SirCoPOS.Client.Converters"
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
-             d:DesignHeight="450" d:DesignWidth="1196">
+             d:DesignHeight="450" d:DesignWidth="1196" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp">
     <UserControl.DataContext>
         <vm:ConsultaProductoViewModel></vm:ConsultaProductoViewModel>
     </UserControl.DataContext>

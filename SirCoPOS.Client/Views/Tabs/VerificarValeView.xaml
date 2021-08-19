@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
              xmlns:cv="clr-namespace:SirCoPOS.Client.Converters"
-             d:DesignHeight="585" d:DesignWidth="1277.5">
+             d:DesignHeight="585" d:DesignWidth="1277.5" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp">
     <UserControl.DataContext>
         <vm:VerificarValeViewModel></vm:VerificarValeViewModel>
     </UserControl.DataContext>
@@ -19,7 +19,7 @@
         <BooleanToVisibilityConverter x:Key="bolvis"/>
     </UserControl.Resources>
     <tk:BusyIndicator IsBusy="{Binding IsBusy}">
-        <Grid Margin="0">
+        <Grid Margin="0" MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
             <Grid.RowDefinitions>
                 <RowDefinition/>
             </Grid.RowDefinitions>

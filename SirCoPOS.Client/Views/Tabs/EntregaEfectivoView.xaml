@@ -7,14 +7,14 @@
              xmlns:cv="clr-namespace:SirCoPOS.Client.Converters"
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
              xmlns:c="clr-namespace:SirCoPOS.Client.Converters"
-             d:DesignHeight="600" d:DesignWidth="900">
+             d:DesignHeight="600" d:DesignWidth="900" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp">
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="vis"></BooleanToVisibilityConverter>
     </UserControl.Resources>
     <UserControl.DataContext>
         <vm:EntregaEfectivoViewModel></vm:EntregaEfectivoViewModel>
     </UserControl.DataContext>
-    <Grid>
+    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Efectivo" VerticalAlignment="Top"/>
         <Button Command="{Binding SaveCommand}" Content="Guardar" HorizontalAlignment="Left" Margin="130,0,0,114" VerticalAlignment="Bottom" Width="75"/>
         <TextBlock HorizontalAlignment="Left" Margin="77.096,10,0,0" TextWrapping="Wrap" Text="{Binding Data.Efectivo, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>

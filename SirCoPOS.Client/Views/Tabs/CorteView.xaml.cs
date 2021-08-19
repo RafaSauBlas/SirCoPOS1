@@ -35,7 +35,7 @@ namespace SirCoPOS.Client.Views.Tabs
             _tabs = new Dictionary<Guid, TabItem>();
             _dt = new System.Windows.Threading.DispatcherTimer();
             _dt.Tick += Dt_Tick;
-            _dt.Interval = TimeSpan.FromSeconds(5);
+            _dt.Interval = TimeSpan.FromSeconds(120);
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
             InitializeComponent();
             this.RegisterMessages();
@@ -82,26 +82,22 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void Grid_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Tab)
-            {
-                _dt.Stop();
-            }
-            else if (e.Key == Key.Enter)
-            {
-                _dt.Stop();
-            }
+            _dt.Stop();
         }
 
         private void Grid_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Tab)
-            {
-                _dt.Start();
-            }
-            else if (e.Key == Key.Enter)
-            {
-                _dt.Start();
-            }
+            _dt.Start();
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _dt.Stop();
+        }
+
+        private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            _dt.Start();
         }
     }
 }
