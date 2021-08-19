@@ -479,6 +479,8 @@ namespace SirCoPOS.BusinessLogic
             if (total != importe)
                 throw new TotalNoCoincideExcepcion();
 
+            var blindaje = helper.GetParametro<decimal?>(Parametros.BLINDAJE);
+
             DataAccess.SirCoCredito.Cliente cliente = null;
             DataAccess.SirCoControl.Sucursal succli = null;
             if (model.Cliente != null)
@@ -598,8 +600,9 @@ namespace SirCoPOS.BusinessLogic
                             if (item.Importe > disponible)
                                 throw new NoDisponibleExcepcion();
 
-                            dist.disponible -= item.Importe;
-                            dist.saldo += item.Importe;
+                            
+                            dist.disponible = dist.disponible - item.Importe - blindaje; 
+                            dist.saldo = dist.saldo + item.Importe + blindaje;
 
                             this.GenerarPlanPagos(now, model, idcajero, item, header, cvales, cliente, succli, dist);
                             //var cliente = ctxcr.Clientes.Where(i => i.idcliente == header.idcliente).Single();
@@ -743,8 +746,9 @@ namespace SirCoPOS.BusinessLogic
 
                             item.Vale = int.Parse(item.Distribuidor).ToString();
                             item.FechaAplicar = now;
-                            dist.saldo += item.Importe;
-                            dist.disponible -= item.Importe;
+                            
+                            dist.disponible = dist.disponible - item.Importe - blindaje;
+                            dist.saldo = dist.saldo + item.Importe + blindaje;
                             this.GenerarPlanPagos(now, model, idcajero, item, header, cvales, cliente, succli, dist);
 
                             //var plan = new DataAccess.SirCoCredito.PlanPagos
@@ -833,8 +837,9 @@ namespace SirCoPOS.BusinessLogic
 
                             detalle.idvaledigital = vd.idvaledigital;
                             vd.disponible -= item.Importe;
-                            dist.saldo += item.Importe;
-                            dist.disponible -= item.Importe;
+                            
+                            dist.disponible = dist.disponible - item.Importe - blindaje;
+                            dist.saldo = dist.saldo + item.Importe + blindaje;
                             this.GenerarPlanPagos(now, model, idcajero, item, header, cvales, cliente, succli, dist);
 
                             //var plan = new DataAccess.SirCoCredito.PlanPagos
@@ -935,8 +940,9 @@ namespace SirCoPOS.BusinessLogic
 
                             if (item.Importe > disponible)
                                 throw new NoDisponibleExcepcion();
-                            dist.saldo += item.Importe;
-                            dist.disponible -= item.Importe;
+                            
+                            dist.disponible = dist.disponible - item.Importe - blindaje;
+                            dist.saldo = dist.saldo + item.Importe + blindaje;
                             this.GenerarPlanPagos(now, model, idcajero, item, header, cvales, cliente, succli, dist);
                             //var cliente = ctxcr.Clientes.Where(i => i.idcliente == header.idcliente).Single();
                             //var succ = ctxc.Sucursales.Where(i => i.idsucursal == cliente.idsucursal).Single();
@@ -1073,8 +1079,9 @@ namespace SirCoPOS.BusinessLogic
                                 throw new  NoDisponibleExcepcion();
 
                             cvale.saldo -= item.Importe;
-                            dist.saldo += item.Importe;
-                            dist.disponible -= item.Importe;
+
+                            dist.disponible = dist.disponible - item.Importe - blindaje;
+                            dist.saldo = dist.saldo + item.Importe + blindaje;
                             this.GenerarPlanPagos(now, model, idcajero, item, header, cvales, cliente, succli, dist);
 
                             //var plan = new DataAccess.SirCoCredito.PlanPagos
@@ -1157,8 +1164,9 @@ namespace SirCoPOS.BusinessLogic
 
                             item.Vale = int.Parse(item.Distribuidor).ToString();
                             //item.FechaAplicar = now;
-                            dist.saldo += item.Importe;
-                            dist.disponible -= item.Importe;
+                            dist.disponible = dist.disponible - item.Importe - blindaje;
+                            dist.saldo = dist.saldo + item.Importe + blindaje;
+
                             this.GenerarPlanPagos(now, model, idcajero, item, header, cvales, cliente, succli, dist);
 
                             //var plan = new DataAccess.SirCoCredito.PlanPagos
