@@ -45,7 +45,7 @@ namespace SirCoPOS.Client.Views.Tabs
             Messenger.Default.Register<string>(this, "DoFocus", doFocus);
             _dt = new System.Windows.Threading.DispatcherTimer();
             _dt.Tick += Dt_Tick;
-            _dt.Interval = TimeSpan.FromSeconds(240);
+            _dt.Interval = TimeSpan.FromSeconds(300);
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
             this.RegisterMessages();
 
@@ -185,6 +185,16 @@ namespace SirCoPOS.Client.Views.Tabs
         private void UserControl_KeyUp(object sender, KeyEventArgs e)
         {
                 _dt.Start();
+        }
+
+        private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            _dt.Stop();
+        }
+
+        private void Button_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            _dt.Start();
         }
     }
 }
