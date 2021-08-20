@@ -388,7 +388,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                         && i.OldItem.Modelo == scan.Producto.Modelo
                         && i.NewItem == null).FirstOrDefault();
                     
-                    if (cur != null)
+                    if (cur == null)
                     {
                         MessageBox.Show($"La serie '{ser}' No coincide con Marca, Modelo, Corrida\nPor favor genere una Devolución", "Cambio NO procede", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
