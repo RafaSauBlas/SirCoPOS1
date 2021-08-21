@@ -70,6 +70,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 this.CloseCommand.Execute(null);
             }, () => this.Auditor != null && this.Entrega.HasValue && this.User != null
                 && this.FormasPago.All(i => i.Entregar.HasValue && i.EntregarMonto.HasValue));
+
+            this.NadaCommand = new RelayCommand(() => {
+
+            });
+
             this.LoadAuditorCommand = new RelayCommand(() => {
                 this.Auditor = _pdata.FindAuditorEntrega(this.SearchAuditor.Value, this.Cajero.Id);
                 if (this.Auditor != null)
@@ -199,6 +204,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         #endregion
         #region commands
         public RelayCommand SaveCommand { get; protected set; }
+        public RelayCommand NadaCommand { get; protected set; }
         public RelayCommand LoadAuditorCommand { get; protected set; }
         public RelayCommand LoadUserCommand { get; private set; }
         #endregion

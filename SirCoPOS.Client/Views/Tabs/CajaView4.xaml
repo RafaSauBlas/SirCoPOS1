@@ -41,11 +41,12 @@
                 </Grid.ColumnDefinitions>
                 <Grid Margin="10,39,302,237" Grid.ColumnSpan="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="85*"/>
-                        <ColumnDefinition Width="112*"/>
+                        <ColumnDefinition Width="170*"/>
+                        <ColumnDefinition Width="193*"/>
+                        <ColumnDefinition Width="31*"/>
                     </Grid.ColumnDefinitions>
                     <!--Data Grid de Articulos-->
-                    <DataGrid Name="dgView" AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserAddRows="False" ItemsSource="{Binding Productos}" SelectedItem="{Binding SelectedItem}" Margin="0,0,29,0.06" Grid.ColumnSpan="2" SelectionChanged="DataGrid_SelectionChanged">
+                    <DataGrid Name="dgView" AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserAddRows="False" ItemsSource="{Binding Productos}" SelectedItem="{Binding SelectedItem}" Margin="0,0,29,0" Grid.ColumnSpan="3" SelectionChanged="DataGrid_SelectionChanged">
                         <DataGrid.RowStyle>
                             <Style TargetType="{x:Type DataGridRow}">
                                 <Style.Triggers>
@@ -164,7 +165,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <!--Boton Subir Producto-->
-                    <Button Command="{Binding MoveProductoCommand, Mode=OneWay}" VerticalAlignment="Top" Height="78" HorizontalAlignment="Right" Width="24" Grid.Column="1">
+                    <Button Command="{Binding MoveProductoCommand, Mode=OneWay}" VerticalAlignment="Top" Height="78" HorizontalAlignment="Right" Width="24" Grid.Column="2">
                         <Button.Background>
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                         </Button.Background>
@@ -174,7 +175,7 @@
                         <fa:ImageAwesome Icon="ArrowUp"/>
                     </Button>
                     <!--Boton Bajar Producto-->
-                    <Button Command="{Binding MoveProductoCommand, Mode=OneWay}" HorizontalAlignment="Right" Height="81" VerticalAlignment="Bottom" Width="24" Grid.Column="1" Margin="0,0,0,0.06">
+                    <Button Command="{Binding MoveProductoCommand, Mode=OneWay}" HorizontalAlignment="Right" Height="81" VerticalAlignment="Bottom" Width="24" Grid.Column="2">
                         <Button.Background>
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                         </Button.Background>

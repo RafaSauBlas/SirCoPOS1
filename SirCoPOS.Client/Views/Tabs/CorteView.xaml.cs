@@ -61,7 +61,10 @@ namespace SirCoPOS.Client.Views.Tabs
 
         }
 
+        public void space()
+        {
 
+        }
         public void Init()
         {
             this.tbEntregar.Focus();
