@@ -41,5 +41,14 @@ namespace SirCoPOS.Client.Views.Caja
             if (tc.Items.Count > 0)
                 tc.SelectedIndex = 0;
         }
+
+        private void cboPromocion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboPlazo != null && this.txtCuenta.Text.Length > 0)
+            {
+                cboPlazo.SelectedIndex = 7;
+            }
+        }
+
     }
 }

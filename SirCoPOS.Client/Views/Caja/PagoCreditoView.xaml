@@ -129,7 +129,7 @@
             <StackPanel Margin="15,0,15,0" Grid.Row="2">
                 <TextBlock x:Name="lblCuenta" Text="Cuenta" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border BorderThickness="0.4" BorderBrush="Black">
-                    <TextBlock x:Name="txtCuenta" Margin="0,0,5,0"  TextAlignment="Right" Text="{Binding Vale.Distribuidor.Cuenta}" Style="{StaticResource ResourceKey=text_style}"/>
+                    <TextBlock x:Name="txtCuenta" Margin="0,0,5,0"  TextAlignment="Right" Text="{Binding Vale.Vale}" Style="{StaticResource ResourceKey=text_style}"/>
                 </Border>
             </StackPanel>
 
