@@ -55,6 +55,9 @@
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Series}" HorizontalAlignment="Right" Margin="0,10,10,276" Width="322">
+            <DataGrid.InputBindings>
+                <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
+            </DataGrid.InputBindings>
             <DataGrid.RowStyle>
                 <Style TargetType="DataGridRow">
                     <Style.Triggers>
@@ -96,9 +99,9 @@
         </TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="10,0,0,247" TextWrapping="Wrap" Text="Auditor" VerticalAlignment="Bottom" Width="105"/>
         <DataGrid CanUserAddRows="False" SelectedItem="{Binding SelectedDetalle}" AutoGenerateColumns="False" ItemsSource="{Binding SelectedItemCorte.Detalle}" Margin="568,91,337,276">
-            <!--<DataGrid.InputBindings>
-                <KeyBinding Key="Delete" Command="{Binding RemoveMontoCommand}"></KeyBinding>
-            </DataGrid.InputBindings>-->
+            <DataGrid.InputBindings>
+                <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
+            </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Monto" Binding="{Binding Amount, StringFormat=\{0:C\}}"></DataGridTextColumn>
             </DataGrid.Columns>

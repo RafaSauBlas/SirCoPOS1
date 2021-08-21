@@ -180,6 +180,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         //public h.RelayCommand<FormaPago> AddFormaCommand { get; private set; }
         
         public RelayCommand AddCommand { get; private set; }
+        public RelayCommand NadaCommand { get; set; }
         public RelayCommand RemoveCommand { get; private set; }
         public RelayCommand RemovePagoCommand { get; private set; }
         public RelayCommand AddCuponCommand { get; private set; }

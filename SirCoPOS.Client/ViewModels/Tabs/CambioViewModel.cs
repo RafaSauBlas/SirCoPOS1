@@ -74,6 +74,10 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 this.IsBusy = false;
             }, () => !string.IsNullOrEmpty(this.SerieSearch));
 
+            this.NadaCommand = new RelayCommand(() => {
+
+            });
+
             this.SaveCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () => {
                 this.IsBusy = true;
                 var request = new Common.Entities.ChangeRequest
@@ -596,6 +600,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         #endregion
         #region commands
         public RelayCommand ScanCommand { get; private set; }
+        public RelayCommand NadaCommand { get; private set; }
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand RemovePagoCommand { get; private set; }
         public RelayCommand LoadClienteCommand { get; private set; }

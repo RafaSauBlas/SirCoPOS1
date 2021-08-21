@@ -24,7 +24,7 @@ namespace SirCoPOS.Client.Views.Tabs
     [Utilities.Extensions.ExportView]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     [Utilities.Extensions.MetadataTab(Utilities.Constants.TabType.FondoArqueo)]
-    public partial class FondoArqueo : UserControl
+    public partial class FondoArqueo : UserControl, Utilities.Interfaces.ITabView
     {
 
         private System.Windows.Threading.DispatcherTimer _dt;
@@ -34,14 +34,31 @@ namespace SirCoPOS.Client.Views.Tabs
         public FondoArqueo()
         {
             InitializeComponent();
+            
             _tabs = new Dictionary<Guid, TabItem>();
             _dt = new System.Windows.Threading.DispatcherTimer();
             _dt.Tick += Dt_Tick;
-            _dt.Interval = TimeSpan.FromSeconds(120);
+            _dt.Interval = TimeSpan.FromSeconds(Common.Constants.Inactividad.Segundos);
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
             this.RegisterMessages();
             _dt.Start();
         }
+
+        public void Init()
+        {
+            this.textBox.IsEnabled = true;
+            this.textBox.Focus();
+            //var dato = new SirCoPOS.Common.Entities.Empleado();
+            //int depto = dato.Depto;
+            var vm = (ViewModels.Tabs.FondoArqueoViewModel)this.DataContext;
+        }
+        public void limpiar()
+        {
+            this.txtB_Contra.Clear();
+            this.txtB_Contra.Focus();
+            var vm = (ViewModels.Tabs.FondoArqueoViewModel)this.DataContext;
+        }
+
         private void Dt_Tick(object sender, EventArgs e)
         {
             var dt = (System.Windows.Threading.DispatcherTimer)sender;
@@ -100,6 +117,20 @@ namespace SirCoPOS.Client.Views.Tabs
         private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             _dt.Start();
+        }
+
+        private void txtB_Contra_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if(e.Key == Key.Enter)
+            //{
+            //    ViewModels.Tabs.FondoArqueoViewModel FAM = new ViewModels.Tabs.FondoArqueoViewModel();
+            //    var pr = FAM.prueba();
+
+            //    if (!pr)
+            //    {
+            //        this.txtB_Contra.Clear();
+            //    }
+            //}
         }
     }
 }

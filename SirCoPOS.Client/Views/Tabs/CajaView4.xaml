@@ -47,6 +47,9 @@
                     </Grid.ColumnDefinitions>
                     <!--Data Grid de Articulos-->
                     <DataGrid Name="dgView" AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserAddRows="False" ItemsSource="{Binding Productos}" SelectedItem="{Binding SelectedItem}" Margin="0,0,29,0" Grid.ColumnSpan="3" SelectionChanged="DataGrid_SelectionChanged">
+                        <DataGrid.InputBindings>
+                            <KeyBinding Key="Backspace" Command="{Binding MoveProductoCommand}"></KeyBinding>
+                        </DataGrid.InputBindings>
                         <DataGrid.RowStyle>
                             <Style TargetType="{x:Type DataGridRow}">
                                 <Style.Triggers>
@@ -165,7 +168,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <!--Boton Subir Producto-->
-                    <Button Command="{Binding MoveProductoCommand, Mode=OneWay}" VerticalAlignment="Top" Height="78" HorizontalAlignment="Right" Width="24" Grid.Column="2">
+                    <Button Command="{Binding RemoveCommand, Mode=OneWay}" VerticalAlignment="Top" Height="78" HorizontalAlignment="Right" Width="24" Grid.Column="2">
                         <Button.Background>
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                         </Button.Background>
@@ -225,6 +228,7 @@
                         </ListBox.Resources>
                         <ListBox.InputBindings>
                             <KeyBinding Key="Delete" Command="{Binding RemovePagoCommand}"/>
+                            <KeyBinding Key="Backspace" Command="{Binding RemovePagoCommand}"></KeyBinding>
                         </ListBox.InputBindings>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -313,6 +317,9 @@
                 <Grid Height="124" Margin="10,0,371,75" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
                     <!--Lista de Promociones en articulos-->
                     <ListBox SelectedItem="{Binding SelectedPromocion}" ItemsSource="{Binding PromocionesCupones}" Margin="165,0,30,-30">
+                        <ListBox.InputBindings>
+                            <KeyBinding Key="Backspace" Command="{Binding}"></KeyBinding>
+                        </ListBox.InputBindings>
                         <ListBox.Resources>
                             <DataTemplate x:Key="promo">
                                 <StackPanel Orientation="Horizontal">
@@ -401,6 +408,7 @@
                     <ListBox SelectedItem="{Binding SelectedCupon}" ItemsSource="{Binding Cupones}" HorizontalAlignment="Left" Width="160" Margin="0,0,0,-30">
                         <ListBox.InputBindings>
                             <KeyBinding Key="Delete" Command="{Binding RemoveCuponCommand}"/>
+                            <KeyBinding Key="Backspace" Command="{Binding RemoveCuponCommand}"/>
                         </ListBox.InputBindings>
                         <ListBox.ItemTemplate>
                             <DataTemplate>
@@ -513,7 +521,7 @@
             </Grid>
         </tk:BusyIndicator>
 
-        <tk:ChildWindow DesignerWindowState="Open" WindowState="Closed" Height="197" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,403,0,0" Grid.RowSpan="2">
+        <tk:ChildWindow DesignerWindowState="Open" WindowState="Closed" Height="197" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top">
             <tk:ChildWindow.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
             </tk:ChildWindow.Background>

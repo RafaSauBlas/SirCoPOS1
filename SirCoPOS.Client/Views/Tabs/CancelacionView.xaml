@@ -47,6 +47,9 @@
                     </TextBox.InputBindings>
                 </TextBox>
                 <DataGrid RowStyle="{StaticResource dgrColor}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Margin="0" Grid.Row="1" ItemsSource="{Binding Productos}">
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
+                    </DataGrid.InputBindings>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Serie" Binding="{Binding Producto.Serie}" ></DataGridTextColumn>
                         <DataGridTemplateColumn>

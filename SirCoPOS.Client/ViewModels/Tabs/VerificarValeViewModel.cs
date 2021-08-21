@@ -48,6 +48,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 }
                 this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.ValeSearch));
+
+            this.NadaCommand = new RelayCommand(() => {
+
+            });
+
             this.RegistrarValeCommand = new RelayCommand(async () =>
             {
                 this.IsBusy = true;
@@ -206,6 +211,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             set { this.Set(nameof(this.Vale), ref _vale, value); }
         }
         public RelayCommand FindValeCommand { get; private set; }
+        public RelayCommand NadaCommand { get; private set; }
         private decimal? _TotalVale;
         public decimal? TotalVale
         {
