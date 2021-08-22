@@ -327,7 +327,8 @@ namespace SirCoPOS.Services
                 ValeExterno = item.negext == 0,
                 Plazos = item.idperiodicidad.Value,
                 Promocion = item.promocion == 1
-                , Number = item.distrib
+                , Number = item.distrib,
+                Cuenta = item.distrib
             };
 
             var model = dis;

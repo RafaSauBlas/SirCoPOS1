@@ -133,8 +133,8 @@
                     <!--</Border>-->
                 </StackPanel>
             </StackPanel>
-            <StackPanel Margin="15,0,0,0" Grid.Row="2" Grid.Column="1">
-                <TextBlock x:Name="lblDisponible" Text="Disponible" Style="{StaticResource ResourceKey=lbl_style}" />
+            <StackPanel Margin="15,1,0,0" Grid.Row="2" Grid.Column="1">
+                <TextBlock x:Name="lblDisponible" Text="Disponible" Style="{StaticResource ResourceKey=lbl_style}" Height="18"/>
                 <Border BorderThickness="0.4" BorderBrush="Black">
                     <TextBlock x:Name="txtDisponible" Margin="0,0,5,0" TextAlignment="Right" Text="{Binding Vale.Disponible, StringFormat=\{0:C\}}" FontSize="14" Background="AliceBlue">
                         <TextBlock.Style >
@@ -149,14 +149,21 @@
                     </TextBlock>
                 </Border>
             </StackPanel>
-            <StackPanel Margin="15,-2,10,0" Grid.Row="2">
-                <TextBlock x:Name="lblCuenta" Text="Cuenta" Style="{StaticResource ResourceKey=lbl_style}"/>
+            <StackPanel Margin="15,1,10,0" Grid.Row="1" Grid.Column="1">
+                <TextBlock x:Name="lblCuenta" Text="Cuenta Externa" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border Style="{StaticResource ResourceKey=border_style}">
                     <TextBox x:Name="txtCuenta" Text="{Binding Cuenta, UpdateSourceTrigger=PropertyChanged}" FontSize="14">
                             <TextBox.InputBindings>
                                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
                             </TextBox.InputBindings>
                     </TextBox>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Margin="15,0,10,0"  Grid.Row="2" >
+                <TextBlock x:Name="lblDistrib" Text="Cuenta" Style="{StaticResource ResourceKey=lbl_style}"/>
+                <Border Style="{StaticResource ResourceKey=border_style}">
+                    <TextBox x:Name="txtDistrib" Text="{Binding Vale.Distribuidor.Cuenta}" FontSize="14"/>
                 </Border>
             </StackPanel>
 
@@ -175,10 +182,10 @@
                 </Border>
             </StackPanel>
 
-            <StackPanel Margin="0,0,5,0" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5" Width="140">
-                <TextBlock x:Name="lblEstatus" Text="Estatus" Style="{StaticResource ResourceKey=lbl_style}"/>
-                <Border BorderThickness="0.4" BorderBrush="Black">
-                    <TextBlock x:Name="txtEstatus" Text="{Binding Vale.Distribuidor.Status}" TextAlignment="Center" Style="{StaticResource ResourceKey=text_style}"/>
+            <StackPanel Margin="0,-3,0,0" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5" Width="140">
+                <TextBlock x:Name="lblEstatus" Text="Estatus" Style="{StaticResource ResourceKey=lbl_style}" Margin="0,3,0,3"/>
+                <Border BorderThickness="0.4" BorderBrush="Black" >
+                    <TextBlock x:Name="txtEstatus" Text="{Binding Vale.Distribuidor.Status}" TextAlignment="Center" Style="{StaticResource ResourceKey=text_style}" Height="18" />
                 </Border>
             </StackPanel>
             <!--<StackPanel Margin="15,5,5,0" Grid.Row="5" Grid.ColumnSpan="7" >
