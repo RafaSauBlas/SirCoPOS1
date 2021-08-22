@@ -30,11 +30,13 @@ namespace SirCoPOS.Client.Views.Tabs
         private System.Windows.Threading.DispatcherTimer _dt;
         private IDictionary<Guid, TabItem> _tabs;
         private ILogger _log;
+        ViewModels.Tabs.FondoArqueoViewModel FA;
+        
 
         public FondoArqueo()
         {
+            FA = new ViewModels.Tabs.FondoArqueoViewModel();
             InitializeComponent();
-            
             _tabs = new Dictionary<Guid, TabItem>();
             _dt = new System.Windows.Threading.DispatcherTimer();
             _dt.Tick += Dt_Tick;
@@ -118,19 +120,9 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             _dt.Start();
         }
-
-        private void txtB_Contra_KeyDown(object sender, KeyEventArgs e)
+        public void SELECCIONAR()
         {
-            //if(e.Key == Key.Enter)
-            //{
-            //    ViewModels.Tabs.FondoArqueoViewModel FAM = new ViewModels.Tabs.FondoArqueoViewModel();
-            //    var pr = FAM.prueba();
-
-            //    if (!pr)
-            //    {
-            //        this.txtB_Contra.Clear();
-            //    }
-            //}
+            txtB_Contra.SelectAll();
         }
     }
 }

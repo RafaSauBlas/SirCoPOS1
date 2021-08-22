@@ -46,8 +46,8 @@ namespace SirCoPOS.Client.Helpers
                     _guid = value;
                 else
                 {
-                    if (Debugger.IsAttached)
-                        Debugger.Break();
+                    //if (Debugger.IsAttached)
+                    //    Debugger.Break();
                     _guid = value;
                 }
             }

@@ -12,12 +12,13 @@ namespace SirCoPOS.Client.ViewModels.Tabs
     {
         private readonly Common.ServiceContracts.IAdminServiceAsync _proxy;
         private readonly Common.ServiceContracts.IDataServiceAsync _data;
+
         public FondoArqueoViewModel()
         {
             this.PropertyChanged += FondoArqueoViewModel_PropertyChanged;
             this.LoadAuditorCommand = new RelayCommand(() =>
-            {
-                this.Auditor = _data.FindAuditorApertura(this.SearchAuditor.Value, this.Cajero.Id);
+                {
+                    this.Auditor = _data.FindAuditorApertura(this.SearchAuditor.Value, this.Cajero.Id);
                 if (this.Auditor != null)
                 {
                     this.SearchAuditor = null;
@@ -38,6 +39,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 else
                 {
                     MessageBox.Show("Password Invalido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    
                     this.UserOK = false;
                 }
             }, () => this.Password != null && this.Auditor != null);
@@ -79,6 +81,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 this.Effectivo = _proxy.GetDisponibleFondo(this.Cajero.Id);
             }
         }
+
         protected override bool IsReady()
         {
             return true;
@@ -136,6 +139,14 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             get { return _SearchAuditor; }
             set { Set(nameof(this.SearchAuditor), ref _SearchAuditor, value); }
         }
+
+        private int? _Cambio;
+        public int? Cambio
+        {
+            get { return _Cambio; }
+            set { Set(nameof(this.Cambio), ref _Cambio, value); }
+        }
+
         private string _SearchUser;
         public string SearchUser
         {

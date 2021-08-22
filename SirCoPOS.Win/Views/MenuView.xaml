@@ -113,7 +113,7 @@
                 </Button.CommandParameter>
                 <Grid>
                     <Image Source="/SirCoPOS.Win;component/Images/entrega_ef.png" Height="101" Width="101"/>
-                    <TextBlock Text="Entrega Efectivo" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,-6,-9" FontSize="18" Height="25" Width="130"/>
+                    <TextBlock Text="Entrega Efectivo (F7)" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="-6,85,-6,-9" FontSize="15" Height="25" Width="136"/>
                 </Grid>
 
             </Button>
@@ -124,7 +124,7 @@
                 </Button.CommandParameter>
                 <Grid>
                     <Image Source="/SirCoPOS.Win;component/Images/entrega.png" Height="101" Width="101"/>
-                    <TextBlock Text="Entrega Caja" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                    <TextBlock Text="Entrega Caja (F8)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
                 </Grid>
             </Button>
 
