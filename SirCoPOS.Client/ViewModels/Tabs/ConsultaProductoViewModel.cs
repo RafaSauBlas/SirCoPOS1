@@ -26,6 +26,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     return true;
                 return false;
             });
+
+            this.NadaCommand = new RelayCommand(() => {
+
+            });
+
             this.FindMedidaCommand = new RelayCommand(async () =>
             {
                 this.IsBusy = true;
@@ -168,6 +173,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
 
         #region commnads
         public RelayCommand SearchCommand { get; private set; }
+        public RelayCommand NadaCommand { get; private set; }
         #endregion
         #region properties
         private IEnumerable<Common.Entities.Promocion> _Promos;

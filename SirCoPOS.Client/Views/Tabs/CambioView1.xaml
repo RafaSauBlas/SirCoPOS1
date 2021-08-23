@@ -23,6 +23,9 @@
         <xt:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}">
             <Grid KeyDown="Grid_KeyDown" KeyUp="Grid_KeyUp" MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
                 <DataGrid x:Name="dgv_Prod" SelectedItem="{Binding SelectedItem}" Margin="10,38,265,237" ItemsSource="{Binding Productos}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" >
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
+                    </DataGrid.InputBindings>
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
                             <Style.Triggers>
@@ -89,6 +92,7 @@
                     </ListBox.Resources>
                     <ListBox.InputBindings>
                         <KeyBinding Key="Delete" Command="{Binding RemovePagoCommand}"/>
+                        <KeyBinding Key="Backspace" Command="{Binding RemovePagoCommand}"></KeyBinding>
                     </ListBox.InputBindings>
                     <ListBox.ItemTemplate>
                         <DataTemplate>

@@ -39,6 +39,9 @@
                     </TextBlock.Text>
                 </TextBlock>
                 <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" x:Name="dataGrid" Margin="0" Grid.Row="1" ItemsSource="{Binding Productos}">
+                    <DataGrid.InputBindings>
+                        <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
+                    </DataGrid.InputBindings>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Sucursal" Binding="{Binding Item.Sucursal}"/>
                         <DataGridTextColumn Header="Folio" Binding="{Binding Item.Folio}"/>

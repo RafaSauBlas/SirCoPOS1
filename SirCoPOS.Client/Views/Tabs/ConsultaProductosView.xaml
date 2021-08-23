@@ -54,7 +54,11 @@
         <TextBlock HorizontalAlignment="Right" Margin="0,162,789,0" TextWrapping="Wrap" Text="{Binding Item.ParUnico, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Right" Margin="0,196,793,0" TextWrapping="Wrap" Text="{Binding Item.MaxPlazos}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Right" Margin="0,230,790,0" TextWrapping="Wrap" Text="{Binding Item.Electronica, Converter={StaticResource boolText}}" VerticalAlignment="Top"/>
-        <DataGrid IsReadOnly="True" ItemsSource="{Binding Existencias}" Margin="0,23,10,0" Height="244" VerticalAlignment="Top" Width="146" HorizontalAlignment="Right" />
+        <DataGrid IsReadOnly="True" ItemsSource="{Binding Existencias}" Margin="0,23,10,0" Height="244" VerticalAlignment="Top" Width="146" HorizontalAlignment="Right">
+            <DataGrid.InputBindings>
+                <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
+            </DataGrid.InputBindings>
+        </DataGrid>
         <TextBlock HorizontalAlignment="Left" Margin="10,110,0,0" TextWrapping="Wrap" Text="Tallas" VerticalAlignment="Top"/>
         <ComboBox ItemsSource="{Binding Corridas.Medidas}" SelectedItem="{Binding SelectedMedida}" HorizontalAlignment="Left" Margin="62,107,0,0" VerticalAlignment="Top" Width="120">
             <ComboBox.Background>
@@ -65,10 +69,13 @@
             <Button.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Button.Background>
-            <Image x:Name="cancel" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/lupa.png" />
+            <!--<Image x:Name="cancel" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/lupa.png" />-->
         </Button>
         <TextBlock HorizontalAlignment="Right" Margin="0,128,740,0" TextWrapping="Wrap" Text="{Binding ItemStatus}" VerticalAlignment="Top"/>
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding Corridas.Corridas}" HorizontalAlignment="Right" Height="244" Margin="0,23,161,0" VerticalAlignment="Top" Width="257">
+            <DataGrid.InputBindings>
+                <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
+            </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Corrida" Binding="{Binding Corrida}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Talla" Binding="{Binding MedidaInicio}"></DataGridTextColumn>
@@ -79,6 +86,9 @@
         <TextBlock HorizontalAlignment="Left" Margin="143,160,0,0" TextWrapping="Wrap" Text="{Binding Item.Precio, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="9,160,0,0" TextWrapping="Wrap" Text="Precio" VerticalAlignment="Top"/>
         <ListBox Margin="10,271,10,10" ItemsSource="{Binding Promos}">
+            <ListBox.InputBindings>
+                <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
+            </ListBox.InputBindings>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Nombre}"></TextBlock>

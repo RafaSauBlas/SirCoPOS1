@@ -19,6 +19,9 @@
         <Button Command="{Binding SaveCommand}" Content="Guardar" HorizontalAlignment="Left" Margin="130,0,0,114" VerticalAlignment="Bottom" Width="75"/>
         <TextBlock HorizontalAlignment="Left" Margin="77.096,10,0,0" TextWrapping="Wrap" Text="{Binding Data.Efectivo, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
         <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="10,67.88,436,225.12" ItemsSource="{Binding FormasPago}">
+            <DataGrid.InputBindings>
+                <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
+            </DataGrid.InputBindings>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="FormaPago" Binding="{Binding CajaFormaPago.FormaPago}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Unidades" Binding="{Binding CajaFormaPago.Unidades}"></DataGridTextColumn>

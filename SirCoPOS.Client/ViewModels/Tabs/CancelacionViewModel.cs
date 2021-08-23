@@ -36,6 +36,10 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 this.IsBusy = false;
             }, () => !string.IsNullOrWhiteSpace(this.SerieSearch));
 
+            this.NadaCommand = new RelayCommand(() => {
+
+            });
+
             this.CancelCommand = new RelayCommand(async () => {
                 this.IsBusy = true;
 
@@ -180,6 +184,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         #region commands
         public RelayCommand CancelCommand { get; private set; }
         public RelayCommand ScanCommand { get; private set; }
+        public RelayCommand NadaCommand { get; private set; }
         public RelayCommand PrintCommand { get; private set; }
         #endregion
         #region computed

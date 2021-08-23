@@ -86,6 +86,12 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 }
                 this.SaveCommand.RaiseCanExecuteChanged();
             }, () => !String.IsNullOrEmpty(this.Scan));
+
+            this.NadaCommand = new RelayCommand(() =>
+            {
+                //ESTE COMANDO ES PARA EVITAR QUE SE CIERRE LA APLICACIÓN AL PRESIONAR BACKSPACE CUANDO EL GRID ESTA SELECCIONADO
+            });
+
             this.SaveCommand = new RelayCommand(() =>
             {
                 //var code = Microsoft.VisualBasic.Interaction.InputBox("Codigo Auditor:");
@@ -285,6 +291,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         }
         #region commands
         public RelayCommand ScanCommand { get; private set; }
+        public RelayCommand NadaCommand { get; private set; }
         public RelayCommand SaveCommand { get; private set; }
         public RelayCommand CajeroFinger { get; private set; }
         public RelayCommand SupervisorFinger { get; private set; }

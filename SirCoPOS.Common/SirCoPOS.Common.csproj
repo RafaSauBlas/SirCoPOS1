@@ -93,6 +93,7 @@
     <Compile Include="Constants\ClienteInfo.cs" />
     <Compile Include="Constants\Divisiones.cs" />
     <Compile Include="Constants\FormaPagoPromocion.cs" />
+    <Compile Include="Constants\Inactividad.cs" />
     <Compile Include="Constants\Parametros.cs" />
     <Compile Include="Constants\PercepcionDeduccion.cs" />
     <Compile Include="Constants\StatusDistribuidor.cs" />

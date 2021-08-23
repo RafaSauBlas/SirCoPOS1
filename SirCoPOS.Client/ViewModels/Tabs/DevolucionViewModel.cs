@@ -134,6 +134,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                                 GID = this.GID
                             });
             }, () => this.CanSetClient);
+            this.NadaCommand = new RelayCommand(() => {
+
+            });
             this.ClearClienteCommand = new RelayCommand(() =>
             {
                 this.Cliente = null;
@@ -316,6 +319,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         public RelayCommand ReturnCommand { get; private set; }
         public RelayCommand ClearClienteCommand { get; private set; }
         public RelayCommand LoadClienteCommand { get; private set; }
+        public RelayCommand NadaCommand { get; private set; }
         public RelayCommand PrintCommand { get; private set; }
         #endregion
     }

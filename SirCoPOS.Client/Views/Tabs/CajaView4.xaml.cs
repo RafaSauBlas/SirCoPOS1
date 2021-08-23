@@ -45,7 +45,7 @@ namespace SirCoPOS.Client.Views.Tabs
             Messenger.Default.Register<string>(this, "DoFocus", doFocus);
             _dt = new System.Windows.Threading.DispatcherTimer();
             _dt.Tick += Dt_Tick;
-            _dt.Interval = TimeSpan.FromSeconds(300);
+            _dt.Interval = TimeSpan.FromSeconds(Common.Constants.Inactividad.Segundos);
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
             this.RegisterMessages();
 

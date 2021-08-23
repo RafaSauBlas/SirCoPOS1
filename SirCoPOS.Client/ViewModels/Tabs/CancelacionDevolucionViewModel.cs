@@ -96,6 +96,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                         this.ErrorMessage = Resources.Resource.Cancelacion_NoEncontrado;
                 }     
             }, () => !string.IsNullOrEmpty(this.Search));
+
+            this.NadaCommand = new RelayCommand(() => {
+
+            });
+
             if (this.IsInDesignMode)
             {
                 this.Search = "0000003678429";
@@ -163,6 +168,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         #region commands
         public RelayCommand CancelCommand { get; private set; }
         public RelayCommand SearchCommand { get; private set; }
+        public RelayCommand NadaCommand { get; private set; }
         #endregion
         private string _ErrorMessage;
         public string ErrorMessage

@@ -116,6 +116,12 @@ namespace SirCoPOS.Win.Views
                         case Key.F6:
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.VerificarVale });
                             break;
+                        case Key.F7:
+                            this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Efectivo });
+                            break;
+                        case Key.F8:
+                            this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Corte });
+                            break;
                     }
                 }
                 else
