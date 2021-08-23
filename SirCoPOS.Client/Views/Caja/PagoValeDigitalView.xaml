@@ -263,12 +263,12 @@
             <CheckBox IsChecked="{Binding Vale.Distribuidor.Promocion}" Margin="5,-8,0,5" Grid.Row="7" Grid.Column="7" IsEnabled="False" x:Name="checkBox3" />
             <StackPanel Margin="15,-10,0,0" Grid.Row="7" Grid.Column="8" Grid.ColumnSpan="2">
                 <TextBlock x:Name="lblPromocion" Text="Promoción" Style="{StaticResource ResourceKey=lbl_style}"/>
-                <ComboBox  IsEnabled="{Binding HasPromocion}" ItemStringFormat="M" SelectedValue="{Binding SelectedPromocion}" ItemsSource="{Binding Promocion.Promociones}" Height="30"/>
+                <ComboBox  x:Name="cboPromocion" IsEnabled="{Binding HasPromocion}" ItemStringFormat="M" SelectedValue="{Binding SelectedPromocion}" ItemsSource="{Binding Promocion.Promociones}" Height="30" SelectionChanged="cboPromocion_SelectionChanged"/>
             </StackPanel>
 
             <StackPanel Margin="5,-10,0,0" Grid.Row="7" Grid.Column="10" Grid.ColumnSpan="1">
                 <TextBlock x:Name="lblPlazos" Text="Plazo" Style="{StaticResource ResourceKey=lbl_style}"/>
-                <ComboBox  IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" Width="50"/>
+                <ComboBox  x:Name="cboPlazo" IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" Width="50"/>
             </StackPanel>
 
             <TabControl Margin="15,24.667,15,5" Grid.Row="7" Grid.ColumnSpan="7" Grid.RowSpan="4" SelectedItem="{Binding SelectedFirma}" TabStripPlacement="Left" ItemsSource="{Binding Vale.Distribuidor.Firmas, NotifyOnTargetUpdated=True}" TargetUpdated="TabControl_TargetUpdated" >

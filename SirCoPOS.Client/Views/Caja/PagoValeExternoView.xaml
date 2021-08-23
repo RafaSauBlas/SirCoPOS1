@@ -258,7 +258,7 @@
             <CheckBox IsChecked="{Binding Vale.Distribuidor.Promocion}" Margin="5,0,0,5" Grid.Row="6" Grid.Column="7" IsEnabled="False" x:Name="checkBox3" />
             <StackPanel Margin="15,0,0,-6" Grid.Row="6" Grid.Column="8" Grid.ColumnSpan="2">
                 <TextBlock x:Name="lblPromocion" Text="Promoción" Style="{StaticResource ResourceKey=lbl_style}" />
-                <ComboBox  x:Name="comboBox" IsEnabled="{Binding HasPromocion}" ItemStringFormat="M" SelectedValue="{Binding SelectedPromocion}" ItemsSource="{Binding Promocion.Promociones}"  FontSize="7">
+                <ComboBox  x:Name="cboPromocion" IsEnabled="{Binding HasPromocion}" ItemStringFormat="M" SelectedValue="{Binding SelectedPromocion}" ItemsSource="{Binding Promocion.Promociones}"  FontSize="7" SelectionChanged="cboPromocion_SelectionChanged">
                     <!--<ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="FontSize" Value="8" />
@@ -275,7 +275,7 @@
 
             <StackPanel Margin="10,0,15,-6" Grid.Row="6" Grid.Column="10" Grid.ColumnSpan="1">
                 <TextBlock x:Name="lblPlazos" Text="Plazo" Style="{StaticResource ResourceKey=lbl_style}"/>
-                <ComboBox IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontSize="8" Height="30" Width="43" HorizontalAlignment="Right"  >
+                <ComboBox  x:Name="cboPlazo"  IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontSize="8" Height="30" Width="43" HorizontalAlignment="Right"  >
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="FontSize" Value="8"/>
