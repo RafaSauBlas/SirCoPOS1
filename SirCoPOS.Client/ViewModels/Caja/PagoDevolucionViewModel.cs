@@ -25,7 +25,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             });
             if (!this.IsInDesignMode)
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
-            //_proc = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IProcessServiceAsync>();
+            //_proc = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IProcessServiceAsync>();            
             this.PropertyChanged += PagoDevolucionViewModel_PropertyChanged;
 
             this.FindCommand = new RelayCommand(async () => {
@@ -33,36 +33,22 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.Devolucion = await _proxy.FindDevolucionAsync(this.Sucursal, this.Folio);
                 if (this.Devolucion != null)
                 {
-                    if (this.Devolucion.Estatus != Common.Constants.Status.ZC.ToString())
+                    switch (this.Devolucion.Estatus)
                     {
+                        case "ZC" :
+                            MessageBox.Show("La devolución está cancelada", "Forma de Pago Devolución", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            break;
+                        case "YA":
+                            MessageBox.Show("La devolución está agotada", "Forma de Pago Devolución", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            break;
+                        default:
+                            if (this.Devolucion.Disponible >= this.Total)
+                                this.Pagar = this.Total;
+                            else if (this.Devolucion.Disponible > 0)
+                                this.Pagar = this.Devolucion.Disponible;
 
-                        //var tipoPago = await _proxy.GetPorcentajeFPagoAsync(this.Sucursal, this.Folio);
-                        //if (tipoPago != null ) 
-                        //{   
-                        //    if (tipoPago.Where(i => i.FormaPago == Common.Constants.FormaPago.VA.ToString()).Any())
-                        //    {
-                        //        this.Tipo = "VA";
-                        //    }
-                        //    else
-                        //    {
-                        //        this.Tipo = "EF";
-                        //    }
-                        //    GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
-                        //       new Messages.ProrrateoFP
-                        //       {
-                        //            Tipo = this.Tipo,
-                        //            Success = true,
-                        //       }, this.GID);
-                        //}
-
-                        if (this.Devolucion.Disponible >= this.Total)
-                            this.Pagar = this.Total;
-                        else if (this.Devolucion.Disponible > 0)
-                            this.Pagar = this.Devolucion.Disponible;
-                    }
-                    else 
-                    {
-                        MessageBox.Show("La devolución está cancelada", "Forma de Pago Devolución", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                            Prorrateo();
+                            break;
                     }
                 }
                 else
@@ -86,6 +72,22 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 };
             }
         }
+
+        public void Prorrateo()
+        {
+            var result = _proxy.GetPorcentajeFPago(Sucursal, Folio);
+            if (result.Where(i => i.FormaPago == Common.Constants.FormaPago.EF.ToString()).Any())
+            {
+                //this.Tipo = "EF";
+                GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
+                new Messages.ProrrateoFP
+                {
+                    Tipo = "EF",
+                    Success = true,
+                }, this.GID);
+            }
+        }
+
         public override FormaPago FormaPago => FormaPago.DV;
         private void PagoDevolucionViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -109,12 +111,27 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         Folio = this.Devolucion.Folio,
                     }, this.GID);
         }
+
         protected override bool CanAccept()
         {
-            return this.Devolucion != null
-                && (this.Pagar ?? 0) > 0
-                && this.Pagar <= this.Devolucion.Disponible
-                && this.Devolucion.Estatus != Common.Constants.Status.ZC.ToString();
+            if (this.Devolucion != null)
+            {
+                if (this.Pagar > this.Devolucion.Disponible)
+                    return false;
+                if (Devolucion.Estatus == Common.Constants.Status.ZC.ToString())
+                    return false;
+                if (this.Pagar == 0)
+                    return false;
+                if (this.Tipo == "EF")
+                    return false;
+                //var aceptar = this.Devolucion != null
+                //&& (this.Pagar ?? 0) > 0
+                //&& this.Pagar <= this.Devolucion.Disponible
+                //&& this.Devolucion.Estatus != Common.Constants.Status.ZC.ToString();
+
+                return true;
+            }
+            return false;
         }
         #region properties
         private string _sucursal;

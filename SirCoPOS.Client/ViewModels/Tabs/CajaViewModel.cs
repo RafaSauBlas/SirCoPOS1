@@ -46,6 +46,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             _promocionesCuponesUsadas = new CollectionViewSource { Source = this.PromocionesCupones };
             this.PromocionesCuponesUsadas.Filter = i => {
                 var item = (Promocion)i;
+                if (item.Used) {
+                    refreshValorDV();
+                }
                 return item.Used;
             };
             this.Pagos.CollectionChanged += Pagos_CollectionChanged;
@@ -429,10 +432,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     this.TipoFPVta = m.Tipo;
                     await this.RefreshPromociones();
 
-                    this.SaleCommand.RaiseCanExecuteChanged();
-                    this.FormasPago.Refresh();
-
-                    Messenger.Default.Send<decimal?>(this.TotalPayment, "pagoDV");
+                    refreshValorDV();
 
                 }
             });
@@ -535,6 +535,20 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     //    break;
                 }
             });
+        }
+
+        private void refreshValorDV()
+        {
+            decimal sumpagosdv = 0;
+            foreach (var produ in Productos)
+            {
+                sumpagosdv += (decimal)produ.FormasPago.Where(i => i.FormaPago == Common.Constants.FormaPago.DV).Sum(k => k.Importe);
+            }
+
+            Messenger.Default.Send<decimal?>(sumpagosdv, "pagoDV");
+            this.RaisePropertyChanged(nameof(this.TotalPayment));
+            this.SaleCommand.RaiseCanExecuteChanged();
+            this.FormasPago.Refresh();
         }
 
         private async void Sale()
