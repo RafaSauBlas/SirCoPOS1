@@ -1877,8 +1877,8 @@ namespace SirCoPOS.BusinessLogic
                             }
                             plan.status = "ZC";
                             var cliente = ctxc.Distribuidores.Where(i => i.distrib == plan.distrib).Single();
-                            cliente.saldo -= plan.importe;
-                            cliente.disponible += plan.importe;
+                            cliente.saldo -= (plan.importe + plan.blindaje);
+                            cliente.disponible += (plan.importe + plan.blindaje);
                         }
                         break;
                     case (int)Common.Constants.FormaPago.VD:
@@ -1902,8 +1902,8 @@ namespace SirCoPOS.BusinessLogic
                             }
                             plan.status = "ZC";
                             var cliente = ctxc.Distribuidores.Where(i => i.distrib == plan.distrib).Single();
-                            cliente.saldo -= plan.importe;
-                            cliente.disponible += plan.importe;
+                            cliente.saldo -= (plan.importe + plan.blindaje);
+                            cliente.disponible += (plan.importe + plan.blindaje);
                         }
                         break;
                     case (int)Common.Constants.FormaPago.CP:
@@ -1923,8 +1923,8 @@ namespace SirCoPOS.BusinessLogic
                             }
                             plan.status = "ZC";
                             var cliente = ctxc.Distribuidores.Where(i => i.distrib == plan.distrib).Single();
-                            cliente.saldo -= plan.importe;
-                            cliente.disponible += plan.importe;
+                            cliente.saldo -= (plan.importe + plan.blindaje);
+                            cliente.disponible += (plan.importe + plan.blindaje);
                         }
                         break;
                     case (int)Common.Constants.FormaPago.CV:
@@ -1949,8 +1949,8 @@ namespace SirCoPOS.BusinessLogic
                             }
                             plan.status = "ZC";
                             var cliente = ctxc.Distribuidores.Where(i => i.distrib == plan.distrib).Single();
-                            cliente.saldo -= plan.importe;
-                            cliente.disponible += plan.importe;
+                            cliente.saldo -= (plan.importe + plan.blindaje);
+                            cliente.disponible += (plan.importe + plan.blindaje);
                         }
                         break;
                     case (int)Common.Constants.FormaPago.DV:
