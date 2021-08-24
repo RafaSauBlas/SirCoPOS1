@@ -104,10 +104,10 @@
                         </TextBox>
                     </Border>
                 </StackPanel>
-                <StackPanel Margin="10,0,0,0" Width="70">
+                <StackPanel Margin="10,0,-18,0" Width="88">
                 <TextBlock x:Name="lblVale" Text="ContraVale" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border Style="{StaticResource ResourceKey=border_style}">
-                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="15">
+                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="10"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="15" >
                         <TextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
                         </TextBox.InputBindings>
