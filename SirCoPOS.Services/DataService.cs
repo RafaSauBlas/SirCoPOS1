@@ -328,7 +328,8 @@ namespace SirCoPOS.Services
                 Plazos = item.idperiodicidad.Value,
                 Promocion = item.promocion == 1
                 , Number = item.distrib,
-                Cuenta = item.distrib
+                Cuenta = item.distrib,
+                Distrib = item.distrib
             };
 
             var model = dis;
