@@ -19,6 +19,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 case nameof(this.SerieSearch):
                     //this.AddCommand.RaiseCanExecuteChanged();
                     break;
+                case nameof(this.TipoFPVta):
                 case nameof(this.SubTotal):
                 case nameof(this.Descuento):
                     RaisePropertyChanged(nameof(this.Total));
