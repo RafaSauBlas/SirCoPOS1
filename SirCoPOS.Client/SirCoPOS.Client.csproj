@@ -350,6 +350,9 @@
     <Compile Include="Views\Tabs\BonosView.xaml.cs">
       <DependentUpon>BonosView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Tabs\CajaView.xaml.cs">
+      <DependentUpon>CajaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tabs\CajaView1.xaml.cs">
       <DependentUpon>CajaView1.xaml</DependentUpon>
     </Compile>
@@ -576,6 +579,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Tabs\BonosView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Tabs\CajaView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

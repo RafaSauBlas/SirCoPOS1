@@ -19,7 +19,6 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 case nameof(this.SerieSearch):
                     //this.AddCommand.RaiseCanExecuteChanged();
                     break;
-                case nameof(this.TipoFPVta):
                 case nameof(this.SubTotal):
                 case nameof(this.Descuento):
                     RaisePropertyChanged(nameof(this.Total));
@@ -135,7 +134,6 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             }
             await this.RefreshPromociones();
             this.PromocionesCuponesUsadas.Refresh();
-            
         }
         private static object syncRefresh = new object();
         private async Task RefreshPromociones(bool update = false)
