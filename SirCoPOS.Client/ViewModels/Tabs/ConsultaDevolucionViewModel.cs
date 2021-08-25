@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SirCoPOS.Client.ViewModels.Tabs
 {
@@ -23,14 +24,23 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             this.PropertyChanged += ConsultaDevolucionViewModel_PropertyChanged;
             this.SearchCommand = new RelayCommand(() => {
                 var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
-                var folio = _common.PrepareVentaDevolucion(this.Search);
-                var dev = this.Devolucion = _proxy.FindDevolucionView(settings.Sucursal.Clave, folio, this.Cajero.Id);
-                if (dev != null)
+
+                if (settings != null)
                 {
-                    this.Devolucion = dev;
-                    this.Search = null;
+                    var folio = _common.PrepareVentaDevolucion(this.Search);
+                    var dev = this.Devolucion = _proxy.FindDevolucionView(settings.Sucursal.Clave, folio, this.Cajero.Id);
+                    if (dev != null)
+                    {
+                        this.Devolucion = dev;
+                        this.Search = null;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró la Devolución", "Consulta Devolución", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        this.Search = null;
+                    }
+
                 }
-                    
             });
 
             if (this.IsInDesignMode)
