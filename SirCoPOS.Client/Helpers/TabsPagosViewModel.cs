@@ -32,17 +32,30 @@ namespace SirCoPOS.Client.Helpers
             this.Pagos.CollectionChanged += Pagos_CollectionChanged;
             _formas = new Dictionary<FormaPago, Models.FormaPagoKey>() {
                 { FormaPago.EF, new Models.FormaPagoKey { Enabled = true, Key = Key.F1, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
-                { FormaPago.TC, new Models.FormaPagoKey { Enabled = true, Key = Key.F2, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
-                { FormaPago.TD, new Models.FormaPagoKey { Enabled = true, Key = Key.F3, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
-                { FormaPago.DV, new Models.FormaPagoKey { Enabled = true, Key = Key.F4, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
-                { FormaPago.MD, new Models.FormaPagoKey { Enabled = true, Key = Key.F10, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
+                { FormaPago.TC, new Models.FormaPagoKey { Enabled = true, Key = Key.F2, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
+                { FormaPago.TD, new Models.FormaPagoKey { Enabled = true, Key = Key.F3, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
+                { FormaPago.DV, new Models.FormaPagoKey { Enabled = true, Key = Key.F4, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
+                { FormaPago.MD, new Models.FormaPagoKey { Enabled = true, Key = Key.F12, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
 
-                { FormaPago.VA, new Models.FormaPagoKey { Enabled = true, Key = Key.F5, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
-                { FormaPago.CV, new Models.FormaPagoKey { Enabled = true, Key = Key.F6, Duplicate = false, WithClient = false, ClientRequired = false, Credito = true } },
-                { FormaPago.CP, new Models.FormaPagoKey { Enabled = true, Key = Key.F7, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
-                { FormaPago.CD, new Models.FormaPagoKey { Enabled = true, Key = Key.F8, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
-                { FormaPago.VD, new Models.FormaPagoKey { Enabled = true, Key = Key.F9, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
-                { FormaPago.VE, new Models.FormaPagoKey { Enabled = true, Key = Key.F10, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
+                { FormaPago.VA, new Models.FormaPagoKey { Enabled = true, Key = Key.F6, Duplicate = true, WithClient = false, ClientRequired = true, Credito = true } },
+                { FormaPago.CV, new Models.FormaPagoKey { Enabled = true, Key = Key.F7, Duplicate = true, WithClient = false, ClientRequired = false, Credito = true } },
+                { FormaPago.CP, new Models.FormaPagoKey { Enabled = true, Key = Key.F8, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
+                { FormaPago.CD, new Models.FormaPagoKey { Enabled = true, Key = Key.F9, Duplicate = false, WithClient = false, ClientRequired = false, Credito = true } },
+                { FormaPago.VD, new Models.FormaPagoKey { Enabled = true, Key = Key.F10, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
+                { FormaPago.VE, new Models.FormaPagoKey { Enabled = true, Key = Key.F11, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
+
+                //{ FormaPago.EF, new Models.FormaPagoKey { Enabled = true, Key = Key.F1, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
+                //{ FormaPago.TC, new Models.FormaPagoKey { Enabled = true, Key = Key.F2, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
+                //{ FormaPago.TD, new Models.FormaPagoKey { Enabled = true, Key = Key.F3, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
+                //{ FormaPago.DV, new Models.FormaPagoKey { Enabled = true, Key = Key.F4, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
+                //{ FormaPago.MD, new Models.FormaPagoKey { Enabled = true, Key = Key.F10, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
+
+                //{ FormaPago.VA, new Models.FormaPagoKey { Enabled = true, Key = Key.F5, Duplicate = true, WithClient = false, ClientRequired = true, Credito = true } },
+                //{ FormaPago.CV, new Models.FormaPagoKey { Enabled = true, Key = Key.F6, Duplicate = true, WithClient = false, ClientRequired = false, Credito = true } },
+                //{ FormaPago.CP, new Models.FormaPagoKey { Enabled = true, Key = Key.F7, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
+                //{ FormaPago.CD, new Models.FormaPagoKey { Enabled = true, Key = Key.F8, Duplicate = false, WithClient = false, ClientRequired = false, Credito = true } },
+                //{ FormaPago.VD, new Models.FormaPagoKey { Enabled = true, Key = Key.F9, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
+                //{ FormaPago.VE, new Models.FormaPagoKey { Enabled = true, Key = Key.F10, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
                 //{ FormaPago.CI, new Models.FormaPagoKey { Enabled = true, Key = Key.F12, Duplicate = false, WithClient = false, ClientRequired = false, Credito = true } },
                 //{ FormaPago.VS, new Models.FormaPagoKey { Enabled = true, Key = Key.J, Duplicate = false, WithClient = false, ClientRequired = false, Credito = true } }
             };
@@ -85,9 +98,10 @@ namespace SirCoPOS.Client.Helpers
             //}
             //================================================================================================================
 
-            this.AddFormaCommand = new RelayCommand<FormaPago>(fp => {
+            this.AddFormaCommand = new RelayCommand<FormaPago>(fp =>
+            {
                 this.ShowPagos = false;
-                this.OpenFormaPago(fp);                
+                this.OpenFormaPago(fp);
             }, p => {
                 var q = this._formas.Where(i => i.Key == p);
                 return q.Any() && this.Total > 0 && this.Remaining > 0 && q.Single().Value.Enabled;
@@ -495,6 +509,7 @@ namespace SirCoPOS.Client.Helpers
 
         protected virtual void OpenFormaPago(FormaPago fp) 
         {
+            Common.Constants.Inactividad.Segundos = 150;
             Messenger.Default.Send(
                     new Utilities.Messages.OpenPago
                     {

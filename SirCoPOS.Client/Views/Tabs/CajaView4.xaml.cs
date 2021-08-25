@@ -65,10 +65,34 @@ namespace SirCoPOS.Client.Views.Tabs
                    }
                });
 
+            Messenger.Default.Register<Utilities.Messages.OpenModal>(this,
+                m => {
+                    Messenger.Default.Send(m, m.GID);
+                    Console.WriteLine($"removing: {m.GID}");
+                    if (!_tabs.Any())
+                    {
+                        _dt.Stop();
+                    }
+                });
+
             Messenger.Default.Register<Utilities.Messages.LogoutTimeout>(this, m => {
                 _dt.Stop();
             });
 
+            Messenger.Default.Register<Utilities.Messages.OpenModal>(this,
+               m => {
+                   Messenger.Default.Send(m, m.GID);
+                   Console.WriteLine($"open: {m.GID}");       
+                   _dt.Stop();
+               });
+
+            Messenger.Default.Register<Utilities.Messages.OpenModalItem>(this,
+                m =>
+                {
+                    Messenger.Default.Send(m, m.GID);
+                    Console.WriteLine($"open: {m.GID}");
+
+                });
         }
 
         public void doFocus(string msg)
@@ -195,6 +219,21 @@ namespace SirCoPOS.Client.Views.Tabs
         private void Button_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             _dt.Start();
+        }
+
+        private void dgView_KeyDown(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

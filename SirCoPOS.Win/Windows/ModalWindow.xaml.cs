@@ -25,7 +25,6 @@ namespace SirCoPOS.Win.Windows
         public ModalWindow()
         {
             InitializeComponent();
-            
             _closing = false;
         }
         private bool _closing;
@@ -76,6 +75,11 @@ namespace SirCoPOS.Win.Windows
                 MessageBox.Show("Jajjuas", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
+        }
+
+        public void cerrar()
+        {
+            this.Close();
         }
     }
 }

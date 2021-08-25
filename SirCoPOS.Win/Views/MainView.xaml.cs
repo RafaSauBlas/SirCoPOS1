@@ -57,7 +57,7 @@ namespace SirCoPOS.Win.Views
 
             _dt = new System.Windows.Threading.DispatcherTimer();
             _dt.Tick += Dt_Tick;
-            _dt.Interval = Properties.Settings.Default.Timeout;
+            _dt.Interval = TimeSpan.FromSeconds(Common.Constants.Inactividad.Segundos);
         }
 
         private void RegisterMessages()
@@ -121,6 +121,9 @@ namespace SirCoPOS.Win.Views
                             break;
                         case Key.F8:
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Corte });
+                            break;
+                        case Key.F9:
+                            this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.FondoArqueo });
                             break;
                     }
                 }
@@ -192,7 +195,7 @@ namespace SirCoPOS.Win.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (GalaSoft.MvvmLight.ViewModelBase.IsInDesignModeStatic)
+             if (GalaSoft.MvvmLight.ViewModelBase.IsInDesignModeStatic)
                 return;
 
             var ctx = new DataAccess.DataContext();

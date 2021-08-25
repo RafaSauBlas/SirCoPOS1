@@ -100,10 +100,14 @@
                     <TextBlock Text="Cancela Devol (F5)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="-7,0,-9,0" FontSize="16" Height="22" Width="140"/>
                 </Grid>
             </Button>
-            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}" CommandParameter="FondoArqueo">
+
+            <Button Margin="0,0,5,5" Style="{DynamicResource menu}" Command="{Binding OpenCommand}">
+                <Button.CommandParameter>
+                    <m:TabType>FondoArqueo</m:TabType>
+                </Button.CommandParameter>
                 <Grid>
-                    <Image Source="/SirCoPOS.Win;component/Images/arqueo.png" Margin="4,6,6,10"/>
-                    <TextBlock Text="Arqueo Efectivo" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                    <Image Source="/SirCoPOS.Win;component/Images/arqueo.png" Margin="22,0,1,22"/>
+                    <TextBlock Text="Arqueo Efectivo (F9)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,-6,-9" FontSize="15" Height="22" Width="140"/>
                 </Grid>
             </Button>
             <!--Boton Entrega de Efectivo-->
@@ -113,7 +117,7 @@
                 </Button.CommandParameter>
                 <Grid>
                     <Image Source="/SirCoPOS.Win;component/Images/entrega_ef.png" Height="101" Width="101"/>
-                    <TextBlock Text="Entrega Efectivo (F7)" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="-6,85,-6,-9" FontSize="15" Height="25" Width="136"/>
+                    <TextBlock Text="Entrega Efectivo (F7)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,-6,-9" FontSize="15" Height="25" Width="136"/>
                 </Grid>
 
             </Button>

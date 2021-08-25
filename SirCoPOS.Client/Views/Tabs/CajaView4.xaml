@@ -27,6 +27,9 @@
     <UserControl.DataContext>
         <vm:CajaViewModel/>
     </UserControl.DataContext>
+    <UserControl.InputBindings>
+        <KeyBinding Key="F5" Command="{Binding Nada}"></KeyBinding>
+    </UserControl.InputBindings>
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
         <Grid.RowDefinitions>
             <RowDefinition Height="293*"/>
@@ -168,7 +171,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <!--Boton Subir Producto-->
-                    <Button Command="{Binding RemoveCommand, Mode=OneWay}" VerticalAlignment="Top" Height="78" HorizontalAlignment="Right" Width="24" Grid.Column="2">
+                    <Button Command="{Binding MoveProductoCommand, Mode=OneWay}" IsEnabled="True" VerticalAlignment="Top" Height="78" HorizontalAlignment="Right" Width="24" Grid.Column="2">
                         <Button.Background>
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                         </Button.Background>
