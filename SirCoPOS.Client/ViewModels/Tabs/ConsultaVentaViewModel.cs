@@ -22,12 +22,20 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             
             this.SearchCommand = new RelayCommand(() => {
                 var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
-                var folio = _common.PrepareVentaDevolucion(this.Search);
-                var vta = _proxy.FindVentaView(settings.Sucursal.Clave, folio, this.Cajero.Id);
-                if (vta != null)
+                if (settings != null)
                 {
-                    this.Venta = vta;
-                    this.Search = null;
+                    var folio = _common.PrepareVentaDevolucion(this.Search);
+                    var vta = _proxy.FindVentaView(settings.Sucursal.Clave, folio, this.Cajero.Id);
+                    if (vta != null)
+                    {
+                        this.Venta = vta;
+                        this.Search = null;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se encontró la Venta", "Consulta Venta", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        this.Search = null;
+                    }
                 }
             });
             if (this.IsInDesignMode)
@@ -82,7 +90,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                         () =>
                         {
                             _reports.Compra(this.Venta.Sucursal, this.Venta.Folio, true);
-                            var registra = _proxy.ContabilizaReimpresion("VENTA", Venta.Sucursal, Venta.Folio);
+                            _proxy.ContabilizaReimpresion("VENTA", Venta.Sucursal, Venta.Folio);
                         }, () => this.Venta != null
                     );
                 }
