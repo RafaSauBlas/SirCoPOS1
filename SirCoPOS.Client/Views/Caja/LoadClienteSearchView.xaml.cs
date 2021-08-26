@@ -505,7 +505,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         public void seleccionar2()
         {
-            if(this.txt_cp.Text != "" || this.txt_cp != null)
+            if(this.txtCalle.Text == "")
             {
                 this.txt_Nombre.Focus();
             }
