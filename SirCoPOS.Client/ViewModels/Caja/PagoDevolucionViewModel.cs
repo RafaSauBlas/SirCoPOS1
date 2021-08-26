@@ -29,7 +29,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             this.PropertyChanged += PagoDevolucionViewModel_PropertyChanged;
 
             this.FindCommand = new RelayCommand(async () => {
-                this.IsBusy = true;
+                
                 this.Devolucion = await _proxy.FindDevolucionAsync(this.Sucursal, this.Folio);
                 if (this.Devolucion != null)
                 {
@@ -55,7 +55,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 {
                     MessageBox.Show("No se encontró la Devolución", "Forma de Pago Devolución", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
-                this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.Sucursal) && !String.IsNullOrEmpty(this.Folio));
 
             if (this.IsInDesignMode)

@@ -50,5 +50,18 @@ namespace SirCoPOS.Client.Views.Caja
             }
         }
 
+        public void seleccionar()
+        {
+            this.tbDistrib.Focus();
+            this.tbDistrib.SelectAll();
+        }
+
+        private void tbDistrib_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                seleccionar();
+            }
+        }
     }
 }

@@ -26,7 +26,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
             this.PropertyChanged += PagoCreditoViewModel2_PropertyChanged;
             this.SearchCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
             {
-                this.IsBusy = true;
                 var res = _common.PrepareTarjetahabiente(this.Search);
                 this.Vale = await _proxy.FindTarjetahabienteAsync(res);                
                 if (this.Vale != null)
@@ -41,7 +40,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 {
                     MessageBox.Show("El vale que ingresó no existe, por favor validelo nuevamente.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                this.IsBusy = false;
+
             }, () => !String.IsNullOrEmpty(this.Search));
         }
 

@@ -16,7 +16,7 @@
             <!--Titulo Sucursal-->
             <TextBlock x:Name="lblSucursal" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Sucursal" VerticalAlignment="Top"/>
             <!--Captura Sucursal-->
-            <TextBox x:Name="tbSucursal" Height="24" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding Sucursal, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="43" TextAlignment="Center">
+            <TextBox x:Name="tbSucursal" Height="26" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding Sucursal, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="43" TextAlignment="Center">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding FindCommand}"></KeyBinding>
                 </TextBox.InputBindings>
@@ -26,14 +26,14 @@
             <!--Titulo Disponible-->
             <TextBlock x:Name="lblDisponible" HorizontalAlignment="Left" Margin="10,65,0,0" TextWrapping="Wrap" Text="Disponible" VerticalAlignment="Top"/>
             <!--Captura Folio Devolucion-->
-            <TextBox x:Name="txtDevolucion" Height="25" Margin="0,38,9,0" TextWrapping="Wrap" Text="{Binding Folio, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" TextAlignment="Right">
+            <TextBox x:Name="txtDevolucion" Height="26" Margin="0,38,9,0" TextWrapping="Wrap" Text="{Binding Folio, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" TextAlignment="Right" KeyUp="txtDevolucion_KeyUp">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding FindCommand}"></KeyBinding>
                 </TextBox.InputBindings>
             </TextBox>
             <!--Disponible Distribuidor-->
             <TextBlock x:Name="txtDisponible" Margin="0,67,10,0" TextWrapping="Wrap" Text="{Binding Devolucion.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <TextBox x:Name="txtPagar" Height="24" Margin="0,93,9,0" TextWrapping="Wrap" Text="{Binding Pagar, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" TextAlignment="Right"/>
+            <TextBox x:Name="txtPagar" Height="26" Margin="0,93,9,0" TextWrapping="Wrap" Text="{Binding Pagar, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" TextAlignment="Right"/>
             <!--Titulo pagar-->
             <TextBlock x:Name="lblPagar" HorizontalAlignment="Left" Margin="10,92,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
             <!--Saldo de la Devolucion-->

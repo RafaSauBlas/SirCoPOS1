@@ -253,6 +253,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
                     if (this.Cliente != null)
                     {
+                        Common.Constants.Inactividad.Opcion = 1;
                         Common.Constants.ClienteInfo.colonia = this.Cliente.Colonia ?? default(int); ;
                         name1 = this.Cliente.Nombre;
                         appa1 = this.Cliente.ApPaterno;
@@ -287,7 +288,11 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     }
                     else
                     {
+                        Common.Constants.Inactividad.Opcion = 1;
                         MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        this.ClienteNombreSearch = null;
+                        this.ClienteApPaSearch = null;
+                        this.ClienteApMaSearch = null;
                     }
                 }
             }

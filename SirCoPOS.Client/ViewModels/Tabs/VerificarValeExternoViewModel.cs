@@ -29,9 +29,14 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 if (this.Vale == null) {
                     DistObserva = null;
                     MessageBox.Show("Cuenta no encontrada.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    
                 }
                 else
+                {
                     this.DistObserva = _proxy.FindDistObserva(this.Vale.Distribuidor.Cuenta);
+                    this.Cuenta = null;
+                }
+                    
 
             }, () => !string.IsNullOrEmpty(this.ValeSearch) && this.SelectedNegocio.HasValue && !string.IsNullOrEmpty(this.Cuenta));
 

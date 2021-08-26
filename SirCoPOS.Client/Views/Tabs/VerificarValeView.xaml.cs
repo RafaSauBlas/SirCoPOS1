@@ -133,5 +133,19 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             _dt.Start();
         }
+
+        public void Seleccionar()
+        {
+            this.txt_buscar.Focus();
+            this.txt_buscar.SelectAll();
+        }
+
+        private void txt_buscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Seleccionar();
+            }
+        }
     }
 }

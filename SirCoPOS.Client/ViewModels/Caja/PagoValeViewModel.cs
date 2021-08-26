@@ -51,7 +51,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             });
             this.SearchCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
             {
-                this.IsBusy = true;
+                Views.Caja.PagoValeView2 PV2 = new Views.Caja.PagoValeView2();
                 try { 
                     this.Vale = await _proxy.FindValeAsync(this.Search);
                 }
@@ -92,7 +92,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 {
                     MessageBox.Show("El vale que ingresó no existe, por favor validelo nuevamente.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                this.IsBusy = false;
+                
             }, () => !String.IsNullOrEmpty(this.Search));
 
             if (!this.IsInDesignMode)

@@ -23,7 +23,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
             this.PropertyChanged += PagoValeDigitalViewModel2_PropertyChanged;
             this.SearchCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
             {
-                this.IsBusy = true;
                 this.Vale = await _proxy.FindValeDigitalAsync(this.Search);
                 if (this.Vale != null)
                 {
@@ -44,7 +43,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 {
                     MessageBox.Show("No se encontró Vale.", "Pago Vale Digital", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.Search));
         }
 

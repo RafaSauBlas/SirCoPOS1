@@ -235,5 +235,19 @@ namespace SirCoPOS.Client.Views.Tabs
         {
 
         }
+
+        public void seleccionar()
+        {
+            this.scanTextBox.Focus();
+            this.scanTextBox.SelectAll();
+        }
+
+        private void scanTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+                if (e.Key == Key.Enter)
+                {
+                    seleccionar();
+                }            
+        }
     }
 }

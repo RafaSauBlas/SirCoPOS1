@@ -25,7 +25,6 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 _pcredito = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.ICreditoValeServiceAsync>();
             }
             this.FindValeCommand = new RelayCommand(async () => {
-                this.IsBusy = true;
                 this.Vale = await _proxy.FindValeAsync(this.ValeSearch);
                 if (this.Vale == null) 
                 {
@@ -45,8 +44,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                         };
                     }
                     this.DistObserva = await _proxy.FindDistObservaAsync(this.Vale.Distribuidor.Cuenta);
+                    this.ValeSearch = null;
                 }
-                this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.ValeSearch));
 
             this.NadaCommand = new RelayCommand(() => {

@@ -60,7 +60,7 @@
         <!--Captura de telefono para busqueda-->
 
 
-        <xt:MaskedTextBox x:Name="txt_Telefono" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="114,17,0,0" TextWrapping="Wrap" Text="{Binding ClienteTelefonoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1" FontSize="15" LostFocus="txt_Telefono_LostFocus">
+        <xt:MaskedTextBox x:Name="txt_Telefono" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="114,17,0,0" TextWrapping="Wrap" Text="{Binding ClienteTelefonoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="1" FontSize="15" LostFocus="txt_Telefono_LostFocus" KeyUp="txt_Telefono_KeyUp">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </TextBox.InputBindings>
@@ -124,7 +124,7 @@
                 <KeyBinding Key="Return" Command="{Binding searchnameCommand}"/>
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
-        <xt:MaskedTextBox x:Name="txtApma"   HorizontalAlignment="Left" Height="25" Margin="323,74,0,0" TextWrapping="Wrap" Text="{Binding ClienteApMaSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="132" KeyboardNavigation.TabIndex ="4" KeyDown="txtApma_KeyDown" FontSize="15" LostFocus="txtApma_LostFocus" BorderBrush="Red" TextChanged="txtApma_TextChanged">
+        <xt:MaskedTextBox x:Name="txtApma"   HorizontalAlignment="Left" Height="25" Margin="323,74,0,0" TextWrapping="Wrap" Text="{Binding ClienteApMaSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="132" KeyboardNavigation.TabIndex ="4" KeyDown="txtApma_KeyDown" FontSize="15" LostFocus="txtApma_LostFocus" BorderBrush="Red" TextChanged="txtApma_TextChanged" KeyUp="txtApma_KeyUp">
             <xt:MaskedTextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding searchnameCommand}"/>
                 <!--<KeyBinding Key="Tab" Command="{Binding searchnameCommand}" />-->

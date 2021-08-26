@@ -30,7 +30,6 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
             }
             this.LoadCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () => {
-                this.IsBusy = true;
                 var ser = _common.PrepareSerie(this.SerieSearch);
 
                 var item = await _proxy.ScanProductoDevolucionAsync(ser, cancelacion: false);
@@ -90,7 +89,6 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                             this.ErrorMessage = "Artículo no valido";
                     }
                 }
-                this.IsBusy = false;
             }, () => !string.IsNullOrWhiteSpace(this.SerieSearch));
             this.ReturnCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () => {
 

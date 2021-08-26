@@ -33,5 +33,19 @@ namespace SirCoPOS.Client.Views.Caja
         {
             this.tbSucursal.Focus();
         }
+
+        public void seleccionar()
+        {
+            this.txtDevolucion.Focus();
+            this.txtDevolucion.SelectAll();
+        }
+
+        private void txtDevolucion_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                seleccionar();
+            }
+        }
     }
 }

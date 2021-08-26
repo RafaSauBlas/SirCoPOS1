@@ -41,7 +41,7 @@
         </TextBlock>
         <TextBlock Visibility="{Binding Faltante, Converter={StaticResource cval}}" Foreground="Red" HorizontalAlignment="Left" Margin="10,0,0,10" TextWrapping="Wrap" Text="Faltante de efectivo generara cargo" Height="24" VerticalAlignment="Bottom" Grid.Row="1"/>
         <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Top" Grid.Row="1"/>
-        <PasswordBox x:Name="txtB_Contra"  HorizontalAlignment="Left" Height="27" Margin="149,89,0,0"  PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Top" Width="120" TabIndex = "3" Grid.Row="1">
+        <PasswordBox x:Name="txtB_Contra"  HorizontalAlignment="Left" Height="27" Margin="149,89,0,0"  PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Top" Width="120" TabIndex = "3" Grid.Row="1" KeyUp="txtB_Contra_KeyUp">
             <PasswordBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>
             </PasswordBox.InputBindings>

@@ -35,11 +35,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 {
                     this.SearchUser = null;
                     this.UserOK = true;
+                    this.Password = null;
                 }
                 else
                 {
                     MessageBox.Show("Password Invalido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    
                     this.UserOK = false;
                 }
             }, () => this.Password != null && this.Auditor != null);

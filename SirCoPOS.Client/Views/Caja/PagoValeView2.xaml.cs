@@ -34,6 +34,12 @@ namespace SirCoPOS.Client.Views.Caja
             this.tbVale.Focus();
         }
 
+        public void seleccionar()
+        {
+            this.tbVale.Focus();
+            this.tbVale.SelectAll();
+        }
+
         private void TabControl_TargetUpdated(object sender, DataTransferEventArgs e)
         {
             var tc = (TabControl)sender;
@@ -48,6 +54,13 @@ namespace SirCoPOS.Client.Views.Caja
                 cboPlazo.SelectedIndex = 7;
             }
         }
-        
+
+        private void tbVale_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                seleccionar();
+            }
+        }
     }
 }

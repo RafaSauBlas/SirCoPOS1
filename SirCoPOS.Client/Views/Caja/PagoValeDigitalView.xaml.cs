@@ -47,5 +47,19 @@ namespace SirCoPOS.Client.Views.Caja
                 cboPlazo.SelectedIndex = 7;
             }
         }
+
+        public void seleccionar()
+        {
+            this.tbSearch.Focus();
+            this.tbSearch.SelectAll();
+        }
+
+        private void tbSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                seleccionar();
+            }
+        }
     }
 }

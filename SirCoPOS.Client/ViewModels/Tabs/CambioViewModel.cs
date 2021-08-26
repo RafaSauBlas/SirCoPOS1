@@ -64,14 +64,12 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             }, () => this.Remaining > 0);
 
             this.ScanCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () => {
-                this.IsBusy = true;
                 var ser = _common.PrepareSerie(this.SerieSearch);
 
                 await this.Scan(ser);
                 this.AddPagoCommand.RaiseCanExecuteChanged();
                 this.SaveCommand.RaiseCanExecuteChanged();
 
-                this.IsBusy = false;
             }, () => !string.IsNullOrEmpty(this.SerieSearch));
 
             this.NadaCommand = new RelayCommand(() => {

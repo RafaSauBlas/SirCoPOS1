@@ -97,7 +97,7 @@
             <StackPanel Margin="15,0,15,0" >
                 <TextBlock x:Name="lblVale" Text="Vale" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border Style="{StaticResource ResourceKey=border_style}">
-                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}"  FontSize="15">
+                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}"  FontSize="13">
                         <TextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
                         </TextBox.InputBindings>
@@ -152,7 +152,7 @@
             <StackPanel Margin="15,1,10,0" Grid.Row="1" Grid.Column="1">
                 <TextBlock x:Name="lblCuenta" Text="Cuenta Externa" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border Style="{StaticResource ResourceKey=border_style}">
-                    <TextBox x:Name="txtCuenta" Text="{Binding Cuenta, UpdateSourceTrigger=PropertyChanged}" FontSize="14">
+                    <TextBox x:Name="txtCuenta" Text="{Binding Cuenta, UpdateSourceTrigger=PropertyChanged}" FontSize="14" KeyUp="txtCuenta_KeyUp">
                             <TextBox.InputBindings>
                                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
                             </TextBox.InputBindings>

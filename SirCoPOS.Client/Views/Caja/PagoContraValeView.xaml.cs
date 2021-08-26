@@ -44,9 +44,23 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void cboPromocion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cboPlazo != null && this.txtCuenta.Text.Length > 0 )
+            if (cboPlazo != null && this.txtCuenta.Text.Length > 0)
             {
                 cboPlazo.SelectedIndex = 7;
+            }
+        }
+
+        public void seleccionar()
+        {
+            tbVale.Focus();
+            tbVale.SelectAll();
+        }
+
+        private void tbVale_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                seleccionar();
             }
         }
     }

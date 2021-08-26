@@ -24,7 +24,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
             this.PropertyChanged += PagoContraValeViewModel2_PropertyChanged;
             this.SearchCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
             {
-                this.IsBusy = true;
                 var cv = _common.PrepareContraVale(this.Search);
                 this.Vale = await _proxy.FindContraValeAsync(this.SucursalSearch, cv);
                 if (this.Vale != null)
@@ -47,7 +46,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 {
                     MessageBox.Show("ContraVale NO Encontrado", "Pago ContraVale", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.Search) && !String.IsNullOrEmpty(this.SucursalSearch));
 
         }

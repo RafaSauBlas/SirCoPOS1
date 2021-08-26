@@ -489,5 +489,42 @@ namespace SirCoPOS.Client.Views.Caja
                 this.txtidentif.BorderBrush = Brushes.Red;
             }
         }
+
+        public void seleccionar()
+        {
+            if(this.txt_Telefono.Text == "(___) ___-____")
+            {
+                this.txt_Telefono.Focus();
+            }
+            else
+            {
+                this.txt_Telefono.Focus();
+                this.txt_Telefono.SelectAll();
+            }
+        }
+
+        public void seleccionar2()
+        {
+            if(this.txt_cp.Text != "" || this.txt_cp != null)
+            {
+                this.txt_Nombre.Focus();
+            }
+        }
+
+        private void txt_Telefono_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                seleccionar();
+            }
+        }
+
+        private void txtApma_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                seleccionar2();
+            }
+        }
     }
 }

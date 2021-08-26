@@ -25,7 +25,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
             }
             this.SearchCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
             {
-                this.IsBusy = true;
                 var res = _common.PrepareTarjetahabiente(this.Search);
                 this.Vale = await _proxy.FindDistribuidorAsync(res);
                 if (this.Vale != null)
@@ -40,7 +39,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 {
                     MessageBox.Show("Distribuidor no localizado", "Pago Credito Distribuidor", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                this.IsBusy = false;
             }, () => !String.IsNullOrEmpty(this.Search));
         }
         protected override void Accept(Utilities.Messages.Pago p)

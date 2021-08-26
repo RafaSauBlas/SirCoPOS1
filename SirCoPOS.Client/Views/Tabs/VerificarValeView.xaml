@@ -33,7 +33,7 @@
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Grid.Background>
             <TextBlock x:Name="tbk_vale" HorizontalAlignment="Left" Margin="48,35,0,0" TextWrapping="Wrap" Text="Vale" VerticalAlignment="Top"/>
-            <TextBox x:Name="txt_buscar" HorizontalAlignment="Left" Height="27" Margin="98,32,0,0" TextWrapping="Wrap" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyboardNavigation.TabIndex ="0">
+            <TextBox x:Name="txt_buscar" HorizontalAlignment="Left" Height="27" Margin="98,32,0,0" TextWrapping="Wrap" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyboardNavigation.TabIndex ="0" KeyUp="txt_buscar_KeyUp">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding FindValeCommand}"></KeyBinding>
                 </TextBox.InputBindings>

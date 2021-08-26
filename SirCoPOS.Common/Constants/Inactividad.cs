@@ -9,5 +9,6 @@ namespace SirCoPOS.Common.Constants
     public class Inactividad
     {
         public static int Segundos { get; set; } = 600;
+        public static int Opcion { get; set; } = 0;
     }
 }

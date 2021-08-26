@@ -34,6 +34,7 @@ namespace SirCoPOS.Client.Views.Tabs
         public CambiarResponsableView()
         {
             InitializeComponent();
+            this.txtEntrega.Focus();
             _tabs = new Dictionary<Guid, TabItem>();
             _dt = new System.Windows.Threading.DispatcherTimer();
             _dt.Tick += Dt_Tick;
@@ -101,6 +102,20 @@ namespace SirCoPOS.Client.Views.Tabs
         private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             _dt.Start();
+        }
+
+        public void seleccionar()
+        {
+            this.txtB_Contra.Focus();
+            this.txtB_Contra.SelectAll();
+        }
+
+        private void txtB_Contra_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                seleccionar();
+            }
         }
     }
 }

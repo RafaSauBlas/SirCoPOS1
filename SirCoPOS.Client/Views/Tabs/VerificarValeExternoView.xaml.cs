@@ -120,5 +120,19 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             _dt.Start();
         }
+
+        public void Seleccionar()
+        {
+            this.txtCuenta.Focus();
+            this.txtCuenta.SelectAll();
+        }
+
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Seleccionar();
+            }
+        }
     }
 }

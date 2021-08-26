@@ -34,7 +34,7 @@ namespace SirCoPOS.Client.Views.Tabs
         public CancelacionDevolucionView()
         {
             InitializeComponent();
-            this.scanTextBox.Focus();
+            Seleccionar();
 
             _tabs = new Dictionary<Guid, TabItem>();
             _dt = new System.Windows.Threading.DispatcherTimer();
@@ -106,6 +106,20 @@ namespace SirCoPOS.Client.Views.Tabs
         private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             _dt.Start();
+        }
+
+        public void Seleccionar()
+        {
+            this.scanTextBox.Focus();
+            this.scanTextBox.SelectAll();
+        }
+
+        private void scanTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Seleccionar();
+            }
         }
     }
 }
