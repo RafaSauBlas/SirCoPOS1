@@ -21,6 +21,7 @@ namespace SirCoPOS.Common.Constants
         CD = 24, //C. DISTRIBUIDOR 
         VD = 23, //VALE DIGITAL 
         VS = 100, //VA - sin promocion
-        CS = 101
+        CS = 101,
+        GO = 26
     }
 }

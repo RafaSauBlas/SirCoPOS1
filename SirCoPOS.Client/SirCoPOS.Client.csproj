@@ -214,6 +214,7 @@
     <Compile Include="ViewModels\Caja\PagoCreditoViewModel2.cs" />
     <Compile Include="ViewModels\Caja\PagoDevolucionViewModel.cs" />
     <Compile Include="ViewModels\Caja\PagoEfectivoViewModel.cs" />
+    <Compile Include="ViewModels\Caja\PagoGoViewModel.cs" />
     <Compile Include="ViewModels\Caja\PagoMonederoElectronicoViewModel.cs" />
     <Compile Include="ViewModels\Caja\PagoTarjetaCreditoViewModel.cs" />
     <Compile Include="ViewModels\Caja\PagoTarjetaDebitoViewModel.cs" />
@@ -290,6 +291,9 @@
     <Compile Include="Views\Caja\PagoEfectivoView.xaml.cs">
       <DependentUpon>PagoEfectivoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Caja\PagoGoView.xaml.cs">
+      <DependentUpon>PagoGoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Caja\PagoMonederoElectronicoView.xaml.cs">
       <DependentUpon>PagoMonederoElectronicoView.xaml</DependentUpon>
     </Compile>
@@ -331,6 +335,9 @@
     </Compile>
     <Compile Include="Views\Pagos\PagoEfectivoView.xaml.cs">
       <DependentUpon>PagoEfectivoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Pagos\PagoGoView.xaml.cs">
+      <DependentUpon>PagoGoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Pagos\PagoTarjetaCreditoView.xaml.cs">
       <DependentUpon>PagoTarjetaCreditoView.xaml</DependentUpon>
@@ -502,6 +509,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Caja\PagoGoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Caja\PagoMonederoElectronicoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -555,6 +566,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Pagos\PagoEfectivoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Pagos\PagoGoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

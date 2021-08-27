@@ -426,6 +426,17 @@ namespace SirCoPOS.Services
             }
             return Valor;
         }
+        public int getminPagoGO()
+        {
+            int Valor = 1;
+            var ctx = new DataAccess.SirCoControlDataContext();
+            var min = ctx.Parametros.Where(i => i.clave == Common.Constants.Parametros.MINPAGOGO && i.sucursal == "99").SingleOrDefault();
+            if (min != null)
+            {
+                Valor = Int32.Parse(min.valor);
+            }
+            return Valor;
+        }
         public Producto FindProducto(string marca, string modelo, string sucursal)
         {
             var ctx = new DataAccess.SirCoDataContext();
