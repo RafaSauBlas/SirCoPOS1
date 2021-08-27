@@ -115,7 +115,7 @@
                 <TextBlock x:Name="lblNegocio" Text="Negocio" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
                     <!--<Border BorderThickness="0.4" BorderBrush="Black">-->
-                    <TextBox Text="{Binding Negocio, UpdateSourceTrigger=PropertyChanged}" Width="30" Margin="0,0,4,0" FontSize="14"/>
+                    <TextBox x:Name="txtNeg" Text="{Binding Negocio, UpdateSourceTrigger=PropertyChanged}" Width="30" Margin="0,0,4,0" FontSize="14" TextChanged="TextBox_TextChanged"/>
                     <ComboBox SelectedValue="{Binding SelectedNegocio}" SelectedValuePath="Id" ItemsSource="{Binding Negocios}" Width="77" Height="25"  FontSize="14">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>

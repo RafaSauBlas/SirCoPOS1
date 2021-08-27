@@ -97,7 +97,7 @@
             <StackPanel Margin="15,0,15,0" >
                 <TextBlock x:Name="lblVale" Text="Vale" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border Style="{StaticResource ResourceKey=border_style}">
-                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="13" KeyUp="tbVale_KeyUp">
+                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="13" KeyUp="tbVale_KeyUp" TextChanged="tbVale_TextChanged">
                         <TextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
                         </TextBox.InputBindings>

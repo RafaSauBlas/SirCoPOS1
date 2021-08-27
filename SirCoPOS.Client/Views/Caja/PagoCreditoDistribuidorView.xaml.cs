@@ -52,8 +52,23 @@ namespace SirCoPOS.Client.Views.Caja
 
         public void seleccionar()
         {
-            this.tbDistrib.Focus();
-            this.tbDistrib.SelectAll();
+            if(this.txtNoVale.Text != "" && this.txtDisponible.Text != "" && this.txtCuenta.Text != ""
+                && this.txtEstatus.Text != "" && this.txtDistribuidor.Text != "")
+            {
+                if (this.comboBox.IsEnabled == true)
+                {
+                    this.comboBox.Focus();
+                }
+                else
+                {
+                    this.cboPlazo.Focus();
+                }
+            }
+            else
+            {
+                this.tbDistrib.Focus();
+                this.tbDistrib.SelectAll();
+            }
         }
 
         private void tbDistrib_KeyUp(object sender, KeyEventArgs e)

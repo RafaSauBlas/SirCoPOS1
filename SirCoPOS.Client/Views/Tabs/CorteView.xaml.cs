@@ -113,7 +113,30 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             if(e.Key == Key.Enter)
             {
-                seleccionar();
+                if(this.usuarioid.Text != "")
+                {
+                    this.button.Focus();
+                }
+                else
+                {
+                    seleccionar();
+                }
+            }
+        }
+
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                if (this.auditorname.Text != "")
+                {
+                    this.txtB_Contra.Focus();
+                }
+                else
+                {
+                    this.txtidaudit.Focus();
+                    this.txtidaudit.SelectAll();
+                }
             }
         }
     }

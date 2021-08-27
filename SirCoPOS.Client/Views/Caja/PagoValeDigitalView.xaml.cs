@@ -50,8 +50,24 @@ namespace SirCoPOS.Client.Views.Caja
 
         public void seleccionar()
         {
-            this.tbSearch.Focus();
-            this.tbSearch.SelectAll();
+
+            if(this.txtVale.Text != "" && this.txtDisponible.Text != "" && this.txtCuenta.Text != ""
+                && this.txtDistribuidorStatus.Text != "" && this.txtNombreDistribuidor.Text != "")
+            {
+                if (this.cboPromocion.IsEnabled == true)
+                {
+                    this.cboPromocion.Focus();
+                }
+                else
+                {
+                    this.cboPlazo.Focus();
+                }
+            }
+            else
+            {
+                this.tbSearch.Focus();
+                this.tbSearch.SelectAll();
+            }
         }
 
         private void tbSearch_KeyUp(object sender, KeyEventArgs e)

@@ -134,5 +134,13 @@ namespace SirCoPOS.Client.Views.Tabs
                 Seleccionar();
             }
         }
+
+        private void txt_negocio_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(this.txt_negocio.Text.Length == 2)
+            {
+                this.txtCuenta.Focus();
+            }
+        }
     }
 }

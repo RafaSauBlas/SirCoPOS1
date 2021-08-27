@@ -51,8 +51,23 @@ namespace SirCoPOS.Client.Views.Caja
 
         public void seleccionar()
         {
-            this.txtCuenta.Focus();
-            this.txtCuenta.SelectAll();
+            if(this.txtDistrib.Text != "" && this.txtDisponible.Text != "" && this.txtEstatus.Text != ""
+                && this.txtDistribuidor.Text != "")
+            {
+                if (this.cboPromocion.IsEnabled == true)
+                {
+                    this.cboPromocion.Focus();
+                }
+                else
+                {
+                    this.cboPlazo.Focus();
+                }
+            }
+            else
+            {
+                this.txtCuenta.Focus();
+                this.txtCuenta.SelectAll();
+            }
         }
 
         private void txtCuenta_KeyUp(object sender, KeyEventArgs e)
@@ -60,6 +75,14 @@ namespace SirCoPOS.Client.Views.Caja
             if(e.Key == Key.Enter)
             {
                 seleccionar();
+            }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(this.txtNeg.Text.Length == 2)
+            {
+                this.txtCuenta.Focus();
             }
         }
     }

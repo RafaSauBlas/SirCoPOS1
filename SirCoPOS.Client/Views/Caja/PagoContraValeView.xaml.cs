@@ -52,8 +52,23 @@ namespace SirCoPOS.Client.Views.Caja
 
         public void seleccionar()
         {
-            tbVale.Focus();
-            tbVale.SelectAll();
+            if(this.txtNoVale.Text != "" && this.txtDisponible.Text != "" && this.txtCuenta.Text != ""
+                && this.txtEstatus.Text != "" && this.txtDistribuidor.Text != "")
+            {
+               if(this.cboPromocion.IsEnabled == true)
+                {
+                    this.cboPromocion.Focus();
+                }
+                else
+                {
+                    this.cboPlazo.Focus();
+                }
+            }
+            else
+            {
+                this.tbVale.Focus();
+                this.tbVale.SelectAll();
+            }
         }
 
         private void tbVale_KeyUp(object sender, KeyEventArgs e)
@@ -61,6 +76,38 @@ namespace SirCoPOS.Client.Views.Caja
             if(e.Key == Key.Enter)
             {
                 seleccionar();
+            }
+        }
+
+        private void tbSucursal_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(this.tbSucursal.Text.Length == 2)
+            {
+                if(this.tbSucursal.Text == "01" || this.tbSucursal.Text == "02" || this.tbSucursal.Text == "06" 
+                    || this.tbSucursal.Text == "08")
+                {
+                    this.tbVale.Focus();
+                }
+                else
+                {
+                    MessageBox.Show("La sucursal \"" + tbSucursal.Text + "\" NO es una sucursal válida", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    this.tbSucursal.SelectAll();
+                }
+            }
+        }
+
+        private void tbVale_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(this.tbVale.Text == "" && this.txtNoVale.Text != "")
+            {
+                if(this.cboPromocion.IsEnabled == true)
+                {
+                    this.cboPromocion.Focus();
+                }
+                else
+                {
+                    this.cboPlazo.Focus();
+                }
             }
         }
     }

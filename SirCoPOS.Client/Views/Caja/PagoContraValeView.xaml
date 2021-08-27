@@ -97,7 +97,7 @@
                 <StackPanel Width="30">
                     <TextBlock x:Name="lblSuc" Text="Suc" Style="{StaticResource ResourceKey=lbl_style}"/>
                     <Border Style="{StaticResource ResourceKey=border_style}">
-                        <TextBox x:Name="tbSucursal"  TextAlignment="Left"  MaxLength="2"  Height="20" Text="{Binding SucursalSearch, UpdateSourceTrigger=PropertyChanged}"  FontSize="13">
+                        <TextBox x:Name="tbSucursal"  TextAlignment="Left"  MaxLength="2"  Height="20" Text="{Binding SucursalSearch, UpdateSourceTrigger=PropertyChanged}"  FontSize="13" TextChanged="tbSucursal_TextChanged">
                             <TextBox.InputBindings>
                                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
                             </TextBox.InputBindings>
@@ -107,7 +107,7 @@
                 <StackPanel Margin="10,0,-18,0" Width="88">
                 <TextBlock x:Name="lblVale" Text="ContraVale" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border Style="{StaticResource ResourceKey=border_style}">
-                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="10"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="13" KeyUp="tbVale_KeyUp" >
+                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="10"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="13" KeyUp="tbVale_KeyUp" TextChanged="tbVale_TextChanged" >
                         <TextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
                         </TextBox.InputBindings>
