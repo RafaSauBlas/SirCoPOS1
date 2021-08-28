@@ -23,6 +23,14 @@
         <c:FPagoToTextConverter x:Key="FPagoText" />
         <BooleanToVisibilityConverter x:Key="boolConv"/>
         <c:ValueVisibilityConverter x:Key="valvis"/>
+        <Style x:Key="ToolTipText" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="Comic Sans MS"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="DeepSkyBlue"/>
+            <Setter Property="Foreground" Value="Black"/>
+            
+        </Style>
     </UserControl.Resources>
     <UserControl.DataContext>
         <vm:CajaViewModel/>
@@ -562,9 +570,9 @@
             </Grid>
         </tk:ChildWindow>
 
-        <tk:ChildWindow  Caption="Formas de Pago"  DesignerWindowState="Closed" WindowState="{Binding ShowPagos, Converter={StaticResource windowState}, Mode=TwoWay}" Height="570" Width="740" WindowStartupLocation="Center" IsModal="True" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <tk:ChildWindow  Caption="Formas de Pago" DesignerWindowState="Closed" WindowState="{Binding ShowPagos, Converter={StaticResource windowState}, Mode=TwoWay}" Height="565" Width="745" WindowStartupLocation="Center" IsModal="True" HorizontalAlignment="Left"  VerticalAlignment="Top">
             <Grid>
-                <ItemsControl ItemsSource="{Binding FormasPago}" Padding="10">
+                <ItemsControl ItemsSource="{Binding FormasPago}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal"/>
@@ -573,15 +581,17 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Button Width="160" Height="140" Margin="0,0,10,10" IsEnabled="{Binding Value.Enabled}">
+                                <Button Width="170" Height="160" Margin="5,5,5,5" IsEnabled="{Binding Value.Enabled}" >
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
                                             <i:InvokeCommandAction CommandParameter="{Binding Key}" Command="{Binding DataContext.AddFormaCommand, ElementName=dummyElement}"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
-                                    <Image Source="{Binding Key, Mode=OneWay, Converter={StaticResource ImgSource}}"  RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill"/>
+                                    <Image Source="{Binding Key, Mode=OneWay, Converter={StaticResource ImgSource}}"  RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     <Button.ToolTip>
-                                        <TextBlock Text="{Binding Key, Mode=OneWay, Converter={StaticResource FPagoText}}" />
+                                        <ToolTip Background="LightSteelBlue" Foreground="Black">
+                                            <TextBlock Text="{Binding Key, Mode=OneWay, Converter={StaticResource FPagoText}}"  FontSize="14" FontWeight="DemiBold"/>
+                                        </ToolTip>
                                     </Button.ToolTip>
                                 </Button>
                             </StackPanel>

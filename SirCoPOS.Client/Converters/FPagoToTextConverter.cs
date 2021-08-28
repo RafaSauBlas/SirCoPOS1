@@ -25,27 +25,27 @@ namespace SirCoPOS.Client.Converters
                 switch (value)
                 {
                     case SirCoPOS.Common.Constants.FormaPago.CD:
-                        return "CREDITO DISTRIBUIDOR";
+                        return "F9-CREDITO DISTRIBUIDOR";
                     case SirCoPOS.Common.Constants.FormaPago.CP:
-                        return "CREDITO PERSONAL";
+                        return "F8-CREDITO PERSONAL";
                     case SirCoPOS.Common.Constants.FormaPago.CV:
-                        return "CONTRAVALE";
+                        return "F7-CONTRAVALE";
                     case SirCoPOS.Common.Constants.FormaPago.DV:
-                        return "DEVOLUCION";
+                        return "F4-DEVOLUCION";
                     case SirCoPOS.Common.Constants.FormaPago.EF:
-                        return "EFECTIVO";
+                        return "F1-EFECTIVO";
                     case SirCoPOS.Common.Constants.FormaPago.TC:
-                        return "TARJETA DE CREDITO";
+                        return "F2-TARJETA DE CREDITO";
                     case SirCoPOS.Common.Constants.FormaPago.TD:
-                        return "TARJETA DE DEBITO";
+                        return "F3-TARJETA DE DEBITO";
                     case SirCoPOS.Common.Constants.FormaPago.VA:
-                        return "VALE";
+                        return "F6-VALE";
                     case SirCoPOS.Common.Constants.FormaPago.VD:
-                        return "VALE DIGITAL";
+                        return "F10-VALE DIGITAL";
                     case SirCoPOS.Common.Constants.FormaPago.MD:
-                        return "MONEDERO ELECTRONICO";
+                        return "F12-MONEDERO ELECTRONICO";
                     case SirCoPOS.Common.Constants.FormaPago.VE:
-                        return "VALE EXTERNO";
+                        return "F11-VALE EXTERNO";
                     case SirCoPOS.Common.Constants.FormaPago.GO:
                         return "GO PLAZOS";
                     default:
