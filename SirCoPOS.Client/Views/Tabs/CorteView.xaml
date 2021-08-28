@@ -83,12 +83,12 @@
         <TextBox x:Name="tbEntregar" TabIndex="1" HorizontalAlignment="Left" Height="27" Margin="98,39.94,0,0" TextWrapping="Wrap" Text="{Binding Entregar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="223,36,0,0" TextWrapping="Wrap" Text="Faltante" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" Text="Entregar" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" TabIndex="2" Height="27" Margin="129,0,0,244" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="64">
+        <TextBox x:Name="txtidaudit" HorizontalAlignment="Left" TabIndex="2" Height="27" Margin="129,0,0,244" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="64" KeyUp="TextBox_KeyUp">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="198,0,0,245" TextWrapping="Wrap" Height="24" VerticalAlignment="Bottom" Width="270">
+        <TextBlock x:Name="auditorname" HorizontalAlignment="Left" Margin="198,0,0,245" TextWrapping="Wrap" Height="24" VerticalAlignment="Bottom" Width="270">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0} {1} {2}">
                     <Binding Path="Auditor.Nombre" />
@@ -124,6 +124,7 @@
                 <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>
             </PasswordBox.InputBindings>
         </PasswordBox>
+        <TextBlock x:Name="usuarioid" Visibility="Hidden" HorizontalAlignment="Left" Margin="334,374,0,0" TextWrapping="Wrap" Text="{Binding User.Id}" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,0,0,211" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Bottom" Width="105"/>
     </Grid>
 </UserControl>

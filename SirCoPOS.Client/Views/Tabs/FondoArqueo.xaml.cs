@@ -130,7 +130,35 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             if(e.Key == Key.Enter)
             {
-                Seleccionar();
+                if(this.pass.Text != "")
+                {
+                    this.btnguardar.Focus();
+                }
+                else
+                {
+                    Seleccionar();
+                }
+            }
+        }
+
+        public void cambiar()
+        {
+            this.pass.Text = "SI";
+        }
+
+        private void textBox_Copy1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                if(AuditorName.Text != "")
+                {
+                    txtB_Contra.Focus();
+                }
+                else
+                {
+                    this.textBox_Copy1.Focus();
+                    this.textBox_Copy1.SelectAll();
+                }
             }
         }
     }

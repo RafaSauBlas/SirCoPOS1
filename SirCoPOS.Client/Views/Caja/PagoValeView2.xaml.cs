@@ -36,8 +36,23 @@ namespace SirCoPOS.Client.Views.Caja
 
         public void seleccionar()
         {
-            this.tbVale.Focus();
-            this.tbVale.SelectAll();
+            if(this.txtNoVale.Text != "" && this.txtDisponible.Text != "" && this.txtCuenta.Text != ""
+                && this.txtEstatus.Text != "" && this.txtDistribuidor.Text != "")
+            {
+                if (this.cboPromocion.IsEnabled == true)
+                {
+                    this.cboPromocion.Focus();
+                }
+                else
+                {
+                    this.cboPlazo.Focus();
+                }
+            }
+            else
+            {
+                this.tbVale.Focus();
+                this.tbVale.SelectAll();
+            }
         }
 
         private void TabControl_TargetUpdated(object sender, DataTransferEventArgs e)
@@ -60,6 +75,14 @@ namespace SirCoPOS.Client.Views.Caja
             if(e.Key == Key.Enter)
             {
                 seleccionar();
+            }
+        }
+
+        private void tbVale_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(this.tbVale.Text == "" || this.txtNoVale.Text != "")
+            {
+                this.cboPromocion.Focus();
             }
         }
     }
