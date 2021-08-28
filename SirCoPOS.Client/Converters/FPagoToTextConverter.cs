@@ -46,6 +46,8 @@ namespace SirCoPOS.Client.Converters
                         return "MONEDERO ELECTRONICO";
                     case SirCoPOS.Common.Constants.FormaPago.VE:
                         return "VALE EXTERNO";
+                    case SirCoPOS.Common.Constants.FormaPago.GO:
+                        return "GO PLAZOS";
                     default:
                         return "";
                 }

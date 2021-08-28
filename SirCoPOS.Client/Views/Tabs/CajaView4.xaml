@@ -96,7 +96,7 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Image Width="30" Height="30" Visibility="{Binding Foto, Converter={StaticResource boolConv}}" Source="{Binding Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}"/>
+                                            <Image Width="30" Height="30" Visibility="{Binding Foto, Converter={StaticResource boolConv}}" Source="{Binding MarcaModelo, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}"/>
                                             <!--<Image Source="/SirCoPOS.Win;component/Images/Vendedora.png" Width="40"/>-->
                                         </StackPanel>
                                     </DataTemplate>
@@ -216,6 +216,9 @@
                             <DataTemplate x:Key="pagoEF">
                                 <vp:PagoEfectivoView/>
                             </DataTemplate>
+                            <DataTemplate x:Key="pagoGO">
+                                <vp:PagoGoView/>
+                            </DataTemplate>
                             <DataTemplate x:Key="pagoTC">
                                 <vp:PagoTarjetaCreditoView/>
                             </DataTemplate>
@@ -242,6 +245,9 @@
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding FormaPago}" Value="EF">
                                                         <Setter Property="ContentTemplate" Value="{StaticResource pagoEF}"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding FormaPago}" Value="GO">
+                                                        <Setter Property="ContentTemplate" Value="{StaticResource pagoGO}"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding FormaPago}" Value="MD">
                                                         <Setter Property="ContentTemplate" Value="{StaticResource pagoEF}"/>

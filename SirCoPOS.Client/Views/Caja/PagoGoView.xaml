@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="SirCoPOS.Client.Views.Caja.PagoGoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
+             mc:Ignorable="d" 
+             xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
+             Height="222.73" Width="280" Loaded="UserControl_Loaded">
+    <UserControl.DataContext>
+        <vm:PagoGoViewModel></vm:PagoGoViewModel>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style x:Key="border_style" TargetType="{x:Type Border}">
+            <Style.Resources>
+                <DropShadowEffect x:Key="dropShadowEffect" BlurRadius="1" ShadowDepth="2" Color="#FF2686AA" RenderingBias="Quality"/>
+            </Style.Resources>
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Effect" Value="{StaticResource dropShadowEffect}"/>
+            <Setter Property="BorderBrush" Value="GhostWhite"/>
+            <Setter Property="BorderThickness" Value="0,0,2,2"/>
+            <Setter Property="Padding" Value="0,0,0,0"/>
+        </Style>
+        <Style x:Key="text_style" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Background" Value="AliceBlue"/>
+        </Style>
+        <Style x:Key="lbl_style" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Segoe UI Symbol"/>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid x:Name="PagoGoPlazos">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="60*" />
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="34*" />
+            <RowDefinition Height="32*" />
+            <RowDefinition Height="35*" />
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+        </Grid.Background>
+        <!--Titulo Total-->
+        <TextBlock x:Name="lblTotal" Grid.Row="2" Text="Total" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
+        <!--Titulo Pagar con-->
+        <TextBlock x:Name="lblPagarCon" Grid.Row="3" Text="Pagar Con" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
+        <!--Titulo Pagar-->
+        <TextBlock x:Name="lblPagar" Grid.Row="4" Text="Pagar" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
+        <!--Titulo Regresar (Cambio)-->
+        <TextBlock x:Name="lblCambio" Grid.Row="5" Text="Regresar" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
+        <!--Saldo-->
+        <TextBlock x:Name="lblSaldo" Grid.Row="6" Text="Saldo" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
+        <!--Importe venta-->
+        <TextBlock x:Name="txtTotal" Grid.Column="3" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}"  Style="{StaticResource ResourceKey=lbl_style}" Grid.Row="2" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
+        <!--Importe Regresar (Cambio)-->
+        <TextBlock x:Name="txtCambio" Grid.Column ="3" Grid.Row="5" Text="{Binding Regresar, Mode=OneWay, StringFormat=\{0:C\}}" Style="{StaticResource ResourceKey=lbl_style}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
+        <!--Importe Saldo-->
+        <TextBlock x:Name="txtSaldo" Grid.Column ="3" Grid.Row="6" Text="{Binding Pendiente, Mode=OneWay, StringFormat=\{0:C\}}" Style="{StaticResource ResourceKey=lbl_style}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
+        <!--Importe con que se paga-->
+        <TextBox x:Name="pagarConTextBox"  Grid.Row="3" Grid.Column="3"  Text="{Binding PagaCon, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
+        <TextBox GotFocus="pagarTextBox_GotFocus" x:Name="pagarTextBox" Grid.Row="4" Grid.Column="3" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Delay=500}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
+        <!--Boton completar-->
+        <Border Margin= "0,10,-15,-5" Grid.Row="7" CornerRadius="3" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="2" >
+            <Button   Command="{Binding CompletarCommand}" x:Name="button" >
+                <Button.Background>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+                </Button.Background>
+                <Button.Content>
+                    <TextBlock Text="Completar" FontSize="15" />
+
+                </Button.Content>
+
+            </Button>
+        </Border>
+        <!--<Border BorderBrush="Gray" BorderThickness="1" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="211" Margin="6,5,0,0" Grid.RowSpan="10" VerticalAlignment="Top" Width="219"/>-->
+    </Grid>
+</UserControl>

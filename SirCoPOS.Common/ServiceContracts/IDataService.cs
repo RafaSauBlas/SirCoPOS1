@@ -28,6 +28,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         int PrintNumCopias();
         [OperationContract]
+        int getminPagoGO();
+        [OperationContract]
         Entities.ScanDevolucionResponse ScanProductoDevolucion(string serie, bool cancelacion);
         [OperationContract]
         Entities.ScanDevolucionResponse ScanProductoFromDevolucion(string serie);

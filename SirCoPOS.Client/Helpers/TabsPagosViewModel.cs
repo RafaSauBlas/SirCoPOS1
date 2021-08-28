@@ -36,6 +36,7 @@ namespace SirCoPOS.Client.Helpers
                 { FormaPago.TD, new Models.FormaPagoKey { Enabled = true, Key = Key.F3, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
                 { FormaPago.DV, new Models.FormaPagoKey { Enabled = true, Key = Key.F4, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
                 { FormaPago.MD, new Models.FormaPagoKey { Enabled = true, Key = Key.F12, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
+                { FormaPago.GO, new Models.FormaPagoKey { Enabled = true, Key = Key.F13, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
 
                 { FormaPago.VA, new Models.FormaPagoKey { Enabled = true, Key = Key.F6, Duplicate = true, WithClient = false, ClientRequired = true, Credito = true } },
                 { FormaPago.CV, new Models.FormaPagoKey { Enabled = true, Key = Key.F7, Duplicate = true, WithClient = false, ClientRequired = false, Credito = true } },
@@ -214,6 +215,7 @@ namespace SirCoPOS.Client.Helpers
             switch (o.FormaPago)
             {
                 case FormaPago.EF:
+                case FormaPago.GO:
                     p = new Models.Pagos.Pago
                     {
                         FormaPago = o.FormaPago,

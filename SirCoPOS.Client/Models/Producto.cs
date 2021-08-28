@@ -55,6 +55,9 @@ namespace SirCoPOS.Client.Models
         public string Serie { get; set; }
         public string Marca { get; set; }
         public string Modelo { get; set; }
+        public string MarcaModelo 
+        { get { return Marca + Modelo ; }
+        }
         public string Talla { get; set; }
         public string Corrida { get; set; }
         public BitmapImage Foto = new BitmapImage(new Uri("https://www.gravatar.com/avatar/1c32fe01c48edccb228f69feb0377b7a?s=64&d=identicon&r=PG"));
