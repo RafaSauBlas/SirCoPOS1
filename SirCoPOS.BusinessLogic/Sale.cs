@@ -548,7 +548,10 @@ namespace SirCoPOS.BusinessLogic
                 //    var corrida = ctx.Corridas.Where(i => i.marca == serie.marca && i.estilon == serie.estilon && i.proveedor == serie.proveedors
                 //        && String.Compare(serie.medida, i.medini) >= 0 && String.Compare(serie.medida, i.medfin) <= 0).SingleOrDefault();
 
-                dic.Add(sf.Serie, new Common.Entities.ProductoPromocion { Serie = sf.Serie });
+                if (!dic.ContainsKey(sf.Serie))
+                {
+                    dic.Add(sf.Serie, new Common.Entities.ProductoPromocion { Serie = sf.Serie });
+                }
                 //    dser.Add(sf.Serie, serie);
                 //    dcor.Add(sf.Serie, corrida);
             }

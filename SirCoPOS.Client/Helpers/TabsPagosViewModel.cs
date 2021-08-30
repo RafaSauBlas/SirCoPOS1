@@ -190,11 +190,21 @@ namespace SirCoPOS.Client.Helpers
                 //    this.FormasPago.Refresh();
                 //}
 
+                // Si la Forma de Pago trae un cliente asignado y ya se seleccionó un cliente anteriormente
+                // Avisar que se cambiará
+                if (this.Cliente != null && o.Cliente != null)
+                {
+                    if (o.Cliente  != this.Cliente.Id)
+                    {
+                        MessageBox.Show("Se cambiará el cliente ya que la/n" +
+                                        "Forma de Pago lo trae asignado", "Forma de Pago", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
                 var p = await ParsePago(o);
                 p.PropertyChanged += (s, e) => RaisePropertyChanged(nameof(this.TotalPayment));
 
                 AddPago(p);
-
+                
             });
         }
         protected virtual void AddPago(Models.Pagos.Pago p)
