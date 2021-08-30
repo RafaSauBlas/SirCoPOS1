@@ -28,7 +28,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 {
                     if (Expirado)
                     {
-                        MessageBox.Show("Vale Expirado", "Pago Vale Digital", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Vale Expirado.", "Pago Vale Digital", MessageBoxButton.OK, MessageBoxImage.Error);
                         this.RaisePropertyChanged(nameof(this.Expirado));
                     }
                     else
@@ -42,7 +42,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 }
                 else
                 {
-                    MessageBox.Show("No se encontró Vale.", "Pago Vale Digital", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Vale no encontrado.", "Pago Vale Digital", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }, () => !String.IsNullOrEmpty(this.Search));
         }

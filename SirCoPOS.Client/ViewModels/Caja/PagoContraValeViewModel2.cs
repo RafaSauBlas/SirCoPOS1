@@ -30,7 +30,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 {
                     if (this.Vale.Cancelado)
                     {
-                        MessageBox.Show("ContraVale Cancelado", "Pago ContraVale", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("ContraVale Cancelado.", "Pago ContraVale", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     else
                     {
@@ -44,7 +44,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 }
                 else
                 {
-                    MessageBox.Show("ContraVale NO Encontrado", "Pago ContraVale", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Contravale no encontrado.", "Pago ContraVale", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }, () => !String.IsNullOrEmpty(this.Search) && !String.IsNullOrEmpty(this.SucursalSearch));
 

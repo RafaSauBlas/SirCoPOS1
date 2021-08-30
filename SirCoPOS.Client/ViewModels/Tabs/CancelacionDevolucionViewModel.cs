@@ -83,6 +83,10 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                                 can.Scanned = true;                            
                         }
                     }
+                    else
+                    {
+                        this.ErrorMessage = "Artículo no encontrado";
+                    }
                 }
                 else
                 {
