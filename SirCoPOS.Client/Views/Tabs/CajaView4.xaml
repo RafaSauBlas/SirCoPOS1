@@ -35,9 +35,6 @@
     <UserControl.DataContext>
         <vm:CajaViewModel/>
     </UserControl.DataContext>
-    <UserControl.InputBindings>
-        <KeyBinding Key="F5" Command="{Binding Nada}"></KeyBinding>
-    </UserControl.InputBindings>
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
         <Grid.RowDefinitions>
             <RowDefinition Height="293*"/>
@@ -59,7 +56,7 @@
                     <!--Data Grid de Articulos-->
                     <DataGrid Name="dgView" AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserAddRows="False" ItemsSource="{Binding Productos}" SelectedItem="{Binding SelectedItem}" Margin="0,0,29,0" Grid.ColumnSpan="3" SelectionChanged="DataGrid_SelectionChanged">
                         <DataGrid.InputBindings>
-                            <KeyBinding Key="Backspace" Command="{Binding MoveProductoCommand}"></KeyBinding>
+                            <KeyBinding Key="Backspace" Command="{Binding RemoveCommand}"></KeyBinding>
                         </DataGrid.InputBindings>
                         <DataGrid.RowStyle>
                             <Style TargetType="{x:Type DataGridRow}">
@@ -584,7 +581,7 @@
                                 <Button Width="170" Height="160" Margin="5,5,5,5" IsEnabled="{Binding Value.Enabled}" >
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
-                                            <i:InvokeCommandAction CommandParameter="{Binding Key}" Command="{Binding DataContext.AddFormaCommand, ElementName=dummyElement}"/>
+                                            <i:InvokeCommandAction CommandParameter="{Binding Key.}" Command="{Binding DataContext.AddFormaCommand, ElementName=dummyElement}"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                     <Image Source="{Binding Key, Mode=OneWay, Converter={StaticResource ImgSource}}"  RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>

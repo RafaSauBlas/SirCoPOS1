@@ -28,5 +28,9 @@ namespace SirCoPOS.Client.Views.Caja
         {
             InitializeComponent();
         }
+        private void UserControl_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            this.terminacionTextBox.Focus();
+        }
     }
 }

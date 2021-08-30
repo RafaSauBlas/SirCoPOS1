@@ -117,5 +117,10 @@ namespace SirCoPOS.Client.Views.Tabs
                 seleccionar();
             }
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.txtEntrega.Focus();
+        }
     }
 }

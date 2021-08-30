@@ -91,5 +91,10 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             _dt.Start();
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.tbserie.Focus();
+        }
     }
 }
