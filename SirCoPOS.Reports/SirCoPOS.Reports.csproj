@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\DevolObservacion.cs" />
     <Compile Include="Entities\Pago.cs" />
     <Compile Include="Entities\PlanPago.cs" />
     <Compile Include="Entities\PlanPagoDetalle.cs" />
@@ -89,6 +90,7 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\SirCoPOS.Reports.Entities.ContraVale.datasource" />
+    <None Include="Properties\DataSources\SirCoPOS.Reports.Entities.DevolObservacion.datasource" />
     <None Include="Properties\DataSources\SirCoPOS.Reports.Entities.Pago.datasource" />
     <None Include="Properties\DataSources\SirCoPOS.Reports.Entities.Pago1.datasource" />
     <None Include="Properties\DataSources\SirCoPOS.Reports.Entities.Pago2.datasource" />
