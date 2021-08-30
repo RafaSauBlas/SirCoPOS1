@@ -118,7 +118,7 @@
                     <TextBlock x:Name="txtExpirado" Background="AliceBlue" FontSize="14" TextAlignment="Center">
                         <TextBlock.Style>
                             <Style TargetType="{x:Type TextBlock}">
-                                <Setter Property="Text" Value=""/>
+                                <!--<Setter Property="Text" Value=""/>-->
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Expirado}" Value="True" >
                                         <Setter Property="Text" Value="Expirado"/>

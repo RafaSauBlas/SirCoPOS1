@@ -10,7 +10,7 @@
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              Height="550" Width="900" Loaded="UserControl_Loaded">
     <UserControl.DataContext>
-        <vm:PagoValeExternoViewModel></vm:PagoValeExternoViewModel>
+        <vm:PagoValeExternoViewModel2></vm:PagoValeExternoViewModel2>
     </UserControl.DataContext>
     <UserControl.Resources>
         <cv:ArrayMultiConverter x:Key="arr"></cv:ArrayMultiConverter>
@@ -160,11 +160,9 @@
                 </Border>
             </StackPanel>
 
-            <StackPanel Margin="15,0,10,0"  Grid.Row="2" >
+            <StackPanel Margin="15,3,10,0"  Grid.Row="2" >
                 <TextBlock x:Name="lblDistrib" Text="Cuenta" Style="{StaticResource ResourceKey=lbl_style}"/>
-                <Border Style="{StaticResource ResourceKey=border_style}">
-                    <TextBox x:Name="txtDistrib" Text="{Binding Vale.Distribuidor.Cuenta}" FontSize="14"/>
-                </Border>
+                <TextBlock x:Name="txtDistrib" Text="{Binding Vale.Distribuidor.Cuenta}" FontSize="14"  TextAlignment="Left" Style="{StaticResource ResourceKey=text_style}"/>
             </StackPanel>
 
             <StackPanel Margin="15,5,15,0" Grid.Row="3" Grid.ColumnSpan="7" Grid.RowSpan="2">

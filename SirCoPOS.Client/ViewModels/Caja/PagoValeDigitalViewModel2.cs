@@ -26,9 +26,10 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.Vale = await _proxy.FindValeDigitalAsync(this.Search);
                 if (this.Vale != null)
                 {
-                    if (this.Vale.Vigencia < DateTime.Now)
+                    if (Expirado)
                     {
                         MessageBox.Show("Vale Expirado", "Pago Vale Digital", MessageBoxButton.OK, MessageBoxImage.Error);
+                        this.RaisePropertyChanged(nameof(this.Expirado));
                     }
                     else
                     {
@@ -67,6 +68,71 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     }
                     break;
             }
+        }
+
+        protected override bool CanAccept()
+        {
+
+            if (this.Vale != null)
+            {
+                if (this.Vale.Cancelado)
+                    return false;
+
+                if (this.Expirado)
+                    return false;
+
+                this.SkipPropertyChanged = true;
+                var isvalid = this.IsValid();
+                this.SkipPropertyChanged = false;
+                if (!isvalid)
+                    return false;
+
+                if (this.Pagar > this.Vale.Disponible)
+                    return false;
+
+                if (this.Limite.HasValue)
+                {
+                    if (this.Pagar > this.Limite)
+                        return false;
+                    if (this.Limite > this.Vale.Distribuidor.LimiteVale)
+                        return false;
+                }
+
+                if (this.Vale.Distribuidor.Status != Common.Constants.StatusDistribuidor.ACTIVO)
+                    return false;
+
+                if (this.Vale.Distribuidor.Promocion)
+                {
+                    if (!this.SelectedPromocion.HasValue)
+                        return false;
+                }
+                if (this.HasPromocionPlazos)
+                {
+                    if (!this.SelectedPlazo.HasValue)
+                        return false;
+                }
+
+                if (this.Productos.Any() && this.Vale.Distribuidor.Electronica)
+                {
+                    var q = this.ProductosView.Cast<Utilities.Models.ProductoPlazoOpciones>()
+                        .Where(i => !i.SelectedPlazo.HasValue);
+                    if (q.Any())
+                        return false;
+                }
+
+                if (this.Pagar > this.TotalCalzado && !this.Vale.Distribuidor.Electronica
+                    && this.Productos.Any())
+                {
+                    return false;
+                }
+                if (this.Pagar > this.Total)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            return false;
         }
 
         protected override void Accept(Utilities.Messages.Pago p)

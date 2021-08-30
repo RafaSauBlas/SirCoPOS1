@@ -245,6 +245,8 @@ namespace SirCoPOS.Utilities.Helpers
 
         public IEnumerable GetErrors(string propertyName)
         {
+            if (propertyName == null)
+                return null;
             if (_errors != null && _errors.ContainsKey(propertyName))
             {
                 return _errors[propertyName];

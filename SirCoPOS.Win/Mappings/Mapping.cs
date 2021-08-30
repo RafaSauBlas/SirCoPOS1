@@ -26,7 +26,7 @@ namespace SirCoPOS.Win.Mappings
             map.CreateMap<Common.Entities.Reports.ReciboContraVale, SirCoPOS.Reports.Entities.ContraVale>();
             map.CreateMap<Common.Entities.Reports.TicketMensaje, SirCoPOS.Reports.Entities.TicketMensaje>();
             map.CreateMap<Common.Entities.Reports.ReciboCancelacion, SirCoPOS.Reports.Entities.ReciboCancelacion>();
-
+            map.CreateMap<Common.Entities.Reports.DevolObservacion, SirCoPOS.Reports.Entities.DevolObservacion>();
         }
     }
 }

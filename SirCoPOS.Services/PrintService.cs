@@ -136,7 +136,7 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
             var ctxpv = new DataAccess.SirCoPVDataContext();
             var ctxc = new DataAccess.SirCoControlDataContext();
             var ctx = new DataAccess.SirCoDataContext();
-            
+            var ctxp = new DataAccess.SirCoPOSDataContext();
             var devolucion = ctxpv.Devoluciones.Where(i => i.sucursal == sucursal && i.devolvta == folio).Single();
 
             
@@ -167,6 +167,7 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
                 }
             };
             var plist = new List<Producto>();
+            var olist = new List<DevolObservacion>();
             foreach (var det in devolucion.Detalles)
             {
                 var serie = ctx.Series.Where(i => i.serie == det.serie).Single();
@@ -179,9 +180,18 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
                         Marca = det.marca, 
                         Descripcion = serie.Articulo.Descripcion
                     });
+
+                var razon = ctxpv.DevolucionRazones.Where(i => i.iddevolucionrazon == det.idrazon).Select(k=>k.descripcion).SingleOrDefault();
+                olist.Add(
+                    new DevolObservacion
+                    {
+                        Serie = det.serie,
+                        Razon = razon,
+                        Comentarios = det.notas
+                    });
             }            
             item.Productos = plist;
-
+            item.Observaciones = olist;
             List<Pago> pdlist = new List<Common.Entities.Reports.Pago>();
             var pagos = venta.Pago.Detalle;
             foreach (var det in pagos)

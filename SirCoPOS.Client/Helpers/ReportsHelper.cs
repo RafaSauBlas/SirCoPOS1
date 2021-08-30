@@ -154,12 +154,14 @@ namespace SirCoPOS.Client.Helpers
             var item = _mapper.Map<SirCoPOS.Reports.Entities.ReciboDevolucion>(devolucion.Recibo);
             var productos = _mapper.Map<IEnumerable<SirCoPOS.Reports.Entities.Producto>>(devolucion.Productos);
             var pagos = _mapper.Map<IEnumerable<SirCoPOS.Reports.Entities.Pago>>(devolucion.Pagos);
+            var observaciones = _mapper.Map<IEnumerable<SirCoPOS.Reports.Entities.DevolObservacion>>(devolucion.Observaciones);
 
             var list = new List<SirCoPOS.Reports.Entities.ReciboDevolucion>() { item };
             var dic = new Dictionary<string, IEnumerable<object>>() {
                 { "devolucionDataSet", list },
                 { "productosDataSet", productos },
-                { "pagoDataSet", pagos }
+                { "pagoDataSet", pagos },
+                { "ObservaDataSet", observaciones }
             };
 
             if (System.Diagnostics.Debugger.IsAttached)

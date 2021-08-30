@@ -11,6 +11,7 @@ namespace SirCoPOS.Common.Entities.Reports
         public ReciboDevolucion Recibo { get; set; }
         public IEnumerable<Producto> Productos { get; set; }
         public IEnumerable<Pago> Pagos { get; set; }
+        public IEnumerable<DevolObservacion> Observaciones { get; set; }
     }
     public class ReciboDevolucion
     {
