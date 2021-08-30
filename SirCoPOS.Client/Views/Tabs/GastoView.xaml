@@ -6,13 +6,13 @@
              xmlns:local="clr-namespace:SirCoPOS.Client.Views.Tabs"
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp">
+             d:DesignHeight="450" d:DesignWidth="800" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp" Loaded="UserControl_Loaded">
     <UserControl.DataContext>
         <vm:GastoViewModel></vm:GastoViewModel>
     </UserControl.DataContext>
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Monto" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="27" Margin="114,7,0,0" TextWrapping="Wrap" Text="{Binding Monto, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtMonto" HorizontalAlignment="Left" Height="27" Margin="114,7,0,0" TextWrapping="Wrap" Text="{Binding Monto, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,39,0,0" TextWrapping="Wrap" Text="Tipo" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="27" Margin="114,70,0,0" TextWrapping="Wrap" Text="{Binding EmpleadoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
             <TextBox.InputBindings>

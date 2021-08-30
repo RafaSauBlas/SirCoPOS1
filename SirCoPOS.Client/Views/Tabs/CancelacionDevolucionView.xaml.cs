@@ -34,8 +34,6 @@ namespace SirCoPOS.Client.Views.Tabs
         public CancelacionDevolucionView()
         {
             InitializeComponent();
-            Seleccionar();
-
             _tabs = new Dictionary<Guid, TabItem>();
             _dt = new System.Windows.Threading.DispatcherTimer();
             _dt.Tick += Dt_Tick;
@@ -120,6 +118,11 @@ namespace SirCoPOS.Client.Views.Tabs
             {
                 Seleccionar();
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.scanTextBox.Focus();
         }
     }
 }

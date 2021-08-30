@@ -625,7 +625,7 @@ namespace SirCoPOS.Services
             item.sexo = sexo;
 
             ctx.SaveChanges();
-            return Convert.ToInt16(item.idcolonia);
+            return Convert.ToInt32(item.idcolonia);
         }
         public Common.Entities.Cliente FinClienteName(string name = null)
         {

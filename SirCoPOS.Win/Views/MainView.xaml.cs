@@ -97,7 +97,6 @@ namespace SirCoPOS.Win.Views
                 {
                     switch (m.Key)
                     {
-                       
                         case Key.F1:
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Caja });
                             break;

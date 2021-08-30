@@ -117,11 +117,16 @@ namespace SirCoPOS.Client.Views.Tabs
         }
 
         private void scanTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
+         {
             var vm = (ViewModels.Tabs.CajaViewModel)this.DataContext;
             if (vm.Cajero.Depto == 3)
             {
                 System.Windows.Clipboard.Clear();
+            }
+
+            if(e.Key == Key.Enter)
+            {
+
             }
         }
 

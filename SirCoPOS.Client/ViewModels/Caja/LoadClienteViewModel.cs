@@ -100,7 +100,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             celular = this.Cliente.Celular;
                             email1 = this.Cliente.Email;
                             sexo1 = this.Cliente.Sexo;
-                            colonia1 = Convert.ToInt16(this.Cliente.Colonia);
+                            colonia1 = Convert.ToInt32(this.Cliente.Colonia);
 
                             this.Colonias = _proxy.FindColonias(this.Cliente.CodigoPostal);
                             if (this.Cliente.Colonia != 0)
@@ -265,7 +265,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         celular = this.Cliente.Celular;
                         email1 = this.Cliente.Email;
                         sexo1 = this.Cliente.Sexo;
-                        colonia1 = Convert.ToInt16(this.Cliente.Colonia);
+                        colonia1 = Convert.ToInt32(this.Cliente.Colonia);
 
 
                         this.Colonias = _proxy.FindColonias(this.Cliente.CodigoPostal);

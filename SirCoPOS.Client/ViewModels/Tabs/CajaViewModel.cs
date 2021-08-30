@@ -917,7 +917,6 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     return;
                 }
             }
-            //A PARTIR DE ESTA LINEA SE ESTÁ GENERANDO EL ERROR EN EL EJECUTABLE ¿POR QUÉ? QUIEN SABE xd
             var item = await _proxy.ScanProductoAsync(ser, this.Sucursal.Clave);
             if (item == null)
             {
