@@ -989,7 +989,7 @@ namespace SirCoPOS.Services
             else
             {
                 item = ctx.Ventas.Where(i => i.sucursal == sucursal && i.idcajero == idcajero)
-                    .OrderByDescending(i => i.fum).First();
+                    .OrderByDescending(i => i.fum).FirstOrDefault();
             }
             if (item == null)
                 return null;
@@ -1015,7 +1015,7 @@ namespace SirCoPOS.Services
                 item = ctx.Devoluciones.Where(i => i.sucursal == sucursal && i.devolvta == folio).SingleOrDefault();
             else
                 item = ctx.Devoluciones.Where(i => i.sucursal == sucursal && i.idcajero == idcajero)
-                    .OrderByDescending(i => i.fum).First();
+                    .OrderByDescending(i => i.fum).FirstOrDefault();
             if (item == null)
                 return null;
             var res = new Common.Entities.DevolucionView
