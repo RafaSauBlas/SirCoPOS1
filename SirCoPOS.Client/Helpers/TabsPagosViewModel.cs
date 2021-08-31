@@ -196,8 +196,8 @@ namespace SirCoPOS.Client.Helpers
                 {
                     if (o.Cliente  != this.Cliente.Id)
                     {
-                        MessageBox.Show("Se cambiará el cliente ya que la/n" +
-                                        "Forma de Pago lo trae asignado", "Forma de Pago", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("Se cambiará el cliente  porque la" + "\n" + 
+                                        "Forma de Pago ya lo trae asignado", "Forma de Pago", MessageBoxButton.OK, MessageBoxImage.Information);
                     }
                 }
                 var p = await ParsePago(o);
