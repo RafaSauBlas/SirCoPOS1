@@ -37,7 +37,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 }
                 else
                 {
-                    MessageBox.Show("Distribuidor no localizado", "Pago Credito Distribuidor", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Distribuidor no encontrado.", "Pago Credito Distribuidor", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }, () => !String.IsNullOrEmpty(this.Search));
         }

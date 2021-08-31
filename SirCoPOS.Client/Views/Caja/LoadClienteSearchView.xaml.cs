@@ -186,32 +186,32 @@ namespace SirCoPOS.Client.Views.Caja
             if (txt_Nombre.Text == "")
             {
                 txt_Nombre.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN NOMBRE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un nombre para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtAppa.Text == "")
             {
                 txtAppa.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO PATERNO PARA CONTRINUAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un apellido paterno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtApma.Text == "")
             {
                 txtApma.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO MATERNO PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un apellido materno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txt_cp.Text == "")
             {
                 txt_cp.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN CODIGO POSTAL PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un código postal para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (cbColonia.Text == null)
             {
                 cbColonia.Focus();
-                MessageBox.Show("NECESITA SELECCIONAR UNA COLONIA PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita seleccionar una colonia para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if(txtCalle.Text == "")
             {
                 txtCalle.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UNA CALLE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir una calle para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             txtNumero.SelectAll();
         }
@@ -319,17 +319,17 @@ namespace SirCoPOS.Client.Views.Caja
             if (txt_Nombre.Text == "")
             {
                 txt_Nombre.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN NOMBRE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un nombre para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtAppa.Text == "")
             {
                 txtAppa.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO PATERNO PARA CONTRINUAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un apellido paterno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtApma.Text == "")
             {
                 txtApma.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO MATERNO PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un apellido materno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -338,26 +338,26 @@ namespace SirCoPOS.Client.Views.Caja
             if (txt_Nombre.Text == "")
             {
                 txt_Nombre.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN NOMBRE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un nombre para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtAppa.Text == "")
             {
                 txtAppa.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO PATERNO PARA CONTRINUAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un apellido paterno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtApma.Text == "")
             {
                 txtApma.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO MATERNO PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un apellido materno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txt_cp.Text == "")
             {
                 txt_cp.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN CODIGO POSTAL PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un código postal para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (cbColonia.Text == null)
             {
-                MessageBox.Show("NECESITA SELECCIONAR UNA COLONIA PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita seleccionar una colonia para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -366,32 +366,32 @@ namespace SirCoPOS.Client.Views.Caja
             if (txt_Nombre.Text == "")
             {
                 txt_Nombre.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN NOMBRE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un nombre para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtAppa.Text == "")
             {
                 txtAppa.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO PATERNO PARA CONTRINUAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un apellido paterno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtApma.Text == "")
             {
                 txtApma.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO MATERNO PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un apellido materno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txt_cp.Text == "")
             {
                 txt_cp.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN CODIGO POSTAL PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un código postal para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (cbColonia.Text == null)
             {
                 cbColonia.Focus();
-                MessageBox.Show("NECESITA SELECCIONAR UNA COLONIA PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita seleccionar una colonia pra continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtCalle.Text == "")
             {
                 txtCalle.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UNA CALLE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir una calle para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -400,42 +400,42 @@ namespace SirCoPOS.Client.Views.Caja
             if (txt_Nombre.Text == "")
             {
                 txt_Nombre.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN NOMBRE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un nombre para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtAppa.Text == "")
             {
                 txtAppa.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO PATERNO PARA CONTRINUAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un apellido paterno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtApma.Text == "")
             {
                 txtApma.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO MATERNO PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un apellido materno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txt_cp.Text == "")
             {
                 txt_cp.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN CODIGO POSTAL PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un código postal para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (cbColonia.Text == null)
             {
                 cbColonia.Focus();
-                MessageBox.Show("NECESITA SELECCIONAR UNA COLONIA PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita seleccionar una colonia pra continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtCalle.Text == "")
             {
                 txtCalle.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UNA CALLE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir una calle para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txttel.Text == "(___) ___-____")
             {
                 txttel.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN NÚMERO CELULAR PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un número celular para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtidentif.Text == "")
             {
                 txtidentif.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UNA IFENTIFICACIÓN PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir una identificación para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -444,37 +444,37 @@ namespace SirCoPOS.Client.Views.Caja
             if (txt_Nombre.Text == "")
             {
                 txt_Nombre.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN NOMBRE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un nombre para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtAppa.Text == "")
             {
                 txtAppa.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO PATERNO PARA CONTRINUAR.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un apellido paterno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtApma.Text == "")
             {
                 txtApma.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN APELLIDO MATERNO PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un apellido materno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txt_cp.Text == "")
             {
                 txt_cp.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN CODIGO POSTAL PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un código postal para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (cbColonia.Text == null)
             {
                 cbColonia.Focus();
-                MessageBox.Show("NECESITA SELECCIONAR UNA COLONIA PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita seleccionar una colonia pra continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txtCalle.Text == "")
             {
                 txtCalle.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UNA CALLE PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir una calle para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (txttel.Text == "(___) ___-____")
             {
                 txttel.Focus();
-                MessageBox.Show("NECESITA INTRODUCIR UN NÚMERO CELULAR PARA CONTINUAR", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Necesita introducir un número celular para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
