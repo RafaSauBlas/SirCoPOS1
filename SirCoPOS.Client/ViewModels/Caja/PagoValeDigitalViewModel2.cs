@@ -173,7 +173,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             {
                 if (this.Vale != null)
                 {
-                    if (this.Vale.Vigencia < DateTime.Now)
+                    if (this.Vale.Vigencia < DateTime.Today)
                         return true;
                 }
                 return false;
