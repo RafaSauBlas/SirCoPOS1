@@ -498,6 +498,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                                    Item = item
                                });
         }
+        public override void refreshValorDV()
+        {
+        }
         public RelayCommand AddPagoCommand { get; private set; }
         public ObservableCollection<Models.ProductoCambio> Productos { get; set; }
         #region properties

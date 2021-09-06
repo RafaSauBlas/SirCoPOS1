@@ -159,7 +159,6 @@
     <Compile Include="Helpers\TabViewModelBase.cs" />
     <Compile Include="Mappings\Mapping.cs" />
     <Compile Include="Messages\ClienteMessage.cs" />
-    <Compile Include="Messages\ProrrateoFP.cs" />
     <Compile Include="Messages\DescuentoEspecial.cs" />
     <Compile Include="Messages\NotaItem.cs" />
     <Compile Include="Messages\ProductoDevolucionMessage.cs" />
