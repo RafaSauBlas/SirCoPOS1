@@ -81,14 +81,15 @@ namespace SirCoPOS.Client.Helpers
 
                     await caja1.UpdatePromociones(this.ProrrateoDev);
                     this.Caja.UpdatePagos();
-
-                    
-                    this.Pagar = this.Caja.Total;
+               
+                    var yaPagado = Caja.Pagos.Where(i => i.FormaPago != Common.Constants.FormaPago.DV).Sum(i => i.Importe);
+                    this.Pagar = this.Caja.Total - yaPagado;
                     this.Total = this.Pagar?? 0;
 
                     this.PagoIem.Importe = this.Total;
 
                     Caja.refreshValorDV();
+                    this.Caja.UpdatePagos();
                     _skip = false;
 
                     break;
