@@ -339,6 +339,11 @@ namespace SirCoPOS.BusinessLogic
             //SirCoPOS.Common.Entities.SeriesFormaPago
             //var promo2 = venta.prueba("0000003524047", "01");
             //var promoz = sale.prueba();
+            var devol = model.Pagos.Where(i => i.FormaPago == Common.Constants.FormaPago.DV).Select(m => new { m.Devolucion, m.Sucursal }).SingleOrDefault();
+            if (devol != null)
+            {
+                request.TipoFPago = _data.GetPorcentajeFPago(devol.Sucursal, devol.Devolucion).Select(i => i.FormaPago).SingleOrDefault();
+            }
             var promos = sale.CheckPromociones(request);
 
             DataAccess.SirCoPV.Venta dvet = null;
@@ -350,7 +355,7 @@ namespace SirCoPOS.BusinessLogic
                 var dvta = dev.referencia.Substring(2);
                 dvet = ctxpv.Ventas.Where(i => i.sucursal == dsuc && i.venta == dvta).Single();
             }
-
+            
             header.multiple = false;
             foreach (var sf in model.Productos)
             {

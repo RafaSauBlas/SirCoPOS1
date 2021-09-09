@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using GalaSoft.MvvmLight.Messaging;
 
 namespace SirCoPOS.Client.ViewModels.Caja
 {
@@ -17,12 +16,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
         //private Common.ServiceContracts.IProcessServiceAsync _proc;
         public PagoDevolucionViewModel()
         {
-            Messenger.Default.Register<decimal?>(this, "pagoDV", m => {
-                if (m != null)
-                {
-                    this.Pagar = m;
-                }
-            });
             if (!this.IsInDesignMode)
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
             //_proc = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IProcessServiceAsync>();            
@@ -74,17 +67,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         public void Prorrateo()
         {
-            var result = _proxy.GetPorcentajeFPago(Sucursal, Folio);
-            if (result.Where(i => i.FormaPago == Common.Constants.FormaPago.EF.ToString()).Any())
-            {
-                //this.Tipo = "EF";
-                GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
-                new Messages.ProrrateoFP
-                {
-                    Tipo = "EF",
-                    Success = true,
-                }, this.GID);
-            }
+            this.ProrrateoDev  = _proxy.GetPorcentajeFPago(Sucursal, Folio).Select(i=>i.FormaPago).SingleOrDefault();
         }
 
         public override FormaPago FormaPago => FormaPago.DV;
@@ -121,8 +104,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     return false;
                 if (this.Pagar == 0)
                     return false;
-                if (this.Tipo == "EF")
-                    return false;
                 //var aceptar = this.Devolucion != null
                 //&& (this.Pagar ?? 0) > 0
                 //&& this.Pagar <= this.Devolucion.Disponible
@@ -144,12 +125,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
         {
             get { return _folio; }
             set { this.Set(nameof(this.Folio), ref _folio, value); }
-        }
-        private string _tipo;
-        public string Tipo
-        {
-            get { return _tipo; }
-            set { this.Set(nameof(this.Tipo), ref _tipo, value); }
         }
         private Common.Entities.Devolucion _devolucion;
         public Common.Entities.Devolucion Devolucion

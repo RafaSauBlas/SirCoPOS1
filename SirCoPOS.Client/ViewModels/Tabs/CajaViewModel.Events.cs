@@ -152,9 +152,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             if (_skipPromociones)
                 return;
 
-            await this.UpdatePromociones();
+            await this.UpdatePromociones(this.TipoFPVta);
             UpdatePagos();
-            await this.UpdatePromociones();
+            await this.UpdatePromociones(this.TipoFPVta);
             UpdatePagos();
         }
 

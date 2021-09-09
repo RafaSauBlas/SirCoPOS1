@@ -668,5 +668,6 @@ namespace SirCoPOS.Client.Helpers
         }
         public ObservableCollection<Utilities.Interfaces.IPagoItem> Pagos { get; set; }
         public abstract void UpdatePagos();
+        public abstract void refreshValorDV();
     }
 }

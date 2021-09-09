@@ -7,6 +7,7 @@ using System.Linq;
 using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using RSG;
 using SirCoPOS.Utilities.Interfaces;
 using SirCoPOS.Utilities.Models;
@@ -46,7 +47,7 @@ namespace SirCoPOS.Client.Helpers
                         this.Caja.UpdatePagos();//update pagos
                         if (this.Caja is ICaja)
                         {
-                            await ((ICaja)this.Caja).UpdatePromociones();
+                            await ((ICaja)this.Caja).UpdatePromociones(this.ProrrateoDev);
                             this.Caja.UpdatePagos();
                         }
 
@@ -64,7 +65,7 @@ namespace SirCoPOS.Client.Helpers
                         this.Caja.UpdatePagos();//update pagos
                         if (this.Caja is ICaja)
                         {
-                            await ((ICaja)this.Caja).UpdatePromociones();
+                            await ((ICaja)this.Caja).UpdatePromociones(this.ProrrateoDev);
                             this.Caja.UpdatePagos();
                         }
 
@@ -72,6 +73,25 @@ namespace SirCoPOS.Client.Helpers
                         this.RaisePropertyChanged(nameof(this.Total));
                     }
                     this.AcceptCommand.RaiseCanExecuteChanged();
+                    break;
+                case nameof(this.ProrrateoDev):
+                case "Devolucion":
+                    _skip = true;
+                    var caja1 = (ICaja)this.Caja;
+
+                    await caja1.UpdatePromociones(this.ProrrateoDev);
+                    this.Caja.UpdatePagos();
+               
+                    var yaPagado = Caja.Pagos.Where(i => i.FormaPago != Common.Constants.FormaPago.DV).Sum(i => i.Importe);
+                    this.Pagar = this.Caja.Total - yaPagado;
+                    this.Total = this.Pagar?? 0;
+
+                    this.PagoIem.Importe = this.Total;
+
+                    Caja.refreshValorDV();
+                    this.Caja.UpdatePagos();
+                    _skip = false;
+
                     break;
                 case nameof(Caja):
                     if (this.Caja != null && !(this.Caja is ICaja))
@@ -139,7 +159,7 @@ namespace SirCoPOS.Client.Helpers
                         caja.SkipPromociones = false;
                         //await this.Caja.UpdatePromociones(save: true, force: true);
 
-                        await caja.UpdatePromociones();
+                        await caja.UpdatePromociones(this.ProrrateoDev);
                         this.Caja.UpdatePagos();
 
                         caja.SkipPromociones = true;
@@ -160,7 +180,7 @@ namespace SirCoPOS.Client.Helpers
                         this.TotalCalzado = tc;
                         this.TotalElectronica = te;
 
-                        await caja.UpdatePromociones();
+                        await caja.UpdatePromociones(this.ProrrateoDev);
                         this.Caja.UpdatePagos();
 
                         this.Init();
@@ -187,6 +207,26 @@ namespace SirCoPOS.Client.Helpers
             this.Ready.Resolve();
         }
         public abstract Common.Constants.FormaPago FormaPago { get; }
+
+        private string _prorrateodev;
+        public string ProrrateoDev
+        {
+            get { return _prorrateodev; }
+            set { 
+                if (value != _prorrateodev && value != null)
+                {
+                    string tipoPago = "Crédito";
+                    if (value ==  "EF")
+                    {
+                        tipoPago = "Contado";
+                    }
+                    MessageBox.Show("La Devolución se tomará como pago de " + tipoPago +  "\n" +
+                                     "para aplicar en Promociones Vigentes", "Pago Devolución", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                this.Set(nameof(this.ProrrateoDev), ref _prorrateodev, value); 
+            }
+        }
+
         private decimal _total;
         public decimal Total
         {

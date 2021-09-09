@@ -11,20 +11,20 @@
         <BooleanToVisibilityConverter x:Key="bolvis"></BooleanToVisibilityConverter>
     </UserControl.Resources>
     <Grid >
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="0,10,0,0" TextWrapping="Wrap" Text="{Binding FormaPago}" VerticalAlignment="Top" FontSize="14" FontWeight="DemiBold"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Right" Margin="0,10,-10,121" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}}" FontSize="14" FontWeight="DemiBold" Width="68"/>
-        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="25,10,0,0" TextWrapping="Wrap" Text="{Binding Vale}" VerticalAlignment="Top" FontSize="14"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="{Binding FormaPago}" VerticalAlignment="Top" FontSize="14" FontWeight="DemiBold"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Right" Margin="0,0,0,121" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}}" FontSize="14" FontWeight="DemiBold" Width="60"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="75,0,0,0" TextWrapping="Wrap" Text="{Binding Vale}" VerticalAlignment="Top" FontSize="14"/>
         <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="0,116,0,10" TextWrapping="Wrap" Text="{Binding Info.Distribuidor}" FontSize="14" Width="239"/>
-        <TextBlock Visibility="{Binding Info.SoloCalzado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="textBlock4" Margin="80,10,0,0" TextWrapping="Wrap" Text="Solo Calzado" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14"/>
+        <TextBlock Visibility="{Binding Info.SoloCalzado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="textBlock4" Margin="1,16,0,0" TextWrapping="Wrap" Text="Solo Calzado" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14"/>
         <TextBlock x:Name="textBlock5" HorizontalAlignment="Left" Margin="0,66,0,60" TextWrapping="Wrap" Text="Plazos" FontSize="14"/>
         <TextBlock x:Name="textBlock5_Copy" HorizontalAlignment="Left" Margin="0,36,0,0" TextWrapping="Wrap" Text="Promoción" VerticalAlignment="Top" FontSize="14" Height="18" />
-        <ComboBox IsEnabled="False" ItemsSource="{Binding Plazos}" SelectedItem="{Binding SelectedPlazo}"  Margin="75,64,0,64" Width="70" HorizontalAlignment="Left" >
+        <ComboBox IsEnabled="False" ItemsSource="{Binding Plazos}" SelectedItem="{Binding SelectedPlazo}"  Margin="75,60,0,64" Width="70" HorizontalAlignment="Left" Height="28">
         </ComboBox>
         <ComboBox IsEnabled="False" ItemStringFormat="M" ItemsSource="{Binding Promociones}" SelectedItem="{Binding SelectedPromocion}" Margin="75,34,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165"/>
         <!--<ComboBox IsEnabled="{Binding Info.Promocion}" ItemStringFormat="M" ItemsSource="{Binding Promociones}" SelectedItem="{Binding SelectedPromocion}" Margin="101.34,33.94,78.66,0" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>-->
-        <TextBlock x:Name="textBlock6" Margin="0,93,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Height="19">
+        <TextBlock x:Name="textBlock6" Margin="0,95,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Height="19">
             <TextBlock.Text>
-                <MultiBinding StringFormat="{}Primero:  {0:C}  Ultimo: {1:C}">
+                <MultiBinding StringFormat="{}Primero      {0:C}   Ultimo: {1:C}">
                     <Binding Path="Primero" />
                     <Binding Path="Ultimo" />
                 </MultiBinding>
