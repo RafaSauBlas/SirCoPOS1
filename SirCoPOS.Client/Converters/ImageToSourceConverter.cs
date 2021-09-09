@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,11 @@ namespace SirCoPOS.Client.Converters
 {
     public class ImageToSourceConverter : IValueConverter
     {
+        public string FTP = "http://201.148.82.174/FOTOS/";
+        public string IPP = @"\\10.10.1.1\Sistema\ZT\Fotos\";
+        string marcamodelo;
+        string imgurl;
+        string imgpath;
         public ImageToSourceConverter()
         {
         }
@@ -30,6 +36,26 @@ namespace SirCoPOS.Client.Converters
              Uri uri = (Uri)value;
              return new BitmapImage(uri);
             }
+           else if (value is string)
+            {
+                    marcamodelo = (string)value;
+                    imgurl = FTP + marcamodelo.Replace(' ', '_') + "F3.png";
+                    imgpath = IPP + marcamodelo.Replace(' ', '_') + "F1.jpg";
+
+                    BitmapImage imagen = new BitmapImage(new Uri(imgurl));
+                    if (imagen.CanFreeze == false)
+                    {
+                        if (!File.Exists(imgpath))
+                        {
+                            imagen = null;
+                        }
+                        else
+                        {
+                            imagen = new BitmapImage(new Uri(imgpath));
+                        }
+                    }
+                    return imagen;
+                }
           }
           return value;
          }
