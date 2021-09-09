@@ -538,6 +538,18 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             get => _selectedItem;
             set => this.Set(nameof(this.SelectedItem), ref _selectedItem, value);
         }
+        private string _devsucursal;
+        public override string DevSucursal
+        {
+            get => _devsucursal;
+            set => this.Set(nameof(DevSucursal), ref _devsucursal, value);
+        }
+        private string _devfolio;
+        public override string DevFolio
+        {
+            get => _devfolio;
+            set => this.Set(nameof(DevFolio), ref _devfolio, value);
+        }
         //public decimal SubTotalElectronica
         //{
         //    get { return this.Productos.Where(i => i.NewItem != null && i.NewItem.Electronica).Sum(i => i.NewItem.Precio.Value); }

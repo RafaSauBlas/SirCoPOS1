@@ -10,6 +10,7 @@ namespace SirCoPOS.Common.Entities
     public class CheckPromocionesRequest
     {
         public string Sucursal { get; set; }
+        public string Devolucion { get; set; }
         public IEnumerable<SerieFormasPago> Productos { get; set; }        
     }
 

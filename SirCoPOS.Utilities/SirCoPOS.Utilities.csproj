@@ -116,6 +116,7 @@
     <Compile Include="Models\ProductoPlazoOpciones.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Constants\TabType.cs" />
+    <Compile Include="Models\SucursalFolio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

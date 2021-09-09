@@ -9,8 +9,11 @@ namespace SirCoPOS.Utilities.Interfaces
 {
     public interface ICaja : ICajaBase
     {
-        Task UpdatePromociones(string tipo);
+        Task UpdatePromociones();
         bool SkipPromociones { get; set; }
+        string DevSucursal { get; set; }
+        string DevFolio { get; set; }
+
     }
     public interface ICajaBase
     {
@@ -21,6 +24,6 @@ namespace SirCoPOS.Utilities.Interfaces
         decimal RemainingElectronica { get; }
         void UpdatePagos();
         void refreshValorDV();
-       
+
     }
 }

@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              xmlns:m="clr-namespace:SirCoPOS.Client.Models.Pagos"
              d:DataContext="{d:DesignInstance Type=m:Pago, IsDesignTimeCreatable=True}" d:DesignWidth="300" Height="40">
-    <Grid >
+    <Grid Background="WhiteSmoke">
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="0,5,0,0" TextWrapping="Wrap" Text="{Binding FormaPago}" VerticalAlignment="Top" FontSize="14" FontWeight="DemiBold"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Right" Margin="0,5,0,0" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}}" VerticalAlignment="Top" FontSize="14" FontWeight="DemiBold"/>
     </Grid>

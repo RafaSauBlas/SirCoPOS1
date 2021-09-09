@@ -40,13 +40,28 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             else if (this.Devolucion.Disponible > 0)
                                 this.Pagar = this.Devolucion.Disponible;
 
-                            Prorrateo();
+                            this.DevSucursal = this.Sucursal;
+                            this.DevFolio = this.Devolucion.Folio;
+                            this.DevProrrateo = Prorrateo(this.Sucursal, this.Folio);
+                            if (this.DevProrrateo  != null)
+                            {
+                                string tipoPago = "Crédito";
+                                if (DevProrrateo == "EF")
+                                {
+                                    tipoPago = "Contado";
+                                }
+                                MessageBox.Show("La Devolución se tomará como pago de " + tipoPago + "\n" +
+                                                 "para aplicar en Promociones Vigentes", "Pago Devolución", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
                             break;
                     }
                 }
                 else
                 {
                     MessageBox.Show("No se encontró la Devolución", "Forma de Pago Devolución", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    this.DevSucursal = null;
+                    this.DevFolio = null;
+                    this.DevProrrateo = null;
                 }
             }, () => !String.IsNullOrEmpty(this.Sucursal) && !String.IsNullOrEmpty(this.Folio));
 
@@ -65,9 +80,9 @@ namespace SirCoPOS.Client.ViewModels.Caja
             }
         }
 
-        public void Prorrateo()
+        private string Prorrateo(string suc, string folio)
         {
-            this.ProrrateoDev  = _proxy.GetPorcentajeFPago(Sucursal, Folio).Select(i=>i.FormaPago).SingleOrDefault();
+            return _proxy.GetPorcentajeFPago(suc, folio).Select(i => i.FormaPago).SingleOrDefault();
         }
 
         public override FormaPago FormaPago => FormaPago.DV;

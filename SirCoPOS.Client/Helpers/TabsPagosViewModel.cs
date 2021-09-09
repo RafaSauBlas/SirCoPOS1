@@ -658,6 +658,8 @@ namespace SirCoPOS.Client.Helpers
         {
             get { return this.Total - this.TotalPayment; }
         }
+        public virtual string DevSucursal { get; set; }
+        public virtual string DevFolio { get; set; }
         public virtual decimal RemainingCalzado { get => 0; }
         public virtual decimal RemainingElectronica { get => 0; }
         private Utilities.Interfaces.IPagoItem _selectedPago;

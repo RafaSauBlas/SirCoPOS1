@@ -19,6 +19,9 @@ namespace SirCoPOS.Client.Helpers
         public abstract string Title { get; }
         public PagoViewModel()
         {
+            this.DevFolio = null;
+            this.DevSucursal = null;
+            this.DevProrrateo =  null;
             this.PropertyChanged += PagoViewModel_PropertyChanged;
             _skip = false;
             this.Productos = new ObservableCollection<ProductoPlazoOpciones>();
@@ -47,7 +50,7 @@ namespace SirCoPOS.Client.Helpers
                         this.Caja.UpdatePagos();//update pagos
                         if (this.Caja is ICaja)
                         {
-                            await ((ICaja)this.Caja).UpdatePromociones(this.ProrrateoDev);
+                            await ((ICaja)this.Caja).UpdatePromociones();
                             this.Caja.UpdatePagos();
                         }
 
@@ -65,7 +68,7 @@ namespace SirCoPOS.Client.Helpers
                         this.Caja.UpdatePagos();//update pagos
                         if (this.Caja is ICaja)
                         {
-                            await ((ICaja)this.Caja).UpdatePromociones(this.ProrrateoDev);
+                            await ((ICaja)this.Caja).UpdatePromociones();
                             this.Caja.UpdatePagos();
                         }
 
@@ -74,12 +77,16 @@ namespace SirCoPOS.Client.Helpers
                     }
                     this.AcceptCommand.RaiseCanExecuteChanged();
                     break;
-                case nameof(this.ProrrateoDev):
-                case "Devolucion":
+                case nameof(this.DevProrrateo):
+                case nameof(this.DevFolio):
                     _skip = true;
                     var caja1 = (ICaja)this.Caja;
 
-                    await caja1.UpdatePromociones(this.ProrrateoDev);
+                    //  Replicar en caja la devolucion para actualizar las promociones
+                    caja1.DevFolio = this.DevFolio;
+                    caja1.DevSucursal = this.DevSucursal;
+
+                    await caja1.UpdatePromociones();
                     this.Caja.UpdatePagos();
                
                     var yaPagado = Caja.Pagos.Where(i => i.FormaPago != Common.Constants.FormaPago.DV).Sum(i => i.Importe);
@@ -159,7 +166,7 @@ namespace SirCoPOS.Client.Helpers
                         caja.SkipPromociones = false;
                         //await this.Caja.UpdatePromociones(save: true, force: true);
 
-                        await caja.UpdatePromociones(this.ProrrateoDev);
+                        await caja.UpdatePromociones();
                         this.Caja.UpdatePagos();
 
                         caja.SkipPromociones = true;
@@ -180,7 +187,7 @@ namespace SirCoPOS.Client.Helpers
                         this.TotalCalzado = tc;
                         this.TotalElectronica = te;
 
-                        await caja.UpdatePromociones(this.ProrrateoDev);
+                        await caja.UpdatePromociones();
                         this.Caja.UpdatePagos();
 
                         this.Init();
@@ -208,23 +215,11 @@ namespace SirCoPOS.Client.Helpers
         }
         public abstract Common.Constants.FormaPago FormaPago { get; }
 
-        private string _prorrateodev;
-        public string ProrrateoDev
+        private string _devprorrateo;
+        public string DevProrrateo
         {
-            get { return _prorrateodev; }
-            set { 
-                if (value != _prorrateodev && value != null)
-                {
-                    string tipoPago = "Crédito";
-                    if (value ==  "EF")
-                    {
-                        tipoPago = "Contado";
-                    }
-                    MessageBox.Show("La Devolución se tomará como pago de " + tipoPago +  "\n" +
-                                     "para aplicar en Promociones Vigentes", "Pago Devolución", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                this.Set(nameof(this.ProrrateoDev), ref _prorrateodev, value); 
-            }
+            get { return _devprorrateo; }
+            set { this.Set(nameof(this.DevProrrateo), ref _devprorrateo, value); }
         }
 
         private decimal _total;
@@ -281,6 +276,19 @@ namespace SirCoPOS.Client.Helpers
         }
         public virtual bool HasSelectedPromocion { get; }
         protected bool SkipPropertyChanged { get; set; }
-                                                            
+        private string _devsucursal;
+        public string DevSucursal
+        {
+            get => _devsucursal;
+            set => this.Set(nameof(DevSucursal), ref _devsucursal, value);
+        }
+        private string _devfolio;
+        public string DevFolio
+        {
+            get {return _devfolio;}
+            set {
+                this.Set(nameof(DevFolio), ref _devfolio, value); 
+            }
+        }
     }
 }

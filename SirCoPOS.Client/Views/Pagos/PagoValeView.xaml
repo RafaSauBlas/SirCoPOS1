@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="bolvis"></BooleanToVisibilityConverter>
     </UserControl.Resources>
-    <Grid >
+    <Grid  Background="FloralWhite">
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="{Binding FormaPago}" VerticalAlignment="Top" FontSize="14" FontWeight="DemiBold"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Right" Margin="0,0,0,121" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}}" FontSize="14" FontWeight="DemiBold" Width="60"/>
         <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="75,0,0,0" TextWrapping="Wrap" Text="{Binding Vale}" VerticalAlignment="Top" FontSize="14"/>

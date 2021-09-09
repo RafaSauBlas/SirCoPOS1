@@ -19,6 +19,7 @@
     <UserControl.Resources>
         <c:WindowStateConverter x:Key="windowState"/>
         <c:ImageToSourceConverter x:Key="ImgSource"/>
+        <c:BoolTextConverter x:Key="BolText"/>
         <c:ImageUrlConverter x:Key="imageUrl" />
         <c:FPagoToTextConverter x:Key="FPagoText" />
         <BooleanToVisibilityConverter x:Key="boolConv"/>
@@ -29,7 +30,36 @@
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Background" Value="DeepSkyBlue"/>
             <Setter Property="Foreground" Value="Black"/>
-            
+        </Style>
+        <LinearGradientBrush x:Key="HeaderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientStop Color="#FF6B8E95" Offset="0"/>
+            <GradientStop Color="#FF14A7C1" Offset="1"/>
+            <GradientStop Color="#FF1E424E" Offset="0.509"/>
+            <GradientStop Color="#FF1D4855" Offset="0.542"/>
+            <GradientStop Color="#FF1D4855" Offset="0.542"/>
+            <GradientStop Color="#FF193A44" Offset="0.526"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="HeaderBorderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+            <GradientStop Color="#FF1D1D1D" Offset="0.614"/>
+            <GradientStop Color="#FF007F96" Offset="0.853"/>
+            <GradientStop Color="#FF0AEAFA" Offset="1"/>
+        </LinearGradientBrush>
+
+        <Style x:Key="HeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="MinWidth" Value="0" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontFamily" Value="Calibri" />
+        </Style>
+        <Style  x:Key="MyDataGridCell" TargetType="{x:Type DataGridCell}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
     </UserControl.Resources>
     <UserControl.DataContext>
@@ -42,7 +72,7 @@
         </Grid.RowDefinitions>
         <FrameworkElement x:Name="dummyElement" Grid.RowSpan="2"/>
         <tk:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}" Grid.RowSpan="2">
-            <Grid>
+            <Grid >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="449*"/>
                     <ColumnDefinition Width="651*"/>
@@ -54,11 +84,20 @@
                         <ColumnDefinition Width="31*"/>
                     </Grid.ColumnDefinitions>
                     <!--Data Grid de Articulos-->
-                    <DataGrid Name="dgView" AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserAddRows="False" ItemsSource="{Binding Productos}" SelectedItem="{Binding SelectedItem}" Margin="0,0,29,0" Grid.ColumnSpan="3" SelectionChanged="DataGrid_SelectionChanged">
+                    <DataGrid Name="dgView" AutoGenerateColumns="False" IsReadOnly="True" CanUserDeleteRows="False" CanUserAddRows="False" 
+                              ItemsSource="{Binding Productos}" 
+                              SelectedItem="{Binding SelectedItem}" 
+                              Margin="0,0,29,0" Grid.ColumnSpan="3" 
+                              SelectionChanged="DataGrid_SelectionChanged" 
+                              ColumnHeaderStyle="{StaticResource HeaderStyle}" 
+                              RowHeight="60" 
+                              Background="LightGray" RowBackground="White" AlternatingRowBackground="LightBlue"
+                              CanUserResizeColumns="False" CanUserSortColumns = "False" >
+                        
                         <DataGrid.InputBindings>
                             <KeyBinding Key="Backspace" Command="{Binding RemoveCommand}"></KeyBinding>
                         </DataGrid.InputBindings>
-                        <DataGrid.RowStyle>
+                        <DataGrid.RowStyle >
                             <Style TargetType="{x:Type DataGridRow}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Pagado}" Value="True">
@@ -66,10 +105,14 @@
                                         <Setter Property="Foreground" Value="Black"/>
                                     </DataTrigger>
                                 </Style.Triggers>
+                                
                             </Style>
                         </DataGrid.RowStyle>
                         <DataGrid.CellStyle>
                             <Style TargetType="{x:Type DataGridCell}">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <!--<Setter Property="VerticalContentAlignment" Value="Center"/>-->
+                                <Setter Property= "Height" Value="60"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter Property="Background" Value="#FF061753"/>
@@ -79,14 +122,14 @@
                             </Style>
                         </DataGrid.CellStyle>
                         <DataGrid.Columns>
-                            <DataGridTemplateColumn Header="Plazos">
+                            <!--<DataGridTemplateColumn Header="Plazos">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding HasPlazos}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn>
+                            </DataGridTemplateColumn>-->
+                            <!--<DataGridTemplateColumn>
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <Grid>
@@ -94,39 +137,112 @@
                                         </Grid>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Unico" Binding="{Binding ParUnico}"/>
-                            <DataGridTextColumn Header="Serie" Binding="{Binding Serie}"/>
-                            <DataGridTemplateColumn>
+                            </DataGridTemplateColumn>-->
+                            <DataGridTextColumn Header="Serie" Binding="{Binding Serie}" FontSize="16" Width="125" >
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Unico" Binding="{Binding ParUnico, Converter={StaticResource BolText}}" FontSize="16" Width="55">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Header="Foto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Image Width="30" Height="30" Visibility="{Binding Foto, Converter={StaticResource boolConv}}" Source="{Binding MarcaModelo, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}"/>
+                                            <Image Width="60" Height="60" Visibility="{Binding Foto, Converter={StaticResource boolConv}}" Source="{Binding MarcaModelo, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}"/>
                                             <!--<Image Source="/SirCoPOS.Win;component/Images/Vendedora.png" Width="40"/>-->
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Marca" Binding="{Binding Marca}"/>
-                            <DataGridTextColumn Header="Modelo" Binding="{Binding Modelo}"/>
-                            <DataGridTextColumn Header="Talla" Binding="{Binding Talla}"/>
+                            <DataGridTextColumn Header="Marca" Binding="{Binding Marca}" FontSize="16">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Modelo" Binding="{Binding Modelo}" FontSize="16" >
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Talla" Binding="{Binding Talla}" FontSize="16" >
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
                             <!--<DataGridTextColumn Header="Precio" Binding="{Binding Precio, StringFormat=\{0:C\}}"/>-->
                             <DataGridTemplateColumn Header="Precio">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding Precio, StringFormat=\{0:C\}}"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,2,0">
+                                            <TextBlock Text="{Binding Precio, StringFormat=\{0:C\}}" FontSize="14"  VerticalAlignment="Center" HorizontalAlignment="Right" TextAlignment="Right"/>
                                             <fa:ImageAwesome Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type DataGridCell}}}" Height="15" Icon="Pencil" Visibility="{Binding IsPrecioEdited, Converter={StaticResource boolConv}}"/>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Foreground="Red" Header="Fijo" Binding="{Binding Fijo, StringFormat=\{0:C\}}"/>
-                            <DataGridTextColumn Foreground="Red" Header="Desc" Binding="{Binding DescuentoDirecto, StringFormat=\{0:C\}}"/>
-                            <DataGridTextColumn Foreground="Red" Header="Descuento" Binding="{Binding Descuento, StringFormat=\{0:C\}}"/>
-                            <DataGridTextColumn Foreground="Red" Header="Porcentaje" Binding="{Binding DescuentoPorcentaje, StringFormat=\{0:P\}}"/>
-                            <DataGridTextColumn Foreground="Red" Header="Adicional" Binding="{Binding DescuentoAdicional.Descuento.Descuento, StringFormat=\{0:P\}}"/>
-                            <DataGridTemplateColumn>
+                            <DataGridTextColumn Foreground="Red" Header="Fijo" Binding="{Binding Fijo, StringFormat=\{0:C\}}" FontSize="14" >
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Red" Header="Directo" Binding="{Binding DescuentoDirecto, StringFormat=\{0:C\}}" FontSize="14">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                                        <Setter Property="Margin" Value="0,0,2,0"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Red" Header="Descuento" Binding="{Binding Descuento, StringFormat=\{0:C\}}" FontSize="14">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                                        <Setter Property="Margin" Value="0,0,2,0"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Red" Header="Porcentaje" Binding="{Binding DescuentoPorcentaje, StringFormat=\{0:P\}}" FontSize="14">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                                        <Setter Property="Margin" Value="0,0,2,0"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Foreground="Red" Header="Adicional" Binding="{Binding DescuentoAdicional.Descuento.Descuento, StringFormat=\{0:P\}}" FontSize="14">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <!--<DataGridTemplateColumn>
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Visibility="{Binding PromocionId, Converter={StaticResource valvis}}">
@@ -139,15 +255,48 @@
                                         </TextBlock>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Monedero" Binding="{Binding Monedero, StringFormat=\{0:C\}}"/>
-                            <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat=\{0:C\}}"/>
-                            <DataGridTextColumn Header="Pago" Binding="{Binding Pago, StringFormat=\{0:C\}}"/>
-                            <DataGridTextColumn Header="Saldo" Binding="{Binding Saldo, StringFormat=\{0:C\}}"/>
+                            </DataGridTemplateColumn>-->
+                            <DataGridTextColumn Header="Monedero" Binding="{Binding Monedero, StringFormat=\{0:C\}}" FontSize="14">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat=\{0:C\}}" FontSize="14">
+                                <DataGridTextColumn.ElementStyle >
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                                        <Setter Property="TextAlignment" Value="Right"></Setter> 
+                                        <Setter Property="Margin" Value="0,0,2,0"></Setter> 
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Pago" Binding="{Binding Pago, StringFormat=\{0:C\}}" FontSize="14">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+                                        <Setter Property="TextAlignment" Value="Right"></Setter>
+                                        <Setter Property="Margin" Value="0,0,2,0"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Saldo" Binding="{Binding Saldo, StringFormat=\{0:C\}}" FontSize="14">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="TextAlignment" Value="Right"></Setter>
+                                        <Setter Property="Margin" Value="0,0,2,0"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
                             <DataGridTemplateColumn>
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <ListView ItemsSource="{Binding FormasPago}">
+                                        <ListView ItemsSource="{Binding FormasPago}" >
                                             <ListView.ItemsPanel>
                                                 <ItemsPanelTemplate>
                                                     <StackPanel Orientation="Horizontal"/>
@@ -156,9 +305,9 @@
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
-                                                        <TextBlock>
+                                                        <TextBlock FontSize="12">
                                                             <TextBlock.Text>
-                                                                <MultiBinding StringFormat="{}{0} ({1:C})">
+                                                                <MultiBinding StringFormat="{}{0} ({1:C})" >
                                                                     <Binding Path="FormaPago" />
                                                                     <Binding Path="Importe"/>
                                                                 </MultiBinding>
@@ -171,8 +320,22 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Binding="{Binding NotaRazon}"/>
-                            <DataGridTextColumn Binding="{Binding Notas}"/>
+                            <DataGridTextColumn Binding="{Binding NotaRazon}" FontSize="16">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Notas}" FontSize="16">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                     <!--Boton Subir Producto-->
@@ -318,9 +481,9 @@
                     </Button>
 
                 </Grid>
-                <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Century Gothic" FontSize="16" FontWeight="Heavy">
                     <TextBlock.Text>
-                        <MultiBinding StringFormat="Vendedor: {1} {2} {3}">
+                        <MultiBinding StringFormat="Vendedor : {1} {2} {3}">
                             <Binding Path="Vendedor.Clave" />
                             <Binding Path="Vendedor.Nombre" />
                             <Binding Path="Vendedor.ApellidoPaterno" />
@@ -328,7 +491,7 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <Grid Height="124" Margin="10,0,371,75" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
+                <Grid Height="124" Margin="10,0,400,75" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
                     <!--Lista de Promociones en articulos-->
                     <ListBox SelectedItem="{Binding SelectedPromocion}" ItemsSource="{Binding PromocionesCupones}" Margin="165,0,30,-30">
                         <ListBox.InputBindings>
@@ -339,7 +502,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <CheckBox IsChecked="{Binding Enabled}" Padding="5,0,0,0"/>
                                     <fa:ImageAwesome Visibility="{Binding HasCliente, Converter={StaticResource boolConv}}" Icon="User" Height="10" Margin="0,0,5,0" />
-                                    <TextBlock>
+                                    <TextBlock FontSize="16" FontFamily="Arial Narrow">
                                         <TextBlock.Text>
                                             <MultiBinding StringFormat="{}{0} - {1}">
                                                 <Binding Path="PromocionId" />
@@ -446,33 +609,34 @@
                     <fa:ImageAwesome Icon="Dollar" Height="22" Width="44"/>
                 </Button>
                 <!-- Textbox de scan serie  -->
-                <TextBox x:Name="scanTextBox" HorizontalAlignment="Right" Height="27" Margin="0,7,302,0" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140" IsEnabled="False" Grid.Column="1" PreviewKeyDown="scanTextBox_PreviewKeyDown" KeyUp="scanTextBox_KeyUp" >
+                <TextBox x:Name="scanTextBox" HorizontalAlignment="Right" Height="27" Margin="0,7,330,0" TextWrapping="Wrap" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="140" IsEnabled="False" Grid.Column="1" PreviewKeyDown="scanTextBox_PreviewKeyDown" KeyUp="scanTextBox_KeyUp" >
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding AddCommand}"/>
                     </TextBox.InputBindings>
                 </TextBox>
                 <!--Boton Descuento Adicional-->
-                <Button Command="{Binding AddDescuentoAdicional}" HorizontalAlignment="Left" Margin="135,0,0,204" VerticalAlignment="Bottom" Height="28">
+                <Button Command="{Binding AddDescuentoAdicional}" HorizontalAlignment="Left" Margin="142,0,0,204" VerticalAlignment="Bottom" Height="28">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
                     <Image x:Name="adddesc" Source="/SirCoPOS.Win;component/Images/descuento.png" />
                 </Button>
-                <Grid Margin="0,0,228,74" HorizontalAlignment="Right" Width="138" Height="157"  VerticalAlignment="Bottom" Grid.Column="1">
+                <Grid Margin="0,0,235,74" HorizontalAlignment="Right" Width="157" Height="157"  VerticalAlignment="Bottom" Grid.Column="1">
                     <Rectangle Stroke="Black" Margin="0,31,0,-31"/>
-                    <Image Name="PB"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="130" Height="155" RenderTransformOrigin="0.486,0.534" Margin="0,31,0,-31"/>
+                    <Image Name="PB"  VerticalAlignment="Center" HorizontalAlignment="Center" Width="155" Height="155" RenderTransformOrigin="0.486,0.534" Margin="0,31,0,-31"/>
                 </Grid>
-                <TextBlock Margin="0,10,447,0" TextWrapping="Wrap" Text="{Binding Unidades, Mode=OneWay, StringFormat=Unidades: \{0\}}" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
-                <TextBlock x:Name="lbl" Margin="0,0,67,208" TextWrapping="Wrap" Text="{Binding Monedero, Mode=OneWay, StringFormat=Dinero Electronico: \{0:C\}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1"/>
+                <TextBlock Margin="10,6,490,0" TextWrapping="Wrap" Text="{Binding Unidades, Mode=OneWay, StringFormat=Unidades :  \{0\}}" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
+                <TextBlock x:Name="lbl" Margin="0,0,67,208" TextWrapping="Wrap" Visibility="{Binding Monedero, Converter={StaticResource valvis} }" Text="{Binding Monedero, Mode=OneWay, StringFormat=Dinero Electronico: \{0:C\}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1"/>
                 <Button Command="{Binding SaleCommand}"  HorizontalAlignment="Right" Margin="0,0,10,3" VerticalAlignment="Bottom" Height="35" Width="49" Grid.Column="1">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
                     <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
                 </Button>
-                <TextBlock HorizontalAlignment="Right" Margin="0,0,493,206" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2">
+                <TextBlock HorizontalAlignment="Right" Margin="0,0,500,206" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2" 
+                           FontFamily="Century Gothic">
                     <TextBlock.Text>
-                        <MultiBinding StringFormat="Cliente: {0} {1} {2}">
+                        <MultiBinding StringFormat="Cliente : {0} {1} {2}">
                             <Binding Path="NuevoCliente.Nombre" />
                             <Binding Path="NuevoCliente.ApPaterno" />
                             <Binding Path="NuevoCliente.ApMaterno" />

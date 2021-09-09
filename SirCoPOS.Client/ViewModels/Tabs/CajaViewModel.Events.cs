@@ -19,7 +19,6 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 case nameof(this.SerieSearch):
                     //this.AddCommand.RaiseCanExecuteChanged();
                     break;
-                case nameof(this.TipoFPVta):
                 case nameof(this.SubTotal):
                 case nameof(this.Descuento):
                     RaisePropertyChanged(nameof(this.Total));
@@ -152,9 +151,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             if (_skipPromociones)
                 return;
 
-            await this.UpdatePromociones(this.TipoFPVta);
+            await this.UpdatePromociones();
             UpdatePagos();
-            await this.UpdatePromociones(this.TipoFPVta);
+            await this.UpdatePromociones();
             UpdatePagos();
         }
 

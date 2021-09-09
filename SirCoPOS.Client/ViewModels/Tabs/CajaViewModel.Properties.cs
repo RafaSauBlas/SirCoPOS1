@@ -91,6 +91,18 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 return this.Productos.Where(i => !i.Electronica && !i.Accesorio).Any();
             }
         }
+        private string _devsucursal;
+        public override string DevSucursal
+        {
+            get => _devsucursal;
+            set => this.Set(nameof(DevSucursal), ref _devsucursal, value);
+        }
+        private string _devfolio;
+        public override string DevFolio
+        {
+            get => _devfolio;
+            set => this.Set(nameof(DevFolio), ref _devfolio, value);
+        }
         #endregion
         #region properties
 
@@ -106,12 +118,6 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         //    get { return _clienteId; }
         //    set { this.Set(nameof(this.ClienteId), ref _clienteId, value); }
         //}
-        private string _tipofpvta;
-        public string TipoFPVta
-        {
-            get { return _tipofpvta; }
-            set { this.Set(nameof(this.TipoFPVta), ref _tipofpvta, value); }
-        }
         public ObservableCollection<Models.Producto> Productos { get; set; }
         
         private CollectionViewSource _promocionesCuponesUsadas;

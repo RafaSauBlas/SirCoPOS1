@@ -11,9 +11,9 @@
         <vm:TabHeaderViewModel></vm:TabHeaderViewModel>
     </UserControl.DataContext>
     <StackPanel Orientation="Horizontal">
-        <TextBlock Text="{Binding Title}"></TextBlock>
+        <TextBlock Text="{Binding Title}" FontFamily="System" FontSize="18"></TextBlock>
         <Button Command="{Binding CloseCommand}" x:Name="closeButton" Margin="5,0,0,0" Padding="4,0" Click="closeButton_Click">
-            <fa:ImageAwesome Icon="Remove" Width="10" Height="10" />
+            <fa:ImageAwesome Icon="Remove" Width="12" Height="12" />
         </Button>
     </StackPanel>
 </UserControl>

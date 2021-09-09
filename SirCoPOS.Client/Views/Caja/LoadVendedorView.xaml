@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              mc:Ignorable="d" xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"             
              xmlns:c="clr-namespace:SirCoPOS.Client.Converters"
-             Height="230" Width="430"
+             Height="230" Width="480"
              Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <c:ImageUrlConverter x:Key="imageUrl"></c:ImageUrlConverter>
@@ -18,23 +18,23 @@
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
         </Grid.Background>
         <!-- Captura IdVendedor -->
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="26" Margin="94,10,0,0" TextWrapping="Wrap" Text="{Binding VendedorSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="26" Margin="115,10,0,0" TextWrapping="Wrap" Text="{Binding VendedorSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding FindVendedorCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,11,0,0" TextWrapping="Wrap" Text="Vendedor" VerticalAlignment="Top" />
         <!-- idVendedor-->
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="114,44,0,0" TextWrapping="Wrap" Text="{Binding Vendedor.Id}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="120,44,0,0" TextWrapping="Wrap" Text="{Binding Vendedor.Id}" VerticalAlignment="Top" FontSize="16"/>
         <!-- Sucursal Vendedor-->
-        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="114,67,0,0" TextWrapping="Wrap" Text="{Binding Vendedor.Clave}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="120,67,0,0" TextWrapping="Wrap" Text="{Binding Vendedor.Clave}" VerticalAlignment="Top" FontSize="16"/>
         <!-- Nombre-->
-        <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Margin="114,93,0,0" TextWrapping="Wrap" Text="{Binding Vendedor.Usuario}" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock1_Copy2" HorizontalAlignment="Left" Margin="114,118,0,0" TextWrapping="Wrap" Text="{Binding Vendedor.Nombre}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Margin="120,93,0,0" TextWrapping="Wrap" Text="{Binding Vendedor.Usuario}" VerticalAlignment="Top" FontSize="16"/>
+        <TextBlock x:Name="textBlock1_Copy2" HorizontalAlignment="Left" Margin="120,118,0,0" TextWrapping="Wrap" Text="{Binding Vendedor.Nombre}" VerticalAlignment="Top" FontSize="16"/>
         <!--Apellido Paterno-->
-        <TextBlock x:Name="textBlock1_Copy3" Margin="115,142,184,0" TextWrapping="Wrap" Text="{Binding Vendedor.ApellidoPaterno}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1_Copy3" Margin="120,142,184,0" TextWrapping="Wrap" Text="{Binding Vendedor.ApellidoPaterno}" VerticalAlignment="Top" FontSize="16"/>
         <!--Apellido Materno-->
-        <TextBlock x:Name="textBlock1_Copy4" Margin="114,169,179,0" TextWrapping="Wrap" Text="{Binding Vendedor.ApellidoMaterno}" VerticalAlignment="Top"/>
+        <TextBlock x:Name="textBlock1_Copy4" Margin="120,169,179,0" TextWrapping="Wrap" Text="{Binding Vendedor.ApellidoMaterno}" VerticalAlignment="Top" FontSize="16"/>
         <!--Titulo Id-->
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,44,0,0" TextWrapping="Wrap" Text="ID" VerticalAlignment="Top" />
         <!--Titulo CLave-->
@@ -48,6 +48,6 @@
         <!--Titulo Apellido Materno-->
         <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="10,169,0,0" TextWrapping="Wrap" Text="Ap. Materno" VerticalAlignment="Top" />
         <!--Img Vendedor-->
-        <Image Source="{Binding Vendedor.Id, Converter={StaticResource imageUrl}, ConverterParameter=EmpleadoUrl}" x:Name="image" Height="174" Margin="0,38,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="174" Stretch="None"/>
+        <Image Source="{Binding Vendedor.Id, Converter={StaticResource imageUrl}, ConverterParameter=EmpleadoUrl}" x:Name="image" Margin="0,30,20,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="180" Opacity="0.8" />
     </Grid>
 </UserControl>

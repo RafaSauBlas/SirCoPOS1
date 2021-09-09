@@ -72,7 +72,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 }
                 if (SelectedPago.FormaPago == Common.Constants.FormaPago.DV )
                 {
-                    this.TipoFPVta = null;
+                    this.DevSucursal = null;
+                    this.DevFolio = null;
                 }
                 this.Pagos.Remove(this.SelectedPago);
                 //await this.UpdatePromociones();
@@ -757,19 +758,18 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             return edited;
         }
         private static object syncUpdate = new object();
-        public async Task UpdatePromociones(string tipo)
+        public async Task UpdatePromociones()
         {
             if (_skipPromociones)
                 return;
             //if (!force && Monitor.IsEntered(syncUpdate))
             //    return;
-            this.TipoFPVta = tipo;
 
             Monitor.Enter(syncUpdate);
-            await UpdatePromocionesHelper(tipo);
+            await UpdatePromocionesHelper();
             Monitor.Exit(syncUpdate);
         }
-        private async Task UpdatePromocionesHelper(string tipo=null)
+        private async Task UpdatePromocionesHelper()
         {
             if (!this.PromocionesCupones.Any())
                 return;
@@ -796,8 +796,19 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     Pagos = i.FormasPago.GroupBy(k => k.FormaPago).ToDictionary(k => k.Key, k => k.Sum(kk => kk.Importe)),
                     Promociones = i.FormasPago.GroupBy(k => k.FormaPago).ToDictionary(k => k.Key, k => k.First().HasPromocion),
                 }),
-                TipoFPago = tipo
+
             };
+            // Si existe pagos con FormaPago DV, Actualizar promociones según si se toman como Crédito o Contado según cálculo Prorrateo
+            if (this.Pagos.Where(i => i.FormaPago == Common.Constants.FormaPago.DV).Any())
+            {
+                if (DevFolio != null && DevSucursal != null)
+                {
+                    request.Sucursal = this.DevSucursal;
+                    request.Devolucion = this.DevFolio;
+                    request.TipoFPago = _proxy.GetPorcentajeFPago(DevSucursal, DevFolio).Select(i => i.FormaPago).SingleOrDefault();
+                }
+            }
+
             if (this.NuevoCliente != null)
             {
                 request.HasCliente = true;
