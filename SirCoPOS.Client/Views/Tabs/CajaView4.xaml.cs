@@ -37,6 +37,8 @@ namespace SirCoPOS.Client.Views.Tabs
         private System.Windows.Threading.DispatcherTimer _dt;
         private IDictionary<Guid, TabItem> _tabs;
         private ILogger _log;
+        private int tipo;
+
 
         public CajaView4()
         {
@@ -253,6 +255,55 @@ namespace SirCoPOS.Client.Views.Tabs
                 {
                     seleccionar();
                 }            
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lbox.Items.Count == 0)
+            {
+                lblError.Text = "";
+            }
+            else
+            {
+                lblError.Text = Common.Constants.ClienteDato.error;
+            }
+
+
+            foreach(var co in lbox.Items)
+            {
+                if (co.ToString() == "SirCoPOS.Client.Models.Pagos.PagoVale" && lblcliente.Text == "")
+                {
+                    lblError.Text = Common.Constants.ClienteDato.error;
+                }
+                else if(co.ToString() == "SirCoPOS.Client.Models.Pagos.PagoVale" && lblcliente.Text != "")
+                {
+
+                }
+                else
+                {
+                    lblError.Text = "";
+                }
+            }
+                
+
+        }
+
+        private void lblcliente_TextInput(object sender, TextCompositionEventArgs e)
+        {
+                lblError.Text = "";
+        }
+
+        private void lblcliente_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if(lblcliente.Text != "")
+            {
+                lblError.Text = "";
+            }
+            else if(lblcliente.Text == "" && lbox.Items.Count > 0)
+            {
+                lblError.Text = Common.Constants.ClienteDato.error;
+            }
+            
         }
     }
 }

@@ -41,6 +41,7 @@ namespace SirCoPOS.Common.Constants
         public static string email { get; set; } = string.Empty;
         public static string sexo { get; set; } = string.Empty;
         public static int opcion = 0;
+        public static string error { get; set; } = string.Empty;
 
     }
 }

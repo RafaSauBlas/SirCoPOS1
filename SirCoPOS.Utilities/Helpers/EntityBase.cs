@@ -79,6 +79,7 @@ namespace SirCoPOS.Utilities.Helpers
                         list.AddRange(i.Value);
                     }
                     var res = String.Join(Environment.NewLine, list);
+                    Common.Constants.ClienteDato.error = res;
                     return res;
                 }
                 return null;

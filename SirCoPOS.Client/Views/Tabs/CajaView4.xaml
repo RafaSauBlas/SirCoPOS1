@@ -379,7 +379,7 @@
                 </Grid>
                 <Grid Margin="0,10,10,237" HorizontalAlignment="Right" Width="287" Grid.Column="1">
                     <!--ListBox de  Formas de Pago-->
-                    <ListBox SelectedItem="{Binding SelectedPago}" ItemsSource="{Binding Pagos}" Margin="0,0,29,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" PreviewKeyDown="ListBox_PreviewKeyDown">
+                    <ListBox x:Name="lbox" SelectedItem="{Binding SelectedPago}" ItemsSource="{Binding Pagos}" Margin="0,0,29,0" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" PreviewKeyDown="ListBox_PreviewKeyDown" SelectionChanged="ListBox_SelectionChanged">
                         <ListBox.Resources>
                             <DataTemplate x:Key="pagoEF">
                                 <vp:PagoEfectivoView/>
@@ -633,6 +633,7 @@
                     </Button.Background>
                     <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
                 </Button>
+                <TextBlock x:Name="lblcliente" HorizontalAlignment="Right" Margin="0,0,493,206" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2" SizeChanged="lblcliente_SizeChanged">
                 <TextBlock HorizontalAlignment="Right" Margin="0,0,500,206" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2" 
                            FontFamily="Century Gothic">
                     <TextBlock.Text>
@@ -653,7 +654,7 @@
                         <KeyBinding Key="Return" Command="{Binding AddCuponCommand}"/>
                     </TextBox.InputBindings>
                 </TextBox>
-                <TextBlock Foreground="Red" Text="{Binding Error}" HorizontalAlignment="Left" Margin="10,0,0,46" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
+                <TextBlock x:Name="lblError" Foreground="Red" Text="{Binding Error}" HorizontalAlignment="Left" Margin="10,0,0,46" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
                 <!--<Button Content="Validate" HorizontalAlignment="Right" Margin="0,0,302,204.06" VerticalAlignment="Bottom" Width="77"/>-->
                 <Button Command="{Binding LoadClienteCommand}" HorizontalAlignment="Right" Margin="0,0,403,204" VerticalAlignment="Bottom" Width="51" Grid.Column="1">
                     <Button.Background>
