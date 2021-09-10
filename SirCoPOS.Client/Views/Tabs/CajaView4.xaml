@@ -660,9 +660,9 @@
                     </Button.Background>
                     <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
                 </Button>
-                <TextBlock x:Name="lblcliente" HorizontalAlignment="Right" Margin="0,0,493,206" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2" SizeChanged="lblcliente_SizeChanged"/>
-                <TextBlock HorizontalAlignment="Right" Margin="0,0,500,206" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2" 
-                           FontFamily="Century Gothic">
+                <TextBlock x:Name="lblcliente" HorizontalAlignment="Right" Margin="0,0,493,206" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+                <TextBlock x:Name="lblcli2" HorizontalAlignment="Right" Margin="0,0,500,206" TextWrapping="Wrap" VerticalAlignment="Bottom" Grid.ColumnSpan="2" 
+                           FontFamily="Century Gothic" SizeChanged="lblcli2_SizeChanged">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="Cliente : {0} {1} {2}">
                             <Binding Path="NuevoCliente.Nombre" />
