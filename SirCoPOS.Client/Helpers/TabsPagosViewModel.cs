@@ -247,7 +247,8 @@ namespace SirCoPOS.Client.Helpers
                         FormaPago = o.FormaPago,
                         Importe = o.Importe,
                         Sucursal = o.Sucursal,
-                        Folio = o.Folio
+                        Folio = o.Folio,
+                        Tipo = o.TipoDev,
                     };
                     break;
                 case FormaPago.TC:

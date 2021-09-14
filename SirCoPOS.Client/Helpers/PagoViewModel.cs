@@ -75,6 +75,7 @@ namespace SirCoPOS.Client.Helpers
                         this.Total = this.PagoIem.Importe.Value + this.Caja.Remaining;
                         this.RaisePropertyChanged(nameof(this.Total));
                     }
+                    Caja.refreshValorDV();
                     this.AcceptCommand.RaiseCanExecuteChanged();
                     break;
                 case nameof(this.DevProrrateo):
@@ -207,6 +208,26 @@ namespace SirCoPOS.Client.Helpers
             //await this.Caja.UpdatePromociones();
             //this.Caja.UpdatePagos();
             return await Task.FromResult(default(Utilities.Messages.Pago));
+        }
+        public async void ActualizaPromociones()
+        {
+            var caja1 = (ICaja)this.Caja;
+
+            //  Replicar en caja la devolucion para actualizar las promociones
+            caja1.DevFolio = this.DevFolio;
+            caja1.DevSucursal = this.DevSucursal;
+
+            await caja1.UpdatePromociones();
+            this.Caja.UpdatePagos();
+
+            var yaPagado = Caja.Pagos.Where(i => i.FormaPago != Common.Constants.FormaPago.DV).Sum(i => i.Importe);
+            //this.Pagar = this.Caja.Total - yaPagado;
+            //this.Total = this.Pagar ?? 0;
+
+            //this.PagoIem.Importe = this.Total;
+            await caja1.UpdatePromociones();
+            //Caja.refreshValorDV();
+            this.Caja.UpdatePagos();
         }
         protected Models.Pagos.Pago PagoIem { get; private set; }        
         protected virtual void Init() 

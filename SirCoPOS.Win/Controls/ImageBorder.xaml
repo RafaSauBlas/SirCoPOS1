@@ -6,10 +6,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="100">
     <Grid>
-        <Rectangle RadiusY="10" RadiusX="10" Fill="#2E3489"/>
-        <Rectangle RadiusY="10" RadiusX="10" Margin="1">
+        <!--<Rectangle RadiusY="10" RadiusX="10" Fill="#2E3489"/>-->
+        <Rectangle RadiusY="10" RadiusX="10" >
             <Rectangle.Fill>
-                <ImageBrush x:Name="ib" ImageSource="/SirCoPOS.Win;component/Images/cajero.png"/>
+                <ImageBrush x:Name="ib" ImageSource="/SirCoPOS.Win;component/Images/cajero.png" Stretch="UniformToFill"/>
             </Rectangle.Fill>
         </Rectangle>
     </Grid>

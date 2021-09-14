@@ -35,10 +35,10 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             MessageBox.Show("La devolución no tiene monto disponible", "Forma de Pago Devolución", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                             break;
                         default:
-                            if (this.Devolucion.Disponible >= this.Total)
-                                this.Pagar = this.Total;
-                            else if (this.Devolucion.Disponible > 0)
-                                this.Pagar = this.Devolucion.Disponible;
+                            //if (this.Devolucion.Disponible >= this.Total)
+                            //    this.Pagar = this.Total;
+                            //else if (this.Devolucion.Disponible > 0)
+                            //    this.Pagar = this.Devolucion.Disponible;
 
                             this.DevSucursal = this.Sucursal;
                             this.DevFolio = this.Devolucion.Folio;
@@ -52,6 +52,13 @@ namespace SirCoPOS.Client.ViewModels.Caja
                                 }
                                 MessageBox.Show("La Devolución se tomará como pago de " + tipoPago + "\n" +
                                                  "para aplicar en Promociones Vigentes", "Pago Devolución", MessageBoxButton.OK, MessageBoxImage.Information);
+                                this.ActualizaPromociones();
+
+                                if (this.Devolucion.Disponible >= this.Total)
+                                    this.Pagar = this.Total;
+                                else if (this.Devolucion.Disponible > 0)
+                                    this.Pagar = this.Devolucion.Disponible;
+
                             }
                             break;
                     }
@@ -92,6 +99,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             {
                 case nameof(this.Pagar):
                 case nameof(this.Devolucion):
+                case nameof(this.DevProrrateo):
                     this.AcceptCommand.RaiseCanExecuteChanged();
                     break;
             }
@@ -99,14 +107,21 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         protected override void Accept(Utilities.Messages.Pago p)
         {
-            GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
-                    new Utilities.Messages.Pago
-                    {
-                        FormaPago = FormaPago.DV,
-                        Importe = this.Pagar.Value,
-                        Sucursal = this.Devolucion.Sucursal,
-                        Folio = this.Devolucion.Folio,
-                    }, this.GID);
+            var msg = new Utilities.Messages.Pago {
+                FormaPago = FormaPago.DV,
+                Importe = this.Pagar.Value,
+                Sucursal = this.Devolucion.Sucursal,
+                Folio = this.Devolucion.Folio,
+            };
+            if (this.DevProrrateo == "EF")
+            {
+                msg.TipoDev = "CO";
+            }
+            if (this.DevProrrateo == "VA")
+            {
+                msg.TipoDev = "CR";
+            }
+            GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(msg, this.GID);
         }
 
         protected override bool CanAccept()
