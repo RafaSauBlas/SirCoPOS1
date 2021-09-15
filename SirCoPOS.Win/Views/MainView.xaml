@@ -246,20 +246,29 @@
                     <GradientStop Color="#FF1E3C72"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <ct:ImageBorder ImageSource="{Binding Settings.Cajero.Id, Converter={StaticResource imageUrl}, ConverterParameter=EmpleadoUrl}" Height="50" Margin="65.877,0,0,0" HorizontalAlignment="Left" Width="50" />
+            
             <!--<Image Height="30" Margin="65.877,0,0,0" Source="/SirCoPOS.Win;component/Images/cajero.png" HorizontalAlignment="Left" Width="30"/>-->
             <Image x:Name="___SirCoPOS_Win_component_Images_Reloj_png" Margin="0,10,200,10" Source="/SirCoPOS.Win;component/Images/Reloj.png" HorizontalAlignment="Right" Width="31"/>
-            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" Text="Cajero" d:LayoutOverrides="Height" VerticalAlignment="Center" Foreground="White"/>
-            <TextBlock HorizontalAlignment="Left" Margin="120.877,18.03,0,18.03" TextWrapping="Wrap" Foreground="PowderBlue" VerticalAlignment="Center">
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="{}{0} {1} {2} {3}">
-                        <Binding Path="Settings.Cajero.Clave" />
-                        <Binding Path="Settings.Cajero.Nombre" />
-                        <Binding Path="Settings.Cajero.ApellidoPaterno" />
-                        <Binding Path="Settings.Cajero.ApellidoMaterno" />
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Cajero" Margin="10,0,0,0" VerticalAlignment="Center" Foreground="White"></TextBlock>
+                <TextBlock x:Name="textBlock" Margin="5,0,0,0" TextWrapping="Wrap" d:LayoutOverrides="Height" VerticalAlignment="Center" Foreground="White">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{} {0}">
+                            <Binding Path="Settings.Cajero.Usuario" />
+                        </MultiBinding>
+                    </TextBlock.Text>    
+                </TextBlock>
+                <ct:ImageBorder ImageSource="{Binding Settings.Cajero.Id, Converter={StaticResource imageUrl}, ConverterParameter=EmpleadoUrl}" Width="55" Height="55" VerticalAlignment="Center"/>
+                <TextBlock TextWrapping="Wrap" Foreground="White" VerticalAlignment="Center">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} {1} {2}">
+                            <Binding Path="Settings.Cajero.Nombre" />
+                            <Binding Path="Settings.Cajero.ApellidoPaterno" />
+                            <Binding Path="Settings.Cajero.ApellidoMaterno" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
             <TextBlock x:Name="textBlock2" HorizontalAlignment="Right" Margin="0,0,10,0" TextWrapping="Wrap" Text="{Binding Fecha, StringFormat=\{0:g\}}" d:LayoutOverrides="Height" Foreground="White" VerticalAlignment="Center"/>
             <Grid Height="30" Margin="0,0,291.995,0" HorizontalAlignment="Right">
                 <Image x:Name="___SirCoPOS_Win_component_Images_Sucursal_png" Source="/SirCoPOS.Win;component/Images/Sucursal.png" HorizontalAlignment="Left" Width="30.833"/>
