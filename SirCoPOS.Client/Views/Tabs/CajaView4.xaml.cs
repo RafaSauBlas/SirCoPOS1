@@ -265,31 +265,29 @@ namespace SirCoPOS.Client.Views.Tabs
             }
             else
             {
-                lblError.Text = Common.Constants.ClienteDato.error;
-            }
+                foreach (var co in lbox.Items)
+                {
+                    if (co.ToString() == "SirCoPOS.Client.Models.Pagos.PagoVale" && lblcli2.Text == "")
+                    {
+                        lblError.Text = Common.Constants.ClienteDato.error;
+                    }
+                    else if (co.ToString() == "SirCoPOS.Client.Models.Pagos.PagoVale" && lblcli2.Text != "")
+                    {
 
-
-            foreach(var co in lbox.Items)
-            {
-                if (co.ToString() == "SirCoPOS.Client.Models.Pagos.PagoVale" && lblcliente.Text == "")
-                {
-                    lblError.Text = Common.Constants.ClienteDato.error;
-                }
-                else if(co.ToString() == "SirCoPOS.Client.Models.Pagos.PagoVale" && lblcliente.Text != "")
-                {
-
-                }
-                else if(co.ToString() != "SirCoPOS.Client.Models.Pagos.PagoVale")
-                {
-                    lblError.Text = "";
-                }
-                else
-                {
-                    lblError.Text = "";
+                    }
+                    else if (co.ToString() != "SirCoPOS.Client.Models.Pagos.PagoVale")
+                    {
+                        lblError.Text = "";
+                    }
+                    else
+                    {
+                        lblError.Text = "";
+                    }
                 }
             }
-                
 
+            var ddo = lblcliente.Text;
+            var ddi = lblcli2.Text;
         }
 
         private void lblcliente_TextInput(object sender, TextCompositionEventArgs e)
@@ -306,6 +304,14 @@ namespace SirCoPOS.Client.Views.Tabs
             else if (lblcli2.Text == "" && lbox.Items.Count > 0)
             {
                 lblError.Text = Common.Constants.ClienteDato.error;
+            }
+        }
+
+        private void lblcliente_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if(lblcli2.Text != "" && lbox.Items.Count > 0)
+            {
+                lblError.Text = "";
             }
         }
     }
