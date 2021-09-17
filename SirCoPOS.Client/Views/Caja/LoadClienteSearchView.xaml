@@ -111,8 +111,7 @@
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="lblnumero" HorizontalAlignment="Left" Margin="415,152,0,0" TextWrapping="Wrap" Text="#" VerticalAlignment="Top" FontSize="15"/>
-        <xt:MaskedTextBox  x:Name="txtNumero"   HorizontalAlignment="Left" Height="25" Margin="433,149,0,0" TextWrapping="Wrap" Text="{Binding ClienteNumero, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="64" KeyboardNavigation.TabIndex ="8" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtNumero_LostFocus" GotFocus="txtNumero_GotFocus">
-        </xt:MaskedTextBox>
+        <xt:MaskedTextBox  x:Name="txtNumero"   HorizontalAlignment="Left" Height="25" Margin="433,149,0,0" TextWrapping="Wrap" Text="{Binding ClienteNumero, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="64" KeyboardNavigation.TabIndex ="8" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtNumero_LostFocus" GotFocus="txtNumero_GotFocus" PreviewTextInput="txtNumero_PreviewTextInput"/>
         <TextBlock x:Name="lblemail" HorizontalAlignment="Left" Margin="10,266,0,0" TextWrapping="Wrap" Text="E-Mail" VerticalAlignment="Top"/>
         <xt:MaskedTextBox  x:Name="txtemail"   HorizontalAlignment="Left" Height="25" Margin="74,263,0,0" TextWrapping="Wrap" Text="{Binding ClienteEmail, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="208" KeyboardNavigation.TabIndex ="12" KeyDown="txt_ciudad_KeyDown" FontSize="15" LostFocus="txtemail_LostFocus">
             <xt:MaskedTextBox.InputBindings>

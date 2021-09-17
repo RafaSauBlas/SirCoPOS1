@@ -8,7 +8,7 @@
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             Height="550" Width="900" Loaded="UserControl_Loaded">
+             Height="550" Width="900">
     <UserControl.DataContext>
         <vm:PagoValeViewModel></vm:PagoValeViewModel>
     </UserControl.DataContext>

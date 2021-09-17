@@ -526,5 +526,14 @@ namespace SirCoPOS.Client.Views.Caja
                 seleccionar2();
             }
         }
+
+        private void txtNumero_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            int character = Convert.ToInt32(Convert.ToChar(e.Text));
+            if (character >= 48 && character <= 57)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
     }
 }

@@ -60,23 +60,6 @@ namespace SirCoPOS.Win.Windows
                 _closing = true;
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            int opcion = SirCoPOS.Common.Constants.ClienteInfo.opcion;
-            if (opcion == 1)
-            {
-                SirCoPOS.BusinessLogic.Process PR = new SirCoPOS.BusinessLogic.Process();
-                //PR.UpdClienteInfo();
-
-                MessageBox.Show("La información del cliente se actualizó correctamente", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            if(opcion == 2)
-            {
-                MessageBox.Show("Jajjuas", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-
-        }
-
         public void cerrar()
         {
             this.Close();
