@@ -87,12 +87,15 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 SelectedPlazo = this.SelectedPlazo,
                 Promociones = this.Promocion.Promociones,
                 SelectedPromocion = this.SelectedPromocion,
-                PlazosProductos = this.Productos.Select(i => new ProductoPlazo
-                {
-                    Serie = i.Item.Serie,
-                    Plazos = i.SelectedPlazo,
-                    Importe = i.Item.Precio //i.Pago - se limpia el pago antes de enviar, por eso queda null el pago
-                }).ToArray()
+                PlazosProductos = this.Productos
+                        .Where(i => i.SelectedPlazo.HasValue
+                            && i.Item.FormasPago.Where(k => k.FormaPago == this.FormaPago).Any())
+                        .Select(i => new ProductoPlazo
+                        {
+                            Serie = i.Item.Serie,
+                            Plazos = i.SelectedPlazo,
+                            Importe = i.Item.FormasPago.Where(k => k.FormaPago == this.FormaPago).Single().Importe
+                        }).ToArray()
             };
             Messenger.Default.Send(msg, this.GID);
         }
