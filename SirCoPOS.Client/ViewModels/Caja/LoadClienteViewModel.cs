@@ -70,7 +70,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
                 this.PropertyChanged += LoadClienteViewModel_PropertyChanged;
 
-                this.SearchCommand = new RelayCommand(() => {
+                this.SearchCommand = new RelayCommand(() =>
+                {
                     if (this.ClienteNombreSearch == null && string.IsNullOrWhiteSpace(this.ClienteTelefonoSearch))
                     {
                         if (this.Cliente != null)
@@ -132,21 +133,9 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 });
 
                 this.searchnameCommand = new RelayCommand(() => {
-                    //var nombre = _common.PrepareNombre(this.ClienteNombreSearch);
-                    //var appa = _common.PrepareApPa(this.ClienteApPaSearch);
-                    //var apma = _common.PrepareApMa(this.ClienteApMaSearch);
-                    //var nc = nombre + " " + appa + " " + apma;
-                    //var nexist = _proxy.CheckNombreC(nc);
-
-                    //if (!nexist)
-                    //{
-
-                    //}
-                    //else
-                    //{
                     BusquedaName();
-                    //}
                 });
+
                 this.agregarclientecommand = new RelayCommand(() =>
                 {
                     if (this.ClienteNombreSearch == null)
@@ -301,7 +290,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 Console.WriteLine("Error: {0}", e);
                 throw;
             }
-
         }
         //===========================================================================================================================================================================================================
         Models.NuevoCliente NC = new Models.NuevoCliente();
@@ -309,7 +297,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
         {
             try
             {
-
                 var nombrecomp = this.ClienteNombreSearch + " " + this.ClienteApPaSearch + " " + this.ClienteApMaSearch;
                 var celverif = _proxy.CheckCelular(_common.PreparePhone(this.ClienteCelular1));
                 var existname = _proxy.CheckNombreC(nombrecomp);
@@ -582,7 +569,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         protected override void Accept()
         {
-
             if (NC.Nombre != null && NC.ApPaterno != null && NC.ApMaterno != null)
             {
                 this.Screen = "new";

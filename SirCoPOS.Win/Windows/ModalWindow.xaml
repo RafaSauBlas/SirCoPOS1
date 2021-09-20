@@ -17,14 +17,14 @@
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </Grid.Background>
             <!--Boton Aceptar de ventanas de Pago-->
-            <Button Command="{Binding AcceptCommand}" IsDefault="True" Margin="0,0,10,10" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75">
+            <Button x:Name="aceptar" Command="{Binding AcceptCommand}" IsDefault="True" Margin="0,0,10,10" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                 </Button.Background>
                 <Image x:Name="acept" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
             </Button>
             <!--Boton Cancelar de ventanas de Pago-->
-            <Button Command="{Binding CancelCommand}" IsCancel="True"  Margin="0,0,90,10" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75">
+            <Button x:Name="cancelar" Command="{Binding CancelCommand}" IsCancel="True"  Margin="0,0,90,10" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75">
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                 </Button.Background>

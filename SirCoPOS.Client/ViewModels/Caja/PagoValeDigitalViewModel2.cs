@@ -40,7 +40,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
                         if (!this.Vale.Distribuidor.Promocion)
                             this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
-                        }
+                    }
                 }
                 else
                 {
