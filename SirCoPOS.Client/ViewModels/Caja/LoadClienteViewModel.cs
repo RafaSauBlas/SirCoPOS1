@@ -70,7 +70,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
                 this.PropertyChanged += LoadClienteViewModel_PropertyChanged;
 
-                this.SearchCommand = new RelayCommand(() => {
+                this.SearchCommand = new RelayCommand(() =>
+                {
                     if (this.ClienteNombreSearch == null && string.IsNullOrWhiteSpace(this.ClienteTelefonoSearch))
                     {
                         if (this.Cliente != null)

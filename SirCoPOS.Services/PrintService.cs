@@ -540,9 +540,9 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
             {
                 Cliente.Add("");
             }
-            if (cli.celular != null )
+            if (cli.celular1 != null )
             {
-                Cliente.Add($"{cli.celular}");
+                Cliente.Add($"{cli.celular1}");
             }
             else
             {

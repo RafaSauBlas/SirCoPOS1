@@ -23,6 +23,7 @@ namespace SirCoPOS.Client.Helpers
             var res = await this.Prepare(true);
             this.Accept(res);
         }
+
         private async void CancelHelper()
         {
             await this.Prepare(false);

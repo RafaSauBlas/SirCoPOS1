@@ -925,7 +925,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             if (item == null)
             {
                 MessageBox.Show($"El numero de serie: {ser} no existe.");
-            } else
+            }
+            else
             {
                 var com = new BusinessLogic.Data();
                 //bool mismaSerieSuc = com.GetParam(Common.Constants.Parametros.MISMASUC) ;
