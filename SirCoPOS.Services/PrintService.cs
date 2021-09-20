@@ -360,15 +360,15 @@ public ReciboDevolucionReport GetReciboDevolucion(string sucursal, string folio)
                 pdlist.Add(pa);
 
                 if (((Common.Constants.FormaPago)det.idformapago) == Common.Constants.FormaPago.EF) {
-                    PagarCon = det.efectivo;
-                    importe = (decimal)det.efectivo - (decimal)det.importe;
+                    PagarCon += det.efectivo.Value;
+                    importe  += (det.efectivo.Value - det.importe.Value); 
                 }
-                
+
             }
             item.Pagos = pdlist;
             item.Recibo.PagarCon = PagarCon;
             item.Recibo.Efectivo = importe;
-            
+
             //var ctxcr = new DataAccess.SirCoCreditoDataContext();
             //var plan = ctxcr.PlanPagos.Where(i => i.sucursal == venta.sucursal && i.nota == venta.venta);
 

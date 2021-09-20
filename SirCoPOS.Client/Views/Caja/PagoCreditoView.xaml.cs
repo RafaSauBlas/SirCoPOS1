@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace SirCoPOS.Client.Views.Caja
 {
@@ -27,6 +28,7 @@ namespace SirCoPOS.Client.Views.Caja
         public PagoCreditoView()
         {
             InitializeComponent();
+            Messenger.Default.Register<string>(this, "NextFocus", nextFocus);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -48,13 +50,18 @@ namespace SirCoPOS.Client.Views.Caja
                 cboPlazo.SelectedIndex = 7;
             }
         }
-
-        public void seleccionar()
+        private void tbSearch_KeyUp(object sender, KeyEventArgs e)
         {
-            if(this.txtNoVale.Text != "" && this.txtDisponible.Text != "" && this.txtCuenta.Text != ""
-                && this.txtEstatus.Text != "" && this.txtDistribuidor.Text != "")
+            if (e.Key == Key.Enter)
             {
-                if (this.cboPromocion.IsEnabled == true)
+                tbSearch.SelectAll();
+            }
+        }
+
+        public void nextFocus(string msg)
+        {
+            if (msg == "focus")
+                if (cboPromocion.IsEnabled)
                 {
                     this.cboPromocion.Focus();
                 }
@@ -62,20 +69,7 @@ namespace SirCoPOS.Client.Views.Caja
                 {
                     this.cboPlazo.Focus();
                 }
-            }
-            else
-            {
-                this.tbSearch.Focus();
-                this.tbSearch.SelectAll();
-            }
-        }
 
-        private void tbSearch_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                seleccionar();
-            }
         }
     }
 }

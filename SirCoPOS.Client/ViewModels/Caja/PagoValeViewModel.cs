@@ -51,6 +51,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             });
             this.SearchCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
             {
+                valeOK = false;
                 Views.Caja.PagoValeView2 PV2 = new Views.Caja.PagoValeView2();
                 try { 
                     this.Vale = await _proxy.FindValeAsync(this.Search);
@@ -63,6 +64,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 pago.Info.Electronica = true;
                 if (this.Vale != null)
                 {
+                    this.valeOK = true;
                     if (!this.Vale.Usado) { 
                         pago.Info.Electronica = this.Vale.Distribuidor.Electronica;                    
                         this.Limite = this.Vale.Limite;
@@ -79,20 +81,25 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         if (!Vale.Distribuidor.Electronica && this.TotalElectronica > 0)
                         {
                             MessageBox.Show("El vale " + Vale.Vale + " no permite compras de Electrónica" , "Pago Vale", MessageBoxButton.OK, MessageBoxImage.Information);
+                            this.valeOK = false;
                         }
                     }
                     else
                     {
                         MessageBox.Show("El vale " + Vale.Vale + " ya ha sido utilizado con la\nnota de Venta " + Vale.SucursalUsado+"-"+Vale.NotaUsado+ " el " + Vale.FechaUsado.ToString("dd-MMM-yyyy"), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         this.Search = null;
+                        this.valeOK = false;
                     }
 
                 }
                 else
                 {
                     MessageBox.Show("Vale no encontrado, por favor validelo nuevamente.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    this.valeOK = false;
                 }
-                
+                if (this.valeOK)
+                    Messenger.Default.Send<string>("focus", "NextFocus");
+
             }, () => !String.IsNullOrEmpty(this.Search));
 
             if (!this.IsInDesignMode)
@@ -456,6 +463,12 @@ namespace SirCoPOS.Client.ViewModels.Caja
             set { Set(nameof(this.SelectedFirma), ref _SelectedFirma, value); }
         }
 
+        private bool _valeok;
+        public bool valeOK
+        {
+            get { return _valeok; }
+            set { Set(nameof(this.valeOK), ref _valeok, value); }
+        }
         public override bool HasSelectedPromocion {
             get {
                 if (this.SelectedPromocion.HasValue

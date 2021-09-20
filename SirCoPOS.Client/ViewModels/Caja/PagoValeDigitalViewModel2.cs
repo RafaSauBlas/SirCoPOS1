@@ -23,6 +23,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             this.PropertyChanged += PagoValeDigitalViewModel2_PropertyChanged;
             this.SearchCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
             {
+                valeOK = true;
                 this.Vale = await _proxy.FindValeDigitalAsync(this.Search);
                 if (this.Vale != null)
                 {
@@ -30,6 +31,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     {
                         MessageBox.Show("Vale Expirado.", "Pago Vale Digital", MessageBoxButton.OK, MessageBoxImage.Error);
                         this.RaisePropertyChanged(nameof(this.Expirado));
+                        valeOK = false;
                     }
                     else
                     {
@@ -43,7 +45,10 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 else
                 {
                     MessageBox.Show("Vale no encontrado.", "Pago Vale Digital", MessageBoxButton.OK, MessageBoxImage.Error);
+                    valeOK = false;
                 }
+                if (this.valeOK)
+                    Messenger.Default.Send<string>("focus", "NextFocus");
             }, () => !String.IsNullOrEmpty(this.Search));
         }
 
