@@ -491,26 +491,26 @@ namespace SirCoPOS.Client.Views.Caja
             }
         }
 
-        public void seleccionar()
-        {
-            if(this.txt_Telefono.Text == "(___) ___-____")
-            {
-                this.txt_Telefono.Focus();
-            }
-            else
-            {
-                this.txt_Telefono.Focus();
-                this.txt_Telefono.SelectAll();
-            }
-        }
+        //public void seleccionar()
+        //{
+        //    if(this.txt_Telefono.Text == "(___) ___-____")
+        //    {
+        //        this.txt_Telefono.Focus();
+        //    }
+        //    else
+        //    {
+        //        this.txt_Telefono.Focus();
+        //        this.txt_Telefono.SelectAll();
+        //    }
+        //}
 
-        public void seleccionar2()
-        {
-            if(this.txtCalle.Text == "")
-            {
-                this.txt_Nombre.Focus();
-            }
-        }
+        //public void seleccionar2()
+        //{
+        //    if(this.txtCalle.Text == "")
+        //    {
+        //        this.txt_Nombre.Focus();
+        //    }
+        //}
 
         private void txt_Telefono_KeyUp(object sender, KeyEventArgs e)
         {

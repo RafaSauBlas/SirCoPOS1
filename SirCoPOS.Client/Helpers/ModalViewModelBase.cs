@@ -54,7 +54,7 @@ namespace SirCoPOS.Client.Helpers
         protected void RegisterMessages()
         {
             Messenger.Default.Register<Messages.Vendedor>(this, this.GID, m => {
-                Messenger.Default.Send<string>("focus", "doFocus");
+                Messenger.Default.Send<string>("focus", "Focusear");
             });
         }
 
