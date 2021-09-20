@@ -2752,7 +2752,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Recibido en Efectivo : </Value>
+                <Value>E f e c t i v o : </Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -3161,7 +3161,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Cambio : </Value>
+                <Value>C a m b i o : </Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
