@@ -269,7 +269,10 @@ namespace SirCoPOS.Client.Views.Tabs
                 {
                     if (co.ToString() == "SirCoPOS.Client.Models.Pagos.PagoVale" && lblcli2.Text == "")
                     {
-                        lblError.Text = Common.Constants.ClienteDato.error;
+                        if(Common.Constants.ClienteDato.error == "Cliente Requerido")
+                        {
+                            lblError.Text = Common.Constants.ClienteDato.error;
+                        }
                     }
                     else if (co.ToString() == "SirCoPOS.Client.Models.Pagos.PagoVale" && lblcli2.Text != "")
                     {
@@ -303,7 +306,10 @@ namespace SirCoPOS.Client.Views.Tabs
             }
             else if (lblcli2.Text == "" && lbox.Items.Count > 0)
             {
-                lblError.Text = Common.Constants.ClienteDato.error;
+                if (Common.Constants.ClienteDato.error == "Cliente Requerido")
+                {
+                    lblError.Text = Common.Constants.ClienteDato.error;
+                }
             }
         }
 
