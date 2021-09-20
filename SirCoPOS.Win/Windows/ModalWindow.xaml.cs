@@ -25,6 +25,8 @@ namespace SirCoPOS.Win.Windows
         public ModalWindow()
         {
             InitializeComponent();
+            Messenger.Default.Register<string>(this, "DoFocus", doFocus);
+            aceptar.Focus();
             _closing = false;
         }
         private bool _closing;
@@ -58,6 +60,12 @@ namespace SirCoPOS.Win.Windows
             }
             if (!e.Cancel)
                 _closing = true;
+        }
+
+        public void doFocus(string msg)
+        {
+            if (msg == "focus")
+                this.aceptar.Focus();
         }
 
         public void cerrar()

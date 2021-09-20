@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -515,7 +516,7 @@ namespace SirCoPOS.Client.Views.Caja
         {
             if(e.Key == Key.Enter)
             {
-                seleccionar();
+                Messenger.Default.Send<string>("focus", "DoFocus");
             }
         }
 
@@ -523,7 +524,7 @@ namespace SirCoPOS.Client.Views.Caja
         {
             if(e.Key == Key.Enter)
             {
-                seleccionar2();
+                Messenger.Default.Send<string>("focus", "DoFocus");
             }
         }
 

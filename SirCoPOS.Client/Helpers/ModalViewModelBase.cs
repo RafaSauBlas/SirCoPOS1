@@ -50,6 +50,14 @@ namespace SirCoPOS.Client.Helpers
             get { return _isBusy; }
             set { Set(nameof(this.IsBusy), ref _isBusy, value); }
         }
+
+        protected void RegisterMessages()
+        {
+            Messenger.Default.Register<Messages.Vendedor>(this, this.GID, m => {
+                Messenger.Default.Send<string>("focus", "doFocus");
+            });
+        }
+
     }
 
     public abstract class ModalViewModelBase : ModalViewModelBase<object>
