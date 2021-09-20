@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace SirCoPOS.Client.Views.Caja
 {
@@ -27,32 +28,12 @@ namespace SirCoPOS.Client.Views.Caja
         public PagoValeView2()
         {
             InitializeComponent();
+            Messenger.Default.Register<string>(this, "NextFocus", nextFocus);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.tbVale.Focus();
-        }
-
-        public void seleccionar()
-        {
-            if(this.txtNoVale.Text != "" && this.txtDisponible.Text != "" && this.txtCuenta.Text != ""
-                && this.txtEstatus.Text != "" && this.txtDistribuidor.Text != "")
-            {
-                if (this.cboPromocion.IsEnabled == true)
-                {
-                    this.cboPromocion.Focus();
-                }
-                else
-                {
-                    this.cboPlazo.Focus();
-                }
-            }
-            else
-            {
-                this.tbVale.Focus();
-                this.tbVale.SelectAll();
-            }
         }
 
         private void TabControl_TargetUpdated(object sender, DataTransferEventArgs e)
@@ -74,16 +55,23 @@ namespace SirCoPOS.Client.Views.Caja
         {
             if(e.Key == Key.Enter)
             {
-                seleccionar();
+                tbVale.SelectAll();
             }
         }
 
-        private void tbVale_TextChanged(object sender, TextChangedEventArgs e)
+        public void nextFocus(string msg)
         {
-            if(this.tbVale.Text == "" || this.txtNoVale.Text != "")
-            {
-                this.cboPromocion.Focus();
-            }
+            if (msg == "focus")
+                if (cboPromocion.IsEnabled)
+                {
+                    this.cboPromocion.Focus();
+                }
+            else
+                {
+                    this.cboPlazo.Focus();
+                }
+                
         }
+
     }
 }

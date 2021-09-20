@@ -97,7 +97,7 @@
             <StackPanel Margin="15,0,15,0" >
                 <TextBlock x:Name="lblVale" Text="Vale" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border Style="{StaticResource ResourceKey=border_style}">
-                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="13" KeyUp="tbVale_KeyUp" TextChanged="tbVale_TextChanged">
+                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="13" KeyUp="tbVale_KeyUp">
                         <TextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
                         </TextBox.InputBindings>
@@ -245,7 +245,7 @@
             <CheckBox IsChecked="{Binding Vale.Distribuidor.Promocion}" Margin="5,0,0,5" Grid.Row="8" Grid.Column="7" IsEnabled="False" x:Name="checkBox3" />
             <StackPanel Margin="15,0,0,0" Grid.Row="8" Grid.Column="8" Grid.ColumnSpan="2">
                 <TextBlock x:Name="lblPromocion" Text="Promoción" Style="{StaticResource ResourceKey=lbl_style}" />
-                <ComboBox  x:Name="cboPromocion" IsEnabled="{Binding HasPromocion}" ItemStringFormat="M" SelectedValue="{Binding SelectedPromocion}" ItemsSource="{Binding Promocion.Promociones}"  SelectionChanged="cboPromocion_SelectionChanged" FontFamily="Calibri">
+                <ComboBox  x:Name="cboPromocion" IsEnabled="{Binding HasPromocion}" ItemStringFormat="M" SelectedValue="{Binding SelectedPromocion}" ItemsSource="{Binding Promocion.Promociones}"  SelectionChanged="cboPromocion_SelectionChanged" FontFamily="Calibri" KeyboardNavigation.TabIndex="1">
                     <!--<ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="FontSize" Value="8" />
@@ -262,7 +262,7 @@
 
             <StackPanel Margin="15,0,15,0" Grid.Row="8" Grid.Column="10" Grid.ColumnSpan="1">
                 <TextBlock x:Name="lblPlazos" Text="Plazo" Style="{StaticResource ResourceKey=lbl_style}"/>
-                <ComboBox  x:Name="cboPlazo" IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontFamily="Calibri" Height="28" Width="48" HorizontalAlignment="Right"  >
+                <ComboBox  x:Name="cboPlazo" IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontFamily="Calibri" Height="28" Width="48" HorizontalAlignment="Right" KeyboardNavigation.TabIndex="2" >
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="FontSize" Value="8"/>

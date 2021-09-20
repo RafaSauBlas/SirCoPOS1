@@ -26,6 +26,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             this.PropertyChanged += PagoCreditoViewModel2_PropertyChanged;
             this.SearchCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
             {
+                valeOK = true;
                 var res = _common.PrepareTarjetahabiente(this.Search);
                 this.Vale = await _proxy.FindTarjetahabienteAsync(res);                
                 if (this.Vale != null)
@@ -39,8 +40,10 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 else
                 {
                     MessageBox.Show("Tarjetahabiente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    valeOK = false;
                 }
-
+                if (this.valeOK)
+                    Messenger.Default.Send<string>("focus", "NextFocus");
             }, () => !String.IsNullOrEmpty(this.Search));
         }
 
