@@ -128,6 +128,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         else
                         {
                             MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            this.ClienteTelefonoSearch = "";
                         }
                     }
                 });
@@ -450,18 +451,25 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         }
                     }
                     break;
+                case nameof(ClienteCP):
+                case nameof(ClienteColonia):
+                case nameof(ClienteCalle):
+                case nameof(ClienteCelular1):
                 case nameof(ClienteSexo):
                     {
-                        var nombrecomp = this.ClienteNombreSearch + " " + this.ClienteApPaSearch + " " + this.ClienteApMaSearch;
-                        var celverif = _proxy.CheckCelular(_common.PreparePhone(this.ClienteCelular1));
-                        var existname = _proxy.CheckNombreC(nombrecomp);
-
-                        if(!existname && !celverif)
+                        if(this.ClienteCP != null && this.ClienteColonia != null && this.ClienteCalle != null
+                            && this.ClienteCelular1 != null && this.ClienteSexo != null)
                         {
-                            AgregarCliente();
+                            var nombrecomp = this.ClienteNombreSearch + " " + this.ClienteApPaSearch + " " + this.ClienteApMaSearch;
+                            var celverif = _proxy.CheckCelular(_common.PreparePhone(this.ClienteCelular1));
+                            var existname = _proxy.CheckNombreC(nombrecomp);
+
+                            if (!existname && !celverif)
+                            {
+                                AgregarCliente();
+                            }
                         }
                     }
-                    
                     break;
                 case nameof(this.Cliente):
                 case nameof(this.NuevoCliente):
@@ -472,7 +480,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
         public async void Cliente_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-
             switch (e.PropertyName)
             {
                 case nameof(this.NuevoCliente.CodigoPostal):
@@ -501,7 +508,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 Console.WriteLine("Error: {0}", e);
                 throw;
             }
-
         }
 
         public void RefrescarColonias(string cp)
@@ -556,7 +562,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     colonia2 = 0;
                 }
                 Clientexd(name2, appa2, apma2, codigopostal2, calle2, numero2, celular2, celular12, email2, colname, sexo2, identif2);
-
             }
             catch (ArgumentOutOfRangeException e)
             {

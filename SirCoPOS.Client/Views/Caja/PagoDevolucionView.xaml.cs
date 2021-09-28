@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -44,7 +46,28 @@ namespace SirCoPOS.Client.Views.Caja
         {
             if (e.Key == Key.Enter)
             {
-                seleccionar();
+                Messenger.Default.Send<string>("focus", "DoFocus");
+            }
+        }
+
+        private void tbSucursal_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            int character = Convert.ToInt32(Convert.ToChar(e.Text));
+            if (character >= 48 && character <= 57)
+                e.Handled = false;
+            else
+                e.Handled = true;
+        }
+
+        private void tbSucursal_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.tbSucursal.Text.Length == 2)
+            {
+                if(this.tbSucursal.Text == "01" || this.tbSucursal.Text == "02" || this.tbSucursal.Text == "06"
+                    || this.tbSucursal.Text == "08")
+                {
+                    this.txtDevolucion.Focus();
+                }
             }
         }
     }
