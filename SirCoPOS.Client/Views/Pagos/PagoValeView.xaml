@@ -11,24 +11,43 @@
         <BooleanToVisibilityConverter x:Key="bolvis"></BooleanToVisibilityConverter>
     </UserControl.Resources>
     <Grid  Background="FloralWhite">
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="0,0,0,0" TextWrapping="Wrap" Text="{Binding FormaPago}" VerticalAlignment="Top" FontSize="14" FontWeight="DemiBold"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Right" Margin="0,0,0,130" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}}" FontSize="14" FontWeight="DemiBold" Width="85"/>
-        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="75,0,0,0" TextWrapping="Wrap" Text="{Binding Vale}" VerticalAlignment="Top" FontSize="14"/>
-        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="0,120,0,0" TextWrapping="Wrap" Text="{Binding Info.Distribuidor}" FontSize="14" Width="249" />
-        <TextBlock Visibility="{Binding Info.SoloCalzado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" x:Name="textBlock4" Margin="1,16,0,0" TextWrapping="Wrap" Text="Solo Calzado" VerticalAlignment="Top" HorizontalAlignment="Left" FontSize="14"/>
-        <TextBlock x:Name="textBlock5" HorizontalAlignment="Left" Margin="0,66,0,60" TextWrapping="Wrap" Text="Plazos" FontSize="14"/>
-        <TextBlock x:Name="textBlock5_Copy" HorizontalAlignment="Left" Margin="0,36,0,0" TextWrapping="Wrap" Text="Promoción" VerticalAlignment="Top" FontSize="14" Height="18" />
-        <ComboBox IsEnabled="False" ItemsSource="{Binding Plazos}" SelectedItem="{Binding SelectedPlazo}"  Margin="75,65,0,64" Width="70" HorizontalAlignment="Left" Height="28" FontFamily="Calibri">
-        </ComboBox>
-        <ComboBox IsEnabled="False" ItemStringFormat="M" ItemsSource="{Binding Promociones}" SelectedItem="{Binding SelectedPromocion}" Margin="75,34,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="165" FontFamily="Calibri"/>
-        <!--<ComboBox IsEnabled="{Binding Info.Promocion}" ItemStringFormat="M" ItemsSource="{Binding Promociones}" SelectedItem="{Binding SelectedPromocion}" Margin="101.34,33.94,78.66,0" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>-->
-        <TextBlock x:Name="textBlock6" Margin="0,95,10,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" Height="19">
-            <TextBlock.Text>
-                <MultiBinding StringFormat="{}Primero      {0:C}   Ultimo: {1:C}">
-                    <Binding Path="Primero" />
-                    <Binding Path="Ultimo" />
-                </MultiBinding>
-            </TextBlock.Text>
-        </TextBlock>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="fpago" Text="{Binding FormaPago}" FontSize="14" FontWeight="DemiBold"/>
+                <TextBlock x:Name="vale" Margin="20,0,0,0" Text="{Binding Vale}" VerticalAlignment="Top" FontSize="14"/>
+                <TextBlock x:Name="importe" Margin="60,0,0,0" Text="{Binding Importe, StringFormat=\{0:C\}}" FontSize="14" FontWeight="DemiBold" HorizontalAlignment="Right" TextAlignment="Right" />
+            </StackPanel>
+            <TextBlock x:Name="solocalzado" Visibility="{Binding Info.SoloCalzado, Converter={StaticResource bolvis}, FallbackValue=Hidden}" Foreground="Red" Text="Solo Calzado" FontSize="14"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock x:Name="lblPromocion" Text="Promoción" FontSize="14" VerticalAlignment="Center"/>
+                <ComboBox IsEnabled="False"    Margin="10,10,0,0"  ItemStringFormat="M" ItemsSource="{Binding Promociones}" SelectedItem="{Binding SelectedPromocion}" FontFamily="Calibri" Height="30"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock x:Name="lblPlazos"  Text="Plazos" FontSize="14"/>
+                <TextBlock x:Name="Plazos"     Margin="40,0,0,0" TextWrapping="Wrap" Text="{Binding SelectedPlazo}" FontSize="14"  />
+                <TextBlock x:Name="PlazosVale" Margin="60,0,0,0" TextWrapping="Wrap" Text="{Binding PlazoVale}" FontSize="14"  />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <TextBlock x:Name="pagos" FontSize="14" Height="19">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Primero:  {0:C}  Ultimo: {1:C}">
+                            <Binding Path="Primero" />
+                            <Binding Path="Ultimo" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Margin="0,5,0,0">
+                <TextBlock x:Name="txtDistrib" Text="{Binding Info.Distribuidor}" FontSize="14"/>
+            </StackPanel>
+        </StackPanel>
+        
+        <!--<ComboBox IsEnabled="False" ItemsSource="{Binding Plazos}" SelectedItem="{Binding SelectedPlazo}"  Margin="110,55,0,50" Height="30"    Width="40" HorizontalAlignment="Left" FontFamily="Calibri"/>-->
+        
+        <!--<ComboBox IsEnabled="False" ItemsSource="{Binding PlazoVale }" SelectedItem="{Binding SelectedPlazo}"  Margin="180,55,0,50" Height="30" Width="40" HorizontalAlignment="Left" FontFamily="Calibri"/>-->
+        
+        
+        <!--<ComboBox Visibility="Hidden" IsEnabled="{Binding Info.Promocion}" ItemStringFormat="M" ItemsSource="{Binding Promociones}" SelectedItem="{Binding SelectedPromocion}" Margin="101.34,33.94,78.66,0" VerticalAlignment="Top" d:LayoutOverrides="VerticalAlignment"/>-->
+        
     </Grid>
 </UserControl>

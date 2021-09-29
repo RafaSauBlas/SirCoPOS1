@@ -648,8 +648,10 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 foreach (var item in venta.Articulos)
                 {
                     var res = await _proxy.ScanProductoAsync(item.Serie, this.Sucursal.Clave);
-                    var prod = _mapper.Map<Models.Producto>(res.Producto);
-                    AddItem(prod, false);
+                    if (res != null) { 
+                        var prod = _mapper.Map<Models.Producto>(res.Producto);
+                        AddItem(prod, false);
+                    }
                 }
                 foreach (var item in venta.Cupones)
                 {

@@ -40,6 +40,14 @@ namespace SirCoPOS.Client.Models.Pagos
                         this.RaisePropertyChanged(nameof(this.Ultimo));
                     }
                     break;
+                case nameof(this.PlazoVale):
+                    if (this.PlazoVale.HasValue)
+                    {
+                        this.Primero = Math.Ceiling(this.Importe.Value / this.PlazoVale.Value);
+                        var res = this.Primero.Value * (this.PlazoVale.Value - 1);
+                        this.Ultimo = this.Importe.Value - res;
+                    }
+                    break;
             }
         }
         public decimal? Primero { get; set; }
@@ -69,6 +77,12 @@ namespace SirCoPOS.Client.Models.Pagos
                 }
                 return false;
             }
+        }
+        private decimal? _plazovale;
+        public decimal? PlazoVale
+        {
+            get { return _plazovale; }
+            set { this.Set(() => this.PlazoVale, ref _plazovale, value); }
         }
         public bool ContraVale { get; set; }
         public decimal? Limite { get; set; }
