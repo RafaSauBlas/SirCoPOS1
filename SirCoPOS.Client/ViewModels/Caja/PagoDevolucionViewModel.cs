@@ -61,6 +61,9 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
                             }
                             break;
+
+
+
                     }
                 }
                 else
