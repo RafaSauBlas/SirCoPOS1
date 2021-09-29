@@ -298,6 +298,10 @@ namespace SirCoPOS.Client.Helpers
                                 Messenger.Default.Send(new Messages.ClienteMessage { Cliente = cli }, this.GID);
                             }
                         }
+                        if (pv.Info.Electronica && o.PlazosProductos.Where(i=>i.Plazos.HasValue).Any())
+                        {
+                            pv.PlazoVale = o.PlazosProductos.Where(k => k.Plazos.HasValue).Max(i => i.Plazos);
+                        }
                         p = pv;
                     }
                     break;
@@ -335,6 +339,10 @@ namespace SirCoPOS.Client.Helpers
                                 var cli = _proxy.FindCliente(o.Cliente.Value);
                                 Messenger.Default.Send(new Messages.ClienteMessage { Cliente = cli }, this.GID);
                             }
+                        }
+                        if (pv.Info.Electronica && o.PlazosProductos.Where(i => i.Plazos.HasValue).Any())
+                        {
+                            pv.PlazoVale = o.PlazosProductos.Where(k => k.Plazos.HasValue).Max(i => i.Plazos);
                         }
                         p = pv;
                     }
@@ -383,6 +391,10 @@ namespace SirCoPOS.Client.Helpers
                             //    Messenger.Default.Send(new Messages.ClienteMessage { Cliente = cli }, this.GID);
                             //}
                         }
+                        if (pv.Info.Electronica && o.PlazosProductos.Where(i => i.Plazos.HasValue).Any())
+                        {
+                            pv.PlazoVale = o.PlazosProductos.Where(k => k.Plazos.HasValue).Max(i => i.Plazos);
+                        }
                         p = pv;
                     }
                     break;
@@ -426,6 +438,10 @@ namespace SirCoPOS.Client.Helpers
                             {
                                 this.Cliente = new Cliente { DistribuidorId = o.DistribuidorId };
                             }
+                        }
+                        if (cp.Info.Electronica && o.PlazosProductos.Where(i => i.Plazos.HasValue).Any())
+                        {
+                            cp.PlazoVale = o.PlazosProductos.Where(k => k.Plazos.HasValue).Max(i => i.Plazos);
                         }
                         p = cp;
                     }
@@ -471,6 +487,10 @@ namespace SirCoPOS.Client.Helpers
                                 this.Cliente = new Cliente { DistribuidorId = o.DistribuidorId };
                             }
                         }
+                        if (cp.Info.Electronica && o.PlazosProductos.Where(i => i.Plazos.HasValue).Any())
+                        {
+                            cp.PlazoVale = o.PlazosProductos.Where(k => k.Plazos.HasValue).Max(i => i.Plazos);
+                        }
                         p = cp;
                     }
                     break;
@@ -510,6 +530,10 @@ namespace SirCoPOS.Client.Helpers
                             var cli = _proxy.FindCliente(o.Cliente.Value);
                             Messenger.Default.Send(new Messages.ClienteMessage { Cliente = cli }, this.GID);
                         }
+                    }
+                    if (cv.Info.Electronica && o.PlazosProductos.Where(i => i.Plazos.HasValue).Any())
+                    {
+                        cv.PlazoVale = o.PlazosProductos.Where(k => k.Plazos.HasValue).Max(i => i.Plazos);
                     }
                     p = cv;
                     break;
