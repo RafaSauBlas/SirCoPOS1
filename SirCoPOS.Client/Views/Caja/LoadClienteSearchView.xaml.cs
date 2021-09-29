@@ -44,6 +44,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            Messenger.Default.Register<string>(this, "FocuTel", FocusTel); 
             this.txt_Telefono.Focus();
         }
 
@@ -398,46 +399,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void cbSexo_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (txt_Nombre.Text == "")
-            {
-                txt_Nombre.Focus();
-                MessageBox.Show("Necesita introducir un nombre para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (txtAppa.Text == "")
-            {
-                txtAppa.Focus();
-                MessageBox.Show("Necesita introducir un apellido paterno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (txtApma.Text == "")
-            {
-                txtApma.Focus();
-                MessageBox.Show("Necesita introducir un apellido materno para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (txt_cp.Text == "")
-            {
-                txt_cp.Focus();
-                MessageBox.Show("Necesita introducir un código postal para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (cbColonia.Text == null)
-            {
-                cbColonia.Focus();
-                MessageBox.Show("Necesita seleccionar una colonia pra continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (txtCalle.Text == "")
-            {
-                txtCalle.Focus();
-                MessageBox.Show("Necesita introducir una calle para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (txttel.Text == "(___) ___-____")
-            {
-                txttel.Focus();
-                MessageBox.Show("Necesita introducir un número celular para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (txtidentif.Text == "")
-            {
-                txtidentif.Focus();
-                MessageBox.Show("Necesita introducir una identificación para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            
         }
 
         private void txtidentif_GotFocus(object sender, RoutedEventArgs e)
@@ -489,6 +451,22 @@ namespace SirCoPOS.Client.Views.Caja
             {
                 this.txtidentif.BorderBrush = Brushes.Red;
             }
+        }
+
+        public void FocusTel(string msg)
+        {
+            if (msg == "focus")
+            {
+                this.txttel.Focus();
+                this.txttel.SelectAll();
+            }
+
+            if(msg == "focus2")
+            {
+                this.txtApma.Focus();
+                this.txtApma.SelectAll();
+            }
+                
         }
 
         //public void seleccionar()

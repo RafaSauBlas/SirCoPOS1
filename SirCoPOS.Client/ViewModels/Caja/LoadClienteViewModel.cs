@@ -70,6 +70,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
 
                 this.PropertyChanged += LoadClienteViewModel_PropertyChanged;
 
+
                 this.SearchCommand = new RelayCommand(() =>
                 {
                     if (this.ClienteNombreSearch == null && string.IsNullOrWhiteSpace(this.ClienteTelefonoSearch))
@@ -457,16 +458,35 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 case nameof(ClienteCelular1):
                 case nameof(ClienteSexo):
                     {
-                        if(this.ClienteCP != null && this.ClienteColonia != null && this.ClienteCalle != null
+                        if(this.ClienteCP != "" && this.ClienteColonia != null && this.ClienteCalle != null
                             && this.ClienteCelular1 != null && this.ClienteSexo != null)
                         {
                             var nombrecomp = this.ClienteNombreSearch + " " + this.ClienteApPaSearch + " " + this.ClienteApMaSearch;
-                            var celverif = _proxy.CheckCelular(_common.PreparePhone(this.ClienteCelular1));
-                            var existname = _proxy.CheckNombreC(nombrecomp);
 
-                            if (!existname && !celverif)
+                            var celprepa = _common.PreparePhone(this.ClienteCelular1);
+                            if(celprepa.Length == 10)
                             {
-                                AgregarCliente();
+                                var celverif = _proxy.CheckCelular(celprepa);
+
+                                var existname = _proxy.CheckNombreC(nombrecomp);
+
+                                if (!existname)
+                                {
+                                    if (!celverif)
+                                    {
+                                        AgregarCliente();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Ya existe un cliente con el mismo número celular!!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        Messenger.Default.Send<string>("focus", "FocuTel");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Ya existe un cliente con el mismo nombre!!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    Messenger.Default.Send<string>("focus2", "FocuTel");
+                                }
                             }
                         }
                     }
