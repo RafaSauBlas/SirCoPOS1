@@ -44,7 +44,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Messenger.Default.Register<string>(this, "FocuTel", FocusTel); 
+            Messenger.Default.Register<string>(this, "FocusTel", FocusTel); 
             this.txt_Telefono.Focus();
         }
 

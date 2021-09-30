@@ -23,9 +23,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
         private Utilities.Models.Settings _settings;
         public int coloniaid;
         public int accion;
-        //accion 0 => Buscar
-        //accion 1 => Editar
-        //accion 2 => Agregar
+
         // DATOS ACTUALES
         public string name1;
         public string appa1;
@@ -91,6 +89,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         this.Cliente = _proxy.FindCliente(this.ClienteSearch, phone, nombre);
                         if (this.Cliente != null)
                         {
+                            
                             Common.Constants.ClienteInfo.colonia = this.Cliente.Colonia ?? default(int); ;
                             name1 = this.Cliente.Nombre;
                             appa1 = this.Cliente.ApPaterno;
@@ -109,6 +108,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             {
                                 var col = _proxy.findcol(this.Cliente.Colonia);
                             }
+                            accion = 1;
 
                             this.ClienteNombreSearch = this.Cliente.Nombre;
                             this.ClienteApPaSearch = this.Cliente.ApPaterno;
@@ -128,6 +128,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         }
                         else
                         {
+                            accion = 0;
                             MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             this.ClienteTelefonoSearch = "";
                         }
@@ -217,7 +218,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 Console.WriteLine("Error: {0}", e);
                 throw;
             }
-
         }
         public void BusquedaName()
         {
@@ -264,7 +264,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         {
                             var col = _proxy.findcol(this.Cliente.Colonia);
                         }
-
+                        accion = 1;
                         this.ClienteCP = this.Cliente.CodigoPostal;
                         this.ClienteCelular = this.Cliente.Celular1;
                         this.ClienteCelular1 = this.Cliente.Celular;
@@ -279,6 +279,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     }
                     else
                     {
+                        accion = 0;
                         Common.Constants.Inactividad.Opcion = 1;
                         MessageBox.Show("Cliente no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         this.ClienteNombreSearch = null;
@@ -381,6 +382,14 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 {
                     colonia = " ";
                 }
+                if (celular1 == "" || celular1 == null)
+                {
+                    celular1 = "(___) ___-____";
+                }
+                if(email == "")
+                {
+                    email = null;
+                }
 
                 if (name != name1 || appaterno != appa1 || apmaterno != apma1
                     || codigopostal != codigopostal1 || calle != calle1 || numero != numero1
@@ -459,7 +468,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 case nameof(ClienteSexo):
                     {
                         if(this.ClienteCP != "" && this.ClienteColonia != null && this.ClienteCalle != null
-                            && this.ClienteCelular1 != null && this.ClienteSexo != null)
+                            && this.ClienteCelular1 != null && this.ClienteSexo != null && accion == 0)
                         {
                             var nombrecomp = this.ClienteNombreSearch + " " + this.ClienteApPaSearch + " " + this.ClienteApMaSearch;
 
@@ -479,13 +488,13 @@ namespace SirCoPOS.Client.ViewModels.Caja
                                     else
                                     {
                                         MessageBox.Show("Ya existe un cliente con el mismo número celular!!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                                        Messenger.Default.Send<string>("focus", "FocuTel");
+                                        Messenger.Default.Send<string>("focus", "FocusTel");
                                     }
                                 }
                                 else
                                 {
                                     MessageBox.Show("Ya existe un cliente con el mismo nombre!!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                                    Messenger.Default.Send<string>("focus2", "FocuTel");
+                                    Messenger.Default.Send<string>("focus2", "FocusTel");
                                 }
                             }
                         }

@@ -125,7 +125,6 @@ namespace SirCoPOS.Client.Views.Tabs
             {
                 System.Windows.Clipboard.Clear();
             }
-
             if(e.Key == Key.Enter)
             {
 
