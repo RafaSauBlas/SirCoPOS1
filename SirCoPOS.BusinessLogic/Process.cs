@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 
 namespace SirCoPOS.BusinessLogic
 {
@@ -14,7 +15,7 @@ namespace SirCoPOS.BusinessLogic
         private readonly Admin _admin;
         private readonly Data _data;
         private readonly Sale _sale;
-
+        
         public Process()
         {
             _empty = DateTime.Parse("1900-01-01T00:00:00.000");
@@ -832,7 +833,7 @@ namespace SirCoPOS.BusinessLogic
                             if (header.idcliente != vd.idcliente)
                                 throw new ClienteNOCoincideExcepcion();
 
-                            if (vd.vigencia.HasValue && now > vd.vigencia)
+                            if (vd.vigencia.HasValue && now.AddDays(1) > vd.vigencia.Value)
                                 throw new VigenciaVencidaExcepcion();
 
                             var dist = ctxcr.Distribuidores.Where(i => i.distrib == vd.distrib).Single();
