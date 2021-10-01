@@ -319,5 +319,13 @@ namespace SirCoPOS.Client.Views.Tabs
                 lblError.Text = "";
             }
         }
+
+        private void scanTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if(lbox.Items.Count < 1)
+            {
+                lblError.Text = "";
+            }
+        }
     }
 }
