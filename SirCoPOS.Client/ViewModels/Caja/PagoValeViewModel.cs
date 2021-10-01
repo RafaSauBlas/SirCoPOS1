@@ -32,7 +32,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             this.ProductosView.Filter = i =>
             {
                 var item = (Utilities.Models.ProductoPlazoOpciones)i;
-                if (item.Item.FormasPago.Where(k => k.FormaPago == this.FormaPago).Any())
+                if (item.Item.FormasPago.Where(k => k.FormaPago == this.FormaPago && item.Item.Precio > 1).Any())
                     return true;                            
                 return false;
             };
@@ -304,7 +304,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 if (this.Vale.Distribuidor.Electronica)
                 {
                     request.ProductosPlazos = this.Productos
-                            .Where(i => i.Item.FormasPago.Where(k => k.FormaPago == this.FormaPago).Any())
+                            .Where(i => i.Item.FormasPago.Where(k => k.FormaPago == this.FormaPago).Any() && i.Item.Precio > (decimal)0.01)
                             .Select(i => new ProductoPlazo
                             {
                                 Plazos = i.SelectedPlazo,
