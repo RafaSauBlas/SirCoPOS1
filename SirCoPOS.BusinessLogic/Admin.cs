@@ -83,10 +83,10 @@ namespace SirCoPOS.BusinessLogic
             //res.Importe = fondo.Disponible;
 
             res.Importe = fondo.Caja.Disponible;
-            res.FormaPagoTotales = fondo.Caja.FormasPago.Where(i => i.Unidades > 0).Select(i =>
-                new FormaPagoCorte {
-                    FormaPago = (Common.Constants.FormaPago)i.FormaPago,
-                    Count = i.Unidades,
+            res.FormaPagoTotales = fondo.Caja.FormasPago.Where(i => i.Unidades > 0).Select(i => 
+                new FormaPagoCorte { 
+                    FormaPago = (Common.Constants.FormaPago)i.FormaPago, 
+                    Count = i.Unidades, 
                     Total = i.Monto
                 });
 
