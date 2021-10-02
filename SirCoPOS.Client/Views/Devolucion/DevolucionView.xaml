@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Devolucion"
              xmlns:v="clr-namespace:SirCoPOS.Client.Views.Devolucion"
-             Height="180" Width="450">
+             Height="180" Width="450" Loaded="UserControl_Loaded">
     <UserControl.DataContext>
         <vm:DevolucionItemViewModel></vm:DevolucionItemViewModel>
     </UserControl.DataContext>
@@ -16,10 +16,10 @@
             <Image x:Name="PB" Margin="2"/>
         </Grid>
         <TextBlock HorizontalAlignment="Left" Margin="10,108,0,0" TextWrapping="Wrap" Text="Razón" VerticalAlignment="Top"/>
-        <TextBox IsEnabled="{Binding SelectedOpcion.Comentarios}" CharacterCasing="Upper" Height="27" Margin="107.793,139.94,10,0" TextWrapping="Wrap" Text="{Binding Razon, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+        <TextBox IsEnabled="{Binding SelectedOpcion.Comentarios}" TabIndex="2" CharacterCasing="Upper" Height="27" Margin="107.793,139.94,10,0" TextWrapping="Wrap" Text="{Binding Razon, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
         <TextBox x:Name="txtMarca" Visibility="Hidden" CharacterCasing="Upper" Height="17" Margin="108,163,310,0" Text="{Binding Item.Marca}" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="txtMarca_TextChanged"/>
         <TextBox x:Name="txtModelo" Visibility="Hidden" CharacterCasing="Upper" Height="17" Margin="250,163,168,0" Text="{Binding Item.Modelo}" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="txtModelo_TextChanged"/>
-        <ComboBox DisplayMemberPath="Descripcion" SelectedItem="{Binding SelectedOpcion}" ItemsSource="{Binding Options}" HorizontalAlignment="Left" Margin="107.589,105,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cb_opciones" TabIndex="1" DisplayMemberPath="Descripcion" SelectedItem="{Binding SelectedOpcion}" ItemsSource="{Binding Options}" HorizontalAlignment="Left" Margin="107.589,105,0,0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,143,0,0" TextWrapping="Wrap" Text="Descripción" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

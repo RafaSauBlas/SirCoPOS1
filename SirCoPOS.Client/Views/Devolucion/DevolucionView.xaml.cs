@@ -59,5 +59,10 @@ namespace SirCoPOS.Client.Views.Devolucion
             PB.Stretch = Stretch.Fill;
 
         }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.cb_opciones.Focus();
+        }
     }
 }

@@ -22,7 +22,7 @@
         <FrameworkElement x:Name="dummyElement"/>
         <xt:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}">
             <Grid KeyDown="Grid_KeyDown" KeyUp="Grid_KeyUp" MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
-                <DataGrid x:Name="dgv_Prod" SelectedItem="{Binding SelectedItem}" Margin="10,38,265,237" ItemsSource="{Binding Productos}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" >
+                <DataGrid x:Name="dgv_Prod" SelectedItem="{Binding SelectedItem}" Margin="10,38,265,237" ItemsSource="{Binding Productos}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" LoadingRow="dgv_Prod_LoadingRow" >
                     <DataGrid.InputBindings>
                         <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
                     </DataGrid.InputBindings>
@@ -161,8 +161,12 @@
                     <TextBlock Margin="0,67.88,10,0" TextWrapping="Wrap" Text="{Binding TotalPayment, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                     <TextBlock Margin="0,96.82,10,0" TextWrapping="Wrap" Text="{Binding Remaining, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                 </Grid>
-                <Button Command="{Binding SaveCommand}" Content="Cambiar" Margin="0,0,10,10" HorizontalAlignment="Right" Width="75" Height="27.94" VerticalAlignment="Bottom"/>
-                <Button Command="{Binding AddPagoCommand}" Content="$" Margin="0,0,10,204" Height="28" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="87"/>
+                <Button Command="{Binding SaveCommand}" Margin="0,0,10,2" HorizontalAlignment="Right" Width="75" Height="35" VerticalAlignment="Bottom">
+                    <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
+                </Button>
+                <Button Command="{Binding AddPagoCommand}" Margin="0,0,10,204" Height="28" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="87">
+                    <fa:ImageAwesome Icon="Dollar" Height="22" Width="44"/>
+                </Button>
                 <TextBlock HorizontalAlignment="Right" Margin="0,0,474.353,206.06" TextWrapping="Wrap" VerticalAlignment="Bottom">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="Cliente: {0} {1} {2}">
@@ -172,12 +176,16 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <Button Content="Cliente" Command="{Binding LoadClienteCommand}" HorizontalAlignment="Right" Margin="0,0,375,204.06" VerticalAlignment="Bottom" Width="56"/>
-                <Button Content="x" Command="{Binding ClearClienteCommand}" Margin="0,0,440,204.06" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="29.353"/>
+                <Button Command="{Binding LoadClienteCommand}" HorizontalAlignment="Right" Margin="0,0,265,204" VerticalAlignment="Bottom" Width="56">
+                    <Image x:Name="addclient" Source="/SirCoPOS.Win;component/Images/cliente.png" Height="23" Width="23" />
+                </Button>
+                <Button Command="{Binding ClearClienteCommand}" Margin="0,0,327,204" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="29">
+                    <Image x:Name="quitcliente" Source="/SirCoPOS.Win;component/Images/Close.png" />
+                </Button>
                 <!--<CheckBox IsChecked="{Binding ClientConfirmed}" HorizontalAlignment="Right" Margin="0,0,302,208.06" VerticalAlignment="Bottom"/>-->
-                <Grid HorizontalAlignment="Left" Margin="10,0,0,93" Width="130" Height="130" VerticalAlignment="Bottom">
+                <Grid HorizontalAlignment="Left" Margin="10,0,0,73" Width="150" Height="150" VerticalAlignment="Bottom">
                     <Rectangle Stroke="Black"/>
-                    <Image Name="PB" Height="120" Width="120" Source="{Binding SelectedItem.OldItem.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}" Margin="2" />
+                    <Image Name="PB" Source="{Binding SelectedItem.OldItem.Id, ConverterParameter=ProductoUrl, Converter={StaticResource imageUrl}}" />
                 </Grid>
 
             </Grid>
