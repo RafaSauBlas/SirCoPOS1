@@ -83,10 +83,10 @@ namespace SirCoPOS.BusinessLogic
             //res.Importe = fondo.Disponible;
 
             res.Importe = fondo.Caja.Disponible;
-            res.FormaPagoTotales = fondo.Caja.FormasPago.Where(i => i.Unidades > 0).Select(i => 
-                new FormaPagoCorte { 
-                    FormaPago = (Common.Constants.FormaPago)i.FormaPago, 
-                    Count = i.Unidades, 
+            res.FormaPagoTotales = fondo.Caja.FormasPago.Where(i => i.Unidades > 0).Select(i =>
+                new FormaPagoCorte {
+                    FormaPago = (Common.Constants.FormaPago)i.FormaPago,
+                    Count = i.Unidades,
                     Total = i.Monto
                 });
 
@@ -112,7 +112,7 @@ namespace SirCoPOS.BusinessLogic
             var ctx = new DataAccess.SirCoDataContext();
 
             //ESTA ES LA LINEA DONDE APARECE EL ERROR AL GENERAR EL CIERRE
-            var qs = ctx.Series.Where(i => i.status == "AB" && i.sucursal == sucursal); // && i.idusuariocaja == idcajero);
+            var qs = ctx.Series.Where(i => i.status == "AB" && i.sucursal == sucursal && i.idusuariocaja == idcajero);
             var list = new List<Common.Entities.SeriePrecio>();
             foreach (var det in qs)
             {
