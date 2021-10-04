@@ -16,7 +16,9 @@
     </UserControl.DataContext>
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Efectivo" VerticalAlignment="Top"/>
-        <Button Command="{Binding SaveCommand}" Content="Guardar" HorizontalAlignment="Left" Margin="130,0,0,114" VerticalAlignment="Bottom" Width="75"/>
+        <Button Command="{Binding SaveCommand}" TabIndex="4" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Height="35" Width="49">
+            <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
+        </Button>
         <TextBlock HorizontalAlignment="Left" Margin="77.096,10,0,0" TextWrapping="Wrap" Text="{Binding Data.Efectivo, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
         <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="10,67.88,436,225.12" ItemsSource="{Binding FormasPago}">
             <DataGrid.InputBindings>
@@ -31,13 +33,13 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock HorizontalAlignment="Left" Margin="10,38.94,0,0" TextWrapping="Wrap" Text="Entregar" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbEntrega" HorizontalAlignment="Left" Height="27" Margin="79,37,0,0" TextWrapping="Wrap" Text="{Binding Entrega, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, Delay=500}" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="27" Margin="128,0,0,194" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="77">
+        <TextBox x:Name="tbEntrega" TabIndex="1" HorizontalAlignment="Left" Height="27" Margin="79,37,0,0" TextWrapping="Wrap" Text="{Binding Entrega, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, Delay=500}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" TabIndex="2" Height="27" Margin="128,0,0,184" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="77">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="217,0,0,196" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="315" Height="24">
+        <TextBlock HorizontalAlignment="Left" Margin="217,0,0,186" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="315" Height="24">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0} {1} {2}">
                     <Binding Path="Auditor.Nombre" />
@@ -48,12 +50,12 @@
         </TextBlock>
         <TextBlock HorizontalAlignment="Left" Margin="202,40,0,0" TextWrapping="Wrap" Text="Sobrante" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="279,39,0,0" TextWrapping="Wrap" Text="{Binding EfectivoFaltante, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,196" TextWrapping="Wrap" Text="Recibe" VerticalAlignment="Bottom"/>
-        <PasswordBox x:Name="txtB_Contra"  HorizontalAlignment="Left" Height="27" Margin="128,0,0,154" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Bottom" Width="120" KeyboardNavigation.TabIndex = "2">
+        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,186" TextWrapping="Wrap" Text="Recibe" VerticalAlignment="Bottom"/>
+        <PasswordBox x:Name="txtB_Contra"  HorizontalAlignment="Left" Height="27" Margin="128,0,0,144" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Bottom" Width="120" KeyboardNavigation.TabIndex = "3">
             <PasswordBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>
             </PasswordBox.InputBindings>
         </PasswordBox>
-        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,160" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Bottom"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,150" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Bottom"/>
     </Grid>
 </UserControl>

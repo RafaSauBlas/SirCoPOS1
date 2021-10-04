@@ -75,7 +75,9 @@
                 <DataGridTextColumn Header="Total" Binding="{Binding Producto.Total, StringFormat=\{0:C\}}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="button" TabIndex="1" Content="Cancelar" Grid.Column="1" Margin="0,0,10,10" Grid.Row="2" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" Width="125" VerticalAlignment="Bottom"/>
+        <Button x:Name="button" TabIndex="1" Grid.Column="1" Margin="0,0,10,10" Grid.Row="2" Command="{Binding CancelCommand, Mode=OneWay}" HorizontalAlignment="Right" Height="35" Width="49" VerticalAlignment="Bottom">
+            <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
+        </Button>
         <TextBlock Foreground="Red" HorizontalAlignment="Left" Margin="179,17,0,17" TextWrapping="Wrap" Text="{Binding ErrorMessage}" VerticalAlignment="Center"/>
     </Grid>
 </UserControl>

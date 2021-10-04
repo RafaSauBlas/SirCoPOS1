@@ -29,7 +29,9 @@
                         <KeyBinding Key="Return" Command="{Binding LoadCommand}"/>
                     </TextBox.InputBindings>
                 </TextBox>
-                <Button Command="{Binding ReturnCommand}" x:Name="button" Content="Generar" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Grid.Row="2"/>
+                <Button Command="{Binding ReturnCommand}" x:Name="button" Margin="0,0,10,10" VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="35" Width="49" Grid.Row="2">
+                    <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
+                </Button>
                 <TextBlock x:Name="textBlock" HorizontalAlignment="Right" Margin="0,38.94,10,-2.88" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="0">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0}-{1}">
@@ -77,8 +79,12 @@
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
-                <Button Content="Load" Command="{Binding LoadClienteCommand}" Margin="438,0,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="50"/>
-                <Button Content="x" Command="{Binding ClearClienteCommand}" Margin="404,0,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="28"/>
+                <Button Command="{Binding LoadClienteCommand}" Margin="438,0,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="50">
+                    <Image x:Name="addclient" Source="/SirCoPOS.Win;component/Images/cliente.png" Height="23" Width="23" />
+                </Button>
+                <Button Command="{Binding ClearClienteCommand}" Margin="404,0,0,5" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="28">
+                    <Image x:Name="quitcliente" Source="/SirCoPOS.Win;component/Images/Close.png" />
+                </Button>
             </Grid>
         </xt:BusyIndicator>
 

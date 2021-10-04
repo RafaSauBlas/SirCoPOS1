@@ -66,10 +66,10 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     MessageBox.Show("Password Invalido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }, () => this.Password != null && this.Auditor != null);
-            //this.RemoveMontoCommand = new RelayCommand(() =>
-            //{
-            //    this.SelectedItemCorte.Detalle.Remove(this.SelectedDetalle);
-            //}, () => this.SelectedItemCorte != null && this.SelectedDetalle != null);
+            this.RemoveMontoCommand = new RelayCommand(() =>
+            {
+                this.SelectedItemCorte.Detalle.Remove(this.SelectedDetalle);
+            }, () => this.SelectedItemCorte != null && this.SelectedDetalle != null);
             this.AddMontoCommand = new RelayCommand(() =>
             {
                 this.SelectedItemCorte.Detalle.Add(new Models.ItemCorteDetalle { Amount = this.MontoTicket });
