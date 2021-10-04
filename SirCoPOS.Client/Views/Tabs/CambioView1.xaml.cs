@@ -182,10 +182,5 @@ namespace SirCoPOS.Client.Views.Tabs
                 Seleccionar();
             }
         }
-
-        private void dgv_Prod_LoadingRow(object sender, DataGridRowEventArgs e)
-        {
-          
-        }
     }
 }

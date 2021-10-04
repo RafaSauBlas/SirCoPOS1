@@ -37,8 +37,10 @@
                 <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <Button Command="{Binding SaveCommand}" Content="Guardar" HorizontalAlignment="Left" Margin="152,225,0,0" Width="74" VerticalAlignment="Top" KeyboardNavigation.TabIndex ="3"/>
-        
+        <Button Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="0,0,10,10" Height="35" Width="49" VerticalAlignment="Bottom" KeyboardNavigation.TabIndex ="3">
+            <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
+        </Button>
+
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,-116,0" TextWrapping="Wrap" Text="Apertura de Fondo" VerticalAlignment="Top" FontWeight="SemiBold" FontSize="16" Width="906" Background="#FF007ACC" Foreground="White"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="12,75,0,0" TextWrapping="Wrap" Text="Recibir" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Margin="10,108,0,0" TextWrapping="Wrap" Text="Auditor" VerticalAlignment="Top"/>
