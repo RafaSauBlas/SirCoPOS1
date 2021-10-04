@@ -73,22 +73,24 @@
                 <DataGridTextColumn Header="Importe" Binding="{Binding Item.Importe, StringFormat=C}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="button" TabIndex="6" Content="Guardar" Command="{Binding SaveCommand}" HorizontalAlignment="Left" Margin="129,0,0,149" VerticalAlignment="Bottom" Width="75"/>
+        <Button x:Name="button" TabIndex="6" Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Height="35" Width="49">
+            <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
+        </Button>
 
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Efectivo" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="98,11,0,0" TextWrapping="Wrap" Text="{Binding Data.Importe, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
 
         <TextBox IsEnabled="False" x:Name="textBox1" HorizontalAlignment="Right" Height="27" Margin="0,0,10,42.94" TextWrapping="Wrap" Text="{Binding Auditor.Id}" VerticalAlignment="Bottom" Width="120" Visibility="Hidden"/>
         <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="291,36,0,0" TextWrapping="Wrap" Text="{Binding EfectivoFaltante, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbEntregar" TabIndex="1" HorizontalAlignment="Left" Height="27" Margin="98,39.94,0,0" TextWrapping="Wrap" Text="{Binding Entregar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="223,36,0,0" TextWrapping="Wrap" Text="Faltante" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbEntregar" TabIndex="1" HorizontalAlignment="Left" Height="27" Margin="98,40,0,0" TextWrapping="Wrap" Text="{Binding Entregar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="223,43,0,0" TextWrapping="Wrap" Text="Faltante" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" Text="Entregar" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtidaudit" HorizontalAlignment="Left" TabIndex="2" Height="27" Margin="129,0,0,244" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="64" KeyUp="TextBox_KeyUp">
+        <TextBox x:Name="txtidaudit" HorizontalAlignment="Left" TabIndex="2" Height="27" Margin="129,0,0,234" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="64" KeyUp="TextBox_KeyUp">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBlock x:Name="auditorname" HorizontalAlignment="Left" Margin="198,0,0,245" TextWrapping="Wrap" Height="24" VerticalAlignment="Bottom" Width="270">
+        <TextBlock x:Name="auditorname" HorizontalAlignment="Left" Margin="198,0,0,235" TextWrapping="Wrap" Height="24" VerticalAlignment="Bottom" Width="270">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0} {1} {2}">
                     <Binding Path="Auditor.Nombre" />
@@ -97,7 +99,7 @@
                 </MultiBinding>
             </TextBlock.Text>
         </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,247" TextWrapping="Wrap" Text="Auditor" VerticalAlignment="Bottom" Width="105"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,237" TextWrapping="Wrap" Text="Auditor" VerticalAlignment="Bottom" Width="105"/>
         <DataGrid CanUserAddRows="False" SelectedItem="{Binding SelectedDetalle}" AutoGenerateColumns="False" ItemsSource="{Binding SelectedItemCorte.Detalle}" Margin="568,91,337,276">
             <DataGrid.InputBindings>
                 <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
@@ -112,19 +114,19 @@
             </TextBox.InputBindings>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="693,0,0,248" TextWrapping="Wrap" Text="{Binding SelectedItemCorte.Item.FormaPago}" VerticalAlignment="Bottom"/>
-        <TextBox Text="{Binding Scan, UpdateSourceTrigger=PropertyChanged}" TabIndex="4" HorizontalAlignment="Right" Height="27" Margin="0,0,10,246" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120">
+        <TextBox Text="{Binding Scan, UpdateSourceTrigger=PropertyChanged}" TabIndex="4" HorizontalAlignment="Right" Height="27" Margin="0,0,10,246" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="150">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding ScanCommand}">
                 </KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
         <TextBlock Visibility="{Binding EfectivoFaltante, Converter={StaticResource cval}}" Foreground="Red" HorizontalAlignment="Left" Margin="10,0,0,10" TextWrapping="Wrap" Text="Faltante de efectivo generara cargo" Height="24" VerticalAlignment="Bottom"/>
-        <PasswordBox x:Name="txtB_Contra" TabIndex="5"  HorizontalAlignment="Left" Height="27" Margin="129,0,0,203" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Bottom" Width="116" KeyUp="txtB_Contra_KeyUp">
+        <PasswordBox x:Name="txtB_Contra" TabIndex="5"  HorizontalAlignment="Left" Height="27" Margin="129,0,0,193" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Bottom" Width="116" KeyUp="txtB_Contra_KeyUp">
             <PasswordBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>
             </PasswordBox.InputBindings>
         </PasswordBox>
         <TextBlock x:Name="usuarioid" Visibility="Hidden" HorizontalAlignment="Left" Margin="334,374,0,0" TextWrapping="Wrap" Text="{Binding User.Id}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,211" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Bottom" Width="105"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,201" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Bottom" Width="105"/>
     </Grid>
 </UserControl>
