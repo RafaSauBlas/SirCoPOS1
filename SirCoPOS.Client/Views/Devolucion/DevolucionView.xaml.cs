@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace SirCoPOS.Client.Views.Devolucion
 {
@@ -48,12 +49,19 @@ namespace SirCoPOS.Client.Views.Devolucion
             var Modelo2 = Modelo.Replace(" ", "_");
 
             var imagen = new BitmapImage(new Uri(FTP + Marca + Modelo2 + "F3.png"));
+            var imgpath = IPP + Marca + Modelo2 + "F1.jpg";
             double alto = imagen.Height;
             double ancho = imagen.Width;
             if (alto == 1 && ancho == 1)
             {
-                imagen = new BitmapImage(new Uri(IPP + Marca + Modelo2 + "F1.jpg"));
-
+                if (!File.Exists(imgpath))
+                {
+                    imagen = null;
+                }
+                else
+                {
+                    imagen = new BitmapImage(new Uri(imgpath));
+                }
             }
             PB.Source = imagen;
             PB.Stretch = Stretch.Fill;
