@@ -41,6 +41,7 @@ namespace SirCoPOS.Client.Views.Tabs
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
             this.RegisterMessages();
             _dt.Start();
+            Messenger.Default.Register<string>(this, "FocusRecibir", FocusRecibir);
         }
 
         private void Dt_Tick(object sender, EventArgs e)
@@ -65,6 +66,16 @@ namespace SirCoPOS.Client.Views.Tabs
             Messenger.Default.Register<Utilities.Messages.LogoutTimeout>(this, m => {
                 _dt.Stop();
             });
+        }
+
+        public void FocusRecibir(string msg)
+        {
+            if (msg == "focus")
+            {
+                this.tbRecibe.Focus();
+                this.tbRecibe.SelectAll();
+            }
+
         }
 
         public void Init()

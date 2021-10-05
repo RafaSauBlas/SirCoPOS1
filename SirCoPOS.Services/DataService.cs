@@ -402,17 +402,17 @@ namespace SirCoPOS.Services
         public ScanResponse ScanProducto(string serie, string sucursal)
         {
             return _sale.ScanProducto(serie, sucursal);
-            //var res = new Response<ScanResponse>();
-            //try
-            //{
-            //    res.Item = _sale.ScanProducto(serie, sucursal);
-            //    res.Success = true;
-            //}
-            //catch (BusinessLogic.CustomException ex)
-            //{
-            //    res.Success = false;
-            //    res.Error = ex.Message;
-            //}
+            var res = new Response<ScanResponse>();
+            try
+            {
+                res.Item = _sale.ScanProducto(serie, sucursal);
+                res.Success = true;
+            }
+            catch (BusinessLogic.CustomException ex)
+            {
+                res.Success = false;
+                res.Error = ex.Message;
+            }
             //return res;
         }
         public int PrintNumCopias()

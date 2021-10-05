@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
+using GalaSoft.MvvmLight.Messaging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,11 +14,20 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         public CambiarResponsableViewModel()
         {
             this.LoadAuditorCommand = new RelayCommand(() => {
-                this.Auditor = _pdata.FindAuditorTransferir(this.SearchAuditor.Value, this.Cajero.Id);
-                if (this.Auditor != null)
+                if(this.SearchAuditor.Value == this.Cajero.Id)
                 {
-                    this.SearchAuditor = null;
+                    MessageBox.Show("No puedes utilizar tu propio ID como responsable, por favor introduce el ID de algun responsable valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    Messenger.Default.Send<string>("focus", "FocusResponsable");
                 }
+                else
+                {
+                    this.Auditor = _pdata.FindAuditorTransferir(this.SearchAuditor.Value, this.Cajero.Id);
+                    if (this.Auditor != null)
+                    {
+                        this.SearchAuditor = null;
+                    }
+                }
+                
             }, () => this.SearchAuditor.HasValue);
 
             this.SaveCommand = new RelayCommand(() => {

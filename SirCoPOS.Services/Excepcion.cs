@@ -40,4 +40,12 @@ namespace SirCoPOS.Services
         {
         }
     }
+    public class SameId : Common.Helpers.BaseExcepcion
+    {
+
+        public SameId()
+            : base("No puedes utilizar tu propio Id como auditor")
+        {
+        }
+    }
 }
