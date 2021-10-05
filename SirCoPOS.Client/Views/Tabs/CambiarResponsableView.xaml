@@ -30,7 +30,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock HorizontalAlignment="Left" Margin="10,38.94,0,0" TextWrapping="Wrap" Text="Entregar:" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtEntrega" HorizontalAlignment="Left" TabIndex="1" Height="27" Margin="89,39,0,0" TextWrapping="Wrap" Text="{Binding Entrega, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtEntrega" HorizontalAlignment="Left" TabIndex="1" Height="27" Margin="89,39,0,0" TextWrapping="Wrap" Text="{Binding Entrega, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, Delay=700}" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,0,0,188" TextWrapping="Wrap" Text="Id responsable" Height="24" VerticalAlignment="Bottom"/>
         <TextBox HorizontalAlignment="Left" TabIndex="2" Height="27" Margin="156,0,0,185" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="120">
             <TextBox.InputBindings>
