@@ -10,7 +10,8 @@
         <vm:BonosViewModel></vm:BonosViewModel>
     </UserControl.DataContext>
     <Grid>
-        <TextBox Text="{Binding Empleado, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Height="27" Margin="10,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
+        <TextBlock x:Name="txtEmp" HorizontalAlignment="Left" Margin="10,6,0,0" TextWrapping="Wrap" Text="Empleado Id" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding Empleado, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Height="27" Margin="120,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadCommand}"></KeyBinding>
             </TextBox.InputBindings>
@@ -22,11 +23,14 @@
                 <DataGridTextColumn Header="Importe" Binding="{Binding Importe, StringFormat=\{0:C\}}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Command="{Binding SaveCommand}" x:Name="button" Content="Pagar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
+        
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,0,0,171.765" TextWrapping="Wrap" Text="Total" VerticalAlignment="Bottom"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="94.765,0,0,171.765" TextWrapping="Wrap" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Right" Height="23" Margin="0,0,10,42.94" TextWrapping="Wrap" Text="{Binding Gerente, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="120"/>
-        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="94.765,0,0,142.825" TextWrapping="Wrap" Text="{Binding TotalRound, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Bottom"/>
 
+        <TextBlock x:Name="txtGte" HorizontalAlignment="Right" Margin="0,0,100,80" TextWrapping="Wrap" Text="Gerente Id" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Right" Height="23" Margin="0,0,10,80" TextWrapping="Wrap" Text="{Binding Gerente, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="75"/>
+        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="94.765,0,0,142.825" TextWrapping="Wrap" Text="{Binding TotalRound, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Bottom"/>
+        
+        <Button Command="{Binding SaveCommand}" x:Name="button" Content="Pagar" HorizontalAlignment="Right" Margin="0,0,10,35" VerticalAlignment="Bottom" Width="75"/>
     </Grid>
 </UserControl>
