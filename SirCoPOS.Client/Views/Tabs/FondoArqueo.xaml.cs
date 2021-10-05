@@ -44,6 +44,7 @@ namespace SirCoPOS.Client.Views.Tabs
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
             this.RegisterMessages();
             _dt.Start();
+            Messenger.Default.Register<string>(this, "FocusAuditor", FocusAuditor);
         }
 
         public void Init()
@@ -156,10 +157,20 @@ namespace SirCoPOS.Client.Views.Tabs
                 }
                 else
                 {
-                    this.textBox_Copy1.Focus();
-                    this.textBox_Copy1.SelectAll();
+                    this.tbAudId.Focus();
+                    this.tbAudId.SelectAll();
                 }
             }
+        }
+
+        public void FocusAuditor(string msg)
+        {
+            if (msg == "focus")
+            {
+                this.tbAudId.Focus();
+                this.tbAudId.SelectAll();
+            }
+
         }
     }
 }

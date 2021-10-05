@@ -42,6 +42,7 @@ namespace SirCoPOS.Client.Views.Tabs
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
             this.RegisterMessages();
             _dt.Start();
+            Messenger.Default.Register<string>(this, "FocusResponsable", FocusResponsable);
         }
 
         private void Dt_Tick(object sender, EventArgs e)
@@ -121,6 +122,16 @@ namespace SirCoPOS.Client.Views.Tabs
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.txtEntrega.Focus();
+        }
+
+        public void FocusResponsable(string msg)
+        {
+            if (msg == "focus")
+            {
+                this.tbResponsableId.Focus();
+                this.tbResponsableId.SelectAll();
+            }
+
         }
     }
 }

@@ -198,4 +198,12 @@ namespace SirCoPOS.BusinessLogic
         {
         }
     }
+    public class SameId : Common.Helpers.BaseExcepcion
+    {
+        public SameId()
+            : base("No puedes utilizar tu mismo Id como auditor")
+        {
+
+        }
+    }
 }

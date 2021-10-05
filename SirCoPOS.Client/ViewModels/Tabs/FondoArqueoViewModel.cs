@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Messaging;
 using System.Windows;
 
 namespace SirCoPOS.Client.ViewModels.Tabs
@@ -18,15 +19,24 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             this.PropertyChanged += FondoArqueoViewModel_PropertyChanged;
             this.LoadAuditorCommand = new RelayCommand(() =>
                 {
-                    this.Auditor = _data.FindAuditorApertura(this.SearchAuditor.Value, this.Cajero.Id);
-                if (this.Auditor != null)
-                {
-                    this.SearchAuditor = null;
-                }
-                else
-                {
-                    MessageBox.Show("Auditor no valido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
+                    if(this.SearchAuditor.Value == this.Cajero.Id)
+                    {
+                        MessageBox.Show("No puedes utilizar tu propio ID como auditor, por favor introduce el ID de un auditor valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        Messenger.Default.Send<string>("focus", "FocusAuditor");
+                    }
+                    else
+                    {
+                        this.Auditor = _data.FindAuditorApertura(this.SearchAuditor.Value, this.Cajero.Id);
+                        if (this.Auditor != null)
+                        {
+                            this.SearchAuditor = null;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Auditor no valido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                    }
+                    
             }, () => this.SearchAuditor.HasValue);
             this.LoadUserCommand = new RelayCommand(() =>
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using GalaSoft.MvvmLight.Messaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace SirCoPOS.Client.Views.Tabs
         public FondoApertura()
         {
             InitializeComponent();
+            Messenger.Default.Register<string>(this, "FocusAuditor", FocusAuditor);
         }
 
         public void Init()
@@ -38,6 +40,16 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             if (this.DataContext != null)
             { ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password; }
+        }
+
+        public void FocusAuditor(string msg)
+        {
+            if (msg == "focus")
+            {
+                this.txt_audid.Focus();
+                this.txt_audid.SelectAll();
+            }
+
         }
     }
 }

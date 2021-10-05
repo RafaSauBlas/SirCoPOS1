@@ -38,6 +38,21 @@
                             </Style.Triggers>
                         </Style>
                     </DataGrid.RowStyle>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="{x:Type DataGridCell}">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <!--<Setter Property="VerticalContentAlignment" Value="Center"/>-->
+                            <Setter Property= "Height" Value="60"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Complete}" Value="false">
+                                    <Setter Property="Background" Value="LightCoral"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Complete}" Value="true">
+                                    <Setter Property="Background" Value="LightGreen"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.CellStyle>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Sucursal" Binding="{Binding OldItem.Sucursal}"/>
                         <DataGridTextColumn Header="Folio" Binding="{Binding OldItem.Folio}"/>
