@@ -20,16 +20,16 @@
             <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
         </Button>
         <TextBlock HorizontalAlignment="Left" Margin="77.096,10,0,0" TextWrapping="Wrap" Text="{Binding Data.Efectivo, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-        <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="10,67.88,436,225.12" ItemsSource="{Binding FormasPago}">
+        <DataGrid CanUserAddRows="False" IsReadOnly="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="10,67.88,436,225.12" ItemsSource="{Binding FormasPago}">
             <DataGrid.InputBindings>
                 <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
             </DataGrid.InputBindings>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="FormaPago" Binding="{Binding CajaFormaPago.FormaPago}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Unidades" Binding="{Binding CajaFormaPago.Unidades}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Total" Binding="{Binding CajaFormaPago.Monto, StringFormat=C}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Entregar" Binding="{Binding Entregar, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Monto" Binding="{Binding EntregarMonto, UpdateSourceTrigger=PropertyChanged,StringFormat=C, Delay=500}"></DataGridTextColumn>
+                <DataGridTextColumn Header="FormaPago" Binding="{Binding CajaFormaPago.FormaPago}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Unidades" Binding="{Binding CajaFormaPago.Unidades}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Total" Binding="{Binding CajaFormaPago.Monto, StringFormat=C}" IsReadOnly="True"></DataGridTextColumn>
+                <DataGridTextColumn Header="Entregar" Binding="{Binding Entregar, UpdateSourceTrigger=PropertyChanged}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Monto" Binding="{Binding EntregarMonto, UpdateSourceTrigger=PropertyChanged,StringFormat=C, Delay=500}" ></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock HorizontalAlignment="Left" Margin="10,38.94,0,0" TextWrapping="Wrap" Text="Entregar" VerticalAlignment="Top"/>

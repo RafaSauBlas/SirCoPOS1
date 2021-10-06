@@ -30,7 +30,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     {
                         var fitem = new Models.CajaFormaPagoEntrega
                         {
-                            CajaFormaPago = item
+                            CajaFormaPago = item,
+                            Entregar = 0,
+                            EntregarMonto = 0
                         };
                         fitem.PropertyChanged += (sender, e) =>
                         {
