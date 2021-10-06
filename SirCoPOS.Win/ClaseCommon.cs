@@ -52,6 +52,10 @@ namespace SirCoPOS.Win
         {
             return _helpers.FindEmpleado(user);
         }
+        public Empleado FindEmpleadoBono(int idEmpleado)
+        {
+            return _helpers.FindEmpleadoBono(idEmpleado);
+        }
         public Sucursal FindSucursal(string sucursal)
         {
             return _helpers.FindSucursal(sucursal);

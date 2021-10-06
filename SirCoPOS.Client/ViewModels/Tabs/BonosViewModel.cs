@@ -6,12 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace SirCoPOS.Client.ViewModels.Tabs
 {
     class BonosViewModel : Helpers.TabViewModelBase
     {
         private readonly Common.ServiceContracts.IAdminServiceAsync _proxy;
+        private readonly Common.ServiceContracts.ICommonServiceAsync _cnn;
         public BonosViewModel()
         {
             this.PropertyChanged += BonosViewModel_PropertyChanged;
@@ -19,24 +21,56 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             if (!this.IsInDesignMode)
             {
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IAdminServiceAsync>();
+                _cnn = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.ICommonServiceAsync>();
             }
 
             this.SaveCommand = new RelayCommand(() => {
-                _proxy.PayBono(
+                var pagado = _proxy.PayBono(
                     gerente: this.Gerente.Value, 
                     empleado: Empleado.Value, 
                     importe: this.TotalRound.Value);
-                MessageBox.Show("ready");
+                if (pagado) {
+                    MessageBox.Show("Pago Efectuado", "Pago de Bonos", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    Messenger.Default.Send(new Utilities.Messages.CloseTab { GID = this.GID });
+                }
+                else
+                {
+                    MessageBox.Show("No hay disponible suficiente para el pago", "Pago de Bonos", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }, () => this.Gerente.HasValue);
 
             this.LoadCommand = new RelayCommand(() => {
 
-                var res = _proxy.GetBonos(this.Empleado.Value);
-                this.Items.Clear();
-                res.Detalle.ToList().ForEach(i => this.Items.Add(i));
-                this.RaisePropertyChanged(nameof(this.Total));
-
+                SirCoPOS.Common.Entities.Empleado empleado = _cnn.FindEmpleadoBono(Empleado.Value);
+                if (empleado != null)
+                {
+                    EmpleadoNombre = empleado.Nombre + " " + empleado.ApellidoPaterno + " " + empleado.ApellidoMaterno;
+                    var res = _proxy.GetBonos(this.Empleado.Value);
+                    this.Items.Clear();
+                    res.Detalle.ToList().ForEach(i => this.Items.Add(i));
+                    this.RaisePropertyChanged(nameof(this.Total));
+                }
+                else
+                {
+                    Empleado = null;
+                    EmpleadoNombre = null;
+                }
             }, () => this.Empleado.HasValue);
+
+            this.LoadGerente = new RelayCommand(() => {
+
+                SirCoPOS.Common.Entities.Empleado empleado = _cnn.FindEmpleadoBono(Gerente.Value);
+                if (empleado != null)
+                {
+                    GerenteNombre = empleado.Nombre + " " + empleado.ApellidoPaterno + " " + empleado.ApellidoMaterno;
+                    this.RaisePropertyChanged(nameof(this.Gerente));
+                }
+                else
+                {
+                    Gerente = null;
+                    GerenteNombre = null;
+                }
+            }, () => this.Gerente.HasValue && this.Empleado.HasValue);
 
             if (this.IsInDesignMode)
             {
@@ -80,7 +114,20 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             get => _gerente;
             set => this.Set(nameof(this.Gerente), ref _gerente, value);
         }
+        private string _empleadonombre;
+        public string EmpleadoNombre
+        {
+            get => _empleadonombre;
+            set => this.Set(nameof(this.EmpleadoNombre), ref _empleadonombre, value);
+        }
+        private string _gerentenombre;
+        public string GerenteNombre
+        {
+            get => _gerentenombre;
+            set => this.Set(nameof(this.GerenteNombre), ref _gerentenombre, value);
+        }
         public RelayCommand LoadCommand { get; private set; }
+        public RelayCommand LoadGerente { get; private set; }
         public RelayCommand SaveCommand { get; private set; }
     }
 }

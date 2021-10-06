@@ -21,6 +21,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Entities.Empleado FindEmpleado(string user);
         [OperationContract]
+        Entities.Empleado FindEmpleadoBono(int idEmpleado);
+        [OperationContract]
         Common.Entities.Sucursal FindSucursal(string sucursal);
         [OperationContract]
         Entities.Empleado CheckFingerLogin(string sucursal, byte[] huella);

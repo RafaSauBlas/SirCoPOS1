@@ -43,6 +43,10 @@ namespace SirCoPOS.Client.Views.Tabs
             _dt.Start();
         }
 
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.txtEmp.Focus();
+        }
         private void Dt_Tick(object sender, EventArgs e)
         {
             var dt = (System.Windows.Threading.DispatcherTimer)sender;

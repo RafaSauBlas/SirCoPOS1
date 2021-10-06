@@ -29,7 +29,7 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Common.Entities.Bonos GetBonos(int empleado);
         [OperationContract]
-        void PayBono(int gerente, int empleado, decimal importe);
+        bool PayBono(int gerente, int empleado, decimal importe);
         [OperationContract]
         void PagoBonos(int empleado, int supervisor, decimal importe);
         [OperationContract]
