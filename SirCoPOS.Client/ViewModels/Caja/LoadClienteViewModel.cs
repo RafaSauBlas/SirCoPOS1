@@ -583,6 +583,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 colname = Common.Constants.ClienteDato.colonia;
                 sexo2 = Common.Constants.ClienteDato.sexo;
                 celular12 = Common.Constants.ClienteDato.celular1;
+                identif2 = this.ClienteIdentificacion;
 
                 if (codigopostal2 != "" && colname != "")
                 {

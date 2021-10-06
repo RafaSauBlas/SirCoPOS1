@@ -41,7 +41,6 @@
                     <DataGrid.CellStyle>
                         <Style TargetType="{x:Type DataGridCell}">
                             <Setter Property="VerticalAlignment" Value="Center"/>
-                            <!--<Setter Property="VerticalContentAlignment" Value="Center"/>-->
                             <Setter Property= "Height" Value="60"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Complete}" Value="false">
