@@ -524,6 +524,7 @@ namespace SirCoPOS.BusinessLogic
                         break;
                     case FormaPago.EF:
                     case FormaPago.GO:
+                    case FormaPago.KU:
                         break;
                     case FormaPago.TC:
                     case FormaPago.TD:
@@ -1975,6 +1976,7 @@ namespace SirCoPOS.BusinessLogic
                         break;
                     case (int)Common.Constants.FormaPago.GO:
                     case (int)Common.Constants.FormaPago.EF:
+                    case (int)Common.Constants.FormaPago.KU:
                         //d.movimientocancela = _admin.Cancel(idcajero, model.Sucursal, d.importe.Value, now);
                         break;
                     case (int)Common.Constants.FormaPago.MD:
