@@ -25,6 +25,7 @@ namespace SirCoPOS.Common.Constants
         public string Sexo { get; set; }
         public string NombreCompleto { get; set; }
 
+
         public static int id { get; set; } = 0;
         public static string nombre { get; set; } = string.Empty;
         public static string appa { get; set; } = string.Empty;
@@ -42,6 +43,7 @@ namespace SirCoPOS.Common.Constants
         public static string sexo { get; set; } = string.Empty;
         public static int opcion = 0;
         public static string error { get; set; } = string.Empty;
+        public static string identif { get; set; } = string.Empty;
 
     }
 }
