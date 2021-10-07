@@ -52,6 +52,11 @@ namespace SirCoPOS.Services
         {
             return _helpers.FindEmpleado(user);
         }
+        public Empleado FindEmpleadoBono(int idEmpleado)
+        {
+            return _helpers.FindEmpleadoBono(idEmpleado);
+        }
+
         //|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
         //El error se genera aqui, "sucursal" no tiene ningun valor
         //Cambia "_helpers.FindSucursal(sucursal); por _helpers.FindSucursal("01"); para que funcione"

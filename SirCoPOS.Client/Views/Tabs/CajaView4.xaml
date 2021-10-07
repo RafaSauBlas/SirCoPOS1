@@ -462,6 +462,9 @@
                             <DataTemplate x:Key="pagoGO">
                                 <vp:PagoGoView/>
                             </DataTemplate>
+                            <DataTemplate x:Key="pagoKU">
+                                <vp:PagoKueskiView/>
+                            </DataTemplate>
                             <DataTemplate x:Key="pagoTC">
                                 <vp:PagoTarjetaCreditoView/>
                             </DataTemplate>
@@ -491,6 +494,9 @@
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding FormaPago}" Value="GO">
                                                         <Setter Property="ContentTemplate" Value="{StaticResource pagoGO}"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding FormaPago}" Value="KU">
+                                                        <Setter Property="ContentTemplate" Value="{StaticResource pagoKU}"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding FormaPago}" Value="MD">
                                                         <Setter Property="ContentTemplate" Value="{StaticResource pagoEF}"/>
@@ -819,7 +825,7 @@
             </Grid>
         </tk:ChildWindow>
 
-        <tk:ChildWindow  Caption="Formas de Pago" DesignerWindowState="Closed" WindowState="{Binding ShowPagos, Converter={StaticResource windowState}, Mode=TwoWay}" Height="565" Width="745" WindowStartupLocation="Center" IsModal="True" HorizontalAlignment="Left"  VerticalAlignment="Top">
+        <tk:ChildWindow  Caption="Formas de Pago" DesignerWindowState="Closed" WindowState="{Binding ShowPagos, Converter={StaticResource windowState}, Mode=TwoWay}" Height="560" Width="925" WindowStartupLocation="Center" IsModal="True" HorizontalAlignment="Left"  VerticalAlignment="Top">
             <Grid>
                 <ItemsControl ItemsSource="{Binding FormasPago}">
                     <ItemsControl.ItemsPanel>

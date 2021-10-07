@@ -72,6 +72,29 @@ namespace SirCoPOS.BusinessLogic
             }
             return null;
         }
+        public Empleado FindEmpleadoBono(int IdEmpleado)
+        {
+            var ctx = new DataAccess.SirCoNominaDataContext();
+            var ctxC = new DataAccess.SirCoControlDataContext();
+            DataAccess.SirCoNomina.Empleado emp = ctx.Empleados.Where(i => i.idempleado == IdEmpleado && i.estatus == "A").SingleOrDefault();
+            if (emp != null)
+            {
+                var suc = ctxC.Sucursales.Where(i => i.sucursal == emp.clave.Substring(0, 2)).SingleOrDefault();
+                return new Empleado
+                {
+                    Id = emp.idempleado,
+                    ApellidoMaterno = emp.apmaterno,
+                    ApellidoPaterno = emp.appaterno,
+                    Nombre = emp.nombre,
+                    Usuario = emp.usuariosistema,
+                    Clave = emp.clave,
+                    Puesto = emp.idpuesto,
+                    Depto = emp.iddepto,
+                    Sucursal = suc.descrip
+                };
+            }
+            return null;
+        }
         public Empleado FindCajero(string user)
         {
             var ctx = new DataAccess.SirCoNominaDataContext();

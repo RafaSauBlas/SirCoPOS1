@@ -397,26 +397,36 @@ namespace SirCoPOS.Services
             pctx.Pagos.Add(pago);
             pctx.SaveChanges();
         }
-        public void PayBono(int gerente, int empleado, decimal importe)
+        public bool PayBono(int gerente, int empleado, decimal importe)
         {
             var now = BusinessLogic.Helpers.Common.GetNow();
             var ctx = new DataAccess.SirCoPOSDataContext();
             var fondo = ctx.Fondos.Where(i => i.ResponsableId == gerente && !i.FechaCierre.HasValue).Single();
             var gid = Guid.NewGuid();
-            fondo.Movimientos.Add(new DataAccess.SirCoPOS.FondoMovimiento
-            {
-                Importe = importe,
-                UsuarioId = empleado,
-                Entrada = false,
-                Fecha = now,
-                Referencia = gid,
-                Tipo = "Bono"
-            });
-            fondo.Disponible -= importe;
-            fondo.Caja.Disponible -= importe;
-            ctx.SaveChanges();
 
-            UpdateBonos(empleado, gid);
+            if (fondo.Disponible < importe || fondo.Caja.Disponible < importe )
+            {
+                return false;
+            }
+            else
+            {
+                fondo.Movimientos.Add(new DataAccess.SirCoPOS.FondoMovimiento
+                {
+                    Importe = importe,
+                    UsuarioId = empleado,
+                    Entrada = false,
+                    Fecha = now,
+                    Referencia = gid,
+                    Tipo = "Bono"
+                });
+                fondo.Disponible -= importe;
+                fondo.Caja.Disponible -= importe;
+                ctx.SaveChanges();
+                UpdateBonos(empleado, gid);
+
+                return true;
+            }
+            
         }
         public void UpdateBonos(int empleadoId, Guid gid)
         {

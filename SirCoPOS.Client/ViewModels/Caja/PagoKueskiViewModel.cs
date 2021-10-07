@@ -11,18 +11,18 @@ using System.Windows;
 
 namespace SirCoPOS.Client.ViewModels.Caja
 {
-    class PagoGoViewModel : Helpers.PagoViewModel
+    class PagoKueskiViewModel : Helpers.PagoViewModel
     {
-        public override string Title => "Pago GoPlazos";
+        public override string Title => "Pago Kueski-Pay";
         private readonly Common.ServiceContracts.IDataServiceAsync _data;
         private int CantMinima;
 
-        public PagoGoViewModel()
+        public PagoKueskiViewModel()
         {
-            this.PropertyChanged += PagoGoViewModel_PropertyChanged;
+            this.PropertyChanged += PagoKueskiViewModel_PropertyChanged;
             _data = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
 
-            CantMinima = _data.getminPago(Common.Constants.Parametros.MINPAGOGO);
+            CantMinima = _data.getminPago(Common.Constants.Parametros.MINPAGOKU);
 
             this.CompletarCommand = new RelayCommand(() =>
             {
@@ -36,7 +36,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.PagaCon = 500;
             }            
         }
-        public override FormaPago FormaPago => FormaPago.GO;
+        public override FormaPago FormaPago => FormaPago.KU;
         protected override void Init()
         {
             this.PagaCon = this.Total;
@@ -48,7 +48,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 return false;
             if (this.Pagar.HasValue && this.Pagar < CantMinima)
             {
-                MessageBox.Show("El Pago no puede ser menor a " + CantMinima, "Pago GoPlazos", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("El Pago no puede ser menor a " + CantMinima, "Pago Kueski-Pay", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
@@ -62,12 +62,12 @@ namespace SirCoPOS.Client.ViewModels.Caja
             Messenger.Default.Send(
                     new Utilities.Messages.Pago
                     {  
-                        FormaPago = FormaPago.GO,
+                        FormaPago = FormaPago.KU,
                         Importe = this.Pagar.Value,
                         Efectivo = this.PagaCon.Value
                     }, this.GID);
         }
-        private void PagoGoViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void PagoKueskiViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {

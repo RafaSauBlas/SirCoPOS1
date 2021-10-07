@@ -22,6 +22,7 @@ namespace SirCoPOS.Common.Constants
         VD = 23, //VALE DIGITAL 
         VS = 100, //VA - sin promocion
         CS = 101,
-        GO = 26
+        GO = 26,  //GO-PLAZOS
+        KU = 1026 //KUESKI-PAY
     }
 }

@@ -20,5 +20,7 @@ namespace SirCoPOS.Common.ServiceContracts
         Task<Entities.Empleado> FindCajeroAsync(string user);
         [OperationContract]
         Task<Entities.Empleado> FindEmpleadoAsync(string user);
+        [OperationContract]
+        Task<Entities.Empleado> FindEmpleadoAbonoAsync(int idEmpleado);
     }
 }

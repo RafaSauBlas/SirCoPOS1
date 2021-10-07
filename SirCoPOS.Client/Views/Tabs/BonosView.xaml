@@ -10,12 +10,15 @@
         <vm:BonosViewModel></vm:BonosViewModel>
     </UserControl.DataContext>
     <Grid>
-        <TextBlock x:Name="txtEmp" HorizontalAlignment="Left" Margin="10,6,0,0" TextWrapping="Wrap" Text="Empleado Id" VerticalAlignment="Top"/>
-        <TextBox Text="{Binding Empleado, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Height="27" Margin="120,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120">
-            <TextBox.InputBindings>
-                <KeyBinding Key="Return" Command="{Binding LoadCommand}"></KeyBinding>
-            </TextBox.InputBindings>
-        </TextBox>
+        <StackPanel Orientation="Horizontal" Margin="10,6,0,0" VerticalAlignment="Top">
+            <TextBlock Text="Empleado Id"/>
+            <TextBox x:Name="txtEmp" Text="{Binding Empleado, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0" Width="70">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Return" Command="{Binding LoadCommand}"></KeyBinding>
+                </TextBox.InputBindings>
+            </TextBox>
+            <TextBlock Text="{Binding EmpleadoNombre}"  Margin="10,0,0,0" />
+        </StackPanel>
         <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Items}" IsReadOnly="True" x:Name="dataGrid" Margin="10,38,10,200.705">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Unidades" Binding="{Binding Unidades}"></DataGridTextColumn>
@@ -27,10 +30,18 @@
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,0,0,171.765" TextWrapping="Wrap" Text="Total" VerticalAlignment="Bottom"/>
         <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="94.765,0,0,171.765" TextWrapping="Wrap" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Bottom"/>
 
-        <TextBlock x:Name="txtGte" HorizontalAlignment="Right" Margin="0,0,100,80" TextWrapping="Wrap" Text="Gerente Id" VerticalAlignment="Bottom"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Right" Height="23" Margin="0,0,10,80" TextWrapping="Wrap" Text="{Binding Gerente, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="75"/>
+        <TextBlock x:Name="txtGte" HorizontalAlignment="Right" Margin="0,0,470,80" TextWrapping="Wrap" Text="Gerente Id" VerticalAlignment="Bottom"/>
+        
+        <TextBlock Text="{Binding GerenteNombre}" HorizontalAlignment="Right" Margin="0,0,90,80" TextWrapping="Wrap"  VerticalAlignment="Bottom" Width="280"/>
+        
+        <TextBox Text="{Binding Gerente, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Margin="0,0,380,80" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="75">
+            <TextBox.InputBindings>
+                <KeyBinding Command="{Binding LoadGerente}" Key="Return" />
+            </TextBox.InputBindings>
+        </TextBox>
+        
         <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="94.765,0,0,142.825" TextWrapping="Wrap" Text="{Binding TotalRound, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Bottom"/>
         
-        <Button Command="{Binding SaveCommand}" x:Name="button" Content="Pagar" HorizontalAlignment="Right" Margin="0,0,10,35" VerticalAlignment="Bottom" Width="75"/>
+        <Button Command="{Binding SaveCommand}" x:Name="button" Content="Pagar" HorizontalAlignment="Right" Margin="0,0,380,35" VerticalAlignment="Bottom" Width="75"/>
     </Grid>
 </UserControl>
