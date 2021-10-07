@@ -28,7 +28,7 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         int PrintNumCopias();
         [OperationContract]
-        int getminPagoGO();
+        int getminPago(string tipo);
         [OperationContract]
         Entities.ScanDevolucionResponse ScanProductoDevolucion(string serie, bool cancelacion);
         [OperationContract]

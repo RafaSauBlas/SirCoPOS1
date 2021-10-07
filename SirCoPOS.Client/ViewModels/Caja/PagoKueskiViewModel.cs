@@ -22,7 +22,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             this.PropertyChanged += PagoKueskiViewModel_PropertyChanged;
             _data = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
 
-            CantMinima = _data.getminPagoGO();
+            CantMinima = _data.getminPago(Common.Constants.Parametros.MINPAGOKU);
 
             this.CompletarCommand = new RelayCommand(() =>
             {
@@ -48,7 +48,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 return false;
             if (this.Pagar.HasValue && this.Pagar < CantMinima)
             {
-                MessageBox.Show("El Pago no puede ser menor a " + CantMinima, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("El Pago no puede ser menor a " + CantMinima, "Pago Kueski-Pay", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
