@@ -115,8 +115,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             this.ClienteApPaSearch = this.Cliente.ApPaterno;
                             this.ClienteApMaSearch = this.Cliente.ApMaterno;
                             this.ClienteCP = this.Cliente.CodigoPostal;
-                            this.ClienteCelular = this.Cliente.Celular1;
-                            this.ClienteCelular1 = this.Cliente.Celular;
+                            this.ClienteCelular = _common.PreparePhone(this.Cliente.Celular1);
+                            this.ClienteCelular1 = _common.PreparePhone(this.Cliente.Celular);
                             this.ClienteCalle = this.Cliente.Calle;
                             this.ClienteSexo = this.Cliente.Sexo;
                             this.ClienteNumero = this.Cliente.Numero.ToString();
