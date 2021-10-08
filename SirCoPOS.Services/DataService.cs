@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SirCoPOS.Common.Constants;
+using System.Text.RegularExpressions;
 using SirCoPOS.Common.Entities;
 using System.Data.Entity;
 using SirCoPOS.Common.Helpers;
@@ -673,7 +674,7 @@ namespace SirCoPOS.Services
             if (id.HasValue)
                 item = ctx.Clientes.Where(i => i.idcliente == id).FirstOrDefault();
             else if (!string.IsNullOrWhiteSpace(telefono))
-                item = ctx.Clientes.Where(i => i.celular1 == telefono).FirstOrDefault();
+                item = ctx.Clientes.Where(i => i.celular1  == telefono).FirstOrDefault();
             else if (!string.IsNullOrWhiteSpace(nombre))
                 item = ctx.Clientes.Where(i => i.nombrecompleto == nombre).FirstOrDefault();
             if (item == null)
