@@ -17,6 +17,15 @@ namespace SirCoPOS.Client.Helpers
         {
             this.AcceptCommand = new cmd.RelayCommand(this.AcceptHelper, this.CanAccept);
             this.CancelCommand = new cmd.RelayCommand(this.CancelHelper);
+            Messenger.Default.Register<string>(this, "Cerrar", Cerrar);
+        }
+
+        public void Cerrar(string msg)
+        {
+            if (msg == "cerrar")
+            {
+                this.CancelHelper();
+            }         
         }
         private async void AcceptHelper()
         {

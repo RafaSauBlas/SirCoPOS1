@@ -115,6 +115,7 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             var dt = (System.Windows.Threading.DispatcherTimer)sender;
             dt.Stop();
+            Messenger.Default.Send<string>("cerrar", "Cerrar");
             Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
         }
 

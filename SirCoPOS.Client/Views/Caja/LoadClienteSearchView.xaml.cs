@@ -556,5 +556,10 @@ namespace SirCoPOS.Client.Views.Caja
                 ActualizarCliente();
             }
         }
+
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Messenger.Default.Send<string>("cerrar", "Cerrar");
+        //}
     }
 }
