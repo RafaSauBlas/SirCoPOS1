@@ -26,7 +26,7 @@
                 <DataGridTextColumn Header="Unidades" Binding="{Binding CajaFormaPago.Unidades}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Total" Binding="{Binding CajaFormaPago.Monto, StringFormat=C}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Entregar" Binding="{Binding Entregar, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Monto" Binding="{Binding EntregarMonto, UpdateSourceTrigger=PropertyChanged}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Monto" Binding="{Binding EntregarMonto, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:C\}}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock HorizontalAlignment="Left" Margin="10,38.94,0,0" TextWrapping="Wrap" Text="Entregar:" VerticalAlignment="Top"/>
