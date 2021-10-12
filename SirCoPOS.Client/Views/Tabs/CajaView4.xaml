@@ -65,14 +65,14 @@
     <UserControl.DataContext>
         <vm:CajaViewModel/>
     </UserControl.DataContext>
-    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
+    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp" Background="{x:Null}">
         <Grid.RowDefinitions>
             <RowDefinition Height="293*"/>
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
         <FrameworkElement x:Name="dummyElement" Grid.RowSpan="2"/>
         <tk:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}" Grid.RowSpan="2">
-            <Grid >
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="449*"/>
                     <ColumnDefinition Width="651*"/>
@@ -93,7 +93,7 @@
                               RowHeight="60" 
                               Background="LightGray" RowBackground="White" AlternatingRowBackground="LightBlue"
                               CanUserResizeColumns="False" CanUserSortColumns = "False" >
-                        
+
                         <DataGrid.InputBindings>
                             <KeyBinding Key="Backspace" Command="{Binding RemoveCommand}"></KeyBinding>
                         </DataGrid.InputBindings>
@@ -105,7 +105,7 @@
                                         <Setter Property="Foreground" Value="Black"/>
                                     </DataTrigger>
                                 </Style.Triggers>
-                                
+
                             </Style>
                         </DataGrid.RowStyle>
                         <DataGrid.CellStyle>
@@ -253,7 +253,7 @@
                                         <Setter Property="FontFamily" Value="calibri Light"/>
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
-                                
+
                             </DataGridTextColumn>
                             <DataGridTextColumn Foreground="Red" Header="Descuento" Binding="{Binding Descuento, StringFormat=\{0:C\}}" FontSize="18">
                                 <DataGridTextColumn.ElementStyle>
@@ -328,8 +328,8 @@
                                     <Style TargetType="TextBlock">
                                         <Setter Property="VerticalAlignment" Value="Center"></Setter>
                                         <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                                        <Setter Property="TextAlignment" Value="Right"></Setter> 
-                                        <Setter Property="Margin" Value="0,0,2,0"></Setter> 
+                                        <Setter Property="TextAlignment" Value="Right"></Setter>
+                                        <Setter Property="Margin" Value="0,0,2,0"></Setter>
                                     </Style>
                                 </DataGridTextColumn.ElementStyle>
                                 <DataGridTextColumn.HeaderStyle>
@@ -581,7 +581,7 @@
                         </Rectangle.Fill>
                     </Rectangle>
                     <!--<ct:ImageBorder ImageSource="{Binding Settings.Cajero.Id, Converter={StaticResource imageUrl}, ConverterParameter=EmpleadoUrl}" Width="55" Height="55" VerticalAlignment="Center"/>-->
-                    
+
                     <Button Content="v" Command="{Binding LoadVendedorCommand}" Margin="0,-5,0,0" Width="20" Height="29" VerticalAlignment="Top" >
                         <Button.Background>
                             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
@@ -759,7 +759,7 @@
                 </TextBox>
                 <TextBlock x:Name="lblError" Foreground="Red" Text="{Binding Error}" HorizontalAlignment="Left" Margin="10,0,0,46" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
                 <!--<Button Content="Validate" HorizontalAlignment="Right" Margin="0,0,302,204.06" VerticalAlignment="Bottom" Width="77"/>-->
-                <Button Command="{Binding LoadClienteCommand}" HorizontalAlignment="Right" Margin="0,0,403,204" VerticalAlignment="Bottom" Width="51" Grid.Column="1">
+                <Button Command="{Binding LoadClienteCommand}" HorizontalAlignment="Right" Margin="0,0,403,204" VerticalAlignment="Bottom" Width="51" Grid.Column="1" Click="Button_Click_1">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
@@ -789,7 +789,7 @@
                     </Button.Background>
                     <Image x:Name="añadirnota" Source="/SirCoPOS.Win;component/Images/documento.png" />
                 </Button>
-                
+
             </Grid>
         </tk:BusyIndicator>
 

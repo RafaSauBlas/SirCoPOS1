@@ -115,6 +115,7 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             var dt = (System.Windows.Threading.DispatcherTimer)sender;
             dt.Stop();
+            Messenger.Default.Send<string>("cerrar", "Cerrar");
             Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
         }
 
@@ -152,6 +153,7 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Common.Constants.ClienteDato.opcion = 0;
             var Marca = "";
             var Modelo = "";
             var Modelo2 = "";
@@ -281,6 +283,10 @@ namespace SirCoPOS.Client.Views.Tabs
                     {
                         lblError.Text = "";
                     }
+                    else if(co.ToString() == "SirCoPOS.Client.Models.Pagos.Credito")
+                    {
+                        Common.Constants.ClienteDato.opcion = 0;
+                    }
                     else
                     {
                         lblError.Text = "";
@@ -325,6 +331,24 @@ namespace SirCoPOS.Client.Views.Tabs
             if(lbox.Items.Count < 1)
             {
                 lblError.Text = "";
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (lbox.Items.Count == 0)
+            {
+                Common.Constants.ClienteDato.opcion = 0;
+            }
+            else
+            {
+                foreach (var co in lbox.Items)
+                {
+                    if (co.ToString() == "SirCoPOS.Client.Models.Pagos.PagoCredito")
+                    {
+                        Common.Constants.ClienteDato.opcion = 1;
+                    }
+                }
             }
         }
     }

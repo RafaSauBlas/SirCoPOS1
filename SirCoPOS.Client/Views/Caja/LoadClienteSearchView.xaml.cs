@@ -110,11 +110,11 @@ namespace SirCoPOS.Client.Views.Caja
         {
             CL = new Client.ViewModels.Caja.LoadClienteViewModel();
 
-         string name = txt_Nombre.Text;
-         string appa = txtAppa.Text;
-         string apma = txtApma.Text;
-         string codigopostal = txt_cp.Text;
-         string calle = txtCalle.Text;
+         string name = this.txt_Nombre.Text;
+         string appa = this.txtAppa.Text;
+         string apma = this.txtApma.Text;
+         string codigopostal = this.txt_cp.Text;
+         string calle = this.txtCalle.Text;
          short numero;
             if (txtNumero.Text == "")
             {
@@ -124,11 +124,13 @@ namespace SirCoPOS.Client.Views.Caja
             {
                 numero = Convert.ToInt16(txtNumero.Text);
             }
-         string celular = txttel.Text;
-         string celular1 = txttel2.Text;
-         string email = txtemail.Text;
-         string colonia = cbColonia.Text;
-         string sexo = cbSexo.Text;
+         string celular = this.txttel.Text;
+         string celular1 = this.txttel2.Text;
+         string email = this.txtemail.Text;
+         string colonia = this.cbColonia.Text;
+         string sexo = this.cbSexo.Text;
+         string ine = this.txtidentif.Text;
+
         Common.Constants.ClienteDato.nombre = name;
         Common.Constants.ClienteDato.appa = appa;
         Common.Constants.ClienteDato.apma = apma;
@@ -140,6 +142,7 @@ namespace SirCoPOS.Client.Views.Caja
         Common.Constants.ClienteDato.colonia = colonia;
         Common.Constants.ClienteDato.sexo = sexo;
         Common.Constants.ClienteDato.celular1 = celular1;
+        Common.Constants.ClienteDato.identif = ine;
         }
 
         private void txt_Nombre_LostFocus(object sender, RoutedEventArgs e)
@@ -225,10 +228,10 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void cbSexo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ActualizarCliente();
             if(cbSexo.Text != null)
             {
                 cbSexo.BorderBrush = Brushes.LightGray;
+                ActualizarCliente();
             }
             else
             {
@@ -277,6 +280,7 @@ namespace SirCoPOS.Client.Views.Caja
             if (this.cbColonia.Text != "")
             {
                 this.cbColonia.BorderBrush = Brushes.Gray;
+                ActualizarCliente();
             }
             else
             {
@@ -289,6 +293,7 @@ namespace SirCoPOS.Client.Views.Caja
             if (this.txtCalle.Text != "")
             {
                 this.txtCalle.BorderBrush = Brushes.LightGray;
+                ActualizarCliente();
             }
             else
             {
@@ -301,6 +306,7 @@ namespace SirCoPOS.Client.Views.Caja
             if (this.txttel.Text != "(___) ___-____")
             {
                 this.txttel.BorderBrush = Brushes.LightGray;
+                ActualizarCliente();
             }
             else
             {
@@ -396,10 +402,19 @@ namespace SirCoPOS.Client.Views.Caja
                 MessageBox.Show("Necesita introducir una calle para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
+        int men = 0;
         private void cbSexo_GotFocus(object sender, RoutedEventArgs e)
         {
-            
+            if (txtidentif.Text == "")
+            {
+                if (men == 0)
+                {
+                    men = 1;
+                    MessageBox.Show("Necesita introducir una identificación valida.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                txtidentif.Focus();
+            }
+            men = 0;
         }
 
         private void txtidentif_GotFocus(object sender, RoutedEventArgs e)
@@ -439,6 +454,7 @@ namespace SirCoPOS.Client.Views.Caja
                 txttel.Focus();
                 MessageBox.Show("Necesita introducir un número celular para continuar.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
         }
 
         private void txtidentif_TextChanged(object sender, TextChangedEventArgs e)
@@ -446,6 +462,7 @@ namespace SirCoPOS.Client.Views.Caja
             if (this.txtidentif.Text != "")
             {
                 this.txtidentif.BorderBrush = Brushes.LightGray;
+                ActualizarCliente();
             }
             else
             {
@@ -502,6 +519,7 @@ namespace SirCoPOS.Client.Views.Caja
         {
             if(e.Key == Key.Enter)
             {
+                ActualizarCliente();
                 Messenger.Default.Send<string>("focus", "DoFocus");
             }
         }
@@ -514,5 +532,34 @@ namespace SirCoPOS.Client.Views.Caja
             else
                 e.Handled = true;
         }
+
+        private void txtNumero_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(txtNumero.Text != "")
+            {
+                ActualizarCliente();
+            }
+        }
+
+        private void txttel_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                ActualizarCliente();
+            }
+        }
+
+        private void txttel2_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                ActualizarCliente();
+            }
+        }
+
+        //private void Button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Messenger.Default.Send<string>("cerrar", "Cerrar");
+        //}
     }
 }

@@ -22,8 +22,10 @@ namespace SirCoPOS.Win
     /// </summary>
     public partial class App : Application
     {
+        Actualizacion.SirCoPOSUpdate SPU = new Actualizacion.SirCoPOSUpdate();
         public App()
         {
+            SPU.actualizasirco();
             SqlServerTypes.Utilities.LoadNativeAssemblies(AppDomain.CurrentDomain.BaseDirectory);
         }
         private Mutex _mutex;

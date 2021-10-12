@@ -115,8 +115,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             this.ClienteApPaSearch = this.Cliente.ApPaterno;
                             this.ClienteApMaSearch = this.Cliente.ApMaterno;
                             this.ClienteCP = this.Cliente.CodigoPostal;
-                            this.ClienteCelular = this.Cliente.Celular1;
-                            this.ClienteCelular1 = this.Cliente.Celular;
+                            this.ClienteCelular = _common.PreparePhone(this.Cliente.Celular1);
+                            this.ClienteCelular1 = _common.PreparePhone(this.Cliente.Celular);
                             this.ClienteCalle = this.Cliente.Calle;
                             this.ClienteSexo = this.Cliente.Sexo;
                             this.ClienteNumero = this.Cliente.Numero.ToString();
@@ -268,8 +268,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         }
                         accion = 1;
                         this.ClienteCP = this.Cliente.CodigoPostal;
-                        this.ClienteCelular = this.Cliente.Celular1;
-                        this.ClienteCelular1 = this.Cliente.Celular;
+                        this.ClienteCelular = _common.PreparePhone(this.Cliente.Celular1);
+                        this.ClienteCelular1 = _common.PreparePhone(this.Cliente.Celular);
                         this.ClienteCalle = this.Cliente.Calle;
                         this.ClienteSexo = this.Cliente.Sexo;
                         this.ClienteNumero = this.Cliente.Numero.ToString();
@@ -366,7 +366,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
             }
         }
         //===========================================================================================================================================================================================================
-        public void Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero, string celular, string cel, string email, string colonia, string sexo, string identificacion)
+        public void Clientexd(string name, string appaterno, string apmaterno, string codigopostal, string calle, int numero,
+            string celular, string cel, string email, string colonia, string sexo, string identificacion)
         {
             try
             {
@@ -384,18 +385,24 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 {
                     colonia = " ";
                 }
-                if (celular1 == "" || celular1 == null)
+                if (celular1 == "(___) ___-____" || celular1 == null)
                 {
-                    celular1 = "(___) ___-____";
+                    celular1 = "";
+                }
+                if(cel == "(___) ___-____" || cel == null)
+                {
+                    cel = "";
                 }
                 if(email == "")
                 {
                     email = null;
                 }
 
-                if (name != name1 || appaterno != appa1 || apmaterno != apma1
-                    || codigopostal != codigopostal1 || calle != calle1 || numero != numero1
-                    || email != email1 || colonia1 != colonia2 || sexo1 != sexo2 || celular1 != celular12 || celular != celular2 || identificacion != identif1)
+                if (name != this.Cliente.Nombre || appaterno != this.Cliente.ApPaterno || apmaterno != this.Cliente.ApMaterno
+                    || codigopostal != this.Cliente.CodigoPostal || calle != this.Cliente.Calle || numero != this.Cliente.Numero
+                    || email != this.Cliente.Email || colonia1 != colonia2 || sexo1 != this.Cliente.Sexo
+                    || cel != this.Cliente.Celular1 || celular != this.Cliente.Celular 
+                    || identificacion != this.Cliente.Identificacion)
                 {
                     var celular1 = _common.PreparePhone(celular);
                     var celu = _common.PreparePhone(cel);
@@ -583,7 +590,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 colname = Common.Constants.ClienteDato.colonia;
                 sexo2 = Common.Constants.ClienteDato.sexo;
                 celular12 = Common.Constants.ClienteDato.celular1;
-                identif2 = this.ClienteIdentificacion;
+                identif2 = Common.Constants.ClienteDato.identif;
 
                 if (codigopostal2 != "" && colname != "")
                 {
