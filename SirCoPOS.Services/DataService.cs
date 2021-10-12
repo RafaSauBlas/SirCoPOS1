@@ -215,41 +215,48 @@ namespace SirCoPOS.Services
             };
         }
 
-        public PromocionesValeResponse FindPromocionesVale(string sucursal)
+        public PromocionesValeResponse FindPromocionesVale(string sucursal, string tipocredito)
         {
             var now = BusinessLogic.Helpers.Common.GetNow();
             var ctx = new DataAccess.SirCoCreditoDataContext();
             var promocion = ctx.PromocionesCredito.Where(i => i.sucursal == sucursal && i.status == "AC").SingleOrDefault();
-
             if (promocion == null)
                 return null;
 
-            //var cal = ctx.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == "DISTRIBUIDOR"
-            //            && i.fechaaplicarcorte == promocion.fechaaplicar).SingleOrDefault();
+            int pagosmax = promocion.pagosmax.Value;
+            int dias = -2;
+            if (tipocredito == "TARJETAHABIENTE")
+            {
+                pagosmax = (int)Math.Ceiling((double)promocion.pagosmax.Value / 2);
+                dias = -1;
+            }
 
-            //if (cal == null)
-            //    return null;
 
-            var q = ctx.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == "DISTRIBUIDOR"
-                && i.fechaaplicarcorte <= promocion.fechaaplicar && i.fechaaplicarcorte > now)
+            var q = ctx.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == tipocredito
+                            && i.fechaaplicarcorte <= promocion.fechaaplicar && i.fechaaplicarcorte > now)
                 .OrderBy(i => i.fechaaplicarcorte).ToArray();
 
             var total = q.Count();
-
-            var qfechas = ctx.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == "DISTRIBUIDOR"
+            int fechas = total;
+            if (tipocredito == "TARJETAHABIENTE")
+            {
+                //Pago inmediato
+                fechas = 1;
+            }
+            var qfechas = ctx.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == tipocredito
                 && i.fechaaplicarcorte > now)
                 .OrderBy(i => i.fechaaplicarcorte)
-                .Take(total + promocion.pagosmax.Value).ToArray();
+                .Take(total + pagosmax).ToArray();
 
             var blin = _helpers.GetParametro<decimal>(Common.Constants.Parametros.BLINDAJE);
 
             return new PromocionesValeResponse
             {
                 Selected = promocion.pagosmin.Value,
-                PagosMax = promocion.pagosmax.Value,
+                PagosMax = pagosmax,
                 //Plazos = Enumerable.Range(1, promocion.pagosmax.Value),
-                Promociones = q.Select(i => i.fechapagocliente.Value),
-                Fechas = qfechas.Select(i => i.fechapagocliente.Value),
+                Promociones = q.Select(i => i.fechaaplicar.Value.AddDays(dias)).Take(fechas),
+                Fechas = qfechas.Select(i => i.fechaaplicar.Value.AddDays(dias)),
                 Blindaje = blin
             };
         }
@@ -1198,6 +1205,23 @@ namespace SirCoPOS.Services
         {
             var _data = new BusinessLogic.Data();
             return _data.GetPorcentajeFPago(sucursal, devolucion);
+        }
+
+        private DateTime GetFechaVencimiento(DateTime current)
+        {
+            int find = 0;
+            if (current.Day == 17)
+                find = 2;
+            if (current.Day == 2)
+                find = 17;
+            if (find == 0)
+                return current.AddDays(15);
+            do
+            {
+                current = current.AddDays(1);
+            }
+            while (current.Day != find);
+            return current;
         }
     }
 }
