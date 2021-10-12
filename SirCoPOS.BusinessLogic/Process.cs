@@ -1584,20 +1584,21 @@ namespace SirCoPOS.BusinessLogic
             var SumImporteSinPromo = item.ProductosPlazos?.Sum(i => i.Importe.Value);
 
             DataAccess.SirCoCredito.Calendario[] fechasPromocion = null;
+            string tipocredito = "DISTRIBUIDOR";
+            if (item.FormaPago == FormaPago.CP)
+            {
+                tipocredito = "TARJETAHABIENTE";
+            }
 
             // Genera Fechas Pago (Parrilla) Normal con Promocion (No Electronica)
-            if (item.Plazos.HasValue)
+                if (item.Plazos.HasValue)
             {
                 double plazosPromocion = item.Plazos.Value ;
-                if (item.FormaPago == FormaPago.CP)
-                {
-                   plazosPromocion = Math.Ceiling(plazosPromocion / 2);
-                }
 
                 dps.Add(new Tuple<int, decimal>((int)plazosPromocion, item.Importe - (SumImporteSinPromo ?? 0)));
 
-                var primero = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == dist.clasificacion
-                    && i.fechaaplicarcorte < item.FechaAplicar && i.fechaaplicarcorte > DateTime.Now)
+                var primero = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == tipocredito
+                    && i.fechaaplicarcorte <= item.FechaAplicar && i.fechaaplicarcorte > DateTime.Now)
                     .OrderByDescending(i => i.fechaaplicarcorte).Take(1).FirstOrDefault();
 
                 if (primero != null)
@@ -1605,8 +1606,8 @@ namespace SirCoPOS.BusinessLogic
                     plazosPromocion--;
                 }
 
-                var ultimo = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == dist.clasificacion
-                    && i.fechaaplicarcorte >= item.FechaAplicar)
+                var ultimo = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == tipocredito
+                    && i.fechaaplicarcorte > item.FechaAplicar)
                     .OrderBy(i => i.fechaaplicarcorte).Take((int)plazosPromocion).ToList();
 
                 if (primero != null) {   
@@ -1624,11 +1625,7 @@ namespace SirCoPOS.BusinessLogic
             if (item.ProductosPlazos?.Where(i=>i.Plazos!=null).Any() ?? false)
             {
                 double plazosNoPromocion = item.ProductosPlazos.Where(i=>i.Plazos !=null).Max(i => i.Plazos.Value);
-                if (item.FormaPago == FormaPago.CP)
-                {
-                    plazosNoPromocion = Math.Ceiling(plazosNoPromocion / 2);
-                }
-                var fechasNoPromocion = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == dist.clasificacion
+                var fechasNoPromocion = ctxcr.Calendarios.Where(i => i.tipo == "CORTE" && i.tipocredito == tipocredito
                     && i.fechaaplicarcorte >= now)
                     .OrderBy(i => i.fechaaplicarcorte).Take((int)plazosNoPromocion).ToArray();
 
@@ -1637,8 +1634,6 @@ namespace SirCoPOS.BusinessLogic
                 foreach (var pps in prods)
                 {
                     double plazosElectronica = pps.Plazos.Value;
-                    if (item.FormaPago == FormaPago.CP)
-                        plazosElectronica = Math.Ceiling(plazosElectronica / 2);
 
                     dps.Add(new Tuple<int, decimal>((int)plazosElectronica, pps.Importe.Value));
                 }

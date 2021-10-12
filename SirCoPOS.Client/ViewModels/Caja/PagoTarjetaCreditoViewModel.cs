@@ -5,6 +5,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using System.Windows;
 
 namespace SirCoPOS.Client.ViewModels.Caja
 {
@@ -30,6 +32,18 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 Console.WriteLine("Error: {0}", e);
                 throw;
             }
+            this.CobroCommand = new RelayCommand( () => {
+
+                NetPayConnect.Response resp = Helpers.CobroTarjeta.GetResponse();
+                if (resp != null)
+                {
+                    string venta = Helpers.CobroTarjeta.Venta(this.Pagar.Value, "FOLIO-0001");
+                }
+                else
+                {
+                    MessageBox.Show("No hay comunicacion con la terminal de cobro", "Pago Tarjeta Crédito", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+            } );
         }
         public override FormaPago FormaPago => FormaPago.TC;
         protected override void Accept(Utilities.Messages.Pago p)
@@ -109,7 +123,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
         #region computed        
         #endregion
         #region commands
-        
+        public RelayCommand CobroCommand { get; private set; }
         #endregion
     }
 }

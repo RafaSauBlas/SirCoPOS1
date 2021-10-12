@@ -34,7 +34,7 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Task<ValeResponse> FindTarjetahabienteAsync(string id);
         [OperationContract]
-        Task<Common.Entities.PromocionesValeResponse> FindPromocionesValeAsync(string sucursal);
+        Task<Common.Entities.PromocionesValeResponse> FindPromocionesValeAsync(string sucursal, string tipocredito);
         [OperationContract]
         Task<Common.Entities.PromocionesCreditoResponse> FindPromocionesCreditoAsync(string sucursal);
         [OperationContract]

@@ -45,6 +45,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 if (this.valeOK)
                     Messenger.Default.Send<string>("focus", "NextFocus");
             }, () => !String.IsNullOrEmpty(this.Search));
+            var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
+            this.Promocion = _proxy.FindPromocionesVale(settings.Sucursal.Clave, "TARJETAHABIENTE");
         }
 
         private void PagoCreditoViewModel2_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
