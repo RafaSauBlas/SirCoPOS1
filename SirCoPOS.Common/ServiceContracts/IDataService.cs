@@ -58,7 +58,7 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         ValeResponse FindTarjetahabiente(string id);
         [OperationContract]
-        Common.Entities.PromocionesValeResponse FindPromocionesVale(string sucursal);
+        Common.Entities.PromocionesValeResponse FindPromocionesVale(string sucursal, string tipocredito);
         [OperationContract]
         Common.Entities.PromocionesCreditoResponse FindPromocionesCredito(string sucursal);
         [OperationContract]

@@ -33,7 +33,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             if (!this.IsInDesignMode)
             {
                 var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
-                this.Promocion = _proxy.FindPromocionesVale(settings.Sucursal.Clave);
+                this.Promocion = _proxy.FindPromocionesVale(settings.Sucursal.Clave, "DISTRIBUIDOR");
                 this.Negocios = _proxy.GetNegocios();
             }
 

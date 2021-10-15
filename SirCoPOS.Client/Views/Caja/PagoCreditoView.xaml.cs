@@ -47,7 +47,7 @@ namespace SirCoPOS.Client.Views.Caja
         {
             if (cboPlazo != null && this.txtCuenta.Text.Length > 0)
             {
-                cboPlazo.SelectedIndex = 7;
+                cboPlazo.SelectedIndex = 3;
             }
         }
         private void tbSearch_KeyUp(object sender, KeyEventArgs e)

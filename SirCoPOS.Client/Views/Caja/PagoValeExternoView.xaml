@@ -273,7 +273,7 @@
 
             <StackPanel Margin="20,0,15,-6" Grid.Row="6" Grid.Column="10" Grid.ColumnSpan="1">
                 <TextBlock x:Name="lblPlazos" Text="Plazo" Style="{StaticResource ResourceKey=lbl_style}"/>
-                <ComboBox  x:Name="cboPlazo"  IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontSize="8" Height="30" Width="44" HorizontalAlignment="Right"  >
+                <ComboBox  x:Name="cboPlazo"  IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontSize="8" Height="30" Width="50"  HorizontalContentAlignment="Right"  >
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="FontSize" Value="8"/>

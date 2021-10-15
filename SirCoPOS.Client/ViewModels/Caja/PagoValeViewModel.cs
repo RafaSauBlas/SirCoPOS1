@@ -106,7 +106,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             {
                 _image = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Interfaces.IImageView>();
                 var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
-                this.Promocion = _proxy.FindPromocionesVale(settings.Sucursal.Clave);
+                this.Promocion = _proxy.FindPromocionesVale(settings.Sucursal.Clave, "DISTRIBUIDOR");
                 //if (promocion != null)
                 //{
                 //    //this.Plazos = promocion.Plazos;

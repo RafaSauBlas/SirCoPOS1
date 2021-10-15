@@ -44,7 +44,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             if (!this.IsInDesignMode)
             {
                 var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
-                var promocion = _proxy.FindPromocionesVale(settings.Sucursal.Clave);
+                var promocion = _proxy.FindPromocionesVale(settings.Sucursal.Clave, "DISTRIBUIDOR");
                 if (promocion != null)
                 {
                     //this.Plazos = promocion.Plazos;

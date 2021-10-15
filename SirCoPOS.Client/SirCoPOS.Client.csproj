@@ -81,6 +81,9 @@
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NetPayConnect">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\netPay\NetPayConnect.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.6.8\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -150,6 +153,7 @@
     <Compile Include="Helpers\ModalViewModelBase.cs" />
     <Compile Include="Helpers\PagoViewModel.cs" />
     <Compile Include="Helpers\Navigation.cs" />
+    <Compile Include="Helpers\CobroTarjeta.cs" />
     <Compile Include="Helpers\ScanSerie.cs" />
     <Compile Include="Helpers\Parsers.cs" />
     <Compile Include="Helpers\PrintFile.cs" />

@@ -12,36 +12,42 @@
     <Grid>
         <StackPanel Orientation="Horizontal" Margin="10,6,0,0" VerticalAlignment="Top">
             <TextBlock Text="Empleado Id"/>
-            <TextBox x:Name="txtEmp" Text="{Binding Empleado, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0" Width="70">
+            <TextBox x:Name="txtEmp" KeyboardNavigation.TabIndex="0" Text="{Binding Empleado, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,0,0" Width="70">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding LoadCommand}"></KeyBinding>
                 </TextBox.InputBindings>
             </TextBox>
             <TextBlock Text="{Binding EmpleadoNombre}"  Margin="10,0,0,0" />
         </StackPanel>
-        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Items}" IsReadOnly="True" x:Name="dataGrid" Margin="10,38,10,200.705">
+        <DataGrid KeyboardNavigation.IsTabStop="False"  AutoGenerateColumns="False" ItemsSource="{Binding Items}" IsReadOnly="True" x:Name="dataGrid" Margin="10,38,10,200.705">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Unidades" Binding="{Binding Unidades}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Importe" Binding="{Binding Importe, StringFormat=\{0:C\}}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,0,0,171.765" TextWrapping="Wrap" Text="Total" VerticalAlignment="Bottom"/>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="94.765,0,0,171.765" TextWrapping="Wrap" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Bottom"/>
 
-        <TextBlock x:Name="txtGte" HorizontalAlignment="Right" Margin="0,0,470,80" TextWrapping="Wrap" Text="Gerente Id" VerticalAlignment="Bottom"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,0,0,171.765" TextWrapping="Wrap" Text="Total" VerticalAlignment="Bottom"/>
+        <TextBlock KeyboardNavigation.IsTabStop="False"  x:Name="textBlock1" HorizontalAlignment="Left" Margin="94.765,0,0,171.765" TextWrapping="Wrap" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Bottom"/>
+        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="94.765,0,0,142.825" TextWrapping="Wrap" Text="{Binding TotalRound, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Bottom"/>
         
+        <TextBlock HorizontalAlignment="Right" Margin="0,0,470,80" TextWrapping="Wrap" Text="Gerente Id" VerticalAlignment="Bottom"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,0,470,50" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Bottom"/>
         <TextBlock Text="{Binding GerenteNombre}" HorizontalAlignment="Right" Margin="0,0,90,80" TextWrapping="Wrap"  VerticalAlignment="Bottom" Width="280"/>
-        
-        <TextBox Text="{Binding Gerente, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Margin="0,0,380,80" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="75">
+
+        <TextBox KeyboardNavigation.TabIndex="1" Text="{Binding Gerente, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Margin="0,0,380,80" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="75">
             <TextBox.InputBindings>
                 <KeyBinding Command="{Binding LoadGerente}" Key="Return" />
             </TextBox.InputBindings>
         </TextBox>
+        <PasswordBox KeyboardNavigation.TabIndex="2"  x:Name="txtB_Contra" Height="26" HorizontalAlignment="Right"  Margin="0,0,380,50" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Bottom" Width="75">
+            <PasswordBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>
+            </PasswordBox.InputBindings>
+        </PasswordBox>
+        <Button KeyboardNavigation.TabIndex="3" Command="{Binding SaveCommand}" x:Name="button" Content="Pagar" HorizontalAlignment="Right" Margin="0,0,380,20" VerticalAlignment="Bottom" Width="75"/>
         
-        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="94.765,0,0,142.825" TextWrapping="Wrap" Text="{Binding TotalRound, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Bottom"/>
         
-        <Button Command="{Binding SaveCommand}" x:Name="button" Content="Pagar" HorizontalAlignment="Right" Margin="0,0,380,35" VerticalAlignment="Bottom" Width="75"/>
+        
     </Grid>
 </UserControl>

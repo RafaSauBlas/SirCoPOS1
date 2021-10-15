@@ -282,7 +282,7 @@ namespace SirCoPOS.Client.Helpers
 
                         if (!this.IsInDesignMode)
                         {
-                            var promos = await _proxy.FindPromocionesValeAsync(this.Sucursal.Clave);
+                            var promos = await _proxy.FindPromocionesValeAsync(this.Sucursal.Clave, "DISTRIBUIDOR");
                             //pv.Plazos = promos.Plazos;
                             pv.Promociones = promos.Promociones;
 
@@ -324,7 +324,7 @@ namespace SirCoPOS.Client.Helpers
 
                         if (!this.IsInDesignMode)
                         {
-                            var promos = await _proxy.FindPromocionesValeAsync(this.Sucursal.Clave);
+                            var promos = await _proxy.FindPromocionesValeAsync(this.Sucursal.Clave, "DISTRIBUIDOR");
                             //pv.Plazos = promos.Plazos;
                             pv.Promociones = promos.Promociones;
 
@@ -368,7 +368,7 @@ namespace SirCoPOS.Client.Helpers
 
                         if (!this.IsInDesignMode)
                         {
-                            var promos = await _proxy.FindPromocionesValeAsync(this.Sucursal.Clave);
+                            var promos = await _proxy.FindPromocionesValeAsync(this.Sucursal.Clave, "DISTRIBUIDOR");
                             //pv.Plazos = promos.Plazos;
                             pv.Promociones = promos.Promociones;
 
@@ -419,7 +419,7 @@ namespace SirCoPOS.Client.Helpers
 
                         if (!this.IsInDesignMode)
                         {
-                            var promos = await _proxy.FindPromocionesValeAsync(this.Sucursal.Clave);
+                            var promos = await _proxy.FindPromocionesValeAsync(this.Sucursal.Clave, "TARJETAHABIENTE");
                             //pv.Plazos = promos.Plazos;
                             cp.Promociones = promos.Promociones;
 
@@ -467,7 +467,7 @@ namespace SirCoPOS.Client.Helpers
 
                         if (!this.IsInDesignMode)
                         {
-                            var promos = await _proxy.FindPromocionesValeAsync(this.Sucursal.Clave);
+                            var promos = await _proxy.FindPromocionesValeAsync(this.Sucursal.Clave, "DISTRIBUIDOR");
                             //pv.Plazos = promos.Plazos;
                             cp.Promociones = promos.Promociones;
 
@@ -515,7 +515,7 @@ namespace SirCoPOS.Client.Helpers
 
                     if (!this.IsInDesignMode)
                     {
-                        var promos = await _proxy.FindPromocionesValeAsync(this.Sucursal.Clave);
+                        var promos = await _proxy.FindPromocionesValeAsync(this.Sucursal.Clave, "DISTRIBUIDOR");
                         //pv.Plazos = promos.Plazos;
                         cv.Promociones = promos.Promociones;
 
