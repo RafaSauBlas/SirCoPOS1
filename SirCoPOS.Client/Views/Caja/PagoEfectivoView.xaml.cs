@@ -31,17 +31,37 @@ namespace SirCoPOS.Client.Views.Caja
 
         public void Init()
         {
-            this.pagarConTextBox.SelectAll();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            this.pagarConTextBox.Focus();            
+            this.pagarConTextBox.Focus();
+            this.pagarConTextBox.SelectAll();
         }
 
         private void pagarTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             this.pagarTextBox.SelectAll();
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void pagarConTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void pagarConTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+        }
+
+        private void pagarTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
         }
     }
 }

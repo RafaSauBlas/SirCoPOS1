@@ -25,6 +25,7 @@ namespace SirCoPOS.Client.Views.Caja
     [Utilities.Extensions.MetadataFormaPago(Common.Constants.FormaPago.VA)]
     public partial class PagoValeView2 : UserControl
     {
+        //Client.MetodoInactividad IN;
         public PagoValeView2()
         {
             InitializeComponent();
@@ -33,7 +34,9 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            //IN = new Client.MetodoInactividad();
             this.tbVale.Focus();
+            //IN.detener();
         }
 
         private void TabControl_TargetUpdated(object sender, DataTransferEventArgs e)
@@ -73,5 +76,9 @@ namespace SirCoPOS.Client.Views.Caja
                 
         }
 
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            // IN.detener();
+        }
     }
 }

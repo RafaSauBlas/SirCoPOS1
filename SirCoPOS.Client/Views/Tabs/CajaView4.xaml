@@ -15,7 +15,7 @@
              xmlns:local="clr-namespace:SirCoPOS.Client.Views.Tabs" x:Class="SirCoPOS.Client.Views.Tabs.CajaView4" 
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vmd:CajaViewModel}}"
-             d:DesignHeight="600" d:DesignWidth="1100" KeyDown="UserControl_KeyDown" MouseMove="UserControl_MouseMove" KeyUp="UserControl_KeyUp">
+             d:DesignHeight="600" d:DesignWidth="1100" KeyDown="UserControl_KeyDown" MouseMove="UserControl_MouseMove" Loaded="UserControl_Loaded">
     <UserControl.Resources>
         <c:WindowStateConverter x:Key="windowState"/>
         <c:ImageToSourceConverter x:Key="ImgSource"/>
@@ -65,7 +65,7 @@
     <UserControl.DataContext>
         <vm:CajaViewModel/>
     </UserControl.DataContext>
-    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp" Background="{x:Null}">
+    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" Background="{x:Null}">
         <Grid.RowDefinitions>
             <RowDefinition Height="293*"/>
             <RowDefinition Height="7*"/>
@@ -565,6 +565,7 @@
 
                 <StackPanel Margin="10,10,0,0" Orientation="Horizontal" Height="50" VerticalAlignment="Top">
                     <TextBlock Text = "Vendedor" FontFamily="Century Gothic" FontSize="16" />
+
                     <TextBlock Margin="10,1,10,0" FontFamily="Century Gothic" FontSize="16" >
                         <TextBlock.Text>
                             <MultiBinding StringFormat=" {0} {1} {2} {3}">
@@ -705,7 +706,7 @@
                     </ListBox>
                 </Grid>
                 <!--Boton de pagar-->
-                <Button Command="{Binding PagarCommand}" HorizontalAlignment="Right" Margin="0,0,13,204" VerticalAlignment="Bottom" Grid.Column="1" MouseLeftButtonDown="Button_MouseLeftButtonDown" MouseLeftButtonUp="Button_MouseLeftButtonUp">
+                <Button Command="{Binding PagarCommand}" HorizontalAlignment="Right" Margin="0,0,13,204" VerticalAlignment="Bottom" Grid.Column="1" MouseLeftButtonDown="Button_MouseLeftButtonDown" Click="Button_Click_2">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
@@ -793,7 +794,7 @@
             </Grid>
         </tk:BusyIndicator>
 
-        <tk:ChildWindow DesignerWindowState="Open" WindowState="Closed" Height="197" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Center">
+        <tk:ChildWindow DesignerWindowState="Open" Visibility="Hidden" WindowState="Closed" Height="197" Width="319" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Center">
             <tk:ChildWindow.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlLightLightColorKey}}"/>
             </tk:ChildWindow.Background>

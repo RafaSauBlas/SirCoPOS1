@@ -23,6 +23,7 @@ namespace SirCoPOS.Client.Helpers
         private readonly Common.ServiceContracts.IDataServiceAsync _proxy;
         public TabsPagosViewModel()
         {
+
             this.PropertyChanged += TabsPagosViewModel_PropertyChanged;
             if (!this.IsInDesignMode)
             {
@@ -108,7 +109,6 @@ namespace SirCoPOS.Client.Helpers
                 var q = this._formas.Where(i => i.Key == p);
                 return q.Any() && this.Total > 0 && this.Remaining > 0 && q.Single().Value.Enabled;
             });
-
         }
 
         private void TabsPagosViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)

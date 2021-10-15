@@ -18,6 +18,7 @@ using System.IO;
 using System.Windows.Shapes;
 using NLog;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 
 
@@ -34,24 +35,18 @@ namespace SirCoPOS.Client.Views.Tabs
     {
         public string FTP = "http://201.148.82.174/FOTOS/";
         public string IPP = @"\\10.10.1.1\Sistema\ZT\Fotos\";
-        private System.Windows.Threading.DispatcherTimer _dt;
         private IDictionary<Guid, TabItem> _tabs;
+        public Client.MetodoInactividad IN;
         private ILogger _log;
         private int tipo;
-
 
         public CajaView4()
         {
             InitializeComponent();
             _tabs = new Dictionary<Guid, TabItem>();
             Messenger.Default.Register<string>(this, "DoFocus", doFocus);
-            _dt = new System.Windows.Threading.DispatcherTimer();
-            _dt.Tick += Dt_Tick;
-            _dt.Interval = TimeSpan.FromSeconds(Common.Constants.Inactividad.Segundos);
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
             this.RegisterMessages();
-
-            _dt.Start();
         }
 
         private void RegisterMessages()
@@ -63,7 +58,7 @@ namespace SirCoPOS.Client.Views.Tabs
                    Console.WriteLine($"removing: {m.GID}");
                    if (!_tabs.Any())
                    {
-                       _dt.Stop();
+                       IN.detener();
                    }
                });
 
@@ -73,19 +68,19 @@ namespace SirCoPOS.Client.Views.Tabs
                     Console.WriteLine($"removing: {m.GID}");
                     if (!_tabs.Any())
                     {
-                        _dt.Stop();
+                        IN.detener();
                     }
                 });
 
             Messenger.Default.Register<Utilities.Messages.LogoutTimeout>(this, m => {
-                _dt.Stop();
+                IN.detener();
             });
 
             Messenger.Default.Register<Utilities.Messages.OpenModal>(this,
                m => {
                    Messenger.Default.Send(m, m.GID);
-                   Console.WriteLine($"open: {m.GID}");       
-                   _dt.Stop();
+                   Console.WriteLine($"open: {m.GID}");
+                   IN.detener();
                });
 
             Messenger.Default.Register<Utilities.Messages.OpenModalItem>(this,
@@ -109,14 +104,6 @@ namespace SirCoPOS.Client.Views.Tabs
             //var dato = new SirCoPOS.Common.Entities.Empleado();
             //int depto = dato.Depto;
             var vm = (ViewModels.Tabs.CajaViewModel)this.DataContext;
-        }
-
-        private void Dt_Tick(object sender, EventArgs e)
-        {
-            var dt = (System.Windows.Threading.DispatcherTimer)sender;
-            dt.Stop();
-            Messenger.Default.Send<string>("cerrar", "Cerrar");
-            Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
         }
 
         private void scanTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -196,38 +183,27 @@ namespace SirCoPOS.Client.Views.Tabs
         }
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
-        {       
-                _dt.Stop();
+        {
+            IN.reiniciar();
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
+            IN.reiniciar();
         }
+
+        
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            _dt.Stop();
-        }
-
-        private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            _dt.Start();
-        }
-
-        private void UserControl_KeyUp(object sender, KeyEventArgs e)
-        {
-                _dt.Start();
+            IN.reiniciar();
         }
 
         private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            _dt.Stop();
+            IN.reiniciar();
         }
 
-        private void Button_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            _dt.Start();
-        }
 
         private void dgView_KeyDown(object sender, KeyEventArgs e)
         {
@@ -336,6 +312,7 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            IN.detener();
             if (lbox.Items.Count == 0)
             {
                 Common.Constants.ClienteDato.opcion = 0;
@@ -350,6 +327,16 @@ namespace SirCoPOS.Client.Views.Tabs
                     }
                 }
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            IN = new Client.MetodoInactividad();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            IN.detener();
         }
     }
 }

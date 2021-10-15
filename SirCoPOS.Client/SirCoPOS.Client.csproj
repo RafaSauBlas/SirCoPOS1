@@ -163,6 +163,7 @@
     <Compile Include="Messages\NotaItem.cs" />
     <Compile Include="Messages\ProductoDevolucionMessage.cs" />
     <Compile Include="Messages\Vendedor.cs" />
+    <Compile Include="MetodoInactividad.cs" />
     <Compile Include="Models\CajaFormaPagoEntrega.cs" />
     <Compile Include="Models\CancelProducto.cs" />
     <Compile Include="Models\ClienteInfo.cs" />

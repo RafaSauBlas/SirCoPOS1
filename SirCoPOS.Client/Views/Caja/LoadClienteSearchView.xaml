@@ -12,7 +12,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance Type={x:Type vm:LoadClienteViewModel}}"
-             Height="355.379" Width="529.598" Loaded="UserControl_Loaded">
+             Height="355.379" Width="529.598" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.Resources>
         <c:ImageUrlConverter x:Key="imageUrl"></c:ImageUrlConverter>
         <c:WindowStateConverter x:Key="windowState"/>
@@ -66,7 +66,7 @@
             </TextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="lbltele" HorizontalAlignment="Left" Margin="10,187,0,0" TextWrapping="Wrap" Text="Celular" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox  x:Name="txttel" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="82,184,0,0" TextWrapping="Wrap" Text="{Binding ClienteCelular1, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="9" FontSize="15" LostFocus="txttel_LostFocus" BorderBrush="Red" TextChanged="txttel_TextChanged" GotFocus="txttel_GotFocus" PreviewKeyDown="txttel_PreviewKeyDown">
+        <xt:MaskedTextBox  x:Name="txttel" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="82,184,0,0" TextWrapping="Wrap" Text="{Binding ClienteCelular1, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="9" FontSize="15" LostFocus="txttel_LostFocus" BorderBrush="Red" TextChanged="txttel_TextChanged" GotFocus="txttel_GotFocus" PreviewKeyDown="txttel_PreviewKeyDown" KeyDown="txttel_KeyDown">
         </xt:MaskedTextBox>
         <TextBlock x:Name="lbltele2" HorizontalAlignment="Left" Margin="279,187,0,0" TextWrapping="Wrap" Text="Celular2" VerticalAlignment="Top"/>
         <xt:MaskedTextBox  x:Name="txttel2" Mask="(000) 000-0000" HorizontalAlignment="Left" Height="25" Margin="351,184,0,0" TextWrapping="Wrap" Text="{Binding ClienteCelular, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" KeyboardNavigation.TabIndex ="10" FontSize="15" LostFocus="txttel_LostFocus" KeyDown="txttel2_KeyDown"/>
@@ -80,10 +80,10 @@
             </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="lblcp" HorizontalAlignment="Left" Margin="10,117,0,0" TextWrapping="Wrap" Text="Codigo postal" VerticalAlignment="Top"/>
-        <xt:MaskedTextBox  x:Name="txt_cp"   HorizontalAlignment="Left" Height="25" Margin="131,114,0,0" TextWrapping="Wrap" Text="{Binding ClienteCP, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="72" KeyboardNavigation.TabIndex ="5" KeyDown="txt_Nombre_KeyDown" PreviewTextInput="txt_cp_PreviewTextInput" FontSize="15" TextChanged="txt_cp_TextChanged" BorderBrush="Red" GotFocus="txt_cp_GotFocus">
+        <xt:MaskedTextBox  x:Name="txt_cp"   HorizontalAlignment="Left" Height="25" Margin="131,114,0,0" TextWrapping="Wrap" Text="{Binding ClienteCP, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="72" KeyboardNavigation.TabIndex ="5" KeyDown="txt_cp_KeyDown" PreviewTextInput="txt_cp_PreviewTextInput" FontSize="15" TextChanged="txt_cp_TextChanged" BorderBrush="Red" GotFocus="txt_cp_GotFocus">
         </xt:MaskedTextBox>
         <TextBlock x:Name="lblCol" HorizontalAlignment="Left" Margin="242,117,0,0" TextWrapping="Wrap" Text="Colonia" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbColonia" HorizontalAlignment="Left" Margin="320,112,0,0" VerticalAlignment="Top" Text="{Binding ClienteColonia}" TabIndex="6" Height="27" LostFocus="cbColonia_LostFocus" BorderBrush="Red" SelectionChanged="cbColonia_SelectionChanged">
+        <ComboBox x:Name="cbColonia" HorizontalAlignment="Left" Margin="320,112,0,0" VerticalAlignment="Top" Text="{Binding ClienteColonia}" TabIndex="6" Height="27" LostFocus="cbColonia_LostFocus" BorderBrush="Red" SelectionChanged="cbColonia_SelectionChanged" GotFocus="cbColonia_GotFocus">
             <ComboBox.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </ComboBox.Background>
