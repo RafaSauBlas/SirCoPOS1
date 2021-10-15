@@ -1365,7 +1365,7 @@ namespace SirCoPOS.Services
             {
                 q = q.Where(i => i.Tipo == Common.Constants.TipoFondo.CajaFuerte );
             }
-            else if (emp.iddepto == (int)Common.Constants.Departamento.SIS)
+            else if (emp.iddepto == (int)Common.Constants.Departamento.SIS || emp.iddepto == (int)Common.Constants.Departamento.ADM)
             {
                 q = q.Where(i => i.Tipo == Common.Constants.TipoFondo.CajaFuerte || i.Tipo == Common.Constants.TipoFondo.Cajon);
             }

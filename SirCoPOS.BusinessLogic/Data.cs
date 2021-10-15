@@ -130,9 +130,9 @@ namespace SirCoPOS.BusinessLogic
                 var asuc = auditor.clave.Substring(0, 2);
                 var suc = cajero.clave.Substring(0, 2);
 
-                if (cajero.iddepto != (int)Common.Constants.Departamento.SIS)
+                if (cajero.iddepto != (int)Common.Constants.Departamento.SIS && cajero.iddepto != (int)Common.Constants.Departamento.ADM)
                 {
-                    // Si el cajero no es de SISTEMAS validar tenga puesto Cajero o sea SUP o ENC
+                    // Si el cajero no es de SISTEMAS ni de ADM validar tenga puesto Cajero o sea SUP o ENC
                     if (!(cajero.idpuesto == (int)Common.Constants.Puesto.CJA || Common.Constants.Puestos.Gerentes.Contains(cajero.idpuesto)))
                     {
                         return null;
@@ -369,7 +369,8 @@ namespace SirCoPOS.BusinessLogic
             {
                 return null;
             }
-            if (item.iddepto != (int)Common.Constants.Departamento.SIS)
+            // Empleado no es del depto SIS ni tampoco del depto ADM
+            if (item.iddepto != (int)Common.Constants.Departamento.SIS && item.iddepto != (int)Common.Constants.Departamento.ADM)
             { 
                 item = ctx.Empleados.Where(i => i.usuariosistema == user
                 && i.iddepto == (int)Common.Constants.Departamento.TDA
