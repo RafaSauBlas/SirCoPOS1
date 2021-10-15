@@ -1382,6 +1382,10 @@ namespace SirCoPOS.BusinessLogic
                 negocio = ctxc.NegociosExternos.Where(i => i.idnegexterno == item.Negocio)
                     .Single().negocio;
             }
+            string observa = "";
+            if (item.ProductosPlazos.Sum(i=>i.Importe).Value > 0  && item.Importe > 0) {
+                observa = "VentaCombinada";
+            }
             var plan = new DataAccess.SirCoCredito.PlanPagos
             {
                 distrib = dist.distrib,
@@ -1401,7 +1405,12 @@ namespace SirCoPOS.BusinessLogic
                 saldo = item.Importe + (blindaje ?? 0),
                 //pagos = item.Plazos.Value,
                 pagado = "0",
-                observacion = "",
+
+
+                observacion = observa,
+
+
+
                 idusuario = idcajero,
                 fum = now,
                 blindaje = blindaje
