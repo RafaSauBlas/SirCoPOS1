@@ -833,7 +833,7 @@ namespace SirCoPOS.BusinessLogic
                             if (header.idcliente != vd.idcliente)
                                 throw new ClienteNOCoincideExcepcion();
 
-                            if (vd.vigencia.HasValue && now.AddDays(1) > vd.vigencia.Value)
+                            if (vd.vigencia.HasValue && now > vd.vigencia.Value.AddDays(1))
                                 throw new VigenciaVencidaExcepcion();
 
                             var dist = ctxcr.Distribuidores.Where(i => i.distrib == vd.distrib).Single();

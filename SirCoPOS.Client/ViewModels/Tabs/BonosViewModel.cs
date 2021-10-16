@@ -46,9 +46,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             }, () => this.Gerente.HasValue && this.Empleado.HasValue && this.Total.HasValue && passwordOK);
 
             this.LoadCommand = new RelayCommand(() => {
-
+                Items.Clear();
                 SirCoPOS.Common.Entities.Empleado empleado = _cnn.FindEmpleadoBono(Empleado.Value);
-                this.Items.Clear();
                 if (empleado != null)
                 {
                     EmpleadoNombre = empleado.Nombre + " " + empleado.ApellidoPaterno + " " + empleado.ApellidoMaterno;
@@ -60,8 +59,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                             if (res.Detalle.Count() == 0)
                             {
                                 MessageBox.Show("El empleado no tiene registros para pago" , "Pago de Bonos", MessageBoxButton.OK, MessageBoxImage.Error);
-                                Empleado = null;
-                                EmpleadoNombre = null;
+                                ClearItems();
                             }
                             else
                             {
@@ -72,22 +70,19 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                         else
                         {
                             MessageBox.Show("El empleado no pertenece a la Sucursal " + settings.Sucursal.Descripcion, "Pago de Bonos", MessageBoxButton.OK, MessageBoxImage.Error);
-                            Empleado = null;
-                            EmpleadoNombre = null;
+                            ClearItems();
                         }
                     }
                     else
                     {
                         MessageBox.Show("El empleado no pertenece al departamento TIENDA", "Pago de Bonos", MessageBoxButton.OK, MessageBoxImage.Error);
-                        Empleado = null;
-                        EmpleadoNombre = null;
+                        ClearItems();
                     }
                 }
                 else
                 {
                     MessageBox.Show("No se encontró Empleado", "Pago de Bonos", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Empleado = null;
-                    EmpleadoNombre = null;
+                    ClearItems();
                 }
             }, () => this.Empleado.HasValue);
 
@@ -108,29 +103,25 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                             else
                             {
                                 MessageBox.Show("El Gerente no pertenece a la Sucursal " + settings.Sucursal.Descripcion, "Pago de Bonos", MessageBoxButton.OK, MessageBoxImage.Error);
-                                Gerente = null;
-                                GerenteNombre= null;
+                                ClearItems(true);
                             }
                         }
                         else
                         {
                             MessageBox.Show("El Gerente no es Encargado o Suplente" , "Pago de Bonos", MessageBoxButton.OK, MessageBoxImage.Error);
-                            Gerente = null;
-                            GerenteNombre = null;
+                            ClearItems(true);
                         }
                     }
                     else
                     {
                         MessageBox.Show("El Gerente no pertenece al departamento TIENDA", "Pago de Bonos", MessageBoxButton.OK, MessageBoxImage.Error);
-                        Gerente = null;
-                        GerenteNombre= null;
+                        ClearItems(true);
                     }
                 }
                 else
                 {
                     MessageBox.Show("No se encontró el gerente", "Pago de Bonos", MessageBoxButton.OK, MessageBoxImage.Error);
-                    Gerente = null;
-                    GerenteNombre = null;
+                    ClearItems(true);
                 }
             }, () => this.Gerente.HasValue && this.Empleado.HasValue);
             this.LoadUserCommand = new RelayCommand(() =>
@@ -139,6 +130,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 if (this.User != null)
                 {
                     passwordOK = true;
+                    Messenger.Default.Send<string>("next", "SetFocus");
                 }
                 else
                 {
@@ -151,6 +143,26 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 this.Items.Add(new Common.Entities.BonoDetalle { Unidades = 1, Descripcion = "a", Importe = 99 });
                 this.Items.Add(new Common.Entities.BonoDetalle { Unidades = 2, Descripcion = "b", Importe = 100 });
                 this.Items.Add(new Common.Entities.BonoDetalle { Unidades = 3, Descripcion = "c", Importe = 199 });
+            }
+        }
+
+        private void ClearItems(bool Gte = false)
+        {
+            if (!Gte)
+            {
+                Items.Clear();
+                Empleado = null;
+                EmpleadoNombre = null;
+                Gerente = null;
+                GerenteNombre = null;
+                Password = null;
+                passwordOK = false;
+                this.RaisePropertyChanged(nameof(this.Total));
+            }
+            else
+            {
+                Gerente = null;
+                GerenteNombre = null;
             }
         }
 
@@ -176,7 +188,14 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         public ObservableCollection<Common.Entities.BonoDetalle> Items { get; private set; }
         public decimal? Total
         {
-            get => this.Items.Sum(i => i.Importe);
+            get { 
+                if (this.Items.Sum(i => i.Importe ) < 0)
+                {
+                    return 0;
+                }
+                return this.Items.Sum(i => i.Importe); 
+
+            }
         }
         public decimal? TotalRound
         {
@@ -186,7 +205,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         public int? Empleado
         {
             get => _empleado;
-            set => this.Set(nameof(this.Empleado), ref _empleado, value);
+            set {
+                this.Set(nameof(this.Empleado), ref _empleado, value);
+            }
         }
         private int? _gerente;
         public int? Gerente
