@@ -81,6 +81,9 @@
         </xt:MaskedTextBox>
         <TextBlock x:Name="lblcp" HorizontalAlignment="Left" Margin="10,117,0,0" TextWrapping="Wrap" Text="Codigo postal" VerticalAlignment="Top"/>
         <xt:MaskedTextBox  x:Name="txt_cp"   HorizontalAlignment="Left" Height="25" Margin="131,114,0,0" TextWrapping="Wrap" Text="{Binding ClienteCP, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="72" KeyboardNavigation.TabIndex ="5" KeyDown="txt_cp_KeyDown" PreviewTextInput="txt_cp_PreviewTextInput" FontSize="15" TextChanged="txt_cp_TextChanged" BorderBrush="Red" GotFocus="txt_cp_GotFocus">
+            <xt:MaskedTextBox.InputBindings>
+                <KeyBinding Key="Return" Command="{Binding nadacommand}"/>
+            </xt:MaskedTextBox.InputBindings>
         </xt:MaskedTextBox>
         <TextBlock x:Name="lblCol" HorizontalAlignment="Left" Margin="242,117,0,0" TextWrapping="Wrap" Text="Colonia" VerticalAlignment="Top"/>
         <ComboBox x:Name="cbColonia" HorizontalAlignment="Left" Margin="320,112,0,0" VerticalAlignment="Top" Text="{Binding ClienteColonia}" TabIndex="6" Height="27" LostFocus="cbColonia_LostFocus" BorderBrush="Red" SelectionChanged="cbColonia_SelectionChanged" GotFocus="cbColonia_GotFocus">
