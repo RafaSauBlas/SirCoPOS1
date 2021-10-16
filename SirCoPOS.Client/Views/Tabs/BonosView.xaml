@@ -13,6 +13,7 @@
         <StackPanel Orientation="Horizontal" Margin="10,6,0,0" VerticalAlignment="Top">
             <TextBlock Text="Empleado Id"/>
             <TextBox x:Name="txtEmp" 
+                    PreviewKeyDown="Text_PreviewKeyDown"
                     MouseDoubleClick="SelectAll"
                     GotKeyboardFocus="SelectAll"
                     PreviewMouseLeftButtonDown="SelectivelyIgnoreMouseButton"
@@ -40,6 +41,7 @@
         <TextBlock Text="{Binding GerenteNombre}" HorizontalAlignment="Right" Margin="0,0,90,80" TextWrapping="Wrap"  VerticalAlignment="Bottom" Width="280"/>
 
         <TextBox x:Name="txtGte"  
+                 PreviewKeyDown="Text_PreviewKeyDown"
                  MouseDoubleClick="SelectAll"
                  GotKeyboardFocus="SelectAll"
                  PreviewMouseLeftButtonDown="SelectivelyIgnoreMouseButton"

@@ -55,7 +55,6 @@ namespace SirCoPOS.Client.Views.Tabs
         private void BonosView_Loaded(object sender, RoutedEventArgs e)
         {
             this.txtEmp.Focus();
-            EventManager.RegisterClassHandler(typeof(TextBox), TextBox.KeyDownEvent, new KeyEventHandler(TextBox_KeyDown));
         }
         private void Dt_Tick(object sender, EventArgs e)
         {
@@ -107,67 +106,38 @@ namespace SirCoPOS.Client.Views.Tabs
             { ((dynamic)this.DataContext).Password = ((PasswordBox)sender).Password; }
         }
 
-        private bool MoveFocus_Next(UIElement uiElement)
+
+        private void Text_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (uiElement != null)
+            if (e.Key == Key.Enter)
             {
-                uiElement.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
-                return true;
-            }
-            return false;
-        }
-
-        void MoveToNextUIElement(KeyEventArgs e)
-        {
-            // Creating a FocusNavigationDirection object and setting it to a
-            // local field that contains the direction selected.
-            FocusNavigationDirection focusDirection = FocusNavigationDirection.Next;
-
-            // MoveFocus takes a TraveralReqest as its argument.
-            TraversalRequest request = new TraversalRequest(focusDirection);
-
-            // Gets the element with keyboard focus.
-            UIElement elementWithFocus = Keyboard.FocusedElement as UIElement;
-
-            // Change keyboard focus.
-            if (elementWithFocus != null)
-            {
-                if (elementWithFocus.MoveFocus(request)) e.Handled = true;
-            }
-        }
-
-        void TextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            TextBox txtControl = (sender as TextBox);
-
-            if ((e.Key == Key.Enter & txtControl.AcceptsReturn == false) && txtControl.Text !="")
-            {
-                Client.ViewModels.Tabs.BonosViewModel vm = this.DataContext as Client.ViewModels.Tabs.BonosViewModel;
-
-                //Call command from viewmodel
-                if (vm != null )
+                TextBox s = e.Source as TextBox;
+                if (s != null)
                 {
-                    
-                    switch (txtControl.Name)
+                    Client.ViewModels.Tabs.BonosViewModel vm = this.DataContext as Client.ViewModels.Tabs.BonosViewModel;
+                    if (vm != null && s.Text != "")
                     {
-                        case "txtEmp":
-                            vm.Empleado = Int32.Parse(txtControl.Text) ;
-                            txtPwd.Password = "";
-                            vm.LoadCommand.CanExecute(null);
-                            vm.LoadCommand.Execute(null);
-                            break;
-                        case "txtGte":
-                            vm.Gerente = Int32.Parse(txtControl.Text);
-                            vm.LoadCommand.CanExecute(null);
-                            vm.LoadGerente.Execute(null);
-                            break;
-                    }
-                }
 
-                if (txtControl.Text !="" ) 
-                    MoveToNextUIElement(e);
+                        switch (s.Name)
+                        {
+                            case "txtEmp":
+                                vm.Empleado = Int32.Parse(s.Text);
+                                txtPwd.Password = "";
+                                vm.LoadCommand.CanExecute(null);
+                                vm.LoadCommand.Execute(null);
+                                break;
+                            case "txtGte":
+                                vm.Gerente = Int32.Parse(s.Text);
+                                vm.LoadCommand.CanExecute(null);
+                                vm.LoadGerente.Execute(null);
+                                break;
+                        }
+                    }
+                    if (s.Text != "")
+                        s.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
+                }
+                e.Handled = true;
             }
-                
         }
 
         private void SelectAll(object sender, RoutedEventArgs e)
