@@ -35,6 +35,7 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             InitializeComponent();
             this.Loaded += BonosView_Loaded;
+            Messenger.Default.Register<string>(this, "SetFocus", doFocusBtn);
             _tabs = new Dictionary<Guid, TabItem>();
             _dt = new System.Windows.Threading.DispatcherTimer();
             _dt.Tick += Dt_Tick;
@@ -44,6 +45,11 @@ namespace SirCoPOS.Client.Views.Tabs
             _dt.Start();
 
 
+        }
+        public void doFocusBtn(string msg)
+        {
+            if (msg == "next")
+                this.btnPagar.Focus();
         }
 
         private void BonosView_Loaded(object sender, RoutedEventArgs e)
@@ -132,9 +138,59 @@ namespace SirCoPOS.Client.Views.Tabs
 
         void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Enter & (sender as TextBox).AcceptsReturn == false) MoveToNextUIElement(e);
+            TextBox txtControl = (sender as TextBox);
+
+            if ((e.Key == Key.Enter & txtControl.AcceptsReturn == false) && txtControl.Text !="")
+            {
+                Client.ViewModels.Tabs.BonosViewModel vm = this.DataContext as Client.ViewModels.Tabs.BonosViewModel;
+
+                //Call command from viewmodel
+                if (vm != null )
+                {
+                    
+                    switch (txtControl.Name)
+                    {
+                        case "txtEmp":
+                            vm.Empleado = Int32.Parse(txtControl.Text) ;
+                            txtPwd.Password = "";
+                            vm.LoadCommand.CanExecute(null);
+                            vm.LoadCommand.Execute(null);
+                            break;
+                        case "txtGte":
+                            vm.Gerente = Int32.Parse(txtControl.Text);
+                            vm.LoadCommand.CanExecute(null);
+                            vm.LoadGerente.Execute(null);
+                            break;
+                    }
+                }
+
+                if (txtControl.Text !="" ) 
+                    MoveToNextUIElement(e);
+            }
+                
         }
 
+        private void SelectAll(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (sender as TextBox);
+            if (tb != null)
+            {
+                tb.SelectAll();
+            }
+        }
+        private void SelectivelyIgnoreMouseButton(object sender,
+    MouseButtonEventArgs e)
+        {
+            TextBox tb = (sender as TextBox);
+            if (tb != null)
+            {
+                if (!tb.IsKeyboardFocusWithin)
+                {
+                    e.Handled = true;
+                    tb.Focus();
+                }
+            }
+        }
 
     }
 }
