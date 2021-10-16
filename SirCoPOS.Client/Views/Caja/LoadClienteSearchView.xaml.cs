@@ -22,7 +22,7 @@ namespace SirCoPOS.Client.Views.Caja
     public partial class LoadClienteSearchView : UserControl
     {
         public Client.ViewModels.Caja.LoadClienteViewModel CL;
-        //Client.MetodoInactividad IN;
+        Client.MetodoInactividad IN;
 
         public LoadClienteSearchView()
         {
@@ -44,32 +44,34 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //IN = new Client.MetodoInactividad();
-            Messenger.Default.Register<string>(this, "FocusTel", FocusTel); 
+            IN = new Client.MetodoInactividad();
+            Messenger.Default.Register<string>(this, "FocusTel", FocusTel);
+            Messenger.Default.Register<string>(this, "FocusCol", FocusCol);
+            Messenger.Default.Register<string>(this, "MensajeTelefono", MensajeTelefono);
             this.txt_Telefono.Focus();
         }
 
         private void txt_Nombre_KeyDown(object sender, KeyEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
             txt_Nombre.CharacterCasing = CharacterCasing.Upper;
         }
 
         private void txtAppa_KeyDown(object sender, KeyEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
             txtAppa.CharacterCasing = CharacterCasing.Upper;
         }
 
         private void txtApma_KeyDown(object sender, KeyEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
             txtApma.CharacterCasing = CharacterCasing.Upper;
         }
 
         private void txt_ciudad_KeyDown(object sender, KeyEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
             txtCalle.CharacterCasing = CharacterCasing.Upper;
         }
 
@@ -100,6 +102,12 @@ namespace SirCoPOS.Client.Views.Caja
                     cbColonia.Items.Add(col.Nombre.ToString());
                 }
                 cbColonia.SelectedIndex = cbColonia.Items.IndexOf(CL.FindColonia(SirCoPOS.Common.Constants.ClienteInfo.colonia));
+            }
+            else
+            {
+                //cbColonia.Items.Clear();
+                //cbColonia.SelectedItem = null;
+                //cbColonia.Text = "";
             }
         }
         public void SeleccionarColonia()
@@ -233,7 +241,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void cbSexo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
             if (cbSexo.Text != null)
             {
                 cbSexo.BorderBrush = Brushes.LightGray;
@@ -283,7 +291,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void cbColonia_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
             if (this.cbColonia.Text != "")
             {
                 this.cbColonia.BorderBrush = Brushes.Gray;
@@ -412,7 +420,7 @@ namespace SirCoPOS.Client.Views.Caja
         int men = 0;
         private void cbSexo_GotFocus(object sender, RoutedEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
             if (txtidentif.Text == "")
             {
                 if (men == 0)
@@ -491,7 +499,34 @@ namespace SirCoPOS.Client.Views.Caja
                 this.txtApma.Focus();
                 this.txtApma.SelectAll();
             }
+        }
+
+        public void FocusCol(string msg)
+        {
+            if(msg == "focuscol")
+            {
+                if(this.cbColonia.Text == "")
+                {
+                    MessageBox.Show("Debe seleccionar una colonia valida", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    this.cbColonia.Focus();
+                }
+                else
+                {
+                    this.cbColonia.Focus();
+                }
+
                 
+            }
+        }
+
+        public void MensajeTelefono(string msg)
+        {
+            if (msg == "tel")
+            {
+                MessageBox.Show("Ya existe un cliente registrado con el mismo número de celular.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                this.txttel.Focus();
+                this.txttel.SelectAll();
+            }
         }
 
         //public void seleccionar()
@@ -517,7 +552,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void txt_Telefono_KeyUp(object sender, KeyEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
             if (e.Key == Key.Enter)
             {
                 Messenger.Default.Send<string>("focus", "DoFocus");
@@ -552,7 +587,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void txttel_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
             if (e.Key == Key.Enter)
             {
                 ActualizarCliente();
@@ -561,7 +596,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void txttel2_KeyDown(object sender, KeyEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
             if (e.Key == Key.Enter)
             {
                 ActualizarCliente();
@@ -570,22 +605,30 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
         }
 
         private void txt_cp_KeyDown(object sender, KeyEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
         }
 
         private void cbColonia_GotFocus(object sender, RoutedEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
+            if(this.cbColonia.Text != "")
+            {
+                this.cbColonia.BorderBrush = Brushes.Gray;
+            }
+            else
+            {
+                this.cbColonia.BorderBrush = Brushes.Red;
+            }
         }
 
         private void txttel_KeyDown(object sender, KeyEventArgs e)
         {
-            //IN.reiniciar();
+            IN.reiniciar();
         }
 
         //private void Button_Click(object sender, RoutedEventArgs e)

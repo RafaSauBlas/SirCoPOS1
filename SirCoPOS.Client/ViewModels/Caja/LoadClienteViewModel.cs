@@ -139,6 +139,10 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.searchnameCommand = new RelayCommand(() => {
                     BusquedaName();
                 });
+                this.nadacommand = new RelayCommand(() =>
+                {
+                    Messenger.Default.Send<string>("focuscol", "FocusCol");
+                });
 
                 this.agregarclientecommand = new RelayCommand(() =>
                 {
@@ -401,15 +405,20 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 if (name != this.Cliente.Nombre || appaterno != this.Cliente.ApPaterno || apmaterno != this.Cliente.ApMaterno
                     || codigopostal != this.Cliente.CodigoPostal || calle != this.Cliente.Calle || numero != this.Cliente.Numero
                     || email != this.Cliente.Email || colonia1 != colonia2 || sexo1 != this.Cliente.Sexo
-                    || cel != this.Cliente.Celular1 || celular != this.Cliente.Celular 
+                    || cel != this.Cliente.Celular1 || celular != this.Cliente.Celular
                     || identificacion != this.Cliente.Identificacion)
                 {
                     var celular1 = _common.PreparePhone(celular);
-                    var celu = _common.PreparePhone(cel);
-                    string nc = name1 + " " + appa1 + " " + apma1;
-                    var cajero = _settings.Cajero.Id;
-                    var datos = Convert.ToInt32(_proxy.Clientexd(name, appaterno, apmaterno, codigopostal, calle, numero, celular1, celu, email, colonia, cajero, sexo, identificacion));
-                    Common.Constants.ClienteInfo.colonia = datos;
+                    var verifica = _proxy.CheckCelular(celular1);
+                    if (!verifica)
+                    {
+                        var celu = _common.PreparePhone(cel);
+                        string nc = name1 + " " + appa1 + " " + apma1;
+                        var cajero = _settings.Cajero.Id;
+                        var datos = Convert.ToInt32(_proxy.Clientexd(name, appaterno, apmaterno, codigopostal, calle, numero, celular1, celu, email, colonia, cajero, sexo, identificacion));
+                        Common.Constants.ClienteInfo.colonia = datos;
+                    }
+                    
                 }
 
             }
@@ -623,7 +632,17 @@ namespace SirCoPOS.Client.ViewModels.Caja
             }
             if (this.Screen == "search")
             {
-                actualizainfo();
+                var preparado = _common.PreparePhone(this.ClienteCelular1);
+                var verifica = _proxy.CheckCelular(preparado);
+                if (!verifica || preparado == this.Cliente.Celular)
+                {
+                    actualizainfo();
+                }
+                else
+                {
+                        Messenger.Default.Send<string>("tel", "MensajeTelefono");
+                        return;
+                }
                 Messenger.Default.Send(new Messages.ClienteMessage
                 {
                     Cliente = this.Cliente
@@ -793,6 +812,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
         public RelayCommand<string> ChangeViewCommand { get; private set; }
         public RelayCommand SearchCommand { get; private set; }
         public RelayCommand searchnameCommand { get; private set; }
+        public RelayCommand nadacommand { get; private set; }
         public RelayCommand agregarclientecommand { get; private set; }
         public RelayCommand PopUpCommand { get; private set; }
         #endregion
