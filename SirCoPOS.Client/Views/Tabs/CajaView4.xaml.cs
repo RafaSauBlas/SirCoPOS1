@@ -104,6 +104,8 @@ namespace SirCoPOS.Client.Views.Tabs
             //var dato = new SirCoPOS.Common.Entities.Empleado();
             //int depto = dato.Depto;
             var vm = (ViewModels.Tabs.CajaViewModel)this.DataContext;
+            if (vm.Cajero.Depto == 3)
+                this.scanTextBox.ContextMenu = new ContextMenu();
         }
 
         private void scanTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
