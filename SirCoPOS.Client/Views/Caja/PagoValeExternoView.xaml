@@ -205,7 +205,7 @@
             </StackPanel>
             
             <StackPanel Margin="15,2,15,0" Grid.Column="8" Grid.ColumnSpan="2">
-                <TextBlock x:Name="lblCalzado" Text="Calzado" Style="{StaticResource ResourceKey=lbl_style}" />
+                <TextBlock x:Name="lblCalzado" Text="Calzado/Accesorios" Style="{StaticResource ResourceKey=lbl_style}" />
                 <Border BorderThickness="0.4" BorderBrush="Black">
                     <TextBlock x:Name="txtCalzado"  Text="{Binding TotalCalzado, StringFormat=\{0:C\}}" TextAlignment="Right" Height="20" Style="{StaticResource ResourceKey=text_style}"/>
                 </Border>
@@ -273,7 +273,7 @@
 
             <StackPanel Margin="20,0,15,-6" Grid.Row="6" Grid.Column="10" Grid.ColumnSpan="1">
                 <TextBlock x:Name="lblPlazos" Text="Plazo" Style="{StaticResource ResourceKey=lbl_style}"/>
-                <ComboBox  x:Name="cboPlazo"  IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontSize="8" Height="30" Width="50"  HorizontalContentAlignment="Right"  >
+                <ComboBox  x:Name="cboPlazo"  IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontSize="8" Height="30" Width="44"  HorizontalContentAlignment="Right"  >
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="FontSize" Value="8"/>

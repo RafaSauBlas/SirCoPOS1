@@ -1383,7 +1383,8 @@ namespace SirCoPOS.BusinessLogic
                     .Single().negocio;
             }
             string observa = "";
-            if (item.ProductosPlazos.Sum(i=>i.Importe).Value > 0  && item.Importe > 0) {
+            if (model.VentaCombinada)
+            {
                 observa = "VentaCombinada";
             }
             var plan = new DataAccess.SirCoCredito.PlanPagos
