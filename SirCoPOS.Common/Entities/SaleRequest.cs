@@ -13,6 +13,7 @@ namespace SirCoPOS.Common.Entities
         public int? VendedorId { get; set; }
         public IEnumerable<Pago> Pagos { get; set; }
         public Cliente Cliente { get; set; }
+        public bool VentaCombinada { get; set; }
     }
 
     public enum SaleType

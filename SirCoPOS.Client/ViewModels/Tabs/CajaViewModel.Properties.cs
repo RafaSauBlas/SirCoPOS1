@@ -91,6 +91,27 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 return this.Productos.Where(i => !i.Electronica && !i.Accesorio).Any();
             }
         }
+        public bool HasElectronica
+        {
+            get
+            {
+                return this.Productos.Where(i => i.Electronica).Any();
+            }
+        }
+        public bool HasAccesorio
+        {
+            get
+            {
+                return this.Productos.Where(i => i.Accesorio).Any();
+            }
+        }
+        public bool VentaCombinada
+        {
+            get
+            {
+                return HasElectronica && (HasCalzado || HasAccesorio);
+            }
+        }
         private string _devsucursal;
         public override string DevSucursal
         {

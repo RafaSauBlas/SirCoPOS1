@@ -539,6 +539,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             var sale = new SaleRequest
             {
                 Tipo = this.Tipo,
+                VentaCombinada = this.VentaCombinada,
                 VendedorId = this.Vendedor?.Id, 
                 Productos = this.Productos.Select(
                     i => new SerieFormasPago 
