@@ -27,8 +27,8 @@ namespace SirCoPOS.Client.Views.Tabs
     public partial class VerificarValeExternoView : UserControl, Utilities.Interfaces.ITabView
     {
 
-        private System.Windows.Threading.DispatcherTimer _dt;
         private IDictionary<Guid, TabItem> _tabs;
+        Client.MetodoInactividad IN;
         private ILogger _log;
 
         public VerificarValeExternoView()
@@ -36,36 +36,7 @@ namespace SirCoPOS.Client.Views.Tabs
             InitializeComponent();
 
             _tabs = new Dictionary<Guid, TabItem>();
-            _dt = new System.Windows.Threading.DispatcherTimer();
-            _dt.Tick += Dt_Tick;
-            _dt.Interval = TimeSpan.FromSeconds(Common.Constants.Inactividad.Segundos);
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
-            this.RegisterMessages();
-            _dt.Start();
-        }
-
-        private void Dt_Tick(object sender, EventArgs e)
-        {
-            var dt = (System.Windows.Threading.DispatcherTimer)sender;
-            dt.Stop();
-            Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
-        }
-
-        private void RegisterMessages()
-        {
-            Messenger.Default.Register<Utilities.Messages.CloseTab>(this,
-               m => {
-                   Messenger.Default.Send(m, m.GID);
-                   Console.WriteLine($"removing: {m.GID}");
-                   if (!_tabs.Any())
-                   {
-                       _dt.Stop();
-                   }
-               });
-
-            Messenger.Default.Register<Utilities.Messages.LogoutTimeout>(this, m => {
-                _dt.Stop();
-            });
         }
 
         public void Init()
@@ -103,22 +74,18 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
-            _dt.Stop();
         }
 
         private void UserControl_KeyUp(object sender, KeyEventArgs e)
         {
-            _dt.Start();
         }
 
         private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            _dt.Stop();
         }
 
         private void UserControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            _dt.Start();
         }
 
         public void Seleccionar()
@@ -141,6 +108,40 @@ namespace SirCoPOS.Client.Views.Tabs
             {
                 this.txtCuenta.Focus();
             }
+        }
+
+        public void Detener(string msg)
+        {
+            if (msg == "stop")
+            {
+                IN.detener();
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Register<string>(this, "Detener", Detener);
+            IN = new Client.MetodoInactividad();
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            IN.reiniciar();
+        }
+
+        private void tbVale_KeyDown(object sender, KeyEventArgs e)
+        {
+            IN.reiniciar();
+        }
+
+        private void txt_negocio_KeyDown(object sender, KeyEventArgs e)
+        {
+            IN.reiniciar();
+        }
+
+        private void txtCuenta_KeyDown(object sender, KeyEventArgs e)
+        {
+            IN.reiniciar();
         }
     }
 }

@@ -64,7 +64,7 @@
         </Style>
     </UserControl.Resources>
     <xt:BusyIndicator IsBusy="{Binding IsBusy}">
-        <Grid Name ="PagoValeExterno">
+        <Grid Name ="PagoValeExterno" MouseMove="PagoValeExterno_MouseMove">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140" />
                 <ColumnDefinition Width="110*" />
@@ -97,7 +97,7 @@
             <StackPanel Margin="15,0,15,0" >
                 <TextBlock x:Name="lblVale" Text="Vale" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border Style="{StaticResource ResourceKey=border_style}">
-                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}"  FontSize="13">
+                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}"  FontSize="13" TextChanged="tbVale_TextChanged">
                         <TextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
                         </TextBox.InputBindings>
@@ -116,7 +116,7 @@
                 <StackPanel Orientation="Horizontal" Margin="0,0,10,0">
                     <!--<Border BorderThickness="0.4" BorderBrush="Black">-->
                     <TextBox x:Name="txtNeg" Text="{Binding Negocio, UpdateSourceTrigger=PropertyChanged}" Width="30" Margin="0,0,4,0" FontSize="14" TextChanged="TextBox_TextChanged"/>
-                    <ComboBox SelectedValue="{Binding SelectedNegocio}" SelectedValuePath="Id" ItemsSource="{Binding Negocios}" Width="77" Height="25"  FontSize="14">
+                    <ComboBox SelectedValue="{Binding SelectedNegocio}" SelectedValuePath="Id" ItemsSource="{Binding Negocios}" Width="77" Height="25"  FontSize="14" SelectionChanged="ComboBox_SelectionChanged">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock>
@@ -152,7 +152,7 @@
             <StackPanel Margin="15,1,10,0" Grid.Row="1" Grid.Column="1">
                 <TextBlock x:Name="lblCuenta" Text="Cuenta Externa" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border Style="{StaticResource ResourceKey=border_style}">
-                    <TextBox x:Name="txtCuenta" Text="{Binding Cuenta, UpdateSourceTrigger=PropertyChanged}" FontSize="14" KeyUp="txtCuenta_KeyUp">
+                    <TextBox x:Name="txtCuenta" Text="{Binding Cuenta, UpdateSourceTrigger=PropertyChanged}" FontSize="14" KeyUp="txtCuenta_KeyUp" TextChanged="txtCuenta_TextChanged">
                             <TextBox.InputBindings>
                                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
                             </TextBox.InputBindings>

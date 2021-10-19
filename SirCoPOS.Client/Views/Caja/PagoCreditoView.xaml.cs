@@ -45,6 +45,7 @@ namespace SirCoPOS.Client.Views.Caja
         }
         private void cboPromocion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
             if (cboPlazo != null && this.txtCuenta.Text.Length > 0)
             {
                 cboPlazo.SelectedIndex = 3;
@@ -70,6 +71,21 @@ namespace SirCoPOS.Client.Views.Caja
                     this.cboPlazo.Focus();
                 }
 
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void cboPlazo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using GalaSoft.MvvmLight.Messaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,21 @@ namespace SirCoPOS.Client.Views.Caja
         private void pagarTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             this.pagarTextBox.SelectAll();
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void pagarConTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void pagarTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
         }
     }
 }

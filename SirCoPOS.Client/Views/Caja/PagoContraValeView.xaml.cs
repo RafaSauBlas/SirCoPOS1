@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GalaSoft.MvvmLight.Messaging;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
@@ -44,6 +45,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void cboPromocion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
             if (cboPlazo != null && this.txtCuenta.Text.Length > 0)
             {
                 cboPlazo.SelectedIndex = 7;
@@ -81,7 +83,8 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void tbSucursal_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(this.tbSucursal.Text.Length == 2)
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+            if (this.tbSucursal.Text.Length == 2)
             {
                 if(this.tbSucursal.Text == "01" || this.tbSucursal.Text == "02" || this.tbSucursal.Text == "06" 
                     || this.tbSucursal.Text == "08")
@@ -98,7 +101,8 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void tbVale_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(this.tbVale.Text == "" && this.txtNoVale.Text != "")
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+            if (this.tbVale.Text == "" && this.txtNoVale.Text != "")
             {
                 if(this.cboPromocion.IsEnabled == true)
                 {
@@ -109,6 +113,16 @@ namespace SirCoPOS.Client.Views.Caja
                     this.cboPlazo.Focus();
                 }
             }
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void cboPlazo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
         }
     }
 }

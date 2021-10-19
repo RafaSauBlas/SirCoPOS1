@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
              xmlns:cv="clr-namespace:SirCoPOS.Client.Converters"             
-             d:DesignHeight="450" d:DesignWidth="1197.5" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp">
+             d:DesignHeight="450" d:DesignWidth="1197.5" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.DataContext>
         <vm:VerificarValeExternoViewModel></vm:VerificarValeExternoViewModel>
     </UserControl.DataContext>
@@ -78,12 +78,12 @@
         <TextBlock x:Name="textBlock_Copy4" Margin="553,26,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Cuenta}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" Width="130"/>
         <TextBlock x:Name="textBlock4" Margin="407,103,0,0" TextWrapping="Wrap" Text="Electrónica:" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Vale" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbVale" HorizontalAlignment="Left" Height="27" Margin="82,9,0,0" TextWrapping="Wrap" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+        <TextBox x:Name="tbVale" HorizontalAlignment="Left" Height="27" Margin="82,9,0,0" TextWrapping="Wrap" Text="{Binding ValeSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyDown="tbVale_KeyDown">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBox x:Name="txt_negocio" Text="{Binding Negocio, UpdateSourceTrigger=PropertyChanged}" CharacterCasing="Upper" Height="27" Margin="82,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" TextChanged="txt_negocio_TextChanged"/>
+        <TextBox x:Name="txt_negocio" Text="{Binding Negocio, UpdateSourceTrigger=PropertyChanged}" CharacterCasing="Upper" Height="27" Margin="82,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="54" TextChanged="txt_negocio_TextChanged" KeyDown="txt_negocio_KeyDown"/>
         <TextBlock x:Name="textBlock_Copy5" HorizontalAlignment="Left" Margin="10,50,0,0" TextWrapping="Wrap" Text="Negocio" VerticalAlignment="Top"/>
         <ComboBox IsTextSearchEnabled="True" SelectedValue="{Binding SelectedNegocio}" SelectedValuePath="Id" HorizontalAlignment="Left" Margin="141,45,0,0" VerticalAlignment="Top" ItemsSource="{Binding Negocios}">
             <ComboBox.ItemTemplate>
@@ -100,7 +100,7 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <TextBlock x:Name="textBlock_Copy6" HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" Text="Cuenta" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCuenta" HorizontalAlignment="Left" Height="27" Margin="82,82,0,0" TextWrapping="Wrap" Text="{Binding Cuenta, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyUp="TextBox_KeyUp">
+        <TextBox x:Name="txtCuenta" HorizontalAlignment="Left" Height="27" Margin="82,82,0,0" TextWrapping="Wrap" Text="{Binding Cuenta, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyUp="TextBox_KeyUp" KeyDown="txtCuenta_KeyDown">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"/>
             </TextBox.InputBindings>

@@ -14,6 +14,7 @@ namespace SirCoPOS.Win.ViewModels
         {
             this.CloseCommand = new RelayCommand(() => {
                 Console.WriteLine($"closing: {this.GID}");
+                Messenger.Default.Send<string>("stop", "Detener");
                 Messenger.Default.Send(new Utilities.Messages.CloseTab { GID = this.GID });
             });
             if (this.IsInDesignMode)

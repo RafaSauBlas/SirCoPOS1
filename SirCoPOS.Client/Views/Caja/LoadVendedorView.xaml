@@ -6,7 +6,7 @@
              mc:Ignorable="d" xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"             
              xmlns:c="clr-namespace:SirCoPOS.Client.Converters"
              Height="230" Width="480"
-             Loaded="UserControl_Loaded">
+             Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.Resources>
         <c:ImageUrlConverter x:Key="imageUrl"></c:ImageUrlConverter>
     </UserControl.Resources>
@@ -18,7 +18,7 @@
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
         </Grid.Background>
         <!-- Captura IdVendedor -->
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="26" Margin="115,10,0,0" TextWrapping="Wrap" Text="{Binding VendedorSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="26" Margin="115,10,0,0" TextWrapping="Wrap" Text="{Binding VendedorSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" TextChanged="textBox_TextChanged">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding FindVendedorCommand}"></KeyBinding>
             </TextBox.InputBindings>

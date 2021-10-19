@@ -21,14 +21,15 @@ namespace SirCoPOS.Client.Helpers
     {
         protected IDictionary<FormaPago, Models.FormaPagoKey> _formas;
         private readonly Common.ServiceContracts.IDataServiceAsync _proxy;
+
         public TabsPagosViewModel()
         {
-
             this.PropertyChanged += TabsPagosViewModel_PropertyChanged;
             if (!this.IsInDesignMode)
             {
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
             }
+
             this.Pagos = new ObservableCollection<Utilities.Interfaces.IPagoItem>();
             this.Pagos.CollectionChanged += Pagos_CollectionChanged;
             _formas = new Dictionary<FormaPago, Models.FormaPagoKey>() {
@@ -214,6 +215,7 @@ namespace SirCoPOS.Client.Helpers
         }
         protected async Task<Models.Pagos.Pago> ParsePago(Utilities.Messages.Pago o, Guid? id = null)
         {
+            
             Models.Pagos.Pago p = null;
             if(o.FormaPago.ToString() == "CD")
             {
@@ -548,7 +550,6 @@ namespace SirCoPOS.Client.Helpers
 
         protected virtual void OpenFormaPago(FormaPago fp) 
         {
-            Common.Constants.Inactividad.Segundos = 150;
             Messenger.Default.Send(
                     new Utilities.Messages.OpenPago
                     {

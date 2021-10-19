@@ -14,7 +14,7 @@
         </Grid.Background>
         <TextBlock HorizontalAlignment="Left" Margin="10,15.68,0,0" TextWrapping="Wrap" Text="Razón" VerticalAlignment="Top"/>
         <!--Combo Razon Descuento Adicional-->
-        <ComboBox x:Name="comboBox" Margin="107.59,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" ItemsSource="{Binding Items}" DisplayMemberPath="Descripcion" SelectedItem="{Binding SelectedItem}">
+        <ComboBox x:Name="comboBox" Margin="107.59,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" ItemsSource="{Binding Items}" DisplayMemberPath="Descripcion" SelectedItem="{Binding SelectedItem}" SelectionChanged="comboBox_SelectionChanged">
             <ComboBox.Background>
                 <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
             </ComboBox.Background>
@@ -24,7 +24,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,55,0,0" TextWrapping="Wrap" Text="Descuento" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,96,0,0" TextWrapping="Wrap" Text="Descripción" VerticalAlignment="Top"/>
         <!--TextBox descricpcion Descuento Adicional-->
-        <TextBox x:Name="txtDescrip" Margin="108,93,0,0" TextWrapping="Wrap" Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" KeyDown="txtDescrip_KeyDown"/>
+        <TextBox x:Name="txtDescrip" Margin="108,93,0,0" TextWrapping="Wrap" Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="120" KeyDown="txtDescrip_KeyDown" TextChanged="txtDescrip_TextChanged"/>
 
     </Grid>
 </UserControl>

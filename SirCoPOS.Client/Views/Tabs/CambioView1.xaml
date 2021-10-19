@@ -10,7 +10,7 @@
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             d:DesignHeight="600" d:DesignWidth="900" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp">
+             d:DesignHeight="600" d:DesignWidth="900" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.DataContext>
         <vm:CambioViewModel></vm:CambioViewModel>
     </UserControl.DataContext>
@@ -159,7 +159,7 @@
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                 </ListBox>
-                <TextBox x:Name="scanTextBox" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}"  Height="27" Margin="0,6,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="140" IsEnabled="True" PreviewKeyDown="scanTextBox_PreviewKeyDown" KeyUp="scanTextBox_KeyUp">
+                <TextBox x:Name="scanTextBox" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}"  Height="27" Margin="0,6,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="140" IsEnabled="True" PreviewKeyDown="scanTextBox_PreviewKeyDown" KeyUp="scanTextBox_KeyUp" KeyDown="scanTextBox_KeyDown">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding ScanCommand}"/>
                     </TextBox.InputBindings>
@@ -205,7 +205,7 @@
             </Grid>
         </xt:BusyIndicator>
 
-        <xt:ChildWindow DesignerWindowState="Open" WindowState="Closed" Height="200" Width="250" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <xt:ChildWindow Visibility="Hidden" DesignerWindowState="Open" WindowState="Closed" Height="200" Width="250" WindowStartupLocation="Center" IsModal="True" CloseButtonVisibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Grid>
                 <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Devolucion" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Margin="10,39,0,0" TextWrapping="Wrap" Text="Venta" VerticalAlignment="Top"/>

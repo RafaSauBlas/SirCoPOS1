@@ -8,7 +8,7 @@
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
-             Height="550" Width="900" Loaded="UserControl_Loaded">
+             Height="550" Width="900" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.DataContext>
         <vm:PagoCreditoViewModel2></vm:PagoCreditoViewModel2>
     </UserControl.DataContext>
@@ -97,7 +97,7 @@
             <StackPanel Margin="15,0,15,0" >
                 <TextBlock x:Name="lblVale" Text="TarjetaHabiente" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border Style="{StaticResource ResourceKey=border_style}">
-                    <TextBox x:Name="tbSearch"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="13" KeyUp="tbSearch_KeyUp">
+                    <TextBox x:Name="tbSearch"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="13" KeyUp="tbSearch_KeyUp" TextChanged="tbSearch_TextChanged">
                         <TextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
                         </TextBox.InputBindings>
@@ -243,7 +243,7 @@
 
             <StackPanel Margin="15,0,15,-10" Grid.Row="6" Grid.Column="10" Grid.ColumnSpan="1">
                 <TextBlock x:Name="lblPlazos" Text="Plazo" Style="{StaticResource ResourceKey=lbl_style}"/>
-                <ComboBox  x:Name="cboPlazo" IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontSize="8" Height="30" Width="48" HorizontalAlignment="Right" FontFamily="Arial Narrow">
+                <ComboBox  x:Name="cboPlazo" IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontSize="8" Height="30" Width="48" HorizontalAlignment="Right" FontFamily="Arial Narrow" SelectionChanged="cboPlazo_SelectionChanged">
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="HorizontalAlignment" Value="Right"/>

@@ -64,7 +64,7 @@
         </Style>
     </UserControl.Resources>
     <xt:BusyIndicator IsBusy="{Binding IsBusy}">
-        <Grid Name ="PagoVale">
+        <Grid Name ="PagoVale" MouseMove="PagoVale_MouseMove" Loaded="PagoVale_Loaded">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="140" />
                 <ColumnDefinition Width="110*" />
@@ -97,7 +97,7 @@
             <StackPanel Margin="15,0,15,0" >
                 <TextBlock x:Name="lblVale" Text="Vale" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border Style="{StaticResource ResourceKey=border_style}">
-                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="13" KeyUp="tbVale_KeyUp">
+                    <TextBox x:Name="tbVale"  TextAlignment="Right" MaxLength="8"  Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}"  FontSize="13" KeyUp="tbVale_KeyUp" GotFocus="tbVale_GotFocus" TextChanged="tbVale_TextChanged">
                         <TextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
                         </TextBox.InputBindings>
@@ -262,7 +262,7 @@
 
             <StackPanel Margin="15,0,15,0" Grid.Row="8" Grid.Column="10" Grid.ColumnSpan="1">
                 <TextBlock x:Name="lblPlazos" Text="Plazo" Style="{StaticResource ResourceKey=lbl_style}"/>
-                <ComboBox  x:Name="cboPlazo" IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontFamily="Calibri" Height="28" Width="48" HorizontalAlignment="Right" KeyboardNavigation.TabIndex="2" >
+                <ComboBox  x:Name="cboPlazo" IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" FontFamily="Calibri" Height="28" Width="48" HorizontalAlignment="Right" KeyboardNavigation.TabIndex="2" SelectionChanged="cboPlazo_SelectionChanged" >
                     <ComboBox.ItemContainerStyle>
                         <Style TargetType="{x:Type ComboBoxItem}">
                             <Setter Property="FontSize" Value="8"/>

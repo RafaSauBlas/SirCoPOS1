@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +50,7 @@ namespace SirCoPOS.Win.ViewModels
                 , { Utilities.Constants.TabType.Bonos, true }
             };            
             this.OpenCommand = new RelayCommand<Utilities.Constants.TabType>(
-                m => {                    
+                m => {
                     GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
                         new Messages.MenuItem { Name = m });
                     }, 

@@ -9,7 +9,7 @@
              xmlns:cv="clr-namespace:SirCoPOS.Client.Converters"             
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"             
-             Height="550" Width="950" Loaded="UserControl_Loaded">
+             Height="550" Width="950" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.DataContext>
         <vm:PagoValeDigitalViewModel2></vm:PagoValeDigitalViewModel2>
     </UserControl.DataContext>
@@ -73,7 +73,7 @@
             <StackPanel Margin="15,0,15,0" >
                 <TextBlock x:Name="lblVale" Text="Vale" Style="{StaticResource ResourceKey=lbl_style}"/>
                 <Border Style="{StaticResource ResourceKey=border_style}">
-                    <TextBox x:Name="tbSearch"  TextAlignment="Right" MaxLength="11" Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" FontSize="13" KeyUp="tbSearch_KeyUp">
+                    <TextBox x:Name="tbSearch"  TextAlignment="Right" MaxLength="11" Height="20" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" FontSize="13" KeyUp="tbSearch_KeyUp" TextChanged="tbSearch_TextChanged">
                         <TextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
                         </TextBox.InputBindings>
@@ -268,7 +268,7 @@
 
             <StackPanel Margin="5,-10,0,0" Grid.Row="7" Grid.Column="10" Grid.ColumnSpan="1">
                 <TextBlock x:Name="lblPlazos" Text="Plazo" Style="{StaticResource ResourceKey=lbl_style}"/>
-                <ComboBox  x:Name="cboPlazo" IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" Width="50"/>
+                <ComboBox  x:Name="cboPlazo" IsEnabled="{Binding HasPromocionPlazos}" SelectedValue="{Binding SelectedPlazo}" ItemsSource="{Binding Plazos}" Width="50" SelectionChanged="cboPlazo_SelectionChanged"/>
             </StackPanel>
 
             <TabControl Margin="15,24.667,15,5" Grid.Row="7" Grid.ColumnSpan="7" Grid.RowSpan="4" SelectedItem="{Binding SelectedFirma}" TabStripPlacement="Left" ItemsSource="{Binding Vale.Distribuidor.Firmas, NotifyOnTargetUpdated=True}" TargetUpdated="TabControl_TargetUpdated" >

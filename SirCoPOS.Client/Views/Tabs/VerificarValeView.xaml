@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
              xmlns:cv="clr-namespace:SirCoPOS.Client.Converters"
-             d:DesignHeight="585" d:DesignWidth="1277.5" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp">
+             d:DesignHeight="585" d:DesignWidth="1277.5" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.InputBindings>
         <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
     </UserControl.InputBindings>
@@ -22,7 +22,7 @@
         <BooleanToVisibilityConverter x:Key="bolvis"/>
     </UserControl.Resources>
     <tk:BusyIndicator IsBusy="{Binding IsBusy}">
-        <Grid Margin="0" MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
+        <Grid Margin="0" MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp" MouseMove="Grid_MouseMove">
             <Grid.InputBindings>
                 <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
             </Grid.InputBindings>

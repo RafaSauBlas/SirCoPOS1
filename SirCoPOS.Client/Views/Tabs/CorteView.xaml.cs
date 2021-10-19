@@ -26,39 +26,15 @@ namespace SirCoPOS.Client.Views.Tabs
     [Utilities.Extensions.MetadataTab(Utilities.Constants.TabType.Corte)]
     public partial class CorteView : UserControl, Utilities.Interfaces.ITabView
     {
-        private System.Windows.Threading.DispatcherTimer _dt;
         private IDictionary<Guid, TabItem> _tabs;
+        Client.MetodoInactividad IN;
         private ILogger _log;
 
         public CorteView()
         {
             _tabs = new Dictionary<Guid, TabItem>();
-            _dt = new System.Windows.Threading.DispatcherTimer();
-            _dt.Tick += Dt_Tick;
-            _dt.Interval = TimeSpan.FromSeconds(Common.Constants.Inactividad.Segundos);
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
             InitializeComponent();
-            this.RegisterMessages();
-            _dt.Start();
-        }
-
-        private void RegisterMessages()
-        {
-
-            Messenger.Default.Register<Utilities.Messages.CloseTab>(this,
-               m => {
-                   Messenger.Default.Send(m, m.GID);
-                   Console.WriteLine($"removing: {m.GID}");
-                   if (!_tabs.Any())
-                   {
-                       _dt.Stop();
-                   }
-               });
-
-            Messenger.Default.Register<Utilities.Messages.LogoutTimeout>(this, m => {
-                _dt.Stop();
-            });
-
         }
 
         public void space()
@@ -85,22 +61,22 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void Grid_KeyDown(object sender, KeyEventArgs e)
         {
-            _dt.Stop();
+           
         }
 
         private void Grid_KeyUp(object sender, KeyEventArgs e)
         {
-            _dt.Start();
+            
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            _dt.Stop();
+           
         }
 
         private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            _dt.Start();
+          
         }
 
         public void seleccionar()
@@ -138,6 +114,50 @@ namespace SirCoPOS.Client.Views.Tabs
                     this.txtidaudit.SelectAll();
                 }
             }
+        }
+
+        public void Detener(string msg)
+        {
+            if (msg == "stop")
+            {
+                IN.detener();
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Register<string>(this, "Detener", Detener);
+            IN = new Client.MetodoInactividad();
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            IN.reiniciar();
+        }
+
+        private void tbEntregar_KeyDown(object sender, KeyEventArgs e)
+        {
+            IN.reiniciar();
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            IN.reiniciar();
+        }
+
+        private void TextBox_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            IN.reiniciar();
+        }
+
+        private void txtidaudit_KeyDown(object sender, KeyEventArgs e)
+        {
+            IN.reiniciar();
+        }
+
+        private void txtB_Contra_KeyDown(object sender, KeyEventArgs e)
+        {
+            IN.reiniciar();
         }
     }
 }

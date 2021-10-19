@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              xmlns:cv="clr-namespace:SirCoPOS.Client.Converters"
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
-             d:DesignHeight="600" d:DesignWidth="1100">
+             d:DesignHeight="600" d:DesignWidth="1100" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.DataContext>
         <vm:CorteViewModel></vm:CorteViewModel>
     </UserControl.DataContext>
@@ -82,10 +82,10 @@
 
         <TextBox IsEnabled="False" x:Name="textBox1" HorizontalAlignment="Right" Height="27" Margin="0,0,10,42.94" TextWrapping="Wrap" Text="{Binding Auditor.Id}" VerticalAlignment="Bottom" Width="120" Visibility="Hidden"/>
         <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="291,43,0,0" TextWrapping="Wrap" Text="{Binding EfectivoFaltante, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbEntregar" TabIndex="1" HorizontalAlignment="Left" Height="27" Margin="98,40,0,0" TextWrapping="Wrap" Text="{Binding Entregar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbEntregar" TabIndex="1" HorizontalAlignment="Left" Height="27" Margin="98,40,0,0" TextWrapping="Wrap" Text="{Binding Entregar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyDown="tbEntregar_KeyDown"/>
         <TextBlock HorizontalAlignment="Left" Margin="223,43,0,0" TextWrapping="Wrap" Text="Faltante" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" Text="Entregar" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtidaudit" HorizontalAlignment="Left" TabIndex="2" Height="27" Margin="129,0,0,234" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="64" KeyUp="TextBox_KeyUp">
+        <TextBox x:Name="txtidaudit" HorizontalAlignment="Left" TabIndex="2" Height="27" Margin="129,0,0,234" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="64" KeyUp="TextBox_KeyUp" KeyDown="txtidaudit_KeyDown">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
             </TextBox.InputBindings>
@@ -108,20 +108,20 @@
                 <DataGridTextColumn Header="Monto" Binding="{Binding Amount, StringFormat=\{0:C\}}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox HorizontalAlignment="Left" TabIndex="3" Margin="568,0,0,246" TextWrapping="Wrap" Text="{Binding MontoTicket, UpdateSourceTrigger=PropertyChanged, StringFormat=C, Delay=500}" Width="120" Height="27" VerticalAlignment="Bottom">
+        <TextBox HorizontalAlignment="Left" TabIndex="3" Margin="568,0,0,246" TextWrapping="Wrap" Text="{Binding MontoTicket, UpdateSourceTrigger=PropertyChanged, StringFormat=C, Delay=500}" Width="120" Height="27" VerticalAlignment="Bottom" KeyDown="TextBox_KeyDown_1">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding AddMontoCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
         <TextBlock HorizontalAlignment="Left" Margin="693,0,0,248" TextWrapping="Wrap" Text="{Binding SelectedItemCorte.Item.FormaPago}" VerticalAlignment="Bottom"/>
-        <TextBox Text="{Binding Scan, UpdateSourceTrigger=PropertyChanged}" TabIndex="4" HorizontalAlignment="Right" Height="27" Margin="0,0,10,246" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="150">
+        <TextBox Text="{Binding Scan, UpdateSourceTrigger=PropertyChanged}" TabIndex="4" HorizontalAlignment="Right" Height="27" Margin="0,0,10,246" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="150" KeyDown="TextBox_KeyDown">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding ScanCommand}">
                 </KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
         <TextBlock Visibility="{Binding EfectivoFaltante, Converter={StaticResource cval}}" Foreground="Red" HorizontalAlignment="Left" Margin="10,0,0,10" TextWrapping="Wrap" Text="Faltante de efectivo generara cargo" Height="24" VerticalAlignment="Bottom"/>
-        <PasswordBox x:Name="txtB_Contra" TabIndex="5"  HorizontalAlignment="Left" Height="27" Margin="129,0,0,193" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Bottom" Width="116" KeyUp="txtB_Contra_KeyUp">
+        <PasswordBox x:Name="txtB_Contra" TabIndex="5"  HorizontalAlignment="Left" Height="27" Margin="129,0,0,193" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Bottom" Width="116" KeyUp="txtB_Contra_KeyUp" KeyDown="txtB_Contra_KeyDown">
             <PasswordBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>
             </PasswordBox.InputBindings>
