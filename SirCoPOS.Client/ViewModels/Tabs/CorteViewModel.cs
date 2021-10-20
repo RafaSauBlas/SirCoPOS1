@@ -123,7 +123,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             }, () => this.Auditor != null
                 && this.Entregar.HasValue
                 && this.User != null
-                && (!this.Items.Any() || this.Items.All(i => i.Entrega.HasValue && i.Monto.HasValue)));
+                && (!this.Items.Any() || this.Items.All(i => i.Entrega.HasValue && i.Monto.HasValue))
+                && Items.Where(i=>i.Complete).Count() == Items.Count()
+                );
 
             this.CajeroFinger = new RelayCommand(/*async*/ () => {
                 //var fh = new Helpers.FingerPrintHelper();
@@ -287,7 +289,19 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         public string Scan
         {
             get => _scan;
-            set => this.Set(nameof(this.Scan), ref _scan, value);
+            set
+            {
+                if (Helpers.ScanSerie.PorScanner(value, Cajero.Depto))
+                {
+                    Set(nameof(this.Scan), ref _scan, value);
+                }
+                else
+                {
+                    Set(nameof(this.Scan), ref _scan, "");
+                }
+            }
+            
+            //set => this.Set(nameof(this.Scan), ref _scan, value);
         }
         #region commands
         public RelayCommand ScanCommand { get; private set; }

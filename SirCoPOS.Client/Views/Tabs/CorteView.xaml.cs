@@ -68,6 +68,9 @@ namespace SirCoPOS.Client.Views.Tabs
         public void Init()
         {
             this.tbEntregar.Focus();
+            var vm = (ViewModels.Tabs.CajaViewModel)this.DataContext;
+            if (vm.Cajero.Depto == 3)
+                this.scanSerie.ContextMenu = new ContextMenu();
         }
 
         private void Dt_Tick(object sender, EventArgs e)

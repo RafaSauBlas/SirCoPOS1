@@ -112,12 +112,18 @@ namespace SirCoPOS.BusinessLogic
             var ctx = new DataAccess.SirCoDataContext();
 
             //ESTA ES LA LINEA DONDE APARECE EL ERROR AL GENERAR EL CIERRE
-            var qs = ctx.Series.Where(i => i.status == "AB" && i.sucursal == sucursal && i.idusuariocaja == idcajero);
+            var qs = ctxpv.SeriesCanceladas.Where(i => i.sucursal == sucursal && i.idcajerocancela == idcajero);
             var list = new List<Common.Entities.SeriePrecio>();
             foreach (var det in qs)
             {
-                var cor = ctx.GetCorrida(det);
-                list.Add(new SeriePrecio { Serie = det.serie, Importe = cor.precio });
+                var Series = new DataAccess.SirCo.Serie();
+                var serieCancel = ctx.Series.Where(i => i.serie == det.serie && i.sucursal == det.sucursal).SingleOrDefault();
+                if (serieCancel != null)
+                {
+                    var cor = ctx.GetCorrida(serieCancel);
+                    list.Add(new SeriePrecio { Serie = det.serie, Importe = cor.precio });
+                }
+                
             }
             res.Series = list;
             return res;

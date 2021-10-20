@@ -37,5 +37,6 @@ namespace SirCoPOS.DataAccess
         public virtual DbSet<DevolucionRazon> DevolucionRazones { get; set; }
         public virtual DbSet<NotaRazon> NotaRazones { get; set; }
         public virtual DbSet<SirCoPOS.Reimpresion> Reimpresiones { get; set; }
+        public virtual DbSet<SerieCancelada> SeriesCanceladas { get; set; }
     }
 }

@@ -94,7 +94,7 @@
                 <TextBlock Foreground="Red" HorizontalAlignment="Left" Margin="148.667,0,0,0" TextWrapping="Wrap" Text="{Binding ErrorMessage}" d:LayoutOverrides="Height" VerticalAlignment="Center"/>
                 <StackPanel Grid.Column = "0" Grid.Row = "2" Orientation = "Horizontal">
                     <Label x:Name="label" Content="Motivo de Cancelación :"  Height="30" Background="{x:Null}" Width="195" Margin="0,10" />
-                    <TextBox x:Name="motivo" TabIndex="1" CharacterCasing="Upper" Height="30" TextWrapping="NoWrap" Text="{Binding MotivoCancel, UpdateSourceTrigger=PropertyChanged}" Width="620" Margin="0,10" >
+                    <TextBox x:Name="motivo" TabIndex="1" MaxLength="40" CharacterCasing="Upper" Height="30" TextWrapping="NoWrap" Text="{Binding MotivoCancel, UpdateSourceTrigger=PropertyChanged}" Width="620" Margin="0,10" >
                         <TextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding MotivoCommand}"/>
                         </TextBox.InputBindings>
