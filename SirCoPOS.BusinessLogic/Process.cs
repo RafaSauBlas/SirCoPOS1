@@ -1339,8 +1339,418 @@ namespace SirCoPOS.BusinessLogic
             {
                 if (cliente.DistribuidorId.HasValue)
                 {
+                    string cnom;
+                    string capp;
+                    string capm;
+
                     var ctxcr = new DataAccess.SirCoCreditoDataContext();
                     var dist = ctxcr.Distribuidores.Where(i => i.iddistrib == cliente.DistribuidorId).Single();
+
+                    var nom = dist.nombrecompleto.Trim();
+                    nom = nom.Replace("¥", "Ñ");
+                    var nomb = nom.Split(' ');
+                    
+
+                    if(nomb.Length == 6)
+                    {
+                        if (nomb[1] == "DEL" || nomb[1] == "DE")
+                        {
+                            if(nomb[1] == "DE" && nomb[2] == "LOS")
+                            {
+                                cnom = nomb[0] + " " + nomb[1] + " " + nomb[2] + " " + nomb[3];
+                                capp = nomb[4];
+                                capm = nomb[5];
+
+                                dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                dist.nombre = cnom;
+                                dist.appaterno = capp;
+                                dist.apmaterno = capm;
+                            }
+                            if(nomb[1] == "DE" && nomb[2] == "LA")
+                            {
+                                cnom = nomb[0];
+                                capp = nomb[1] + " " + nomb[2] + " " + nomb[3];
+                                capm = nomb[4];
+
+                                dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                dist.nombre = cnom;
+                                dist.appaterno = capp;
+                                dist.apmaterno = capm;
+                            }
+                            if(nomb[3] == "DE" || nomb[3] == "DE")
+                            {
+                                cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                                capp = nomb[3] + " " + nomb[4];
+                                capm = nomb[5];
+
+                                dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                dist.nombre = cnom;
+                                dist.appaterno = capp;
+                                dist.apmaterno = capm;
+                            }
+                            else if(nomb[4] == "DE" || nomb[4] == "DE")
+                            {
+                                cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                                capp = nomb[3];
+                                capm = nomb[4] + " " + nomb[5];
+
+                                dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                dist.nombre = cnom;
+                                dist.appaterno = capp;
+                                dist.apmaterno = capm;
+                            }
+                        }
+                        else if (nomb[2] == "DEL" || nomb[2] == "DE" && nomb[3] == "LA")
+                        {
+                            cnom = nomb[0] + " " + nomb[1];
+                            capp = nomb[2] + " " + nomb[3] + " " + nomb[4];
+                            capm = nomb[5];
+
+                            dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                            dist.nombre = cnom;
+                            dist.appaterno = capp;
+                            dist.apmaterno = capm;
+                        }
+                        else if (nomb[3] == "DEL" || nomb[3] == "DE" && nomb[4] == "LA")
+                        {
+                                cnom = nomb[0] + " " + nomb[1];
+                                capp = nomb[2];
+                                capm = nomb[3] + " " + nomb[4] + " " + nomb[5];
+
+                                dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                dist.nombre = cnom;
+                                dist.appaterno = capp;
+                                dist.apmaterno = capm;
+                        }
+                        else if (nomb[1] == "DEL" || nomb[1] == "DE")
+                        {
+                            cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                            capp = nomb[3];
+                            capm = nomb[4];
+
+                            dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                            dist.nombre = cnom;
+                            dist.appaterno = capp;
+                            dist.apmaterno = capm;
+                        }
+                        else if (nomb[2] == "DEL" || nomb[2] == "DE")
+                        {
+                            cnom = nomb[0] + " " + nomb[1];
+                            capp = nomb[2] + " " + nomb[3];
+                            capm = nomb[4];
+
+                            dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                            dist.nombre = cnom;
+                            dist.appaterno = capp;
+                            dist.apmaterno = capm;
+                        }
+                        else if (nomb[3] == "DEL" || nomb[3] == "DE")
+                        {
+                            cnom = nomb[0] + " " + nomb[1];
+                            capp = nomb[2];
+                            capm = nomb[3] + " " + nomb[4];
+
+                            dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                            dist.nombre = cnom;
+                            dist.appaterno = capp;
+                            dist.apmaterno = capm;
+                        }
+
+                    }
+
+                    if (nomb.Length == 5)
+                    {
+
+                        if (nomb[1] == "DEL" || nomb[1] == "DE")
+                        {
+                            if (nomb[1] == "DE" && nomb[2] == "LA")
+                            {
+                                cnom = nomb[0];
+                                capp = nomb[1] + " " + nomb[2] + " " + nomb[3];
+                                capm = nomb[4];
+
+                                dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                dist.nombre = cnom;
+                                dist.appaterno = capp;
+                                dist.apmaterno = capm;
+                            }
+                            else
+                            {
+                                cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                                capp = nomb[3];
+                                capm = nomb[4];
+
+                                dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                dist.nombre = cnom;
+                                dist.appaterno = capp;
+                                dist.apmaterno = capm;
+                            }
+                        }
+                        else if (nomb[2] == "DEL" || nomb[2] == "DE")
+                        {
+                            if (nomb[2] == "DE" && nomb[2] == "LA")
+                            {
+                                cnom = nomb[0];
+                                capp = nomb[1];
+                                capm = nomb[2] + " " + nomb[3] + nomb[4];
+
+                                dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                dist.nombre = cnom;
+                                dist.appaterno = capp;
+                                dist.apmaterno = capm;
+                            }
+                            else
+                            {
+                                cnom = nomb[0] + " " + nomb[1];
+                                capp = nomb[2] + " " + nomb[3];
+                                capm = nomb[4];
+
+                                dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                dist.nombre = cnom;
+                                dist.appaterno = capp;
+                                dist.apmaterno = capm;
+                            }
+
+                        }
+                        else if (nomb[3] == "DEL" || nomb[3] == "DE")
+                        {
+                            cnom = nomb[0] + " " + nomb[1];
+                            capp = nomb[2];
+                            capm = nomb[3] + " " + nomb[4];
+
+                            dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                            dist.nombre = cnom;
+                            dist.appaterno = capp;
+                            dist.apmaterno = capm;
+                        }
+                        else
+                        {
+                            cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                            capp = nomb[3];
+                            capm = nomb[4];
+
+                            dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                            dist.nombre = cnom;
+                            dist.appaterno = capp;
+                            dist.apmaterno = capm;
+                        }
+                    }
+                    else if (nomb.Length == 4)
+                    {
+                        if (nomb[1] == "DE" || nomb[1] == "DEL")
+                        {
+                            cnom = nomb[0];
+                            capp = nomb[1] + " " + nomb[2];
+                            capm = nomb[3];
+
+                            dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                            dist.nombre = cnom;
+                            dist.appaterno = capp;
+                            dist.apmaterno = capm;
+                        }
+                        else if (nomb[2] == "DE" || nomb[2] == "DEL")
+                        {
+                            cnom = nomb[0];
+                            capp = nomb[1];
+                            capm = nomb[2] + " " + nomb[3];
+
+                            dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                            dist.nombre = cnom;
+                            dist.appaterno = capp;
+                            dist.apmaterno = capm;
+                        }
+                        else
+                        {
+                            cnom = nomb[0] + " " + nomb[1];
+                            capp = nomb[2];
+                            capm = nomb[3];
+
+                            dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                            dist.nombre = cnom;
+                            dist.appaterno = capp;
+                            dist.apmaterno = capm;
+                        }
+                    }
+                    else if (nomb.Length == 3)
+                    {
+                        cnom = nomb[0];
+                        capp = nomb[1];
+                        capm = nomb[2];
+
+                        dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                        dist.nombre = cnom;
+                        dist.appaterno = capp;
+                        dist.apmaterno = capm;
+                    }
+                    else if (nomb.Length == 7)
+                    {
+                        if (nomb[1] == "DEL" || nomb[1] == "DE")
+                        {
+                            if (nomb[1] == "DE" && nomb[2] == "LOS")
+                            {   
+                                if (nomb[4] == "DE" || nomb[4] == "DEL")
+                                {
+                                    cnom = nomb[0] + " " + nomb[1] + " " + nomb[2] + " " + nomb[3];
+                                    capp = nomb[4] + " " + nomb[5];
+                                    capm = nomb[6];
+
+                                    dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                    dist.nombre = cnom;
+                                    dist.appaterno = capp;
+                                    dist.apmaterno = capm;
+                                }
+                                else if (nomb[5] == "DE" || nomb[5] == "DEL")
+                                {
+                                    cnom = nomb[0] + " " + nomb[1] + " " + nomb[2] + " " + nomb[3];
+                                    capp = nomb[4];
+                                    capm = nomb[5] + " " + nomb[6];
+
+                                    dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                    dist.nombre = cnom;
+                                    dist.appaterno = capp;
+                                    dist.apmaterno = capm;
+                                }
+                                else if(nomb[1] == "DE" || nomb[1] == "DEL")
+                                {
+                                    if(nomb[3] == "DE" || nomb[3] == "DEL")
+                                    {
+                                        if(nomb[3] == "DE" && nomb[4] == "LA")
+                                        {
+                                            cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                                            capp = nomb[3] + " " + nomb[4] + " " + nomb[5];
+                                            capm = nomb[6];
+
+                                            dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                            dist.nombre = cnom;
+                                            dist.appaterno = capp;
+                                            dist.apmaterno = capm;
+                                        }
+                                        else
+                                        {
+                                            cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                                            capp = nomb[3] + " " + nomb[4];
+                                            capm = nomb[5] + " " + nomb[6];
+
+                                            dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                            dist.nombre = cnom;
+                                            dist.appaterno = capp;
+                                            dist.apmaterno = capm;
+                                        }
+                                    }
+                                    else if(nomb[4] == "DE" || nomb[4] == "DEL")
+                                    {
+                                        if(nomb[4] == "DE" && nomb[5] == "LA")
+                                        {
+                                            cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                                            capp = nomb[3];
+                                            capm = nomb[4] + " " + nomb[5] + " " + nomb[6];
+
+                                            dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                            dist.nombre = cnom;
+                                            dist.appaterno = capp;
+                                            dist.apmaterno = capm;
+                                        }
+                                        else
+                                        {
+                                            cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                                            capp = nomb[3] + " " + nomb[4];
+                                            capm = nomb[5] + " " + nomb[6];
+
+                                            dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                            dist.nombre = cnom;
+                                            dist.appaterno = capp;
+                                            dist.apmaterno = capm;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    cnom = nomb[0] + " " + nomb[1] + " " + nomb[2] + " " + nomb[3];
+                                    capp = nomb[4];
+                                    capm = nomb[5];
+
+                                    dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                    dist.nombre = cnom;
+                                    dist.appaterno = capp;
+                                    dist.apmaterno = capm;
+                                }
+                            }
+                            else
+                            {
+                                if (nomb[3] == "DE" || nomb[3] == "DEL")
+                                {
+                                    if (nomb[3] == "DE" && nomb[4] == "LA")
+                                    {
+                                        cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                                        capp = nomb[3] + " " + nomb[4] + " " + nomb[5];
+                                        capm = nomb[6];
+
+                                        dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                        dist.nombre = cnom;
+                                        dist.appaterno = capp;
+                                        dist.apmaterno = capm;
+                                    }
+                                    else if (nomb[4] == "DE" && nomb[5] == "LA")
+                                    {
+                                        cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                                        capp = nomb[3];
+                                        capm = nomb[4] + " " + nomb[5] + " " + nomb[6];
+
+                                        dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                        dist.nombre = cnom;
+                                        dist.appaterno = capp;
+                                        dist.apmaterno = capm;
+                                    }
+                                    else
+                                    {
+                                        cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                                        capp = nomb[3] + " " + nomb[4];
+                                        capm = nomb[5] + " " + nomb[6];
+
+                                        dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                        dist.nombre = cnom;
+                                        dist.appaterno = capp;
+                                        dist.apmaterno = capm;
+                                    }
+                                }
+
+                                if (nomb[4] == "DE" || nomb[4] == "DEL")
+                                {
+                                    if (nomb[4] == "DE" && nomb[5] == "LA")
+                                    {
+                                        cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                                        capp = nomb[3];
+                                        capm = nomb[4] + " " + nomb[5] + " " + nomb[6];
+
+                                        dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                        dist.nombre = cnom;
+                                        dist.appaterno = capp;
+                                        dist.apmaterno = capm;
+                                    }
+                                    else if (nomb[3] == "DE" && nomb[4] == "LA")
+                                    {
+                                        cnom = nomb[0] + " " + nomb[1] + " " + nomb[2];
+                                        capp = nomb[3] + " " + nomb[4] + " " + nomb[5];
+                                        capm = nomb[6];
+
+                                        dist.nombrecompleto = cnom + " " + capp + " " + capm;
+                                        dist.nombre = cnom;
+                                        dist.appaterno = capp;
+                                        dist.apmaterno = capm;
+                                    }
+                                }
+                                else
+                                {
+                                   
+                                }
+                            }
+                        }
+                    }
+
+
+
+
+
                     var ncliente = new Cliente
                     {
                         SucursalId = idsucursal,
