@@ -205,6 +205,13 @@ namespace SirCoPOS.BusinessLogic
         {
         }
     }
+    public class AuditorOtraSucursal : Common.Helpers.BaseExcepcion
+    {
+        public AuditorOtraSucursal()
+            : base("El auditor pertenece a otra sucursal")
+        {
+        }
+    }
     public class SameId : Common.Helpers.BaseExcepcion
     {
         public SameId()

@@ -43,11 +43,12 @@ namespace SirCoPOS.Client.Views.Tabs
 
         public void Init()
         {
-            this.textBox.IsEnabled = true;
-            this.textBox.Focus();
+            this.txt_importe.IsEnabled = true;
+            txt_importe.Text = "0";
+            this.txt_importe.Focus();
             //var dato = new SirCoPOS.Common.Entities.Empleado();
             //int depto = dato.Depto;
-            var vm = (ViewModels.Tabs.FondoArqueoViewModel)this.DataContext;
+            //var vm = (ViewModels.Tabs.FondoArqueoViewModel)this.DataContext;
         }
 
 
@@ -56,7 +57,7 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             this.txtB_Contra.Clear();
             this.txtB_Contra.Focus();
-            var vm = (ViewModels.Tabs.FondoArqueoViewModel)this.DataContext;
+            //var vm = (ViewModels.Tabs.FondoArqueoViewModel)this.DataContext;
         }
 
         private void Dt_Tick(object sender, EventArgs e)

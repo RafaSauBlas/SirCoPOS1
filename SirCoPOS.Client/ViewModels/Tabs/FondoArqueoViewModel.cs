@@ -13,10 +13,12 @@ namespace SirCoPOS.Client.ViewModels.Tabs
     {
         private readonly Common.ServiceContracts.IAdminServiceAsync _proxy;
         private readonly Common.ServiceContracts.IDataServiceAsync _data;
+        private Utilities.Models.Settings settings;
 
         public FondoArqueoViewModel()
         {
             this.PropertyChanged += FondoArqueoViewModel_PropertyChanged;
+            settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
             this.LoadAuditorCommand = new RelayCommand(() =>
                 {
                     if(this.SearchAuditor.Value == this.Cajero.Id)
@@ -26,10 +28,43 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     }
                     else
                     {
-                        this.Auditor = _data.FindAuditorApertura(this.SearchAuditor.Value, this.Cajero.Id);
+                        this.Auditor = null;
+                        try
+                        {
+                            this.Auditor = _data.FindAuditorApertura(settings.Sucursal.Clave, this.SearchAuditor.Value, this.Cajero.Id);
+                        }
+                        catch (System.Exception e)
+                        {
+                            MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                            return;
+                        }
                         if (this.Auditor != null)
                         {
-                            this.SearchAuditor = null;
+                            if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM || this.Auditor.Depto == (int)Common.Constants.Departamento.SIS)
+                            {
+                                this.SearchAuditor = null;
+                            }
+                            else
+                            {
+                                if (this.Auditor.Sucursal == settings.Sucursal.Clave)
+                                {
+                                    if (this.Auditor.Puesto == (int)Common.Constants.Puesto.ENC || this.Auditor.Puesto == (int)Common.Constants.Puesto.SUP)
+                                    {
+                                        this.SearchAuditor = null;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Auditor no es Gerente o Suplente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    }
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Auditor no pertenece a la misma sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
+
+                            }
                         }
                         else
                         {

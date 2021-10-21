@@ -39,7 +39,7 @@
                 <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="217,0,0,186" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="315" Height="24">
+        <TextBlock HorizontalAlignment="Left" Margin="217,0,0,186" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="350" Height="24">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0} {1} {2}">
                     <Binding Path="Auditor.Nombre" />
