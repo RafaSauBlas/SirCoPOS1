@@ -26,11 +26,10 @@ namespace SirCoPOS.Client.Views.Tabs
     [Utilities.Extensions.MetadataTab(Utilities.Constants.TabType.FondoArqueo)]
     public partial class FondoArqueo : UserControl, Utilities.Interfaces.ITabView
     {
-
-        private System.Windows.Threading.DispatcherTimer _dt;
         private IDictionary<Guid, TabItem> _tabs;
-        private ILogger _log;
         ViewModels.Tabs.FondoArqueoViewModel FA;
+        Client.MetodoInactividad IN;
+        private ILogger _log;
         
 
         public FondoArqueo()
@@ -38,12 +37,7 @@ namespace SirCoPOS.Client.Views.Tabs
             FA = new ViewModels.Tabs.FondoArqueoViewModel();
             InitializeComponent();
             _tabs = new Dictionary<Guid, TabItem>();
-            _dt = new System.Windows.Threading.DispatcherTimer();
-            _dt.Tick += Dt_Tick;
-            _dt.Interval = TimeSpan.FromSeconds(Common.Constants.Inactividad.Segundos);
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
-            this.RegisterMessages();
-            _dt.Start();
             Messenger.Default.Register<string>(this, "FocusAuditor", FocusAuditor);
         }
 
@@ -55,6 +49,9 @@ namespace SirCoPOS.Client.Views.Tabs
             //int depto = dato.Depto;
             var vm = (ViewModels.Tabs.FondoArqueoViewModel)this.DataContext;
         }
+
+
+
         public void limpiar()
         {
             this.txtB_Contra.Clear();
@@ -68,24 +65,6 @@ namespace SirCoPOS.Client.Views.Tabs
             dt.Stop();
             Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
         }
-
-        private void RegisterMessages()
-        {
-            Messenger.Default.Register<Utilities.Messages.CloseTab>(this,
-               m => {
-                   Messenger.Default.Send(m, m.GID);
-                   Console.WriteLine($"removing: {m.GID}");
-                   if (!_tabs.Any())
-                   {
-                       _dt.Stop();
-                   }
-               });
-
-            Messenger.Default.Register<Utilities.Messages.LogoutTimeout>(this, m => {
-                _dt.Stop();
-            });
-        }
-
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (this.DataContext != null)
@@ -94,32 +73,32 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
-            _dt.Stop();
+           
         }
 
         private void UserControl_KeyUp(object sender, KeyEventArgs e)
         {
-            _dt.Start();
+            
         }
 
         private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            _dt.Stop();
+         
         }
 
         private void UserControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            _dt.Start();
+           
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            _dt.Stop();
+          
         }
 
         private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            _dt.Start();
+          
         }
         public void Seleccionar()
         {
@@ -171,6 +150,40 @@ namespace SirCoPOS.Client.Views.Tabs
                 this.tbAudId.SelectAll();
             }
 
+        }
+
+        public void Detener(string msg)
+        {
+            if (msg == "stop")
+            {
+                IN.detener();
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Register<string>(this, "Detener", Detener);
+            IN = new Client.MetodoInactividad();
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            IN.reiniciar();
+        }
+
+        private void textBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            IN.reiniciar();
+        }
+
+        private void tbAudId_KeyDown(object sender, KeyEventArgs e)
+        {
+            IN.reiniciar();
+        }
+
+        private void txtB_Contra_KeyDown(object sender, KeyEventArgs e)
+        {
+            IN.reiniciar();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using GalaSoft.MvvmLight.Messaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void cboPromocion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
             if (cboPlazo != null && this.txtCuenta.Text.Length > 0)
             {
                 cboPlazo.SelectedIndex = 7;
@@ -77,6 +79,21 @@ namespace SirCoPOS.Client.Views.Caja
             {
                 seleccionar();
             }
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void tbDistrib_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void cboPlazo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
         }
     }
 }

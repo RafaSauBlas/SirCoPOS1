@@ -21,7 +21,6 @@ namespace SirCoPOS.Win.Views
 {
     public partial class MainView : UserControl, IDisposable
     {
-        private System.Windows.Threading.DispatcherTimer _dt;
         private Utilities.Models.Settings _settings;
         private ILogger _log;
         private Helpers.PlugInServiceLocator _plugins;
@@ -54,10 +53,6 @@ namespace SirCoPOS.Win.Views
             };
 
             this.RegisterMessages();
-
-            _dt = new System.Windows.Threading.DispatcherTimer();
-            _dt.Tick += Dt_Tick;
-            _dt.Interval = TimeSpan.FromSeconds(Common.Constants.Inactividad.Segundos);
         }
 
         private void RegisterMessages()
@@ -84,13 +79,11 @@ namespace SirCoPOS.Win.Views
 
                     if (!_tabs.Any())
                     {
-                        _dt.Start();
                         this.menuView.Visibility = Visibility.Visible;
                     }
                 });
 
             Messenger.Default.Register<Utilities.Messages.LogoutTimeout>(this, m => {
-                _dt.Stop();
             });
             Messenger.Default.Register<Utilities.Messages.ShortcutMessage>(this, m => {
                 if (!_tabs.Any())
@@ -98,30 +91,39 @@ namespace SirCoPOS.Win.Views
                     switch (m.Key)
                     {
                         case Key.F1:
+                            
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Caja });
                             break;
                         case Key.F2:
+                            
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Cambio });
                             break;
                         case Key.F3:
+                            
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Devolucion });
                             break;
                         case Key.F4:
+                            
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Cancelacion });
                             break;
                         case Key.F5:
+                            
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.CancelacionDevolucion });
                             break;
                         case Key.F6:
+                            
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.VerificarVale });
                             break;
                         case Key.F7:
+                           
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Efectivo });
                             break;
                         case Key.F8:
+                         
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Corte });
                             break;
                         case Key.F9:
+
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.FondoArqueo });
                             break;
                     }
@@ -134,11 +136,13 @@ namespace SirCoPOS.Win.Views
                 }
             });
         }
-        private void Dt_Tick(object sender, EventArgs e)
+
+        public void Detener(string msg)
         {
-            var dt = (System.Windows.Threading.DispatcherTimer)sender;
-            dt.Stop();
-            Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
+            if (msg == "stop")
+            {
+
+            }
         }
 
         private void OpenMenu(Messages.MenuItem mi, Guid? gid = null)
@@ -149,6 +153,8 @@ namespace SirCoPOS.Win.Views
                 if (q.Any())
                     return;
             }            
+
+
 
             UserControl uc = null;
             switch (mi.Name)
@@ -161,8 +167,8 @@ namespace SirCoPOS.Win.Views
                     uc = _plugins.GetView(mi.Name);
                     break;
             }
+
             OpenTab(mi, uc, gid);
-            _dt.Stop();
         }
 
         private IDictionary<Guid, TabItem> _tabs;
@@ -194,7 +200,9 @@ namespace SirCoPOS.Win.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-             if (GalaSoft.MvvmLight.ViewModelBase.IsInDesignModeStatic)
+            Messenger.Default.Register<string>(this, "Detener", Detener);
+
+            if (GalaSoft.MvvmLight.ViewModelBase.IsInDesignModeStatic)
                 return;
 
             var ctx = new DataAccess.DataContext();
@@ -234,6 +242,11 @@ namespace SirCoPOS.Win.Views
         }
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
 
         }

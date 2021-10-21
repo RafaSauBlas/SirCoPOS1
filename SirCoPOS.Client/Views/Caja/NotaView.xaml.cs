@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GalaSoft.MvvmLight.Messaging;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
@@ -37,6 +38,26 @@ namespace SirCoPOS.Client.Views.Caja
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
            txtRazon.CharacterCasing = CharacterCasing.Upper;
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void tbPrecio_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void txtRazon_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
         }
     }
 }

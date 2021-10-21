@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GalaSoft.MvvmLight.Messaging;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
@@ -32,6 +33,16 @@ namespace SirCoPOS.Client.Views.Caja
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.textBox.Focus();
+        }
+
+        private void textBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
         }
     }
 }

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
-             Height="140" Width="230" Loaded="UserControl_Loaded">
+             Height="140" Width="230" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.DataContext>
         <vm:PagoMonederoElectronicoViewModel></vm:PagoMonederoElectronicoViewModel>
     </UserControl.DataContext>
@@ -16,7 +16,7 @@
         <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="10,37,0,0" TextWrapping="Wrap" Text="Disponible" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy2" Margin="0,37,10,0" TextWrapping="Wrap" Text="{Binding Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
         <!--Captura Monto a pagar Dinero Electronico-->
-        <TextBox x:Name="tbPagar" Height="26" Margin="0,58,9,0" TextWrapping="Wrap" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120"/>
+        <TextBox x:Name="tbPagar" Height="26" Margin="0,58,9,0" TextWrapping="Wrap" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" TextChanged="tbPagar_TextChanged"/>
         <!--Titulo Pagar-->
         <TextBlock x:Name="textBlock_Copy3" HorizontalAlignment="Left" Margin="10,59,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
         <TextBlock x:Name="textBlock_Copy4" Margin="0,86,10,0" TextWrapping="Wrap" Text="{Binding Total, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>

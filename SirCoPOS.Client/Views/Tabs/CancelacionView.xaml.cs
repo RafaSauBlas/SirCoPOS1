@@ -26,21 +26,15 @@ namespace SirCoPOS.Client.Views.Tabs
     [Utilities.Extensions.MetadataTab(Utilities.Constants.TabType.Cancelacion)]
     public partial class CancelacionView : UserControl, Utilities.Interfaces.ITabView
     {
-
-        private System.Windows.Threading.DispatcherTimer _dt;
         private IDictionary<Guid, TabItem> _tabs;
+        Client.MetodoInactividad IN;
         private ILogger _log;
 
         public CancelacionView()
         {
             InitializeComponent();
             _tabs = new Dictionary<Guid, TabItem>();
-            _dt = new System.Windows.Threading.DispatcherTimer();
-            _dt.Tick += Dt_Tick;
-            _dt.Interval = TimeSpan.FromSeconds(Common.Constants.Inactividad.Segundos);
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
-            this.RegisterMessages();
-            _dt.Start();
         }
 
         private void Dt_Tick(object sender, EventArgs e)
@@ -50,21 +44,12 @@ namespace SirCoPOS.Client.Views.Tabs
             Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
         }
 
-        private void RegisterMessages()
+        public void Detener(string msg)
         {
-            Messenger.Default.Register<Utilities.Messages.CloseTab>(this,
-               m => {
-                   Messenger.Default.Send(m, m.GID);
-                   Console.WriteLine($"removing: {m.GID}");
-                   if (!_tabs.Any())
-                   {
-                       _dt.Stop();
-                   }
-               });
-
-            Messenger.Default.Register<Utilities.Messages.LogoutTimeout>(this, m => {
-                _dt.Stop();
-            });
+            if (msg == "stop")
+            {
+                IN.detener();
+            }
         }
 
         public void Init()
@@ -89,32 +74,32 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void UserControl_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            _dt.Stop();
+            
         }
 
         private void UserControl_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            _dt.Start();
+           
         }
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
-            _dt.Stop();
+            
         }
 
         private void UserControl_KeyUp(object sender, KeyEventArgs e)
         {
-            _dt.Start();
+            
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            _dt.Stop();
+            
         }
 
         private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            _dt.Start();
+            
         }
 
         public void Seleccionar()
@@ -129,6 +114,27 @@ namespace SirCoPOS.Client.Views.Tabs
             {
                 Seleccionar();
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Register<string>(this, "Detener", Detener);
+            IN = new Client.MetodoInactividad();
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            IN.reiniciar();
+        }
+
+        private void scanTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            IN.reiniciar();
+        }
+
+        private void motivo_KeyDown(object sender, KeyEventArgs e)
+        {
+            IN.reiniciar();
         }
     }
 }

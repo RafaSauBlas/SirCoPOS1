@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
-             Height="222.73" Width="280" Loaded="UserControl_Loaded">
+             Height="222.73" Width="280" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove_1">
     <UserControl.DataContext>
         <vm:PagoEfectivoViewModel></vm:PagoEfectivoViewModel>
     </UserControl.DataContext>
@@ -72,8 +72,8 @@
         <!--Importe Saldo-->
         <TextBlock x:Name="txtSaldo" Grid.Column ="3" Grid.Row="6" Text="{Binding Pendiente, Mode=OneWay, StringFormat=\{0:C\}}" Style="{StaticResource ResourceKey=lbl_style}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
         <!--Importe con que se paga-->
-        <TextBox x:Name="pagarConTextBox"  Grid.Row="3" Grid.Column="3"  Text="{Binding PagaCon, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" GotFocus="pagarConTextBox_GotFocus" KeyDown="pagarConTextBox_KeyDown"/>
-        <TextBox GotFocus="pagarTextBox_GotFocus" x:Name="pagarTextBox" Grid.Row="4" Grid.Column="3" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Delay=500}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" KeyDown="pagarTextBox_KeyDown"/>
+        <TextBox x:Name="pagarConTextBox"  Grid.Row="3" Grid.Column="3"  Text="{Binding PagaCon, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" GotFocus="pagarConTextBox_GotFocus" KeyDown="pagarConTextBox_KeyDown" TextChanged="pagarConTextBox_TextChanged"/>
+        <TextBox GotFocus="pagarTextBox_GotFocus" x:Name="pagarTextBox" Grid.Row="4" Grid.Column="3" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Delay=500}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" KeyDown="pagarTextBox_KeyDown" TextChanged="pagarTextBox_TextChanged"/>
         <!--Boton completar-->
         <Border Margin= "0,10,-15,-5" Grid.Row="7" CornerRadius="3" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="2" >
             <Button   Command="{Binding CompletarCommand}" x:Name="button" Click="button_Click" >

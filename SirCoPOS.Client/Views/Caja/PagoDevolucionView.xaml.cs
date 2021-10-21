@@ -61,6 +61,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void tbSucursal_TextChanged(object sender, TextChangedEventArgs e)
         {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
             if (this.tbSucursal.Text.Length == 2)
             {
                 if(this.tbSucursal.Text == "01" || this.tbSucursal.Text == "02" || this.tbSucursal.Text == "06"
@@ -69,6 +70,21 @@ namespace SirCoPOS.Client.Views.Caja
                     this.txtDevolucion.Focus();
                 }
             }
+        }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void txtDevolucion_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void txtPagar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
         }
     }
 }

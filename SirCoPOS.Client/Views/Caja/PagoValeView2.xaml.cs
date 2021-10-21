@@ -25,7 +25,7 @@ namespace SirCoPOS.Client.Views.Caja
     [Utilities.Extensions.MetadataFormaPago(Common.Constants.FormaPago.VA)]
     public partial class PagoValeView2 : UserControl
     {
-        //Client.MetodoInactividad IN;
+
         public PagoValeView2()
         {
             InitializeComponent();
@@ -34,9 +34,7 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //IN = new Client.MetodoInactividad();
             this.tbVale.Focus();
-            //IN.detener();
         }
 
         private void TabControl_TargetUpdated(object sender, DataTransferEventArgs e)
@@ -48,6 +46,7 @@ namespace SirCoPOS.Client.Views.Caja
         }
 
         private void cboPromocion_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
             if (cboPlazo != null && this.txtCuenta.Text.Length>0)
             {
                 cboPlazo.SelectedIndex = 7;
@@ -78,7 +77,30 @@ namespace SirCoPOS.Client.Views.Caja
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
-            // IN.detener();
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void PagoVale_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void PagoVale_Loaded(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void tbVale_GotFocus(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void tbVale_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+
+        private void cboPlazo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Messenger.Default.Send<string>("rest", "Reiniciar");
         }
     }
 }

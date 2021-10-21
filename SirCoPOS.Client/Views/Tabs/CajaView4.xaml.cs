@@ -139,6 +139,22 @@ namespace SirCoPOS.Client.Views.Tabs
             //this.test.Show();
         }
 
+        public void Detener(string msg)
+        {
+            if (msg == "stop")
+            {
+                IN.detener();
+            }
+        }
+
+        public void Reiniciar(string msg)
+        {
+            if (msg == "rest")
+            {
+                IN.reiniciar();
+            }
+        }
+
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -203,7 +219,7 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void Button_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            IN.reiniciar();
+            IN.detener();
         }
 
 
@@ -333,12 +349,19 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            Messenger.Default.Register<string>(this, "Detener", Detener);
+            Messenger.Default.Register<string>(this, "Reiniciar", Reiniciar);
             IN = new Client.MetodoInactividad();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             IN.detener();
+        }
+
+        private void scanTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            IN.reiniciar();
         }
     }
 }

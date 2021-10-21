@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
              xmlns:c="clr-namespace:SirCoPOS.Client.Converters"             
-             d:DesignHeight="450" d:DesignWidth="800" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp" Loaded="UserControl_Loaded">
+             d:DesignHeight="450" d:DesignWidth="800" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.DataContext>
         <vm:CancelacionDevolucionViewModel></vm:CancelacionDevolucionViewModel>
     </UserControl.DataContext>
@@ -36,7 +36,7 @@
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="scanTextBox" TabIndex="0" HorizontalAlignment="Left" Height="27" Margin="10,12,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" PreviewKeyDown="scanTextBox_PreviewKeyDown" KeyUp="scanTextBox_KeyUp">
+        <TextBox x:Name="scanTextBox" TabIndex="0" HorizontalAlignment="Left" Height="27" Margin="10,12,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="145" PreviewKeyDown="scanTextBox_PreviewKeyDown" KeyUp="scanTextBox_KeyUp" KeyDown="scanTextBox_KeyDown">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
             </TextBox.InputBindings>

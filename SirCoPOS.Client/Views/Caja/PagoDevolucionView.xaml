@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
-             Height="190" Width="240" Loaded="UserControl_Loaded">
+             Height="190" Width="240" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.DataContext>
         <vm:PagoDevolucionViewModel></vm:PagoDevolucionViewModel>
     </UserControl.DataContext>
@@ -25,14 +25,14 @@
             <!--Titulo Disponible-->
             <TextBlock x:Name="lblDisponible" HorizontalAlignment="Left" Margin="10,65,0,0" TextWrapping="Wrap" Text="Disponible" VerticalAlignment="Top"/>
             <!--Captura Folio Devolucion-->
-            <TextBox x:Name="txtDevolucion" Height="26" Margin="0,38,9,0" TextWrapping="Wrap" Text="{Binding Folio, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" TextAlignment="Right" KeyUp="txtDevolucion_KeyUp">
+            <TextBox x:Name="txtDevolucion" Height="26" Margin="0,38,9,0" TextWrapping="Wrap" Text="{Binding Folio, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" TextAlignment="Right" KeyUp="txtDevolucion_KeyUp" TextChanged="txtDevolucion_TextChanged">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Return" Command="{Binding FindCommand}"></KeyBinding>
                 </TextBox.InputBindings>
             </TextBox>
             <!--Disponible Distribuidor-->
             <TextBlock x:Name="txtDisponible" Margin="0,67,10,0" TextWrapping="Wrap" Text="{Binding Devolucion.Disponible, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
-            <TextBox x:Name="txtPagar" Height="26" Margin="0,93,9,0" TextWrapping="Wrap" Text="{Binding Pagar, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" TextAlignment="Right"/>
+            <TextBox x:Name="txtPagar" Height="26" Margin="0,93,9,0" TextWrapping="Wrap" Text="{Binding Pagar, UpdateSourceTrigger=PropertyChanged, StringFormat=\{0:C\}}" VerticalAlignment="Top" HorizontalAlignment="Right" Width="120" TextAlignment="Right" TextChanged="txtPagar_TextChanged"/>
             <!--Titulo pagar-->
             <TextBlock x:Name="lblPagar" HorizontalAlignment="Left" Margin="10,92,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
             <!--Saldo de la Devolucion-->

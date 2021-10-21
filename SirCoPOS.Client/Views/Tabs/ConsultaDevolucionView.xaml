@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
-             d:DesignHeight="450" d:DesignWidth="800" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp" Loaded="UserControl_Loaded">
+             d:DesignHeight="450" d:DesignWidth="800" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.DataContext>
         <vm:ConsultaDevolucionViewModel></vm:ConsultaDevolucionViewModel>
     </UserControl.DataContext>
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp" KeyDown="Grid_KeyDown" KeyUp="Grid_KeyUp">
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Devolucion" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtdevolucion" HorizontalAlignment="Left" Height="27" Margin="104,8,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120">
+        <TextBox x:Name="txtdevolucion" HorizontalAlignment="Left" Height="27" Margin="104,8,0,0" TextWrapping="Wrap" Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" TextChanged="txtdevolucion_TextChanged">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding SearchCommand}"></KeyBinding>
             </TextBox.InputBindings>
@@ -30,8 +30,8 @@
                 <DataGridTextColumn Header="Precio" Binding="{Binding Precio, StringFormat=\{0:C\}}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Command="{Binding UltimaVentaCommand}" Content="ultima devolucion" Margin="0,9,277,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="156"/>
-        <Button Content="Imprimir" Command="{Binding PrintCommand}" HorizontalAlignment="Left" Margin="10,0,0,188" VerticalAlignment="Bottom" Width="75"/>
+        <Button Command="{Binding UltimaVentaCommand}" Content="ultima devolucion" Margin="0,9,277,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="156" Click="Button_Click"/>
+        <Button Content="Imprimir" Command="{Binding PrintCommand}" HorizontalAlignment="Left" Margin="10,0,0,188" VerticalAlignment="Bottom" Width="75" Click="Button_Click_1"/>
 
     </Grid>
 </UserControl>

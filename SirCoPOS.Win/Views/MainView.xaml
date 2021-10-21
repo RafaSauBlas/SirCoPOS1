@@ -10,7 +10,7 @@
              xmlns:m="clr-namespace:SirCoPOS.Utilities.Constants;assembly=SirCoPOS.Utilities"
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:c="clr-namespace:SirCoPOS.Win.Converters"             
-             Loaded="UserControl_Loaded">
+             Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.Resources>
         <c:ImageUrlConverter x:Key="imageUrl" />
         <SolidColorBrush x:Key="TabItem.Selected.Background" Color="#FFFFFF"/>

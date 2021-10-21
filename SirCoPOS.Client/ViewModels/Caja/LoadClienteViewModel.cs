@@ -410,15 +410,11 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 {
                     var celular1 = _common.PreparePhone(celular);
                     var verifica = _proxy.CheckCelular(celular1);
-                    if (!verifica)
-                    {
                         var celu = _common.PreparePhone(cel);
                         string nc = name1 + " " + appa1 + " " + apma1;
                         var cajero = _settings.Cajero.Id;
                         var datos = Convert.ToInt32(_proxy.Clientexd(name, appaterno, apmaterno, codigopostal, calle, numero, celular1, celu, email, colonia, cajero, sexo, identificacion));
-                        Common.Constants.ClienteInfo.colonia = datos;
-                    }
-                    
+                        Common.Constants.ClienteInfo.colonia = datos;                    
                 }
 
             }
