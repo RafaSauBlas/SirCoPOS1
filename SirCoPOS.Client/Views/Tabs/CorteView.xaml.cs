@@ -44,7 +44,7 @@ namespace SirCoPOS.Client.Views.Tabs
         public void Init()
         {
             this.tbEntregar.Focus();
-            var vm = (ViewModels.Tabs.CajaViewModel)this.DataContext;
+            var vm = (ViewModels.Tabs.CorteViewModel)this.DataContext;
             if (vm.Cajero.Depto == 3)
                 this.scanSerie.ContextMenu = new ContextMenu();
         }

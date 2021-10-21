@@ -14,12 +14,14 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         private readonly Common.ServiceContracts.IAdminServiceAsync _proxy;
         private readonly Common.ServiceContracts.IDataServiceAsync _data;
         private readonly Helpers.CommonHelper _common;
+        private Utilities.Models.Settings settings;
         public CorteViewModel()
         {
             this.PropertyChanged += CorteViewModel_PropertyChanged;
             this.Items = new ObservableCollection<Models.ItemCorte>();
             this.Series = new ObservableCollection<Models.ItemCorteSerie>();
             _common = new Helpers.CommonHelper();
+            settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
             if (!this.IsInDesignMode)
             {
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IAdminServiceAsync>();
@@ -43,7 +45,26 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     this.Auditor = _data.FindAuditorApertura(this.SearchAuditor.Value, this.Cajero.Id);
                     if (this.Auditor != null)
                     {
-                        this.SearchAuditor = null;
+                        if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM || this.Auditor.Depto == (int)Common.Constants.Departamento.SIS)
+                        {
+                            this.SearchAuditor = null;
+                        }
+                        else
+                        {
+                            if (this.Auditor.Sucursal == settings.Sucursal.Clave)
+                            {
+                                if (this.Auditor.Puesto == (int)Common.Constants.Puesto.ENC || this.Auditor.Puesto == (int)Common.Constants.Puesto.SUP)
+                                {
+                                    this.SearchAuditor = null;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Auditor no es Gerente o Suplente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
+
+                            }
+                            MessageBox.Show("Auditor no pertenece a la misma sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                     else
                     {
