@@ -368,7 +368,7 @@ namespace SirCoPOS.BusinessLogic
                 }
 
                 if (!valid.Contains(det.status))
-                    throw new StatusSerieExcepcion();
+                        throw new StatusSerieExcepcion();
                 var modified = ctx.UpdateSerieStatus(sf.Serie, Status.BA, Status.CA, idusuario: idcajero);
                 if (modified != 1)
                     throw new StatusSerieNoActualizadoExcepcion();
@@ -2277,7 +2277,7 @@ namespace SirCoPOS.BusinessLogic
             foreach (var d in pago.Detalle)
             {
                 d.movimientocancela = gid;
-                _admin.Cancel(idcajero, model.Sucursal, d.importe.Value, now, gid, (Common.Constants.FormaPago)d.idformapago);
+                _admin.Cancel(venta.idcajero.Value, model.Sucursal, d.importe.Value, now, gid, (Common.Constants.FormaPago)d.idformapago);
 
                 switch (d.idformapago)
                 {
@@ -2435,6 +2435,20 @@ namespace SirCoPOS.BusinessLogic
                     ctx.UpdateSerieStatus(d.serie, Status.AC, Status.BA, idusuario: idcajero);
                 else
                     ctx.UpdateSerieStatus(d.serie, Status.AB, Status.BA, idusuario: idcajero);
+
+                string Serie = d.serie;
+                var SeriesCancel = new DataAccess.SirCoPV.SerieCancelada
+                {
+                    serie = Serie,
+                    sucursal = model.Sucursal,
+                    status = "BA",
+                    idcajerocancela = idcajero,
+                    sucventa = venta.sucursal,
+                    venta = venta.venta,
+                    idcajeroventa = venta.idcajero.Value,
+                    fum = now
+                };
+                ctxpv.SeriesCanceladas.Add(SeriesCancel);
             }
             if (cvale !=null)
             {

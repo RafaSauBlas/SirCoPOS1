@@ -14,12 +14,14 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         private readonly Common.ServiceContracts.IAdminServiceAsync _proxy;
         private readonly Common.ServiceContracts.IDataServiceAsync _data;
         private readonly Helpers.CommonHelper _common;
+        private Utilities.Models.Settings settings;
         public CorteViewModel()
         {
             this.PropertyChanged += CorteViewModel_PropertyChanged;
             this.Items = new ObservableCollection<Models.ItemCorte>();
             this.Series = new ObservableCollection<Models.ItemCorteSerie>();
             _common = new Helpers.CommonHelper();
+            settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
             if (!this.IsInDesignMode)
             {
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IAdminServiceAsync>();
@@ -43,7 +45,26 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     this.Auditor = _data.FindAuditorApertura(this.SearchAuditor.Value, this.Cajero.Id);
                     if (this.Auditor != null)
                     {
-                        this.SearchAuditor = null;
+                        if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM || this.Auditor.Depto == (int)Common.Constants.Departamento.SIS)
+                        {
+                            this.SearchAuditor = null;
+                        }
+                        else
+                        {
+                            if (this.Auditor.Sucursal == settings.Sucursal.Clave)
+                            {
+                                if (this.Auditor.Puesto == (int)Common.Constants.Puesto.ENC || this.Auditor.Puesto == (int)Common.Constants.Puesto.SUP)
+                                {
+                                    this.SearchAuditor = null;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Auditor no es Gerente o Suplente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
+
+                            }
+                            MessageBox.Show("Auditor no pertenece a la misma sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                     else
                     {
@@ -123,7 +144,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             }, () => this.Auditor != null
                 && this.Entregar.HasValue
                 && this.User != null
-                && (!this.Items.Any() || this.Items.All(i => i.Entrega.HasValue && i.Monto.HasValue)));
+                && (!this.Items.Any() || this.Items.All(i => i.Entrega.HasValue && i.Monto.HasValue))
+                && Items.Where(i=>i.Complete).Count() == Items.Count()
+                );
 
             this.CajeroFinger = new RelayCommand(/*async*/ () => {
                 //var fh = new Helpers.FingerPrintHelper();
@@ -287,7 +310,19 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         public string Scan
         {
             get => _scan;
-            set => this.Set(nameof(this.Scan), ref _scan, value);
+            set
+            {
+                if (Helpers.ScanSerie.PorScanner(value, Cajero.Depto))
+                {
+                    Set(nameof(this.Scan), ref _scan, value);
+                }
+                else
+                {
+                    Set(nameof(this.Scan), ref _scan, "");
+                }
+            }
+            
+            //set => this.Set(nameof(this.Scan), ref _scan, value);
         }
         #region commands
         public RelayCommand ScanCommand { get; private set; }

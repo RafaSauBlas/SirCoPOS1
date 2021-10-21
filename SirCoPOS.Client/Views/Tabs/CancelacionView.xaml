@@ -1,9 +1,9 @@
 ﻿<UserControl x:Class="SirCoPOS.Client.Views.Tabs.CancelacionView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
              xmlns:xt="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:c="clr-namespace:SirCoPOS.Client.Converters"
@@ -94,7 +94,7 @@
                 <TextBlock Foreground="Red" HorizontalAlignment="Left" Margin="148.667,0,0,0" TextWrapping="Wrap" Text="{Binding ErrorMessage}" d:LayoutOverrides="Height" VerticalAlignment="Center"/>
                 <StackPanel Grid.Column = "0" Grid.Row = "2" Orientation = "Horizontal">
                     <Label x:Name="label" Content="Motivo de Cancelación :"  Height="30" Background="{x:Null}" Width="195" Margin="0,10" />
-                    <TextBox x:Name="motivo" TabIndex="1" CharacterCasing="Upper" Height="30" TextWrapping="NoWrap" Text="{Binding MotivoCancel, UpdateSourceTrigger=PropertyChanged}" Width="620" Margin="0,10" KeyDown="motivo_KeyDown" >
+                    <TextBox x:Name="motivo" TabIndex="1" CharacterCasing="Upper" Height="30" TextWrapping="NoWrap" Text="{Binding MotivoCancel, UpdateSourceTrigger=PropertyChanged}" Width="620" Margin="0,10" KeyDown="motivo_KeyDown" MaxLength="40">
                         <TextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding MotivoCommand}"/>
                         </TextBox.InputBindings>

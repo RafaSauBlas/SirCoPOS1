@@ -1,9 +1,9 @@
 ﻿<UserControl x:Class="SirCoPOS.Client.Views.Tabs.CorteView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
              xmlns:cv="clr-namespace:SirCoPOS.Client.Converters"
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
              d:DesignHeight="600" d:DesignWidth="1100" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
@@ -14,7 +14,21 @@
         <cv:ValueVisibilityConverter x:Key="cval"></cv:ValueVisibilityConverter>
     </UserControl.Resources>
     <Grid KeyDown="Grid_KeyDown" KeyUp="Grid_KeyUp" MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
-        <DataGrid SelectedItem="{Binding SelectedItemCorte}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Items}" HorizontalAlignment="Left" Margin="10,91,0,276" Width="553">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="7*" />
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="10*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition  />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+
+        <DataGrid Grid.Row="1"  x:Name="Corte" Margin="20,0,0,0" SelectedItem="{Binding SelectedItemCorte}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Items}" Grid.ColumnSpan="2" FontFamily="Arial Narrow">
             <DataGrid.InputBindings>
                 <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
             </DataGrid.InputBindings>
@@ -54,53 +68,8 @@
                 <DataGridTextColumn IsReadOnly="True" Header="Faltante" Binding="{Binding FaltanteMonto, StringFormat=C}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Series}" HorizontalAlignment="Right" Margin="0,10,10,276" Width="322">
-            <DataGrid.InputBindings>
-                <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
-            </DataGrid.InputBindings>
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Reportado}" Value="True">
-                            <Setter Property="Background" Value="LightGreen"></Setter>
-                            <Setter Property="Foreground" Value="Black"></Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.RowStyle>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Serie" Binding="{Binding Item.Serie}"></DataGridTextColumn>
-                <DataGridTextColumn Header="Importe" Binding="{Binding Item.Importe, StringFormat=C}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="button" TabIndex="6" Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Height="35" Width="49">
-            <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
-        </Button>
 
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Efectivo" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="98,11,0,0" TextWrapping="Wrap" Text="{Binding Data.Importe, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-
-        <TextBox IsEnabled="False" x:Name="textBox1" HorizontalAlignment="Right" Height="27" Margin="0,0,10,42.94" TextWrapping="Wrap" Text="{Binding Auditor.Id}" VerticalAlignment="Bottom" Width="120" Visibility="Hidden"/>
-        <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Left" Margin="291,43,0,0" TextWrapping="Wrap" Text="{Binding EfectivoFaltante, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbEntregar" TabIndex="1" HorizontalAlignment="Left" Height="27" Margin="98,40,0,0" TextWrapping="Wrap" Text="{Binding Entregar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyDown="tbEntregar_KeyDown"/>
-        <TextBlock HorizontalAlignment="Left" Margin="223,43,0,0" TextWrapping="Wrap" Text="Faltante" VerticalAlignment="Top"/>
-        <TextBlock x:Name="textBlock_Copy4" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" Text="Entregar" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtidaudit" HorizontalAlignment="Left" TabIndex="2" Height="27" Margin="129,0,0,234" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Bottom" Width="64" KeyUp="TextBox_KeyUp" KeyDown="txtidaudit_KeyDown">
-            <TextBox.InputBindings>
-                <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
-            </TextBox.InputBindings>
-        </TextBox>
-        <TextBlock x:Name="auditorname" HorizontalAlignment="Left" Margin="198,0,0,235" TextWrapping="Wrap" Height="24" VerticalAlignment="Bottom" Width="270">
-            <TextBlock.Text>
-                <MultiBinding StringFormat="{}{0} {1} {2}">
-                    <Binding Path="Auditor.Nombre" />
-                    <Binding Path="Auditor.ApellidoPaterno" />
-                    <Binding Path="Auditor.ApellidoMaterno" />
-                </MultiBinding>
-            </TextBlock.Text>
-        </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,237" TextWrapping="Wrap" Text="Auditor" VerticalAlignment="Bottom" Width="105"/>
-        <DataGrid CanUserAddRows="False" SelectedItem="{Binding SelectedDetalle}" AutoGenerateColumns="False" ItemsSource="{Binding SelectedItemCorte.Detalle}" Margin="568,91,337,276">
+        <DataGrid x:Name="Montos" HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1" CanUserAddRows="False" SelectedItem="{Binding SelectedDetalle}" AutoGenerateColumns="False" ItemsSource="{Binding SelectedItemCorte.Detalle}" Margin="30,0,0,0" MinWidth="200" Grid.ColumnSpan="2">
             <DataGrid.InputBindings>
                 <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
             </DataGrid.InputBindings>
@@ -108,25 +77,94 @@
                 <DataGridTextColumn Header="Monto" Binding="{Binding Amount, StringFormat=\{0:C\}}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox HorizontalAlignment="Left" TabIndex="3" Margin="568,0,0,246" TextWrapping="Wrap" Text="{Binding MontoTicket, UpdateSourceTrigger=PropertyChanged, StringFormat=C, Delay=500}" Width="120" Height="27" VerticalAlignment="Bottom" KeyDown="TextBox_KeyDown_1">
-            <TextBox.InputBindings>
-                <KeyBinding Key="Return" Command="{Binding AddMontoCommand}"></KeyBinding>
-            </TextBox.InputBindings>
-        </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="693,0,0,248" TextWrapping="Wrap" Text="{Binding SelectedItemCorte.Item.FormaPago}" VerticalAlignment="Bottom"/>
-        <TextBox Text="{Binding Scan, UpdateSourceTrigger=PropertyChanged}" TabIndex="4" HorizontalAlignment="Right" Height="27" Margin="0,0,10,246" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="150" KeyDown="TextBox_KeyDown">
-            <TextBox.InputBindings>
-                <KeyBinding Key="Return" Command="{Binding ScanCommand}">
-                </KeyBinding>
-            </TextBox.InputBindings>
-        </TextBox>
-        <TextBlock Visibility="{Binding EfectivoFaltante, Converter={StaticResource cval}}" Foreground="Red" HorizontalAlignment="Left" Margin="10,0,0,10" TextWrapping="Wrap" Text="Faltante de efectivo generara cargo" Height="24" VerticalAlignment="Bottom"/>
-        <PasswordBox x:Name="txtB_Contra" TabIndex="5"  HorizontalAlignment="Left" Height="27" Margin="129,0,0,193" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Bottom" Width="116" KeyUp="txtB_Contra_KeyUp" KeyDown="txtB_Contra_KeyDown">
-            <PasswordBox.InputBindings>
-                <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>
-            </PasswordBox.InputBindings>
-        </PasswordBox>
-        <TextBlock x:Name="usuarioid" Visibility="Hidden" HorizontalAlignment="Left" Margin="334,374,0,0" TextWrapping="Wrap" Text="{Binding User.Id}" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,0,0,201" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Bottom" Width="105"/>
+
+        <Button x:Name="button" Grid.Row="2" Grid.Column="4"  TabIndex="6" Command="{Binding SaveCommand}" Height="35" Width="49" HorizontalAlignment="Right" Margin="0,0,30,0">
+            <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
+        </Button>
+        <StackPanel Margin="10,10,0,0" >
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Text="Efectivo"/>
+                <TextBlock Text="{Binding Data.Importe, StringFormat=\{0:C\}}" Margin="60,0,0,0" TextAlignment="Right"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0" >
+                <TextBlock Text="Entregar" />
+                <TextBox Margin="35,0,0,0" Width="100" x:Name="tbEntregar" TabIndex="1" Text="{Binding Entregar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}"  TextAlignment="Right"/>
+                <TextBlock Text="Faltante" Margin="30,0,0,0" />
+                <TextBlock Text="{Binding EfectivoFaltante, StringFormat=\{0:C\}}" Margin="40,0,0,0" />
+            </StackPanel>
+        </StackPanel>
+
+        <TextBox IsEnabled="False" Text="{Binding Auditor.Id}" Visibility="Hidden"/>
+        <TextBlock x:Name="usuarioid" Text="{Binding User.Id}" Visibility="Hidden" />
+
+        <StackPanel Grid.Column="4" Grid.Row="1">
+            <DataGrid x:Name="Series"  IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Series}" Height="280" HorizontalAlignment="Right" MinWidth="500" Margin="0,0,40,0">
+                <DataGrid.InputBindings>
+                    <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
+                </DataGrid.InputBindings>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Reportado}" Value="True">
+                                <Setter Property="Background" Value="LightGreen"></Setter>
+                                <Setter Property="Foreground" Value="Black"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Serie" Binding="{Binding Item.Serie}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Importe" Binding="{Binding Item.Importe, StringFormat=C}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Margin="10,20,0,0" HorizontalAlignment="Left">
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="Auditor"/>
+                    <TextBox x:Name="txtidaudit" TabIndex="2" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" Width="60" KeyUp="TextBox_KeyUp" Margin="40,0,0,0">
+                        <TextBox.InputBindings>
+                            <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
+                        </TextBox.InputBindings>
+                    </TextBox>
+                    <TextBlock x:Name="auditorname" Margin="10,0,0,0">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} {1} {2}">
+                                <Binding Path="Auditor.Nombre" />
+                                <Binding Path="Auditor.ApellidoPaterno" />
+                                <Binding Path="Auditor.ApellidoMaterno" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                    <TextBlock Text="Contraseña"/>
+                    <PasswordBox x:Name="txtB_Contra" TabIndex="5"  Margin="10,0,0,0" PasswordChanged="PasswordBox_PasswordChanged" Width="100" Height="28" KeyUp="txtB_Contra_KeyUp" MaxWidth="30">
+                        <PasswordBox.InputBindings>
+                            <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>
+                        </PasswordBox.InputBindings>
+                    </PasswordBox>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Column="2" Margin="0,40,0,0">
+            <TextBlock Text="Montos Formas de Pago:" Margin="0,5,0,0"/>
+            <TextBlock Text="{Binding SelectedItemCorte.Item.FormaPago}" Margin="5,5,0,0" Foreground="Blue"/>
+            <TextBox TabIndex="3" Text="{Binding MontoTicket, UpdateSourceTrigger=PropertyChanged, StringFormat=C, Delay=500}" Width="100" Margin="5,0,0,0" Height="28">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Return" Command="{Binding AddMontoCommand}"></KeyBinding>
+                </TextBox.InputBindings>
+            </TextBox>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="4" Margin="0,40,30,13" HorizontalAlignment="Right">
+            <TextBlock Text="Serie Cancelada"/>
+            <TextBox x:Name="scanSerie" Text="{Binding Scan, UpdateSourceTrigger=PropertyChanged}" TabIndex="4" Margin="10,0,10,0" Width="150"  >
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Return" Command="{Binding ScanCommand}">
+                    </KeyBinding>
+                </TextBox.InputBindings>
+            </TextBox>
+        </StackPanel>
+        <TextBlock Margin="20,10,0,0" Grid.Row="2" Visibility="{Binding EfectivoFaltante, Converter={StaticResource cval}}" Foreground="Red" HorizontalAlignment="Left" Text="Faltante de efectivo generara cargo" Width="500"/>
+
     </Grid>
 </UserControl>

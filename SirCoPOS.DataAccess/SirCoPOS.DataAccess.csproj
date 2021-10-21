@@ -176,6 +176,7 @@
     <Compile Include="SirCoPV\PromocionesPlazas.cs" />
     <Compile Include="SirCoPV\PromocionesRecurrencia.cs" />
     <Compile Include="SirCoPV\DevolucionRazon.cs" />
+    <Compile Include="SirCoPV\SerieCancelada.cs" />
     <Compile Include="SirCoPV\Venta.cs" />
     <Compile Include="SirCoPV\VentaDetalle.cs" />
     <Compile Include="SirCo\Articulo.cs" />

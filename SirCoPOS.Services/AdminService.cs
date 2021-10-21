@@ -488,7 +488,11 @@ namespace SirCoPOS.Services
         public CajaFormas GetEntrega(string sucursal, int idgerente)
         {
             var ctxpos = new DataAccess.SirCoPOSDataContext();
-            var caja = ctxpos.Cajas.Where(i => i.Sucursal == sucursal && i.ResponsableId == idgerente).Single();
+            var caja = ctxpos.Cajas.Where(i => i.Sucursal == sucursal && i.ResponsableId == idgerente).SingleOrDefault();
+            if (caja ==null)
+            {
+                return null;
+            }
             if (!(caja.Tipo == Common.Constants.TipoFondo.CajaFuerte
                 || caja.Tipo == Common.Constants.TipoFondo.Cajon))
             {
@@ -860,7 +864,12 @@ namespace SirCoPOS.Services
                             }
                 }
             };
+            // Si no se ha escaneado para venta está en AB
             ctx.UpdateSerieStatus(serie, Common.Constants.Status.CA, Common.Constants.Status.AB, request.AuditorId);
+            // Si se intentó escanear ya está en AC
+            ctx.UpdateSerieStatus(serie, Common.Constants.Status.CA, Common.Constants.Status.AC, request.AuditorId);
+
+            // Se genera la venta Con Forma de Pago CI (Cargo Inventario)
             var res = proc.Sale(req, idcajero: 0);
 
             var aud = ctxn.Empleados.Where(i => i.idempleado == request.AuditorId).Single();
@@ -940,6 +949,7 @@ namespace SirCoPOS.Services
             var ctxpos = new DataAccess.SirCoPOSDataContext();
             var ctxn = new DataAccess.SirCoNominaDataContext();
             var ctx = new DataAccess.SirCoDataContext();
+            var ctxpv = new DataAccess.SirCoPVDataContext();
             var fondo = ctxpos.Fondos.Where(i => i.ResponsableId == request.CajeroId && !i.FechaCierre.HasValue).Single();
             var corte = _admin.GetCorteCaja(request.Sucursal, request.CajeroId);
             //var item = new DataAccess.SirCoPOS.Corte
@@ -1091,11 +1101,23 @@ namespace SirCoPOS.Services
             arqueo.Series = new HashSet<DataAccess.SirCoPOS.FondoArqueoSerie>();
             foreach (var s in corte.Series)
             {
+                //Quitar todas las series canceladas de la entrega de Caja
+                DataAccess.SirCoPV.SerieCancelada serieCancelada = ctxpv.SeriesCanceladas.
+                        Where(i => i.serie == s.Serie &&
+                              i.sucursal == request.Sucursal &&
+                              i.idcajerocancela == request.CajeroId).SingleOrDefault();
+                if (serieCancelada != null)
+                {
+                    ctxpv.SeriesCanceladas.Remove(serieCancelada);
+                }
+
+                // Serie Cancelada está reportada cambiar su estatus a AC
                 if (request.Series.Contains(s.Serie))
                 {
                     ctx.UpdateSerieStatus(s.Serie, Common.Constants.Status.AC, Common.Constants.Status.AB, request.AuditorId);
                 }
-                else
+                else   //Serie Cancelada No Reportada genera repetitivo y venta
+
                 {
                     arqueo.Series.Add(new DataAccess.SirCoPOS.FondoArqueoSerie
                     {
@@ -1105,7 +1127,7 @@ namespace SirCoPOS.Services
                     this.GenerarRepetitivoCalzado(s.Serie, fondo.CajaSucursal, request, now);
                 }
             }
-
+            ctxpv.SaveChanges();
             //this.CierreFondoHelper(new FondoArqueoRequest
             //{
             //    Importe = request.Reportado.Value,
