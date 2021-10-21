@@ -116,14 +116,14 @@ namespace SirCoPOS.BusinessLogic
             }
             return null;
         }
-        public Empleado FindAuditorApertura(int id, int idcajero)
+        public Empleado FindAuditorApertura(string sucursal, int idauditor, int idcajero)
         {
             var ctx = new DataAccess.SirCoNominaDataContext();
             var ctxpos = new DataAccess.SirCoPOSDataContext();
             var cajero = ctx.Empleados.Where(i => i.idempleado == idcajero
                 && i.estatus == "A").Single();
 
-            var auditor = ctx.Empleados.Where(i => i.idempleado == id                
+            var auditor = ctx.Empleados.Where(i => i.idempleado == idauditor                
                 && i.estatus == "A").SingleOrDefault();
             if (auditor != null)
             {                
@@ -141,14 +141,15 @@ namespace SirCoPOS.BusinessLogic
 
 
                 decimal? disponible = null;
+                //Si el auditor es cajero o tiene puesto de ENC o SUP buscar su fondo
                 if (auditor.idpuesto == (int)Common.Constants.Puesto.CJA
                     || Common.Constants.Puestos.Gerentes.Contains(auditor.idpuesto))
                 {
-                    var fondo = ctxpos.Fondos.Where(i => i.CajaSucursal == suc && i.ResponsableId == auditor.idempleado
+                    var fondo = ctxpos.Fondos.Where(i => i.CajaSucursal == sucursal && i.ResponsableId == auditor.idempleado
                                     && !i.FechaCierre.HasValue)
                                     .SingleOrDefault();
                     if (fondo == null)
-                        throw new FondoAbiertoExcepcion();
+                        throw new NoExisteFondoAbiertoExcepcion();
                     else
                         disponible = fondo.Disponible;
                 }
@@ -166,7 +167,9 @@ namespace SirCoPOS.BusinessLogic
                     Usuario = auditor.usuariosistema,
                     Clave = auditor.clave, 
                     Puesto = auditor.idpuesto,
-                    Disponible = disponible
+                    Disponible = disponible,
+                    Depto = auditor.iddepto,
+                    Sucursal = sucursal
                 };
             }
             return null;

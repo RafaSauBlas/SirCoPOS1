@@ -198,6 +198,13 @@ namespace SirCoPOS.BusinessLogic
         {
         }
     }
+    public class NoExisteFondoAbiertoExcepcion : Common.Helpers.BaseExcepcion
+    {
+        public NoExisteFondoAbiertoExcepcion()
+            : base("No Existe un Fondo Abierto")
+        {
+        }
+    }
     public class SameId : Common.Helpers.BaseExcepcion
     {
         public SameId()

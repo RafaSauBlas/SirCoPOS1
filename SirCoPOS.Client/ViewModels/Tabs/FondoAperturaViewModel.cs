@@ -15,10 +15,12 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         SirCoPOS.Services.AdminService DEM = new SirCoPOS.Services.AdminService();
         private readonly Common.ServiceContracts.IAdminServiceAsync _proxy;
         private readonly Common.ServiceContracts.IDataServiceAsync _data;
+        private Utilities.Models.Settings settings;
         public FondoAperturaViewModel()
         {
             this.UserOK = false;
             this.PropertyChanged += FondoAperturaViewModel_PropertyChanged;
+            settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
             this.LoadAuditorCommand = new RelayCommand(() =>
             {
                 if (this.SearchAuditor.Value == this.Cajero.Id)
@@ -28,10 +30,47 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 }
                 else
                 {
-                    this.Auditor = _data.FindAuditorApertura(this.SearchAuditor.Value, this.Cajero.Id);
+                    try
+                    {
+                        this.Auditor = _data.FindAuditorApertura(settings.Sucursal.Clave, this.SearchAuditor.Value, this.Cajero.Id);
+                    }
+                    catch (System.Exception e)
+                    {
+                        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                        return;
+                    }
                     if (this.Auditor != null)
                     {
-                        this.SearchAuditor = null;
+                        if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM || this.Auditor.Depto == (int)Common.Constants.Departamento.SIS)
+                        {
+                            this.SearchAuditor = null;
+                        }
+                        else
+                        {
+                            if (this.Auditor.Sucursal == settings.Sucursal.Clave)
+                            {
+                                if (this.Auditor.Puesto == (int)Common.Constants.Puesto.ENC || this.Auditor.Puesto == (int)Common.Constants.Puesto.SUP)
+                                {
+                                    if (this.Auditor.Disponible >= this.Importe )
+                                    {
+                                        this.SearchAuditor = null;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(String.Format("El Disponible del auditor es {0:C}", Auditor.Disponible), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Auditor no es Gerente o Suplente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Auditor no pertenece a la misma sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                        }
                     }
                     else
                     {
