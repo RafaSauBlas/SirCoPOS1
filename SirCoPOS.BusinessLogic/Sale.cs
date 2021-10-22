@@ -178,6 +178,10 @@ namespace SirCoPOS.BusinessLogic
                         return null;
                     var qimg = ctxi.Imagenes.Where(i => i.Marca == item.marca && i.Estilon == item.estilon);
 
+                    decimal? precioPromo;
+                    precioPromo = ctx.SeriesPromocion.Where(i => i.serie == serie).Select(k=>k.preciovta).SingleOrDefault();
+                    if (precioPromo == 0)
+                        precioPromo = corrida.precio;
                     byte? maxPlazos = null;
                     if (isElectronica)
                     {
@@ -199,7 +203,7 @@ namespace SirCoPOS.BusinessLogic
                             Corrida = corrida.corrida,
                             Marca = item.marca,
                             Modelo = item.estilon,
-                            Precio = corrida.precio,
+                            Precio = precioPromo,
                             Serie = item.serie,
                             Talla = item.medida,
                             Total = corrida.precio,

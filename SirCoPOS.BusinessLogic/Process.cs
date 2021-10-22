@@ -376,6 +376,9 @@ namespace SirCoPOS.BusinessLogic
                 cor.ult_vta = now;
 
                 var precio = sf.Precio ?? cor.precio;
+                var precioPromo = ctx.SeriesPromocion.Where(i => i.serie == sf.Serie).Select(k => k.preciovta).SingleOrDefault();
+                if (precioPromo != 0)
+                    precio = precioPromo;
                 if (change != null)
                 {
                     var citem = change.Where(i => i.NewItem == sf.Serie).Single();

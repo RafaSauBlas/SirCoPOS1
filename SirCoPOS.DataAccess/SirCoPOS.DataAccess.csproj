@@ -181,6 +181,7 @@
     <Compile Include="SirCoPV\VentaDetalle.cs" />
     <Compile Include="SirCo\Articulo.cs" />
     <Compile Include="SirCo\Corrida.cs" />
+    <Compile Include="SirCo\SeriePromocion.cs" />
     <Compile Include="SirCo\DetalleGasto.cs" />
     <Compile Include="SirCo\ArticulosImg.cs" />
     <Compile Include="SirCo\DineroDetalle.cs" />
