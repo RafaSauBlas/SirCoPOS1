@@ -126,7 +126,7 @@
                                         <Setter Property="FontWeight" Value="Bold"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding Expirado}" Value="False" >
-                                        <Setter Property="Text" Value=""/>
+                                        <Setter Property="Text" Value="Vigente"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>

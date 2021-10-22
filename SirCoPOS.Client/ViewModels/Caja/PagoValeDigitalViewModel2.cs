@@ -27,10 +27,10 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.Vale = await _proxy.FindValeDigitalAsync(this.Search);
                 if (this.Vale != null)
                 {
+                    this.RaisePropertyChanged(nameof(this.Expirado));
                     if (Expirado)
                     {
                         MessageBox.Show("Vale Expirado.", "Pago Vale Digital", MessageBoxButton.OK, MessageBoxImage.Error);
-                        this.RaisePropertyChanged(nameof(this.Expirado));
                         valeOK = false;
                     }
                     else

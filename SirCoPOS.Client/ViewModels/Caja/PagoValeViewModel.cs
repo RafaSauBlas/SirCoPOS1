@@ -52,7 +52,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             this.SearchCommand = new GalaSoft.MvvmLight.Command.RelayCommand(async () =>
             {
                 valeOK = false;
-                Views.Caja.PagoValeView2 PV2 = new Views.Caja.PagoValeView2();
+                //Views.Caja.PagoValeView2 PV2 = new Views.Caja.PagoValeView2();
                 try { 
                     this.Vale = await _proxy.FindValeAsync(this.Search);
                 }
