@@ -12,19 +12,21 @@ namespace SirCoPOS.Client.ViewModels.Tabs
     {
         private readonly Common.ServiceContracts.IAdminServiceAsync _proxy;
         private readonly Common.ServiceContracts.IDataServiceAsync _data;
+        private Utilities.Models.Settings settings;
         public GastoViewModel()
         {
             if (!this.IsInDesignMode)
             {
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IAdminServiceAsync>();
                 _data = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
+                settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
                 this.Opciones = _proxy.GetTiposGasto();
             }
 
             this.PropertyChanged += GastoViewModel_PropertyChanged;
             this.LoadSolicitanteCommand = new RelayCommand(() =>
             {
-                this.Empleado = _data.FindAuditorApertura(this.EmpleadoSearch.Value, this.Cajero.Id);
+                this.Empleado = _data.FindAuditorApertura( settings.Sucursal.Clave, this.EmpleadoSearch.Value, this.Cajero.Id);
                 if (this.Empleado != null)
                 {
                     this.EmpleadoSearch = null;

@@ -14,11 +14,11 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         void test();
         [OperationContract]
-        Empleado FindAuditorApertura(int id, int idcajero);
+        Empleado FindAuditorApertura(string sucursal, int idauditor, int idcajero);
         [OperationContract]
         Empleado AuditorPassword(int id, string pwd);
         [OperationContract]
-        Empleado FindAuditorEntrega(int id, int idcajero);
+        Empleado FindAuditorEntrega(string sucursal,int idauditor, int idcajero);
         [OperationContract]
         Empleado FindAuditorTransferir(int id, int idcajero);
         [OperationContract]

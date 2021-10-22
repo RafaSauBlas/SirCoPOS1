@@ -116,14 +116,14 @@ namespace SirCoPOS.BusinessLogic
             }
             return null;
         }
-        public Empleado FindAuditorApertura(int id, int idcajero)
+        public Empleado FindAuditorApertura(string sucursal, int idauditor, int idcajero)
         {
             var ctx = new DataAccess.SirCoNominaDataContext();
             var ctxpos = new DataAccess.SirCoPOSDataContext();
             var cajero = ctx.Empleados.Where(i => i.idempleado == idcajero
                 && i.estatus == "A").Single();
 
-            var auditor = ctx.Empleados.Where(i => i.idempleado == id                
+            var auditor = ctx.Empleados.Where(i => i.idempleado == idauditor                
                 && i.estatus == "A").SingleOrDefault();
             if (auditor != null)
             {                
@@ -141,16 +141,33 @@ namespace SirCoPOS.BusinessLogic
 
 
                 decimal? disponible = null;
+                //Si el auditor es cajero o tiene puesto de ENC o SUP buscar su fondo
                 if (auditor.idpuesto == (int)Common.Constants.Puesto.CJA
                     || Common.Constants.Puestos.Gerentes.Contains(auditor.idpuesto))
                 {
-                    var fondo = ctxpos.Fondos.Where(i => i.CajaSucursal == suc && i.ResponsableId == auditor.idempleado
+                    var fondo = ctxpos.Fondos.Where(i => i.ResponsableId == auditor.idempleado
                                     && !i.FechaCierre.HasValue)
                                     .SingleOrDefault();
                     if (fondo == null)
-                        throw new FondoAbiertoExcepcion();
+                    {
+                        throw new NoExisteFondoAbiertoExcepcion();
+                    }
                     else
-                        disponible = fondo.Disponible;
+                    {
+                        var fondosuc = ctxpos.Fondos.Where(i => i.ResponsableId == auditor.idempleado
+                                    && !i.FechaCierre.HasValue
+                                    && i.CajaSucursal == sucursal)
+                                    .SingleOrDefault();
+                        if (fondosuc == null)
+                        {
+                            throw new AuditorOtraSucursal();
+                        }
+                        else
+                        {
+                            disponible = fondo.Disponible;
+                        }
+                    }
+                        
                 }
                 else if (!Common.Constants.Puestos.Admin.Contains(auditor.idpuesto))
                 {
@@ -166,50 +183,69 @@ namespace SirCoPOS.BusinessLogic
                     Usuario = auditor.usuariosistema,
                     Clave = auditor.clave, 
                     Puesto = auditor.idpuesto,
-                    Disponible = disponible
+                    Disponible = disponible,
+                    Depto = auditor.iddepto,
+                    Sucursal = sucursal
                 };
             }
             return null;
         }
-        public Empleado FindAuditorEntrega(int id, int idcajero)
+        public Empleado FindAuditorEntrega(string sucursal, int idauditor, int idcajero)
         {
             var ctx = new DataAccess.SirCoNominaDataContext();
             var ctxpos = new DataAccess.SirCoPOSDataContext();
             var cajero = ctx.Empleados.Where(i => i.idempleado == idcajero
                 && i.estatus == "A").Single();
 
-            var auditor = ctx.Empleados.Where(i => i.idempleado == id
+            var auditor = ctx.Empleados.Where(i => i.idempleado == idauditor
                 && i.estatus == "A").SingleOrDefault();
             if (auditor != null)
             {
                 var asuc = auditor.clave.Substring(0, 2);
                 var suc = cajero.clave.Substring(0, 2);
-                if (Common.Constants.Puestos.Gerentes.Contains(cajero.idpuesto)
-                    || cajero.idpuesto == (int)Common.Constants.Puesto.CJA)
+
+                //validar departamentos
+                if (cajero.iddepto != (int)Common.Constants.Departamento.SIS && cajero.iddepto != (int)Common.Constants.Departamento.ADM)
                 {
-                    if (Common.Constants.Puestos.Gerentes.Contains(auditor.idpuesto))
+                    // Si el cajero no es de SISTEMAS ni de ADM validar tenga puesto Cajero o sea SUP o ENC
+                    if (!(cajero.idpuesto == (int)Common.Constants.Puesto.CJA || Common.Constants.Puestos.Gerentes.Contains(cajero.idpuesto)))
                     {
-                        var fondo = ctxpos.Fondos.Where(i => i.ResponsableId == auditor.idempleado && !i.FechaCierre.HasValue).SingleOrDefault();
-                        if (fondo == null)
+                        return null;
+                    }
+                    if (Common.Constants.Puestos.Gerentes.Contains(cajero.idpuesto) || cajero.idpuesto == (int)Common.Constants.Puesto.CJA)
+                    {
+                        if (Common.Constants.Puestos.Gerentes.Contains(auditor.idpuesto))
+                        {
+                            var fondo = ctxpos.Fondos.Where(i => i.ResponsableId == auditor.idempleado && !i.FechaCierre.HasValue).SingleOrDefault();
+                            if (fondo == null)
+                                return null;
+                        }
+                        else if (auditor.idpuesto == (int)Common.Constants.Puesto.MEN)
+                        {
+                            var fondo = ctxpos.Fondos.Where(i => i.ResponsableId == auditor.idempleado && !i.FechaCierre.HasValue).SingleOrDefault();
+                            if (fondo == null)
+                                return null;
+                        }
+                        else if (!Common.Constants.Puestos.Admin.Contains(auditor.idpuesto))
                             return null;
                     }
-                    else if (auditor.idpuesto == (int)Common.Constants.Puesto.MEN)
-                    {
-                        var fondo = ctxpos.Fondos.Where(i => i.ResponsableId == auditor.idempleado && !i.FechaCierre.HasValue).SingleOrDefault();
-                        if (fondo == null)
-                            return null;
-                    }
-                    else if (!Common.Constants.Puestos.Admin.Contains(auditor.idpuesto))
+                }
+                else
+                {
+                    var fondo = ctxpos.Fondos.Where(i => i.ResponsableId == auditor.idempleado && !i.FechaCierre.HasValue).SingleOrDefault();
+                    if (fondo == null)
                         return null;
                 }
-                //else if (cajero.idpuesto == (int)Common.Constants.Puesto.CJA)
-                //{ 
-                
-                //}
+
+                string sucursalauditor;
+                if (auditor.idpuesto == (int)Common.Constants.Departamento.TDA)
+                {
+                    sucursalauditor = asuc;
+                }
                 else
-                    return null;
-
-
+                {
+                    sucursalauditor = sucursal;
+                }
                 return new Empleado
                 {
                     Id = auditor.idempleado,
@@ -218,7 +254,9 @@ namespace SirCoPOS.BusinessLogic
                     Nombre = auditor.nombre,
                     Usuario = auditor.usuariosistema,
                     Clave = auditor.clave,
-                    Puesto = auditor.idpuesto
+                    Puesto = auditor.idpuesto,
+                    Depto = auditor.iddepto,
+                    Sucursal = sucursalauditor
                 };
             }
             return null;

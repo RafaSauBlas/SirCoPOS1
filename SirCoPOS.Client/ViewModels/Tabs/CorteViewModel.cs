@@ -42,7 +42,16 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             {
                 if (SearchAuditor.Value != Cajero.Id)
                 {
-                    this.Auditor = _data.FindAuditorApertura(this.SearchAuditor.Value, this.Cajero.Id);
+                    try
+                    {
+                        this.Auditor = _data.FindAuditorApertura(settings.Sucursal.Clave, this.SearchAuditor.Value, this.Cajero.Id);
+                    }
+                    catch (System.Exception e)
+                    {
+                        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                        return;
+                    }
                     if (this.Auditor != null)
                     {
                         if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM || this.Auditor.Depto == (int)Common.Constants.Departamento.SIS)
@@ -63,7 +72,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                                 }
 
                             }
-                            MessageBox.Show("Auditor no pertenece a la misma sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            else
+                            {
+                                MessageBox.Show("Auditor no pertenece a la misma sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                            
                         }
                     }
                     else

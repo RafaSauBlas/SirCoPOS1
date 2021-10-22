@@ -38,7 +38,6 @@ namespace SirCoPOS.Client.Views.Tabs
         private IDictionary<Guid, TabItem> _tabs;
         public Client.MetodoInactividad IN;
         private ILogger _log;
-        private int tipo;
 
         public CajaView4()
         {

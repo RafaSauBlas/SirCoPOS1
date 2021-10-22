@@ -1158,20 +1158,20 @@ namespace SirCoPOS.Services
             var detalle = _process.GenerarPlanPagosFechas(DateTime.Now, item, dist, fechas, blindaje);
             return detalle;
         }
-        public Empleado FindAuditorApertura(int id, int idcajero)
+        public Empleado FindAuditorApertura(string sucursal, int idauditor, int idcajero)
         {
             var _data = new BusinessLogic.Data();
-            return _data.FindAuditorApertura(id, idcajero);
+            return _data.FindAuditorApertura(sucursal, idauditor, idcajero);
         }
         public Empleado AuditorPassword(int id, string pwd)
         {
             var _data = new BusinessLogic.Data();
             return _data.AuditorPassword(id, pwd);
         }
-        public Empleado FindAuditorEntrega(int id, int idcajero)
+        public Empleado FindAuditorEntrega(string sucursal, int idauditor, int idcajero)
         {
             var _data = new BusinessLogic.Data();
-            return _data.FindAuditorEntrega(id, idcajero);
+            return _data.FindAuditorEntrega(sucursal, idauditor, idcajero);
         }
         public Empleado FindAuditorTransferir(int id, int idcajero)
         {

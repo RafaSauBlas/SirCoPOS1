@@ -47,6 +47,7 @@ namespace SirCoPOS.Client.Views.Tabs
             var vm = (ViewModels.Tabs.CorteViewModel)this.DataContext;
             if (vm.Cajero.Depto == 3)
                 this.scanSerie.ContextMenu = new ContextMenu();
+            this.tbEntregar.Text = "0";
         }
 
         private void Dt_Tick(object sender, EventArgs e)

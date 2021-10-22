@@ -33,7 +33,7 @@ namespace SirCoPOS.Client.Views.Tabs
 
         public void Init()
         {
-            
+            this.txt_importe.Text = "0";   
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)

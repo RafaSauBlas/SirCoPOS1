@@ -14,11 +14,13 @@ namespace SirCoPOS.Client.ViewModels.Tabs
     class EntregaEfectivoViewModel : Helpers.TabViewModelBase
     {
         protected readonly Common.ServiceContracts.IAdminServiceAsync _proxy;
-        protected readonly Common.ServiceContracts.IDataServiceAsync _pdata;             
+        protected readonly Common.ServiceContracts.IDataServiceAsync _pdata;
+        private Utilities.Models.Settings settings;
         public EntregaEfectivoViewModel()
         {
             this.FormasPago = new ObservableCollection<Models.CajaFormaPagoEntrega>();
             this.PropertyChanged += EntregaEfectivoViewModel_PropertyChanged;
+            settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
             if (!this.IsInDesignMode)
             {
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IAdminServiceAsync>();
@@ -86,11 +88,45 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 }
                 else
                 {
-                    this.Auditor = _pdata.FindAuditorEntrega(this.SearchAuditor.Value, this.Cajero.Id);
+                    this.Auditor = null;
+                    try
+                    {
+                        this.Auditor = _pdata.FindAuditorEntrega(settings.Sucursal.Clave, this.SearchAuditor.Value, this.Cajero.Id);
+                    }
+                    catch (System.Exception e)
+                    {
+                        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
+                        return;
+                    }
                     if (this.Auditor != null)
                     {
-                        this.SearchAuditor = null;
+                        if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM || this.Auditor.Depto == (int)Common.Constants.Departamento.SIS)
+                        {
+                            this.SearchAuditor = null;
+                        }
+                        else
+                        {
+                            if (this.Auditor.Sucursal == settings.Sucursal.Clave)
+                            {
+                                if (this.Auditor.Puesto == (int)Common.Constants.Puesto.ENC || this.Auditor.Puesto == (int)Common.Constants.Puesto.SUP)
+                                {
+                                    this.SearchAuditor = null;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Auditor no es Gerente o Suplente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Auditor no pertenece a la misma sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Auditor no valido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }, () => this.SearchAuditor.HasValue);
