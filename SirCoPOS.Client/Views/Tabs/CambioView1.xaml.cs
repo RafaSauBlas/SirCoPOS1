@@ -58,6 +58,8 @@ namespace SirCoPOS.Client.Views.Tabs
             }
             this.scanTextBox.Focus();
             var vm = (ViewModels.Tabs.CambioViewModel)this.DataContext;
+            if (vm.Cajero.Depto == 3)
+                this.scanTextBox.ContextMenu = new ContextMenu();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

@@ -40,6 +40,9 @@ namespace SirCoPOS.Client.Views.Tabs
 
         public void Init()
         {
+            var vm = (ViewModels.Tabs.DevolucionViewModel)this.DataContext;
+            if (vm.Cajero.Depto == 3)
+                this.searchTextBox.ContextMenu = new ContextMenu();
             this.searchTextBox.Focus();
         }
 

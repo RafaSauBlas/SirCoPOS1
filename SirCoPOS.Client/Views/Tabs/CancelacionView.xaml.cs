@@ -60,6 +60,10 @@ namespace SirCoPOS.Client.Views.Tabs
                 this.scanTextBox.IsEnabled = true;
                 this.scanTextBox.Focus();
             }
+            var vm = (ViewModels.Tabs.CancelacionViewModel)this.DataContext;
+            if (vm.Cajero.Depto == 3)
+                this.scanTextBox.ContextMenu = new ContextMenu();
+
             this.scanTextBox.Focus();
         }
 

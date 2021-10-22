@@ -35,6 +35,9 @@ namespace SirCoPOS.Client.Views.Tabs
             InitializeComponent();
             _tabs = new Dictionary<Guid, TabItem>();
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
+            var vm = (ViewModels.Tabs.CancelacionDevolucionViewModel)this.DataContext;
+            if (vm.Cajero.Depto == 3)
+                this.scanTextBox.ContextMenu = new ContextMenu();
         }
 
         private void scanTextBox_PreviewKeyDown(object sender, KeyEventArgs e)

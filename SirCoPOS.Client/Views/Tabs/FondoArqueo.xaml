@@ -26,7 +26,7 @@
                 <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <Button x:Name="btnguardar" Command="{Binding SaveCommand}" HorizontalAlignment="Left" Margin="149,125,0,0" VerticalAlignment="Top" Height="35" Width="49" TabIndex ="4" Grid.Row="1">
+        <Button x:Name="btnguardar" Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="0,0,30,30" VerticalAlignment="Bottom" Height="35" Width="49" TabIndex ="4" Grid.Row="1">
             <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
         </Button>
         <TextBlock HorizontalAlignment="Left" Margin="274,33,0,0" TextWrapping="Wrap" Text="Faltante" VerticalAlignment="Top" Grid.Row="1"/>

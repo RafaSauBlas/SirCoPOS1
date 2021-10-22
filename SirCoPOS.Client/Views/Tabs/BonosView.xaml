@@ -24,7 +24,7 @@
             </TextBox>
             <TextBlock Text="{Binding EmpleadoNombre}"  Margin="10,0,0,0" />
         </StackPanel>
-        <DataGrid KeyboardNavigation.IsTabStop="False"  AutoGenerateColumns="False" ItemsSource="{Binding Items}" IsReadOnly="True" x:Name="dataGrid" Margin="10,38,10,200.705">
+        <DataGrid KeyboardNavigation.IsTabStop="False"  AutoGenerateColumns="False" ItemsSource="{Binding Items}" IsReadOnly="True" x:Name="dataGrid" Margin="10,38,30,200.705">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Unidades" Binding="{Binding Unidades}"></DataGridTextColumn>
                 <DataGridTextColumn Header="Descripción" Binding="{Binding Descripcion}"></DataGridTextColumn>
@@ -55,8 +55,10 @@
                 <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>
             </PasswordBox.InputBindings>
         </PasswordBox>
-        <Button x:Name="btnPagar" KeyboardNavigation.TabIndex="3" Command="{Binding SaveCommand}" Content="Pagar" HorizontalAlignment="Right" Margin="0,0,380,20" VerticalAlignment="Bottom" Width="75"/>
-        
+        <!--<Button x:Name="btnPagar" KeyboardNavigation.TabIndex="3" Command="{Binding SaveCommand}" Content="Pagar" HorizontalAlignment="Right" Margin="0,0,380,20" VerticalAlignment="Bottom" Width="75"/>-->
+        <Button x:Name="btnPagar" KeyboardNavigation.TabIndex="3" Command="{Binding SaveCommand}" Height="40" HorizontalAlignment="Right" Margin="0,0,40,20" VerticalAlignment="Bottom" Width="75">
+            <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
+        </Button>
         
     </Grid>
 </UserControl>

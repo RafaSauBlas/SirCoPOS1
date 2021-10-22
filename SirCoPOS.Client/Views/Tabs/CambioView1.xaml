@@ -22,7 +22,7 @@
         <FrameworkElement x:Name="dummyElement"/>
         <xt:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}">
             <Grid KeyDown="Grid_KeyDown" KeyUp="Grid_KeyUp" MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
-                <DataGrid x:Name="dgv_Prod" SelectedItem="{Binding SelectedItem}" SelectedIndex="0" Margin="10,38,265,237" ItemsSource="{Binding Productos}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
+                <DataGrid x:Name="dgv_Prod" SelectedItem="{Binding SelectedItem}" SelectedIndex="0" Margin="10,50,265,237" ItemsSource="{Binding Productos}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
                     <DataGrid.InputBindings>
                         <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
                     </DataGrid.InputBindings>
@@ -89,7 +89,7 @@
                         <DataGridTextColumn Header="Modelo" Binding="{Binding Razon}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <ListBox Margin="0,38,10,237" HorizontalAlignment="Right" Width="250" SelectedItem="{Binding SelectedPago}" ItemsSource="{Binding Pagos}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ListBox Margin="0,50,10,237" HorizontalAlignment="Right" Width="250" SelectedItem="{Binding SelectedPago}" ItemsSource="{Binding Pagos}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                     <ListBox.Resources>
                         <DataTemplate x:Key="pagoEF">
                             <vp:PagoEfectivoView/>
@@ -159,12 +159,12 @@
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
                 </ListBox>
-                <TextBox x:Name="scanTextBox" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}"  Height="27" Margin="0,6,10,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Right" Width="140" IsEnabled="True" PreviewKeyDown="scanTextBox_PreviewKeyDown" KeyUp="scanTextBox_KeyUp" KeyDown="scanTextBox_KeyDown">
+                <TextBox x:Name="scanTextBox" Text="{Binding SerieSearch, UpdateSourceTrigger=PropertyChanged}"  Height="27"  Margin="10,12,0,12" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="140" IsEnabled="True" PreviewKeyDown="scanTextBox_PreviewKeyDown" KeyUp="scanTextBox_KeyUp" KeyDown="scanTextBox_KeyDown">
                     <TextBox.InputBindings>
                         <KeyBinding Key="Return" Command="{Binding ScanCommand}"/>
                     </TextBox.InputBindings>
                 </TextBox>
-                <Grid Margin="0,0,10,50" HorizontalAlignment="Right" Width="200" Height="150" VerticalAlignment="Bottom">
+                <Grid Margin="0,10,10,50" HorizontalAlignment="Right" Width="200" Height="145" VerticalAlignment="Bottom">
                     <Rectangle Fill="#FFF4F4F5" Stroke="Black" d:IsHidden="True"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Devolución" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,38.94,0,0" TextWrapping="Wrap" Text="Pagar" VerticalAlignment="Top"/>
