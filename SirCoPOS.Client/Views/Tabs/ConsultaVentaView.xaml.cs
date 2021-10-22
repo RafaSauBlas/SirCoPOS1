@@ -98,7 +98,6 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             IN.reiniciar();
         }
-
         private void txtNoVenta_TextChanged(object sender, TextChangedEventArgs e)
         {
             IN.reiniciar();
