@@ -280,7 +280,7 @@ namespace SirCoPOS.BusinessLogic
                     {
                         var fondo = ctxpos.Fondos.Where(i => i.ResponsableId == auditor.idempleado && !i.FechaCierre.HasValue).SingleOrDefault();
                         if (fondo != null)
-                            throw new FondoAbiertoExcepcion();
+                            throw new FondoAbiertoExcepcion(fondo.CajaSucursal, (int)fondo.CajaNumero);
                     }
                     else if (auditor.idpuesto == (int)Common.Constants.Puesto.MEN)
                     {

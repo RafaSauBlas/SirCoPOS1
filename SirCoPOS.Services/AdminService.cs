@@ -121,7 +121,10 @@ namespace SirCoPOS.Services
             if (qc.Any())
                 throw new CajaNoDisponibleExcepcion();
             if (qr.Any())
-                throw new FondoAbiertoExcepcion();
+            {
+                var fondo = ctx.Fondos.Where(i => i.ResponsableId == request.Responsable && !i.FechaCierre.HasValue).SingleOrDefault();
+                throw new FondoAbiertoExcepcion(fondo.CajaSucursal, (int)fondo.CajaNumero);
+            }
             
             var item = new DataAccess.SirCoPOS.Fondo
             {

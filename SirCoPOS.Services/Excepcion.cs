@@ -35,8 +35,8 @@ namespace SirCoPOS.Services
     }
     public class FondoAbiertoExcepcion : Common.Helpers.BaseExcepcion
     {
-        public FondoAbiertoExcepcion()
-            : base("Existe un Fondo previo sin cerrar")
+        public FondoAbiertoExcepcion(string sucursal, int caja)
+            : base("Existe un Fondo previo sin cerrar en Sucursal " + sucursal + " Caja " + caja)
         {
         }
     }
