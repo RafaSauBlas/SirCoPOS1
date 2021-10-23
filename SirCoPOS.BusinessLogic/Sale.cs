@@ -154,6 +154,7 @@ namespace SirCoPOS.BusinessLogic
             //    throw new CustomException("scan invalido");
 
             var ctx = new DataAccess.SirCoDataContext();
+            var ctxpv = new DataAccess.SirCoPVDataContext();
             var ctxi = new DataAccess.SirCoImgDataContext();
             var status = new string[] { Common.Constants.Status.ZC.ToString() };
             var q = ctx.Series.Where(i => i.serie == serie
@@ -179,7 +180,7 @@ namespace SirCoPOS.BusinessLogic
                     var qimg = ctxi.Imagenes.Where(i => i.Marca == item.marca && i.Estilon == item.estilon);
 
                     decimal? precioPromo;
-                    precioPromo = ctx.SeriesPromocion.Where(i => i.serie == serie).Select(k=>k.preciovta).SingleOrDefault();
+                    precioPromo = ctxpv.SeriesPromocion.Where(i => i.serie == serie).Select(k=>k.preciovta).SingleOrDefault();
                     if (precioPromo == 0)
                         precioPromo = corrida.precio;
                     byte? maxPlazos = null;

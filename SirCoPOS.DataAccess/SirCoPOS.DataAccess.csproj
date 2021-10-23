@@ -159,6 +159,7 @@
     <Compile Include="SirCoPVDataContext.cs" />
     <Compile Include="SirCoPV\Agrupaciones.cs" />
     <Compile Include="SirCoPV\AgrupacionesDetalle.cs" />
+    <Compile Include="SirCoPV\SeriePromocion.cs" />
     <Compile Include="SirCoPV\Cupones.cs" />
     <Compile Include="SirCoPV\CuponesDetalle.cs" />
     <Compile Include="SirCoPV\DescuentoEspecial.cs" />
@@ -181,7 +182,6 @@
     <Compile Include="SirCoPV\VentaDetalle.cs" />
     <Compile Include="SirCo\Articulo.cs" />
     <Compile Include="SirCo\Corrida.cs" />
-    <Compile Include="SirCo\SeriePromocion.cs" />
     <Compile Include="SirCo\DetalleGasto.cs" />
     <Compile Include="SirCo\ArticulosImg.cs" />
     <Compile Include="SirCo\DineroDetalle.cs" />

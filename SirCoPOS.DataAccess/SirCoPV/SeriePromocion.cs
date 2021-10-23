@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SirCoPOS.DataAccess.SirCo
+namespace SirCoPOS.DataAccess.SirCoPV
 {
     [Table("seriepromocion", Schema = "dbo")]
     public class SeriePromocion
@@ -14,7 +14,8 @@ namespace SirCoPOS.DataAccess.SirCo
         [Key]
         public string serie { get; set; }
         public decimal preciovta { get; set; }
+        public string usuario { get; set; }
         public DateTime? fum { get; set; }
-        public int idusuario { get; set; }
+        
     }
 }
