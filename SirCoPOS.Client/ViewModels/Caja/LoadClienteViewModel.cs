@@ -513,7 +513,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                                 }
                             }
                         }
-                        if (this.Cliente.Nombre != null && this.Cliente.ApPaterno != null && this.Cliente.ApMaterno != null && this.ClienteCP != null &&
+                        if (this.ClienteNombreSearch != null && this.ClienteApPaSearch != null && this.ClienteApMaSearch != null && this.ClienteCP != null &&
                          this.ClienteColonia != null && this.ClienteCalle != null && this.ClienteCelular1 != null && this.ClienteIdentificacion != null &&
                           this.ClienteSexo != null)
                         {
@@ -523,9 +523,9 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     break;
                 case nameof(this.Cliente):
                 case nameof(this.NuevoCliente):
-                    if(this.Cliente.Nombre != null && this.Cliente.ApPaterno != null && this.Cliente.ApMaterno != null && this.Cliente.CodigoPostal != null &&
-                         this.Cliente.Colonia != null && this.Cliente.Calle != null && this.Cliente.Celular != null && this.Cliente.Identificacion != null &&
-                          this.Cliente.Sexo != null)
+                    if (this.ClienteNombreSearch != null && this.ClienteApPaSearch != null && this.ClienteApMaSearch != null && this.ClienteCP != null &&
+                         this.ClienteColonia != null && this.ClienteCalle != null && this.ClienteCelular1 != null && this.ClienteIdentificacion != null &&
+                          this.ClienteSexo != null)
                     {
                         this.AcceptCommand.RaiseCanExecuteChanged();
                     }
