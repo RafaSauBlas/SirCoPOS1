@@ -16,7 +16,7 @@
     <Grid KeyDown="Grid_KeyDown" KeyUp="Grid_KeyUp" MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="12*" />
             <ColumnDefinition Width="10"/>
             <ColumnDefinition Width="7*" />
             <ColumnDefinition Width="10"/>
@@ -28,7 +28,7 @@
             <RowDefinition Height="60" />
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="1"  x:Name="Corte" Margin="20,0,0,0" SelectedItem="{Binding SelectedItemCorte}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Items}" Grid.ColumnSpan="2" FontFamily="Arial Narrow">
+        <DataGrid Grid.Row="1"  x:Name="Corte" Margin="20,0,0,0" SelectedItem="{Binding SelectedItemCorte}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Items}" Grid.ColumnSpan="2" FontFamily="Arial Narrow" >
             <DataGrid.InputBindings>
                 <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
             </DataGrid.InputBindings>
@@ -98,7 +98,7 @@
         <TextBlock x:Name="usuarioid" Text="{Binding User.Id}" Visibility="Hidden" />
 
         <StackPanel Grid.Column="4" Grid.Row="1">
-            <DataGrid x:Name="Series"  IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Series}" Height="280" HorizontalAlignment="Right" MinWidth="500" Margin="0,0,40,0">
+            <DataGrid x:Name="Series"  IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" ItemsSource="{Binding Series}" Height="280" HorizontalAlignment="Right" MinWidth="400" Margin="0,0,20,0">
                 <DataGrid.InputBindings>
                     <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
                 </DataGrid.InputBindings>
@@ -155,7 +155,7 @@
             </TextBox>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="4" Margin="0,40,30,13" HorizontalAlignment="Right">
+        <StackPanel Orientation="Horizontal" Grid.Column="4" Margin="0,40,10,13" HorizontalAlignment="Right">
             <TextBlock Text="Serie Cancelada"/>
             <TextBox x:Name="scanSerie" Text="{Binding Scan, UpdateSourceTrigger=PropertyChanged}" TabIndex="4" Margin="10,0,10,0" Width="150"  >
                 <TextBox.InputBindings>
