@@ -134,7 +134,7 @@ namespace SirCoPOS.Services
             var item = ctx.Distribuidores.Where(i => i.distrib == id
                 //&& i.tipodistrib == Common.Constants.TipoDistribuidor.NORMAL
                 && i.clasificacion == Common.Constants.TipoCredito.DISTRIBUIDOR
-                ).SingleOrDefault();
+                ).FirstOrDefault();
             if (item == null)
                 return null;
 
