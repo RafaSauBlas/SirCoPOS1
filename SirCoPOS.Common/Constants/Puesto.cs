@@ -37,6 +37,7 @@ namespace SirCoPOS.Common.Constants
             ,(int)Puesto.EGR
             ,(int)Puesto.AXC
             ,(int)Puesto.AUA
+            ,(int)Puesto.MEN
         };
         public static readonly int[] Gerentes = new int[]
         {
