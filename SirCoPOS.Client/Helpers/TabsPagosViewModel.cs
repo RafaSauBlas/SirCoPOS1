@@ -377,7 +377,7 @@ namespace SirCoPOS.Client.Helpers
                             var vale = await _proxy.FindDistribuidorIdAsync(o.DistribuidorId);
                             pv.Info = new Models.Pagos.PagoValeInfo
                             {
-                                Distribuidor = vale.Distribuidor.Nombre,
+                                Distribuidor = vale.Distribuidor.Nombre + " " + vale.Distribuidor.ApPaterno + " " + vale.Distribuidor.ApMaterno,
                                 Promocion = vale.Distribuidor.Promocion,
                                 Electronica = vale.Distribuidor.Electronica
                             };
@@ -476,7 +476,7 @@ namespace SirCoPOS.Client.Helpers
                             var vale = await _proxy.FindDistribuidorAsync(o.Vale);
                             cp.Info = new Models.Pagos.PagoValeInfo
                             {
-                                Distribuidor = vale.Distribuidor.Nombre,
+                                Distribuidor = vale.Distribuidor.Nombre + " " + vale.Distribuidor.ApPaterno + " " + vale.Distribuidor.ApMaterno,
                                 Promocion = vale.Distribuidor.Promocion,
                                 Electronica = vale.Distribuidor.Electronica
                             };
