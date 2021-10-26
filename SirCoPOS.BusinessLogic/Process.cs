@@ -374,7 +374,11 @@ namespace SirCoPOS.BusinessLogic
                     throw new StatusSerieNoActualizadoExcepcion();
                 var cor = ctx.GetCorrida(det);
                 cor.ult_vta = now;
-
+                var serieCancelada = ctxpv.SeriesCanceladas.Where(i => i.serie == sf.Serie).SingleOrDefault();
+                if (serieCancelada != null)
+                {
+                    ctxpv.SeriesCanceladas.Remove(serieCancelada);
+                }
                 var precio = sf.Precio ?? cor.precio;
                 var precioPromo = ctxpv.SeriesPromocion.Where(i => i.serie == sf.Serie).Select(k => k.preciovta).SingleOrDefault();
                 if (precioPromo != 0)
