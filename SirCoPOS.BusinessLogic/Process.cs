@@ -1922,6 +1922,8 @@ namespace SirCoPOS.BusinessLogic
             var venta = ctxpv.Ventas.Where(i => i.sucursal == model.Sucursal && i.venta == model.Folio).Single();
             if (venta.estatus != Common.Constants.StatusVenta.Aplicada || venta.fecha.Value != today)
                 throw new CancelacionNoValidaExcepcion();
+            if (venta.idcajero.Value == 0)
+                throw new CancelacionNoValidaExcepcion();
             venta.estatus = Common.Constants.StatusVenta.Cancelada;
             venta.fumcancela = now;
             venta.idusuariocancela = idcajero;

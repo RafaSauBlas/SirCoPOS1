@@ -49,8 +49,17 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     Folio = this.Venta.Folio,
                     Motivo = this.MotivoCancel
                 };
-                await _client.CancelSaleAsync(request);
+                try
+                {
+                    await _client.CancelSaleAsync(request);
+                }
+                catch (System.Exception e)
+                {
+                    MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
+                    this.IsBusy = false;
+                    return;
+                }
                 this.Complete();
 
                 _reports.Cancelacion(this.Sucursal.Clave, this.Venta.Folio);

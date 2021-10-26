@@ -115,7 +115,7 @@ namespace SirCoPOS.BusinessLogic
     public class CancelacionNoValidaExcepcion : Common.Helpers.BaseExcepcion
     {
         public CancelacionNoValidaExcepcion()
-            : base("La Venta no se hizo hoy o no está aplicada")
+            : base("La Cancelación no aplica o no es válida")
         {
         }
     }
