@@ -49,7 +49,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     catch (System.Exception e)
                     {
                         MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-
+                        this.SearchAuditor = null;
                         return;
                     }
                     if (this.Auditor != null)
@@ -69,12 +69,14 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                                 else
                                 {
                                     MessageBox.Show("Auditor no es Gerente o Suplente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    this.Auditor = null;
                                 }
 
                             }
                             else
                             {
                                 MessageBox.Show("Auditor no pertenece a la misma sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                this.Auditor = null;
                             }
                             
                         }
@@ -82,10 +84,12 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     else
                     {
                         MessageBox.Show("Auditor no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        this.Auditor = null;
                     }
                 } else 
                 {   
                     MessageBox.Show("Auditor no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    this.Auditor = null;
                 }
             }, () => this.SearchAuditor.HasValue);
             this.LoadUserCommand = new RelayCommand(() =>
