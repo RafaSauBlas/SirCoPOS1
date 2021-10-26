@@ -1104,16 +1104,6 @@ namespace SirCoPOS.Services
             arqueo.Series = new HashSet<DataAccess.SirCoPOS.FondoArqueoSerie>();
             foreach (var s in corte.Series)
             {
-                //Quitar todas las series canceladas de la entrega de Caja
-                DataAccess.SirCoPV.SerieCancelada serieCancelada = ctxpv.SeriesCanceladas.
-                        Where(i => i.serie == s.Serie &&
-                              i.sucursal == request.Sucursal &&
-                              i.idcajerocancela == request.CajeroId).SingleOrDefault();
-                if (serieCancelada != null)
-                {
-                    ctxpv.SeriesCanceladas.Remove(serieCancelada);
-                }
-
                 // Serie Cancelada está reportada cambiar su estatus a AC
                 if (request.Series.Contains(s.Serie))
                 {
@@ -1131,6 +1121,21 @@ namespace SirCoPOS.Services
                 }
             }
             ctxpv.SaveChanges();
+            foreach (var s in corte.Series)
+            {
+                //Quitar todas las series canceladas de la entrega de Caja
+                DataAccess.SirCoPV.SerieCancelada serieCancelada = ctxpv.SeriesCanceladas.
+                    Where(i => i.serie == s.Serie &&
+                          i.sucursal == request.Sucursal &&
+                          i.idcajerocancela == request.CajeroId).SingleOrDefault();
+                if (serieCancelada != null)
+                {
+                    ctxpv.SeriesCanceladas.Remove(serieCancelada);
+                }
+            }
+            ctxpv.SaveChanges();
+
+
             //this.CierreFondoHelper(new FondoArqueoRequest
             //{
             //    Importe = request.Reportado.Value,
