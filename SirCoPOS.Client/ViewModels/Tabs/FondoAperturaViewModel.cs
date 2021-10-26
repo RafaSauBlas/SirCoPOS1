@@ -59,16 +59,19 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                                     else
                                     {
                                         MessageBox.Show(String.Format("El Disponible del auditor es {0:C}", Auditor.Disponible), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                        this.Auditor = null;
                                     }
                                 }
                                 else
                                 {
                                     MessageBox.Show("Auditor no es Gerente o Suplente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    this.Auditor = null;
                                 }
                             }
                             else
                             {
                                 MessageBox.Show("Auditor no pertenece a la misma sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                this.Auditor = null;
                             }
                         }
                     }
