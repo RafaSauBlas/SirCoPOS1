@@ -2164,14 +2164,17 @@ namespace SirCoPOS.BusinessLogic
                 model.WithLimite = true;
             }
             else
-            {
+            {   // ultimo registro del plan de pagos con el vale consultado
                 var last = qpp.OrderByDescending(i => i.fum).FirstOrDefault();
                 if (last != null)
                 {
                     var suc = ctxc.Sucursales.Where(i => i.sucursal == last.succliente).Single();
-
-                    var cli = ctx.Clientes.Where(i => i.cliente == last.cliente && i.idsucursal == suc.idsucursal).Single();
-                    model.ClienteId = cli.idcliente;
+                    if (suc != null)
+                    {
+                        model.ClienteId  = ctx.Clientes.
+                            Where(i => i.cliente == last.cliente && i.idsucursal == suc.idsucursal).
+                            Select(k=>k.idcliente).SingleOrDefault();
+                    }
                 }
             }
 
