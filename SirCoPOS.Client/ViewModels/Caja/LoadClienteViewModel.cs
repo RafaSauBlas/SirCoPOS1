@@ -479,6 +479,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 case nameof(ClienteColonia):
                 case nameof(ClienteCalle):
                 case nameof(ClienteCelular1):
+                case nameof(ClienteIdentificacion):
                 case nameof(ClienteSexo):
                     {
                         if(this.ClienteCP != "" && this.ClienteColonia != null && this.ClienteCalle != null
@@ -512,11 +513,22 @@ namespace SirCoPOS.Client.ViewModels.Caja
                                 }
                             }
                         }
+                        if (this.ClienteNombreSearch != null && this.ClienteApPaSearch != null && this.ClienteApMaSearch != null && this.ClienteCP != null &&
+                         this.ClienteColonia != null && this.ClienteCalle != null && this.ClienteCelular1 != null && this.ClienteIdentificacion != null &&
+                          this.ClienteSexo != null)
+                        {
+                            this.AcceptCommand.RaiseCanExecuteChanged();
+                        }
                     }
                     break;
                 case nameof(this.Cliente):
                 case nameof(this.NuevoCliente):
-                    this.AcceptCommand.RaiseCanExecuteChanged();
+                    if (this.ClienteNombreSearch != null && this.ClienteApPaSearch != null && this.ClienteApMaSearch != null && this.ClienteCP != null &&
+                         this.ClienteColonia != null && this.ClienteCalle != null && this.ClienteCelular1 != null && this.ClienteIdentificacion != null &&
+                          this.ClienteSexo != null)
+                    {
+                        this.AcceptCommand.RaiseCanExecuteChanged();
+                    }
                     break;
             }
         }
