@@ -107,7 +107,7 @@
                 </Button.CommandParameter>
                 <Grid>
                     <Image Source="/SirCoPOS.Win;component/Images/arqueo.png" Margin="22,0,1,22"/>
-                    <TextBlock Text="Arqueo Efectivo (F9)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,-6,-9" FontSize="15" Height="22" Width="140"/>
+                    <TextBlock Text="Arqueo (F9)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,-6,-9" FontSize="15" Height="22" />
                 </Grid>
             </Button>
             <!--Boton Entrega de Efectivo-->

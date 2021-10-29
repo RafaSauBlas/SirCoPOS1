@@ -18,10 +18,10 @@
             <RowDefinition Height="7*"/>
             <RowDefinition Height="83*"/>
         </Grid.RowDefinitions>
-        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="10,33,0,0" TextWrapping="Wrap" Text="Importe" VerticalAlignment="Top" Grid.Row="1"/>
-        <TextBox x:Name="txt_importe" HorizontalAlignment="Left" Height="27" Margin="149,28,0,0" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" TabIndex="1" Grid.Row="1" KeyDown="textBox_KeyDown"/>
-        <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Margin="10,64,0,0" TextWrapping="Wrap" Text="Auditor" VerticalAlignment="Top" Grid.Row="1"/>
-        <TextBox x:Name="tbAudId" HorizontalAlignment="Left" Height="27" Margin="149,58,0,0" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" TabIndex ="2" Grid.Row="1" KeyUp="textBox_Copy1_KeyUp" KeyDown="tbAudId_KeyDown">
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="10,110,0,0" TextWrapping="Wrap" Text="Importe" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="txt_importe" HorizontalAlignment="Left" Height="27" Margin="149,110,0,0" TextWrapping="Wrap" Text="{Binding Importe, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" TabIndex="1" Grid.Row="1" KeyDown="textBox_KeyDown"/>
+        <TextBlock x:Name="textBlock1_Copy1" HorizontalAlignment="Left" Margin="10,150,0,0" TextWrapping="Wrap" Text="Auditor" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBox x:Name="tbAudId" HorizontalAlignment="Left" Height="27" Margin="149,150,0,0" TextWrapping="Wrap" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" TabIndex ="2" Grid.Row="1" KeyUp="textBox_Copy1_KeyUp" KeyDown="tbAudId_KeyDown">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
             </TextBox.InputBindings>
@@ -29,9 +29,9 @@
         <Button x:Name="btnguardar" Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="0,0,30,30" VerticalAlignment="Bottom" Height="35" Width="49" TabIndex ="4" Grid.Row="1">
             <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
         </Button>
-        <TextBlock HorizontalAlignment="Left" Margin="274,33,0,0" TextWrapping="Wrap" Text="Faltante" VerticalAlignment="Top" Grid.Row="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="342,33,0,0" TextWrapping="Wrap" Text="{Binding Faltante, StringFormat=C}" VerticalAlignment="Top" Grid.Row="1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="150,6,0,0" TextWrapping="Wrap" Text="{Binding Effectivo, StringFormat=C}" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="280,110,0,0" TextWrapping="Wrap" Text="Faltante" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="375,110,0,0" TextWrapping="Wrap" Text="{Binding Faltante, StringFormat=C}" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="150,70,100,0" TextWrapping="Wrap" Text="{Binding Effectivo, StringFormat=C}" VerticalAlignment="Top" Grid.Row="1"/>
         <TextBlock x:Name="AuditorName" HorizontalAlignment="Left" Margin="274,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0} {1} {2}">
@@ -42,14 +42,13 @@
             </TextBlock.Text>
         </TextBlock>
         <TextBlock Visibility="{Binding Faltante, Converter={StaticResource cval}}" Foreground="Red" HorizontalAlignment="Left" Margin="10,0,0,10" TextWrapping="Wrap" Text="Faltante de efectivo generara cargo" Height="24" VerticalAlignment="Bottom" Grid.Row="1"/>
-        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Top" Grid.Row="1"/>
-        <PasswordBox x:Name="txtB_Contra"  HorizontalAlignment="Left" Height="27" Margin="149,89,0,0"  PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Top" Width="120" TabIndex = "3" Grid.Row="1" KeyUp="txtB_Contra_KeyUp" KeyDown="txtB_Contra_KeyDown">
+        <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="10,191,0,0" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Top" Grid.Row="1"/>
+        <PasswordBox x:Name="txtB_Contra"  HorizontalAlignment="Left" Height="27" Margin="149,189,0,0"  PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Top" Width="120" TabIndex = "3" Grid.Row="1" KeyUp="txtB_Contra_KeyUp" KeyDown="txtB_Contra_KeyDown">
             <PasswordBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>
             </PasswordBox.InputBindings>
         </PasswordBox>
         <TextBlock x:Name="pass" Visibility="Hidden" HorizontalAlignment="Left" Margin="310,92,0,0" TextWrapping="Wrap" Text="{Binding User.Id}" VerticalAlignment="Top" Grid.Row="1"/>
-        <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="11,10,-116,0" TextWrapping="Wrap" Text="Arqueo de Efectivo" VerticalAlignment="Top" FontWeight="SemiBold" FontSize="16" Width="905" Background="#FF007ACC" Foreground="White"/>
-        <TextBlock HorizontalAlignment="Left" Margin="11,6,0,0" TextWrapping="Wrap" Text="Efectivo" VerticalAlignment="Top" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="11,68,100,0" TextWrapping="Wrap" Text="Efectivo" VerticalAlignment="Top" Grid.Row="1"/>
     </Grid>
 </UserControl>
