@@ -531,7 +531,11 @@ namespace SirCoPOS.BusinessLogic
                         break;
                     case FormaPago.EF:
                     case FormaPago.GO:
+                        break;
                     case FormaPago.KU:
+                        {
+                            detalle.observaciones = $"Folio Kueski: {item.Referencia}";
+                        }
                         break;
                     case FormaPago.TC:
                     case FormaPago.TD:
@@ -1452,6 +1456,8 @@ namespace SirCoPOS.BusinessLogic
             {
                 observa = "VentaCombinada";
             }
+            var foliokueski = model.Pagos.Where(i => i.FormaPago == Common.Constants.FormaPago.KU).Select(k => k.Referencia);
+
             var plan = new DataAccess.SirCoCredito.PlanPagos
             {
                 distrib = dist.distrib,
@@ -1471,13 +1477,8 @@ namespace SirCoPOS.BusinessLogic
                 saldo = item.Importe + (blindaje ?? 0),
                 //pagos = item.Plazos.Value,
                 pagado = "0",
-
-
                 observacion = observa,
-
-
-
-                idusuario = idcajero,
+                 idusuario = idcajero,
                 fum = now,
                 blindaje = blindaje
             };
