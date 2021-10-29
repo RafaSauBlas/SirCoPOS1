@@ -38,6 +38,11 @@ namespace SirCoPOS.Client.Models.Pagos
             get { return _HasPromocion; }
             set { Set(nameof(this.HasPromocion), ref _HasPromocion, value); }
         }
-
+        public string _folio;
+        public string Folio
+        {
+            get { return _folio; }
+            set { Set(nameof(this.Folio), ref _folio, value); }
+        }
     }
 }

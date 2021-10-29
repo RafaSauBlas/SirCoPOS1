@@ -1456,8 +1456,6 @@ namespace SirCoPOS.BusinessLogic
             {
                 observa = "VentaCombinada";
             }
-            var foliokueski = model.Pagos.Where(i => i.FormaPago == Common.Constants.FormaPago.KU).Select(k => k.Referencia);
-
             var plan = new DataAccess.SirCoCredito.PlanPagos
             {
                 distrib = dist.distrib,

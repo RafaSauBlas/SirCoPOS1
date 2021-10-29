@@ -235,6 +235,7 @@ namespace SirCoPOS.Client.Helpers
                         FormaPago = o.FormaPago,
                         Importe = o.Importe,
                         Efectivo = o.Efectivo,
+                        Folio = o.Folio
                     };
                     break;
                 case FormaPago.MD:
@@ -643,6 +644,7 @@ namespace SirCoPOS.Client.Helpers
                         FormaPago = item.FormaPago,
                         Importe = item.Importe.Value,
                         Efectivo = (decimal) item.Efectivo,
+                        Referencia = item.Folio,
                     });
                 }
             }
