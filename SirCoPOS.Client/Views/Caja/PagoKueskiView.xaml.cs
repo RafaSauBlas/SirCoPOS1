@@ -32,12 +32,21 @@ namespace SirCoPOS.Client.Views.Caja
 
         public void Init()
         {
-            this.pagarConTextBox.SelectAll();
+            ViewModels.Caja.PagoKueskiViewModel data = this.DataContext as ViewModels.Caja.PagoKueskiViewModel;
+            if (data != null)
+            {
+                if (data.Pagar < data.cantMinima)
+                {
+                    string mensaje = String.Format("La cantidad mínima a pagar es : {0:C}", data.cantMinima);
+                    MessageBox.Show(mensaje, "Pago Kueski", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            this.txtFolio.SelectAll();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            this.pagarConTextBox.Focus();            
+            this.txtFolio.Focus();
         }
 
         private void pagarTextBox_GotFocus(object sender, RoutedEventArgs e)

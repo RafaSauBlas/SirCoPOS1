@@ -15,14 +15,13 @@ namespace SirCoPOS.Client.ViewModels.Caja
     {
         public override string Title => "Pago Kueski-Pay";
         private readonly Common.ServiceContracts.IDataServiceAsync _data;
-        private int CantMinima;
-
+        
         public PagoKueskiViewModel()
         {
             this.PropertyChanged += PagoKueskiViewModel_PropertyChanged;
             _data = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
 
-            CantMinima = _data.getminPago(Common.Constants.Parametros.MINPAGOKU);
+            this.cantMinima = _data.getminPago(Common.Constants.Parametros.MINPAGOKU);
 
             this.CompletarCommand = new RelayCommand(() =>
             {
@@ -46,14 +45,17 @@ namespace SirCoPOS.Client.ViewModels.Caja
         {
             if (!this.IsValid())
                 return false;
-            if (this.Pagar.HasValue && this.Pagar < CantMinima)
-            {
-                MessageBox.Show("El Pago no puede ser menor a " + CantMinima, "Pago Kueski-Pay", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
 
+            if (Folio != null)
+            {
+                if (Folio.Length != 14)
+                    return false;
+            }
+            
             return this.Pagar.HasValue && this.Pagar != 0
+                && this.Pagar >= this.cantMinima
                 && this.PagaCon.HasValue && this.PagaCon != 0
+                && this.Folio != null
                 && this.Pendiente >= 0 && this.PagaCon >= this.Pagar;
 
         }
@@ -64,7 +66,8 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     {  
                         FormaPago = FormaPago.KU,
                         Importe = this.Pagar.Value,
-                        Efectivo = this.PagaCon.Value
+                        Efectivo = this.PagaCon.Value,
+                        Folio = this.Folio,
                     }, this.GID);
         }
         private void PagoKueskiViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -74,14 +77,27 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 case nameof(this.Total):
                 case nameof(this.Pagar):
                 case nameof(this.PagaCon):
+                case nameof(this.Folio):
                     this.RaisePropertyChanged(nameof(this.Pendiente));
                     this.RaisePropertyChanged(nameof(this.Regresar));
                     this.AcceptCommand.RaiseCanExecuteChanged();
                     break;
             }
-        }        
+        }
 
         #region properties
+        private decimal _cantminima;
+        public decimal cantMinima
+        {
+            get { return _cantminima; }
+            set { this.Set(nameof(this.cantMinima), ref _cantminima, value); }
+        }
+        private string _folio;
+        public string Folio
+        {
+            get { return _folio; }
+            set { this.Set(nameof(this.Folio), ref _folio, value); }
+        }
         private decimal? _pagaCon;
         [Required]
         public decimal? PagaCon {
