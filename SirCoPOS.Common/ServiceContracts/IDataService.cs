@@ -20,7 +20,7 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Empleado FindAuditorEntrega(string sucursal,int idauditor, int idcajero);
         [OperationContract]
-        Empleado FindAuditorTransferir(int id, int idcajero);
+        Empleado FindAuditorTransferir(string sucursal, int idauditor, int idcajero);
         [OperationContract]
         Entities.ScanResponse ScanProducto(string serie, string sucursal);
         [OperationContract]

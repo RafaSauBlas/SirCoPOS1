@@ -116,11 +116,13 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                                 else
                                 {
                                     MessageBox.Show("Auditor no es Gerente o Suplente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    this.Auditor = null;
                                 }
                             }
                             else
                             {
                                 MessageBox.Show("Auditor no pertenece a la misma sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                this.Auditor = null;
                             }
                         }
                     }

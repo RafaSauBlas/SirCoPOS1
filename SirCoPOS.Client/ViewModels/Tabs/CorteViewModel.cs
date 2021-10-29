@@ -54,32 +54,17 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     }
                     if (this.Auditor != null)
                     {
-                        if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM || this.Auditor.Depto == (int)Common.Constants.Departamento.SIS)
+                        if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM)
                         {
                             this.SearchAuditor = null;
+                            this.User = null;                                    
                         }
                         else
                         {
-                            if (this.Auditor.Sucursal == settings.Sucursal.Clave)
-                            {
-                                if (this.Auditor.Puesto == (int)Common.Constants.Puesto.ENC || this.Auditor.Puesto == (int)Common.Constants.Puesto.SUP)
-                                {
-                                    this.SearchAuditor = null;
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Auditor no es Gerente o Suplente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                                    this.Auditor = null;
-                                }
-
-                            }
-                            else
-                            {
-                                MessageBox.Show("Auditor no pertenece a la misma sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                                this.Auditor = null;
-                            }
-                            
+                            MessageBox.Show("Auditor no pertenece a Administración", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            this.Auditor = null;
                         }
+
                     }
                     else
                     {
@@ -309,7 +294,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         public int? SearchAuditor
         {
             get { return _SearchAuditor; }
-            set { Set(nameof(this.SearchAuditor), ref _SearchAuditor, value); }
+            set { Set(nameof(this.SearchAuditor), ref _SearchAuditor, value);}
         }
         private Common.Entities.Empleado _Auditor;
         public Common.Entities.Empleado Auditor

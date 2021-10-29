@@ -87,7 +87,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 this.User = _data.AuditorPassword(this.Auditor.Id, this.Password);
                 if (this.User != null )
                 {
-                    this.SearchUser = null;
+                    //this.SearchUser = null;
                     this.UserOK = true;
                 } else
                 {
@@ -103,10 +103,13 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 //    MessageBox.Show("Código no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 //    return;
                 //}
+                int AuditorID = 0;
+                if (this.Auditor != null)
+                    AuditorID = this.Auditor.Id;
                 var request = new Common.Entities.FondoRequest
                 {
                     Importe = this.Importe.Value,
-                    Auditor = this.Auditor.Id,
+                    Auditor = AuditorID,
                     Responsable = this.Cajero.Id,
                     Sucursal = this.Sucursal.Clave,
                     Numero = this.SelectedCaja.Numero,
@@ -120,8 +123,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 {
                     MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     this.UserOK = false;
-                    this.SearchUser = null;
-                    this.SearchUser = null;
+                    //this.SearchUser = null;
                     return;
                 }
                 MessageBox.Show("La operación se completó correctamente", "Fondo Apertura", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -129,8 +131,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
 
                 this.CloseCommand.Execute(null);
 
-            }, () => this.Auditor != null && this.Importe.HasValue && this.SelectedCaja != null && this.User != null
-                && this.IsValid());
+            }, () => (this.Auditor != null || this.UserAdminSis) &&
+                     (this.User != null || this.UserAdminSis) &&
+                     this.Importe.HasValue && 
+                     this.SelectedCaja != null 
+                     );
             if (this.IsInDesignMode)
             {
                 this.Auditor = new Common.Entities.Empleado
@@ -182,7 +187,10 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 yield return new ValidationResult("Sin Fondos", new string[] { "Importe" });
             }
         }
-        
+        public bool UserAdminSis
+        {
+            get { return (this.Cajero.Depto == (int)Common.Constants.Departamento.ADM || this.Cajero.Depto == (int)Common.Constants.Departamento.SIS) ;  }
+        }
         private int? _SearchAuditor;
         public int? SearchAuditor
         {
@@ -195,12 +203,12 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             get { return _Auditor; }
             set { Set(nameof(this.Auditor), ref _Auditor, value); }
         }
-        private string _SearchUser;
-        public string SearchUser
-        {
-            get { return _SearchUser; }
-            set { Set(nameof(this.SearchUser), ref _SearchUser, value); }
-        }
+        //private string _SearchUser;
+        //public string SearchUser
+        //{
+        //    get { return _SearchUser; }
+        //    set { Set(nameof(this.SearchUser), ref _SearchUser, value); }
+        //}
         public string Password { private get; set; }
         private Common.Entities.Empleado _User;
         public Common.Entities.Empleado User
