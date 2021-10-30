@@ -2093,7 +2093,13 @@ namespace SirCoPOS.BusinessLogic
                 ).SingleOrDefault();
             if (item == null)
                 return null;
-
+            var parms = ctxc.Parametros.Where(i => i.clave == item.distrib && i.sucursal == "99").SingleOrDefault();
+            int? maxplazosDist = null;
+            if (parms != null)
+            {
+                maxplazosDist = Int32.Parse(parms.valor);
+            }
+     
             var dis = new Common.Entities.Distribuidor
             {
                 Id = item.iddistrib,
@@ -2109,6 +2115,7 @@ namespace SirCoPOS.BusinessLogic
                 Promocion = item.promocion == 1,
                 LimiteVale = item.limitevale,
                 ValeExterno = item.negext == 1,
+                maxPlazos = maxplazosDist
             };
 
             var model = new ValeResponse

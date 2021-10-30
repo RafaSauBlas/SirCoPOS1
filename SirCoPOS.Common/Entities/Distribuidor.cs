@@ -26,5 +26,6 @@ namespace SirCoPOS.Common.Entities
         public DateTime? Date { get; set; }
         public int? ClienteId { get; set; }
         public decimal? LimiteVale { get; set; }
+        public int? maxPlazos { get; set; }
     }
 }

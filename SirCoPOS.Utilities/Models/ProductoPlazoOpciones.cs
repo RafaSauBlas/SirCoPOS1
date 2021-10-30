@@ -24,5 +24,13 @@ namespace SirCoPOS.Utilities.Models
             }
         }
         public Utilities.Interfaces.IProducto Item { get; private set; }
+        public void SetPlazos(int numPlazos)
+        {
+            this.Plazos = Enumerable.Range(1, numPlazos);
+        }
+        public int GetPlazos()
+        {
+            return this.Plazos.Count();
+        }
     }
 }
