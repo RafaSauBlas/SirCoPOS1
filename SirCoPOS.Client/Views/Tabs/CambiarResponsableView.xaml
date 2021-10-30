@@ -15,7 +15,9 @@
     </UserControl.Resources>
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Efectivo:" VerticalAlignment="Top"/>
-        <Button x:Name="btn_accept" Command="{Binding SaveCommand}" TabIndex="4" Content="Guardar" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75"/>
+        <Button x:Name="btn_accept" Command="{Binding SaveCommand}" TabIndex="4" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Click="btn_accept_Click">
+            <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
+        </Button>
         <TextBlock HorizontalAlignment="Left" Margin="89,10,0,0" TextWrapping="Wrap" Text="{Binding Data.Efectivo, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
         <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" AutoGenerateColumns="False" Margin="10,76,436,217" ItemsSource="{Binding FormasPago}">
             <DataGrid.InputBindings>

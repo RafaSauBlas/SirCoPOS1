@@ -694,6 +694,8 @@
     <Resource Include="Images\devolver.png" />
     <Resource Include="Images\PagoGo.png" />
     <Resource Include="Images\pagoKueski.png" />
+    <Resource Include="Images\historia.png" />
+    <Resource Include="Images\historial.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

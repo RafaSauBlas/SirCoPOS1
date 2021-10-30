@@ -35,30 +35,30 @@
         <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,0,0,171.765" TextWrapping="Wrap" Text="Total" VerticalAlignment="Bottom"/>
         <TextBlock KeyboardNavigation.IsTabStop="False"  x:Name="textBlock1" HorizontalAlignment="Left" Margin="94.765,0,0,171.765" TextWrapping="Wrap" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Bottom"/>
         <TextBlock x:Name="textBlock1_Copy" HorizontalAlignment="Left" Margin="94.765,0,0,142.825" TextWrapping="Wrap" Text="{Binding TotalRound, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Bottom"/>
-        
-        <TextBlock HorizontalAlignment="Right" Margin="0,0,470,80" TextWrapping="Wrap" Text="Gerente Id" VerticalAlignment="Bottom"/>
-        <TextBlock HorizontalAlignment="Right" Margin="0,0,470,50" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Bottom"/>
-        <TextBlock Text="{Binding GerenteNombre}" HorizontalAlignment="Right" Margin="0,0,90,80" TextWrapping="Wrap"  VerticalAlignment="Bottom" Width="280"/>
+
+        <TextBlock HorizontalAlignment="Right" Margin="0,0,120,162" TextWrapping="Wrap" Text="Gerente Id" VerticalAlignment="Bottom"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,0,120,127" TextWrapping="Wrap" Text="Contraseña" VerticalAlignment="Bottom"/>
+        <TextBlock Text="{Binding GerenteNombre}" HorizontalAlignment="Right" Margin="0,0,223,170" TextWrapping="Wrap"  VerticalAlignment="Bottom" Width="300"/>
 
         <TextBox x:Name="txtGte"  
                  PreviewKeyDown="Text_PreviewKeyDown"
                  MouseDoubleClick="SelectAll"
                  GotKeyboardFocus="SelectAll"
                  PreviewMouseLeftButtonDown="SelectivelyIgnoreMouseButton"
-                 KeyboardNavigation.TabIndex="1" Text="{Binding Gerente, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Margin="0,0,380,80" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="75" TextChanged="txtGte_TextChanged">
+                 KeyboardNavigation.TabIndex="1" Text="{Binding Gerente, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Margin="0,0,30,159" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="75" TextChanged="txtGte_TextChanged">
             <TextBox.InputBindings>
                 <KeyBinding Command="{Binding LoadGerente}" Key="Return" />
             </TextBox.InputBindings>
         </TextBox>
-        <PasswordBox x:Name="txtPwd" KeyboardNavigation.TabIndex="2"  Height="26" HorizontalAlignment="Right"  Margin="0,0,380,50" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Bottom" Width="75" KeyDown="txtPwd_KeyDown">
+        <PasswordBox x:Name="txtPwd" KeyboardNavigation.TabIndex="2"  Height="22" Width="75" HorizontalAlignment="Right"  Margin="0,0,30,124" PasswordChanged="PasswordBox_PasswordChanged" VerticalAlignment="Bottom" KeyDown="txtPwd_KeyDown">
             <PasswordBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>
             </PasswordBox.InputBindings>
         </PasswordBox>
         <!--<Button x:Name="btnPagar" KeyboardNavigation.TabIndex="3" Command="{Binding SaveCommand}" Content="Pagar" HorizontalAlignment="Right" Margin="0,0,380,20" VerticalAlignment="Bottom" Width="75"/>-->
-        <Button x:Name="btnPagar" KeyboardNavigation.TabIndex="3" Command="{Binding SaveCommand}" Height="40" HorizontalAlignment="Right" Margin="0,0,40,20" VerticalAlignment="Bottom" Width="75">
+        <Button x:Name="btnPagar" KeyboardNavigation.TabIndex="3" Command="{Binding SaveCommand}"  HorizontalAlignment="Right" Margin="0,0,30,10" VerticalAlignment="Bottom" Width="75">
             <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
         </Button>
-        
+
     </Grid>
 </UserControl>

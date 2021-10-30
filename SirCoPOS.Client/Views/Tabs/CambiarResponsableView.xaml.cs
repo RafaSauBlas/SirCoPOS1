@@ -38,6 +38,15 @@ namespace SirCoPOS.Client.Views.Tabs
             _tabs = new Dictionary<Guid, TabItem>();
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
             Messenger.Default.Register<string>(this, "FocusResponsable", FocusResponsable);
+            Messenger.Default.Register<string>(this, "FocusBoton", FocusBoton);
+        }
+
+        public void FocusBoton(string msg)
+        {
+            if (msg == "focusbtn")
+            {
+                this.btn_accept.Focus();
+            }
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
@@ -133,6 +142,11 @@ namespace SirCoPOS.Client.Views.Tabs
         private void txtB_Contra_KeyDown(object sender, KeyEventArgs e)
         {
             IN.reiniciar();
+        }
+
+        private void btn_accept_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

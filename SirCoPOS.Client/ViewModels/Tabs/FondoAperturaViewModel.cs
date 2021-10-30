@@ -89,6 +89,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 {
                     this.SearchUser = null;
                     this.UserOK = true;
+                    Messenger.Default.Send<string>("focusbtn", "FocusBoton");
                 } else
                 {
                     MessageBox.Show("Password Invalido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

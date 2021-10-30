@@ -514,9 +514,17 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                             this.AddFormaCommand.Execute(item.Key);
                         }
                         break;
-                    //case Key.F12:
-                    //    this.SaleCommand.Execute(null);
-                    //    break;
+                    case Key.U:
+                        var o = _formas.Where(i => i.Value.Key == m.Key);
+                        if (o.Any())
+                        {
+                            var item = o.Single();
+                            this.AddFormaCommand.Execute(item.Key);
+                        }
+                        break;
+                        //case Key.F12:
+                        //    this.SaleCommand.Execute(null);
+                        //    break;
                 }
             });
         }

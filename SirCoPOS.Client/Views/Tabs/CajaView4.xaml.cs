@@ -362,5 +362,24 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             IN.reiniciar();
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            var Marca = "";
+            var Modelo = "";
+            var Modelo2 = "";
+
+            Marca = ((Client.Models.Producto)dgView.SelectedItem).Marca;
+            Modelo = ((Client.Models.Producto)dgView.SelectedItem).Modelo;
+            Modelo2 = Modelo.Replace(" ", "_");
+
+            Common.Constants.ProductoDatos.marca = Marca;
+            Common.Constants.ProductoDatos.modelo2 = Modelo2;
+        }
     }
 }

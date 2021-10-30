@@ -731,7 +731,7 @@
                 </Grid>
                 <TextBlock Margin="10,6,490,0" TextWrapping="Wrap" Text="{Binding Unidades, Mode=OneWay, StringFormat=Unidades :  \{0\}}" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="1"/>
                 <TextBlock x:Name="lbl" Margin="0,0,67,208" TextWrapping="Wrap" Visibility="{Binding Monedero, Converter={StaticResource valvis} }" Text="{Binding Monedero, Mode=OneWay, StringFormat=Dinero Electronico: \{0:C\}}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="1"/>
-                <Button Command="{Binding SaleCommand}"  HorizontalAlignment="Right" Margin="0,0,10,3" VerticalAlignment="Bottom" Height="35" Width="49" Grid.Column="1">
+                <Button Command="{Binding SaleCommand}"  HorizontalAlignment="Right" Margin="0,0,10,3" VerticalAlignment="Bottom" Height="35" Width="49" Grid.Column="1" Click="Button_Click_3">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>
@@ -784,7 +784,7 @@
                     </Button.Background>
                 </Button>
                 <!--Boton Nota-->
-                <Button Command="{Binding AddNotaCommand}" HorizontalAlignment="Left" Margin="222,0,0,204" Width="75" Height="28" VerticalAlignment="Bottom">
+                <Button Command="{Binding AddNotaCommand}" HorizontalAlignment="Left" Margin="222,0,0,204" Width="75" Height="28" VerticalAlignment="Bottom" Click="Button_Click_4">
                     <Button.Background>
                         <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                     </Button.Background>

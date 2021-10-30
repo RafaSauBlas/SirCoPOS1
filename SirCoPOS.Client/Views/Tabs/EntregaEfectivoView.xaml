@@ -16,7 +16,7 @@
     </UserControl.DataContext>
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Efectivo" VerticalAlignment="Top"/>
-        <Button Command="{Binding SaveCommand}" TabIndex="4" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Height="35" Width="49">
+        <Button x:Name="btn_aceptar" Command="{Binding SaveCommand}" TabIndex="4" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Height="35" Width="49">
             <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
         </Button>
         <TextBlock HorizontalAlignment="Left" Margin="77.096,10,0,0" TextWrapping="Wrap" Text="{Binding Data.Efectivo, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>

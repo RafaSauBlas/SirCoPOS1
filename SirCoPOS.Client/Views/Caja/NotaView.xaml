@@ -17,12 +17,15 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,145,0,0" TextWrapping="Wrap" Text="Precio" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,173,0,0" TextWrapping="Wrap" Text="Razón" VerticalAlignment="Top"/>
         <!--TextBox para asignar precio nuevo-->
-        <TextBox x:Name="tbPrecio" HorizontalAlignment="Left" Height="28" Margin="99,140,0,0" TextWrapping="Wrap" Text="{Binding Precio, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191" TextChanged="tbPrecio_TextChanged"/>
+        <TextBox x:Name="tbPrecio" HorizontalAlignment="Left" Height="28" Margin="99,140,0,0" TextWrapping="Wrap" Text="{Binding Precio, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191" TextChanged="tbPrecio_TextChanged" GotFocus="tbPrecio_GotFocus"/>
         <!--TextBox para razon de cambio precio-->
         <TextBox Name="txtRazon" HorizontalAlignment="Left" Height="28" Margin="99,171,0,0" TextWrapping="Wrap" Text="{Binding Razon, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="191" KeyDown="TextBox_KeyDown" TextChanged="txtRazon_TextChanged"/>
         <Grid Height="90" Margin="10,10,10,0" VerticalAlignment="Top">
-            <v:ProductoItemView DataContext="{Binding Item}"></v:ProductoItemView>
+            <v:ProductoItemView x:Name="PIT" DataContext="{Binding Item}" Loaded="ProductoItemView_Loaded"/>
+            <Rectangle Stroke="Black" Margin="5,5,195,5"/>
+            <Image Name="PB" HorizontalAlignment="Left" Width="80" RenderTransformOrigin="0.486,0.534" Margin="5,5,0,5"/>
         </Grid>
+
         <!--Boton Restablecer de precio-->
         <Button Command="{Binding RestoreCommand}" HorizontalAlignment="Left" Margin="10,204,0,0" VerticalAlignment="Top" Width="101">
             <Button.Background>

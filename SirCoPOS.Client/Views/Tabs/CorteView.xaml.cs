@@ -35,11 +35,19 @@ namespace SirCoPOS.Client.Views.Tabs
             _tabs = new Dictionary<Guid, TabItem>();
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
             InitializeComponent();
+            Messenger.Default.Register<string>(this, "FocusBoton", FocusBoton);
         }
 
         public void space()
         {
 
+        }
+        public void FocusBoton(string msg)
+        {
+            if (msg == "focusbtn")
+            {
+                this.btn_aceptar.Focus();
+            }
         }
         public void Init()
         {
@@ -95,7 +103,7 @@ namespace SirCoPOS.Client.Views.Tabs
             {
                 if(this.usuarioid.Text != "")
                 {
-                    this.button.Focus();
+                    this.btn_aceptar.Focus();
                 }
                 else
                 {
@@ -162,6 +170,11 @@ namespace SirCoPOS.Client.Views.Tabs
         private void txtB_Contra_KeyDown(object sender, KeyEventArgs e)
         {
             IN.reiniciar();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
