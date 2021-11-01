@@ -56,14 +56,18 @@ namespace SirCoPOS.Client.Helpers
 
         public void Init(Guid gid)
         {
-            Console.WriteLine($"initvm: {gid}");
-            this.GID = gid;
-            Messenger.Default.Register<Utilities.Messages.CloseTab>(this, gid,
-                m => {
-                    this.Close();
-                });
-            this.RegisterMessages();
-            this.LoadData();
+            if (Common.Constants.ProductoDatos.opcion == false)
+            {
+                Console.WriteLine($"initvm: {gid}");
+                this.GID = gid;
+                Messenger.Default.Register<Utilities.Messages.CloseTab>(this, gid,
+                    m => {
+                        this.Close();
+                    });
+                this.RegisterMessages();
+
+                this.LoadData();
+            }
         }
         protected virtual void RegisterMessages() { }
         protected virtual void LoadData() { }

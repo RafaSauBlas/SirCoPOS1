@@ -500,6 +500,15 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                             this.AddFormaCommand.Execute(item.Key);
                         }
                         break;
+
+                    case Key.K:
+                        var c = _formas.Where(i => i.Value.Key == m.Key);
+                        if (c.Any())
+                        {
+                            var item = c.Single();
+                            this.AddFormaCommand.Execute(item.Key);
+                        }
+                        break;
                     case Key.F6:
                     case Key.F7:
                     case Key.F8:
@@ -700,9 +709,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             _skipPromociones = false;
             //await GetPromociones();
             //await UpdatePromociones();
-            await RefreshPromociones();
-            this.SaleCommand.RaiseCanExecuteChanged();
-            this.FormasPago.Refresh();
+                await RefreshPromociones();
+                this.SaleCommand.RaiseCanExecuteChanged();
+                this.FormasPago.Refresh();
         }
 
         private async Task GetPromociones()

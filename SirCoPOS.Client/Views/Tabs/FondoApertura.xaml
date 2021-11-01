@@ -54,7 +54,7 @@
             </PasswordBox.InputBindings>
         </PasswordBox>
         
-        <Button Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="0,0,10,10" Height="35" Width="49" VerticalAlignment="Bottom" KeyboardNavigation.TabIndex ="3">
+        <Button x:Name="btn_aceptar" Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="0,0,10,10" Height="35" Width="49" VerticalAlignment="Bottom" KeyboardNavigation.TabIndex ="3">
             <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
         </Button>
 

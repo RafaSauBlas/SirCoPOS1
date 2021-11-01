@@ -15,7 +15,7 @@
              xmlns:local="clr-namespace:SirCoPOS.Client.Views.Tabs" x:Class="SirCoPOS.Client.Views.Tabs.CajaView4" 
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance IsDesignTimeCreatable=True, Type={x:Type vmd:CajaViewModel}}"
-             d:DesignHeight="600" d:DesignWidth="1100" KeyDown="UserControl_KeyDown" MouseMove="UserControl_MouseMove" Loaded="UserControl_Loaded">
+             d:DesignHeight="600" d:DesignWidth="1100" KeyDown="UserControl_KeyDown" MouseMove="UserControl_MouseMove" Loaded="UserControl_Loaded" KeyUp="UserControl_KeyUp">
     <UserControl.Resources>
         <c:WindowStateConverter x:Key="windowState"/>
         <c:ImageToSourceConverter x:Key="ImgSource"/>

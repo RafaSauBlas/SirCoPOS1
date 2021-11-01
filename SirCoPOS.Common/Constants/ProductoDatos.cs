@@ -10,5 +10,6 @@ namespace SirCoPOS.Common.Constants
     {
         public static string marca { get; set; } = string.Empty;
         public static string modelo2 { get; set; } = string.Empty;
+        public static bool opcion { get; set; } = false;
     }
 }

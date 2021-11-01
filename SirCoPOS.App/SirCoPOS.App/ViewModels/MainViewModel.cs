@@ -40,7 +40,6 @@ namespace SirCoPOS.App.ViewModels
             }, () => !String.IsNullOrEmpty(this.Serie));
 
             this.SaleCommand = new Command(() => {
-
                 var request = new SirCoPOS.Contracts.Entities.SaleRequest
                 {
                     Sucursal = this.Sucursal, 

@@ -103,11 +103,11 @@ namespace SirCoPOS.Win.Views
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Devolucion });
                             break;
                         case Key.F4:
-                            
+
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Cancelacion });
                             break;
                         case Key.F5:
-                            
+
                             this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.CancelacionDevolucion });
                             break;
                         case Key.F6:
@@ -206,17 +206,17 @@ namespace SirCoPOS.Win.Views
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Messenger.Default.Register<string>(this, "Detener", Detener);
+                Messenger.Default.Register<string>(this, "Detener", Detener);
 
-            if (GalaSoft.MvvmLight.ViewModelBase.IsInDesignModeStatic)
-                return;
+                if (GalaSoft.MvvmLight.ViewModelBase.IsInDesignModeStatic)
+                    return;
 
-            var ctx = new DataAccess.DataContext();
-            var q = ctx.Ventas.Where(i => i.CajeroId == _settings.Cajero.Id);
-            foreach (var item in q)
-            {
-                this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Caja }, item.Id);
-            }
+                var ctx = new DataAccess.DataContext();
+                var q = ctx.Ventas.Where(i => i.CajeroId == _settings.Cajero.Id);
+                foreach (var item in q)
+                {
+                    this.OpenMenu(new Messages.MenuItem { Name = Utilities.Constants.TabType.Caja }, item.Id);
+                }
         }
 
         private void Set(string v, ref string title, string value)
