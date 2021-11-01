@@ -2207,7 +2207,12 @@ namespace SirCoPOS.BusinessLogic
                 ).SingleOrDefault();
             if (item == null)
                 return null;
-
+            var parms = ctxc.Parametros.Where(i => i.clave == item.distrib && i.sucursal == "99").SingleOrDefault();
+            int? maxplazosDist = null;
+            if (parms != null)
+            {
+                maxplazosDist = Int32.Parse(parms.valor);
+            }
             var dis = new Common.Entities.Distribuidor
             {
                 Id = item.iddistrib,
@@ -2222,7 +2227,8 @@ namespace SirCoPOS.BusinessLogic
                 //SoloCalzado = item.solocalzado == 1,
                 Electronica = (vitem.electronica ?? false),
                 //Promocion = item.promocion == 1
-                Promocion = vitem.promocion ?? false
+                Promocion = vitem.promocion ?? false,
+                maxPlazos = maxplazosDist
             };
 
             var model = new ValeResponse
@@ -2362,7 +2368,12 @@ namespace SirCoPOS.BusinessLogic
                 ).SingleOrDefault();
             if (item == null)
                 return null;
-
+            var parms = ctxc.Parametros.Where(i => i.clave == item.distrib && i.sucursal == "99").SingleOrDefault();
+            int? maxplazosDist = null;
+            if (parms != null)
+            {
+                maxplazosDist = Int32.Parse(parms.valor);
+            }
             var dis = new Common.Entities.Distribuidor
             {
                 Id = item.iddistrib,
@@ -2376,6 +2387,7 @@ namespace SirCoPOS.BusinessLogic
                 ContraVale = item.contravale == 1,
                 Promocion = item.promocion == 1,
                 Cuenta = item.distrib,
+                maxPlazos = maxplazosDist
             };
 
             var model = new CValeResponse

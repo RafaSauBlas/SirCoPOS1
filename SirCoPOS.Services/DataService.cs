@@ -118,6 +118,7 @@ namespace SirCoPOS.Services
         public ValeResponse FindDistribuidor(string id)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
+            var ctxc = new DataAccess.SirCoControlDataContext();
             var ct = new SirCoPOS.DataAccess.SirCoCredito.Distribuidor();
 
             //var vale = "abc";
@@ -140,7 +141,12 @@ namespace SirCoPOS.Services
 
             //var usado = ctx.PlanPagos.Where(i => i.vale == vale).Sum(i => i.saldo);
             //var disponible = Math.Min(item.limitevale.Value, item.disponible.Value) - usado;
-
+            var parms = ctxc.Parametros.Where(i => i.clave == item.distrib && i.sucursal == "99").SingleOrDefault();
+            int? maxplazosDist = null;
+            if (parms != null)
+            {
+                maxplazosDist = Int32.Parse(parms.valor);
+            }
             var model = new Common.Entities.Distribuidor
             {
                 Id = item.iddistrib,
@@ -155,7 +161,8 @@ namespace SirCoPOS.Services
                 Promocion = item.promocion == 1,
                 Number = item.distrib,
                 Disponible = item.disponible,
-                Date = item.fum
+                Date = item.fum,
+                maxPlazos = maxplazosDist
             };
             //var dist = String.Format("{0:000000}", id);
             var q = ctx.DistribuidorFirmas.Where(i => i.distrib == item.distrib);
@@ -182,6 +189,7 @@ namespace SirCoPOS.Services
         public ValeResponse FindDistribuidorId(int? id)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
+            var ctxc = new DataAccess.SirCoControlDataContext();
             var ct = new SirCoPOS.DataAccess.SirCoCredito.Distribuidor();
 
             var item = ctx.Distribuidores.Where(i => i.iddistrib == id
@@ -189,7 +197,12 @@ namespace SirCoPOS.Services
                 ).SingleOrDefault();
             if (item == null)
                 return null;
-
+            var parms = ctxc.Parametros.Where(i => i.clave == item.distrib && i.sucursal == "99").SingleOrDefault();
+            int? maxplazosDist = null;
+            if (parms != null)
+            {
+                maxplazosDist = Int32.Parse(parms.valor);
+            }
             var model = new Common.Entities.Distribuidor
             {
                 Id = item.iddistrib,
@@ -204,7 +217,8 @@ namespace SirCoPOS.Services
                 Promocion = item.promocion == 1,
                 Number = item.distrib,
                 Disponible = item.disponible,
-                Date = item.fum
+                Date = item.fum,
+                maxPlazos = maxplazosDist
             };
             var q = ctx.DistribuidorFirmas.Where(i => i.distrib == item.distrib);
             model.Firmas = q.Select(i => i.numfirma).ToArray();
@@ -322,7 +336,12 @@ namespace SirCoPOS.Services
                 ).SingleOrDefault();
             if (item == null)
                 return null;
-
+            var parms = ctxc.Parametros.Where(i => i.clave == item.distrib && i.sucursal == "99").SingleOrDefault();
+            int? maxplazosDist = null;
+            if (parms != null)
+            {
+                maxplazosDist = Int32.Parse(parms.valor);
+            }
             var dis = new Common.Entities.Distribuidor
             {
                 Id = item.iddistrib,
@@ -337,7 +356,8 @@ namespace SirCoPOS.Services
                 Promocion = item.promocion == 1
                 , Number = item.distrib,
                 Cuenta = item.distrib,
-                Distrib = item.distrib
+                Distrib = item.distrib,
+                maxPlazos = maxplazosDist
             };
 
             var model = dis;
@@ -914,6 +934,7 @@ namespace SirCoPOS.Services
         public Common.Entities.ValeResponse FindDistribuidorExterno(int idnegocio, string nocuenta, string vale)
         {
             var ctx = new DataAccess.SirCoCreditoDataContext();
+            var ctxc = new DataAccess.SirCoControlDataContext();
             var ditem = ctx.DistribuidorComerciales.Where(i => i.idnegexterno == idnegocio && i.nocuenta == nocuenta).SingleOrDefault();
             if (ditem == null)
                 return null;
@@ -921,7 +942,12 @@ namespace SirCoPOS.Services
                 //&& i.tipodistrib == Common.Constants.TipoDistribuidor.NORMAL
                 && i.clasificacion == Common.Constants.TipoCredito.DISTRIBUIDOR
             ).Single();
-
+            var parms = ctxc.Parametros.Where(i => i.clave == item.distrib && i.sucursal == "99").SingleOrDefault();
+            int? maxplazosDist = null;
+            if (parms != null)
+            {
+                maxplazosDist = Int32.Parse(parms.valor);
+            }
             var dis = new Common.Entities.Distribuidor
             {
                 Id = item.iddistrib,
@@ -935,7 +961,8 @@ namespace SirCoPOS.Services
                 Electronica = item.solocalzado == 0,
                 ValeExterno = item.negext == 1,
                 ContraVale = item.contravale == 1,
-                Promocion = item.promocion == 1
+                Promocion = item.promocion == 1,
+                maxPlazos = maxplazosDist
             };
 
             var model = new ValeResponse
