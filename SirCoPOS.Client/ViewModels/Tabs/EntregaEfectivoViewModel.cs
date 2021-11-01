@@ -138,6 +138,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 if (this.User != null)
                 {
                     this.SearchUser = null;
+                    Messenger.Default.Send<string>("focusbtn", "FocusBoton");
                 }
                 else
                 {

@@ -42,6 +42,7 @@ namespace SirCoPOS.Client.Views.Tabs
         public CajaView4()
         {
             InitializeComponent();
+            SirCoPOS.Common.Constants.ProductoDatos.opcion = false;
             _tabs = new Dictionary<Guid, TabItem>();
             Messenger.Default.Register<string>(this, "DoFocus", doFocus);
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
@@ -201,6 +202,10 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
+            if(e.Key == Key.F5)
+            {
+                SirCoPOS.Common.Constants.ProductoDatos.opcion = true;
+            }
             IN.reiniciar();
         }
 
@@ -329,6 +334,7 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            SirCoPOS.Common.Constants.ProductoDatos.opcion = false;
             IN.detener();
             if (lbox.Items.Count == 0)
             {
@@ -361,6 +367,52 @@ namespace SirCoPOS.Client.Views.Tabs
         private void scanTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             IN.reiniciar();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            SirCoPOS.Common.Constants.ProductoDatos.opcion = false;
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            SirCoPOS.Common.Constants.ProductoDatos.opcion = false;
+            var Marca = "";
+            var Modelo = "";
+            var Modelo2 = "";
+
+            Marca = ((Client.Models.Producto)dgView.SelectedItem).Marca;
+            Modelo = ((Client.Models.Producto)dgView.SelectedItem).Modelo;
+            Modelo2 = Modelo.Replace(" ", "_");
+
+            Common.Constants.ProductoDatos.marca = Marca;
+            Common.Constants.ProductoDatos.modelo2 = Modelo2;
+        }
+
+        private void dgView_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            //if(e.Key == Key.F5)
+            //{
+            //    SirCoPOS.Common.Constants.ProductoDatos.opcion = true;
+            //}
+        }
+
+        private void Grid_KeyDown_1(object sender, KeyEventArgs e)
+        {
+           
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            SirCoPOS.Common.Constants.ProductoDatos.opcion = false;
+        }
+
+        private void UserControl_KeyUp(object sender, KeyEventArgs e)
+        {
+            if((Keyboard.Modifiers == ModifierKeys.Control) && (e.Key == Key.K))
+            {
+                Messenger.Default.Send(new Utilities.Messages.ShortcutMessage { Key = e.Key });
+            }
         }
     }
 }

@@ -25,17 +25,17 @@ namespace SirCoPOS.Client.Converters
                 switch (value)
                 {
                     case SirCoPOS.Common.Constants.FormaPago.CD:
-                        return "F9-CREDITO DISTRIBUIDOR";
+                        return "F9-CRÉDITO DISTRIBUIDOR";
                     case SirCoPOS.Common.Constants.FormaPago.CP:
-                        return "F8-CREDITO PERSONAL";
+                        return "F8-CRÉDITO PERSONAL";
                     case SirCoPOS.Common.Constants.FormaPago.CV:
                         return "F7-CONTRAVALE";
                     case SirCoPOS.Common.Constants.FormaPago.DV:
-                        return "F4-DEVOLUCION";
+                        return "F4-DEVOLUCIÓN";
                     case SirCoPOS.Common.Constants.FormaPago.EF:
                         return "F1-EFECTIVO";
                     case SirCoPOS.Common.Constants.FormaPago.TC:
-                        return "F2-TARJETA DE CREDITO";
+                        return "F2-TARJETA DE CRÉDITO";
                     case SirCoPOS.Common.Constants.FormaPago.TD:
                         return "F3-TARJETA DE DEBITO";
                     case SirCoPOS.Common.Constants.FormaPago.VA:
@@ -43,11 +43,11 @@ namespace SirCoPOS.Client.Converters
                     case SirCoPOS.Common.Constants.FormaPago.VD:
                         return "F10-VALE DIGITAL";
                     case SirCoPOS.Common.Constants.FormaPago.MD:
-                        return "F12-MONEDERO ELECTRONICO";
+                        return "F12-MONEDERO ELECTRÓNICO";
                     case SirCoPOS.Common.Constants.FormaPago.VE:
                         return "F11-VALE EXTERNO";
                     case SirCoPOS.Common.Constants.FormaPago.GO:
-                        return "GO PLAZOS";
+                        return "F5-GO PLAZOS";
                     case SirCoPOS.Common.Constants.FormaPago.KU:
                         return "KUESKI-PAY";
                         default:

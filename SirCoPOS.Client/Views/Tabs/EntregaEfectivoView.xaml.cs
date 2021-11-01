@@ -36,6 +36,15 @@ namespace SirCoPOS.Client.Views.Tabs
             _tabs = new Dictionary<Guid, TabItem>();
             _log = CommonServiceLocator.ServiceLocator.Current.GetInstance<ILogger>();
             Messenger.Default.Register<string>(this, "FocusRecibir", FocusRecibir);
+            Messenger.Default.Register<string>(this, "FocusBoton", FocusBoton);
+        }
+
+        public void FocusBoton(string msg)
+        {
+            if (msg == "focusbtn")
+            {
+                this.btn_aceptar.Focus();
+            }
         }
 
         private void Dt_Tick(object sender, EventArgs e)

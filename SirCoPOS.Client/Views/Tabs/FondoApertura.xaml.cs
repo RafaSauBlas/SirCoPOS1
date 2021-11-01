@@ -29,6 +29,15 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             InitializeComponent();
             Messenger.Default.Register<string>(this, "FocusAuditor", FocusAuditor);
+            Messenger.Default.Register<string>(this, "FocusBoton", FocusBoton);
+        }
+
+        public void FocusBoton(string msg)
+        {
+            if (msg == "focusbtn")
+            {
+                this.btn_aceptar.Focus();
+            }
         }
 
         public void Init()
@@ -64,6 +73,11 @@ namespace SirCoPOS.Client.Views.Tabs
                 this.txt_audid.Focus();
                 this.txt_audid.SelectAll();
             }
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

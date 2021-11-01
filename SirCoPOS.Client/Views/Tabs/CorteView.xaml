@@ -78,7 +78,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="button" Grid.Row="2" Grid.Column="4"  TabIndex="6" Command="{Binding SaveCommand}" Height="35" Width="49" HorizontalAlignment="Right" Margin="0,0,50,0">
+        <Button x:Name="btn_aceptar" Grid.Row="2" Grid.Column="4"  TabIndex="6" Command="{Binding SaveCommand}" Height="35" Width="49" HorizontalAlignment="Right" Margin="0,0,50,0" Click="button_Click">
             <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
         </Button>
         <StackPanel Margin="10,10,0,0" >

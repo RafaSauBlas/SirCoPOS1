@@ -13,15 +13,15 @@
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Monto" VerticalAlignment="Top"/>
         <TextBox x:Name="txtMonto" HorizontalAlignment="Left" Height="27" Margin="114,7,0,0" TextWrapping="Wrap" Text="{Binding Monto, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" TextChanged="txtMonto_TextChanged"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,39,0,0" TextWrapping="Wrap" Text="Tipo" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="27" Margin="114,70,0,0" TextWrapping="Wrap" Text="{Binding EmpleadoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged">
+        <TextBlock HorizontalAlignment="Left" Margin="10,45,0,0" TextWrapping="Wrap" Text="Tipo" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="114,82,0,0" TextWrapping="Wrap" Text="{Binding EmpleadoSearch, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged">
             <TextBox.InputBindings>
                 <KeyBinding Key="Return" Command="{Binding LoadSolicitanteCommand}"></KeyBinding>
             </TextBox.InputBindings>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="10,73,0,0" TextWrapping="Wrap" Text="Solicitante" VerticalAlignment="Top"/>
-        <ComboBox SelectedValue="{Binding SelectedOption}" SelectedValuePath="Id" DisplayMemberPath="Text" ItemsSource="{Binding Opciones}" HorizontalAlignment="Left" Margin="114,39,0,0" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="239,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <TextBlock HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" Text="Solicitante" VerticalAlignment="Top"/>
+        <ComboBox SelectedValue="{Binding SelectedOption}" SelectedValuePath="Id" DisplayMemberPath="Text" ItemsSource="{Binding Opciones}" HorizontalAlignment="Left" Margin="114,45,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="239,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0} {1} {2}">
                     <Binding Path="Empleado.Nombre" />
@@ -30,8 +30,13 @@
                 </MultiBinding>
             </TextBlock.Text>
         </TextBlock>
-        <TextBox HorizontalAlignment="Left" Height="27" Margin="114,100,0,0" TextWrapping="Wrap" Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_1"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" Text="Descripción" VerticalAlignment="Top"/>
-        <Button Command="{Binding SaveCommand}" Content="Save" HorizontalAlignment="Left" Margin="114,129,0,0" VerticalAlignment="Top" Width="76"/>
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="114,118,0,0" TextWrapping="Wrap" Text="{Binding Descripcion, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,118,0,0" TextWrapping="Wrap" Text="Descripción" VerticalAlignment="Top"/>
+        <Button Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="76" Height="29">
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </Button.Background>
+            <Image x:Name="image5" Height="23" Width="25" Source="/SirCoPOS.Win;component/Images/ok.png" />
+        </Button>
     </Grid>
 </UserControl>

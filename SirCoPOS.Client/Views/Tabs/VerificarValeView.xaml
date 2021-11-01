@@ -103,7 +103,7 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>-->
             <!--==========================================================================================================================-->
-            <TabControl SelectedItem="{Binding SelectedFirma}" TabStripPlacement="Left" ItemsSource="{Binding Vale.Distribuidor.Firmas, NotifyOnTargetUpdated=True}" TargetUpdated="TabControl_TargetUpdated" Margin="843,0,10,20" Height="368" VerticalAlignment="Bottom">
+            <TabControl SelectedItem="{Binding SelectedFirma}" TabStripPlacement="Left" ItemsSource="{Binding Vale.Distribuidor.Firmas, NotifyOnTargetUpdated=True}" TargetUpdated="TabControl_TargetUpdated" Margin="843,0,10,20" Height="414" VerticalAlignment="Bottom">
                 <TabControl.InputBindings>
                     <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
                 </TabControl.InputBindings>
@@ -145,8 +145,8 @@
             <TextBlock x:Name="textBlock_Copy4" Margin="430,135,770,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Cuenta}" VerticalAlignment="Top" FontWeight="Bold"/>
             <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="359,191,0,0" TextWrapping="Wrap" Text="Electrónica:" VerticalAlignment="Top"/>
             <TextBlock x:Name="tbk_electr" Margin="460,191,0,0" TextWrapping="Wrap" Text="{Binding Vale.Distribuidor.Electronica, Converter={StaticResource boolText}}" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
-            <TextBlock HorizontalAlignment="Left" Margin="874,35,0,0" TextWrapping="Wrap" Text="Cliente:" VerticalAlignment="Top"/>
-            <TextBlock Name="tbk_cte"  HorizontalAlignment="Left" Margin="944,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            <TextBlock Visibility="Hidden" HorizontalAlignment="Left" Margin="874,35,0,0" TextWrapping="Wrap" Text="Cliente:" VerticalAlignment="Top"/>
+            <TextBlock Visibility="Hidden" Name="tbk_cte"  HorizontalAlignment="Left" Margin="944,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0} {1} {2}">
                         <Binding Path="NuevoCliente.Nombre" />
@@ -167,7 +167,7 @@
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
                 </Button.Background>
             </Button>-->
-            <TextBlock HorizontalAlignment="Left" Margin="874,66,0,0" TextWrapping="Wrap" Text="#Cliente:" VerticalAlignment="Top"/>
+            <TextBlock Visibility="Hidden" HorizontalAlignment="Left" Margin="874,66,0,0" TextWrapping="Wrap" Text="#Cliente:" VerticalAlignment="Top"/>
             <TextBlock HorizontalAlignment="Left" Margin="944,66,0,0" TextWrapping="Wrap" Text="{Binding Cliente.Id}" VerticalAlignment="Top"/>
             <TextBlock Visibility="Hidden" x:Name="tbk_totvale" HorizontalAlignment="Left" Margin="10,154,0,0" TextWrapping="Wrap" Text="Total Vale" VerticalAlignment="Top"/>
             <TextBox Visibility="Hidden" IsEnabled="{Binding Vale.WithLimite, Converter={StaticResource inv}}" HorizontalAlignment="Left" Height="27" Margin="109,151,0,0" TextWrapping="Wrap" Text="{Binding TotalVale, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" KeyboardNavigation.TabIndex ="7"/>

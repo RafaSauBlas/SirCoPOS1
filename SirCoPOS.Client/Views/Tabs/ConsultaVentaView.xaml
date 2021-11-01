@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Tabs"
              d:DesignHeight="450" d:DesignWidth="800" KeyDown="UserControl_KeyDown" KeyUp="UserControl_KeyUp" MouseLeftButtonDown="UserControl_MouseLeftButtonDown" MouseLeftButtonUp="UserControl_MouseLeftButtonUp" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
@@ -30,8 +31,18 @@
                 <DataGridTextColumn Header="Precio" Binding="{Binding Precio, StringFormat=\{0:C\}}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Imprimir" Command="{Binding PrintCommand}" HorizontalAlignment="Left" Margin="10,0,0,188" VerticalAlignment="Bottom" Width="75" Click="Button_Click_1"/>
-        <Button Command="{Binding UltimaVentaCommand}" Content="Ultima venta" Margin="0,6,258,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="114" Click="Button_Click"/>
+        <Button Command="{Binding PrintCommand}" HorizontalAlignment="Left" Margin="10,0,0,186" VerticalAlignment="Bottom" Width="80" Click="Button_Click_1" Height="30">
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </Button.Background>
+            <fa:ImageAwesome Icon="Print" Height="20" Width="40"/>
+        </Button>
+        <Button Command="{Binding UltimaVentaCommand}" Margin="0,6,258,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="60" Click="Button_Click">
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+            </Button.Background>
+            <fa:ImageAwesome Icon="History" Height="20" Width="40"/>
+        </Button>
 
     </Grid>
 </UserControl>
