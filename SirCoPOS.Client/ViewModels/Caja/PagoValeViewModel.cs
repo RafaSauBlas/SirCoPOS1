@@ -83,6 +83,17 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             MessageBox.Show("El vale " + Vale.Vale + " no permite compras de Electrónica" , "Pago Vale", MessageBoxButton.OK, MessageBoxImage.Information);
                             this.valeOK = false;
                         }
+                        maxPlazosDist = this.Vale.Distribuidor.maxPlazos;
+                        if (Vale.Distribuidor.Electronica && this.maxPlazosDist !=null )
+                        {
+                            if (this.maxPlazosElectronica > this.maxPlazosDist)
+                            {
+                                foreach (var e in this.Productos)
+                                {
+                                    e.SetPlazos((int)this.maxPlazosDist);
+                                }
+                            }
+                        }
                     }
                     else
                     {
@@ -196,6 +207,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     item.PropertyChanged -= Item_PropertyChanged;
                 }
             }
+            this.maxPlazosElectronica = this.Productos.Select(i => i.GetPlazos()).FirstOrDefault();
         }
 
         private void Item_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -572,7 +584,6 @@ namespace SirCoPOS.Client.ViewModels.Caja
             }
         }
 
-        
         private int? _selectedPlazo;
         public int? SelectedPlazo
         {
