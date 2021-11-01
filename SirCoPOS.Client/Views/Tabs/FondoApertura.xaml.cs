@@ -42,7 +42,22 @@ namespace SirCoPOS.Client.Views.Tabs
 
         public void Init()
         {
-            this.txt_importe.Text = "0";   
+            this.txt_importe.Text = "0";
+
+            ViewModels.Tabs.FondoAperturaViewModel data = this.DataContext as ViewModels.Tabs.FondoAperturaViewModel;
+            if (data != null)
+            {
+                if (data.Cajero.Depto == (int)Common.Constants.Departamento.ADM || data.Cajero.Depto == (int)Common.Constants.Departamento.SIS)
+                {
+                    this.lbl_Auditor.Visibility = System.Windows.Visibility.Hidden;
+                    this.txt_audid.Visibility = System.Windows.Visibility.Hidden;
+                    this.nom_auditor.Visibility = System.Windows.Visibility.Hidden;
+                    this.lbl_contra.Visibility = System.Windows.Visibility.Hidden;
+                    this.txtB_Contra.Visibility = System.Windows.Visibility.Hidden;
+                    
+                }
+                
+            }
         }
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)

@@ -181,6 +181,12 @@ namespace SirCoPOS.Win.Views
             var header = new Views.TabHeaderView();
             var vm = (ViewModels.TabHeaderViewModel)header.DataContext;
             vm.Title = $"{mi.Name}";
+            if (vm.Title == "FondoArqueo")
+                vm.Title = "Arqueo";
+            if (vm.Title == "Corte")
+                vm.Title = "Entrega Caja";
+            if (vm.Title == "Efectivo")
+                vm.Title = "Entrega Efectivo";
             vm.GID = gid;
             var ti = new TabItem { Header = header, Content = uc };
             Console.WriteLine($"added: {gid}");

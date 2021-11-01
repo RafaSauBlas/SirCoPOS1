@@ -311,5 +311,21 @@ namespace SirCoPOS.Client.Helpers
                 this.Set(nameof(DevFolio), ref _devfolio, value); 
             }
         }
+        private int? _maxplazosdistrib;
+        public int? maxPlazosDist
+        {
+            get { return _maxplazosdistrib; }
+            set { this.Set(nameof(this.maxPlazosDist), ref _maxplazosdistrib, value); }
+        }
+        private int _maxplazoselectronica;
+        public int maxPlazosElectronica
+        {
+            get { return _maxplazoselectronica; }
+            set
+            {
+                this.Set(nameof(this.maxPlazosElectronica), ref _maxplazoselectronica, value);
+            }
+        }
+
     }
 }

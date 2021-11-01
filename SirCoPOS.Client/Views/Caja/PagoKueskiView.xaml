@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              mc:Ignorable="d" 
              xmlns:vm="clr-namespace:SirCoPOS.Client.ViewModels.Caja"
-             Height="222.73" Width="280" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
+             Height="276.032" Width="340" Loaded="UserControl_Loaded" MouseMove="UserControl_MouseMove">
     <UserControl.DataContext>
         <vm:PagoKueskiViewModel></vm:PagoKueskiViewModel>
     </UserControl.DataContext>
@@ -45,6 +45,7 @@
             <RowDefinition Height="10"/>
             <RowDefinition Height="35*" />
             <RowDefinition Height="35*" />
+            <RowDefinition Height="35*" />
             <RowDefinition Height="34*" />
             <RowDefinition Height="32*" />
             <RowDefinition Height="35*" />
@@ -57,25 +58,29 @@
         </Grid.Background>
         <!--Titulo Total-->
         <TextBlock x:Name="lblTotal" Grid.Row="2" Text="Total" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
+        <!--Titulo Folio-->
+        <TextBlock x:Name="lblFolio" Grid.Row="3" Text="Folio Kueski" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
+        <!--Folio-->
+        <TextBox x:Name="txtFolio"  Grid.Row="3" Grid.Column="3"  Text="{Binding Folio, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" MaxLength="14" />
         <!--Titulo Pagar con-->
-        <TextBlock x:Name="lblPagarCon" Grid.Row="3" Text="Pagar Con" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
+        <TextBlock x:Name="lblPagarCon" Grid.Row="4" Text="Pagar Con" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
         <!--Titulo Pagar-->
-        <TextBlock x:Name="lblPagar" Grid.Row="4" Text="Pagar" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
+        <TextBlock x:Name="lblPagar" Grid.Row="5" Text="Pagar" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
         <!--Titulo Regresar (Cambio)-->
-        <TextBlock x:Name="lblCambio" Grid.Row="5" Text="Regresar" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
+        <TextBlock x:Name="lblCambio" Grid.Row="6" Text="Regresar" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
         <!--Saldo-->
-        <TextBlock x:Name="lblSaldo" Grid.Row="6" Text="Saldo" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
+        <TextBlock x:Name="lblSaldo" Grid.Row="7" Text="Saldo" Style="{StaticResource ResourceKey=lbl_style}" Grid.Column="2" VerticalAlignment="Center" FontSize="18"/>
         <!--Importe venta-->
         <TextBlock x:Name="txtTotal" Grid.Column="3" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}"  Style="{StaticResource ResourceKey=lbl_style}" Grid.Row="2" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
         <!--Importe Regresar (Cambio)-->
-        <TextBlock x:Name="txtCambio" Grid.Column ="3" Grid.Row="5" Text="{Binding Regresar, Mode=OneWay, StringFormat=\{0:C\}}" Style="{StaticResource ResourceKey=lbl_style}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
+        <TextBlock x:Name="txtCambio" Grid.Column ="3" Grid.Row="6" Text="{Binding Regresar, Mode=OneWay, StringFormat=\{0:C\}}" Style="{StaticResource ResourceKey=lbl_style}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
         <!--Importe Saldo-->
-        <TextBlock x:Name="txtSaldo" Grid.Column ="3" Grid.Row="6" Text="{Binding Pendiente, Mode=OneWay, StringFormat=\{0:C\}}" Style="{StaticResource ResourceKey=lbl_style}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
+        <TextBlock x:Name="txtSaldo" Grid.Column ="3" Grid.Row="7" Text="{Binding Pendiente, Mode=OneWay, StringFormat=\{0:C\}}" Style="{StaticResource ResourceKey=lbl_style}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16"/>
         <!--Importe con que se paga-->
-        <TextBox x:Name="pagarConTextBox"  Grid.Row="3" Grid.Column="3"  Text="{Binding PagaCon, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" TextChanged="pagarConTextBox_TextChanged"/>
-        <TextBox GotFocus="pagarTextBox_GotFocus" x:Name="pagarTextBox" Grid.Row="4" Grid.Column="3" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Delay=500}" TextAlignment="Right" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="16" TextChanged="pagarTextBox_TextChanged"/>
+        <TextBox x:Name="pagarConTextBox"  Grid.Row="4" Grid.Column="3"  Text="{Binding PagaCon, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" TextAlignment="Right" VerticalAlignment="Center" Margin="50,0,0,0" FontSize="16" TextChanged="pagarConTextBox_TextChanged"/>
+        <TextBox GotFocus="pagarTextBox_GotFocus" x:Name="pagarTextBox" Grid.Row="5" Grid.Column="3" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, Delay=500}" TextAlignment="Right" VerticalAlignment="Center" Margin="50,0,0,0" FontSize="16" TextChanged="pagarTextBox_TextChanged"/>
         <!--Boton completar-->
-        <Border Margin= "0,10,-15,-5" Grid.Row="7" CornerRadius="3" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="2" >
+        <Border Margin= "0,10,-15,-5" Grid.Row="8" CornerRadius="3" BorderBrush="LightGray" BorderThickness="1,1,1,1" Grid.Column="2" >
             <Button   Command="{Binding CompletarCommand}" x:Name="button" >
                 <Button.Background>
                     <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>

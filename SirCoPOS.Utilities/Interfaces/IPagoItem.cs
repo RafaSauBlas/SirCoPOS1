@@ -15,5 +15,6 @@ namespace SirCoPOS.Utilities.Interfaces
         decimal? Efectivo { get; }
         Guid Id { get; }
         bool HasPromocion { get; set; }
+        string Folio { get; set; }
     }
 }

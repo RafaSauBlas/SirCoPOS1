@@ -111,6 +111,7 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             Messenger.Default.Register<string>(this, "Detener", Detener);
             IN = new Client.MetodoInactividad();
+            this.txtEntrega.Text = "0";
             this.txtEntrega.Focus();
         }
 

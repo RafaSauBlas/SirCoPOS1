@@ -66,6 +66,7 @@ namespace SirCoPOS.Client.Views.Tabs
 
         public void Init()
         {
+            tbEntrega.Text = "0";
             this.tbEntrega.Focus();
         }
 

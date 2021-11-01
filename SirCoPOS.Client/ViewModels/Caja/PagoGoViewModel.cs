@@ -15,20 +15,18 @@ namespace SirCoPOS.Client.ViewModels.Caja
     {
         public override string Title => "Pago GoPlazos";
         private readonly Common.ServiceContracts.IDataServiceAsync _data;
-        private int CantMinima;
 
         public PagoGoViewModel()
         {
             this.PropertyChanged += PagoGoViewModel_PropertyChanged;
             _data = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
 
-            CantMinima = _data.getminPago(Common.Constants.Parametros.MINPAGOGO);
-
+            this.cantMinima = _data.getminPago(Common.Constants.Parametros.MINPAGOGO);
+            
             this.CompletarCommand = new RelayCommand(() =>
             {
                 this.Pagar = this.Pagar + this.Pendiente;
             });
-
             if (this.IsInDesignMode)
             {
                 //this.Total = 1500;
@@ -46,13 +44,9 @@ namespace SirCoPOS.Client.ViewModels.Caja
         {
             if (!this.IsValid())
                 return false;
-            if (this.Pagar.HasValue && this.Pagar < CantMinima)
-            {
-                MessageBox.Show("El Pago no puede ser menor a " + CantMinima, "Pago GoPlazos", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
 
             return this.Pagar.HasValue && this.Pagar != 0
+                && this.Pagar >= this.cantMinima
                 && this.PagaCon.HasValue && this.PagaCon != 0
                 && this.Pendiente >= 0 && this.PagaCon >= this.Pagar;
 
@@ -82,6 +76,12 @@ namespace SirCoPOS.Client.ViewModels.Caja
         }        
 
         #region properties
+        private decimal _cantminima;
+        public decimal cantMinima
+        {
+            get { return _cantminima; }
+            set { this.Set(nameof(this.cantMinima), ref _cantminima, value); }
+        }
         private decimal? _pagaCon;
         [Required]
         public decimal? PagaCon {

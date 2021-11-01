@@ -190,7 +190,7 @@
                             <m:TabType>FondoCierre</m:TabType>
                         </MenuItem.CommandParameter>
                     </MenuItem>-->
-                    <MenuItem Header="Arqueo de Efectivo" Command="{Binding OpenCommand}">
+                    <MenuItem Header="Arqueo" Command="{Binding OpenCommand}">
                         <MenuItem.CommandParameter>
                             <m:TabType>FondoArqueo</m:TabType>
                         </MenuItem.CommandParameter>

@@ -154,7 +154,7 @@ namespace SirCoPOS.Services
                 item.Caja.ResponsableId = request.Responsable;
             }
 
-            if (request.Importe > 0)
+            if (request.Importe > 0 && request.Auditor != 0)
             {
                 var gerentes = new int[] {
                     (int)Common.Constants.Puesto.ENC,
@@ -1267,7 +1267,7 @@ namespace SirCoPOS.Services
             {
                 this.GenerarRepetitivo(fondo.Disponible, fondo.CajaSucursal, idcajero: request.CajeroId, idauditor: request.AuditorId, now: now);
             }
-
+            // crea un fondo para el auditor que recibe en la misma caja del que entrega
             fondo.Disponible = 0;
             fondo.Caja.Disponible = 0;
             fondo.Caja.ResponsableId = null;

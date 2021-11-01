@@ -27,7 +27,7 @@ namespace SirCoPOS.Win.Views
 
         public void closeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }

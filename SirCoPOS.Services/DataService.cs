@@ -1173,10 +1173,10 @@ namespace SirCoPOS.Services
             var _data = new BusinessLogic.Data();
             return _data.FindAuditorEntrega(sucursal, idauditor, idcajero);
         }
-        public Empleado FindAuditorTransferir(int id, int idcajero)
+        public Empleado FindAuditorTransferir(string sucursal, int idauditor,int idcajero)
         {
             var _data = new BusinessLogic.Data();
-            return _data.FindAuditorTransferir(id, idcajero);
+            return _data.FindAuditorTransferir(sucursal, idauditor, idcajero);
         }
         public int ContabilizaReimpresion(string Operacion, string Sucursal, string Folio)
         {

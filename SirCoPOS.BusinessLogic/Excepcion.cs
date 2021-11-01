@@ -205,10 +205,10 @@ namespace SirCoPOS.BusinessLogic
         {
         }
     }
-    public class AuditorOtraSucursal : Common.Helpers.BaseExcepcion
+    public class ResponsableNoValidoExcepcion : Common.Helpers.BaseExcepcion
     {
-        public AuditorOtraSucursal()
-            : base("El auditor pertenece a otra sucursal")
+        public ResponsableNoValidoExcepcion()
+            : base("El Responsable debe ser Encargado o Suplente")
         {
         }
     }

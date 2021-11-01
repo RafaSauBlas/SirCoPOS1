@@ -10,9 +10,11 @@ using System.Windows;
 namespace SirCoPOS.Client.ViewModels.Tabs
 {
     class CambiarResponsableViewModel : EntregaEfectivoViewModel
-    {        
+    {
+        private Utilities.Models.Settings settings;
         public CambiarResponsableViewModel()
         {
+            settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
             this.LoadAuditorCommand = new RelayCommand(() => {
                 if(this.SearchAuditor.Value == this.Cajero.Id)
                 {
@@ -21,10 +23,31 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 }
                 else
                 {
-                    this.Auditor = _pdata.FindAuditorTransferir(this.SearchAuditor.Value, this.Cajero.Id);
+                    try
+                    {
+                        this.Auditor = _pdata.FindAuditorTransferir(settings.Sucursal.Clave, this.SearchAuditor.Value, this.Cajero.Id);
+                    }
+                    catch (System.Exception e)
+                    {
+                        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                        return;
+                    }
                     if (this.Auditor != null)
                     {
-                        this.SearchAuditor = null;
+                        if (this.Auditor.Sucursal == settings.Sucursal.Clave)
+                        {
+                            this.SearchAuditor = null;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Auditor no pertenece a la misma sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            this.Auditor = null;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Auditor no valido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                 
