@@ -493,19 +493,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     case Key.F3:
                     case Key.F4:
                     case Key.F5:
+                    case Key.K:
                         var p = _formas.Where(i => i.Value.Key == m.Key);
                         if (p.Any())
                         {
                             var item = p.Single();
-                            this.AddFormaCommand.Execute(item.Key);
-                        }
-                        break;
-
-                    case Key.K:
-                        var c = _formas.Where(i => i.Value.Key == m.Key);
-                        if (c.Any())
-                        {
-                            var item = c.Single();
                             this.AddFormaCommand.Execute(item.Key);
                         }
                         break;
