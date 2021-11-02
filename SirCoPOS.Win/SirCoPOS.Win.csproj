@@ -687,7 +687,6 @@
     <Resource Include="Images\arqueo.png" />
     <Resource Include="Images\entrega_ef.png" />
     <Resource Include="Images\entrega.png" />
-    <Resource Include="Images\KP.png" />
     <Resource Include="Images\Efectivo.png" />
     <Resource Include="Images\VISA.png" />
     <Resource Include="Images\Vale.png" />
@@ -739,7 +738,7 @@
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.8 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.8 %28x86 y x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
