@@ -53,9 +53,24 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             this.tbEntregar.Focus();
             var vm = (ViewModels.Tabs.CorteViewModel)this.DataContext;
-            if (vm.Cajero.Depto == 3)
-                this.scanSerie.ContextMenu = new ContextMenu();
+            
             this.tbEntregar.Text = "0";
+
+            if (vm != null)
+            {
+                if (vm.Cajero.Depto == 3)
+                    this.scanSerie.ContextMenu = new ContextMenu();
+
+                if (vm.Cajero.Depto == (int)Common.Constants.Departamento.ADM || vm.Cajero.Depto == (int)Common.Constants.Departamento.SIS)
+                {
+                    this.lbl_Auditor.Visibility = System.Windows.Visibility.Hidden;
+                    this.txtidaudit.Visibility = System.Windows.Visibility.Hidden;
+                    this.auditorname.Visibility = System.Windows.Visibility.Hidden;
+                    this.lbl_contra.Visibility = System.Windows.Visibility.Hidden;
+                    this.txtB_Contra.Visibility = System.Windows.Visibility.Hidden;
+                }
+
+            }
         }
 
         private void Dt_Tick(object sender, EventArgs e)
