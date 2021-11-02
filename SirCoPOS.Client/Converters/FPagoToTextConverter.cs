@@ -48,7 +48,7 @@ namespace SirCoPOS.Client.Converters
                         return "F11-VALE EXTERNO";
                     case SirCoPOS.Common.Constants.FormaPago.GO:
                         return "F5-GO PLAZOS";
-                    case SirCoPOS.Common.Constants.FormaPago.KU:
+                    case SirCoPOS.Common.Constants.FormaPago.KP:
                         return "KUESKI-PAY";
                         default:
                         return "";

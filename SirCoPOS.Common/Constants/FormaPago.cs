@@ -23,6 +23,6 @@ namespace SirCoPOS.Common.Constants
         VS = 100, //VA - sin promocion
         CS = 101,
         GO = 26,  //GO-PLAZOS
-        KU = 1026 //KUESKI-PAY
+        KP = 28 //KUESKI-PAY
     }
 }

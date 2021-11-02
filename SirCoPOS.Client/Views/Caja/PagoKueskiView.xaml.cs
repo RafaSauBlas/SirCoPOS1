@@ -22,7 +22,7 @@ namespace SirCoPOS.Client.Views.Caja
     /// </summary>
     [Utilities.Extensions.ExportPagoView]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    [Utilities.Extensions.MetadataFormaPago(Common.Constants.FormaPago.KU)]
+    [Utilities.Extensions.MetadataFormaPago(Common.Constants.FormaPago.KP)]
     public partial class PagoKueskiView : UserControl, Utilities.Interfaces.ITabView
     {
         public PagoKueskiView()

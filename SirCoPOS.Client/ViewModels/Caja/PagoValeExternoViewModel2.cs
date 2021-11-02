@@ -42,6 +42,17 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     else
                         this.SelectedFirma = null;
                     this.Caja.UpdatePagos();
+                    maxPlazosDist = this.Vale.Distribuidor.maxPlazos;
+                    if (Vale.Distribuidor.Electronica && this.maxPlazosDist != null)
+                    {
+                        if (this.maxPlazosElectronica > this.maxPlazosDist)
+                        {
+                            foreach (var e in this.Productos)
+                            {
+                                e.SetPlazos((int)this.maxPlazosDist);
+                            }
+                        }
+                    }
                 }
                 else
                     MessageBox.Show("Distribuidor no encontrado.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

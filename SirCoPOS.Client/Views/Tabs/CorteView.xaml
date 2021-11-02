@@ -119,7 +119,7 @@
             </DataGrid>
             <StackPanel Margin="10,20,0,0" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal" >
-                    <TextBlock Text="Auditor"/>
+                    <TextBlock x:Name= "lbl_Auditor" Text="Auditor"/>
                     <TextBox x:Name="txtidaudit" TabIndex="2" Text="{Binding SearchAuditor, UpdateSourceTrigger=PropertyChanged}" Width="60" KeyUp="TextBox_KeyUp" Margin="40,0,0,0">
                         <TextBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding LoadAuditorCommand}"></KeyBinding>
@@ -136,7 +136,7 @@
                     </TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                    <TextBlock Text="Contraseña"/>
+                    <TextBlock x:Name="lbl_contra" Text="Contraseña"/>
                     <PasswordBox x:Name="txtB_Contra" TabIndex="5"  Margin="10,0,0,0" PasswordChanged="PasswordBox_PasswordChanged" Width="100" Height="28" KeyUp="txtB_Contra_KeyUp">
                         <PasswordBox.InputBindings>
                             <KeyBinding Key="Return" Command="{Binding LoadUserCommand}"/>

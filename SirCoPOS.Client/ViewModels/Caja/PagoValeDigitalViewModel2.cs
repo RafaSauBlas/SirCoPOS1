@@ -40,6 +40,17 @@ namespace SirCoPOS.Client.ViewModels.Caja
                             this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
                         if (!this.Vale.Distribuidor.Promocion)
                             this.SelectedPromocion = this.Promocion.Promociones.FirstOrDefault();
+                        maxPlazosDist = this.Vale.Distribuidor.maxPlazos;
+                        if (Vale.Distribuidor.Electronica && this.maxPlazosDist != null)
+                        {
+                            if (this.maxPlazosElectronica > this.maxPlazosDist)
+                            {
+                                foreach (var e in this.Productos)
+                                {
+                                    e.SetPlazos((int)this.maxPlazosDist);
+                                }
+                            }
+                        }
                     }
                 }
                 else

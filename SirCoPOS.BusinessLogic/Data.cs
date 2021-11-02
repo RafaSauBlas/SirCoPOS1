@@ -131,21 +131,29 @@ namespace SirCoPOS.BusinessLogic
                 var suc = cajero.clave.Substring(0, 2);
                 decimal? disponible = null;
 
-                if (Common.Constants.Puestos.Gerentes.Contains(auditor.idpuesto) ||
-                     (int)Common.Constants.Departamento.SIS == auditor.iddepto ||
-                     (int)Common.Constants.Departamento.ADM == auditor.iddepto)
+                var fondo = ctxpos.Fondos.Where(i => i.ResponsableId == idauditor && !i.FechaCierre.HasValue).SingleOrDefault();
+                if ((int)Common.Constants.Departamento.ADM == auditor.iddepto)
                 {
-                    var fondo = ctxpos.Fondos.Where(i => i.ResponsableId == idauditor && !i.FechaCierre.HasValue).SingleOrDefault();
                     if (fondo != null)
                     {
                         throw new FondoAbiertoExcepcion(fondo.CajaSucursal, fondo.CajaNumero.Value);
                     }
                 }
+                else if (Common.Constants.Puestos.Gerentes.Contains(auditor.idpuesto))
+                {
+                    if (fondo == null)
+                    {
+                        throw new NoExisteFondoAbiertoExcepcion();
+                    }
+                    else disponible = fondo.Disponible;
+                }
                 else
+                { 
                     return null;
+                }
 
                 string sucursalauditor = sucursal;
-                if (auditor.idpuesto == (int)Common.Constants.Departamento.TDA)
+                if (auditor.iddepto == (int)Common.Constants.Departamento.TDA)
                 {
                     sucursalauditor = asuc;
                 }
@@ -189,7 +197,7 @@ namespace SirCoPOS.BusinessLogic
                     throw new ResponsableNoValidoExcepcion();
 
                 string sucursalauditor = sucursal;
-                if (auditor.idpuesto == (int)Common.Constants.Departamento.TDA)
+                if (auditor.iddepto == (int)Common.Constants.Departamento.TDA)
                     sucursalauditor = asuc;
 
                 return new Empleado

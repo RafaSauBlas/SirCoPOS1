@@ -126,12 +126,14 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 //    MessageBox.Show("Código no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 //    return;
                 //}
-
+                int AuditorID = 0;
+                if (this.Auditor != null)
+                    AuditorID = this.Auditor.Id;
                 var request = new Common.Entities.CorteRequest
                 {
                     Sucursal = this.Sucursal.Clave,
                     CajeroId = this.Cajero.Id,
-                    AuditorId = this.Auditor.Id,
+                    AuditorId = AuditorID,
                     FormasPago = this.Items.Select(i => 
                         new Common.Entities.ItemCorte { 
                             FormaPago = i.Item.FormaPago, 
@@ -145,9 +147,10 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                 MessageBox.Show("Corte generado exitosamente", "Corte", MessageBoxButton.OK, MessageBoxImage.Information);
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.FondoAperturaCierre { Open = false });
                 this.CloseCommand.Execute(null);
-            }, () => this.Auditor != null
+            }, () => 
+                (this.Auditor != null || this.UserAdminSis)
+                && (this.User != null || this.UserAdminSis)
                 && this.Entregar.HasValue
-                && this.User != null
                 && (!this.Items.Any() || this.Items.All(i => i.Entrega.HasValue && i.Monto.HasValue))
                 && Items.Where(i=>i.Complete).Count() == Items.Count()
                 );
@@ -363,6 +366,10 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         {
             get { return _SelectedDetalle; }
             set { Set(nameof(this.SelectedDetalle), ref _SelectedDetalle, value); }
+        }
+        public bool UserAdminSis
+        {
+            get { return (this.Cajero.Depto == (int)Common.Constants.Departamento.ADM || this.Cajero.Depto == (int)Common.Constants.Departamento.SIS); }
         }
 
     }

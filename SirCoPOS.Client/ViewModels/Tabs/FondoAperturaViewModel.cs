@@ -42,42 +42,39 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     }
                     if (this.Auditor != null)
                     {
-                        if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM || this.Auditor.Depto == (int)Common.Constants.Departamento.SIS)
+                        if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM)
                         {
                             this.SearchAuditor = null;
                         }
-                        else
+                        else if (Common.Constants.Puestos.Gerentes.Contains(this.Auditor.Puesto))
                         {
                             if (this.Auditor.Sucursal == settings.Sucursal.Clave)
                             {
-                                if (this.Auditor.Puesto == (int)Common.Constants.Puesto.ENC || this.Auditor.Puesto == (int)Common.Constants.Puesto.SUP)
+                                if (this.Auditor.Disponible >= this.Importe)
                                 {
-                                    if (this.Auditor.Disponible >= this.Importe )
-                                    {
-                                        this.SearchAuditor = null;
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show(String.Format("El Disponible del auditor es {0:C}", Auditor.Disponible), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                                        this.Auditor = null;
-                                    }
+                                    this.SearchAuditor = null;
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Auditor no es Gerente o Suplente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    MessageBox.Show(String.Format("Disponible de {0:C} no es suficiente",this.Auditor.Disponible), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                                     this.Auditor = null;
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("Auditor no pertenece a la misma sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                MessageBox.Show("Auditor no pertenece a la Sucursal "+ settings.Sucursal.Descripcion, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                                 this.Auditor = null;
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Auditor no es Administrativo, Gerente o Suplente", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            this.Auditor = null;
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Auditor no valido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Auditor no encontrado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
                     

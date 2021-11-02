@@ -21,7 +21,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             this.PropertyChanged += PagoKueskiViewModel_PropertyChanged;
             _data = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IDataServiceAsync>();
 
-            this.cantMinima = _data.getminPago(Common.Constants.Parametros.MINPAGOKU);
+            this.cantMinima = _data.getminPago(Common.Constants.Parametros.MINPAGOKP);
 
             this.CompletarCommand = new RelayCommand(() =>
             {
@@ -35,7 +35,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 this.PagaCon = 500;
             }            
         }
-        public override FormaPago FormaPago => FormaPago.KU;
+        public override FormaPago FormaPago => FormaPago.KP;
         protected override void Init()
         {
             this.PagaCon = this.Total;
@@ -64,7 +64,7 @@ namespace SirCoPOS.Client.ViewModels.Caja
             Messenger.Default.Send(
                     new Utilities.Messages.Pago
                     {  
-                        FormaPago = FormaPago.KU,
+                        FormaPago = FormaPago.KP,
                         Importe = this.Pagar.Value,
                         Efectivo = this.PagaCon.Value,
                         Folio = this.Folio,

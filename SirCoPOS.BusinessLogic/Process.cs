@@ -532,7 +532,7 @@ namespace SirCoPOS.BusinessLogic
                     case FormaPago.EF:
                     case FormaPago.GO:
                         break;
-                    case FormaPago.KU:
+                    case FormaPago.KP:
                         {
                             detalle.observaciones = $"Folio Kueski: {item.Referencia}";
                         }
@@ -2047,7 +2047,7 @@ namespace SirCoPOS.BusinessLogic
                         break;
                     case (int)Common.Constants.FormaPago.GO:
                     case (int)Common.Constants.FormaPago.EF:
-                    case (int)Common.Constants.FormaPago.KU:
+                    case (int)Common.Constants.FormaPago.KP:
                         //d.movimientocancela = _admin.Cancel(idcajero, model.Sucursal, d.importe.Value, now);
                         break;
                     case (int)Common.Constants.FormaPago.MD:
