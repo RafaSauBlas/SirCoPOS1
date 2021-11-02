@@ -32,6 +32,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     if (dev != null)
                     {
                         this.Devolucion = dev;
+                        this.DevSucursal = dev.Sucursal;
+                        this.DevFolio = dev.Folio;
                         this.Search = null;
                     }
                     else
@@ -82,6 +84,18 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             get { return _Search; }
             set { Set(nameof(this.Search), ref _Search, value); }
         }
+        private string _sucursal;
+        public string DevSucursal
+        {
+            get { return _sucursal; }
+            set { _sucursal = value; }
+        }
+        private string _folio;
+        public string DevFolio
+        {
+            get { return _folio; }
+            set { _folio = value; }
+        }
         #endregion
         #region commands
         public RelayCommand SearchCommand { get; private set; }
@@ -113,8 +127,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     _PrintCommand = new RelayCommand(
                         () =>
                         {
-                            _reports.Devolucion(this.Devolucion.Sucursal, this.Devolucion.Folio);
-                            var registra = _proxy.ContabilizaReimpresion("DEVOLUCION", Devolucion.Sucursal, Devolucion.Folio);
+                            this.Devolucion = null;
+                            _reports.Devolucion( this.DevSucursal, this.DevFolio);
+                            var registra = _proxy.ContabilizaReimpresion("DEVOLUCION", this.DevSucursal,this.DevFolio);
                         }, () => this.Devolucion != null
                     );
                 }
