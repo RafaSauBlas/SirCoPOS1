@@ -462,7 +462,7 @@
                             <DataTemplate x:Key="pagoGO">
                                 <vp:PagoGoView/>
                             </DataTemplate>
-                            <DataTemplate x:Key="pagoKU">
+                            <DataTemplate x:Key="pagoKP">
                                 <vp:PagoKueskiView/>
                             </DataTemplate>
                             <DataTemplate x:Key="pagoTC">
@@ -495,8 +495,8 @@
                                                     <DataTrigger Binding="{Binding FormaPago}" Value="GO">
                                                         <Setter Property="ContentTemplate" Value="{StaticResource pagoGO}"/>
                                                     </DataTrigger>
-                                                    <DataTrigger Binding="{Binding FormaPago}" Value="KU">
-                                                        <Setter Property="ContentTemplate" Value="{StaticResource pagoKU}"/>
+                                                    <DataTrigger Binding="{Binding FormaPago}" Value="KP">
+                                                        <Setter Property="ContentTemplate" Value="{StaticResource pagoKP}"/>
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding FormaPago}" Value="MD">
                                                         <Setter Property="ContentTemplate" Value="{StaticResource pagoEF}"/>

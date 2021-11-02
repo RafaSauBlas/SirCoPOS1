@@ -12,6 +12,6 @@ namespace SirCoPOS.Common.Constants
         public const string ELECTRONICA = "ELECTRONICAPLAZOS";
         public const string NUMCOPIAS = "NUMCOPIAS";
         public const string MINPAGOGO = "MINPAGOGO";
-        public const string MINPAGOKU = "MINPAGOKU";
+        public const string MINPAGOKP = "MINPAGOKP";
     }
 }
