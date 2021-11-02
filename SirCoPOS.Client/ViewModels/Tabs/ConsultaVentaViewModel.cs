@@ -29,6 +29,8 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     if (vta != null)
                     {
                         this.Venta = vta;
+                        this.VtaSucursal = vta.Sucursal;
+                        this.VtaFolio = vta.Folio;
                         this.Search = null;
                     }
                     else
@@ -70,6 +72,18 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             get { return _Venta; }
             set { Set(nameof(this.Venta), ref _Venta, value); }
         }
+        private string _sucursal;
+        public string VtaSucursal
+        {
+            get { return _sucursal; }
+            set { _sucursal = value; }
+        }
+        private string _folio;
+        public string VtaFolio
+        {
+            get { return _folio; }
+            set { _folio = value; }
+        }
         private string _Search;
         public string Search
         {
@@ -89,8 +103,9 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     _PrintCommand = new RelayCommand(
                         () =>
                         {
-                            _reports.Compra(this.Venta.Sucursal, this.Venta.Folio, true);
-                            _proxy.ContabilizaReimpresion("VENTA", Venta.Sucursal, Venta.Folio);
+                            this.Venta = null;
+                            _reports.Compra(this.VtaSucursal, this.VtaFolio, true);
+                            _proxy.ContabilizaReimpresion("VENTA", this.VtaSucursal, this.VtaFolio);
                         }, () => this.Venta != null
                     );
                 }
