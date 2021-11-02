@@ -687,7 +687,6 @@
     <Resource Include="Images\arqueo.png" />
     <Resource Include="Images\entrega_ef.png" />
     <Resource Include="Images\entrega.png" />
-    <Resource Include="Images\KU.png" />
     <Resource Include="Images\Efectivo.png" />
     <Resource Include="Images\VISA.png" />
     <Resource Include="Images\Vale.png" />
@@ -696,6 +695,7 @@
     <Resource Include="Images\pagoKueski.png" />
     <Resource Include="Images\historia.png" />
     <Resource Include="Images\historial.png" />
+    <Resource Include="Images\KP.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
