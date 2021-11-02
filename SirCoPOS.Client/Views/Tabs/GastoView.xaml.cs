@@ -27,7 +27,6 @@ namespace SirCoPOS.Client.Views.Tabs
     public partial class GastoView : UserControl, Utilities.Interfaces.ITabView
     {
         private IDictionary<Guid, TabItem> _tabs;
-        Client.MetodoInactividad IN;
         private ILogger _log;
 
         public GastoView()
@@ -75,7 +74,6 @@ namespace SirCoPOS.Client.Views.Tabs
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Messenger.Default.Register<string>(this, "Detener", Detener);
-            IN = new Client.MetodoInactividad();
             this.txtMonto.Focus();
         }
 
@@ -83,28 +81,28 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             if (msg == "stop")
             {
-                IN.detener();
+                Messenger.Default.Send<string>("detener", "detener");
             }
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void txtMonto_TextChanged(object sender, TextChangedEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
     }
 }

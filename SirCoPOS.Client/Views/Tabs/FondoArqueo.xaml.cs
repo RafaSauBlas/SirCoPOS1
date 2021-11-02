@@ -28,7 +28,6 @@ namespace SirCoPOS.Client.Views.Tabs
     {
         private IDictionary<Guid, TabItem> _tabs;
         ViewModels.Tabs.FondoArqueoViewModel FA;
-        Client.MetodoInactividad IN;
         private ILogger _log;
         
 
@@ -74,7 +73,7 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
-           
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void UserControl_KeyUp(object sender, KeyEventArgs e)
@@ -157,34 +156,33 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             if (msg == "stop")
             {
-                IN.detener();
+                Messenger.Default.Send<string>("detener", "detener");
             }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Messenger.Default.Register<string>(this, "Detener", Detener);
-            IN = new Client.MetodoInactividad();
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void textBox_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void tbAudId_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void txtB_Contra_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
     }
 }

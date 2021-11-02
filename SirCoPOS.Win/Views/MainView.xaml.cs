@@ -204,8 +204,10 @@ namespace SirCoPOS.Win.Views
             this.tabControl.SelectedIndex = ind;
         }
 
+        SirCoPOS.Client.MetodoInactividad IN;
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            IN = new SirCoPOS.Client.MetodoInactividad();
                 Messenger.Default.Register<string>(this, "Detener", Detener);
 
                 if (GalaSoft.MvvmLight.ViewModelBase.IsInDesignModeStatic)
@@ -254,7 +256,7 @@ namespace SirCoPOS.Win.Views
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
-
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
     }
 }

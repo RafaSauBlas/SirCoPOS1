@@ -51,7 +51,7 @@
                 </TextBlock.Text>
             </TextBlock>
         </Grid>
-        <DataGrid RowStyle="{StaticResource dgrColor}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Margin="0" Grid.Row="1" ItemsSource="{Binding Productos}">
+        <DataGrid RowStyle="{StaticResource dgrColor}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Margin="0" Grid.Row="1" ItemsSource="{Binding Productos}" KeyDown="DataGrid_KeyDown" KeyUp="DataGrid_KeyUp" MouseMove="DataGrid_MouseMove">
             <DataGrid.InputBindings>
                 <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
             </DataGrid.InputBindings>

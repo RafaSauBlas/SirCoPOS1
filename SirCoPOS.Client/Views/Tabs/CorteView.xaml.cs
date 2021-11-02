@@ -27,7 +27,6 @@ namespace SirCoPOS.Client.Views.Tabs
     public partial class CorteView : UserControl, Utilities.Interfaces.ITabView
     {
         private IDictionary<Guid, TabItem> _tabs;
-        Client.MetodoInactividad IN;
         private ILogger _log;
 
         public CorteView()
@@ -147,49 +146,93 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             if (msg == "stop")
             {
-                IN.detener();
+                Messenger.Default.Send<string>("detener", "detener");
             }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Messenger.Default.Register<string>(this, "Detener", Detener);
-            IN = new Client.MetodoInactividad();
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void tbEntregar_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void TextBox_KeyDown_1(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void txtidaudit_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void txtB_Contra_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Corte_KeyDown(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void Corte_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void Montos_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void Montos_KeyDown(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void Series_KeyDown(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void Series_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void Corte_KeyUp(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void Montos_KeyUp(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void Series_KeyUp(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
     }
 }

@@ -29,5 +29,10 @@ namespace SirCoPOS.Win.Pages
         {
             
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

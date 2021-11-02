@@ -22,7 +22,7 @@
         <FrameworkElement x:Name="dummyElement"/>
         <xt:BusyIndicator IsBusy="{Binding IsBusy}" FocusAfterBusy="{Binding ElementName=scanTextBox}">
             <Grid KeyDown="Grid_KeyDown" KeyUp="Grid_KeyUp" MouseLeftButtonDown="Grid_MouseLeftButtonDown" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
-                <DataGrid x:Name="dgv_Prod" SelectedItem="{Binding SelectedItem}" SelectedIndex="0" Margin="10,50,265,237" ItemsSource="{Binding Productos}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged">
+                <DataGrid x:Name="dgv_Prod" SelectedItem="{Binding SelectedItem}" SelectedIndex="0" Margin="10,50,265,237" ItemsSource="{Binding Productos}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" SelectionChanged="DataGrid_SelectionChanged" KeyDown="dgv_Prod_KeyDown" KeyUp="dgv_Prod_KeyUp" MouseMove="dgv_Prod_MouseMove">
                     <DataGrid.InputBindings>
                         <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
                     </DataGrid.InputBindings>
@@ -89,7 +89,7 @@
                         <DataGridTextColumn Header="Modelo" Binding="{Binding Razon}"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <ListBox Margin="0,50,10,237" HorizontalAlignment="Right" Width="250" SelectedItem="{Binding SelectedPago}" ItemsSource="{Binding Pagos}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                <ListBox Margin="0,50,10,237" HorizontalAlignment="Right" Width="250" SelectedItem="{Binding SelectedPago}" ItemsSource="{Binding Pagos}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" KeyDown="ListBox_KeyDown" KeyUp="ListBox_KeyUp" MouseMove="ListBox_MouseMove">
                     <ListBox.Resources>
                         <DataTemplate x:Key="pagoEF">
                             <vp:PagoEfectivoView/>

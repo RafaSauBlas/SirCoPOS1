@@ -28,7 +28,6 @@ namespace SirCoPOS.Client.Views.Tabs
     {
 
         private IDictionary<Guid, TabItem> _tabs;
-        Client.MetodoInactividad IN;
         private ILogger _log;
 
         public VerificarValeExternoView()
@@ -114,34 +113,33 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             if (msg == "stop")
             {
-                IN.detener();
+                Messenger.Default.Send<string>("detener", "detener");
             }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Messenger.Default.Register<string>(this, "Detener", Detener);
-            IN = new Client.MetodoInactividad();
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void tbVale_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void txt_negocio_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void txtCuenta_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
     }
 }

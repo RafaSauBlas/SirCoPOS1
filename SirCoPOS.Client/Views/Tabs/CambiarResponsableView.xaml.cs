@@ -28,7 +28,6 @@ namespace SirCoPOS.Client.Views.Tabs
     {
 
         private IDictionary<Guid, TabItem> _tabs;
-        Client.MetodoInactividad IN;
         private ILogger _log;
 
         public CambiarResponsableView()
@@ -103,14 +102,13 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             if (msg == "stop")
             {
-                IN.detener();
+                Messenger.Default.Send<string>("detener", "detener");
             }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Messenger.Default.Register<string>(this, "Detener", Detener);
-            IN = new Client.MetodoInactividad();
             this.txtEntrega.Text = "0";
             this.txtEntrega.Focus();
         }
@@ -127,22 +125,22 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void txtEntrega_TextChanged(object sender, TextChangedEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void tbResponsableId_TextChanged(object sender, TextChangedEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void txtB_Contra_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void btn_accept_Click(object sender, RoutedEventArgs e)

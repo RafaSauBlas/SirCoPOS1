@@ -46,7 +46,7 @@
                         <KeyBinding Key="Return" Command="{Binding ScanCommand}"></KeyBinding>
                     </TextBox.InputBindings>
                 </TextBox>
-                <DataGrid RowStyle="{StaticResource dgrColor}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Margin="0" Grid.Row="1" ItemsSource="{Binding Productos}">
+                <DataGrid RowStyle="{StaticResource dgrColor}" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" Margin="0" Grid.Row="1" ItemsSource="{Binding Productos}" MouseMove="DataGrid_MouseMove" KeyUp="DataGrid_KeyUp" KeyDown="DataGrid_KeyDown">
                     <DataGrid.InputBindings>
                         <KeyBinding Key="Backspace" Command="{Binding NadaCommand}"></KeyBinding>
                     </DataGrid.InputBindings>
@@ -70,7 +70,7 @@
                         <DataGridTextColumn Header="Total" Binding="{Binding Producto.Total, StringFormat=\{0:C\}}"></DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Grid Grid.Column="1" Grid.Row="1" Background="White">
+                <Grid Grid.Column="1" Grid.Row="1" Background="White" MouseMove="Grid_MouseMove" KeyUp="Grid_KeyUp">
                     <TextBlock x:Name="textBlock" HorizontalAlignment="Right" Margin="0,10,10,0" TextWrapping="Wrap" Text="{Binding SubTotal, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Right" Margin="0,30.96,10,0" TextWrapping="Wrap" Text="{Binding Descuento, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>
                     <TextBlock x:Name="textBlock_Copy1" HorizontalAlignment="Right" Margin="0,51.92,10,0" TextWrapping="Wrap" Text="{Binding Total, Mode=OneWay, StringFormat=\{0:C\}}" VerticalAlignment="Top"/>

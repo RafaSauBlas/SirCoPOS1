@@ -31,7 +31,6 @@ namespace SirCoPOS.Client.Views.Tabs
         public string IPP = @"\\10.10.1.1\Sistema\ZT\Fotos\";
 
         private IDictionary<Guid, TabItem> _tabs;
-        Client.MetodoInactividad IN;
         private ILogger _log;
 
         public CambioView1()
@@ -167,24 +166,53 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             if (msg == "stop")
             {
-                IN.detener();
+                Messenger.Default.Send<string>("detener", "detener");
             }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Messenger.Default.Register<string>(this, "Detener", Detener);
-            IN = new Client.MetodoInactividad();
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void scanTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void dgv_Prod_KeyDown(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void dgv_Prod_KeyUp(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void dgv_Prod_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void ListBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void ListBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void ListBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
     }
 }

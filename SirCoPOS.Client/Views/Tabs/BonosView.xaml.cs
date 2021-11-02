@@ -28,7 +28,6 @@ namespace SirCoPOS.Client.Views.Tabs
     {
 
         private IDictionary<Guid, TabItem> _tabs;
-        Client.MetodoInactividad IN;
         private ILogger _log;
 
         public BonosView()
@@ -130,35 +129,49 @@ namespace SirCoPOS.Client.Views.Tabs
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Messenger.Default.Register<string>(this, "Detener", Detener);
-            IN = new Client.MetodoInactividad();
         }
 
         public void Detener(string msg)
         {
             if (msg == "stop")
             {
-                IN.detener();
+                Messenger.Default.Send<string>("detener", "detener");
             }
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void txtEmp_TextChanged(object sender, TextChangedEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void txtGte_TextChanged(object sender, TextChangedEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void txtPwd_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void dataGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void dataGrid_KeyUp(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void dataGrid_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
     }
 }
