@@ -488,11 +488,11 @@ namespace SirCoPOS.Client.ViewModels.Tabs
             Messenger.Default.Register<Utilities.Messages.ShortcutMessage>(this, this.GID, m => {
                 switch (m.Key)
                 {
-                    case Key.F1:
-                    case Key.F2:
-                    case Key.F3:
-                    case Key.F4:
-                    case Key.F5:
+                    case Key.F:
+                    case Key.R:
+                    case Key.T:
+                    case Key.D:
+                    case Key.G:
                     case Key.K:
                         var p = _formas.Where(i => i.Value.Key == m.Key);
                         if (p.Any())
@@ -501,13 +501,13 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                             this.AddFormaCommand.Execute(item.Key);
                         }
                         break;
-                    case Key.F6:
-                    case Key.F7:
-                    case Key.F8:
-                    case Key.F9:
-                    case Key.F10:
-                    case Key.F11:
-                    case Key.F12:
+                    case Key.V:
+                    case Key.C:
+                    case Key.P:
+                    case Key.O:
+                    case Key.I:
+                    case Key.E:
+                    case Key.M:
                         var q = _formas.Where(i => i.Value.Key == m.Key);
                         if (q.Any())
                         {
