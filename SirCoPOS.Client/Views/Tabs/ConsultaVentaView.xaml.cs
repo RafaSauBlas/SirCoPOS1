@@ -27,7 +27,6 @@ namespace SirCoPOS.Client.Views.Tabs
     public partial class ConsultaVentaView : UserControl
     {
         private IDictionary<Guid, TabItem> _tabs;
-        Client.MetodoInactividad IN;
         private ILogger _log;
 
         public ConsultaVentaView()
@@ -78,39 +77,38 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             if (msg == "stop")
             {
-                IN.detener();
+                Messenger.Default.Send<string>("detener", "detener");
             }
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Messenger.Default.Register<string>(this, "Detener", Detener);
-            IN = new Client.MetodoInactividad();
             this.txtNoVenta.Focus();
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void txtNoVenta_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
         private void txtNoVenta_TextChanged(object sender, TextChangedEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
     }
 }

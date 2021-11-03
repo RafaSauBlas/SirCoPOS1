@@ -80,5 +80,15 @@ namespace SirCoPOS.Client.Views.Tabs
         {
 
         }
+
+        private void UserControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void UserControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
     }
 }

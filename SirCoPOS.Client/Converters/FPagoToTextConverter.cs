@@ -49,7 +49,7 @@ namespace SirCoPOS.Client.Converters
                     case SirCoPOS.Common.Constants.FormaPago.GO:
                         return "F5-GO PLAZOS";
                     case SirCoPOS.Common.Constants.FormaPago.KP:
-                        return "KUESKI-PAY";
+                        return "Ctrl + K - KUESKI-PAY";
                         default:
                         return "";
                 }

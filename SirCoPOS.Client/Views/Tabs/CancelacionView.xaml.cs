@@ -48,7 +48,7 @@ namespace SirCoPOS.Client.Views.Tabs
         {
             if (msg == "stop")
             {
-                IN.detener();
+                Messenger.Default.Send<string>("detener", "detener");
             }
         }
 
@@ -123,22 +123,46 @@ namespace SirCoPOS.Client.Views.Tabs
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Messenger.Default.Register<string>(this, "Detener", Detener);
-            IN = new Client.MetodoInactividad();
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void scanTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
 
         private void motivo_KeyDown(object sender, KeyEventArgs e)
         {
-            IN.reiniciar();
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void DataGrid_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void DataGrid_KeyUp(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void DataGrid_KeyDown(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void Grid_MouseMove(object sender, MouseEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
+        }
+
+        private void Grid_KeyUp(object sender, KeyEventArgs e)
+        {
+            Messenger.Default.Send<string>("reiniciar", "reiniciar");
         }
     }
 }
