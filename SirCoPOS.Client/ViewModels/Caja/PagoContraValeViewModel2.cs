@@ -43,9 +43,9 @@ namespace SirCoPOS.Client.ViewModels.Caja
                         maxPlazosDist = this.Vale.Distribuidor.maxPlazos;
                         if (Vale.Distribuidor.Electronica && this.maxPlazosDist != null)
                         {
-                            if (this.maxPlazosElectronica > this.maxPlazosDist)
+                            foreach (var e in this.Productos)
                             {
-                                foreach (var e in this.Productos)
+                                if (e.GetPlazos() > this.maxPlazosDist)
                                 {
                                     e.SetPlazos((int)this.maxPlazosDist);
                                 }
