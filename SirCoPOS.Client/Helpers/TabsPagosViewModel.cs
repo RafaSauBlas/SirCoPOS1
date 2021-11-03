@@ -33,20 +33,20 @@ namespace SirCoPOS.Client.Helpers
             this.Pagos = new ObservableCollection<Utilities.Interfaces.IPagoItem>();
             this.Pagos.CollectionChanged += Pagos_CollectionChanged;
             _formas = new Dictionary<FormaPago, Models.FormaPagoKey>() {
-                { FormaPago.EF, new Models.FormaPagoKey { Enabled = true, Key = Key.F1, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
-                { FormaPago.TC, new Models.FormaPagoKey { Enabled = true, Key = Key.F2, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
-                { FormaPago.TD, new Models.FormaPagoKey { Enabled = true, Key = Key.F3, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
-                { FormaPago.DV, new Models.FormaPagoKey { Enabled = true, Key = Key.F4, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
-                { FormaPago.MD, new Models.FormaPagoKey { Enabled = true, Key = Key.F12, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
-                { FormaPago.GO, new Models.FormaPagoKey { Enabled = true, Key = Key.F5, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
+                { FormaPago.EF, new Models.FormaPagoKey { Enabled = true, Key = Key.F, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
+                { FormaPago.TC, new Models.FormaPagoKey { Enabled = true, Key = Key.R, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
+                { FormaPago.TD, new Models.FormaPagoKey { Enabled = true, Key = Key.T, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
+                { FormaPago.DV, new Models.FormaPagoKey { Enabled = true, Key = Key.D, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },
+                { FormaPago.GO, new Models.FormaPagoKey { Enabled = true, Key = Key.G, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
                 { FormaPago.KP, new Models.FormaPagoKey { Enabled = true, Key = Key.K, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
 
-                { FormaPago.VA, new Models.FormaPagoKey { Enabled = true, Key = Key.F6, Duplicate = true, WithClient = false, ClientRequired = true, Credito = true } },
-                { FormaPago.CV, new Models.FormaPagoKey { Enabled = true, Key = Key.F7, Duplicate = true, WithClient = false, ClientRequired = false, Credito = true } },
-                { FormaPago.CP, new Models.FormaPagoKey { Enabled = true, Key = Key.F8, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
-                { FormaPago.CD, new Models.FormaPagoKey { Enabled = true, Key = Key.F9, Duplicate = false, WithClient = false, ClientRequired = false, Credito = true } },
-                { FormaPago.VD, new Models.FormaPagoKey { Enabled = true, Key = Key.F10, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
-                { FormaPago.VE, new Models.FormaPagoKey { Enabled = true, Key = Key.F11, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
+                { FormaPago.VA, new Models.FormaPagoKey { Enabled = true, Key = Key.V, Duplicate = true, WithClient = false, ClientRequired = true, Credito = true } },
+                { FormaPago.CV, new Models.FormaPagoKey { Enabled = true, Key = Key.C, Duplicate = true, WithClient = false, ClientRequired = false, Credito = true } },
+                { FormaPago.CP, new Models.FormaPagoKey { Enabled = true, Key = Key.P, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
+                { FormaPago.CD, new Models.FormaPagoKey { Enabled = true, Key = Key.O, Duplicate = false, WithClient = false, ClientRequired = false, Credito = true } },
+                { FormaPago.VD, new Models.FormaPagoKey { Enabled = true, Key = Key.I, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
+                { FormaPago.VE, new Models.FormaPagoKey { Enabled = true, Key = Key.E, Duplicate = false, WithClient = false, ClientRequired = true, Credito = true } },
+                { FormaPago.MD, new Models.FormaPagoKey { Enabled = true, Key = Key.M, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
 
                 //{ FormaPago.EF, new Models.FormaPagoKey { Enabled = true, Key = Key.F1, Duplicate = false, WithClient = false, ClientRequired = false, Credito = false } },
                 //{ FormaPago.TC, new Models.FormaPagoKey { Enabled = true, Key = Key.F2, Duplicate = true, WithClient = false, ClientRequired = false, Credito = false } },

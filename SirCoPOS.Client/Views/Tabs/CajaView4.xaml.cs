@@ -407,9 +407,26 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void UserControl_KeyUp(object sender, KeyEventArgs e)
         {
-            if((Keyboard.Modifiers == ModifierKeys.Control) && (e.Key == Key.K))
+            if(Keyboard.Modifiers == ModifierKeys.Control)
             {
-                Messenger.Default.Send(new Utilities.Messages.ShortcutMessage { Key = e.Key });
+                switch (e.Key)
+                {
+                    case Key.F: //Efectivo
+                    case Key.R: //Tarjeta de crédito
+                    case Key.T: //Tardeja de debito
+                    case Key.D: //Devolución
+                    case Key.M: //Monedero electrónico
+                    case Key.G: //GoPlazos
+                    case Key.K: //KueskiPay
+                    case Key.V: //Vale
+                    case Key.C: //Contra vale
+                    case Key.P: //Credito personal
+                    case Key.O: //Credito distribuidor
+                    case Key.I: //Vale digital
+                    case Key.E: //vale externo
+                        Messenger.Default.Send(new Utilities.Messages.ShortcutMessage { Key = e.Key });
+                        break;
+                }
             }
         }
     }
