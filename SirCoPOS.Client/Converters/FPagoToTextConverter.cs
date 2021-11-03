@@ -25,29 +25,29 @@ namespace SirCoPOS.Client.Converters
                 switch (value)
                 {
                     case SirCoPOS.Common.Constants.FormaPago.CD:
-                        return "F9-CRÉDITO DISTRIBUIDOR";
+                        return "Ctrl + O - CRÉDITO DISTRIBUIDOR";
                     case SirCoPOS.Common.Constants.FormaPago.CP:
-                        return "F8-CRÉDITO PERSONAL";
+                        return "Ctrl + P - CRÉDITO PERSONAL";
                     case SirCoPOS.Common.Constants.FormaPago.CV:
-                        return "F7-CONTRAVALE";
+                        return "Ctrl + E - CONTRAVALE";
                     case SirCoPOS.Common.Constants.FormaPago.DV:
-                        return "F4-DEVOLUCIÓN";
+                        return "Ctrl + D - DEVOLUCIÓN";
                     case SirCoPOS.Common.Constants.FormaPago.EF:
-                        return "F1-EFECTIVO";
+                        return "Ctrl + F - EFECTIVO";
                     case SirCoPOS.Common.Constants.FormaPago.TC:
-                        return "F2-TARJETA DE CRÉDITO";
+                        return "Ctrl + R - TARJETA DE CRÉDITO";
                     case SirCoPOS.Common.Constants.FormaPago.TD:
-                        return "F3-TARJETA DE DEBITO";
+                        return "Ctrl + T - TARJETA DE DEBITO";
                     case SirCoPOS.Common.Constants.FormaPago.VA:
-                        return "F6-VALE";
+                        return "Ctrl + V - VALE";
                     case SirCoPOS.Common.Constants.FormaPago.VD:
-                        return "F10-VALE DIGITAL";
+                        return "Ctrl + I - VALE DIGITAL";
                     case SirCoPOS.Common.Constants.FormaPago.MD:
-                        return "F12-MONEDERO ELECTRÓNICO";
+                        return "Ctrl + M - MONEDERO ELECTRÓNICO";
                     case SirCoPOS.Common.Constants.FormaPago.VE:
-                        return "F11-VALE EXTERNO";
+                        return "Ctrl + E - VALE EXTERNO";
                     case SirCoPOS.Common.Constants.FormaPago.GO:
-                        return "F5-GO PLAZOS";
+                        return "Ctrl + G - GO PLAZOS";
                     case SirCoPOS.Common.Constants.FormaPago.KP:
                         return "Ctrl + K - KUESKI-PAY";
                         default:
