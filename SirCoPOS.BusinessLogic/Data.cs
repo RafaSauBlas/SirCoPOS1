@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -405,6 +407,67 @@ namespace SirCoPOS.BusinessLogic
 
             return porcentajes;
 
+        }
+        public bool Acceso(int idempleado, string sucursal, bool acceso)
+        {
+            var now = Helpers.Common.GetNow();
+            var fechaVacia = DateTime.Parse(Formats.DATE_EMPTY);
+            var ctx = new DataAccess.SirCoPOSDataContext();
+            var ctxn = new DataAccess.SirCoNominaDataContext();
+            if (acceso)
+            {
+                var adentro = ctx.UsuarioAccesos.Where(i => i.idempleado== idempleado && i.entrada != fechaVacia && i.salida == fechaVacia).Any();
+                if (adentro)
+                    return false;
+                
+                var Empleado = ctxn.Empleados.Where(i => i.idempleado == idempleado).SingleOrDefault();
+
+                IPHostEntry host = Dns.GetHostEntry(LocalIPAddress());
+                string hostName = host.HostName;
+
+                var item = new DataAccess.SirCoPOS.UsuarioAcceso
+                {
+                    idempleado = Empleado.idempleado,
+                    nombre = Empleado.nombre + " " + Empleado.appaterno + " " + Empleado.apmaterno,
+                    iddepto = Empleado.iddepto,
+                    idpuesto = Empleado.idpuesto,
+                    sucursal = sucursal,
+                    entrada = now,
+                    nombrepc = hostName,
+                    salida = fechaVacia
+                };
+                ctx.UsuarioAccesos.Add(item);
+                if (ctx.SaveChanges() != 1)
+                    return false;
+            }
+            else
+            {
+                var adentro = ctx.UsuarioAccesos.Where(i => i.idempleado== idempleado && i.entrada!= fechaVacia && i.salida == fechaVacia).SingleOrDefault();
+                if (adentro == null)
+                    return false;
+
+                adentro.salida = now;
+                if (ctx.SaveChanges() != 1)
+                {
+                    return false;
+                }
+                    
+            }
+            return true;
+        }
+
+        private IPAddress LocalIPAddress()
+        {
+            if (!System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable())
+            {
+                return null;
+            }
+
+            IPHostEntry host = Dns.GetHostEntry(Dns.GetHostName());
+
+            return host
+                .AddressList
+                .FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
         }
     }
 }

@@ -144,7 +144,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     Entregar = this.Entregar.Value                    
                 };
                 _proxy.Corte(request);
-                MessageBox.Show("Corte generado exitosamente", "Corte", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Entrega de Caja Efectuada", "Entrega de Caja", MessageBoxButton.OK, MessageBoxImage.Information);
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.FondoAperturaCierre { Open = false });
                 this.CloseCommand.Execute(null);
             }, () => 
