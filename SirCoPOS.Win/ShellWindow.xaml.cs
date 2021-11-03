@@ -2,6 +2,7 @@
 using SirCoPOS.Common.Constants;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Deployment.Application;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,7 @@ namespace SirCoPOS.Win
             if (ApplicationDeployment.IsNetworkDeployed)
                 this.WindowState = WindowState.Maximized;
 
-            Messenger.Default.Register<Utilities.Messages.LogoutTimeout>(this, m => {
+        Messenger.Default.Register<Utilities.Messages.LogoutTimeout>(this, m => {
                 if (this.frame.NavigationService.CanGoBack)
                 {
                     if (this.frame.Content is Pages.MenuPage)
@@ -159,6 +160,11 @@ namespace SirCoPOS.Win
                 win.Title = vm.Title;
                 win.ShowDialog();
             });
+        }
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            e.Cancel = true;
         }
     }
 }

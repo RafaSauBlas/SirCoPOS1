@@ -47,6 +47,9 @@
                 <Image x:Name="image" HorizontalAlignment="Left" Height="89" Margin="19,0,0,0" VerticalAlignment="Top" Width="210" Source="/SirCoPOS.Win;component/Images/Logo Zapaterias.png"/>
 
             </Grid>
+            <Button x:Name="btn_aceptar"  TabIndex="6" Command="{Binding CloseCommand}" Height="35" Width="49" HorizontalAlignment="Right" Margin="0,0,20,20"  VerticalAlignment="Bottom">
+                <Image x:Name="Salir" Source="/SirCoPOS.Win;component/Images/salir.jpg" />
+            </Button>
             <!--<Button Command="{Binding ScanCommand}" HorizontalAlignment="Center" Margin="0,0,0,59" Width="76" Height="75" VerticalAlignment="Bottom">
                 <Button.Content>
                     <Image Source="/SirCoPOS.Win;component/Images/fingerprint.png" Margin="5" />
