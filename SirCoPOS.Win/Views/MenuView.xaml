@@ -107,7 +107,7 @@
                 </Button.CommandParameter>
                 <Grid>
                     <Image Source="/SirCoPOS.Win;component/Images/arqueo.png" Margin="22,0,1,22"/>
-                    <TextBlock Text="Arqueo (F9)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,-6,-9" FontSize="15" Height="22" />
+                    <TextBlock Text="Arqueo (F9)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,-6,-6" FontSize="16" Height="22" />
                 </Grid>
             </Button>
             <!--Boton Entrega de Efectivo-->
@@ -117,7 +117,7 @@
                 </Button.CommandParameter>
                 <Grid>
                     <Image Source="/SirCoPOS.Win;component/Images/entrega_ef.png" Height="101" Width="101"/>
-                    <TextBlock Text="Entrega Efectivo (F7)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,-6,-9" FontSize="15" Height="25" Width="136"/>
+                    <TextBlock Text="Entrega Efectivo (F7)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,-6,-6" FontSize="15" Width="136"/>
                 </Grid>
 
             </Button>
@@ -127,8 +127,8 @@
                     <m:TabType>Corte</m:TabType>
                 </Button.CommandParameter>
                 <Grid>
-                    <Image Source="/SirCoPOS.Win;component/Images/entrega.png" Height="101" Width="101"/>
-                    <TextBlock Text="Entrega Caja (F8)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" />
+                    <Image Source="/SirCoPOS.Win;component/Images/entrega.png" Height="101" Width="101" Margin="9,-4,9,4"/>
+                    <TextBlock Text="Entrega Caja (F8)" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,-8" FontSize="16" />
                 </Grid>
             </Button>
 

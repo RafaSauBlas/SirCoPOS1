@@ -18,6 +18,10 @@ namespace SirCoPOS.Services
         {
             return _helpers.Login(sucursal, user, pass);
         }
+        public bool Acceso(int idempleado, string sucursal, bool acceso)
+        {
+            return _helpers.Acceso(idempleado, sucursal, acceso);
+        }
         public int TimeOut()
         {
             return _helpers.TimeOut();

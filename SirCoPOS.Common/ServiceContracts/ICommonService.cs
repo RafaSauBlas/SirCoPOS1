@@ -13,6 +13,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Entities.Empleado Login(string sucursal, string user, string pass);
         [OperationContract]
+        bool Acceso(int idempleado, string sucursal, bool acceso);
+        [OperationContract]
         int TimeOut();
         [OperationContract]
         Entities.Empleado FindVendedor(int id);
@@ -30,5 +32,6 @@ namespace SirCoPOS.Common.ServiceContracts
         Entities.Empleado CheckFingerAdmin(byte[] huella);
         [OperationContract]
         byte[] GetFingerEmpleado(int idempleado);
+        
     }
 }

@@ -30,6 +30,21 @@ namespace SirCoPOS.Win.ViewModels
                         pass: pass);
                     if (item != null)
                     {
+                        var usuarioAcceso = await _proxy.AccesoAsync(
+                            idempleado : item.Id, 
+                            sucursal : Sucursal, 
+                            acceso: true);
+
+                        if (!usuarioAcceso)
+                        {
+                            MessageBox.Show("El usuario ya está dentro del Sistema", "Acceso SirCoPOS", MessageBoxButton.OK, MessageBoxImage.Error);
+                            this.IsBusy = false;
+                            this.Password = null;
+                            this.UserName = null;
+                            this.Sucursal = null;
+                            return;
+                        }
+
                         Properties.Settings.Default.Sucursal = this.Sucursal;
                         int secs = await _proxy.TimeOutAsync();
                         TimeSpan TimeOut = new TimeSpan(0, 0, secs);
@@ -38,8 +53,8 @@ namespace SirCoPOS.Win.ViewModels
                     }
                     GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(
                         new Messages.LoginResponse { Success = item != null, Empleado = item });
-                    
-                    
+
+
                     this.Password = null;
                     this.UserName = null;
                     this.Sucursal = null;

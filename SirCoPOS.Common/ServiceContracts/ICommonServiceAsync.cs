@@ -15,6 +15,8 @@ namespace SirCoPOS.Common.ServiceContracts
         [OperationContract]
         Task<int> TimeOutAsync();
         [OperationContract]
+        Task<bool> AccesoAsync(int idempleado, string sucursal, bool acceso);
+        [OperationContract]
         Task<Entities.Empleado> FindVendedorAsync(int id);
         [OperationContract]
         Task<Entities.Empleado> FindCajeroAsync(string user);

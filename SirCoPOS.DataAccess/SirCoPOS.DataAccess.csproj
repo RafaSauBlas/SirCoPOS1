@@ -98,6 +98,7 @@
     <Compile Include="SirCoCredito\ValeDigital.cs" />
     <Compile Include="SirCoCredito\ValeFisico.cs" />
     <Compile Include="SirCoNomina\EmpleadosImg.cs" />
+    <Compile Include="SirCoPOS\UsuarioAcceso.cs" />
     <Compile Include="SirCoPOS\Reimpresion.cs" />
     <Compile Include="SirCoPVDataContext.Procedures.cs" />
     <Compile Include="SirCoImgDataContext.cs" />

@@ -15,6 +15,7 @@ namespace SirCoPOS.Win.ViewModels
         public RelayCommand LogoutCommand { get; private set; }
         private IDictionary<Utilities.Constants.TabType, bool> _options;
         private readonly Common.ServiceContracts.IAdminServiceAsync _proxy;
+        private readonly Common.ServiceContracts.ICommonServiceAsync _cnn;
         public MenuViewModel()
         {
             _options = new Dictionary<Utilities.Constants.TabType, bool>() {
@@ -58,9 +59,14 @@ namespace SirCoPOS.Win.ViewModels
             );
 
             this.CloseCommand = new RelayCommand(() => {
+                var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
+                var usuarioAcceso = _cnn.AccesoAsync(idempleado: settings.Cajero.Id, settings.Sucursal.Clave, false);
                 System.Windows.Application.Current.Shutdown();
             });
             this.LogoutCommand = new RelayCommand(() => {
+                var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
+                var usuarioAcceso =  _cnn.AccesoAsync(idempleado: settings.Cajero.Id, settings.Sucursal.Clave, false);
+
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
                 //var ls = new Helpers.LocalStorage();
                 //ls.ClearCajero();                
@@ -107,6 +113,7 @@ namespace SirCoPOS.Win.ViewModels
             if (!this.IsInDesignMode)
             {
                 _proxy = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.IAdminServiceAsync>();
+                _cnn = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.ICommonServiceAsync>();
                 var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
                 var isopen = _proxy.IsFondoAbierto(settings.Sucursal.Clave, settings.Cajero.Id);
                 GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.FondoAperturaCierre { Open = isopen });
