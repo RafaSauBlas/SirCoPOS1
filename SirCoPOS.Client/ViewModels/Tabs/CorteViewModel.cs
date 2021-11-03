@@ -55,14 +55,15 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     }
                     if (this.Auditor != null)
                     {
-                        if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM)
+                        if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM ||
+                                  Common.Constants.Puestos.Gerentes.Contains(Auditor.Puesto))
                         {
                             this.SearchAuditor = null;
                             this.User = null;                                    
                         }
                         else
                         {
-                            MessageBox.Show("Auditor no pertenece a Administración", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                            MessageBox.Show("Auditor no válido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             this.Auditor = null;
                         }
 
