@@ -1175,6 +1175,8 @@ namespace SirCoPOS.BusinessLogic
                             if (item.Importe > dist.disponible)
                                 throw new NoDisponibleExcepcion();
 
+                            var co = succli.sucursal;
+
                             if (dist.clientedi == null)
                             {
                                 dist.succtedi = succli.sucursal;
