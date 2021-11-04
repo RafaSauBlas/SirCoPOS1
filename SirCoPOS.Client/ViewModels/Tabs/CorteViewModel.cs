@@ -55,18 +55,29 @@ namespace SirCoPOS.Client.ViewModels.Tabs
                     }
                     if (this.Auditor != null)
                     {
-                        if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM ||
-                                  Common.Constants.Puestos.Gerentes.Contains(Auditor.Puesto))
+                        if (this.Auditor.Depto == (int)Common.Constants.Departamento.ADM)
                         {
                             this.SearchAuditor = null;
                             this.User = null;                                    
+                        }
+                        else if (Common.Constants.Puestos.Gerentes.Contains(Auditor.Puesto))
+                        {
+                            if (Auditor.Sucursal != settings.Sucursal.Clave)
+                            {
+                                MessageBox.Show("Auditor No es de la misma Sucursal", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                                this.Auditor = null;
+                            }                       
+                            else
+                            {
+                                this.SearchAuditor = null;
+                                this.User = null;
+                            }
                         }
                         else
                         {
                             MessageBox.Show("Auditor no válido", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                             this.Auditor = null;
-                        }
-
+                        } 
                     }
                     else
                     {
