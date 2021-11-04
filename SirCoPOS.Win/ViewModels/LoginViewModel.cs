@@ -87,6 +87,13 @@ namespace SirCoPOS.Win.ViewModels
                     }
                     this.Scanning = false;
                 }, () => !this.Scanning);
+
+                this.CloseCommand = new GalaSoft.MvvmLight.Command.RelayCommand(() =>
+                {
+                    System.Windows.Application.Current.Shutdown();
+
+                });
+
             }
             catch (Exception ex)
             {
@@ -210,6 +217,7 @@ namespace SirCoPOS.Win.ViewModels
         #region commands
         public GalaSoft.MvvmLight.Command.RelayCommand LoginCommand { get; private set; }
         public GalaSoft.MvvmLight.Command.RelayCommand ScanCommand { get; private set; }
+        public GalaSoft.MvvmLight.Command.RelayCommand CloseCommand { get; private set; }
         #endregion
     }
 }

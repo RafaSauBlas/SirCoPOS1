@@ -696,6 +696,7 @@
     <Resource Include="Images\historia.png" />
     <Resource Include="Images\historial.png" />
     <Resource Include="Images\KP.png" />
+    <Resource Include="Images\salir.jpg" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
