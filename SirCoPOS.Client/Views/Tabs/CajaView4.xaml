@@ -65,7 +65,7 @@
     <UserControl.DataContext>
         <vm:CajaViewModel/>
     </UserControl.DataContext>
-    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" Background="{x:Null}">
+    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown" Background="{x:Null}" KeyDown="Grid_KeyDown_2">
         <Grid.RowDefinitions>
             <RowDefinition Height="293*"/>
             <RowDefinition Height="7*"/>

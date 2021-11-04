@@ -60,6 +60,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         {
             get { return this.SubTotal - this.Descuento; }
         }
+
         public decimal TotalElectronica
         {
             get { return this.SubTotalElectronica - this.DescuentoElectronica; }
@@ -126,6 +127,7 @@ namespace SirCoPOS.Client.ViewModels.Tabs
         }
         #endregion
         #region properties
+
 
         //private string _folio;
         //public string Folio

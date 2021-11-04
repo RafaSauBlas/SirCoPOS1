@@ -201,7 +201,29 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.F5)
+            if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                switch (e.Key)
+                {
+                    case Key.F: //Efectivo
+                    case Key.R: //Tarjeta de crédito
+                    case Key.T: //Tardeja de debito
+                    case Key.D: //Devolución
+                    case Key.M: //Monedero electrónico
+                    case Key.G: //GoPlazos
+                    case Key.K: //KueskiPay
+                    case Key.V: //Vale
+                    case Key.C: //Contra vale
+                    case Key.P: //Credito personal
+                    case Key.O: //Credito distribuidor
+                    case Key.I: //Vale digital
+                    case Key.E: //vale externo
+                        Messenger.Default.Send(new Utilities.Messages.ShortcutMessage { Key = e.Key });
+                        break;
+                }
+            }
+
+            if (e.Key == Key.F5)
             {
                 SirCoPOS.Common.Constants.ProductoDatos.opcion = true;
             }
@@ -408,6 +430,31 @@ namespace SirCoPOS.Client.Views.Tabs
         private void UserControl_KeyUp(object sender, KeyEventArgs e)
         {
             if(Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                switch (e.Key)
+                {
+                    case Key.F: //Efectivo
+                    case Key.R: //Tarjeta de crédito
+                    case Key.T: //Tardeja de debito
+                    case Key.D: //Devolución
+                    case Key.M: //Monedero electrónico
+                    case Key.G: //GoPlazos
+                    case Key.K: //KueskiPay
+                    case Key.V: //Vale
+                    case Key.C: //Contra vale
+                    case Key.P: //Credito personal
+                    case Key.O: //Credito distribuidor
+                    case Key.I: //Vale digital
+                    case Key.E: //vale externo
+                        Messenger.Default.Send(new Utilities.Messages.ShortcutMessage { Key = e.Key });
+                        break;
+                }
+            }
+        }
+
+        private void Grid_KeyDown_2(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.Modifiers == ModifierKeys.Control)
             {
                 switch (e.Key)
                 {
