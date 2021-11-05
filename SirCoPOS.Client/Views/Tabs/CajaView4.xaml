@@ -138,7 +138,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>-->
-                            <DataGridTextColumn Header="Serie" Binding="{Binding Serie}" FontSize="18" Width="130" >
+                            <DataGridTextColumn Header="Serie" Binding="{Binding Serie}" FontSize="16" Width="120" >
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -151,7 +151,25 @@
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Unico" Binding="{Binding ParUnico, Converter={StaticResource BolText}}" FontSize="18" Width="55">
+                            <DataGridTextColumn Header="Descripción" Binding="{Binding Nombre}" FontSize="16" Width="164" >
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                                        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                                <DataGridTextColumn.HeaderStyle>
+                                    <Style TargetType="DataGridColumnHeader">
+                                        <Setter Property="FontFamily" Value="calibri Light"/>
+                                    </Style>
+                                </DataGridTextColumn.HeaderStyle>
+                                <DataGridTextColumn.CellStyle>
+                                    <Style TargetType="DataGridCell">
+                                        <Setter Property="ToolTip" Value="{Binding Nombre}" />
+                                    </Style>
+                                </DataGridTextColumn.CellStyle>
+                            </DataGridTextColumn>
+                            <!--<DataGridTextColumn Header="Unico" Binding="{Binding ParUnico, Converter={StaticResource BolText}}" FontSize="18" Width="55">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -163,7 +181,7 @@
                                         <Setter Property="FontFamily" Value="calibri Light"/>
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
-                            </DataGridTextColumn>
+                            </DataGridTextColumn>-->
                             <DataGridTemplateColumn Header="Foto">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -174,7 +192,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTextColumn Header="Marca" Binding="{Binding Marca}" FontSize="18">
+                            <DataGridTextColumn Header="Marca" Binding="{Binding Marca}" FontSize="16">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -188,7 +206,7 @@
                                 </DataGridTextColumn.HeaderStyle>
 
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Modelo" Binding="{Binding Modelo}" FontSize="18" >
+                            <DataGridTextColumn Header="Modelo" Binding="{Binding Modelo}" FontSize="16" >
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -202,7 +220,7 @@
                                 </DataGridTextColumn.HeaderStyle>
 
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Talla" Binding="{Binding Talla}" FontSize="18" >
+                            <DataGridTextColumn Header="Talla" Binding="{Binding Talla}" FontSize="16" >
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -310,7 +328,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>-->
-                            <DataGridTextColumn Header="Monedero" Binding="{Binding Monedero, StringFormat=\{0:C\}}" FontSize="18">
+                            <!--<DataGridTextColumn Header="Monedero" Binding="{Binding Monedero, StringFormat=\{0:C\}}" FontSize="18">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -322,7 +340,7 @@
                                         <Setter Property="FontFamily" Value="calibri Light"/>
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
-                            </DataGridTextColumn>
+                            </DataGridTextColumn>-->
                             <DataGridTextColumn Header="Total" Binding="{Binding Total, StringFormat=\{0:C\}}" FontSize="18">
                                 <DataGridTextColumn.ElementStyle >
                                     <Style TargetType="TextBlock">
@@ -353,7 +371,7 @@
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
                             </DataGridTextColumn>
-                            <DataGridTextColumn Header="Saldo" Binding="{Binding Saldo, StringFormat=\{0:C\}}" FontSize="18">
+                            <!--<DataGridTextColumn Header="Saldo" Binding="{Binding Saldo, StringFormat=\{0:C\}}" FontSize="18">
                                 <DataGridTextColumn.ElementStyle>
                                     <Style TargetType="TextBlock">
                                         <Setter Property="VerticalAlignment" Value="Center"></Setter>
@@ -366,7 +384,7 @@
                                         <Setter Property="FontFamily" Value="calibri Light"/>
                                     </Style>
                                 </DataGridTextColumn.HeaderStyle>
-                            </DataGridTextColumn>
+                            </DataGridTextColumn>-->
                             <DataGridTemplateColumn Header="Forma Pago">
 
                                 <DataGridTemplateColumn.CellTemplate>
@@ -826,8 +844,9 @@
             </Grid>
         </tk:ChildWindow>
 
-        <tk:ChildWindow  Caption="Formas de Pago" DesignerWindowState="Closed" WindowState="{Binding ShowPagos, Converter={StaticResource windowState}, Mode=TwoWay}" Height="560" Width="925" WindowStartupLocation="Center" IsModal="True" HorizontalAlignment="Left"  VerticalAlignment="Top">
-            <Grid>
+        <tk:ChildWindow  Caption="Formas de Pago" DesignerWindowState="Closed" WindowState="{Binding ShowPagos, Converter={StaticResource windowState}, Mode=TwoWay}" 
+                         Height="570" Width="965" WindowStartupLocation="Center" IsModal="True" HorizontalAlignment="Left"  VerticalAlignment="Center">
+            <Grid Background="AliceBlue">
                 <ItemsControl ItemsSource="{Binding FormasPago}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -837,13 +856,13 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Button Width="170" Height="160" Margin="5,5,5,5" IsEnabled="{Binding Value.Enabled}" >
+                                <Button Width="170" Height="160" Margin="10,10,10,5" IsEnabled="{Binding Value.Enabled}" >
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="Click">
                                             <i:InvokeCommandAction CommandParameter="{Binding Key}" Command="{Binding DataContext.AddFormaCommand, ElementName=dummyElement}"/>
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
-                                    <Image Source="{Binding Key, Mode=OneWay, Converter={StaticResource ImgSource}}"  RenderOptions.BitmapScalingMode="NearestNeighbor" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    <Image Source="{Binding Key, Mode=OneWay, Converter={StaticResource ImgSource}}"  RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     <Button.ToolTip>
                                         <ToolTip Background="LightSteelBlue" Foreground="Black">
                                             <TextBlock Text="{Binding Key, Mode=OneWay, Converter={StaticResource FPagoText}}"  FontSize="14" FontWeight="DemiBold"/>

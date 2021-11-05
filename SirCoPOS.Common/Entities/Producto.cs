@@ -26,6 +26,7 @@ namespace SirCoPOS.Common.Entities
         public bool ParUnico { get; set; }
         public byte? MaxPlazos { get; set; }        
         public string Sucursal { get; set; }
+        public string Nombre { get; set; }
     }
 
     public class ProductoSale : Producto

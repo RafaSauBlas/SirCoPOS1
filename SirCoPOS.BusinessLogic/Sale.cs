@@ -171,6 +171,7 @@ namespace SirCoPOS.BusinessLogic
             {
                 if (item.ArticuloId > 0)
                 {
+                    string nombre = ctx.Articulos.Where(i => i.Id == item.ArticuloId).Select(k => k.Descripcion).SingleOrDefault();
                     var isElectronica = item.Articulo.iddivisiones == (int)Divisiones.Electronica;
                     var isAccesorio   = item.Articulo.iddivisiones == (int)Divisiones.Accesorio;
                     var isParUnico = this.IsParUnico(item.Articulo.idagrupacion);
@@ -213,7 +214,8 @@ namespace SirCoPOS.BusinessLogic
                             Accesorio = isAccesorio,
                             ParUnico = isParUnico,
                             MaxPlazos = maxPlazos,
-                            Sucursal = item.sucursal
+                            Sucursal = item.sucursal,
+                            Nombre = nombre
                         }
                     };
                     if (res.Status == Status.CA && item.fechacaja.HasValue)

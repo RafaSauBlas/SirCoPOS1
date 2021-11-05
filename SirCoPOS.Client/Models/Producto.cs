@@ -187,6 +187,7 @@ namespace SirCoPOS.Client.Models
             get { return _NotaRazon; }
             set { Set(nameof(this.NotaRazon), ref _NotaRazon, value); }
         }
+        public string Nombre { get; set; }
 
     }
 }
