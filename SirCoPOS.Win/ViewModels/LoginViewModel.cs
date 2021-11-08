@@ -31,8 +31,8 @@ namespace SirCoPOS.Win.ViewModels
                     if (item != null)
                     {
                         var usuarioAcceso = await _proxy.AccesoAsync(
-                            idempleado : item.Id, 
-                            sucursal : Sucursal, 
+                            idempleado : item.Id,
+                            sucursal : Sucursal,
                             acceso: true);
 
                         if (!usuarioAcceso)
