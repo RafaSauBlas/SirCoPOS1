@@ -912,7 +912,7 @@ namespace SirCoPOS.Services
         {
             var ctxn = new DataAccess.SirCoNominaDataContext();
 
-            var aud = ctxn.Empleados.Where(i => i.idempleado == idauditor).Single();
+            var aud = ctxn.Empleados.Where(i => i.idempleado == idcajero).Single();
             var last = ctxn.Repetitivos.OrderByDescending(i => i.idrepetitivo).FirstOrDefault();
 
             //var ctxc = new DataAccess.SirCoCreditoDataContext();
