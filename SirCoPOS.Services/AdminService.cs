@@ -911,7 +911,7 @@ namespace SirCoPOS.Services
         private void GenerarRepetitivo(decimal monto, string sucursal, int idcajero, int idauditor, DateTime now)
         {
             var ctxn = new DataAccess.SirCoNominaDataContext();
-
+            //Aquí se debe buscar por 'idcajero', no por 'idauditor' por eso se cierra el sistema cuando se genera un corte con faltante.
             var aud = ctxn.Empleados.Where(i => i.idempleado == idcajero).Single();
             var last = ctxn.Repetitivos.OrderByDescending(i => i.idrepetitivo).FirstOrDefault();
 
