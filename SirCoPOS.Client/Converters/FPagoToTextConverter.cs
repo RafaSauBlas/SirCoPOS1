@@ -37,7 +37,7 @@ namespace SirCoPOS.Client.Converters
                     case SirCoPOS.Common.Constants.FormaPago.TC:
                         return "Ctrl + R - TARJETA DE CRÉDITO";
                     case SirCoPOS.Common.Constants.FormaPago.TD:
-                        return "Ctrl + T - TARJETA DE DEBITO";
+                        return "Ctrl + T - TARJETA DE DÉBITO";
                     case SirCoPOS.Common.Constants.FormaPago.VA:
                         return "Ctrl + V - VALE";
                     case SirCoPOS.Common.Constants.FormaPago.VD:
