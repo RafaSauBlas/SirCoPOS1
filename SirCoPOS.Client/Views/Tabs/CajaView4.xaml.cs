@@ -109,6 +109,12 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void scanTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
          {
+            //if (e.Key >= Key.D0 && e.Key <= Key.D9 || e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9 |)
+            //    e.Handled = false;
+            //else
+            //    e.Handled = true;
+
+
             var vm = (ViewModels.Tabs.CajaViewModel)this.DataContext;
             if (vm.Cajero.Depto == 3)
             {
@@ -201,27 +207,27 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void UserControl_KeyDown(object sender, KeyEventArgs e)
         {
-            if (Keyboard.Modifiers == ModifierKeys.Control)
-            {
-                switch (e.Key)
-                {
-                    case Key.F: //Efectivo
-                    case Key.R: //Tarjeta de crédito
-                    case Key.T: //Tardeja de debito
-                    case Key.D: //Devolución
-                    case Key.M: //Monedero electrónico
-                    case Key.G: //GoPlazos
-                    case Key.K: //KueskiPay
-                    case Key.V: //Vale
-                    case Key.C: //Contra vale
-                    case Key.P: //Credito personal
-                    case Key.O: //Credito distribuidor
-                    case Key.I: //Vale digital
-                    case Key.E: //vale externo
-                        Messenger.Default.Send(new Utilities.Messages.ShortcutMessage { Key = e.Key });
-                        break;
-                }
-            }
+            //if (Keyboard.Modifiers == ModifierKeys.Control)
+            //{
+            //    switch (e.Key)
+            //    {
+            //        case Key.F: //Efectivo
+            //        case Key.R: //Tarjeta de crédito
+            //        case Key.T: //Tardeja de debito
+            //        case Key.D: //Devolución
+            //        case Key.M: //Monedero electrónico
+            //        case Key.G: //GoPlazos
+            //        case Key.K: //KueskiPay
+            //        case Key.V: //Vale
+            //        case Key.C: //Contra vale
+            //        case Key.P: //Credito personal
+            //        case Key.O: //Credito distribuidor
+            //        case Key.I: //Vale digital
+            //        case Key.E: //vale externo
+            //            Messenger.Default.Send(new Utilities.Messages.ShortcutMessage { Key = e.Key });
+            //            break;
+            //    }
+            //}
 
             if (e.Key == Key.F5)
             {
@@ -447,7 +453,8 @@ namespace SirCoPOS.Client.Views.Tabs
                     case Key.I: //Vale digital
                     case Key.E: //vale externo
                         Messenger.Default.Send(new Utilities.Messages.ShortcutMessage { Key = e.Key });
-                        break;
+                        this.scanTextBox.Text = "";
+                    break;
                 }
             }
         }
@@ -475,6 +482,65 @@ namespace SirCoPOS.Client.Views.Tabs
                         break;
                 }
             }
+        }
+
+        private void Grid_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                switch (e.Key)
+                {
+                    case Key.F: //Efectivo
+                    case Key.R: //Tarjeta de crédito
+                    case Key.T: //Tardeja de debito
+                    case Key.D: //Devolución
+                    case Key.M: //Monedero electrónico
+                    case Key.G: //GoPlazos
+                    case Key.K: //KueskiPay
+                    case Key.V: //Vale
+                    case Key.C: //Contra vale
+                    case Key.P: //Credito personal
+                    case Key.O: //Credito distribuidor
+                    case Key.I: //Vale digital
+                    case Key.E: //vale externo
+                        Messenger.Default.Send(new Utilities.Messages.ShortcutMessage { Key = e.Key });
+                        break;
+                }
+            }
+        }
+
+        private void dgView_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.Modifiers == ModifierKeys.Control)
+            {
+                switch (e.Key)
+                {
+                    case Key.F: //Efectivo
+                    case Key.R: //Tarjeta de crédito
+                    case Key.T: //Tardeja de debito
+                    case Key.D: //Devolución
+                    case Key.M: //Monedero electrónico
+                    case Key.G: //GoPlazos
+                    case Key.K: //KueskiPay
+                    case Key.V: //Vale
+                    case Key.C: //Contra vale
+                    case Key.P: //Credito personal
+                    case Key.O: //Credito distribuidor
+                    case Key.I: //Vale digital
+                    case Key.E: //vale externo
+                        Messenger.Default.Send(new Utilities.Messages.ShortcutMessage { Key = e.Key });
+                    break;
+                }
+            }
+        }
+
+        private void scanTextBox_PreviewTextInput_2(object sender, TextCompositionEventArgs e)
+        {
+            int character = Convert.ToInt32(Convert.ToChar(e.Text));
+            if (character >= 48 && character <= 57)
+                e.Handled = false;
+            else
+                e.Handled = true;
         }
     }
 }
