@@ -42,12 +42,11 @@ namespace SirCoPOS.Client
             dt.Stop();
             Messenger.Default.Send<string>("cerrar", "Cerrar");
             //Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
-
+            
             var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
             var usuarioAcceso = _cnn.AccesoAsync(idempleado: settings.Cajero.Id, settings.Sucursal.Clave, false);
-            GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());   
+            GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
         }
-
 
         public void iniciar()
         {
