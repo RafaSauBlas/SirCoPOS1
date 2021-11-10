@@ -127,6 +127,9 @@ namespace SirCoPOS.Client.Helpers
                 case nameof(this.ClientConfirmed):
                     this.FormasPago.Refresh();
                     break;
+                case nameof(this.ShowPagos):
+                    Messenger.Default.Send<string>("focus", "DoFocus");
+                    break;
             }
         }
 
