@@ -254,8 +254,11 @@ namespace SirCoPOS.Client.ViewModels.Caja
                     {
                         var ind = this.Promocion.Promociones.ToList().IndexOf(this.SelectedPromocion.Value);
                         var max = this.Promocion.PagosMax - ind;
+                        var min = this.Promocion.PagosMin;
                         if (max > 0)
                         {
+                            if (max < min)
+                                max = min;
                             var options = Enumerable.Range(1, max);
                             this.Plazos = options;
                         }

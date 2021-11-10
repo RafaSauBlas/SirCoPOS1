@@ -10,6 +10,7 @@ namespace SirCoPOS.Common.Entities
     {
         //public IEnumerable<int> Plazos { get; set; }
         public int PagosMax { get; set; }
+        public int PagosMin { get; set; }
         public int Selected { get; set; }
     }
 

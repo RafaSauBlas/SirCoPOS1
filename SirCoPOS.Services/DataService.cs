@@ -239,6 +239,7 @@ namespace SirCoPOS.Services
                 return null;
 
             int pagosmax = promocion.pagosmax.Value;
+            int pagosmin = promocion.pagosmin.Value;
             int dias = -2;
             if (tipocredito == "TARJETAHABIENTE")
             {
@@ -269,6 +270,7 @@ namespace SirCoPOS.Services
             {
                 Selected = promocion.pagosmin.Value,
                 PagosMax = pagosmax,
+                PagosMin = pagosmin,
                 //Plazos = Enumerable.Range(1, promocion.pagosmax.Value),
                 Promociones = q.Select(i => i.fechaaplicar.Value.AddDays(dias)).Take(fechas),
                 Fechas = qfechas.Select(i => i.fechaaplicar.Value.AddDays(dias)),
@@ -301,6 +303,7 @@ namespace SirCoPOS.Services
             {
                 Selected = promocion.pagosmin.Value,
                 PagosMax = promocion.pagosmax.Value,
+                PagosMin = promocion.pagosmin.Value,
                 //Plazos = Enumerable.Range(1, promocion.pagosmax.Value),
                 Promocion = first?.fechapagocliente
             };

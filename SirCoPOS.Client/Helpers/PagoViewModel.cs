@@ -75,7 +75,8 @@ namespace SirCoPOS.Client.Helpers
                         this.Total = this.PagoIem.Importe.Value + this.Caja.Remaining;
                         this.RaisePropertyChanged(nameof(this.Total));
                     }
-                    Caja.refreshValorDV();
+                    if (this.Pagar != null)
+                        Caja.refreshValorDV();
                     this.AcceptCommand.RaiseCanExecuteChanged();
                     break;
                 case nameof(this.DevProrrateo):
