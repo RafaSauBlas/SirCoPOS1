@@ -24,8 +24,10 @@ namespace SirCoPOS.Client
     public class MetodoInactividad
     {
         private System.Windows.Threading.DispatcherTimer _dt;
+        private readonly Common.ServiceContracts.ICommonServiceAsync _cnn;
         public MetodoInactividad()
         {
+            _cnn = CommonServiceLocator.ServiceLocator.Current.GetInstance<Common.ServiceContracts.ICommonServiceAsync>();
             Messenger.Default.Register<string>(this, "detener", detener);
             Messenger.Default.Register<string>(this, "reiniciar", reiniciar);
             _dt = new System.Windows.Threading.DispatcherTimer();
@@ -39,8 +41,11 @@ namespace SirCoPOS.Client
             var dt = (System.Windows.Threading.DispatcherTimer)sender;
             dt.Stop();
             Messenger.Default.Send<string>("cerrar", "Cerrar");
-            Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
-            //MessageBox.Show("SE HA AGOTADO EL TIEMPO XDXD");
+            //Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());
+
+            var settings = CommonServiceLocator.ServiceLocator.Current.GetInstance<Utilities.Models.Settings>();
+            var usuarioAcceso = _cnn.AccesoAsync(idempleado: settings.Cajero.Id, settings.Sucursal.Clave, false);
+            GalaSoft.MvvmLight.Messaging.Messenger.Default.Send(new Utilities.Messages.LogoutTimeout());   
         }
 
 
