@@ -33,6 +33,7 @@ namespace SirCoPOS.Client.Views.Caja
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.terminacionTextBox.Focus();
+            this.checkBox.IsChecked = false;
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
@@ -53,6 +54,19 @@ namespace SirCoPOS.Client.Views.Caja
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
             Messenger.Default.Send<string>("rest", "Reiniciar");
+        }
+        private void ChkBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox.IsChecked == true)
+            {
+                this.botones.Visibility = Visibility.Visible;
+                this.id.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                this.id.Visibility = Visibility.Collapsed;
+                this.botones.Visibility = Visibility.Collapsed;
+            }
         }
     }
 }
