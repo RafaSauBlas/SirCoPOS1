@@ -543,6 +543,14 @@ namespace SirCoPOS.BusinessLogic
                             detalle.terminacion = item.Terminacion;
                             detalle.transaccion = item.Referencia;
                             detalle.observaciones = $"Term: {item.Terminacion}, Tran: {item.Referencia}";
+                            var oper = ctxpv.OperacionesTarjeta.Where(i => i.orderId == item.OrderId
+                                && i.responseCode == "00"
+                            ).SingleOrDefault();
+                            if (oper == null)
+                                throw new NoExisteOperacionTarjetaExcepcion();
+                            oper.sucursal = detalle.sucursal;
+                            oper.venta = detalle.pago;
+                            //oper.idformapago = detalle.idformapago;
                         }
                         break;
                     case FormaPago.DV:
