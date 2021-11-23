@@ -16,9 +16,10 @@ namespace SirCoPOS.DataAccess.SirCoCredito
         public int iddistrib { get; set; }
         [Key]
         [Column(Order = 1)]
+        public string valeini { get; set; }
+
         public string valera { get; set; }
         public string distrib { get; set; }
-        public string valeini { get; set; }
         public string valefin { get; set; }
     }
 }

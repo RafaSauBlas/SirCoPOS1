@@ -419,10 +419,10 @@ namespace SirCoPOS.BusinessLogic
                 var adentro = ctx.UsuarioAccesos.Where(i => i.idempleado== idempleado && i.entrada != fechaVacia && i.salida == fechaVacia).Any();
                 if (adentro)
                     return false;
-                
+
                 var Empleado = ctxn.Empleados.Where(i => i.idempleado == idempleado).SingleOrDefault();
 
-                IPHostEntry host = Dns.GetHostEntry(LocalIPAddress());
+                    IPHostEntry host = Dns.GetHostEntry(LocalIPAddress());
                 string hostName = host.HostName;
 
                 var item = new DataAccess.SirCoPOS.UsuarioAcceso
