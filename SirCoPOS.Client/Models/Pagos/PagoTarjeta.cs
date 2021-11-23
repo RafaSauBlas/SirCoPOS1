@@ -10,5 +10,6 @@ namespace SirCoPOS.Client.Models.Pagos
     {
         public string Terminacion { get; set; }
         public string Referencia { get; set; }    
+        public string OrderId { get; set; }
     }
 }

@@ -266,7 +266,8 @@ namespace SirCoPOS.Client.Helpers
                         FormaPago = o.FormaPago,
                         Importe = o.Importe,
                         Terminacion = o.Terminacion,
-                        Referencia = o.Referencia
+                        Referencia = o.Referencia,
+                        OrderId = o.OrderId,
                     };
                     break;
                 case FormaPago.VA:
@@ -589,7 +590,8 @@ namespace SirCoPOS.Client.Helpers
                         FormaPago = item.FormaPago,
                         Importe = item.Importe.Value,
                         Terminacion = i.Terminacion,
-                        Referencia = i.Referencia
+                        Referencia = i.Referencia,
+                        OrderId = i.OrderId
                     });
                 }
                 else if (item is Models.Pagos.PagoContraVale)

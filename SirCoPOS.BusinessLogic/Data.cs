@@ -469,5 +469,86 @@ namespace SirCoPOS.BusinessLogic
                 .AddressList
                 .FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
         }
+        public string RegistraOperacion(OperacionTarjeta request, Guid gid)
+        {
+            var ctxpv = new DataAccess.SirCoPVDataContext();
+            DateTime fecha = DateTime.Parse(Formats.DATE_EMPTY);
+
+            var now =  Helpers.Common.GetNow();
+            if (request.data.transDate != null)
+            {
+                int timeZonePos = request.data.transDate.LastIndexOf('.') + 1;
+                string tz = request.data.transDate.Substring(timeZonePos);
+                var dateString = request.data.transDate.Substring(0, request.data.transDate.Length - tz.Length-1);
+
+                if (Helpers.Common.s_timeZoneOffsets.ContainsKey(tz))
+                {
+                    dateString += Helpers.Common.s_timeZoneOffsets[tz];
+                    fecha = DateTime.ParseExact(dateString, "yyyy-MM-dd HH:mm:sszzz", System.Globalization.CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    fecha = Convert.ToDateTime(dateString);
+                }
+            }
+            DateTime fechaTran = fecha;
+            
+            decimal Amount = 0;
+            decimal TipAmount = 0;
+            decimal TipLessAmount = 0;
+            if (request.data.tipAmount != null)
+                TipAmount = Convert.ToDecimal(request.data.tipAmount);
+            if (request.data.tipLessAmount != null)
+                TipLessAmount = Convert.ToDecimal(request.data.tipLessAmount);
+            if (request.data.amount != null)
+                Amount = Convert.ToDecimal(request.data.amount);
+
+            var item = new DataAccess.SirCoPV.OperacionTarjeta
+            {
+                affiliation = request.data.affiliation,
+                applicationLabel = request.data.applicationLabel,
+                arqc = request.data.arqc,
+                aid = request.data.aid,
+                amount = Amount,
+                authCode = request.data.authCode,
+                bankName = request.data.bankName,
+                cardExpDate = request.data.cardExpDate,
+                cardType = request.data.cardType,
+                cardTypeName = request.data.cardTypeName,
+                cityName = request.data.cityName,
+                responseCode = request.data.responseCode,
+                folioNumber = request.data.folioNumber,
+                hasPin = request.data.hasPin,
+                hexSign = request.data.hexSign,
+                isQps = request.data.isQPS,
+                message = request.data.message,
+                moduleCharge = request.data.moduleCharge,
+                moduleLote = request.data.moduleLote,
+                customerName = request.data.customerName,
+                terminalId = request.data.terminalId,
+                orderId = request.data.orderId,
+                preAuth = request.data.preAuth,
+                preStatus = request.data.preStatus,
+                promotion = request.data.promotion,
+                rePrintDate = request.data.rePrintDate,
+                rePrintMark = request.data.rePrintMark,
+                rePrintModule = request.data.reprintModule,
+                cardNumber = request.data.cardNumber,
+                storeId = request.data.storeId,
+                storeName = request.data.storeName,
+                streetName = request.data.streetName,
+                ticketDate = request.data.ticketDate,
+                tipAmount = TipAmount,
+                tipLessAmount = TipLessAmount,
+                transDate = fechaTran,
+                transType = request.data.transType,
+                transactionCertificate = request.data.transactionCertificate,
+                guid= gid,
+                fum = now
+            };
+            ctxpv.OperacionesTarjeta.Add( item );
+            ctxpv.SaveChanges();
+            return request.data.responseCode;
+        }
     }
 }

@@ -41,6 +41,13 @@ namespace SirCoPOS.BusinessLogic
         {
         }
     }
+    public class NoExisteOperacionTarjetaExcepcion : Common.Helpers.BaseExcepcion
+    {
+        public NoExisteOperacionTarjetaExcepcion()
+            : base("No se Localizó la Operación con Tarjeta")
+        {
+        }
+    }
     public class NoExisteValeExcepcion : Common.Helpers.BaseExcepcion
     {
         public NoExisteValeExcepcion()

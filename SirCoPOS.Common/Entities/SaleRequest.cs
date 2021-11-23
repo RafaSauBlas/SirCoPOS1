@@ -31,6 +31,7 @@ namespace SirCoPOS.Common.Entities
         //tarjeta
         public string Terminacion { get; set; }
         public string Referencia { get; set; }
+        public string OrderId { get; set; }
         //devolucion
         public string Sucursal { get; set; }
         public string Devolucion { get; set; }
