@@ -18,6 +18,7 @@ namespace SirCoPOS.Utilities.Messages
         public string Folio { get; set; }
         public string Terminacion { get; set; }
         public string Referencia { get; set; }
+        public string OrderId { get; set; }
         public string Vale { get; set; }
         public int? Cliente { get; set; }
         [XmlIgnore]

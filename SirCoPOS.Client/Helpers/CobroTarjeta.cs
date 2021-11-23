@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using System.Windows;
+using Newtonsoft.Json;
 using NetPayConnect;
 
 namespace SirCoPOS.Client.Helpers
@@ -11,39 +14,66 @@ namespace SirCoPOS.Client.Helpers
     public class CobroTarjeta
     {
 
-        public static string Venta(decimal cantidad, string folio)
+        NetPayConnect.Operator connectorPAX = new NetPayConnect.Operator();
+        private static bool disablePrint = false;
+        public void Cobrar(double pagar, string folio)
         {
-            Operator connectorPAX = new Operator();
-
-            connectorPAX.SetAmount((double)cantidad);
-            connectorPAX.SetFolio(folio);
-            //connectorPAX.SetMSI(msi);
-            //enviamos la transacción y la almacenamos en la variable result string
-            string result = connectorPAX.sendData();
-
-            return result;
-        }
-        public static string Reimpresion(string orderId)
-        {
-            Operator connectorPAX = new Operator();
-            string result = connectorPAX.sendPrint(orderId);
-
-            return result;
-        }
-
-        public static string Cancelacion(string orderId)
-        {
-            Operator connectorPAX = new Operator();
-            string result = connectorPAX.sendCancel(orderId);
-
-            return result;
+            try
+            {
+                connectorPAX.SetAmount(pagar);
+                connectorPAX.SetFolio(folio);
+                connectorPAX.SetTip(0.0);
+                connectorPAX.SetMSI(Convert.ToInt32(0));
+                connectorPAX.setDisablePrintAnimation(disablePrint);
+                connectorPAX.sendData();
+            }
+            catch (Exception ec)
+            {
+                var msg = ec.Message;
+                MessageBox.Show(msg, "Cobro Tarjeta", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
-        public static NetPayConnect.Response GetResponse()
+        public string getResponseData()
         {
-            Operator connectorPAX = new Operator();
-            NetPayConnect.Response result = connectorPAX.getResponse();
+            connectorPAX.ReceiveData();
+            if (connectorPAX.getResponse() != null)
+            {
+                return JsonConvert.SerializeObject(connectorPAX.getResponse());
+            }
+            else
+            {
+                return null ;
+            }
+        }
 
+        public string Cancela(string orderId)
+        {
+            string result = null;
+            try
+            {
+                result = connectorPAX.sendCancel(orderId);
+            }
+            catch (Exception ec)
+            {
+                result = null;
+            }
+            getResponseData();
+            return result;
+        }
+
+        public string Reimprime(string orderId)
+        {
+            string result = null;
+            try
+            {
+                result = connectorPAX.sendPrint(orderId);
+            }
+            catch (Exception ec)
+            {
+                result = null;
+            }
+            getResponseData();
             return result;
         }
 

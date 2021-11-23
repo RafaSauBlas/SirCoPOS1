@@ -536,6 +536,8 @@ namespace SirCoPOS.Client.Views.Tabs
 
         private void scanTextBox_PreviewTextInput_2(object sender, TextCompositionEventArgs e)
         {
+            if (e.Text.Length == 0)
+                return;
             int character = Convert.ToInt32(Convert.ToChar(e.Text));
             if (character >= 48 && character <= 57)
                 e.Handled = false;

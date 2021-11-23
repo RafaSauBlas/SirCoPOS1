@@ -160,6 +160,7 @@
     <Compile Include="SirCoPVDataContext.cs" />
     <Compile Include="SirCoPV\Agrupaciones.cs" />
     <Compile Include="SirCoPV\AgrupacionesDetalle.cs" />
+    <Compile Include="SirCoPV\OperacionTarjeta.cs" />
     <Compile Include="SirCoPV\SeriePromocion.cs" />
     <Compile Include="SirCoPV\Cupones.cs" />
     <Compile Include="SirCoPV\CuponesDetalle.cs" />
