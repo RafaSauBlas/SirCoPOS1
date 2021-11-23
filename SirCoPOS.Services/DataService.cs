@@ -457,6 +457,11 @@ namespace SirCoPOS.Services
             }
             return Valor;
         }
+        public string RegistraOperacion(OperacionTarjeta request, Guid gid)
+        {
+            var _proc = new BusinessLogic.Data();
+            return _proc.RegistraOperacion(request, gid);
+        }
         public int getminPago(string tipo)
         {
             int Valor = 1;
