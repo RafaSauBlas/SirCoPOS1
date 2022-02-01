@@ -33,7 +33,9 @@ namespace SirCoPOS.Client.Views.Caja
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             this.terminacionTextBox.Focus();
-            this.checkBox.IsChecked = false;
+            this.id.Visibility = Visibility.Collapsed;
+            this.botones.Visibility = Visibility.Collapsed;
+            this.checkBox.IsEnabled = true;
         }
 
         private void UserControl_MouseMove(object sender, MouseEventArgs e)
@@ -66,6 +68,15 @@ namespace SirCoPOS.Client.Views.Caja
             {
                 this.id.Visibility = Visibility.Collapsed;
                 this.botones.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void maskedTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+                return;
             }
         }
     }

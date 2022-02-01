@@ -16,7 +16,7 @@ namespace SirCoPOS.Client.Helpers
 
         NetPayConnect.Operator connectorPAX = new NetPayConnect.Operator();
         private static bool disablePrint = false;
-        public void Cobrar(double pagar, string folio)
+        public bool Cobrar(double pagar, string folio)
         {
             try
             {
@@ -26,11 +26,13 @@ namespace SirCoPOS.Client.Helpers
                 connectorPAX.SetMSI(Convert.ToInt32(0));
                 connectorPAX.setDisablePrintAnimation(disablePrint);
                 connectorPAX.sendData();
+                return true;
             }
             catch (Exception ec)
             {
                 var msg = ec.Message;
-                MessageBox.Show(msg, "Cobro Tarjeta", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Problema de comunicación con Terminal", "Cobro Tarjeta", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
             }
         }
 

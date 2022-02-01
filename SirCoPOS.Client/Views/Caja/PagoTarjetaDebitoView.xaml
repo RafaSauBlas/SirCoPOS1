@@ -35,11 +35,11 @@
         <Grid.Background>
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
         </Grid.Background>
-        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Text="Total" Margin="20,0,0,0"/>
-        <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Text="Pago" Margin="20,0,0,0"/>
-        <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Text="Terminación" Margin="20,0,0,0"/>
-        <TextBlock Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" Text="Referencia" Margin="20,0,0,0"/>
-        <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Left" Text="Saldo" Margin="20,0,0,0"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Total" Margin="20,0,0,0"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Pago" Margin="20,0,0,0"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Terminación" Margin="20,0,0,0"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Referencia" Margin="20,0,0,0"/>
+        <TextBlock Grid.Row="5" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Text="Saldo" Margin="20,0,0,0"/>
         <CheckBox  Grid.Row="6" Grid.Column="1" 
                    x:Name="checkBox" 
                    VerticalContentAlignment="Center" 
@@ -54,7 +54,7 @@
                    Content="Pago Terminal">
         </CheckBox>
 
-        <TextBlock Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Text="{Binding Total, StringFormat=\{0:C\}}" Margin="0,0,10,0"/>
+        <TextBlock Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Total, StringFormat=\{0:C\}}" Margin="0,0,10,0"/>
         <TextBox   Grid.Row="2" Grid.Column="3"   x:Name="txtPagar" HorizontalAlignment="Right" Height="25" Text="{Binding Pagar, StringFormat=\{0:C\}, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" VerticalAlignment="Top" Width="120" TextAlignment="Right" TextChanged="TextBox_TextChanged" Margin="0,0,10,0"/>
         <TextBox Grid.Row="3" Grid.Column="3" IsEnabled="{Binding CobroSinTerminal}" 
             x:Name="terminacionTextBox" 
@@ -78,7 +78,7 @@
             TextChanged="terminacionTextBox_TextChanged" Margin="0,0,20,0">
         </xt:MaskedTextBox>-->
         <TextBox   Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right"  IsEnabled="{Binding CobroSinTerminal}"  Text="{Binding Referencia, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="230" Height="25" TextAlignment="Right" TextChanged="TextBox_TextChanged_1" Margin="0,0,10,0"/>
-        <TextBlock Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" Text="{Binding Pendiente, Mode=OneWay, StringFormat=\{0:C\}}" Margin="0,5,10,0"/>
+        <TextBlock Grid.Row="5" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Text="{Binding Pendiente, Mode=OneWay, StringFormat=\{0:C\}}" Margin="0,5,10,0"/>
 
         <StackPanel x:Name="botones" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Command="{Binding CobroTarjetaCommand}" 
@@ -155,6 +155,33 @@
                         </TextBlock>
                     </StackPanel>
                 </Button.ToolTip>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="LightBlue" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" 
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}">
+                                        <Grid>
+                                            <Rectangle x:Name="background"
+                                                        Fill="{TemplateBinding Background}" />
+                                            <ContentPresenter
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="background" Property="Opacity" Value=".3"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
             </Button>
             <Button Command="{Binding ReimprimeCobroCommand}" 
                     HorizontalAlignment="Right" 
@@ -179,6 +206,33 @@
                         </TextBlock>
                     </StackPanel>
                 </Button.ToolTip>
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="LightBlue" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="Border" 
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}">
+                                        <Grid>
+                                            <Rectangle x:Name="background"
+                                                        Fill="{TemplateBinding Background}" />
+                                            <ContentPresenter
+                                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Grid>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="background" Property="Opacity" Value=".3"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
             </Button>
         </StackPanel>
 
@@ -189,7 +243,7 @@
             <TextBlock x:Name="lbl_idCobro" HorizontalAlignment="Left" Text="Id" Margin="0,0,5,0" VerticalAlignment="Center"/>
             <TextBox   x:Name="idCobro" HorizontalAlignment="Right" TextAlignment="Right" Text="{Binding OrderId}" Width="230" Height="25" IsEnabled="False"/>
         </StackPanel>
-        
-        <xt:BusyIndicator Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" IsBusy="{Binding IsBusy}" BusyContent="Esperando Terminal..."  />
+
+        <xt:BusyIndicator Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="3" IsBusy="{Binding IsBusy}" BusyContent="Esperando Terminal..."  />
     </Grid>
 </UserControl>

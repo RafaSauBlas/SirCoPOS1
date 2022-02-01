@@ -44,18 +44,27 @@ namespace SirCoPOS.Client.ViewModels.Caja
                 MessageBox.Show("Problema de comunicación con Terminal", "Pago Tarjeta", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             this.CobroTarjetaCommand = new RelayCommand(() => {
+                bool cobro = false;
                 tmr = new Timer(tmr_Tick, null, 0, 500);
                 this.IsBusy= true;
                 try
                 {
                     if (this.Pagar.HasValue)
                     {
-                        GetCobro.Cobrar((double)this.Pagar, "");
+                        cobro = GetCobro.Cobrar((double)this.Pagar, "");
                     }
                 }
                 catch (Exception ec)
                 {
                     MessageBox.Show("Problema de comunicación con Terminal", "Pago Tarjeta", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                finally
+                {
+                    if (!cobro)
+                    {
+                        tmr.Dispose();
+                        IsBusy = false;
+                    }
                 }
             }, () => OrderId == null);
 
