@@ -25,7 +25,6 @@ namespace SirCoPOS.BusinessLogic
             {
                 var item = qs.Single();
                 return (T)converter.ConvertFrom(item.valor);                
-
             }
             else
             {

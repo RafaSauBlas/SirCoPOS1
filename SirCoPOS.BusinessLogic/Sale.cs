@@ -151,7 +151,7 @@ namespace SirCoPOS.BusinessLogic
             var now = DateTime.Now;
 
             //if (serie != null)
-            //    throw new CustomException("scan invalido");
+            //  throw new CustomException("scan invalido");
 
             var ctx = new DataAccess.SirCoDataContext();
             var ctxpv = new DataAccess.SirCoPVDataContext();
